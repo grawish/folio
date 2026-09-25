@@ -5,7 +5,7 @@ LaTeX resource inventory and SHA-256 hashes are recorded in `resources/bundle.lo
 runtime.
 
 - **Tectonic 0.17.0**: https://github.com/tectonic-typesetting/tectonic/tree/tectonic%400.17.0. The compiler and its
-  components have multiple license terms; see the upstream `LICENSE` and `COPYRIGHT` files.
+  components have multiple license terms; see the upstream `LICENSE`, component license files and retained source copyright headers.
 - **Tectonic / TeX Live resource bundle**: https://relay.fullyjustified.net/default_bundle_v33.tar. The pinned upstream
   digest is recorded in `scripts/runtime-config.mjs`. Individual LaTeX packages and hyphenation resources retain their
   copyright/license headers and have their own terms. https://tug.org/texlive/copying.html
@@ -37,3 +37,5 @@ source-related materials, and generate an SBOM. This development notice is an in
 release requirements.
 
 Use `node scripts/collect-license-materials.mjs` to collect installed npm production license texts, Electron/Chromium notices and a scoped npm SBOM. The generated inventory lists missing texts and the remaining non-npm audit. See [licensing scope](docs/LICENSING.md).
+
+Use `node scripts/collect-runtime-license-materials.mjs` for pinned Tectonic/Biber source archives, Tectonic's exact source submodules and their unmodified notice/build files. `resources/runtime-license-sources.lock.json` records provenance and digests. This is selected source material, not a completed compiler-binary redistribution audit.

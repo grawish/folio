@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "compilerVersion": "0.17.0",
+  "biberVersion": "2.17",
+  "scope": "Selected upstream compiler source archives and their unmodified notices/build metadata. This is not a complete binary redistribution audit.",
+  "sources": [
+    {
+      "id": "tectonic",
+      "version": "0.17.0",
+      "repository": "tectonic-typesetting/tectonic",
+      "commit": "8c0126a9653239a2e6e0a5274af9b8510f643030",
+      "url": "https://codeload.github.com/tectonic-typesetting/tectonic/tar.gz/8c0126a9653239a2e6e0a5274af9b8510f643030",
+      "archive": "tectonic-8c0126a9653239a2e6e0a5274af9b8510f643030.tar.gz",
+      "bytes": 3291216,
+      "sha256": "980f2862937cc084eae921ade500c0390c9ae196e973636e0e1b13f5c9479f01",
+      "materials": [
+        "tectonic-8c0126a9653239a2e6e0a5274af9b8510f643030/.gitmodules",
+        "tectonic-8c0126a9653239a2e6e0a5274af9b8510f643030/Cargo.lock",
+        "tectonic-8c0126a9653239a2e6e0a5274af9b8510f643030/Cargo.toml",
+        "tectonic-8c0126a9653239a2e6e0a5274af9b8510f643030/LICENSE",
+        "tectonic-8c0126a9653239a2e6e0a5274af9b8510f643030/README.md",
+        "tectonic-8c0126a9653239a2e6e0a5274af9b8510f643030/crates/cfg_support/LICENSE"
+      ]
+    },
+    {
+      "id": "tectonic-reference-sources",
+      "version": null,
+      "repository": "tectonic-typesetting/tectonic-staging",
+      "commit": "70dbe0603c4b27f17b3b4dcb25a85e9da3050fe9",
+      "url": "https://codeload.github.com/tectonic-typesetting/tectonic-staging/tar.gz/70dbe0603c4b27f17b3b4dcb25a85e9da3050fe9",
+      "archive": "tectonic-reference-sources-70dbe0603c4b27f17b3b4dcb25a85e9da3050fe9.tar.gz",
+      "bytes": 1553790,
+      "sha256": "ca2c501de06943f01335fd5f4f79745139a68c05cd620313dfec3ce9bf751b91",
+      "materials": [
+        "tectonic-staging-70dbe0603c4b27f17b3b4dcb25a85e9da3050fe9/LICENSE",
+        "tectonic-staging-70dbe0603c4b27f17b3b4dcb25a85e9da3050fe9/README.md"
+      ]
+    },
+    {
+      "id": "harfbuzz",
+      "version": null,
+      "repository": "harfbuzz/harfbuzz",
+      "commit": "894a1f72ee93a1fd8dc1d9218cb3fd8f048be29a",
+      "url": "https://codeload.github.com/harfbuzz/harfbuzz/tar.gz/894a1f72ee93a1fd8dc1d9218cb3fd8f048be29a",
+      "archive": "harfbuzz-894a1f72ee93a1fd8dc1d9218cb3fd8f048be29a.tar.gz",
+      "bytes": 36010701,
+      "sha256": "17eda8a9861d347a6e95cd2b3112301ce90dcc649b0e96623cc89c6ca4180e66",
+      "materials": [
+        "harfbuzz-894a1f72ee93a1fd8dc1d9218cb3fd8f048be29a/AUTHORS",
+        "harfbuzz-894a1f72ee93a1fd8dc1d9218cb3fd8f048be29a/COPYING",
+        "harfbuzz-894a1f72ee93a1fd8dc1d9218cb3fd8f048be29a/README.md",
+        "harfbuzz-894a1f72ee93a1fd8dc1d9218cb3fd8f048be29a/src/ms-use/COPYING",
+        "harfbuzz-894a1f72ee93a1fd8dc1d9218cb3fd8f048be29a/test/COPYING",
+        "harfbuzz-894a1f72ee93a1fd8dc1d9218cb3fd8f048be29a/test/shape/data/aots/COPYING",
+        "harfbuzz-894a1f72ee93a1fd8dc1d9218cb3fd8f048be29a/test/shape/data/text-rendering-tests/COPYING"
+      ]
+    },
+    {
+      "id": "biber",
+      "version": "2.17",
+      "repository": "plk/biber",
+      "commit": "3091bee31a9706e3aa5e4afef81062856e14735a",
+      "url": "https://codeload.github.com/plk/biber/tar.gz/3091bee31a9706e3aa5e4afef81062856e14735a",
+      "archive": "biber-3091bee31a9706e3aa5e4afef81062856e14735a.tar.gz",
+      "bytes": 1610097,
+      "sha256": "a7d33c5b999494a9723d02d4e62cf0b2556128840bc8622d913a3906f80dee40",
+      "materials": [
+        "biber-3091bee31a9706e3aa5e4afef81062856e14735a/Build.PL",
+        "biber-3091bee31a9706e3aa5e4afef81062856e14735a/README.md"
+      ]
+    }
+  ]
+}
