@@ -8,7 +8,7 @@ The [website gallery](https://grawish.github.io/folio/demos.html) shows each dem
 
 After developer setup, run `npm run build` and `npm run demo:capture` for the main workspace and Settings forms. This creates a fresh synthetic profile and never connects an AI account. You can pass a packaged app executable to `node scripts/capture-tutorials.mjs /absolute/path/to/Folio.app/Contents/MacOS/Folio`.
 
-The more involved screenshots come from the existing native suites: `test:chat`, `test:templates`, `test:import`, `test:files`, `test:watch`, `test:runtime`, `test:migration`, and `test:pdf-viewer`. Run these sequentially. Each prints the location of its evidence and screenshots.
+The more involved screenshots come from the existing native suites: `test:chat`, `test:templates`, `test:import`, `test:files`, `test:watch`, `test:runtime`, `test:migration`, `test:diagnostics`, and `test:pdf-viewer`. Run these sequentially. Each prints the location of its evidence and screenshots.
 
 For an import-recovery demo without a personal home-folder path in the screenshot:
 

@@ -18,6 +18,34 @@ Try removing a closing brace in a disposable sample. The new build should fail a
 
 The previous PDF may look fine while the current source is broken. Check **Up to date** before using it. Export recompiles changed source and waits for a current rendered preview; it does not silently export a stale success.
 
+## Fix a missing file, font or package
+
+When Folio recognizes the problem, **Build output → Diagnostics** shows a short explanation above the original errors. Select an error with a filename and line number to jump there. Switch to **Raw log** for the full compiler output. At a small window size, scroll inside Build output to read the rest.
+
+| Message | What to try |
+| --- | --- |
+| Missing project file | Put the missing file inside your saved project folder, or fix the filename and relative path in Code. Review Folio's outside-file changes if prompted, then compile. |
+| Missing LaTeX package or class | Check whether the original template came with the named `.sty` or `.cls` file. Keep it in the project folder at the path used by the source. If you do not have it, adapt the template to the bundled packages. Builds cannot download packages. |
+| Font not found | For a document that already uses `fontspec`, try `\setmainfont{lmroman10-regular.otf}`. This bundled font can change the layout. You can also keep your own `.otf` or `.ttf` files in the project and refer to their relative paths. Fonts installed elsewhere on your Mac may be unavailable to the isolated compiler. |
+| This document requires LuaTeX or pdfTeX | Use a XeLaTeX-compatible template, or adapt the commands that need the other engine. Folio cannot switch to LuaTeX or pdfTeX. Deleting the engine check alone may leave other incompatible commands. |
+
+![A synthetic missing-font error with the suggested bundled font](../images/build-help-font.png)
+
+To try the font fix safely, create a disposable resume, turn **Auto-compile** off, and replace its main source with:
+
+```tex
+\documentclass{article}
+\usepackage{fontspec}
+\setmainfont{Folio Missing Font}
+\begin{document}Sample\end{document}
+```
+
+Click **Compile**. Read the font advice, then replace `Folio Missing Font` with `lmroman10-regular.otf` and compile again. The PDF should show “Sample,” the advice should disappear, and the status should say **Up to date**.
+
+![The real compiler reporting that a synthetic document requires LuaTeX](../images/build-help-engine.png)
+
+The advice covers recognized messages, not every possible LaTeX error. An unfamiliar failure keeps its original diagnostics and raw log. Compiler-file damage has a separate Settings repair flow. This help does not install fonts or packages automatically; a guided font importer remains planned.
+
 ## Read and export the PDF
 
 Scroll, use page arrows, or enter a page number. Use − and + to zoom and **Fit to width** to reset the view. In selection mode, text can be selected and document links can be followed. Switch to a mark tool when you want to annotate.
@@ -28,4 +56,4 @@ Choose **Export PDF**, pick a filename, and open the result to check it. Marks a
 
 If a replacement PDF fails to load, Folio keeps the previous view. Fix the source and rebuild before exporting. See [viewer limits](../PDF_VIEWER_LIMITS.md).
 
-**Demos:** `npm run test:desktop`, `npm run test:compact`, and `npm run test:pdf-viewer` exercise editing, diagnostics, navigation, links, zoom and failed-preview recovery with synthetic inputs.
+**Demos:** `npm run test:diagnostics` exercises real missing-package, file, font and engine failures, source links, compact dark/light layouts and the bundled-font repair. `npm run test:desktop`, `npm run test:compact`, and `npm run test:pdf-viewer` cover the broader editing and PDF workflows with synthetic inputs.

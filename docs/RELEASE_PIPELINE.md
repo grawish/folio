@@ -22,7 +22,7 @@ An initial branch-based deployment also passed before workflow access was grante
 | Check source | Main pushes, pull requests, manual | Formatting, unit tests, typecheck/build, website build and generated-skill consistency |
 | Publish website | Relevant main changes or manual | Static site deployment to GitHub Pages |
 | Release source preview | `source-v*` tag | Tested source/docs/skill archives, checksums and provenance in a public prerelease |
-| Qualify Apple silicon candidate | Manual | Fresh runtime setup, real compiler integration, arm64 packaging, nine native suites and artifact verification |
+| Qualify Apple silicon candidate | Manual | Fresh runtime setup, real compiler integration, arm64 packaging, ten native suites (including compiler help) and artifact verification |
 
 Official actions are pinned to immutable revisions. Jobs have bounded timeouts. Pull requests use read-only repository permissions and receive no provider keys or signing credentials. Native suites run sequentially. Qualification publishes test metadata/logs, not a downloadable compiler bundle or installer while the binary redistribution audit remains unfinished.
 

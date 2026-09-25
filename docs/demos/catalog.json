@@ -154,6 +154,20 @@
     "alt": "Code and build errors in the real Folio app"
   },
   {
+    "id": "build-help",
+    "title": "Understand a build error",
+    "image": "build-help-font.png",
+    "guide": "tutorials/editor-and-pdf.md#fix-a-missing-file-font-or-package",
+    "description": "Real compiler errors get specific next steps while the last successful PDF stays visible.",
+    "steps": [
+      "Read the explanation above the original errors in Build output.",
+      "Select a source-linked error or open Raw log for detail.",
+      "Apply the supported fix, compile again, and wait for Up to date."
+    ],
+    "kind": "Real compiler \u00b7 synthetic missing font",
+    "alt": "Missing-font guidance beside the last successful PDF in Folio"
+  },
+  {
     "id": "files",
     "title": "Files and retained copies",
     "image": "restore-file.png",

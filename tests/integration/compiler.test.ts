@@ -10,6 +10,7 @@ import { Compiler } from '../../electron/core/compiler';
 import { inspectRuntime, macSandboxProfile } from '../../electron/core/runtime';
 import type { Project } from '../../src/shared/types';
 import { templateCatalog, paperSizes, templateSource } from '../../src/shared/template-catalog';
+import { buildHelp } from '../../src/shared/build-help';
 
 const supported = process.platform === 'darwin';
 const runtime = path.resolve(`resources/runtime/mac-${process.arch}`);
@@ -95,6 +96,66 @@ test(
     assert.deepEqual(compiler.currentPdf(valid), success.pdf);
     // Accepting changed assets advances the revision without changing TeX text.
     assert.equal(compiler.currentPdf({ ...valid, revision: valid.revision + 1 }), undefined);
+  },
+);
+test(
+  'missing dependencies and engine requirements have advice backed by successful local repairs',
+  { skip: !supported },
+  async () => {
+    const cases = [
+      {
+        kind: 'package',
+        source:
+          '\\documentclass{article}\n\\usepackage{folio-sample}\n\\begin{document}Sample\\end{document}',
+        file: { path: 'folio-sample.sty', content: '\\ProvidesPackage{folio-sample}\n' },
+      },
+      {
+        kind: 'package',
+        source: '\\documentclass{folio-sample}\n\\begin{document}Sample\\end{document}',
+        file: {
+          path: 'folio-sample.cls',
+          content: '\\ProvidesClass{folio-sample}\n\\LoadClass{article}\n',
+        },
+      },
+      {
+        kind: 'file',
+        source:
+          '\\documentclass{article}\n\\begin{document}\\input{sections/example}\\end{document}',
+        file: { path: 'sections/example.tex', content: 'Repaired local input.' },
+      },
+      {
+        kind: 'font',
+        source:
+          '\\documentclass{article}\n\\usepackage{fontspec}\n\\setmainfont{Folio Missing Font}\n\\begin{document}Sample\\end{document}',
+      },
+      {
+        kind: 'engine',
+        source:
+          '\\documentclass{article}\n\\usepackage{iftex}\\RequireLuaTeX\n\\begin{document}Sample\\end{document}',
+      },
+      {
+        kind: 'engine',
+        source:
+          '\\documentclass{article}\n\\usepackage{iftex}\\RequirePDFTeX\n\\begin{document}Sample\\end{document}',
+      },
+    ];
+    for (const entry of cases) {
+      const broken = project(entry.source);
+      const failed = await compiler.compile(broken);
+      assert.equal(failed.status, 'error', failed.log);
+      assert.equal(buildHelp(failed)?.kind, entry.kind, failed.log);
+      const repaired = project(
+        entry.source
+          .replace('Folio Missing Font', 'lmroman10-regular.otf')
+          .replace(/\\Require(?:Lua|PDF)TeX/, ''),
+        1,
+      );
+      if (entry.file) repaired.files.push(entry.file);
+      const success = await compiler.compile(repaired);
+      assert.equal(success.status, 'success', success.log);
+      assert.ok(success.pdf && success.pdf.length > 1000);
+      assert.equal(buildHelp(success), undefined);
+    }
   },
 );
 test(

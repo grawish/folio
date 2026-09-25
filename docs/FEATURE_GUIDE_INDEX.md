@@ -15,6 +15,7 @@ Every currently implemented feature group below has a plain-language walkthrough
 | Visual PDF feedback | [Walkthrough](tutorials/chat-and-feedback.md) | [Screenshot](images/annotations.png) · Real app · scripted local AI fixture |
 | Compare, undo and restore | [Walkthrough](tutorials/chat-and-feedback.md) | [Screenshot](images/history.png) · Real app · scripted local AI fixture |
 | Code and build errors | [Walkthrough](tutorials/editor-and-pdf.md) | [Screenshot](images/code.png) · Real app · synthetic project |
+| Missing files, fonts and engine help | [Walkthrough](tutorials/editor-and-pdf.md#fix-a-missing-file-font-or-package) | [Screenshot](images/build-help-font.png) · Real compiler · synthetic missing font |
 | Files and retained copies | [Walkthrough](tutorials/files-and-import.md) | [Screenshot](images/restore-file.png) · Real app · synthetic project |
 | Open, import and export source | [Walkthrough](tutorials/files-and-import.md) | [Screenshot](images/import.png) · Real app · synthetic project |
 | Recover an import | [Walkthrough](tutorials/recover-an-import.md) | [Screenshot](images/import-recovery.png) · Real app · controlled interruption fixture |

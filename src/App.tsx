@@ -69,6 +69,7 @@ import { ExternalChanges } from './components/ExternalChanges';
 import { PaneDivider } from './components/PaneDivider';
 import { usePaneLayout } from './usePaneLayout';
 import { minimumSidebar, minimumEditor } from './shared/workspace-layout';
+import { buildHelp } from './shared/build-help';
 
 type Dialog =
   | 'templates'
@@ -200,6 +201,7 @@ export default function App() {
     lastGood?.revision !== project.revision;
   const warnings = result?.diagnostics.filter((d) => d.severity === 'warning').length ?? 0;
   const errors = result?.diagnostics.filter((d) => d.severity === 'error').length ?? 0;
+  const recoveryHelp = useMemo(() => buildHelp(result), [result]);
   const runtimeNotice = !initialized
     ? null
     : !window.folio
@@ -1621,6 +1623,16 @@ export default function App() {
                     <pre>{result?.log || 'Compile your document to see its build log.'}</pre>
                   ) : (
                     <div className="diagnostic-list">
+                      {recoveryHelp && (
+                        <aside className="build-help" aria-labelledby="build-help-title">
+                          <strong id="build-help-title">{recoveryHelp.title}</strong>
+                          <ul>
+                            {recoveryHelp.steps.map((step) => (
+                              <li key={step}>{step}</li>
+                            ))}
+                          </ul>
+                        </aside>
+                      )}
                       {!result?.diagnostics.length ? (
                         <div className="diagnostic-empty">
                           <CheckCircle2 size={15} />

@@ -86,5 +86,21 @@
     "sha256": "0ee7eee8cbf0ad94cb8f96c531efd65d12335d8f3fe9288b33f674c2c01397af",
     "synthetic": true,
     "liveAI": false
+  },
+  {
+    "file": "docs/images/build-help-font.png",
+    "sourceSuite": "diagnostics",
+    "sourceCapture": "font.png",
+    "sha256": "7ac994470310a4174026aa91e05612c1dab4496303a00ab6cd2b12858d66d14a",
+    "synthetic": true,
+    "liveAI": false
+  },
+  {
+    "file": "docs/images/build-help-engine.png",
+    "sourceSuite": "diagnostics",
+    "sourceCapture": "engine.png",
+    "sha256": "5578d3398370b27b25cd6f950dc3a2cd0a294819eecf53e8cbf9b47ea14473af",
+    "synthetic": true,
+    "liveAI": false
   }
 ]

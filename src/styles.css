@@ -837,6 +837,31 @@ a {
   padding: 7px;
 }
 
+.build-help {
+  padding: 9px;
+  margin-bottom: 5px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  color: var(--ink);
+  font-size: 11px;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.build-help strong {
+  font-weight: 600;
+}
+
+.build-help ul {
+  padding-left: 17px;
+  margin: 6px 0 0;
+  color: var(--muted);
+}
+
+.build-help li + li {
+  margin-top: 5px;
+}
+
 .diagnostic {
   display: flex;
   align-items: flex-start;

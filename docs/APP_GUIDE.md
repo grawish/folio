@@ -15,6 +15,7 @@ A desktop workspace where you can chat about your resume, mark changes on its PD
 - Compact workspace with resizable file/writing/PDF panes, remembered proportions, keyboard dividers, a collapsible sidebar and narrow PDF gutters. Project menus retain all secondary actions.
 - New source files, recoverable rename/removal/restore, main-document selection, and opening existing `.tex` projects with relative assets.
 - Automatic/manual local compilation, cancellation, timeouts, and source-linked diagnostics.
+- Plain-language help for recognized missing packages, files, fonts and engine requirements, with the original errors and raw log preserved. See [compiler error help](BUILD_HELP.md).
 - PDF preview with selectable text, links, page navigation, zoom, and preservation of the last successful PDF after errors. Documents up to 100 pages and 25 MiB use visible-page rendering, bounded canvases and timed worker cleanup; see [viewer limits](PDF_VIEWER_LIMITS.md).
 - Native save/Save As, optional autosave, external-file watching with review and preserved copies, PDF export, and source ZIP export.
 - Safe ZIP project import with main-file selection, preserved chat/PDF history, fresh project identities, and ordinary folder opening.
