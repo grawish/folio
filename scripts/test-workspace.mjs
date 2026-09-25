@@ -10,6 +10,7 @@ const env = { ...process.env, FOLIO_USER_DATA: path.join(root, 'data') };
 delete env.ELECTRON_RUN_AS_NODE;
 let app, page;
 const errors = [];
+const layouts = [];
 const pause = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const readSource = () => fs.readFile(path.join(folder, 'main.tex'), 'utf8');
 const launch = async () => {
@@ -42,6 +43,47 @@ const editor = () => page.locator('.cm-content');
 const separator = () => page.getByRole('separator', { name: 'Resize writing and PDF panes' });
 const width = (selector) =>
   page.locator(selector).evaluate((node) => node.getBoundingClientRect().width);
+const captureLayout = async (phase) => {
+  const native = await app.evaluate(({ BrowserWindow, screen }) => ({
+    bounds: BrowserWindow.getAllWindows()[0].getBounds(),
+    contentBounds: BrowserWindow.getAllWindows()[0].getContentBounds(),
+    displays: screen.getAllDisplays().map(({ bounds, workArea, scaleFactor }) => ({
+      bounds,
+      workArea,
+      scaleFactor,
+    })),
+  }));
+  const layout = {
+    phase,
+    native,
+    viewport: await page.evaluate(() => ({ width: innerWidth, height: innerHeight })),
+    editor: await width('.editor-pane'),
+    preview: await width('.preview-pane'),
+    min: Number(await separator().getAttribute('aria-valuemin')),
+    max: Number(await separator().getAttribute('aria-valuemax')),
+  };
+  layouts.push(layout);
+  await fs.writeFile(path.join(root, 'layout-measurements.json'), JSON.stringify(layouts, null, 2));
+  return layout;
+};
+const dragWritingPane = async (delta, phase) => {
+  const before = await captureLayout(`${phase}:before`);
+  const handle = await separator().boundingBox();
+  const x = handle.x + handle.width / 2;
+  const y = handle.y + Math.min(140, handle.height / 2);
+  // A small native display can constrain the initial window to its minimum.
+  // Exercise real pointer movement and the advertised bounds at any such size.
+  const expected = Math.min(before.max, Math.max(before.min, before.editor + delta));
+  await page.mouse.move(x, y);
+  await page.mouse.down();
+  await page.mouse.move(x + delta, y, { steps: 8 });
+  await page.mouse.up();
+  await expect.poll(() => width('.editor-pane')).toBeCloseTo(expected, 0);
+  const after = await captureLayout(`${phase}:after`);
+  expect(after.editor).toBeGreaterThanOrEqual(359);
+  expect(after.preview).toBeGreaterThanOrEqual(419);
+  return { before, after };
+};
 const closed = async () => {
   const event = page.waitForEvent('close');
   await app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0].close());
@@ -99,6 +141,9 @@ try {
   const nativeDraft = JSON.parse(
     await fs.readFile(path.join(root, 'data/recovery.json'), 'utf8'),
   ).project;
+  expect(nativeDraft.files.find((file) => file.path === 'main.tex').content).toContain(
+    '% Untitled edit',
+  );
   expect(
     (await page.evaluate((project) => window.folio.autosaveProject(project), nativeDraft)).saved,
   ).toBe(false);
@@ -107,17 +152,19 @@ try {
     'PASS: autosave defaults off, untitled projects keep recovery without folder prompts.',
   );
 
-  const startWidth = await width('.editor-pane');
-  const handle = await separator().boundingBox();
-  await page.mouse.move(handle.x + handle.width / 2, handle.y + 140);
-  await page.mouse.down();
-  await page.mouse.move(handle.x + 100, handle.y + 140, { steps: 8 });
-  await page.mouse.up();
-  expect(await width('.editor-pane')).toBeGreaterThan(startWidth + 60);
+  await dragWritingPane(100, 'initial-right');
+  const left = await dragWritingPane(-100, 'initial-left');
+  expect(left.before.editor - left.after.editor).toBeGreaterThan(60);
   await editor().focus();
   await editor().press('ControlOrMeta+z');
-  await expect(editor()).not.toContainText('Untitled edit');
-  await expect(editor()).toContainText('Alex Morgan');
+  // Verify the full recovered buffer, including text outside CodeMirror's
+  // virtualized viewport. At the minimum size the name can be off-screen.
+  await expect
+    .poll(async () => {
+      const recovery = JSON.parse(await fs.readFile(path.join(root, 'data/recovery.json'), 'utf8'));
+      return recovery.project.files.find((file) => file.path === 'main.tex').content;
+    })
+    .toBe(original);
   await page.getByRole('separator', { name: 'Resize file sidebar' }).focus();
   await page.keyboard.press('Shift+ArrowRight');
   const preferred = await page.evaluate(() => localStorage.getItem('folio:panes'));
@@ -132,6 +179,10 @@ try {
       ({ BrowserWindow }, size) => BrowserWindow.getAllWindows()[0].setSize(...size),
       size,
     );
+    await expect.poll(() => page.evaluate(() => innerWidth)).toBe(size[0]);
+    await separator().press('Enter');
+    await dragWritingPane(100, `requested-${size.join('x')}-right`);
+    await dragWritingPane(-100, `requested-${size.join('x')}-left`);
     for (const key of ['Home', 'End']) {
       await separator().focus();
       await page.keyboard.press(key);

@@ -37,6 +37,9 @@ jobs:
             release/SHA256SUMS
             release/disk-image-verification.log
             test-results/*-final.log
+            test-results/workspace-*/layout-measurements.json
+            test-results/workspace-*/failure.png
+            test-results/workspace-*/result.json
           if-no-files-found: warn
           retention-days: 14
       # Do not upload the runtime/DMG yet: redistribution materials, signing,

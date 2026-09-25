@@ -35,11 +35,13 @@ Autosave reuses the journaled source/manifest/history/saved-copy transaction. A 
 
 ## Verification
 
-`tests/autosave-layout.test.ts` checks pane bounds/preferences, source/asset/metadata additions/edits/deletions, unknown projects, overwrite/alternate-directory rejection, queue ordering and history-preparation failure. The full unit/protocol suite now has 85 tests.
+`tests/autosave-layout.test.ts` checks pane bounds/preferences, source/asset/metadata additions/edits/deletions, unknown projects, overwrite/alternate-directory rejection, queue ordering and history-preparation failure. Current whole-app test counts are recorded in the release audit.
 
 `npm run test:workspace` runs an isolated Electron workflow: first-save behavior, native background IPC conflict rejection, drag and keyboard sizing, toolbar hit-testing, editor undo, settings, source/chat autosave, typing during a held native write, actual write failure/rollback, manual retry, pending native project selection, close during autosave, preference persistence and recovery with autosave disabled. It uses synthetic folders and a scoped native write hook. A packaged executable may be passed to `node scripts/test-workspace.mjs`.
 
 The chat regression additionally holds a synthetic AI request while the user edits source, verifies that autosave waits, then cancels and checks that retained manual changes save afterward. Run native UI suites sequentially: a separate Electron test window can interrupt pointer capture during a drag. Test scripts must read full TeX fixtures from disk, not CodeMirror's virtualized DOM.
+
+The first hosted Mac run exposed two test assumptions at a 1040-pixel window. The default writing pane is 426 pixels wide and can grow only to 432 while keeping the PDF usable; expecting more than 486 was incorrect. The drag check now tests movement in both directions against the divider's announced bounds, at initial, 1480-pixel and 1040-pixel window sizes. It also verifies undo against the full recovery buffer because the name near the top of the source may be outside CodeMirror's rendered viewport. The original failure was reproduced locally against the unchanged packaged app. Window/display geometry and pane widths are saved in `layout-measurements.json`; the hosted workflow retains these measurements and failure screenshots for diagnosis.
 
 `npm run test:pdf-lifecycle` delays one real PDF worker's document-load message, then zooms, resizes the writing pane and collapses the sidebar while the previous PDF remains visible. It verifies that the replacement becomes readable, links remain usable, notes wait for matching bytes, and page/zoom/scroll survive. A second delayed load is superseded by another compile to check cancellation. This test reproduced the original destroyed-document rendering error against the earlier package before the lifetime fix, and passed with the correction.
 
