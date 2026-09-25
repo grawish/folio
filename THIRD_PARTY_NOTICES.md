@@ -32,6 +32,8 @@ runtime.
 The six resume templates are original sample content for this project. All names, organizations, achievements, and
 contact details in them are illustrative.
 
-Before a public release, complete a per-component redistribution audit, ship all required license texts and
+Before distributing a compiler-bundled application binary, complete a per-component redistribution audit, ship all required license texts and
 source-related materials, and generate an SBOM. This development notice is an inventory and does not replace those
 release requirements.
+
+Use `node scripts/collect-license-materials.mjs` to collect installed npm production license texts, Electron/Chromium notices and a scoped npm SBOM. The generated inventory lists missing texts and the remaining non-npm audit. See [licensing scope](docs/LICENSING.md).
