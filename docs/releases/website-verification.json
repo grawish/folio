@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-25T21:23:54.596Z",
+  "site": "https://grawish.com/folio/",
+  "deployment": {
+    "repository": "grawish/folio",
+    "runId": 36190891209,
+    "conclusion": "success"
+  },
+  "https": {
+    "githubCertificateState": "approved",
+    "domains": ["grawish.com", "www.grawish.com"],
+    "expiresAt": "2026-12-25",
+    "enforced": true,
+    "cloudflareMode": "Full (strict)",
+    "proxyRestored": true
+  },
+  "checks": [
+    {
+      "url": "https://grawish.com/",
+      "status": 200,
+      "title": "Grawish Sachdeva"
+    },
+    {
+      "url": "https://grawish.com/folio/",
+      "status": 200,
+      "title": "Folio — your next chapter",
+      "server": "cloudflare"
+    },
+    {
+      "url": "https://grawish.com/folio/demos.html",
+      "status": 200,
+      "title": "Folio — demos and tutorials"
+    }
+  ],
+  "method": "Normal curl HTTPS validation with redirects; no insecure option. Live Chrome DOM and viewport screenshot inspected for the Folio landing page.",
+  "scope": "Point-in-time verification, not a future availability guarantee."
+}

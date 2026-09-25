@@ -8,7 +8,7 @@ Folio is a local LaTeX resume studio for **Apple silicon Macs**. Chat is the mai
 
 ![Folio Chat beside a real sample PDF](docs/images/workspace.png)
 
-The [source preview release](https://github.com/grawish/folio/releases/tag/source-v0.1.0-preview.2) includes source, screenshot guides and the reusable skill. The website build is deployed, but its inherited custom domain currently has a TLS error; use the [repository demo guide](docs/demos/README.md) while hosting is resolved.
+The [source preview release](https://github.com/grawish/folio/releases/tag/source-v0.1.0-preview.2) includes source, screenshot guides and the reusable skill. Explore the live [product website](https://grawish.com/folio/) and [screenshot demo gallery](https://grawish.com/folio/demos.html).
 
 ## Development preview
 
@@ -52,7 +52,7 @@ npm run build
 npm start
 ```
 
-The [release pipeline](docs/RELEASE_PIPELINE.md) covers source checks, source previews, website deployment and Mac candidate qualification. Hosted source checks and website deployment have passed; full native candidate qualification is still in progress. See [contributing](CONTRIBUTING.md) for native integration tests and packaging, and [architecture](docs/ARCHITECTURE.md) for the code map.
+The [release pipeline](docs/RELEASE_PIPELINE.md) covers source checks, source previews, website deployment and Mac candidate qualification. Hosted source checks and website deployment have passed. The first hosted Mac candidate passed seven native suites, then failed a workspace pane-resizing assertion; full hosted qualification remains open. See [contributing](CONTRIBUTING.md) for native integration tests and packaging, and [architecture](docs/ARCHITECTURE.md) for the code map.
 
 ## Learn and contribute
 
