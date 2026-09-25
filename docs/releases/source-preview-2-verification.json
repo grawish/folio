@@ -1,0 +1,28 @@
+{
+  "tag": "source-v0.1.0-preview.2",
+  "commit": "efd41c7a43f99e71c5aece4a0a19047b66f005ff",
+  "workflow": "https://github.com/grawish/folio/actions/runs/36188959516",
+  "workflowConclusion": "success",
+  "release": "https://github.com/grawish/folio/releases/tag/source-v0.1.0-preview.2",
+  "kind": "source-preview",
+  "signedMacInstallerIncluded": false,
+  "publishedDigestsMatchChecksums": true,
+  "archives": [
+    {
+      "name": "Folio-source-v0.1.0-preview.2-source.zip",
+      "sha256": "ce2dcb942fd4b642a17bf70337e53542fe64d16de710cc634d24882fece67ec3"
+    },
+    {
+      "name": "Folio-source-v0.1.0-preview.2-docs.zip",
+      "sha256": "791b2349fc0111c6319e26913dc7f0a70fd0750838edd35674897d998630ced3"
+    },
+    {
+      "name": "Folio-source-v0.1.0-preview.2-skill.zip",
+      "sha256": "2fee32b5f6ea6b4afea61d4ee7d8ff347bf16df57e9e20364183c804a95525d3"
+    },
+    {
+      "name": "provenance.json",
+      "sha256": "084d9c864dbe74f2d68cc77972fcda37ed152b56a662f3dffa86b9d9cab49e3d"
+    }
+  ]
+}

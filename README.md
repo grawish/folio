@@ -8,7 +8,7 @@ Folio is a local LaTeX resume studio for **Apple silicon Macs**. Chat is the mai
 
 ![Folio Chat beside a real sample PDF](docs/images/workspace.png)
 
-The [source preview release](https://github.com/grawish/folio/releases/tag/source-v0.1.0-preview.1) includes source, screenshot guides and the reusable skill. The website build is deployed, but its inherited custom domain currently has a TLS error; use the [repository demo guide](docs/demos/README.md) while hosting is resolved.
+The [source preview release](https://github.com/grawish/folio/releases/tag/source-v0.1.0-preview.2) includes source, screenshot guides and the reusable skill. The website build is deployed, but its inherited custom domain currently has a TLS error; use the [repository demo guide](docs/demos/README.md) while hosting is resolved.
 
 ## Development preview
 
