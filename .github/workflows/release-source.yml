@@ -1,0 +1,35 @@
+name: Release source preview
+on:
+  push:
+    tags: ['source-v*']
+permissions:
+  contents: read
+concurrency:
+  group: source-release-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: macos-15
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run format:check && npm test && npm run build
+      - run: npm run website:build && npm run skill:build
+      - name: Create source, documentation and skill archives
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          node scripts/package-source-release.mjs "$RELEASE_TAG"
+      - name: Publish noncommercial source preview
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          gh release create "$RELEASE_TAG" artifacts/* --verify-tag --prerelease --title "Folio $RELEASE_TAG — source preview" --notes-file docs/releases/source-preview.md

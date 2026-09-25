@@ -1,0 +1,43 @@
+name: Qualify Apple silicon candidate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: mac-candidate-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  qualify:
+    runs-on: macos-15
+    timeout-minutes: 90
+    env:
+      CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Confirm native Apple silicon
+        run: test "$(uname -m)" = arm64
+      - run: npm ci
+      - run: npm run setup
+      - run: npm run format:check && npm test && npm run test:integration
+      - run: npm run dist -- --publish never
+      - run: node scripts/test-mac-release.mjs release
+      - run: node scripts/verify-mac-package.mjs release
+      - name: Preserve qualification evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: apple-silicon-qualification-${{ github.sha }}
+          path: |
+            release/native-tests.json
+            release/verification.json
+            release/SHA256SUMS
+            release/disk-image-verification.log
+            test-results/*-final.log
+          if-no-files-found: warn
+          retention-days: 14
+      # Do not upload the runtime/DMG yet: redistribution materials, signing,
+      # notarization and signing-aware manifests remain release requirements.
