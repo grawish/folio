@@ -1,0 +1,114 @@
+{
+  "name": "folio-resume-maker",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A chat-first LaTeX resume studio for Apple silicon Macs.",
+  "author": "Folio contributors",
+  "license": "PolyForm-Noncommercial-1.0.0",
+  "homepage": "https://grawish.github.io/folio/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/grawish/folio.git"
+  },
+  "type": "module",
+  "main": "dist-electron/main.cjs",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "setup": "node node_modules/electron/install.js && npm run runtime:prepare",
+    "format": "prettier --write src electron scripts tests *.json *.ts *.html",
+    "format:check": "prettier --check src electron scripts tests *.json *.ts *.html",
+    "dev:web": "vite --host 127.0.0.1",
+    "build": "npm run typecheck && vite build && node scripts/build-electron.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "test:integration": "node --import tsx --test tests/integration/*.test.ts",
+    "test:desktop": "npm run build && node scripts/test-desktop.mjs",
+    "test:chat": "npm run build && node scripts/test-chat.mjs",
+    "test:import": "npm run build && node scripts/test-import.mjs",
+    "test:import-recovery": "npm run build && node --import tsx scripts/test-import-recovery.mjs",
+    "test:files": "npm run build && node scripts/test-files.mjs",
+    "test:watch": "npm run build && node scripts/test-watch.mjs",
+    "test:templates": "npm run build && node scripts/test-templates.mjs",
+    "test:workspace": "npm run build && node scripts/test-workspace.mjs",
+    "test:pdf-lifecycle": "npm run build && node scripts/test-pdf-lifecycle.mjs",
+    "test:pdf-viewer": "npm run build && node scripts/test-pdf-viewer.mjs",
+    "test:runtime": "npm run build && node scripts/test-runtime.mjs",
+    "templates:build": "node --import tsx scripts/build-template-corpus.ts",
+    "test:compact": "npm run build && node scripts/test-compact.mjs && node scripts/test-compact-states.mjs",
+    "runtime:prepare": "node scripts/prepare-runtime.mjs",
+    "runtime:verify": "node scripts/verify-runtime.mjs",
+    "pack": "npm run runtime:verify && npm run build && electron-builder --mac --arm64 --dir",
+    "dist": "npm run runtime:verify && npm run build && electron-builder --mac --arm64",
+    "start": "electron .",
+    "test:migration": "npm run build && node --import tsx scripts/test-migration.mjs"
+  },
+  "build": {
+    "appId": "app.folio.resume",
+    "productName": "Folio",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "dist-electron/**/*",
+      "!node_modules/**/*",
+      "package.json",
+      "LICENSE",
+      "NOTICE",
+      "THIRD_PARTY_NOTICES.md"
+    ],
+    "extraResources": [
+      {
+        "from": "resources/runtime/${os}-${arch}",
+        "to": "runtime"
+      }
+    ],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "arm64"
+          ]
+        }
+      ]
+    },
+    "artifactName": "Folio-${version}-${os}-${arch}.${ext}"
+  },
+  "dependencies": {
+    "@codemirror/autocomplete": "6.20.3",
+    "@codemirror/commands": "6.11.1",
+    "@codemirror/language": "6.12.4",
+    "@codemirror/legacy-modes": "6.5.4",
+    "@codemirror/search": "6.7.2",
+    "@codemirror/state": "6.7.6",
+    "@codemirror/view": "6.43.13",
+    "@lezer/highlight": "1.2.4",
+    "fflate": "0.8.3",
+    "lucide-react": "1.48.0",
+    "pdfjs-dist": "6.3.289",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@types/node": "26.6.2",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.1",
+    "electron": "44.4.5",
+    "electron-builder": "26.15.3",
+    "esbuild": "0.28.2",
+    "prettier": "3.9.9",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2",
+    "vite": "8.3.1"
+  }
+}

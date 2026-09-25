@@ -1,0 +1,55 @@
+% Authored compatibility fixture for common imported XeLaTeX resume classes.
+% Only this trusted fixture is used to collect packages from the pinned bundle.
+\documentclass[10pt,a4paper]{article}
+\usepackage{array,enumitem,ragged2e,geometry,fancyhdr,xcolor,ifxetex,xifthen,etoolbox,setspace}
+\usepackage[quiet]{fontspec}
+\defaultfontfeatures{Ligatures=TeX}
+\usepackage{unicode-math,fontawesome5,roboto}
+\usepackage[default,opentype]{sourcesanspro}
+\usepackage[skins]{tcolorbox}
+\usepackage{parskip}
+\usepackage[hidelinks,unicode,pdfpagelabels=false]{hyperref}
+\usepackage{bookmark}
+\usepackage[sorting=ydnt,style=verbose,doi=false,isbn=true,url=false,eprint=false,
+  backref=false,maxcitenames=3,maxbibnames=99,hyperref=true,block=none,backend=biber]{biblatex}
+\begin{filecontents*}{resume-check.bib}
+@article{folio-check,
+  author = {Example, Alex},
+  title = {Offline Bibliography Compatibility},
+  journaltitle = {Example Journal},
+  year = {2024}
+}
+\end{filecontents*}
+\addbibresource{resume-check.bib}
+\geometry{margin=2cm}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\sourcesanspro\thepage}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\begin{document}
+{\roboto\Large Compatibility resume}\par
+{\robotolight\itshape A lighter heading}\par
+{\roboto\bfseries Bold heading}\par
+{\roboto\bfseries\itshape Bold italic heading}\par
+\faEnvelope\ \faPhone\ \faHome\ \faGithub\ \faLinkedin\ \faGlobe\ \faGraduationCap
+\begin{tabular}{L{8cm}r}
+  \textbf{Role and organization} & 2024--Present\\
+  {\sourcesansprolight\slshape Date and location} & Remote
+\end{tabular}
+\begin{justify}
+\begin{itemize}[leftmargin=2ex,nosep]
+  \item {\sourcesanspro\bfseries A concrete achievement.}
+  \item {\sourcesanspro\itshape A short description.}
+  \item {\sourcesanspro\bfseries\itshape A highlighted result.}
+\end{itemize}
+\end{justify}
+\begin{tcolorbox}[enhanced,colback=white,colframe=gray]
+  A boxed section using the skins library. Inline math: $\alpha + \beta = 1$.
+\end{tcolorbox}
+% Resume classes use compact body text and math-mode bullet symbols.
+\foreach \size in {6,7,8,9,10,11,12}{%
+  {\fontsize{\size pt}{12pt}\selectfont Compact text with $\bullet$ and $\alpha+\beta=1$.}\par
+}
+An example publication: \cite{folio-check}.
+\printbibliography
+\end{document}

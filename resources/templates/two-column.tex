@@ -1,0 +1,80 @@
+% TWO COLUMN - Experience beside a concise skills sidebar
+% Paper size: change a4paper to letterpaper below for US Letter.
+% Font: bundled Latin Modern Sans. Replace all sample facts with your own.
+% The two minipages do not break across pages. Keep this layout to one page.
+% PDF content order is header, complete left column, then complete right column.
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=0.7in]{geometry}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem,titlesec,xcolor,hyperref}
+\renewcommand{\familydefault}{\sfdefault}
+\definecolor{ink}{HTML}{244751}
+\hypersetup{colorlinks=true,urlcolor=ink}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\titleformat{\section}{\large\bfseries\color{ink}}{}{0pt}{}
+\titlespacing*{\section}{0pt}{14pt}{6pt}
+\setlist[itemize]{leftmargin=13pt,itemsep=4pt,topsep=4pt}
+\begin{document}
+{\Huge\bfseries Sam Patel}\\[5pt]
+{\large Product Manager}\\[7pt]
+Austin, TX \enspace / \enspace
+\href{mailto:sam@example.com}{sam@example.com} \enspace / \enspace
+\href{https://example.com}{sampatel.example.com}\\[9pt]
+{\color{ink}\hrule height 0.8pt}
+\vspace{5pt}
+
+\begin{minipage}[t]{0.64\textwidth}
+\setlength{\parskip}{5pt}
+\vspace{0pt}
+\section{Profile}
+Product manager who turns customer research into focused, useful improvements.
+Enjoy working closely with design and engineering to simplify everyday tools.
+
+\section{Experience}
+\textbf{Product Manager}\\
+Clearwater Tools \hfill 2022 -- Present
+\begin{itemize}
+  \item Led a team of seven to improve a scheduling product for independent clinics.
+  \item Combined support feedback and 20 interviews into a clear quarterly roadmap.
+  \item Improved first-week activation by 18\% through shorter setup and better guidance.
+\end{itemize}
+\textbf{Associate Product Manager}\\
+Bridgeway \hfill 2020 -- 2022
+\begin{itemize}
+  \item Coordinated the launch of a shared reporting workspace for customer teams.
+  \item Introduced weekly feedback sessions and wrote release notes in plain language.
+\end{itemize}
+
+\section{Education}
+\textbf{BS, Information Systems}\\
+Example University \hfill 2016 -- 2020
+\end{minipage}\hfill
+\begin{minipage}[t]{0.29\textwidth}
+\setlength{\parskip}{5pt}
+\vspace{0pt}
+\section{Skills}
+Customer interviews\\
+Product strategy\\
+Roadmap planning\\
+Experiment design\\
+Accessible design\\
+Stakeholder communication
+
+\section{Tools}
+SQL, spreadsheets,\\
+Figma, analytics,\\
+issue tracking
+
+\section{Community}
+\textbf{Local Makers}\\
+2021 -- Present\\
+Volunteer organizer for a monthly peer-learning group.
+
+\section{Languages}
+English\\
+Spanish
+\end{minipage}
+\end{document}

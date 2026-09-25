@@ -1,0 +1,28 @@
+node_modules/
+dist/
+dist-electron/
+release/
+.cache/
+resources/runtime/
+test-results/
+*.log
+.DS_Store
+
+# Local editor state, scratch work, and private design/test captures.
+.idea/
+.vscode/
+tmp/
+output/
+docs/ui-previews/
+docs/ui-audit/
+design-qa.md
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.key
+
+# Generated website and release evidence.
+.site/
+artifacts/

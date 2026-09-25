@@ -1,0 +1,58 @@
+% THE MODERN · Clean typography with a quiet accent
+% Paper size: change a4paper to letterpaper below for US Letter.
+% Font: bundled Latin Modern Sans. Replace all sample facts with your own.
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=0.78in]{geometry}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem,titlesec,xcolor,hyperref}
+\renewcommand{\familydefault}{\sfdefault}
+\definecolor{accent}{HTML}{A04E34}
+\hypersetup{colorlinks=true,urlcolor=accent}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\titleformat{\section}{\large\bfseries\color{accent}}{}{0pt}{}
+\titlespacing*{\section}{0pt}{18pt}{6pt}
+\setlist[itemize]{leftmargin=14pt,itemsep=4pt,topsep=3pt}
+\begin{document}
+{\Huge\bfseries Jordan Lee}\\[5pt]
+{\large Software Engineer}\\[8pt]
+San Francisco, CA \enspace / \enspace
+\href{mailto:jordan@example.com}{jordan@example.com} \enspace / \enspace
+\href{https://example.com}{jordan.dev}
+
+\section{About}
+Software engineer who cares about simple interfaces, reliable systems, and
+the people using them. Experienced in building thoughtful web applications
+and helping small teams deliver meaningful improvements.
+
+\section{Experience}
+\textbf{Software Engineer} \hfill 2022 -- Present\\
+\textit{Evergreen Technologies}
+\begin{itemize}
+\item Built a customer dashboard serving 15,000 monthly active users
+      using React, TypeScript, and PostgreSQL.
+\item Reduced page load time by 42\% through focused profiling,
+      query optimization, and improved caching.
+\item Introduced integration tests for critical payment workflows.
+\end{itemize}
+\textbf{Frontend Developer} \hfill 2020 -- 2022\\
+\textit{Small Hours Studio}
+\begin{itemize}
+\item Delivered accessible websites for eight independent businesses.
+\item Collaborated with designers on a reusable component library.
+\end{itemize}
+
+\section{Projects}
+\textbf{Daylight} \enspace A local-first personal planning application.\\
+Built a fast, keyboard-friendly experience with offline storage and export.
+
+\section{Education}
+\textbf{BS, Computer Science} \hfill 2016 -- 2020\\
+University of California, Davis
+
+\section{Skills}
+TypeScript, JavaScript, React, Node.js, PostgreSQL, HTML/CSS, Git,
+automated testing, accessibility, API design
+\end{document}

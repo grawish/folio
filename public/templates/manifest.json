@@ -1,0 +1,293 @@
+{
+  "schemaVersion": 1,
+  "variants": [
+    {
+      "name": "classic-a4",
+      "sourceHash": "1f0b21921a6ca62d39a3424719885c56e5dd6c0d332ad615043671f3e6a4dcd0",
+      "pdfHash": "33d25a682e810d6f5fb941ad5674b0a13418c335c73c2fa7b3d3d88e13bff861",
+      "pageCount": 1,
+      "width": 595.28,
+      "height": 841.89,
+      "textBounds": [
+        51.840089999999975,
+        48.80907528199998,
+        543.4498444416,
+        701.799723072
+      ],
+      "fonts": [
+        "/IHAIZV+LMRoman12-Bold",
+        "/BZIVMZ+LMRoman12-Regular",
+        "/IXFAWU+LMRoman10-Regular",
+        "/TQTHRL+LMMathSymbols10-Regular",
+        "/YEUUOC+LMRoman10-Bold",
+        "/AKHCZK+LMRoman10-Italic",
+        "/VDVGTR+LMRoman10-Regular"
+      ],
+      "textChecks": true,
+      "linksChecked": 2,
+      "previewHash": "38f95f3b25a51669105de7efdba08fe5b2633e7f7fde5ee15c3057862551fee3"
+    },
+    {
+      "name": "classic-letter",
+      "sourceHash": "7eed1e55103a383d1635a5e64cf932258ec3177e4f95aeb8440b230ca7c2a0f6",
+      "pdfHash": "d71b736ee3b8a590107746bf600678b924741cdd766412a60ff3fdc379adfe55",
+      "pageCount": 1,
+      "width": 612.0,
+      "height": 792.0,
+      "textBounds": [
+        51.840089999999975,
+        48.80883528200002,
+        560.171294528,
+        674.7010830720001
+      ],
+      "fonts": [
+        "/IHAIZV+LMRoman12-Bold",
+        "/BZIVMZ+LMRoman12-Regular",
+        "/IXFAWU+LMRoman10-Regular",
+        "/TQTHRL+LMMathSymbols10-Regular",
+        "/YEUUOC+LMRoman10-Bold",
+        "/AKHCZK+LMRoman10-Italic",
+        "/VDVGTR+LMRoman10-Regular"
+      ],
+      "textChecks": true,
+      "linksChecked": 2,
+      "previewHash": "5e3ef1114cd3c728118e01c4161722b5c2a3a5e27a058f43f6bb5b825023c8ee"
+    },
+    {
+      "name": "modern-a4",
+      "sourceHash": "224fbb81d2bb8c2e082a6d42e0c082714b26e2ffce28b71cf88186238e00feda",
+      "pdfHash": "f5894552c31a8422a80db90066f2729e6ca64dcf128e884ca9bc02e51824be7f",
+      "pageCount": 1,
+      "width": 595.28,
+      "height": 841.89,
+      "textBounds": [
+        56.159909999999996,
+        53.395165281999994,
+        539.1108391679995,
+        603.3262121599998
+      ],
+      "fonts": [
+        "/IHAIZV+LMSans10-Bold",
+        "/BZIVMZ+LMSans12-Regular",
+        "/IXFAWU+LMSans10-Regular",
+        "/TQTHRL+LMSans10-Oblique",
+        "/YEUUOC+LMSans10-Regular"
+      ],
+      "textChecks": true,
+      "linksChecked": 2,
+      "previewHash": "bd6a55401f8642fcf375c18fe952d7ff2185635c7fa4ece24c7be3e157515b41"
+    },
+    {
+      "name": "modern-letter",
+      "sourceHash": "2e733c17ef679556883a4cdf89889859d90964ba490df5a1ea23cf9053a42403",
+      "pdfHash": "dc5a523d7c7cf3390b0be09a6ee21d4d371199fcf377d67d8630253b81cc4254",
+      "pageCount": 1,
+      "width": 612.0,
+      "height": 792.0,
+      "textBounds": [
+        56.159909999999996,
+        53.39492528200003,
+        555.83361824,
+        603.32597216
+      ],
+      "fonts": [
+        "/IHAIZV+LMSans10-Bold",
+        "/BZIVMZ+LMSans12-Regular",
+        "/IXFAWU+LMSans10-Regular",
+        "/TQTHRL+LMSans10-Oblique",
+        "/YEUUOC+LMSans10-Regular"
+      ],
+      "textChecks": true,
+      "linksChecked": 2,
+      "previewHash": "99062be87eabf30184d937ea0ceef3768387beb81cd850110ce335819d5474a0"
+    },
+    {
+      "name": "academic-a4",
+      "sourceHash": "1d0ea033bb9265e7d51c677e4b256c16f16168ec461bcba004dd7eed545d57ca",
+      "pdfHash": "07f8a8e2badbe41361fce09225d2233152cd3dbd8efbb7574555e7b11ff8c114",
+      "pageCount": 1,
+      "width": 595.28,
+      "height": 841.89,
+      "textBounds": [
+        57.60021999999998,
+        55.495154553999896,
+        537.6917283391997,
+        667.656463072
+      ],
+      "fonts": [
+        "/IHAIZV+LMRoman12-Bold",
+        "/BZIVMZ+LMRoman10-Regular",
+        "/IXFAWU+LMMathSymbols10-Regular",
+        "/TQTHRL+LMRomanCaps10-Regular",
+        "/YEUUOC+LMRoman10-Bold",
+        "/AKHCZK+LMRoman10-Regular"
+      ],
+      "textChecks": true,
+      "linksChecked": 1,
+      "previewHash": "e149b33dc14f9bb99469b5dc9b39cf0f698de720894af8f9ef2bd74d31f1115d"
+    },
+    {
+      "name": "academic-letter",
+      "sourceHash": "ac5d89d91ef33898a00f1140828b2fe0875ef1eeea1596559c37dbd4f63a612b",
+      "pdfHash": "ba98d43ed2956c511ee07f1e20de5767b6cb54db7188f0a443b4714e1eb5acf1",
+      "pageCount": 1,
+      "width": 612.0,
+      "height": 792.0,
+      "textBounds": [
+        57.60021999999998,
+        55.494914553999934,
+        554.4131784255997,
+        667.656223072
+      ],
+      "fonts": [
+        "/IHAIZV+LMRoman12-Bold",
+        "/BZIVMZ+LMRoman10-Regular",
+        "/IXFAWU+LMMathSymbols10-Regular",
+        "/TQTHRL+LMRomanCaps10-Regular",
+        "/YEUUOC+LMRoman10-Bold",
+        "/AKHCZK+LMRoman10-Regular"
+      ],
+      "textChecks": true,
+      "linksChecked": 1,
+      "previewHash": "1fb69ee0e825acb916781022f7bb5e65576f7911b7fb08d34009aa21b60964e0"
+    },
+    {
+      "name": "minimal-a4",
+      "sourceHash": "8165dc7109ce1044048a384df189ab179e1ef8260e3a03cc980d13e4829174dc",
+      "pdfHash": "44e75a1c3f6e06e4f6bb35cf08bba52437b4482cc246b2945a7c94adb76e31a3",
+      "pageCount": 1,
+      "width": 595.28,
+      "height": 841.89,
+      "textBounds": [
+        57.60021999999998,
+        55.495154553999896,
+        537.6808192512001,
+        615.347833072
+      ],
+      "fonts": [
+        "/IHAIZV+LMRoman12-Bold",
+        "/BZIVMZ+LMRoman10-Regular",
+        "/IXFAWU+LMRoman10-Bold",
+        "/TQTHRL+LMRoman10-Regular"
+      ],
+      "textChecks": true,
+      "linksChecked": 2,
+      "previewHash": "9bb702aae1e721255a0632010a22a82bcb283a49b16b6ce8bfbe74a99ef48353"
+    },
+    {
+      "name": "minimal-letter",
+      "sourceHash": "12d108dd163491a63cb90c30c63a5721afbd1597f1901bea742dd9f0146ae406",
+      "pdfHash": "4ae228dae0e185a7dbba71adaa548f23e91db63524e3a6fd5a87ca3c9cd9c081",
+      "pageCount": 1,
+      "width": 612.0,
+      "height": 792.0,
+      "textBounds": [
+        57.60021999999998,
+        55.494914553999934,
+        554.4055420640001,
+        601.798393072
+      ],
+      "fonts": [
+        "/IHAIZV+LMRoman12-Bold",
+        "/BZIVMZ+LMRoman10-Regular",
+        "/IXFAWU+LMRoman10-Bold",
+        "/TQTHRL+LMRoman10-Regular"
+      ],
+      "textChecks": true,
+      "linksChecked": 2,
+      "previewHash": "10bfd6c692eac97a9e25bc2361d0113d43584069a05c3af4fbef64ad78cfb368"
+    },
+    {
+      "name": "compact-technical-a4",
+      "sourceHash": "53117105f8cda5ceea6f09efc56b773f72e92a001fddc0337249ecc80163f75e",
+      "pdfHash": "40186cd7de6ce55a2df454d1ae985ea7841aa7b8c50fca6d4b824499ba07fdc8",
+      "pageCount": 1,
+      "width": 595.28,
+      "height": 841.89,
+      "textBounds": [
+        46.799559999999985,
+        44.87942455399991,
+        548.481830104,
+        628.2267621599999
+      ],
+      "fonts": [
+        "/IHAIZV+LMSans10-Bold",
+        "/BZIVMZ+LMSans12-Regular",
+        "/IXFAWU+LMSans10-Regular",
+        "/TQTHRL+LMSans10-Regular"
+      ],
+      "textChecks": true,
+      "linksChecked": 2,
+      "previewHash": "5878085cef410ee1b1463c0b71de8ebb48fc845899aed90d7b52c16ee577fc51"
+    },
+    {
+      "name": "compact-technical-letter",
+      "sourceHash": "5ccacb40cacab8f93f1e74b25a3e33d24d25eec189be5e31f607c900263e0795",
+      "pdfHash": "b65569a54135fcc9d8d2168797ec543d5b0c76b393d8f26a19d21458f41415e1",
+      "pageCount": 1,
+      "width": 612.0,
+      "height": 792.0,
+      "textBounds": [
+        46.799559999999985,
+        44.87918455399995,
+        565.2062401039999,
+        616.2713521599999
+      ],
+      "fonts": [
+        "/IHAIZV+LMSans10-Bold",
+        "/BZIVMZ+LMSans12-Regular",
+        "/IXFAWU+LMSans10-Regular",
+        "/TQTHRL+LMSans10-Regular"
+      ],
+      "textChecks": true,
+      "linksChecked": 2,
+      "previewHash": "9fcc6a929547407948a5a23fe9d481bb197f20e195c7bbae2af125fb75e34a3a"
+    },
+    {
+      "name": "two-column-a4",
+      "sourceHash": "ec39a757f5862eaa7d0d32dfb4f66123a3af9ee9048ff06b568e55330f49c4cd",
+      "pdfHash": "cbb6be0bae3aa3d20c0c623ba450ff6e2bbcf947b96b42727f91b1652a45f576",
+      "pageCount": 1,
+      "width": 595.28,
+      "height": 841.89,
+      "textBounds": [
+        50.399789999999996,
+        47.635045281999965,
+        544.874383784,
+        509.49631215999995
+      ],
+      "fonts": [
+        "/IHAIZV+LMSans10-Bold",
+        "/BZIVMZ+LMSans12-Regular",
+        "/IXFAWU+LMSans10-Regular",
+        "/TQTHRL+LMSans10-Regular"
+      ],
+      "textChecks": true,
+      "linksChecked": 2,
+      "previewHash": "b7cca2c36d149da1af024d1095801051817084c536724f2f5c7d68f75e3cc348"
+    },
+    {
+      "name": "two-column-letter",
+      "sourceHash": "8e579fdac8715c112461336eedbd914f2734e565c7fa56357bb3f5cafa3647fc",
+      "pdfHash": "c7d992605f3614bbb52f5b9928ee1ac599e11c51780308cf8cf8ed94d9701551",
+      "pageCount": 1,
+      "width": 612.0,
+      "height": 792.0,
+      "textBounds": [
+        50.399789999999996,
+        47.634805282,
+        561.600619464,
+        473.63057216
+      ],
+      "fonts": [
+        "/IHAIZV+LMSans10-Bold",
+        "/BZIVMZ+LMSans12-Regular",
+        "/IXFAWU+LMSans10-Regular",
+        "/TQTHRL+LMSans10-Regular"
+      ],
+      "textChecks": true,
+      "linksChecked": 2,
+      "previewHash": "d23fb748c48033f314d40fac502c42953d9003e478ec2360144e55da68c19802"
+    }
+  ]
+}

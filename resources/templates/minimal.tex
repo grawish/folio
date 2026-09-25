@@ -1,0 +1,53 @@
+% THE MINIMAL - A simple single-column resume
+% Paper size: change a4paper to letterpaper below for US Letter.
+% Font: bundled Latin Modern Roman. Replace all sample facts with your own.
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem,titlesec,hyperref}
+\hypersetup{hidelinks}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\titleformat{\section}{\normalsize\bfseries}{}{0pt}{}
+\titlespacing*{\section}{0pt}{16pt}{6pt}
+\setlist[itemize]{leftmargin=14pt,itemsep=3pt,topsep=4pt}
+\begin{document}
+{\LARGE\bfseries Casey Rivera}\\[5pt]
+Operations Coordinator\\[5pt]
+Portland, OR \enspace / \enspace
+\href{mailto:casey@example.com}{casey@example.com} \enspace / \enspace
+\href{https://example.com}{caseyrivera.example.com}
+
+\section{Summary}
+Operations coordinator helping small teams organize their work and serve their
+communities. Clear communication, careful records, and efficient daily routines.
+
+\section{Experience}
+\textbf{Operations Coordinator} \hfill 2023 -- Present\\
+Harbor Community Center, Portland, OR
+\begin{itemize}
+  \item Coordinate weekly programs for 120 participants with a team of six volunteers.
+  \item Introduced a shared booking checklist that reduced scheduling errors by 25\%.
+  \item Prepare monthly attendance reports and maintain accurate program records.
+\end{itemize}
+\textbf{Customer Service Assistant} \hfill 2021 -- 2023\\
+Maple Books, Portland, OR
+\begin{itemize}
+  \item Helped customers find books and supported a weekly neighborhood reading group.
+  \item Trained four new colleagues on stock checks and accessible customer service.
+\end{itemize}
+
+\section{Community work}
+\textbf{Community caf\'e volunteer} \hfill 2022 -- Present\\
+Organize a monthly shared meal, coordinate supplies, and welcome new volunteers.
+
+\section{Education}
+\textbf{BA, Communication} \hfill 2017 -- 2021\\
+Example State University
+
+\section{Skills}
+Scheduling, customer service, spreadsheet reporting, event coordination,
+clear writing, volunteer training
+\end{document}

@@ -1,0 +1,100 @@
+[
+  {
+    "id": "classic",
+    "version": 1,
+    "name": "The Classic",
+    "label": "Professional resumes",
+    "description": "A single column with clear section rules and a traditional serif font.",
+    "font": "Latin Modern Roman",
+    "bodySize": 11,
+    "sampleName": "Alex Morgan",
+    "email": "alex@example.com",
+    "sections": ["Profile", "Experience", "Selected project", "Education", "Skills"],
+    "checks": ["40,000", "28%", "Common Ground", "Parsons School of Design"],
+    "note": "Single-column reading order."
+  },
+  {
+    "id": "modern",
+    "version": 1,
+    "name": "The Modern",
+    "label": "Product and creative roles",
+    "description": "A spacious single column with sans-serif type and a warm accent.",
+    "font": "Latin Modern Sans",
+    "bodySize": 10,
+    "sampleName": "Jordan Lee",
+    "email": "jordan@example.com",
+    "sections": ["About", "Experience", "Projects", "Education", "Skills"],
+    "checks": ["15,000", "42%", "Daylight", "University of California, Davis"],
+    "note": "Single-column reading order."
+  },
+  {
+    "id": "academic",
+    "version": 1,
+    "name": "The Academic",
+    "label": "Research and teaching",
+    "description": "A research CV with space for education, selected work, and teaching.",
+    "font": "Latin Modern Roman",
+    "bodySize": 11,
+    "sampleName": "Taylor Chen",
+    "email": "taylor@example.com",
+    "sections": [
+      "Research interests",
+      "Education",
+      "Research experience",
+      "Selected work",
+      "Teaching",
+      "Methods and tools"
+    ],
+    "checks": ["PhD, Computer Science", "Human-Centered Systems Lab", "Introduction to HCI"],
+    "note": "Add sections as your CV grows."
+  },
+  {
+    "id": "minimal",
+    "version": 1,
+    "name": "The Minimal",
+    "label": "A straightforward starting point",
+    "description": "A simple black-and-white column with selectable text and no decorative elements.",
+    "font": "Latin Modern Roman",
+    "bodySize": 11,
+    "sampleName": "Casey Rivera",
+    "email": "casey@example.com",
+    "sections": ["Summary", "Experience", "Community work", "Education", "Skills"],
+    "checks": ["efficient", "120 participants", "25%", "Community café volunteer"],
+    "note": "Simple reading order; no ATS score or compatibility guarantee."
+  },
+  {
+    "id": "compact-technical",
+    "version": 1,
+    "name": "Compact Technical",
+    "label": "Engineering and technical roles",
+    "description": "Tighter spacing for skills, technical experience, and detailed projects.",
+    "font": "Latin Modern Sans",
+    "bodySize": 10,
+    "sampleName": "Jamie Park",
+    "email": "jamie@example.com",
+    "sections": [
+      "Summary",
+      "Technical skills",
+      "Experience",
+      "Selected projects",
+      "Education",
+      "Community"
+    ],
+    "checks": ["900 ms to 350 ms", "24 tested components", "Trail Notes", "Queue Monitor"],
+    "note": "Single-column reading order."
+  },
+  {
+    "id": "two-column",
+    "version": 1,
+    "name": "Two Column",
+    "label": "A concise one-page resume",
+    "description": "Experience and education beside a narrow skills and community sidebar.",
+    "font": "Latin Modern Sans",
+    "bodySize": 10,
+    "sampleName": "Sam Patel",
+    "email": "sam@example.com",
+    "sections": ["Profile", "Experience", "Education", "Skills", "Tools", "Community", "Languages"],
+    "checks": ["18%", "Clearwater Tools", "Local Makers", "Spanish"],
+    "note": "Columns stay on one page. Check reading order for your recipient."
+  }
+]

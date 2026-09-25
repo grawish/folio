@@ -1,0 +1,9 @@
+node_modules
+dist
+dist-electron
+release
+.cache
+test-results
+resources/runtime
+resources/bundle.lock.json
+package-lock.json

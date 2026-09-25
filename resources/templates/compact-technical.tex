@@ -1,0 +1,67 @@
+% COMPACT TECHNICAL - More detail in a single-column layout
+% Paper size: change a4paper to letterpaper below for US Letter.
+% Font: bundled Latin Modern Sans. Replace all sample facts with your own.
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=0.65in]{geometry}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem,titlesec,xcolor,hyperref}
+\renewcommand{\familydefault}{\sfdefault}
+\definecolor{ink}{HTML}{203A4A}
+\hypersetup{colorlinks=true,urlcolor=ink}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\titleformat{\section}{\normalsize\bfseries\color{ink}}{}{0pt}{}[\titlerule]
+\titlespacing*{\section}{0pt}{11pt}{5pt}
+\setlist[itemize]{leftmargin=13pt,itemsep=2pt,topsep=3pt}
+\begin{document}
+{\LARGE\bfseries Jamie Park} \hfill {\large Software Engineer}\\[5pt]
+Seattle, WA \enspace / \enspace
+\href{mailto:jamie@example.com}{jamie@example.com} \enspace / \enspace
+\href{https://example.com}{jamiepark.dev}
+
+\section{Summary}
+Software engineer building reliable services and clear interfaces. Four years
+of experience improving developer tools, testing workflows, and application performance.
+
+\section{Technical skills}
+\textbf{Languages:} TypeScript, Python, SQL, JavaScript\\
+\textbf{Applications:} React, Node.js, PostgreSQL, REST APIs\\
+\textbf{Delivery:} Git, Linux, Docker, automated testing, accessibility
+
+\section{Experience}
+\textbf{Software Engineer, Cedar Systems} \hfill 2023 -- Present
+\begin{itemize}
+  \item Built an internal release dashboard used by 12 product teams to track changes
+        and investigate failed deployments.
+  \item Reduced the slowest API response from 900 ms to 350 ms by profiling database
+        queries and introducing measured caching.
+  \item Added integration tests for sign-in, permissions, and document export, reducing
+        manual checks before a release.
+  \item Wrote runbooks and paired with support colleagues to make common incidents
+        easier to diagnose.
+\end{itemize}
+\textbf{Junior Developer, Openfield Studio} \hfill 2021 -- 2023
+\begin{itemize}
+  \item Delivered accessible forms and account pages for five small-business websites.
+  \item Replaced repeated UI code with a shared library of 24 tested components.
+  \item Worked with designers to verify keyboard navigation and error messages.
+\end{itemize}
+
+\section{Selected projects}
+\textbf{Trail Notes} \hfill TypeScript, React, IndexedDB\\
+A personal trip notebook with local storage, keyboard search, and JSON export.
+Built background saving and tested recovery from interrupted writes.
+
+\textbf{Queue Monitor} \hfill Python, PostgreSQL\\
+A small tool for inspecting background jobs. Added timing summaries and clear
+retry controls so operators can recover a failed task without duplicating work.
+
+\section{Education}
+\textbf{BS, Computer Science, Example University} \hfill 2017 -- 2021
+
+\section{Community}
+Mentor at a monthly coding workshop. Review beginner projects and teach practical
+debugging, version control, and writing useful tests.
+\end{document}
