@@ -2,7 +2,13 @@
 
 The first reviewed source commit was pushed to `grawish/folio` before these workflows were added, as requested. Only source, tests, docs, synthetic screenshots, templates and required static assets are tracked. Local profiles, private design captures, runtime downloads, old installers and caches stay ignored.
 
-## What runs
+## Current hosting state
+
+The source, guides, skill and website source are published on main. GitHub rejected the workflow-file push because the authenticated CLI lacks the `workflow` scope. All four workflows are prepared locally on the preserved `local/workflow-pending` branch. They are not yet active hosted automation. After the owner refreshes that scope, publish the workflow files, change Pages build type back to `workflow`, and verify each run.
+
+The website uses GitHub’s supported branch-based Pages deployment from `gh-pages` while that permission is pending. [Initial deployment 36187646465](https://github.com/grawish/folio/actions/runs/36187646465) passed. The account’s existing Pages custom domain is inherited; no DNS or account-wide domain setting was changed.
+
+## Prepared workflows
 
 | Workflow | Trigger | Result |
 | --- | --- | --- |
@@ -27,4 +33,4 @@ Complete third-party redistribution/source materials and a binary SBOM; implemen
 
 ## Website
 
-`npm run website:build` generates `.site/` from `website/`, the app's actual theme tokens and font, template previews and curated tutorial screenshots. It needs no account secrets, analytics service, or runtime compiler. GitHub Pages serves it at `https://grawish.github.io/folio/`. The source and licenses remain linked from the site.
+`npm run website:build` generates `.site/` from `website/`, the app's actual theme tokens and font, template previews and curated tutorial screenshots. It needs no account secrets, analytics service, or runtime compiler. The normal GitHub Pages address is `https://grawish.github.io/folio/`, which can redirect to the account’s inherited custom domain. The source and licenses remain linked from the site.

@@ -50,7 +50,7 @@ npm run build
 npm start
 ```
 
-The [release pipeline](docs/RELEASE_PIPELINE.md) checks source, publishes source previews and the website, and qualifies Mac candidates. See [contributing](CONTRIBUTING.md) for native integration tests and packaging, and [architecture](docs/ARCHITECTURE.md) for the code map.
+The [prepared release pipeline](docs/RELEASE_PIPELINE.md) covers source checks, source previews, website deployment and Mac candidate qualification; publishing its workflow files currently awaits GitHub workflow permission. See [contributing](CONTRIBUTING.md) for native integration tests and packaging, and [architecture](docs/ARCHITECTURE.md) for the code map.
 
 ## Learn and contribute
 

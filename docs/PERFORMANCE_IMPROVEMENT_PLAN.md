@@ -48,6 +48,29 @@ The measured self-test runs an app-owned TeX document with Biber and bibliograph
 
 Sampled Node-host peak RSS is 342.8, 423.4 and 457.0 MiB. This includes instrumentation and retained allocations across samples, excludes native child-process memory and does not establish an application leak or memory-budget pass. Host CPU totals also exclude compiler children. Physical high-DPI rendering, whole-app CPU/memory and process-tree termination measurements remain required.
 
+## Actual packaged app startup
+
+A second profile measures the verified `import-recovery` app itself, identified by app.asar SHA-256 `d50fb514cc45ab7653c88a50365e128481ddd4f57d0794eacc89c6cca5b0aaa8`. The source/license/documentation publication changes do not alter that earlier measured artifact. Run:
+
+```sh
+node scripts/profile-app.mjs /absolute/path/to/Folio.app/Contents/MacOS/Folio 3
+```
+
+[Raw app measurements](performance/app-baseline.json) retain all six launches and sampled Electron metrics. Each fresh launch gets a new profile; its paired prepared launch follows a normal window close using that same profile. OS caches are not purged. These runs used the same M4 Pro host as the backend profile, after native UI tests had finished. Minor documentation/git work occurred on the host; no other app benchmark ran concurrently.
+
+| Pair | Profile | First window | Composer enabled | Current PDF + text visible | Peak summed Electron working sets |
+| --- | --- | ---: | ---: | ---: | ---: |
+| 1 | fresh | 0.566 s | 58.427 s | 61.736 s | 619.2 MiB |
+| 1 | prepared | 0.288 s | 2.134 s | 5.441 s | 565.5 MiB |
+| 2 | fresh | 0.287 s | 42.505 s | 45.816 s | 622.9 MiB |
+| 2 | prepared | 0.272 s | 1.612 s | 5.437 s | 563.3 MiB |
+| 3 | fresh | 0.287 s | 43.038 s | 46.337 s | 622.5 MiB |
+| 3 | prepared | 0.283 s | 1.682 s | 5.499 s | 571.0 MiB |
+
+All six launches reached the real Classic template PDF with no renderer or sampler errors. Fresh composer readiness is 42.5–58.4 seconds, and the first PDF takes 45.8–61.7 seconds. Prepared composer readiness is 1.61–2.13 seconds, while the first current PDF takes 5.44–5.50 seconds. This supports the priority of separating editing readiness from first-time runtime preparation. It also identifies a roughly 3.3–3.8 second interval between composer readiness and the visible current PDF that needs renderer/compile phase profiling; the present measurement does not assign that entire interval to TeX.
+
+Working-set numbers sum Electron's reported processes and may double-count shared pages. They exclude Tectonic/Biber children and are not a physical-memory or process-tree budget pass. CPU percentages are Electron's interval averages. Timing includes Playwright polling and instrumentation; three paired samples are not a reliable p95. `firstWindowMs` means the first window became available to automation, not a hardware measurement of its first painted pixel.
+
 ## Prioritized changes
 
 Targets below are acceptance targets for experiments, not achieved results.
@@ -65,7 +88,7 @@ Avoid treating the 700 ms source-edit debounce as compiler execution time. Measu
 
 ## Measurements still needed for the complete app report
 
-1. Record Electron launch, recovery load, composer enabled, compiler ready and first PDF painted on fresh and prepared profiles. Include at least five runs per state and retain failures.
+1. Extend the three packaged fresh/prepared launch pairs above to at least five per state, with event-level recovery/compile/render timing and an actual first-paint marker. Retain failures.
 2. Break native self-test/build work into snapshot creation, runtime verification, TeX, Biber, PDF reading, worker loading, first visible page and export readiness. Use small, multi-file, bibliography and 100-page fixtures.
 3. Measure AI edit requests, input-page rendering, candidate compilation, candidate-page rendering/review, retry and apply separately. Keep local protocol fixtures distinct from real-provider network latency.
 4. Measure save, autosave, Save As, source/history ZIP export and import/recovery at normal and supported upper bounds. Record UI responsiveness while checksums/inflation/history work runs.
