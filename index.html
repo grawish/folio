@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Folio is a chat-first LaTeX resume studio for Apple silicon Macs. Talk to your AI, mark up the PDF, and keep control of your source."
+    />
+    <meta name="theme-color" content="#101c2b" />
+    <meta property="og:title" content="Folio — your next chapter, beautifully written." />
+    <meta
+      property="og:description"
+      content="Chat, mark up your PDF, and shape your resume. A noncommercial community project for Apple silicon Macs."
+    />
+    <title>Folio — your next chapter</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="theme.css" />
+    <link rel="stylesheet" href="site.css" />
+    <script src="site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header wrap">
+      <a class="wordmark" href="./" aria-label="Folio home">folio<span>.</span></a>
+      <nav aria-label="Main navigation">
+        <a href="#workflow">How it works</a><a href="demos.html">Demos</a
+        ><a href="https://github.com/grawish/folio/tree/main/docs">Docs</a
+        ><button class="theme-toggle" aria-label="Switch to light theme">Light</button
+        ><a class="nav-github" href="https://github.com/grawish/folio"
+          >GitHub <span aria-hidden="true">↗</span></a
+        >
+      </nav>
+    </header>
+    <main id="main">
+      <section class="hero wrap">
+        <p class="eyebrow">
+          <span class="status-dot"></span> FOR MACS WITH APPLE SILICON · DEVELOPMENT PREVIEW
+        </p>
+        <h1>Your next chapter.<br /><em>In your own words.</em></h1>
+        <p class="hero-copy">
+          Talk through your experience. Point to what needs changing.<br class="desktop-break" />
+          Turn it into a resume you’re proud to send.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="https://github.com/grawish/folio#run-on-your-mac"
+            >Build the Mac preview <span aria-hidden="true">↗</span></a
+          ><a class="button secondary" href="demos.html"
+            >Explore the app <span aria-hidden="true">→</span></a
+          >
+        </div>
+        <p class="small muted">Noncommercial community project. Source available now.</p>
+        <figure class="hero-screen">
+          <div class="window-bar">
+            <span class="window-dots" aria-hidden="true">● ● ●</span
+            ><span>A little room for your next big thing.</span><span>folio.</span>
+          </div>
+          <a href="images/workspace.png"
+            ><img
+              src="images/workspace.png"
+              width="1480"
+              height="960"
+              alt="Real Folio workspace: files on the left, Chat in the middle, and Alex Morgan's sample resume PDF on the right."
+              fetchpriority="high"
+          /></a>
+          <figcaption>
+            Real app. Sample resume. Chat takes center stage; your PDF stays in view.
+          </figcaption>
+        </figure>
+      </section>
+      <div class="principles wrap">
+        <span>Built for Apple silicon</span><span>Local PDF compilation</span
+        ><span>Your choice of AI</span><span>Editable LaTeX source</span>
+      </div>
+      <section id="workflow" class="section wrap">
+        <p class="eyebrow">A SMALLER GAP BETWEEN IDEA AND PAGE</p>
+        <h2>Say it. Show it. See it.</h2>
+        <p class="section-intro">A conversation on one side. The result on the other.</p>
+        <div class="steps">
+          <article>
+            <span class="step-number">01</span>
+            <h3>Start with your story.</h3>
+            <p>
+              Choose a template, bring an existing project, or tell your AI what you want to write.
+              Keep the facts yours.
+            </p>
+          </article>
+          <article>
+            <span class="step-number">02</span>
+            <h3>Point to the change.</h3>
+            <p>
+              Highlight a sentence, draw a box, or leave a note on the PDF. Attach that spot to your
+              next message.
+            </p>
+          </article>
+          <article>
+            <span class="step-number">03</span>
+            <h3>Check the finished page.</h3>
+            <p>
+              The agent edits the TeX and reviews PDF images. Compare versions, make your final
+              check, then export.
+            </p>
+          </article>
+        </div>
+      </section>
+      <section class="feature-row wrap">
+        <div class="feature-copy">
+          <p class="eyebrow">FEEDBACK, RIGHT WHERE IT BELONGS</p>
+          <h2>“This part.”<br />Now your AI can see it.</h2>
+          <p>
+            Skip the long explanation of where something is. Your marks travel with the page number,
+            image crop, and instructions.
+          </p>
+          <a
+            class="text-link"
+            href="https://github.com/grawish/folio/blob/main/docs/tutorials/chat-and-feedback.md"
+            >Try PDF feedback <span aria-hidden="true">→</span></a
+          >
+        </div>
+        <figure class="feature-screen">
+          <a href="images/annotations.png"
+            ><img
+              src="images/annotations.png"
+              width="1480"
+              height="960"
+              alt="Four PDF feedback marks and image attachments in a real Folio chat."
+              loading="lazy"
+          /></a>
+          <figcaption>
+            Synthetic demo with a local AI fixture. No live provider account is shown.
+          </figcaption>
+        </figure>
+      </section>
+      <section class="feature-row reverse wrap">
+        <div class="feature-copy">
+          <p class="eyebrow">MAKE ROOM TO EXPERIMENT</p>
+          <h2>A better draft.<br />A way back.</h2>
+          <p>
+            Compare the old and new PDFs side by side. Restore an earlier version or undo a change.
+            The Code tab keeps the source within reach.
+          </p>
+          <a
+            class="text-link"
+            href="https://github.com/grawish/folio/blob/main/docs/tutorials/chat-and-feedback.md#compare-and-restore"
+            >Explore version history <span aria-hidden="true">→</span></a
+          >
+        </div>
+        <figure class="feature-screen">
+          <a href="images/history.png"
+            ><img
+              src="images/history.png"
+              width="1480"
+              height="960"
+              alt="Version history with the selected earlier PDF beside the current PDF."
+              loading="lazy"
+          /></a>
+          <figcaption>Source and its matching PDF are saved together.</figcaption>
+        </figure>
+      </section>
+      <section class="section templates-section wrap">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">A THOUGHTFUL STARTING POINT</p>
+            <h2>Six styles. Your story.</h2>
+          </div>
+          <p>A4 or US Letter. Real PDF previews.<br />Bundled fonts, ready to build locally.</p>
+        </div>
+        <div class="template-grid">
+          <a href="https://github.com/grawish/folio/blob/main/docs/TEMPLATES.md"
+            ><img
+              src="templates/classic-a4.png"
+              alt="Classic resume template"
+              width="240"
+              height="340"
+              loading="lazy"
+            /><span>The Classic <small>Clear & traditional</small></span></a
+          >
+          <a href="https://github.com/grawish/folio/blob/main/docs/TEMPLATES.md"
+            ><img
+              src="templates/modern-a4.png"
+              alt="Modern resume template"
+              width="240"
+              height="340"
+              loading="lazy"
+            /><span>The Modern <small>Room to breathe</small></span></a
+          >
+          <a href="https://github.com/grawish/folio/blob/main/docs/TEMPLATES.md"
+            ><img
+              src="templates/academic-a4.png"
+              alt="Academic resume template"
+              width="240"
+              height="340"
+              loading="lazy"
+            /><span>The Academic <small>Research & teaching</small></span></a
+          >
+          <a href="https://github.com/grawish/folio/blob/main/docs/TEMPLATES.md"
+            ><img
+              src="templates/minimal-a4.png"
+              alt="Minimal resume template"
+              width="240"
+              height="340"
+              loading="lazy"
+            /><span>The Minimal <small>Just the essentials</small></span></a
+          >
+          <a href="https://github.com/grawish/folio/blob/main/docs/TEMPLATES.md"
+            ><img
+              src="templates/compact-technical-a4.png"
+              alt="Compact Technical resume template"
+              width="240"
+              height="340"
+              loading="lazy"
+            /><span>Compact Technical <small>Projects & skills</small></span></a
+          >
+          <a href="https://github.com/grawish/folio/blob/main/docs/TEMPLATES.md"
+            ><img
+              src="templates/two-column-a4.png"
+              alt="Two Column resume template"
+              width="240"
+              height="340"
+              loading="lazy"
+            /><span>Two Column <small>A balanced page</small></span></a
+          >
+        </div>
+      </section>
+      <section class="feature-row wrap">
+        <div class="feature-copy">
+          <p class="eyebrow">YOUR AI. ONE QUIET PLACE FOR SETTINGS.</p>
+          <h2>Bring the connection<br />that works for you.</h2>
+          <p>
+            Use an installed Codex or Claude Code connection, bring an API key, or add a compatible
+            endpoint. Set it up and select it in Settings.
+          </p>
+          <p class="small muted">
+            Account eligibility and image support depend on your provider. API use is billed by that
+            provider. Live Claude and BYOK acceptance is still being verified.
+          </p>
+          <a
+            class="text-link"
+            href="https://github.com/grawish/folio/blob/main/docs/tutorials/ai-connections.md"
+            >Set up a connection <span aria-hidden="true">→</span></a
+          >
+        </div>
+        <figure class="feature-screen">
+          <a href="images/connection-codex.png"
+            ><img
+              src="images/connection-codex.png"
+              width="1480"
+              height="960"
+              alt="Codex subscription connection form inside Folio Settings."
+              loading="lazy"
+          /></a>
+          <figcaption>
+            Configuration example. Provider controls stay out of the main workspace.
+          </figcaption>
+        </figure>
+      </section>
+      <section class="section wrap">
+        <p class="eyebrow">GOOD TO KNOW</p>
+        <h2>Your work stays yours.</h2>
+        <div class="details-grid">
+          <article>
+            <h3>Local where it counts.</h3>
+            <p>
+              TeX builds on your Mac. Projects, notes, and history are saved locally. Sending a chat
+              shares relevant source and PDF images with your chosen AI provider.
+            </p>
+          </article>
+          <article>
+            <h3>Ordinary files. Clean exports.</h3>
+            <p>
+              Keep editable TeX files, export a source ZIP, or send a PDF without feedback marks.
+              Source ZIPs include conversation history; review before sharing.
+            </p>
+          </article>
+          <article>
+            <h3>A preview, growing in public.</h3>
+            <p>
+              Source is available today. Signing, notarization, automatic updates, and wider Mac
+              testing are still in progress. Read the release status before installing.
+            </p>
+          </article>
+        </div>
+      </section>
+      <section class="closing wrap">
+        <p class="eyebrow">YOUR NEXT CHAPTER STARTS HERE</p>
+        <h2>Make something<br />that feels like you.</h2>
+        <div class="hero-actions">
+          <a class="button primary" href="https://github.com/grawish/folio"
+            >Get Folio on GitHub <span aria-hidden="true">↗</span></a
+          ><a
+            class="button secondary"
+            href="https://github.com/grawish/folio/blob/main/docs/tutorials/first-resume.md"
+            >Your first resume <span aria-hidden="true">→</span></a
+          >
+        </div>
+      </section>
+    </main>
+    <footer class="wrap">
+      <a class="wordmark" href="./">folio<span>.</span></a>
+      <p>
+        Made for the noncommercial community.<br /><a
+          href="https://github.com/grawish/folio/blob/main/LICENSE"
+          >PolyForm Noncommercial 1.0.0</a
+        >
+        · Third-party licenses apply.
+      </p>
+      <nav aria-label="Footer">
+        <a href="demos.html">Demos & guides</a
+        ><a href="https://github.com/grawish/folio/blob/main/docs/RELEASE_GAP_AUDIT.md"
+          >Release status</a
+        ><a href="https://github.com/grawish/folio/blob/main/CONTRIBUTING.md">Contribute</a>
+      </nav>
+    </footer>
+  </body>
+</html>
