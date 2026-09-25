@@ -53,7 +53,7 @@ npm run build
 npm start
 ```
 
-The [release pipeline](docs/RELEASE_PIPELINE.md) covers source checks, source previews, website deployment and Mac candidate qualification. Hosted source checks and website deployment have passed. The first hosted Mac candidate passed seven native suites, then failed a workspace pane-resizing assertion; full hosted qualification remains open. See [contributing](CONTRIBUTING.md) for native integration tests and packaging, and [architecture](docs/ARCHITECTURE.md) for the code map.
+The [release pipeline](docs/RELEASE_PIPELINE.md) covers source checks, source previews, website deployment and Mac candidate qualification. Hosted source checks and website deployment have passed. The hosted Mac baseline at c861ead passed all nine native suites and artifact verification after correcting a window-size assumption in the test. The newer compiler-help feature has separate targeted package verification; the full production-release requirements remain open. See [contributing](CONTRIBUTING.md) for native integration tests and packaging, and [architecture](docs/ARCHITECTURE.md) for the code map.
 
 ## Learn and contribute
 
