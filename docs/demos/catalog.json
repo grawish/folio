@@ -1,0 +1,310 @@
+[
+  {
+    "id": "first-resume",
+    "title": "Your first resume",
+    "image": "workspace.png",
+    "guide": "tutorials/first-resume.md",
+    "description": "Start with a sample, change your details, and export a PDF.",
+    "steps": [
+      "Open a template and choose A4 or US Letter.",
+      "Change sample details in Code or use your selected AI.",
+      "Save the project, read the PDF, and export it."
+    ],
+    "kind": "Real app \u00b7 synthetic project",
+    "alt": "Your first resume in the real Folio app"
+  },
+  {
+    "id": "templates",
+    "title": "Templates and paper size",
+    "image": "templates.png",
+    "guide": "tutorials/first-resume.md",
+    "description": "Six original layouts with real PDF thumbnails and bundled fonts.",
+    "steps": [
+      "Open Templates in the sidebar.",
+      "Choose a paper size and inspect the thumbnail.",
+      "Select a style and replace the sample facts."
+    ],
+    "kind": "Real app \u00b7 synthetic project",
+    "alt": "Templates and paper size in the real Folio app"
+  },
+  {
+    "id": "chat",
+    "title": "Chat and agent progress",
+    "image": "chat-workspace.png",
+    "guide": "tutorials/chat-and-feedback.md",
+    "description": "The local test fixture renames a heading while the real compiler and history run.",
+    "steps": [
+      "Send a clear request.",
+      "Watch reading, editing, building, and PDF review progress.",
+      "Inspect the result; use Stop or Retry when needed."
+    ],
+    "kind": "Real app \u00b7 scripted local AI fixture",
+    "alt": "Chat and agent progress in the real Folio app"
+  },
+  {
+    "id": "codex",
+    "title": "Codex subscription",
+    "image": "connection-codex.png",
+    "guide": "tutorials/ai-connections.md",
+    "description": "Setup is shown with empty credentials. This does not prove live account compatibility.",
+    "steps": [
+      "Open Settings \u2192 AI connections \u2192 Add connection.",
+      "Fill your own connection details and save.",
+      "Select the connection, check it, and test image support."
+    ],
+    "kind": "Real form \u00b7 no connected account",
+    "alt": "Codex subscription in the real Folio app"
+  },
+  {
+    "id": "claude-code",
+    "title": "Claude Code subscription",
+    "image": "connection-claude-code.png",
+    "guide": "tutorials/ai-connections.md",
+    "description": "Setup is shown with empty credentials. This does not prove live account compatibility.",
+    "steps": [
+      "Open Settings \u2192 AI connections \u2192 Add connection.",
+      "Fill your own connection details and save.",
+      "Select the connection, check it, and test image support."
+    ],
+    "kind": "Real form \u00b7 no connected account",
+    "alt": "Claude Code subscription in the real Folio app"
+  },
+  {
+    "id": "openai",
+    "title": "OpenAI API key",
+    "image": "connection-openai.png",
+    "guide": "tutorials/ai-connections.md",
+    "description": "Setup is shown with empty credentials. This does not prove live account compatibility.",
+    "steps": [
+      "Open Settings \u2192 AI connections \u2192 Add connection.",
+      "Fill your own connection details and save.",
+      "Select the connection, check it, and test image support."
+    ],
+    "kind": "Real form \u00b7 no connected account",
+    "alt": "OpenAI API key in the real Folio app"
+  },
+  {
+    "id": "anthropic",
+    "title": "Anthropic API key",
+    "image": "connection-anthropic.png",
+    "guide": "tutorials/ai-connections.md",
+    "description": "Setup is shown with empty credentials. This does not prove live account compatibility.",
+    "steps": [
+      "Open Settings \u2192 AI connections \u2192 Add connection.",
+      "Fill your own connection details and save.",
+      "Select the connection, check it, and test image support."
+    ],
+    "kind": "Real form \u00b7 no connected account",
+    "alt": "Anthropic API key in the real Folio app"
+  },
+  {
+    "id": "custom",
+    "title": "Custom AI endpoint",
+    "image": "connection-custom.png",
+    "guide": "tutorials/ai-connections.md",
+    "description": "Setup is shown with empty credentials. This does not prove live account compatibility.",
+    "steps": [
+      "Open Settings \u2192 AI connections \u2192 Add connection.",
+      "Fill your own connection details and save.",
+      "Select the connection, check it, and test image support."
+    ],
+    "kind": "Real form \u00b7 no connected account",
+    "alt": "Custom AI endpoint in the real Folio app"
+  },
+  {
+    "id": "pdf-feedback",
+    "title": "Visual PDF feedback",
+    "image": "annotations.png",
+    "guide": "tutorials/chat-and-feedback.md",
+    "description": "Highlight, box, draw, or leave a note. Attach the marked area to Chat.",
+    "steps": [
+      "Pick a tool and mark the page.",
+      "Write an instruction and save the note.",
+      "Select notes, attach them to Chat, and send."
+    ],
+    "kind": "Real app \u00b7 scripted local AI fixture",
+    "alt": "Visual PDF feedback in the real Folio app"
+  },
+  {
+    "id": "history",
+    "title": "Compare, undo and restore",
+    "image": "history.png",
+    "guide": "tutorials/chat-and-feedback.md",
+    "description": "Inspect an earlier PDF beside the current one.",
+    "steps": [
+      "Open History or Compare changes.",
+      "Select an earlier version and read both PDFs.",
+      "Restore the selected version or use Undo for a recent edit."
+    ],
+    "kind": "Real app \u00b7 scripted local AI fixture",
+    "alt": "Compare, undo and restore in the real Folio app"
+  },
+  {
+    "id": "editor",
+    "title": "Code and build errors",
+    "image": "code.png",
+    "guide": "tutorials/editor-and-pdf.md",
+    "description": "The Code tab supports search, per-file undo, snippets and compilation.",
+    "steps": [
+      "Edit text while preserving TeX commands.",
+      "Compile and inspect diagnostics if the build fails.",
+      "Fix the source, rebuild, and check Up to date."
+    ],
+    "kind": "Real app \u00b7 synthetic project",
+    "alt": "Code and build errors in the real Folio app"
+  },
+  {
+    "id": "files",
+    "title": "Files and retained copies",
+    "image": "restore-file.png",
+    "guide": "tutorials/files-and-import.md",
+    "description": "Create, rename, remove and restore source files.",
+    "steps": [
+      "Add a source file and reference it from the main file.",
+      "Use its menu to rename or remove it, then save.",
+      "Open Removed files & saved copies to restore text."
+    ],
+    "kind": "Real app \u00b7 synthetic project",
+    "alt": "Files and retained copies in the real Folio app"
+  },
+  {
+    "id": "import",
+    "title": "Open, import and export source",
+    "image": "import.png",
+    "guide": "tutorials/files-and-import.md",
+    "description": "Inspect an archive, select the main document, and keep an independent copy.",
+    "steps": [
+      "Choose Import ZIP project from the project menu.",
+      "Review skipped files and choose the main TeX document.",
+      "Pick a location; inspect the PDF and export source when needed."
+    ],
+    "kind": "Real app \u00b7 synthetic project",
+    "alt": "Open, import and export source in the real Folio app"
+  },
+  {
+    "id": "import-recovery",
+    "title": "Recover an import",
+    "image": "import-recovery.png",
+    "guide": "tutorials/recover-an-import.md",
+    "description": "A real helper interruption creates the recovery state in a disposable test folder.",
+    "steps": [
+      "Open the interrupted-import review.",
+      "Finish or reopen a verified copy.",
+      "Keep outside edits; dismiss recovery only when you intend to."
+    ],
+    "kind": "Real app \u00b7 controlled interruption fixture",
+    "alt": "Recover an import in the real Folio app"
+  },
+  {
+    "id": "save",
+    "title": "Save and autosave",
+    "image": "general-light.png",
+    "guide": "tutorials/save-and-recover.md",
+    "description": "Choose a project folder once, then optionally enable autosave.",
+    "steps": [
+      "Save the project and wait for Saved locally.",
+      "Enable Autosave project in General settings.",
+      "Review any outside-change or error message before continuing."
+    ],
+    "kind": "Real app \u00b7 synthetic project",
+    "alt": "Save and autosave in the real Folio app"
+  },
+  {
+    "id": "outside-changes",
+    "title": "Review outside changes",
+    "image": "external-changes.png",
+    "guide": "tutorials/save-and-recover.md",
+    "description": "Choose how to handle files edited by another app.",
+    "steps": [
+      "Open Review changes and read the list.",
+      "Keep editing, save a copy, or reload disk files.",
+      "Find preserved editor text in Removed files & saved copies."
+    ],
+    "kind": "Real app \u00b7 synthetic project",
+    "alt": "Review outside changes in the real Folio app"
+  },
+  {
+    "id": "pdf",
+    "title": "Read and export the PDF",
+    "image": "pdf-navigation.png",
+    "guide": "tutorials/editor-and-pdf.md",
+    "description": "Navigate, zoom, select text and export a current, clean PDF.",
+    "steps": [
+      "Use the arrows, page number or scrolling.",
+      "Use selection mode for text and links, or a mark tool for notes.",
+      "Check Up to date, then export without feedback marks."
+    ],
+    "kind": "Real app \u00b7 synthetic project",
+    "alt": "Read and export the PDF in the real Folio app"
+  },
+  {
+    "id": "workspace",
+    "title": "Themes and workspace layout",
+    "image": "general.png",
+    "guide": "tutorials/settings-and-compiler.md",
+    "description": "Adjust the workspace to fit the way you write.",
+    "steps": [
+      "Choose Dark, Light or System appearance.",
+      "Drag a divider or use Tab and arrow keys to resize.",
+      "Reset pane sizes in General when needed."
+    ],
+    "kind": "Real app \u00b7 synthetic project",
+    "alt": "Themes and workspace layout in the real Folio app"
+  },
+  {
+    "id": "editor-settings",
+    "title": "Editor and PDF preferences",
+    "image": "editor-settings.png",
+    "guide": "tutorials/settings-and-compiler.md",
+    "description": "Text size and automatic preview are separate from the resume typography.",
+    "steps": [
+      "Open Settings \u2192 Editor & PDF.",
+      "Choose a comfortable editor size.",
+      "Turn automatic preview on or compile manually."
+    ],
+    "kind": "Real app \u00b7 synthetic project",
+    "alt": "Editor and PDF preferences in the real Folio app"
+  },
+  {
+    "id": "repair",
+    "title": "Offline compiler repair",
+    "image": "compiler-repair.png",
+    "guide": "tutorials/settings-and-compiler.md",
+    "description": "A deliberate test corruption demonstrates the repair flow.",
+    "steps": [
+      "Read the message in Settings \u2192 About.",
+      "Repair from a matching local compiler copy.",
+      "Wait for ready, rebuild, and inspect the PDF."
+    ],
+    "kind": "Real app \u00b7 isolated damaged-runtime fixture",
+    "alt": "Offline compiler repair in the real Folio app"
+  },
+  {
+    "id": "compiler",
+    "title": "Compare compiler versions",
+    "image": "compiler-comparison.png",
+    "guide": "tutorials/settings-and-compiler.md",
+    "description": "The test uses a synthetic previous compiler identity and real PDFs.",
+    "steps": [
+      "Start the comparison from Settings.",
+      "Inspect both PDFs and the retained backup.",
+      "Keep the recorded compiler or explicitly apply the included one."
+    ],
+    "kind": "Real app \u00b7 synthetic compiler identity",
+    "alt": "Compare compiler versions in the real Folio app"
+  },
+  {
+    "id": "privacy",
+    "title": "Privacy and support",
+    "image": "privacy.png",
+    "guide": "tutorials/settings-and-compiler.md",
+    "description": "Understand what stays local and what leaves when you send a chat.",
+    "steps": [
+      "Read Settings \u2192 Privacy.",
+      "Check source ZIP contents before sharing.",
+      "Use Help for shortcuts and About for the app version."
+    ],
+    "kind": "Real app \u00b7 synthetic project",
+    "alt": "Privacy and support in the real Folio app"
+  }
+]

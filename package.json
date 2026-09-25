@@ -40,7 +40,11 @@
     "pack": "npm run runtime:verify && npm run build && electron-builder --mac --arm64 --dir",
     "dist": "npm run runtime:verify && npm run build && electron-builder --mac --arm64",
     "start": "electron .",
-    "test:migration": "npm run build && node --import tsx scripts/test-migration.mjs"
+    "test:migration": "npm run build && node --import tsx scripts/test-migration.mjs",
+    "demo:capture": "node scripts/capture-tutorials.mjs",
+    "website:build": "node scripts/build-website.mjs",
+    "skill:build": "node scripts/build-skill.mjs",
+    "website:check": "npm run website:build && node scripts/check-website.mjs"
   },
   "build": {
     "appId": "app.folio.resume",

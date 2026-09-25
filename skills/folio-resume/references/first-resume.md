@@ -1,8 +1,10 @@
+<!-- Generated from docs/tutorials/first-resume.md; run npm run skill:build after editing the guide. -->
+
 # Make and export your first resume
 
 This walkthrough uses a built-in template and works without an AI account. Folio's main workspace is Chat; Code is available when you want to edit the document yourself.
 
-![Folio with a sample resume](../images/workspace.png)
+[Screenshot: Folio with a sample resume](https://github.com/grawish/folio/blob/main/docs/images/workspace.png)
 
 ## Choose a starting point
 
@@ -11,7 +13,7 @@ This walkthrough uses a built-in template and works without an AI account. Folio
 3. Choose **A4** or **US Letter** in **Paper size**.
 4. Choose **The Classic**. Its sample resume opens beside the Chat pane.
 
-![Six template choices and paper size](../images/templates.png)
+[Screenshot: Six template choices and paper size](https://github.com/grawish/folio/blob/main/docs/images/templates.png)
 
 The sample person and achievements are examples. Replace them with your own facts before sharing your resume. The template picker also includes Minimal, Modern, Compact Technical, Academic and Two Column designs.
 
@@ -65,4 +67,4 @@ The native template suite exercises every layout at both paper sizes, actual com
 npm run test:templates
 ```
 
-The packaged smoke suite proves that the standalone Mac app compiles using its included resources. See [template evidence](../TEMPLATES.md) and the current release README. The tutorial screenshots show the actual app with synthetic sample content. The [demo gallery](../demos/README.md) links reproducible walkthroughs; these are screenshot demos, not videos.
+The packaged smoke suite proves that the standalone Mac app compiles using its included resources. See [template evidence](https://github.com/grawish/folio/blob/main/docs/TEMPLATES.md) and the current release README. The tutorial screenshots show the actual app with synthetic sample content. The [demo gallery](https://github.com/grawish/folio/blob/main/docs/demos/README.md) links reproducible walkthroughs; these are screenshot demos, not videos.

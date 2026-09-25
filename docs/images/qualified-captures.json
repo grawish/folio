@@ -1,0 +1,90 @@
+[
+  {
+    "file": "docs/images/chat-workspace.png",
+    "sourceSuite": "chat",
+    "sourceCapture": "chat-workspace.png",
+    "sha256": "bfde9edb3b7b68c8e45c767f3985145898ac47998d6f5194e21a1c6e0e6adc39",
+    "synthetic": true,
+    "liveAI": false
+  },
+  {
+    "file": "docs/images/annotations.png",
+    "sourceSuite": "chat",
+    "sourceCapture": "annotations.png",
+    "sha256": "25d908470096c8662a0fffdeb7862a70d830f74efda238f85576d1e3f3419eb4",
+    "synthetic": true,
+    "liveAI": false
+  },
+  {
+    "file": "docs/images/history.png",
+    "sourceSuite": "chat",
+    "sourceCapture": "history.png",
+    "sha256": "5e36462db32ccaf60ffc1a079c3d17b9ee028385096a7486f471f1a13a1a7036",
+    "synthetic": true,
+    "liveAI": false
+  },
+  {
+    "file": "docs/images/templates.png",
+    "sourceSuite": "templates",
+    "sourceCapture": "picker-dark.png",
+    "sha256": "39c2902d95dc62ebba35b76381f2232b5caa4557bba481b84d771b9aabc0c88a",
+    "synthetic": true,
+    "liveAI": false
+  },
+  {
+    "file": "docs/images/import.png",
+    "sourceSuite": "import",
+    "sourceCapture": "import-selection.png",
+    "sha256": "9ca99d2b47e6839e1d47b0826940421d33c3f6819f8e36130c6cd3eb78554248",
+    "synthetic": true,
+    "liveAI": false
+  },
+  {
+    "file": "docs/images/external-changes.png",
+    "sourceSuite": "watch",
+    "sourceCapture": "review-small-dark.png",
+    "sha256": "d4793ce20c095f8a33f35120c4d70ab142536d28b79a3bb687be03c66f46d160",
+    "synthetic": true,
+    "liveAI": false
+  },
+  {
+    "file": "docs/images/restore-file.png",
+    "sourceSuite": "files",
+    "sourceCapture": "restore-small.png",
+    "sha256": "8be8cc9a5aac4912af147f16f6468e8cef7c04288a23c216dee634da7367b058",
+    "synthetic": true,
+    "liveAI": false
+  },
+  {
+    "file": "docs/images/compiler-comparison.png",
+    "sourceSuite": "migration",
+    "sourceCapture": "comparison-small-dark.png",
+    "sha256": "754a8cb8c0963e009ed3292d1f5f082f4a252b10929cd38e5621d960cc96d038",
+    "synthetic": true,
+    "liveAI": false
+  },
+  {
+    "file": "docs/images/compiler-repair.png",
+    "sourceSuite": "runtime",
+    "sourceCapture": "repair-needed-small-dark.png",
+    "sha256": "b4f27ea0b7e57ee11d7f76d916cd92e9edbb27998a7a176aed753c7d15c618ad",
+    "synthetic": true,
+    "liveAI": false
+  },
+  {
+    "file": "docs/images/pdf-navigation.png",
+    "sourceSuite": "pdf-viewer",
+    "sourceCapture": "long-document-note.png",
+    "sha256": "8c831e71c3d18c6b36fc1ac3f8f0108341c1f3c822198052a7ba7bfd608b8860",
+    "synthetic": true,
+    "liveAI": false
+  },
+  {
+    "file": "docs/images/import-recovery.png",
+    "sourceSuite": "import-recovery",
+    "sourceCapture": "recovery-dark-small.png",
+    "sha256": "0ee7eee8cbf0ad94cb8f96c531efd65d12335d8f3fe9288b33f674c2c01397af",
+    "synthetic": true,
+    "liveAI": false
+  }
+]

@@ -4,7 +4,9 @@
 
 Folio is a local LaTeX resume studio for **Apple silicon Macs**. Chat is the main screen, with your PDF alongside it. Mark a part of the PDF, attach your feedback, and ask your AI to change it. The Code tab is there when you want to edit the TeX yourself.
 
-[Getting started](docs/tutorials/first-resume.md) · [User guide](docs/APP_GUIDE.md) · [Feature guides](docs/FEATURE_GUIDE_INDEX.md) · [Release status](docs/RELEASE_GAP_AUDIT.md)
+[Website](https://grawish.github.io/folio/) · [Screenshot demos](https://grawish.github.io/folio/demos.html) · [Getting started](docs/tutorials/first-resume.md) · [User guide](docs/APP_GUIDE.md) · [Feature guides](docs/FEATURE_GUIDE_INDEX.md) · [Release status](docs/RELEASE_GAP_AUDIT.md)
+
+![Folio Chat beside a real sample PDF](docs/images/workspace.png)
 
 ## Development preview
 
@@ -48,11 +50,11 @@ npm run build
 npm start
 ```
 
-See [contributing](CONTRIBUTING.md) for native integration tests and packaging, and [architecture](docs/ARCHITECTURE.md) for the code map.
+The [release pipeline](docs/RELEASE_PIPELINE.md) checks source, publishes source previews and the website, and qualifies Mac candidates. See [contributing](CONTRIBUTING.md) for native integration tests and packaging, and [architecture](docs/ARCHITECTURE.md) for the code map.
 
 ## Learn and contribute
 
-Start with [your first resume](docs/tutorials/first-resume.md). The [feature matrix](docs/FEATURE_GUIDE_INDEX.md) links guides, evidence, and remaining demo work. The [performance investigation](docs/PERFORMANCE_IMPROVEMENT_PLAN.md) includes raw measurements and ranked optimization experiments.
+Start with [your first resume](docs/tutorials/first-resume.md). The [feature matrix](docs/FEATURE_GUIDE_INDEX.md) links 22 screenshot walkthroughs and reproducible demos. A [reusable Folio skill](docs/DOCUMENTATION_SKILL.md) packages the guides for your assistant. The [performance investigation](docs/PERFORMANCE_IMPROVEMENT_PLAN.md) includes raw measurements and ranked optimization experiments.
 
 Bug reports should describe what happened, what you expected, and your macOS/app version. Use a small synthetic example and remove personal details from logs and screenshots. See [security reporting](SECURITY.md) for sensitive issues.
 

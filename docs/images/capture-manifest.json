@@ -1,0 +1,74 @@
+{
+  "capturedAt": "2026-09-25T20:24:36.011Z",
+  "script": "scripts/capture-tutorials.mjs",
+  "input": "Packaged development app",
+  "synthetic": true,
+  "liveAI": false,
+  "captures": [
+    {
+      "file": "docs/images/workspace.png",
+      "description": "Default synthetic resume, no AI connection.",
+      "sha256": "8a85176d858a022e326f2a135d2fd20306f38d11d859f880e788c49093fbf3af"
+    },
+    {
+      "file": "docs/images/code.png",
+      "description": "Manual TeX editing and the matching PDF.",
+      "sha256": "4fc3ed0c79fa735f0ed29fd5296f5dc54269246dfb6075f1b33313a6ec272cec"
+    },
+    {
+      "file": "docs/images/connections-empty.png",
+      "description": "AI connections are configured and selected only in Settings.",
+      "sha256": "23aa11a9295cb72f2473d869e8e3c51012057c4ee2f8e0ef742c38ff163ae7f3"
+    },
+    {
+      "file": "docs/images/connection-codex.png",
+      "description": "Configuration example only; no account or key is connected.",
+      "sha256": "32b10e8c66f1843a5aad5f1cf53926c0d3a4ab73fa8358cbed1f9dd0643cc0ab"
+    },
+    {
+      "file": "docs/images/connection-claude-code.png",
+      "description": "Configuration example only; no account or key is connected.",
+      "sha256": "e61ec998e6ead923c1f612774f6956113ce70580a07e3e72f268ad7761740939"
+    },
+    {
+      "file": "docs/images/connection-openai.png",
+      "description": "Configuration example only; no account or key is connected.",
+      "sha256": "01180fc707d37eb92c1b621b85246917241ed1985e75a40a8929e3039fa7f3e8"
+    },
+    {
+      "file": "docs/images/connection-anthropic.png",
+      "description": "Configuration example only; no account or key is connected.",
+      "sha256": "8b8a72fb3c99119dc71735d1cbb218f98ab7fd2f649073f0bfbbcccdf5357982"
+    },
+    {
+      "file": "docs/images/connection-custom.png",
+      "description": "Configuration example only; no account or key is connected.",
+      "sha256": "c5c1e36be19b2df2e0bd3b72d0bf997a14b6d7b0a3785458f3e0b95365cd366d"
+    },
+    {
+      "file": "docs/images/general.png",
+      "description": "General settings with a synthetic resume.",
+      "sha256": "36aa5b3ac2157ac0113e23212abb525cb10804bfc985f48978ecbf919d42efb1"
+    },
+    {
+      "file": "docs/images/editor-settings.png",
+      "description": "Editor & PDF settings with a synthetic resume.",
+      "sha256": "45e44b580bad0b45d8aeedf518ec34d3df060d403ee901ff74d385106569215c"
+    },
+    {
+      "file": "docs/images/privacy.png",
+      "description": "Privacy settings with a synthetic resume.",
+      "sha256": "571db6b0e237d3fa53aa62586de59df6e509d73a6cb2c4238b4ae6cf231c9a7f"
+    },
+    {
+      "file": "docs/images/about.png",
+      "description": "About settings with a synthetic resume.",
+      "sha256": "585d6892b418ac0ff1717b61cd4c09a577e89451d6d9115d558c31f6264b156c"
+    },
+    {
+      "file": "docs/images/general-light.png",
+      "description": "Light appearance, autosave, pane reset and import recovery.",
+      "sha256": "13f134807cf667f9a9f8f2fa76b3d3d0e0a72b9b82b826d16a23769085d09363"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Folio Resume"
+  short_description: "Use and troubleshoot the Folio resume app"
+  brand_color: "#76D4DF"
+  default_prompt: "Use $folio-resume to help me improve my resume in Folio and check its PDF."
+policy:
+  allow_implicit_invocation: true

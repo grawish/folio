@@ -41,7 +41,7 @@ Developer prerequisite: Node.js 24 with npm. End users of a packaged build do no
 The latest verified Apple silicon build is in `release/import-recovery/mac-arm64/Folio.app`; its disk image is `release/import-recovery/Folio-0.1.0-mac-arm64.dmg`. It adds crash recovery and review for interrupted ZIP imports, preserves outside edits, and fixes compiler readiness when reopening the same project. Chat, PDF annotations, six templates, bounded PDF rendering, resizable panes, autosave, journaled saves, outside-file review, compiler comparison and offline repair remain available. Earlier milestone builds are retained. Save your work and quit Folio before opening or installing the new build. These contain the runtime and template resources and are unsigned development artifacts. The exact local qualification is summarized in [implementation status](IMPLEMENTATION_STATUS.md).
 
 ```sh
-npm install
+npm ci
 npm run setup
 npm run dev
 ```
@@ -216,6 +216,7 @@ See [chat implementation evidence](CHAT_FIRST_IMPLEMENTATION.md), [implementatio
 
 Original Folio source and documentation use [PolyForm Noncommercial 1.0.0](../LICENSE), with the [required notice](../NOTICE). This is a noncommercial, source-available project. Third-party components keep their own licenses; see [licensing scope and remaining redistribution work](LICENSING.md).
 
-The public [grawish/folio repository](https://github.com/grawish/folio) has been created. Source/artifact publication, complete user/developer guides, demos and tutorials for every feature, a reusable documentation skill, and the measured performance/optimization report are tracked in the [delivery checklist](DELIVERY_SCOPE.md). They are not yet all complete or published. Start with [your first resume](tutorials/first-resume.md) or [recovering an interrupted import](tutorials/recover-an-import.md); the [feature coverage matrix](FEATURE_GUIDE_INDEX.md) distinguishes existing guides from remaining work.
+The public [grawish/folio repository](https://github.com/grawish/folio) contains the source. Start with [your first resume](tutorials/first-resume.md), browse the [22 screenshot walkthroughs](FEATURE_GUIDE_INDEX.md), or install the [documentation skill](DOCUMENTATION_SKILL.md). The [release pipeline](RELEASE_PIPELINE.md) distinguishes source prereleases, Mac candidate qualification and the remaining production installer work.
+
 
 The [performance investigation and optimization plan](PERFORMANCE_IMPROVEMENT_PLAN.md) includes three measured backend runs and their raw evidence. It identifies runtime-copy/self-test cost during first setup and verification cost during small warm builds. Full app, AI, storage and reference-device measurements remain open.

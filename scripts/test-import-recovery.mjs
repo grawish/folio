@@ -5,7 +5,9 @@ import { spawn } from 'node:child_process';
 import { zipSync } from 'fflate';
 import { ImportTransactions } from '../electron/core/import-transactions.ts';
 
-const root = await fs.mkdtemp(path.resolve('test-results/import-recovery-'));
+const outputRoot = path.resolve(process.env.FOLIO_TEST_OUTPUT ?? 'test-results');
+await fs.mkdir(outputRoot, { recursive: true });
+const root = await fs.mkdtemp(path.join(outputRoot, 'import-recovery-'));
 const data = path.join(root, 'data');
 const parent = path.join(root, 'imports');
 const trash = path.join(root, 'test-trash');

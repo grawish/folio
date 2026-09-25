@@ -1,3 +1,5 @@
+<!-- Generated from docs/RELEASE_GAP_AUDIT.md; run npm run skill:build after editing the guide. -->
+
 # Release completion audit — 26 September 2026
 
 **Overall goal remains active.** The chat-first amendment is implemented and verified on the development Mac, but the Apple silicon macOS release still has open production requirements. A successful local chat build does not prove that release complete.

@@ -1,3 +1,5 @@
+<!-- Generated from docs/tutorials/recover-an-import.md; run npm run skill:build after editing the guide. -->
+
 # Finish an interrupted ZIP import
 
 Use this guide when Folio closed before a ZIP import finished. Your original ZIP is kept.
@@ -10,7 +12,7 @@ Use this guide when Folio closed before a ZIP import finished. Your original ZIP
 
 Opening this list does not replace the resume you are working on.
 
-![Interrupted imports in a disposable demo folder](../images/import-recovery.png)
+[Screenshot: Interrupted imports in a disposable demo folder](https://github.com/grawish/folio/blob/main/docs/images/import-recovery.png)
 
 ## Finish the copy
 
@@ -58,6 +60,6 @@ This automated walkthrough creates six synthetic imports, stops their helper pro
 
 The demonstration uses its own app-data folder and a test-only substitute for macOS Trash. It does not use your normal Folio projects or your real Trash. It requires the local development toolchain; end users of the packaged app do not need that toolchain.
 
-The public screenshot comes from this real workflow using a disposable `/private/tmp/folio-demos` directory. The [demo gallery](../demos/README.md) links the screenshot walkthrough. It is not a video recording.
+The public screenshot comes from this real workflow using a disposable `/private/tmp/folio-demos` directory. The [demo gallery](https://github.com/grawish/folio/blob/main/docs/demos/README.md) links the screenshot walkthrough. It is not a video recording.
 
-For technical limits and test evidence, see [ZIP import and recovery](../ZIP_IMPORT.md).
+For technical limits and test evidence, see [ZIP import and recovery](https://github.com/grawish/folio/blob/main/docs/ZIP_IMPORT.md).

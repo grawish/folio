@@ -26,3 +26,6 @@ design-qa.md
 # Generated website and release evidence.
 .site/
 artifacts/
+
+# Unused historical branding explorations.
+assets/branding/
