@@ -4,11 +4,16 @@ The first reviewed source commit was pushed to `grawish/folio` before these work
 
 ## Current hosting state
 
-The source, guides, skill and website source are published on main. GitHub rejected the workflow-file push because the authenticated CLI lacks the `workflow` scope. All four workflows are prepared locally on the preserved `local/workflow-pending` branch. They are not yet active hosted automation. After the owner refreshes that scope, publish the workflow files, change Pages build type back to `workflow`, and verify each run.
+Source, guides, screenshots and the skill are published on main. The owner approved the missing workflow scope, and all four workflows were pushed in b25952e. [Hosted source checks](https://github.com/grawish/folio/actions/runs/36188170965) passed: npm clean install, formatting, all 117 unit tests, typecheck/build, site build and generated-skill consistency. The [custom Pages deployment](https://github.com/grawish/folio/actions/runs/36188170927) also passed. A [fresh Apple silicon candidate run](https://github.com/grawish/folio/actions/runs/36188323034) is in progress; do not count it as passed yet.
 
-The website uses GitHub’s supported branch-based Pages deployment from `gh-pages` while that permission is pending. [Initial deployment 36187646465](https://github.com/grawish/folio/actions/runs/36187646465) passed. The account’s existing Pages custom domain is inherited; no DNS or account-wide domain setting was changed.
+The [first source prerelease](https://github.com/grawish/folio/releases/tag/source-v0.1.0-preview.1) contains source, documentation, skill, checksums and provenance. Its uploaded archive digests match the local files. It was published with the CLI before custom workflow permission was granted. Future source tags use the release workflow.
 
-## Prepared workflows
+The website's public address is still affected by the account's existing custom domain: `grawish.github.io/folio/` redirects to `grawish.com/folio/`, which returned HTTP 526 from Cloudflare on the live check. The parent Pages configuration reports no HTTPS certificate and an unverified domain. A successful Pages build is not a working public URL. The owner is choosing a separate public host or repair of the shared domain. No DNS or account-wide domain setting has been changed.
+
+An initial branch-based deployment also passed before workflow access was granted. Pages now uses the custom workflow; the old gh-pages branch is retained.
+
+## Workflows
+
 
 | Workflow | Trigger | Result |
 | --- | --- | --- |
