@@ -113,6 +113,33 @@ The empty-group times are **upper bounds**: there is a 25 ms wait between `ps` s
 
 The final raw run is retained locally in `test-results/compiler-stop-0tp6oe/`, with source/script/runtime hashes in the published JSON. Earlier exploratory measurements are also retained locally. Compiler code and runtime inputs were unchanged; no optimization is claimed by this measurement.
 
+## Save and history growth
+
+The [storage measurements](performance/storage-baseline.json) use the production `ProjectStore` and `WorkspaceStore` on the same M4 Pro host. There are three separate profiles for each history length: 1, 25 and 100 versions. Each holds the real Classic A4 source (2,832 bytes) and its previously compiled PDF (23,366 bytes). Versions add different TeX comments and reuse that PDF, remain marked unverified, and test storage only. They do not exercise another compilation, renderer or AI request.
+
+Reproduce after [generating a passing template comparison corpus](TEMPLATE_VISUAL_CHECKS.md):
+
+```sh
+node --import tsx scripts/profile-storage.mjs test-results/template-regression-<run-id> 3
+```
+
+The script checks fixture hashes, creates isolated app data, retains every measured stage and verifies exact source/PDF bytes and version counts after reopening. It records implementation/script hashes, Node CPU time, sampled RSS and 10 ms timer lateness. The measured implementation is based on `433a5c8`; the newly added profiling script is identified by its separate hash. These runs were separate from local native suites; concurrent GitHub qualification ran on a different machine. The initial exploratory run is retained locally in `storage-profile-9FlLDB`; the final recorded run is `storage-profile-CMVoOm`.
+
+| Operation, observed range across three samples | 1 version | 25 versions | 100 versions |
+| --- | --- | --- | --- |
+| Append one checkpoint | 1.3–2.4 ms | 0.8–1.2 ms | 0.7–1.0 ms |
+| Validate and compress history | 1.1–3.7 ms | 13.9–16.9 ms | 46.8–50.1 ms |
+| Save project including history | 83.6–93.8 ms | 100.8–110.7 ms | 131.3–144.6 ms |
+| Open saved project | 1.5–2.4 ms | 2.2–2.6 ms | 2.4–2.8 ms |
+| Import its history into a new profile | 1.6–3.3 ms | 24.0–25.0 ms | 64.7–68.5 ms |
+| Read and verify the latest version | 0.4–0.9 ms | Below 0.5 ms | Below 0.5 ms |
+
+All nine cases preserve their source, PDF and complete history. Local workspace content grows from 27,017 to 672,419 to 2,689,499 bytes; the saved compressed history grows from about 24.9 KB to 614.6 KB to 2.46 MB. These are logical file bytes, not allocated filesystem space. The fixture is small and has no attachments or chat images; supported upper bounds still need measurement.
+
+The 100-version archive stage observes 28.0–30.3 ms maximum timer lateness, and saving observes 25.4–29.7 ms. `WorkspaceStore.archive()` uses synchronous ZIP compression, and `ProjectStore.save()` calls it again for the saved history. This supports investigating compression away from the main process, but the measurement does not isolate compression from every other synchronous operation or establish renderer frame loss. Save and archive measurements overlap in work; they cannot be added or subtracted to estimate independent costs.
+
+Peak sampled Node RSS across the run is 184.7 MiB. This includes allocations retained from prior cases, can miss short synchronous peaks, and excludes Electron and compiler children. OS caches were not purged. These observations establish neither a leak nor an application memory budget, and three samples do not establish p95. No optimization or storage-retention change was made for this measurement.
+
 ## Prioritized changes
 
 Targets below are acceptance targets for experiments, not achieved results.
@@ -125,6 +152,7 @@ Targets below are acceptance targets for experiments, not achieved results.
 | 2 | Profile the self-test's TeX/Biber subprocess stages and first-execution behavior | Probe varies from 8.7 to 24.9 s | Attribute the variance first; target stable fresh preparation without first-user bibliography timeouts | Keep an actual offline bibliography self-test, immutable runtime files, restricted native execution and bounded timeouts |
 | 3 | Evaluate APFS clone/copy strategies and per-generation directory creation | Hundreds of megabytes and thousands of small files | Reduce I/O/metadata overhead without exceeding memory/disk budgets | Verify the resulting bytes and modes; retain independent versions through app replacement; handle non-APFS destinations explicitly |
 | 3 | Consider packaging the bibliography helper's cache differently | It is 3,979 files and about 236 MiB | Smaller installation work and measurable startup/storage benefit | Preserve Biber compatibility, offline operation, read-only dependencies, complete licenses and exact runtime identity |
+| 3 | Move history compression off the main process and measure larger histories before selecting a retention policy | With 100 small versions, history compression takes 46.8–50.1 ms and observed Node timer lateness reaches 30.3 ms; save rearchives history | Below 10 ms observed main-process timer lateness during a repeat of this fixture, with no material save-time regression | Retain exact version/source/PDF validation, immutable export snapshots, complete history round-trip and journaled save recovery; establish worker memory/cancellation limits |
 
 Avoid treating the 700 ms source-edit debounce as compiler execution time. Measure user-perceived edit-to-PDF latency separately from the build phases. Removing that debounce may increase unnecessary builds and cancellation work.
 
@@ -133,7 +161,7 @@ Avoid treating the 700 ms source-edit debounce as compiler execution time. Measu
 1. Add event-level recovery/compile/render timing and an actual first-paint marker to the five current-package launch pairs above. Expand sample count/device coverage for statistical performance claims, retaining failures.
 2. Break native self-test/build work into snapshot creation, runtime verification, TeX, Biber, PDF reading, worker loading, first visible page and export readiness. Use small, multi-file, bibliography and 100-page fixtures.
 3. Measure AI edit requests, input-page rendering, candidate compilation, candidate-page rendering/review, retry and apply separately. Keep local protocol fixtures distinct from real-provider network latency.
-4. Measure save, autosave, Save As, source/history ZIP export and import/recovery at normal and supported upper bounds. Record UI responsiveness while checksums/inflation/history work runs.
+4. Extend the nine backend save/history cases above to autosave, Save As, source ZIP import/export, recovery and supported upper bounds, including larger PDFs/assets/chat images. Record actual UI responsiveness while checksums/inflation/history work runs.
 5. Measure peak memory and CPU for the entire Electron/compiler process tree and on-disk cache/history growth. Extend the compiler-group cancellation/timeout observations above to end-to-end user actions, supported devices and more samples. The existing canvas budget is only one part of application memory.
 6. Repeat on the chosen minimum/current macOS versions and reference Apple silicon machines, including physical high-DPI and clean offline installation. Report sample counts and spreads; do not present three runs as a reliable p95 estimate.
 
