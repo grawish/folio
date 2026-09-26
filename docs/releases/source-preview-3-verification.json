@@ -1,0 +1,48 @@
+{
+  "tag": "source-v0.1.0-preview.3",
+  "commit": "274ff95b73c51ed501355a3012fa28a3cf21d289",
+  "workflow": "https://github.com/grawish/folio/actions/runs/36231713023",
+  "workflowConclusion": "success",
+  "release": "https://github.com/grawish/folio/releases/tag/source-v0.1.0-preview.3",
+  "kind": "source-preview",
+  "signedMacInstallerIncluded": false,
+  "publishedDigestsMatchChecksums": true,
+  "archives": [
+    {
+      "name": "Folio-source-v0.1.0-preview.3-source.zip",
+      "sha256": "1fa49a6c2adea705ca13f52ab8154d33cdd9b48b1cf6f6ed05253df919fb6c1e"
+    },
+    {
+      "name": "Folio-source-v0.1.0-preview.3-docs.zip",
+      "sha256": "53062a03dfd727ddbd5be092424f86439dc7e035e021cb1031f1ec03e612547e"
+    },
+    {
+      "name": "Folio-source-v0.1.0-preview.3-skill.zip",
+      "sha256": "8b0f7a77f70f623d7ed60e486f3794d532992ba18eed4780f9e91b31c93ec0a4"
+    },
+    {
+      "name": "provenance.json",
+      "sha256": "c7a6ba7e88b8cecf3dbb951f2576a120800c5bf5315f447de713967f3c13074b"
+    }
+  ],
+  "taggedArchiveComparison": [
+    {
+      "name": "Folio-source-v0.1.0-preview.3-source.zip",
+      "entries": 327,
+      "contentsAndModesMatchTag": true,
+      "zipContainerByteIdentical": false
+    },
+    {
+      "name": "Folio-source-v0.1.0-preview.3-docs.zip",
+      "entries": 92,
+      "contentsAndModesMatchTag": true,
+      "zipContainerByteIdentical": false
+    },
+    {
+      "name": "Folio-source-v0.1.0-preview.3-skill.zip",
+      "entries": 21,
+      "contentsAndModesMatchTag": true,
+      "zipContainerByteIdentical": false
+    }
+  ]
+}

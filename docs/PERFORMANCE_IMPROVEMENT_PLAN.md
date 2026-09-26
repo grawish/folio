@@ -71,6 +71,48 @@ All six launches reached the real Classic template PDF with no renderer or sampl
 
 Working-set numbers sum Electron's reported processes and may double-count shared pages. They exclude Tectonic/Biber children and are not a physical-memory or process-tree budget pass. CPU percentages are Electron's interval averages. Timing includes Playwright polling and instrumentation; three paired samples are not a reliable p95. `firstWindowMs` means the first window became available to automation, not a hardware measurement of its first painted pixel.
 
+### Current guided-recovery package: five launch pairs
+
+A later [five-pair run](performance/save-recovery-app-baseline.json) measures the guided-recovery package, app.asar SHA-256 `dd9b1edd74789abe7b5f2da19fb6a1c8139f036304170f5685840ec01bb2ccf5`, with the same profiling script and M4 Pro host. The app hash and script hash were unchanged throughout. Run:
+
+```sh
+node scripts/profile-app.mjs release/save-recovery/mac-arm64/Folio.app/Contents/MacOS/Folio 5
+```
+
+| Pair | Fresh composer | Fresh current PDF | Prepared composer | Prepared current PDF |
+| --- | ---: | ---: | ---: | ---: |
+| 1 | 59.354 s | 62.653 s | 2.126 s | 5.445 s |
+| 2 | 41.358 s | 44.657 s | 2.134 s | 5.434 s |
+| 3 | 41.371 s | 44.688 s | 1.691 s | 5.500 s |
+| 4 | 40.365 s | 43.661 s | 1.687 s | 5.504 s |
+| 5 | 41.863 s | 45.161 s | 2.173 s | 5.473 s |
+
+All ten launches displayed the Classic template PDF and completed normal window close, with no renderer or sampler errors. Fresh composer readiness is 40.4–59.4 seconds; prepared readiness is 1.69–2.17 seconds. Peak summed Electron working sets were 616.5–626.5 MiB for fresh profiles and 562.7–602.1 MiB for prepared profiles. Full per-process samples, first-window and close observations are retained in the JSON and locally in `test-results/app-profile-LNJJsy/`.
+
+Another installed Folio instance and ordinary desktop apps remained open; they were not part of this measured process set. No other Folio benchmark or local native suite ran concurrently. OS caches were not purged. This is a repeatability check on the current package, not a controlled before/after optimization comparison, an application-wide memory measurement, or a supported-device p95. The earlier three-pair record remains unchanged. The original preparation/editing-readiness priorities still apply; no startup optimization is claimed.
+
+## Compiler cancellation and timeout measurements
+
+On the same M4 Pro host (Darwin 27.0.0, Node 24.21.0), the follow-up [raw stop measurements](performance/compiler-stop-baseline.json) cover three samples each of cancelling a running TeX loop, cancelling while the real Biber child is present, and the production timeout stopping a TeX loop. Reproduce with:
+
+```sh
+node --import tsx scripts/profile-compiler-stop.mjs 3
+```
+
+The script invokes the unchanged production Compiler with the included verified runtime, sandbox and isolated build/cache folders. It observes the actual spawn, process-group SIGKILL and child close, and samples only that compiler's process group. Cancellation happens after the target process has been observed for at least 150 ms. The timeout scenario uses a one-second timeout to exercise the same production mechanism without waiting 30 seconds per sample. This is backend instrumentation, not an end-to-end click or Electron measurement.
+
+| Scenario, three samples each | SIGKILL to child close | Cancel call to return | SIGKILL to observed empty process group |
+| --- | ---: | ---: | ---: |
+| Cancel running TeX | 2.1–2.3 ms | 6.8–7.5 ms | 64.9–82.4 ms |
+| Cancel TeX with Biber child | 3.0–3.7 ms | 7.9–9.2 ms | 64.5–66.0 ms |
+| One-second timeout | 2.9–3.5 ms | Not applicable | 46.3–84.4 ms |
+
+All nine runs observed the production SIGKILL, the expected cancelled/error result and an empty compiler group after completion. Both Tectonic and Biber were present in all three bibliography samples. The timeout sent SIGKILL 1001.3–1001.5 ms after spawn. These results support prompt termination on this development Mac; they do not establish a p95, every supported Mac's behavior, or containment of a hostile process that escapes its group.
+
+The empty-group times are **upper bounds**: there is a 25 ms wait between `ps` scans, the scans themselves take time, and the final check follows build cleanup. Do not interpret the observed empty-group times as kernel kill latency. Peak sampled group RSS was about 155–157 MiB for TeX cancellation, 350–362 MiB with Biber, and 242–244 MiB for the longer TeX timeout. RSS sums can double-count shared pages and exclude Electron; these are observations, not an application memory-budget pass. No command arguments, unrelated process names or environment values are retained.
+
+The final raw run is retained locally in `test-results/compiler-stop-0tp6oe/`, with source/script/runtime hashes in the published JSON. Earlier exploratory measurements are also retained locally. Compiler code and runtime inputs were unchanged; no optimization is claimed by this measurement.
+
 ## Prioritized changes
 
 Targets below are acceptance targets for experiments, not achieved results.
@@ -88,11 +130,11 @@ Avoid treating the 700 ms source-edit debounce as compiler execution time. Measu
 
 ## Measurements still needed for the complete app report
 
-1. Extend the three packaged fresh/prepared launch pairs above to at least five per state, with event-level recovery/compile/render timing and an actual first-paint marker. Retain failures.
+1. Add event-level recovery/compile/render timing and an actual first-paint marker to the five current-package launch pairs above. Expand sample count/device coverage for statistical performance claims, retaining failures.
 2. Break native self-test/build work into snapshot creation, runtime verification, TeX, Biber, PDF reading, worker loading, first visible page and export readiness. Use small, multi-file, bibliography and 100-page fixtures.
 3. Measure AI edit requests, input-page rendering, candidate compilation, candidate-page rendering/review, retry and apply separately. Keep local protocol fixtures distinct from real-provider network latency.
 4. Measure save, autosave, Save As, source/history ZIP export and import/recovery at normal and supported upper bounds. Record UI responsiveness while checksums/inflation/history work runs.
-5. Measure peak memory and CPU for the entire Electron/compiler process tree, on-disk cache/history growth and cancellation/timeout stop latency. The existing canvas budget is only one part of application memory.
+5. Measure peak memory and CPU for the entire Electron/compiler process tree and on-disk cache/history growth. Extend the compiler-group cancellation/timeout observations above to end-to-end user actions, supported devices and more samples. The existing canvas budget is only one part of application memory.
 6. Repeat on the chosen minimum/current macOS versions and reference Apple silicon machines, including physical high-DPI and clean offline installation. Report sample counts and spreads; do not present three runs as a reliable p95 estimate.
 
 ## Verification after an optimization

@@ -1,0 +1,2610 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-09-26T09:17:30.273Z",
+  "host": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "osRelease": "27.0.0",
+    "cpu": "Apple M4 Pro",
+    "logicalCpus": 14,
+    "totalMemoryBytes": 51539607552,
+    "node": "v24.21.0"
+  },
+  "sources": {
+    "electron/core/compiler.ts": "92ef72920d2585a46dd9c49a7af5942d1103e9c787f9ef3f70d54265a55fbf60",
+    "electron/core/runtime.ts": "da0bc73d9042a08af5f7623a252e5f95be36a33313bc6372faed5def6944be1a",
+    "scripts/profile-compiler-stop.mjs": "7c5993ab59802c4dc0c931c9d23aa6e31fbebb8d4838e0e8a5c4e655773c9435",
+    "resources/runtime/mac-arm64/manifest.json": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+    "resources/runtime-checks/resume-packages.tex": "1a3c95b919ee2104bda764870a3ea1c1626455deb6017ebb718ef0c9d0f0241c"
+  },
+  "scope": "Real sandboxed Tectonic and Biber with isolated build/cache directories. Compiler.cancel and production timeout are unchanged.",
+  "limits": [
+    "Single development Mac, no OS cache purge; not a p95 or supported-device guarantee.",
+    "There is a 25 ms wait between ps scans; scans add latency. Group-absence times are upper bounds including polling and instrumentation overhead.",
+    "RSS sums may double-count shared pages. CPU is ps lifetime percentage, not interval CPU; these are not application-wide budgets.",
+    "Only the app-owned compiler process group is retained; other process names, arguments and environment are not recorded.",
+    "A process escaping its original group is outside this sampler. This is not a hostile-process containment proof."
+  ],
+  "samples": [
+    {
+      "index": 1,
+      "scenario": "cancel-tex",
+      "observations": [
+        {
+          "atMs": 974.8700840000001,
+          "processes": [
+            {
+              "pid": 75192,
+              "parent": 75186,
+              "group": 75192,
+              "rssKiB": 3984,
+              "cpuPercent": 0,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1041.213042,
+          "processes": [
+            {
+              "pid": 75192,
+              "parent": 75186,
+              "group": 75192,
+              "rssKiB": 151760,
+              "cpuPercent": 4.6,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1107.335167,
+          "processes": [
+            {
+              "pid": 75192,
+              "parent": 75186,
+              "group": 75192,
+              "rssKiB": 159440,
+              "cpuPercent": 4.6,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1176.009167,
+          "processes": [
+            {
+              "pid": 75192,
+              "parent": 75186,
+              "group": 75192,
+              "rssKiB": 159904,
+              "cpuPercent": 40.3,
+              "name": "tectonic"
+            }
+          ]
+        }
+      ],
+      "passed": true,
+      "group": 75192,
+      "spawnAtMs": 934.059167,
+      "targetFirstSeenAtMs": 974.8700840000001,
+      "cancelAtMs": 1176.014209,
+      "killAtMs": 1176.333875,
+      "closeAtMs": 1178.411709,
+      "exit": {
+        "code": null,
+        "signal": "SIGKILL"
+      },
+      "settledAtMs": 1183.5453340000001,
+      "cancelReturnedAtMs": 1183.55725,
+      "result": {
+        "status": "cancelled",
+        "durationMs": 0
+      },
+      "groupAbsentAtMs": 1242.532709,
+      "remaining": [],
+      "killToCloseMs": 2.077833999999939,
+      "killToGroupAbsentMs": 66.19883400000003,
+      "peakSampledGroupRssKiB": 159904
+    },
+    {
+      "index": 1,
+      "scenario": "cancel-biber",
+      "observations": [
+        {
+          "atMs": 784.1425419999998,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 7632,
+              "cpuPercent": 0,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 848.1989580000002,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 155472,
+              "cpuPercent": 0,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 913.344625,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 157504,
+              "cpuPercent": 30.3,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 978.684958,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 158352,
+              "cpuPercent": 30.3,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1043.7990419999999,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 161312,
+              "cpuPercent": 55.7,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1108.4596669999999,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 161312,
+              "cpuPercent": 55.7,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1173.0470830000002,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 163424,
+              "cpuPercent": 73.8,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1238.558667,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 168064,
+              "cpuPercent": 73.8,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1303.856583,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 193152,
+              "cpuPercent": 82,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1369.30075,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 195952,
+              "cpuPercent": 82,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1435.8858750000002,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 198400,
+              "cpuPercent": 88.9,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1498.7435830000002,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 249984,
+              "cpuPercent": 90.1,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1563.015333,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 251088,
+              "cpuPercent": 90.1,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1627.046,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 253584,
+              "cpuPercent": 93.7,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1692.614917,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 253600,
+              "cpuPercent": 93.7,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1757.163167,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 253616,
+              "cpuPercent": 96,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1821.4017499999998,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 253616,
+              "cpuPercent": 96,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1886.611667,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 253712,
+              "cpuPercent": 97.9,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1951.6197920000002,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 253728,
+              "cpuPercent": 97.9,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2014.6468750000001,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 256512,
+              "cpuPercent": 97.7,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2078.8341250000003,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 262624,
+              "cpuPercent": 97.7,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2144.0949579999997,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 271408,
+              "cpuPercent": 99.2,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2207.991833,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 273744,
+              "cpuPercent": 99.2,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2273.706,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 275360,
+              "cpuPercent": 98.8,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2338.54475,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 276176,
+              "cpuPercent": 98.8,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2403.7344999999996,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 277184,
+              "cpuPercent": 99.6,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2469.449917,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 279328,
+              "cpuPercent": 99.6,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2535.5474999999997,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 279424,
+              "cpuPercent": 99.1,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2599.824458,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 281504,
+              "cpuPercent": 99.1,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2665.849792,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 281552,
+              "cpuPercent": 100,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2731.5612920000003,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 281952,
+              "cpuPercent": 100,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2795.88925,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 284736,
+              "cpuPercent": 99,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2859.1485000000002,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 303616,
+              "cpuPercent": 99,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2923.877292,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 318416,
+              "cpuPercent": 99.8,
+              "name": "tectonic"
+            },
+            {
+              "pid": 75253,
+              "parent": 75211,
+              "group": 75211,
+              "rssKiB": 8672,
+              "cpuPercent": 0,
+              "name": "biber"
+            }
+          ]
+        },
+        {
+          "atMs": 2988.552958,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 318416,
+              "cpuPercent": 99.8,
+              "name": "tectonic"
+            },
+            {
+              "pid": 75253,
+              "parent": 75211,
+              "group": 75211,
+              "rssKiB": 22176,
+              "cpuPercent": 0,
+              "name": "biber"
+            }
+          ]
+        },
+        {
+          "atMs": 3051.6081670000003,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 318416,
+              "cpuPercent": 72.1,
+              "name": "tectonic"
+            },
+            {
+              "pid": 75253,
+              "parent": 75211,
+              "group": 75211,
+              "rssKiB": 26256,
+              "cpuPercent": 27,
+              "name": "biber"
+            }
+          ]
+        },
+        {
+          "atMs": 3116.417042,
+          "processes": [
+            {
+              "pid": 75211,
+              "parent": 75186,
+              "group": 75211,
+              "rssKiB": 318416,
+              "cpuPercent": 72.1,
+              "name": "tectonic"
+            },
+            {
+              "pid": 75253,
+              "parent": 75211,
+              "group": 75211,
+              "rssKiB": 41184,
+              "cpuPercent": 27,
+              "name": "biber"
+            }
+          ]
+        }
+      ],
+      "passed": true,
+      "group": 75211,
+      "spawnAtMs": 736.92725,
+      "targetFirstSeenAtMs": 2923.877292,
+      "cancelAtMs": 3116.4210000000003,
+      "killAtMs": 3116.7391670000006,
+      "closeAtMs": 3119.768333,
+      "exit": {
+        "code": null,
+        "signal": "SIGKILL"
+      },
+      "settledAtMs": 3124.269625,
+      "cancelReturnedAtMs": 3124.2779170000003,
+      "result": {
+        "status": "cancelled",
+        "durationMs": 0
+      },
+      "groupAbsentAtMs": 3181.3788329999998,
+      "remaining": [],
+      "killToCloseMs": 3.02916599999935,
+      "killToGroupAbsentMs": 64.63966599999912,
+      "peakSampledGroupRssKiB": 359600
+    },
+    {
+      "index": 1,
+      "scenario": "timeout-tex",
+      "observations": [
+        {
+          "atMs": 753.0702499999998,
+          "processes": [
+            {
+              "pid": 75430,
+              "parent": 75186,
+              "group": 75430,
+              "rssKiB": 7760,
+              "cpuPercent": 0,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 817.8112499999997,
+          "processes": [
+            {
+              "pid": 75430,
+              "parent": 75186,
+              "group": 75430,
+              "rssKiB": 155424,
+              "cpuPercent": 0,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 884.7357090000005,
+          "processes": [
+            {
+              "pid": 75430,
+              "parent": 75186,
+              "group": 75430,
+              "rssKiB": 157440,
+              "cpuPercent": 22.6,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 949.550459,
+          "processes": [
+            {
+              "pid": 75430,
+              "parent": 75186,
+              "group": 75430,
+              "rssKiB": 158704,
+              "cpuPercent": 52,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1014.4700840000005,
+          "processes": [
+            {
+              "pid": 75430,
+              "parent": 75186,
+              "group": 75430,
+              "rssKiB": 161152,
+              "cpuPercent": 52,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1080.3937919999998,
+          "processes": [
+            {
+              "pid": 75430,
+              "parent": 75186,
+              "group": 75430,
+              "rssKiB": 161152,
+              "cpuPercent": 69.4,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1144.8799589999999,
+          "processes": [
+            {
+              "pid": 75430,
+              "parent": 75186,
+              "group": 75430,
+              "rssKiB": 163760,
+              "cpuPercent": 69.4,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1209.2548749999996,
+          "processes": [
+            {
+              "pid": 75430,
+              "parent": 75186,
+              "group": 75430,
+              "rssKiB": 168432,
+              "cpuPercent": 81.4,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1273.8829999999998,
+          "processes": [
+            {
+              "pid": 75430,
+              "parent": 75186,
+              "group": 75430,
+              "rssKiB": 193008,
+              "cpuPercent": 81.4,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1337.770375,
+          "processes": [
+            {
+              "pid": 75430,
+              "parent": 75186,
+              "group": 75430,
+              "rssKiB": 196128,
+              "cpuPercent": 87.8,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1402.0050419999998,
+          "processes": [
+            {
+              "pid": 75430,
+              "parent": 75186,
+              "group": 75430,
+              "rssKiB": 198560,
+              "cpuPercent": 87.8,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1465.8727500000005,
+          "processes": [
+            {
+              "pid": 75430,
+              "parent": 75186,
+              "group": 75430,
+              "rssKiB": 249824,
+              "cpuPercent": 91.3,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1529.4894999999997,
+          "processes": [
+            {
+              "pid": 75430,
+              "parent": 75186,
+              "group": 75430,
+              "rssKiB": 249824,
+              "cpuPercent": 91.3,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1593.4079590000001,
+          "processes": [
+            {
+              "pid": 75430,
+              "parent": 75186,
+              "group": 75430,
+              "rssKiB": 249824,
+              "cpuPercent": 93.1,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1657.0972920000004,
+          "processes": [
+            {
+              "pid": 75430,
+              "parent": 75186,
+              "group": 75430,
+              "rssKiB": 249824,
+              "cpuPercent": 93.1,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1722.0462500000003,
+          "processes": [
+            {
+              "pid": 75430,
+              "parent": 75186,
+              "group": 75430,
+              "rssKiB": 249824,
+              "cpuPercent": 96.1,
+              "name": "(tectonic)"
+            }
+          ]
+        }
+      ],
+      "passed": true,
+      "group": 75430,
+      "spawnAtMs": 705.5338339999998,
+      "targetFirstSeenAtMs": 753.0702499999998,
+      "killAtMs": 1706.9944169999999,
+      "closeAtMs": 1710.0832090000004,
+      "exit": {
+        "code": null,
+        "signal": "SIGKILL"
+      },
+      "settledAtMs": 1715.929959,
+      "result": {
+        "status": "error",
+        "durationMs": 1710
+      },
+      "groupAbsentAtMs": 1758.8621249999997,
+      "remaining": [],
+      "killToCloseMs": 3.088792000000467,
+      "killToGroupAbsentMs": 51.867707999999766,
+      "peakSampledGroupRssKiB": 249824
+    },
+    {
+      "index": 2,
+      "scenario": "cancel-tex",
+      "observations": [
+        {
+          "atMs": 747.9061249999995,
+          "processes": [
+            {
+              "pid": 75457,
+              "parent": 75186,
+              "group": 75457,
+              "rssKiB": 7760,
+              "cpuPercent": 0,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 812.413834,
+          "processes": [
+            {
+              "pid": 75457,
+              "parent": 75186,
+              "group": 75457,
+              "rssKiB": 155488,
+              "cpuPercent": 22.1,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 877.0239999999994,
+          "processes": [
+            {
+              "pid": 75457,
+              "parent": 75186,
+              "group": 75457,
+              "rssKiB": 157536,
+              "cpuPercent": 22.1,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 941.0512919999992,
+          "processes": [
+            {
+              "pid": 75457,
+              "parent": 75186,
+              "group": 75457,
+              "rssKiB": 158432,
+              "cpuPercent": 52.8,
+              "name": "tectonic"
+            }
+          ]
+        }
+      ],
+      "passed": true,
+      "group": 75457,
+      "spawnAtMs": 698.2471669999995,
+      "targetFirstSeenAtMs": 747.9061249999995,
+      "cancelAtMs": 941.056834,
+      "killAtMs": 941.3977919999998,
+      "closeAtMs": 943.5389589999995,
+      "exit": {
+        "code": null,
+        "signal": "SIGKILL"
+      },
+      "settledAtMs": 947.8939999999993,
+      "cancelReturnedAtMs": 947.9039169999996,
+      "result": {
+        "status": "cancelled",
+        "durationMs": 0
+      },
+      "groupAbsentAtMs": 1023.8392919999997,
+      "remaining": [],
+      "killToCloseMs": 2.1411669999997684,
+      "killToGroupAbsentMs": 82.4414999999999,
+      "peakSampledGroupRssKiB": 158432
+    },
+    {
+      "index": 2,
+      "scenario": "cancel-biber",
+      "observations": [
+        {
+          "atMs": 766.618125,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 8928,
+              "cpuPercent": 0,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 829.5716249999996,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 155456,
+              "cpuPercent": 4.4,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 893.2719579999994,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 157440,
+              "cpuPercent": 4.4,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 956.5209580000001,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 158512,
+              "cpuPercent": 40.6,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1022.1946249999992,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 159232,
+              "cpuPercent": 61.2,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1086.1373749999993,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 159232,
+              "cpuPercent": 61.2,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1150.685124999999,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 161696,
+              "cpuPercent": 78,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1214.0570830000006,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 166912,
+              "cpuPercent": 78,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1279.9665830000004,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 191680,
+              "cpuPercent": 84.8,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1345.0789159999995,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 194768,
+              "cpuPercent": 84.8,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1410.3389159999997,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 197456,
+              "cpuPercent": 91.8,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1475.1884579999996,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 249520,
+              "cpuPercent": 91.8,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1539.5132079999994,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 250832,
+              "cpuPercent": 90.7,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1604.3980000000001,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 253232,
+              "cpuPercent": 90.7,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1668.8937909999995,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 253264,
+              "cpuPercent": 95.5,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1733.839665999999,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 253264,
+              "cpuPercent": 95.5,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1799.6781249999995,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 253264,
+              "cpuPercent": 95.7,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1863.2559579999988,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 253376,
+              "cpuPercent": 95.7,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1929.5221250000004,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 253376,
+              "cpuPercent": 97.7,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1992.6174579999997,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 257808,
+              "cpuPercent": 97.7,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2056.73125,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 262224,
+              "cpuPercent": 98.7,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2119.867625,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 269648,
+              "cpuPercent": 98.7,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2183.9525409999997,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 271984,
+              "cpuPercent": 100,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2247.3681659999993,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 273744,
+              "cpuPercent": 100,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2310.8928750000005,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 274544,
+              "cpuPercent": 97.7,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2373.945041,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 275552,
+              "cpuPercent": 97.7,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2437.399290999999,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 277776,
+              "cpuPercent": 99,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2500.1989160000003,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 277856,
+              "cpuPercent": 99,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2562.9764160000004,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 278576,
+              "cpuPercent": 98.4,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2627.2056249999996,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 281152,
+              "cpuPercent": 98.4,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2690.8556249999992,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 281552,
+              "cpuPercent": 99.7,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2755.067582999999,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 283552,
+              "cpuPercent": 99.7,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2818.099583,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 300160,
+              "cpuPercent": 99.2,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2881.4445829999995,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 318272,
+              "cpuPercent": 99.2,
+              "name": "tectonic"
+            },
+            {
+              "pid": 75507,
+              "parent": 75466,
+              "group": 75466,
+              "rssKiB": 224,
+              "cpuPercent": 0,
+              "name": "biber"
+            }
+          ]
+        },
+        {
+          "atMs": 2946.3169580000003,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 318272,
+              "cpuPercent": 93.9,
+              "name": "tectonic"
+            },
+            {
+              "pid": 75507,
+              "parent": 75466,
+              "group": 75466,
+              "rssKiB": 22160,
+              "cpuPercent": 6.4,
+              "name": "biber"
+            }
+          ]
+        },
+        {
+          "atMs": 3011.437999999999,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 318272,
+              "cpuPercent": 93.9,
+              "name": "tectonic"
+            },
+            {
+              "pid": 75507,
+              "parent": 75466,
+              "group": 75466,
+              "rssKiB": 22736,
+              "cpuPercent": 6.4,
+              "name": "biber"
+            }
+          ]
+        },
+        {
+          "atMs": 3076.273415999999,
+          "processes": [
+            {
+              "pid": 75466,
+              "parent": 75186,
+              "group": 75466,
+              "rssKiB": 318272,
+              "cpuPercent": 58.7,
+              "name": "tectonic"
+            },
+            {
+              "pid": 75507,
+              "parent": 75466,
+              "group": 75466,
+              "rssKiB": 39904,
+              "cpuPercent": 40.2,
+              "name": "biber"
+            }
+          ]
+        }
+      ],
+      "passed": true,
+      "group": 75466,
+      "spawnAtMs": 717.8314579999997,
+      "targetFirstSeenAtMs": 2881.4445829999995,
+      "cancelAtMs": 3076.2780410000005,
+      "killAtMs": 3076.6222910000006,
+      "closeAtMs": 3080.307791,
+      "exit": {
+        "code": null,
+        "signal": "SIGKILL"
+      },
+      "settledAtMs": 3085.5027500000006,
+      "cancelReturnedAtMs": 3085.5132079999994,
+      "result": {
+        "status": "cancelled",
+        "durationMs": 0
+      },
+      "groupAbsentAtMs": 3142.6527080000005,
+      "remaining": [],
+      "killToCloseMs": 3.6854999999995925,
+      "killToGroupAbsentMs": 66.03041699999994,
+      "peakSampledGroupRssKiB": 358176
+    },
+    {
+      "index": 2,
+      "scenario": "timeout-tex",
+      "observations": [
+        {
+          "atMs": 745.2744170000005,
+          "processes": [
+            {
+              "pid": 75518,
+              "parent": 75186,
+              "group": 75518,
+              "rssKiB": 11280,
+              "cpuPercent": 0,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 809.5249170000006,
+          "processes": [
+            {
+              "pid": 75518,
+              "parent": 75186,
+              "group": 75518,
+              "rssKiB": 156352,
+              "cpuPercent": 8.5,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 874.18325,
+          "processes": [
+            {
+              "pid": 75518,
+              "parent": 75186,
+              "group": 75518,
+              "rssKiB": 157504,
+              "cpuPercent": 8.5,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 938.4182920000003,
+          "processes": [
+            {
+              "pid": 75518,
+              "parent": 75186,
+              "group": 75518,
+              "rssKiB": 158800,
+              "cpuPercent": 40.5,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1001.6806670000005,
+          "processes": [
+            {
+              "pid": 75518,
+              "parent": 75186,
+              "group": 75518,
+              "rssKiB": 159312,
+              "cpuPercent": 40.5,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1065.2157500000012,
+          "processes": [
+            {
+              "pid": 75518,
+              "parent": 75186,
+              "group": 75518,
+              "rssKiB": 159312,
+              "cpuPercent": 63.3,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1128.8941250000007,
+          "processes": [
+            {
+              "pid": 75518,
+              "parent": 75186,
+              "group": 75518,
+              "rssKiB": 161872,
+              "cpuPercent": 76.5,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1193.1324999999997,
+          "processes": [
+            {
+              "pid": 75518,
+              "parent": 75186,
+              "group": 75518,
+              "rssKiB": 167008,
+              "cpuPercent": 76.5,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1256.6930420000008,
+          "processes": [
+            {
+              "pid": 75518,
+              "parent": 75186,
+              "group": 75518,
+              "rssKiB": 192960,
+              "cpuPercent": 85.7,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1321.5132080000003,
+          "processes": [
+            {
+              "pid": 75518,
+              "parent": 75186,
+              "group": 75518,
+              "rssKiB": 196048,
+              "cpuPercent": 85.7,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1386.9501670000009,
+          "processes": [
+            {
+              "pid": 75518,
+              "parent": 75186,
+              "group": 75518,
+              "rssKiB": 198288,
+              "cpuPercent": 91.2,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1452.6751249999998,
+          "processes": [
+            {
+              "pid": 75518,
+              "parent": 75186,
+              "group": 75518,
+              "rssKiB": 249488,
+              "cpuPercent": 91.2,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1531.7600419999999,
+          "processes": [
+            {
+              "pid": 75518,
+              "parent": 75186,
+              "group": 75518,
+              "rssKiB": 249488,
+              "cpuPercent": 95.2,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1597.6461670000008,
+          "processes": [
+            {
+              "pid": 75518,
+              "parent": 75186,
+              "group": 75518,
+              "rssKiB": 249488,
+              "cpuPercent": 95.2,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1669.0121670000008,
+          "processes": [
+            {
+              "pid": 75518,
+              "parent": 75186,
+              "group": 75518,
+              "rssKiB": 249488,
+              "cpuPercent": 96.9,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1735.4105830000008,
+          "processes": [
+            {
+              "pid": 75518,
+              "parent": 75186,
+              "group": 75518,
+              "rssKiB": 0,
+              "cpuPercent": 0,
+              "name": "(tectonic)"
+            }
+          ]
+        }
+      ],
+      "passed": true,
+      "group": 75518,
+      "spawnAtMs": 694.332375,
+      "targetFirstSeenAtMs": 745.2744170000005,
+      "killAtMs": 1695.7924170000006,
+      "closeAtMs": 1699.2655000000013,
+      "exit": {
+        "code": null,
+        "signal": "SIGKILL"
+      },
+      "settledAtMs": 1704.7107500000002,
+      "result": {
+        "status": "error",
+        "durationMs": 1700
+      },
+      "groupAbsentAtMs": 1780.2206670000014,
+      "remaining": [],
+      "killToCloseMs": 3.47308300000077,
+      "killToGroupAbsentMs": 84.42825000000084,
+      "peakSampledGroupRssKiB": 249488
+    },
+    {
+      "index": 3,
+      "scenario": "cancel-tex",
+      "observations": [
+        {
+          "atMs": 851.5155410000007,
+          "processes": [
+            {
+              "pid": 75549,
+              "parent": 75186,
+              "group": 75549,
+              "rssKiB": 7616,
+              "cpuPercent": 2.4,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 915.5040000000008,
+          "processes": [
+            {
+              "pid": 75549,
+              "parent": 75186,
+              "group": 75549,
+              "rssKiB": 155520,
+              "cpuPercent": 2.4,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 982.1059580000001,
+          "processes": [
+            {
+              "pid": 75549,
+              "parent": 75186,
+              "group": 75549,
+              "rssKiB": 159440,
+              "cpuPercent": 39.9,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1044.9750409999997,
+          "processes": [
+            {
+              "pid": 75549,
+              "parent": 75186,
+              "group": 75549,
+              "rssKiB": 160528,
+              "cpuPercent": 39.9,
+              "name": "tectonic"
+            }
+          ]
+        }
+      ],
+      "passed": true,
+      "group": 75549,
+      "spawnAtMs": 803.6944999999996,
+      "targetFirstSeenAtMs": 851.5155410000007,
+      "cancelAtMs": 1044.978416,
+      "killAtMs": 1045.2917909999996,
+      "closeAtMs": 1047.542875000001,
+      "exit": {
+        "code": null,
+        "signal": "SIGKILL"
+      },
+      "settledAtMs": 1051.7652909999997,
+      "cancelReturnedAtMs": 1051.7735830000001,
+      "result": {
+        "status": "cancelled",
+        "durationMs": 0
+      },
+      "groupAbsentAtMs": 1110.1593749999993,
+      "remaining": [],
+      "killToCloseMs": 2.251084000001356,
+      "killToGroupAbsentMs": 64.86758399999962,
+      "peakSampledGroupRssKiB": 160528
+    },
+    {
+      "index": 3,
+      "scenario": "cancel-biber",
+      "observations": [
+        {
+          "atMs": 759.0566670000007,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 7824,
+              "cpuPercent": 0,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 822.537792000001,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 155504,
+              "cpuPercent": 0,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 886.950334000001,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 157520,
+              "cpuPercent": 34.9,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 949.656500000001,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 158448,
+              "cpuPercent": 34.9,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1014.3807919999999,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 159296,
+              "cpuPercent": 58.8,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1079.507125,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 159296,
+              "cpuPercent": 58.8,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1143.3202920000003,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 161424,
+              "cpuPercent": 75.4,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1206.0082500000008,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 166112,
+              "cpuPercent": 75.4,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1270.0559589999993,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 187280,
+              "cpuPercent": 83.2,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1333.819042000001,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 193872,
+              "cpuPercent": 83.2,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1398.6966250000005,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 196400,
+              "cpuPercent": 89.8,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1461.9390000000003,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 248112,
+              "cpuPercent": 89.8,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1524.931625000001,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 249152,
+              "cpuPercent": 90.9,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1589.3250000000007,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 251728,
+              "cpuPercent": 90.9,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1654.151167,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 251744,
+              "cpuPercent": 94.6,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1719.7839590000003,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 251760,
+              "cpuPercent": 94.6,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1782.1344169999993,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 251760,
+              "cpuPercent": 96.1,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1847.5751249999994,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 251824,
+              "cpuPercent": 96.1,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1911.7812919999997,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 251840,
+              "cpuPercent": 99,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1976.2012090000007,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 255200,
+              "cpuPercent": 99,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2042.9039589999993,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 260816,
+              "cpuPercent": 97.8,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2107.7446249999994,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 269488,
+              "cpuPercent": 97.8,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2184.376875,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 271104,
+              "cpuPercent": 99,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2248.912875,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 273152,
+              "cpuPercent": 98,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2313.1102919999994,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 274752,
+              "cpuPercent": 98,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2378.349959000001,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 275296,
+              "cpuPercent": 99.3,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2442.454167,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 277968,
+              "cpuPercent": 99.3,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2505.238209000001,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 278048,
+              "cpuPercent": 97.9,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2568.219000000001,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 278720,
+              "cpuPercent": 97.9,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2632.0503339999996,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 281136,
+              "cpuPercent": 99.1,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2696.7487500000007,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 281456,
+              "cpuPercent": 99.1,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2760.572875,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 283584,
+              "cpuPercent": 98.8,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2823.2245839999996,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 295248,
+              "cpuPercent": 98.8,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2888.905584,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 318192,
+              "cpuPercent": 99.7,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 2952.3878750000003,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 318640,
+              "cpuPercent": 99.7,
+              "name": "tectonic"
+            },
+            {
+              "pid": 75603,
+              "parent": 75560,
+              "group": 75560,
+              "rssKiB": 21840,
+              "cpuPercent": 0,
+              "name": "biber"
+            }
+          ]
+        },
+        {
+          "atMs": 3017.174500000001,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 318640,
+              "cpuPercent": 71.7,
+              "name": "tectonic"
+            },
+            {
+              "pid": 75603,
+              "parent": 75560,
+              "group": 75560,
+              "rssKiB": 22096,
+              "cpuPercent": 27.2,
+              "name": "biber"
+            }
+          ]
+        },
+        {
+          "atMs": 3081.056334000001,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 318640,
+              "cpuPercent": 71.7,
+              "name": "tectonic"
+            },
+            {
+              "pid": 75603,
+              "parent": 75560,
+              "group": 75560,
+              "rssKiB": 36672,
+              "cpuPercent": 27.2,
+              "name": "biber"
+            }
+          ]
+        },
+        {
+          "atMs": 3144.866000000002,
+          "processes": [
+            {
+              "pid": 75560,
+              "parent": 75186,
+              "group": 75560,
+              "rssKiB": 318640,
+              "cpuPercent": 44.8,
+              "name": "tectonic"
+            },
+            {
+              "pid": 75603,
+              "parent": 75560,
+              "group": 75560,
+              "rssKiB": 51856,
+              "cpuPercent": 54.9,
+              "name": "biber"
+            }
+          ]
+        }
+      ],
+      "passed": true,
+      "group": 75560,
+      "spawnAtMs": 709.4461250000004,
+      "targetFirstSeenAtMs": 2952.3878750000003,
+      "cancelAtMs": 3144.8715840000004,
+      "killAtMs": 3145.2077089999984,
+      "closeAtMs": 3148.7036670000016,
+      "exit": {
+        "code": null,
+        "signal": "SIGKILL"
+      },
+      "settledAtMs": 3153.8141670000005,
+      "cancelReturnedAtMs": 3153.8295,
+      "result": {
+        "status": "cancelled",
+        "durationMs": 0
+      },
+      "groupAbsentAtMs": 3209.719874999999,
+      "remaining": [],
+      "killToCloseMs": 3.4959580000031565,
+      "killToGroupAbsentMs": 64.51216600000043,
+      "peakSampledGroupRssKiB": 370496
+    },
+    {
+      "index": 3,
+      "scenario": "timeout-tex",
+      "observations": [
+        {
+          "atMs": 761.1309580000016,
+          "processes": [
+            {
+              "pid": 75614,
+              "parent": 75186,
+              "group": 75614,
+              "rssKiB": 8896,
+              "cpuPercent": 0,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 824.231375000003,
+          "processes": [
+            {
+              "pid": 75614,
+              "parent": 75186,
+              "group": 75614,
+              "rssKiB": 155776,
+              "cpuPercent": 8.8,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 888.0198750000018,
+          "processes": [
+            {
+              "pid": 75614,
+              "parent": 75186,
+              "group": 75614,
+              "rssKiB": 157488,
+              "cpuPercent": 8.8,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 952.1600419999995,
+          "processes": [
+            {
+              "pid": 75614,
+              "parent": 75186,
+              "group": 75614,
+              "rssKiB": 158528,
+              "cpuPercent": 43.3,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1016.3345420000005,
+          "processes": [
+            {
+              "pid": 75614,
+              "parent": 75186,
+              "group": 75614,
+              "rssKiB": 159264,
+              "cpuPercent": 43.3,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1080.0194580000025,
+          "processes": [
+            {
+              "pid": 75614,
+              "parent": 75186,
+              "group": 75614,
+              "rssKiB": 159264,
+              "cpuPercent": 63.9,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1142.9758330000004,
+          "processes": [
+            {
+              "pid": 75614,
+              "parent": 75186,
+              "group": 75614,
+              "rssKiB": 161392,
+              "cpuPercent": 63.9,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1205.918958000002,
+          "processes": [
+            {
+              "pid": 75614,
+              "parent": 75186,
+              "group": 75614,
+              "rssKiB": 165968,
+              "cpuPercent": 77.8,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1270.0718750000015,
+          "processes": [
+            {
+              "pid": 75614,
+              "parent": 75186,
+              "group": 75614,
+              "rssKiB": 187168,
+              "cpuPercent": 77.8,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1334.8140420000018,
+          "processes": [
+            {
+              "pid": 75614,
+              "parent": 75186,
+              "group": 75614,
+              "rssKiB": 193792,
+              "cpuPercent": 85.5,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1400.0711250000022,
+          "processes": [
+            {
+              "pid": 75614,
+              "parent": 75186,
+              "group": 75614,
+              "rssKiB": 196288,
+              "cpuPercent": 85.5,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1464.130583000002,
+          "processes": [
+            {
+              "pid": 75614,
+              "parent": 75186,
+              "group": 75614,
+              "rssKiB": 247344,
+              "cpuPercent": 91.3,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1528.8939170000012,
+          "processes": [
+            {
+              "pid": 75614,
+              "parent": 75186,
+              "group": 75614,
+              "rssKiB": 247344,
+              "cpuPercent": 91,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1591.9856250000012,
+          "processes": [
+            {
+              "pid": 75614,
+              "parent": 75186,
+              "group": 75614,
+              "rssKiB": 247344,
+              "cpuPercent": 91,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1655.117083000001,
+          "processes": [
+            {
+              "pid": 75614,
+              "parent": 75186,
+              "group": 75614,
+              "rssKiB": 247344,
+              "cpuPercent": 95,
+              "name": "tectonic"
+            }
+          ]
+        },
+        {
+          "atMs": 1720.5243330000012,
+          "processes": [
+            {
+              "pid": 75614,
+              "parent": 75186,
+              "group": 75614,
+              "rssKiB": 247344,
+              "cpuPercent": 95,
+              "name": "(tectonic)"
+            }
+          ]
+        }
+      ],
+      "passed": true,
+      "group": 75614,
+      "spawnAtMs": 711.4575830000031,
+      "targetFirstSeenAtMs": 761.1309580000016,
+      "killAtMs": 1712.7960420000018,
+      "closeAtMs": 1715.6575830000002,
+      "exit": {
+        "code": null,
+        "signal": "SIGKILL"
+      },
+      "settledAtMs": 1720.0490000000027,
+      "result": {
+        "status": "error",
+        "durationMs": 1716
+      },
+      "groupAbsentAtMs": 1759.1097499999996,
+      "remaining": [],
+      "killToCloseMs": 2.8615409999983967,
+      "killToGroupAbsentMs": 46.31370799999786,
+      "peakSampledGroupRssKiB": 247344
+    }
+  ],
+  "finishedAt": "2026-09-26T09:17:48.507Z",
+  "passed": true
+}
