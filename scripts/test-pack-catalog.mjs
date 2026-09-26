@@ -115,9 +115,11 @@ try {
   await page.getByRole('button', { name: 'General', exact: true }).click();
   await page.getByLabel('Appearance', { exact: true }).selectOption('light');
   await page.getByRole('button', { name: 'LaTeX resources', exact: true }).click();
+  // Reopening the tab rechecks installed runtime files before its cards return.
+  // Await that real integrity check with the pack-operation window.
   await expect(
     card().getByRole('button', { name: 'Preview for this project', exact: true }),
-  ).toBeEnabled();
+  ).toBeEnabled({ timeout: 120_000 });
   await expect(page.getByRole('button', { name: 'Done', exact: true })).toBeInViewport();
   await page.screenshot({ path: path.join(root, 'installed-small-light.png') });
   await card().getByRole('button', { name: 'Preview for this project', exact: true }).click();

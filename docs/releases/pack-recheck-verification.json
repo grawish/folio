@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-26T19:32:17.020451+00:00",
+  "sourceBase": "f376c0e5c48229ef4ea8406862160ef3bbae57e1",
+  "scope": "Test synchronization only; application and compiled outputs are unchanged from the early-workspace source verification.",
+  "hostedFailure": {
+    "run": "https://github.com/grawish/folio/actions/runs/36264826893",
+    "source": "90d582a824c84ba4a014ab655c86d8256f009c54",
+    "nativeSuitesPassed": 12,
+    "failedSuite": "pack-catalog",
+    "artifactId": 10913607133,
+    "githubReportedArtifactDigest": "sha256:3c6721e4cb026763ef604c43d10ac44d9923450d4b4e0f7b916d56ba8d64dab5",
+    "evidence": [
+      {
+        "path": "artifacts/mac-90d582a/apple-silicon-qualification-90d582a824c84ba4a014ab655c86d8256f009c54/release/native-tests.json",
+        "bytes": 5943,
+        "sha256": "8e33ac3393d874444e615748245b598659c15e1278e6625ef2ee800e2cda0b45"
+      },
+      {
+        "path": "artifacts/mac-90d582a/apple-silicon-qualification-90d582a824c84ba4a014ab655c86d8256f009c54/test-results/release-pack-catalog-final.log",
+        "bytes": 5746,
+        "sha256": "782f22967aebf0bd46878b7a41a41f57ab1d4a4d76cc1331781a14b181339aae"
+      },
+      {
+        "path": "artifacts/mac-90d582a/apple-silicon-qualification-90d582a824c84ba4a014ab655c86d8256f009c54/test-results/pack-catalog-HbCxPH/failure.png",
+        "bytes": 104006,
+        "sha256": "5fcfc9daf440b6fe13b83cdba1fdd78b771dcb219cc3aad11ed23b9a2c7b5115"
+      }
+    ],
+    "observation": "Installation and actual offline checks passed. Reopening LaTeX resources began a new local integrity check; the test expected the preview button after five seconds while the list was still loading. The later retained screenshot shows the installed card and enabled preview button. Final smoke and artifact verification were not reached."
+  },
+  "repair": {
+    "script": {
+      "path": "scripts/test-pack-catalog.mjs",
+      "bytes": 9199,
+      "sha256": "368ec3fbf4e522cb914902231557b0943bd87017ed1837d9aa0d61c2f16ece61"
+    },
+    "previousExpectationMs": 5000,
+    "expectationMs": 120000,
+    "reason": "Await the existing bounded pack-operation window when reopening the tab, retaining the exact enabled-preview assertion and all production integrity checks."
+  },
+  "localVerification": {
+    "passed": true,
+    "packaged": false,
+    "provider": "None; ordinary publisher trust, public HTTPS catalog/archive and actual native compiler checks.",
+    "result": {
+      "passed": true,
+      "errors": [],
+      "artifact": {
+        "url": "https://github.com/grawish/folio/releases/download/resource-packs-v1/Folio-multirow-2.9-v1.foliopack",
+        "bytes": 2259484,
+        "sha256": "b11d22b915fba8f7a4efaa82d900912341cc2af1a05cd2dcee298ca48a4bbbfe"
+      },
+      "before": {
+        "engine": "tectonic",
+        "version": "0.17.0",
+        "bundle": "folio-core-v1",
+        "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+        "platform": "darwin-arm64",
+        "biberVersion": "2.17"
+      },
+      "target": {
+        "engine": "tectonic",
+        "version": "0.17.0",
+        "bundle": "folio-multirow-2.9-v1",
+        "id": "f08d496354bb88e604ca8c2394935f8bf2e842a021d1b54b02ff210344a1d670",
+        "platform": "darwin-arm64",
+        "biberVersion": "2.17"
+      },
+      "publicCatalog": true,
+      "testPublisher": false,
+      "packaged": false,
+      "scope": "Normal compiled trust, actual public HTTPS catalog/archive, native install/checks, import notices, PDF preview, explicit Apply, backup, save and restart. No provider account used."
+    },
+    "record": {
+      "path": "test-results/pack-catalog-cxb5Wj/result.json",
+      "bytes": 1026,
+      "sha256": "11cff788f1014afdf28ed3d2700dbb24dc7d15924d5957173eb0afb7915189c4"
+    },
+    "log": {
+      "path": "test-results/pack-recheck-native.log",
+      "bytes": 301,
+      "sha256": "227a75f6d830e18d768cdaf697115bb6a6037c204057a84cb6cb474d5e72171f"
+    },
+    "unchangedCompiledFiles": {
+      "dist/assets/index-9SdVBE9n.js": "8c185780d748e0fc41f3a3b5bdc917efe5ab26578a9458c7bd807a378b1be1fd",
+      "dist/assets/index-CG0W0Zm7.css": "0b039e95a06b2095de5c7b8396952feba263f6a618fbfde372d415dc23d1b906",
+      "dist/assets/jetbrains-mono-italic-cyrillic-CY-YXjkl.woff2": "a79035476e5f8408e7f2b2599dfd50b7262862ecb853e028ba7b4a00bed16e73",
+      "dist/assets/jetbrains-mono-italic-greek-CoTSRNcy.woff2": "44ca7e27fef33e684d50e1009d0b886b83d4783e383223e7b13e173a623db0d3",
+      "dist/assets/jetbrains-mono-italic-latin-BW896jpM.woff2": "00ba27973ba2965d3e7e03ee0f2c66491956cda2ecf8cc6066c969696577f47b",
+      "dist/assets/jetbrains-mono-italic-latin-ext-C5V3_1R8.woff2": "31434d4924e83d1c6bf10136077f96d0c541226301ba98a583b14bded0576a75",
+      "dist/assets/jetbrains-mono-italic-vietnamese-DP5VCyMl.woff2": "9c54e21b500492314341e2041e23cf141d43a0c102bca07a7fe281f487eec5f6",
+      "dist/assets/jetbrains-mono-normal-cyrillic-D0W76x1T.woff2": "4188276a58108d04eb0c6f5b8c9e4b5ac2d9e31e81b2b4fa7da263b92f1b35c3",
+      "dist/assets/jetbrains-mono-normal-greek-FADJ2lFV.woff2": "0164d0c055dced93435b1d6c2986db2fb7d068ce21950c85b776695f56238b8a",
+      "dist/assets/jetbrains-mono-normal-latin-RruCX7RW.woff2": "d3dcdccdaba31643defe2317942155d4af3ee03951d058adbe8bc02b13e61b0a",
+      "dist/assets/jetbrains-mono-normal-latin-ext-e2G1hK0J.woff2": "d5f407e28185790518c49ec8738fa89916ddc99f793010d249165d0e2c2452cc",
+      "dist/assets/manrope-normal-cyrillic-DJ9PYDpy.woff2": "95a493061fe0a8d0d027c2892747134ba747141112d3be4d5022e70ab7d3a1a6",
+      "dist/assets/manrope-normal-greek-vbHvg7sP.woff2": "40af11327fe5308166c6cb5787808b042db6da889abf602f0a4876c49675d87e",
+      "dist/assets/manrope-normal-latin-C46ZzDBF.woff2": "e310b55a7fd9677f5e3555e6c6c4d064fa1f1d24393f0ddbe217cea12a8c432f",
+      "dist/assets/manrope-normal-latin-ext-CDracvZH.woff2": "ce093b341d9c10658ee1eaa85c5f8042ff3307bc6ccfc5f405616eb437f0009e",
+      "dist/assets/manrope-normal-vietnamese-C9-d800b.woff2": "bab757f8a0a1bc04055ee98cb5777f3254aab11f6d222366e1f40a36f390506a",
+      "dist/assets/pdf.worker.min-Dswkl-cV.mjs": "8ab0e5e30031b4a06ecfddd5ae9562f0227f830ee7ec9ed1a968b134243d2386",
+      "dist/index.html": "0b46f25344196dd52a7f86485f8984b4d22bfef3948d877e19bac4ecdc25a422",
+      "dist/licenses/JetBrains-Mono-OFL.txt": "b2fe5e8987594e9ffd1d2ca52a2f5d73eb8335243893c5d6254b5ad69269591d",
+      "dist/licenses/Manrope-OFL.txt": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b",
+      "dist/templates/academic-a4.png": "e149b33dc14f9bb99469b5dc9b39cf0f698de720894af8f9ef2bd74d31f1115d",
+      "dist/templates/academic-letter.png": "1fb69ee0e825acb916781022f7bb5e65576f7911b7fb08d34009aa21b60964e0",
+      "dist/templates/classic-a4.png": "38f95f3b25a51669105de7efdba08fe5b2633e7f7fde5ee15c3057862551fee3",
+      "dist/templates/classic-letter.png": "5e3ef1114cd3c728118e01c4161722b5c2a3a5e27a058f43f6bb5b825023c8ee",
+      "dist/templates/compact-technical-a4.png": "5878085cef410ee1b1463c0b71de8ebb48fc845899aed90d7b52c16ee577fc51",
+      "dist/templates/compact-technical-letter.png": "9fcc6a929547407948a5a23fe9d481bb197f20e195c7bbae2af125fb75e34a3a",
+      "dist/templates/manifest.json": "db231613ba3b1a69e01ffd5a111422874736d51d9b8f6509de7c71511b4a4a86",
+      "dist/templates/minimal-a4.png": "9bb702aae1e721255a0632010a22a82bcb283a49b16b6ce8bfbe74a99ef48353",
+      "dist/templates/minimal-letter.png": "10bfd6c692eac97a9e25bc2361d0113d43584069a05c3af4fbef64ad78cfb368",
+      "dist/templates/modern-a4.png": "bd6a55401f8642fcf375c18fe952d7ff2185635c7fa4ece24c7be3e157515b41",
+      "dist/templates/modern-letter.png": "99062be87eabf30184d937ea0ceef3768387beb81cd850110ce335819d5474a0",
+      "dist/templates/two-column-a4.png": "b7cca2c36d149da1af024d1095801051817084c536724f2f5c7d68f75e3cc348",
+      "dist/templates/two-column-letter.png": "d23fb748c48033f314d40fac502c42953d9003e478ec2360144e55da68c19802",
+      "dist-electron/main.cjs": "7b0826bae7f0275619fbf4ac3c656d59b175deba994ee4d17ce39b929f1aacb2",
+      "dist-electron/main.cjs.map": "bb3152c524531d92ab78f08b4e294599063f08769ab2ea34685c0e733096a436",
+      "dist-electron/preload.cjs": "3ec2324f6364d098d91bbe8f6dc36b3069050f32e87792f1eab4287929b07ac6",
+      "dist-electron/preload.cjs.map": "f1737013d2c5c836b8a41b22542a113b51dc0e3b62c985e627062223afc28f97"
+    }
+  },
+  "remaining": "Full hosted package qualification of the early-workspace application remains required; this local pass does not establish signed/notarized or final production release acceptance."
+}
