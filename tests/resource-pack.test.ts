@@ -296,14 +296,17 @@ test(
       },
     });
     await assert.rejects(failing.installPack(f.pack), /self-test failed/);
-    const abort = new AbortController();
-    const cancelled = new RuntimeManager(f.baseRoot, data, {
-      probe: async () => {},
-      checkpoint: async (phase) => {
-        if (phase === 'tested') abort.abort(new Error('Installation cancelled'));
-      },
-    });
-    await assert.rejects(cancelled.installPack(f.pack, abort.signal), /cancelled/);
+    for (const boundary of ['copied', 'tested']) {
+      const abort = new AbortController();
+      const cancelled = new RuntimeManager(f.baseRoot, data, {
+        probe: async () => {},
+        checkpoint: async (phase) => {
+          if (phase === boundary) abort.abort(new Error('Installation cancelled'));
+        },
+      });
+      await assert.rejects(cancelled.installPack(f.pack, abort.signal), /cancelled/);
+      assert.deepEqual(await pointer(data, f.pack.target.id!), before);
+    }
     let probed = false;
     const corrupted = new RuntimeManager(f.baseRoot, data, {
       probe: async () => {
@@ -407,7 +410,7 @@ test(
 );
 
 test(
-  'real process kills at staged, tested and published boundaries leave usable compilers and allow retry',
+  'real process kills at copied, staged, tested and published boundaries leave usable compilers and allow retry',
   { skip: !native, timeout: 60_000 },
   async (t) => {
     const f = await fixture(t),
@@ -418,7 +421,7 @@ test(
       key = path.join(f.root, 'public.pem');
     await fs.writeFile(archive, f.built.archive);
     await fs.writeFile(key, f.pem);
-    for (const boundary of ['staged', 'tested', 'published']) {
+    for (const boundary of ['copied', 'staged', 'tested', 'published']) {
       const before = await pointer(data, f.pack.target.id!);
       await new Promise<void>((resolve, reject) => {
         const child = spawn(

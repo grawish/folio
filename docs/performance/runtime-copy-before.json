@@ -1,0 +1,2861 @@
+{
+  "startedAt": "2026-09-26T18:36:43.608Z",
+  "host": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "osRelease": "27.0.0",
+    "osVersion": "Darwin Kernel Version 27.0.0: Tue Aug 11 21:05:48 PDT 2026; root:xnu-13432.1.9~1/RELEASE_ARM64_T6041",
+    "cpu": "Apple M4 Pro",
+    "logicalCpus": 14,
+    "totalMemoryBytes": 51539607552,
+    "node": "v24.21.0"
+  },
+  "sources": {
+    "electron/core/runtime-manager.ts": "275224dbeda984f01262966241d694fb4702a89bc2a5d8e2f699aeb348857435",
+    "electron/core/runtime.ts": "da0bc73d9042a08af5f7623a252e5f95be36a33313bc6372faed5def6944be1a",
+    "electron/core/compiler.ts": "15086fd20d370197e1dbdc0dd04de5a7401a2b57d7fb46c691202f30f1656a63",
+    "scripts/profile-runtime.mjs": "cad355f574e3b3572876daa5b13070d7b01a77a14bd6ffdd7a89cf6c39dad6a9",
+    "resources/runtime/mac-arm64/manifest.json": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0"
+  },
+  "scope": "Production backend invoked from Node with fresh isolated app data. Not renderer or full-app startup timing.",
+  "limits": [
+    "OS disk caches are not purged; fresh profile means new managed runtime and TeX cache, not cold physical storage.",
+    "Operation sums overlap because four files copy concurrently; sums are not additive wall-clock shares.",
+    "Instrumentation adds timing overhead. Memory/CPU here describe the Node host, not the native compiler process tree.",
+    "Raw samples are retained; three samples do not establish population p95 or supported-device performance."
+  ],
+  "samples": [
+    {
+      "index": 1,
+      "steps": [
+        {
+          "name": "freshInitialize",
+          "elapsedMs": 56452.289625,
+          "cpuUserMs": 3661.509,
+          "cpuSystemMs": 6791.473
+        },
+        {
+          "name": "freshStatus",
+          "elapsedMs": 945.2927500000005,
+          "cpuUserMs": 451.206,
+          "cpuSystemMs": 589.57
+        },
+        {
+          "name": "firstArticleCompile",
+          "elapsedMs": 1604.6589999999997,
+          "cpuUserMs": 438.018,
+          "cpuSystemMs": 473.266
+        },
+        {
+          "name": "warmChangedCompile1",
+          "elapsedMs": 839.0559999999969,
+          "cpuUserMs": 378.077,
+          "cpuSystemMs": 400.242
+        },
+        {
+          "name": "warmChangedCompile2",
+          "elapsedMs": 843.3397919999989,
+          "cpuUserMs": 391.829,
+          "cpuSystemMs": 409.182
+        },
+        {
+          "name": "warmChangedCompile3",
+          "elapsedMs": 835.0994580000042,
+          "cpuUserMs": 378.006,
+          "cpuSystemMs": 393.018
+        },
+        {
+          "name": "subsequentInitialize",
+          "elapsedMs": 8.120665999995254,
+          "cpuUserMs": 8.064,
+          "cpuSystemMs": 0.459
+        },
+        {
+          "name": "subsequentStatus",
+          "elapsedMs": 725.4377500000046,
+          "cpuUserMs": 386.499,
+          "cpuSystemMs": 418.745
+        }
+      ],
+      "checkpoints": [
+        {
+          "name": "staged",
+          "atMs": 28907.129958
+        },
+        {
+          "name": "tested",
+          "atMs": 56440.657583
+        },
+        {
+          "name": "published",
+          "atMs": 56451.606833
+        }
+      ],
+      "methods": [
+        {
+          "method": "probe",
+          "elapsedMs": 26804.987209000003
+        },
+        {
+          "method": "publish",
+          "elapsedMs": 10.941291999995883
+        },
+        {
+          "method": "cleanup",
+          "elapsedMs": 0.6672079999989364
+        },
+        {
+          "method": "install",
+          "elapsedMs": 56427.728875
+        },
+        {
+          "method": "acquire",
+          "elapsedMs": 830.0314999999973
+        },
+        {
+          "method": "run",
+          "elapsedMs": 761.1228750000009
+        },
+        {
+          "method": "cleanup",
+          "elapsedMs": 0.6682500000024447
+        },
+        {
+          "method": "acquire",
+          "elapsedMs": 690.7527090000003
+        },
+        {
+          "method": "run",
+          "elapsedMs": 133.18395800000144
+        },
+        {
+          "method": "cleanup",
+          "elapsedMs": 0.8192500000004657
+        },
+        {
+          "method": "acquire",
+          "elapsedMs": 706.1602500000008
+        },
+        {
+          "method": "run",
+          "elapsedMs": 123.28820799999812
+        },
+        {
+          "method": "cleanup",
+          "elapsedMs": 0.5410419999971054
+        },
+        {
+          "method": "acquire",
+          "elapsedMs": 685.9530410000007
+        },
+        {
+          "method": "run",
+          "elapsedMs": 135.13583300000028
+        },
+        {
+          "method": "cleanup",
+          "elapsedMs": 0.6445000000021537
+        }
+      ],
+      "pdfBytes": 6176,
+      "elapsedMs": 62253.466,
+      "cpuUserMs": 6093.644,
+      "cpuSystemMs": 9475.98,
+      "peakHostRssBytes": 417939456,
+      "io": {
+        "freshInitialize/lstat": {
+          "count": 49113,
+          "sumMs": 1536.8802690001298,
+          "medianMs": 0.014999999999417923,
+          "maxMs": 6.949916000001394
+        },
+        "freshInitialize/mkdir": {
+          "count": 3990,
+          "sumMs": 4478.270506999984,
+          "medianMs": 0.06816699999944831,
+          "maxMs": 16.96441700000014
+        },
+        "freshInitialize/open": {
+          "count": 15944,
+          "sumMs": 18522.40847499999,
+          "medianMs": 0.11420799999905284,
+          "maxMs": 40.05575000000317
+        },
+        "freshInitialize/directorySync": {
+          "count": 3990,
+          "sumMs": 33536.73585200003,
+          "medianMs": 7.8127910000002885,
+          "maxMs": 43.99670799999876
+        },
+        "freshInitialize/readFile": {
+          "count": 7969,
+          "sumMs": 485.09665200003525,
+          "medianMs": 0.025374999999996817,
+          "maxMs": 8.29245800000001
+        },
+        "freshInitialize/readdir": {
+          "count": 451,
+          "sumMs": 17.734090000000037,
+          "medianMs": 0.03437499999999716,
+          "maxMs": 0.39108299999999474
+        },
+        "freshInitialize/writeFile": {
+          "count": 3985,
+          "sumMs": 6926.712028000105,
+          "medianMs": 0.2630829999998241,
+          "maxMs": 225.27412500000003
+        },
+        "freshInitialize/fileSync": {
+          "count": 3985,
+          "sumMs": 32995.1079930001,
+          "medianMs": 8.233916999997746,
+          "maxMs": 44.031667000002926
+        },
+        "freshInitialize/rename": {
+          "count": 3985,
+          "sumMs": 11231.542716999877,
+          "medianMs": 3.7988329999998314,
+          "maxMs": 15.318749999998545
+        },
+        "freshInitialize/rm": {
+          "count": 3985,
+          "sumMs": 1644.6568199999695,
+          "medianMs": 0.25500000000010914,
+          "maxMs": 12.744250000000193
+        },
+        "verifyStagedAndRecordReady/lstat": {
+          "count": 22553,
+          "sumMs": 206.25885100004598,
+          "medianMs": 0.008208999999624211,
+          "maxMs": 1.1283329999969283
+        },
+        "verifyStagedAndRecordReady/open": {
+          "count": 3985,
+          "sumMs": 114.5750369998641,
+          "medianMs": 0.027207999999518506,
+          "maxMs": 0.13254100000631297
+        },
+        "verifyStagedAndRecordReady/readFile": {
+          "count": 3983,
+          "sumMs": 112.81222900009743,
+          "medianMs": 0.018541999997978564,
+          "maxMs": 8.936750000000757
+        },
+        "verifyStagedAndRecordReady/readdir": {
+          "count": 451,
+          "sumMs": 22.165799999991577,
+          "medianMs": 0.04241600000023027,
+          "maxMs": 0.5134579999976268
+        },
+        "offlineSelfTest/lstat": {
+          "count": 22554,
+          "sumMs": 218.11128100009591,
+          "medianMs": 0.008791000000201166,
+          "maxMs": 0.3721670000013546
+        },
+        "offlineSelfTest/open": {
+          "count": 3984,
+          "sumMs": 113.39143699988199,
+          "medianMs": 0.027167000000190455,
+          "maxMs": 0.10062499999912689
+        },
+        "offlineSelfTest/readFile": {
+          "count": 3984,
+          "sumMs": 108.43262800005687,
+          "medianMs": 0.018374999999650754,
+          "maxMs": 6.245334000002913
+        },
+        "offlineSelfTest/readdir": {
+          "count": 452,
+          "sumMs": 17.87486800003535,
+          "medianMs": 0.03254200000083074,
+          "maxMs": 0.9101669999981823
+        },
+        "offlineSelfTest/mkdir": {
+          "count": 8,
+          "sumMs": 0.6235829999968701,
+          "medianMs": 0.0919160000012198,
+          "maxMs": 0.13104200000088895
+        },
+        "offlineSelfTest/rm": {
+          "count": 1,
+          "sumMs": 4.26708299999882,
+          "medianMs": 4.26708299999882,
+          "maxMs": 4.26708299999882
+        },
+        "verifyStagedAndRecordReady/writeFile": {
+          "count": 1,
+          "sumMs": 0.06912500000180444,
+          "medianMs": 0.06912500000180444,
+          "maxMs": 0.06912500000180444
+        },
+        "verifyStagedAndRecordReady/fileSync": {
+          "count": 1,
+          "sumMs": 7.095000000001164,
+          "medianMs": 7.095000000001164,
+          "maxMs": 7.095000000001164
+        },
+        "verifyStagedAndRecordReady/rename": {
+          "count": 1,
+          "sumMs": 0.11612500000046566,
+          "medianMs": 0.11612500000046566,
+          "maxMs": 0.11612500000046566
+        },
+        "verifyStagedAndRecordReady/directorySync": {
+          "count": 1,
+          "sumMs": 5.968541999995068,
+          "medianMs": 5.968541999995068,
+          "maxMs": 5.968541999995068
+        },
+        "verifyStagedAndRecordReady/rm": {
+          "count": 1,
+          "sumMs": 0.11095799999748124,
+          "medianMs": 0.11095799999748124,
+          "maxMs": 0.11095799999748124
+        },
+        "publishPointer/lstat": {
+          "count": 6,
+          "sumMs": 0.12649899999814807,
+          "medianMs": 0.018208000001322944,
+          "maxMs": 0.0443340000056196
+        },
+        "publishPointer/open": {
+          "count": 2,
+          "sumMs": 0.12291700000787387,
+          "medianMs": 0.09525000000576256,
+          "maxMs": 0.09525000000576256
+        },
+        "publishPointer/writeFile": {
+          "count": 1,
+          "sumMs": 0.06758399999671383,
+          "medianMs": 0.06758399999671383,
+          "maxMs": 0.06758399999671383
+        },
+        "publishPointer/fileSync": {
+          "count": 1,
+          "sumMs": 4.9085420000046724,
+          "medianMs": 4.9085420000046724,
+          "maxMs": 4.9085420000046724
+        },
+        "publishPointer/rename": {
+          "count": 1,
+          "sumMs": 0.10141699999803677,
+          "medianMs": 0.10141699999803677,
+          "maxMs": 0.10141699999803677
+        },
+        "publishPointer/directorySync": {
+          "count": 1,
+          "sumMs": 4.949542000002111,
+          "medianMs": 4.949542000002111,
+          "maxMs": 4.949542000002111
+        },
+        "publishPointer/rm": {
+          "count": 1,
+          "sumMs": 0.08366599999862956,
+          "medianMs": 0.08366599999862956,
+          "maxMs": 0.08366599999862956
+        },
+        "cleanup/lstat": {
+          "count": 6,
+          "sumMs": 0.10754299999825889,
+          "medianMs": 0.01675000000250293,
+          "maxMs": 0.03362500000366708
+        },
+        "cleanup/open": {
+          "count": 1,
+          "sumMs": 0.039624999997613486,
+          "medianMs": 0.039624999997613486,
+          "maxMs": 0.039624999997613486
+        },
+        "cleanup/readFile": {
+          "count": 1,
+          "sumMs": 0.024125000003550667,
+          "medianMs": 0.024125000003550667,
+          "maxMs": 0.024125000003550667
+        },
+        "cleanup/readdir": {
+          "count": 1,
+          "sumMs": 0.06466700000601122,
+          "medianMs": 0.06466700000601122,
+          "maxMs": 0.06466700000601122
+        },
+        "freshStatus/lstat": {
+          "count": 22560,
+          "sumMs": 326.3450690005848,
+          "medianMs": 0.012625000003026798,
+          "maxMs": 1.290166999999201
+        },
+        "freshStatus/open": {
+          "count": 3985,
+          "sumMs": 157.94522100015456,
+          "medianMs": 0.03683399999863468,
+          "maxMs": 0.8912089999939781
+        },
+        "freshStatus/readFile": {
+          "count": 3985,
+          "sumMs": 143.8575629996849,
+          "medianMs": 0.023458000003302004,
+          "maxMs": 10.602749999998196
+        },
+        "freshStatus/readdir": {
+          "count": 451,
+          "sumMs": 22.940090000040072,
+          "medianMs": 0.046457999997073784,
+          "maxMs": 0.4553329999980633
+        },
+        "firstArticleCompile/lstat": {
+          "count": 22566,
+          "sumMs": 271.5550410008873,
+          "medianMs": 0.009707999997772276,
+          "maxMs": 7.323750000003201
+        },
+        "firstArticleCompile/open": {
+          "count": 3986,
+          "sumMs": 126.13372999979765,
+          "medianMs": 0.028084000005037524,
+          "maxMs": 2.1448749999981374
+        },
+        "firstArticleCompile/readFile": {
+          "count": 3986,
+          "sumMs": 137.43111900025542,
+          "medianMs": 0.019417000003159046,
+          "maxMs": 10.074499999995169
+        },
+        "firstArticleCompile/readdir": {
+          "count": 453,
+          "sumMs": 21.136176999985764,
+          "medianMs": 0.04100000000471482,
+          "maxMs": 0.419000000001688
+        },
+        "firstArticleCompile/mkdir": {
+          "count": 7,
+          "sumMs": 0.789041999989422,
+          "medianMs": 0.11079199999949196,
+          "maxMs": 0.17058299999916926
+        },
+        "firstArticleCompile/rm": {
+          "count": 1,
+          "sumMs": 4.099000000001979,
+          "medianMs": 4.099000000001979,
+          "maxMs": 4.099000000001979
+        },
+        "warmChangedCompile1/lstat": {
+          "count": 22566,
+          "sumMs": 206.9218080003193,
+          "medianMs": 0.00849999999627471,
+          "maxMs": 0.47912499999802094
+        },
+        "warmChangedCompile1/open": {
+          "count": 3986,
+          "sumMs": 123.47995900003298,
+          "medianMs": 0.030334000002767425,
+          "maxMs": 0.1224999999976717
+        },
+        "warmChangedCompile1/readFile": {
+          "count": 3986,
+          "sumMs": 104.56988999997702,
+          "medianMs": 0.018167000001994893,
+          "maxMs": 7.6157079999975394
+        },
+        "warmChangedCompile1/readdir": {
+          "count": 453,
+          "sumMs": 16.793501999854925,
+          "medianMs": 0.032165999997232575,
+          "maxMs": 0.33995799999684095
+        },
+        "warmChangedCompile1/mkdir": {
+          "count": 7,
+          "sumMs": 0.6436650000105146,
+          "medianMs": 0.08337500000197906,
+          "maxMs": 0.1555000000007567
+        },
+        "warmChangedCompile1/rm": {
+          "count": 1,
+          "sumMs": 4.463709000003291,
+          "medianMs": 4.463709000003291,
+          "maxMs": 4.463709000003291
+        },
+        "warmChangedCompile2/lstat": {
+          "count": 22566,
+          "sumMs": 207.63602200001333,
+          "medianMs": 0.008374999997613486,
+          "maxMs": 1.0230000000010477
+        },
+        "warmChangedCompile2/open": {
+          "count": 3986,
+          "sumMs": 128.23091100000602,
+          "medianMs": 0.03175000000192085,
+          "maxMs": 0.1184590000048047
+        },
+        "warmChangedCompile2/readFile": {
+          "count": 3986,
+          "sumMs": 104.65078900017397,
+          "medianMs": 0.018499999998311978,
+          "maxMs": 5.88008400000399
+        },
+        "warmChangedCompile2/readdir": {
+          "count": 453,
+          "sumMs": 19.765125999983866,
+          "medianMs": 0.039250000001629815,
+          "maxMs": 0.4181669999961741
+        },
+        "warmChangedCompile2/mkdir": {
+          "count": 7,
+          "sumMs": 0.5378719999862369,
+          "medianMs": 0.0635409999958938,
+          "maxMs": 0.1398330000010901
+        },
+        "warmChangedCompile2/rm": {
+          "count": 1,
+          "sumMs": 3.819333999999799,
+          "medianMs": 3.819333999999799,
+          "maxMs": 3.819333999999799
+        },
+        "warmChangedCompile3/lstat": {
+          "count": 22566,
+          "sumMs": 197.4820769994476,
+          "medianMs": 0.008082999993348494,
+          "maxMs": 0.1375830000033602
+        },
+        "warmChangedCompile3/open": {
+          "count": 3986,
+          "sumMs": 124.91569800009893,
+          "medianMs": 0.03108300000167219,
+          "maxMs": 0.48233299999992596
+        },
+        "warmChangedCompile3/readFile": {
+          "count": 3986,
+          "sumMs": 104.18397699997877,
+          "medianMs": 0.01845799999864539,
+          "maxMs": 5.953540999995312
+        },
+        "warmChangedCompile3/readdir": {
+          "count": 453,
+          "sumMs": 17.143901999952504,
+          "medianMs": 0.03333299999940209,
+          "maxMs": 0.3788749999948777
+        },
+        "warmChangedCompile3/mkdir": {
+          "count": 7,
+          "sumMs": 0.9829150000005029,
+          "medianMs": 0.08945800000219606,
+          "maxMs": 0.5210829999996349
+        },
+        "warmChangedCompile3/rm": {
+          "count": 1,
+          "sumMs": 3.6240000000034343,
+          "medianMs": 3.6240000000034343,
+          "maxMs": 3.6240000000034343
+        },
+        "subsequentInitialize/lstat": {
+          "count": 6,
+          "sumMs": 0.23083300000143936,
+          "medianMs": 0.01658299999689916,
+          "maxMs": 0.16120799999771407
+        },
+        "subsequentInitialize/open": {
+          "count": 1,
+          "sumMs": 0.03999999999359716,
+          "medianMs": 0.03999999999359716,
+          "maxMs": 0.03999999999359716
+        },
+        "subsequentInitialize/readFile": {
+          "count": 1,
+          "sumMs": 0.05099999999947613,
+          "medianMs": 0.05099999999947613,
+          "maxMs": 0.05099999999947613
+        },
+        "subsequentStatus/lstat": {
+          "count": 22560,
+          "sumMs": 223.36345200079086,
+          "medianMs": 0.00870799999393057,
+          "maxMs": 2.9318750000020373
+        },
+        "subsequentStatus/open": {
+          "count": 3985,
+          "sumMs": 129.4364400002014,
+          "medianMs": 0.031125000001338776,
+          "maxMs": 0.4275420000049053
+        },
+        "subsequentStatus/readFile": {
+          "count": 3985,
+          "sumMs": 105.40933499976381,
+          "medianMs": 0.018041000002995133,
+          "maxMs": 6.066208000003826
+        },
+        "subsequentStatus/readdir": {
+          "count": 451,
+          "sumMs": 19.896916000070632,
+          "medianMs": 0.038250000005064066,
+          "maxMs": 0.5341669999979786
+        }
+      }
+    },
+    {
+      "index": 2,
+      "steps": [
+        {
+          "name": "freshInitialize",
+          "elapsedMs": 37790.054082999995,
+          "cpuUserMs": 3645.526,
+          "cpuSystemMs": 6809.337
+        },
+        {
+          "name": "freshStatus",
+          "elapsedMs": 697.7356670000008,
+          "cpuUserMs": 399.704,
+          "cpuSystemMs": 376.79
+        },
+        {
+          "name": "firstArticleCompile",
+          "elapsedMs": 1527.4847500000033,
+          "cpuUserMs": 410.597,
+          "cpuSystemMs": 389.834
+        },
+        {
+          "name": "warmChangedCompile1",
+          "elapsedMs": 918.973582999999,
+          "cpuUserMs": 427.864,
+          "cpuSystemMs": 430.411
+        },
+        {
+          "name": "warmChangedCompile2",
+          "elapsedMs": 842.1277919999993,
+          "cpuUserMs": 399.357,
+          "cpuSystemMs": 395.06
+        },
+        {
+          "name": "warmChangedCompile3",
+          "elapsedMs": 875.6645419999986,
+          "cpuUserMs": 411.565,
+          "cpuSystemMs": 414.317
+        },
+        {
+          "name": "subsequentInitialize",
+          "elapsedMs": 7.59970799999428,
+          "cpuUserMs": 8.209,
+          "cpuSystemMs": 0.426
+        },
+        {
+          "name": "subsequentStatus",
+          "elapsedMs": 697.4992910000001,
+          "cpuUserMs": 394.68,
+          "cpuSystemMs": 377.689
+        }
+      ],
+      "checkpoints": [
+        {
+          "name": "staged",
+          "atMs": 28931.270167000002
+        },
+        {
+          "name": "tested",
+          "atMs": 37780.823584000005
+        },
+        {
+          "name": "published",
+          "atMs": 37789.702375
+        }
+      ],
+      "methods": [
+        {
+          "method": "probe",
+          "elapsedMs": 8139.725292000003
+        },
+        {
+          "method": "publish",
+          "elapsedMs": 8.872374999991735
+        },
+        {
+          "method": "cleanup",
+          "elapsedMs": 0.34512500000710133
+        },
+        {
+          "method": "install",
+          "elapsedMs": 37768.417583
+        },
+        {
+          "method": "acquire",
+          "elapsedMs": 697.4265830000077
+        },
+        {
+          "method": "run",
+          "elapsedMs": 817.7313330000034
+        },
+        {
+          "method": "cleanup",
+          "elapsedMs": 0.687541000006604
+        },
+        {
+          "method": "acquire",
+          "elapsedMs": 742.8890000000101
+        },
+        {
+          "method": "run",
+          "elapsedMs": 161.42383400000108
+        },
+        {
+          "method": "cleanup",
+          "elapsedMs": 0.6972079999977723
+        },
+        {
+          "method": "acquire",
+          "elapsedMs": 700.445332999996
+        },
+        {
+          "method": "run",
+          "elapsedMs": 128.2814580000122
+        },
+        {
+          "method": "cleanup",
+          "elapsedMs": 0.6193340000027092
+        },
+        {
+          "method": "acquire",
+          "elapsedMs": 728.2255839999998
+        },
+        {
+          "method": "run",
+          "elapsedMs": 133.4594999999972
+        },
+        {
+          "method": "cleanup",
+          "elapsedMs": 0.8167919999978039
+        }
+      ],
+      "pdfBytes": 6176,
+      "elapsedMs": 43357.288375,
+      "cpuUserMs": 6097.821,
+      "cpuSystemMs": 9193.888,
+      "peakHostRssBytes": 445923328,
+      "io": {
+        "freshInitialize/lstat": {
+          "count": 49113,
+          "sumMs": 1550.305072000163,
+          "medianMs": 0.015458000008948147,
+          "maxMs": 4.34725000000617
+        },
+        "freshInitialize/mkdir": {
+          "count": 3990,
+          "sumMs": 4589.525312999918,
+          "medianMs": 0.068583000000217,
+          "maxMs": 22.773416999996698
+        },
+        "freshInitialize/open": {
+          "count": 15944,
+          "sumMs": 19070.697182000855,
+          "medianMs": 0.11608300000079907,
+          "maxMs": 23.18041699999594
+        },
+        "freshInitialize/directorySync": {
+          "count": 3990,
+          "sumMs": 33204.68843600013,
+          "medianMs": 7.835000000006403,
+          "maxMs": 35.63495900000271
+        },
+        "freshInitialize/readFile": {
+          "count": 7969,
+          "sumMs": 500.88636299991776,
+          "medianMs": 0.025084000008064322,
+          "maxMs": 14.628958000001148
+        },
+        "freshInitialize/readdir": {
+          "count": 451,
+          "sumMs": 15.71724899995752,
+          "medianMs": 0.030542000000423286,
+          "maxMs": 0.3330000000059954
+        },
+        "freshInitialize/writeFile": {
+          "count": 3985,
+          "sumMs": 6721.362280000794,
+          "medianMs": 0.27350000001024455,
+          "maxMs": 221.38387499999953
+        },
+        "freshInitialize/fileSync": {
+          "count": 3985,
+          "sumMs": 32535.59209400035,
+          "medianMs": 8.24900000001071,
+          "maxMs": 30.248958000011044
+        },
+        "freshInitialize/rename": {
+          "count": 3985,
+          "sumMs": 11457.751971999642,
+          "medianMs": 3.780790999997407,
+          "maxMs": 13.83162500000617
+        },
+        "freshInitialize/rm": {
+          "count": 3985,
+          "sumMs": 1782.7743739990983,
+          "medianMs": 0.24929100000008475,
+          "maxMs": 13.62112499999057
+        },
+        "verifyStagedAndRecordReady/lstat": {
+          "count": 22553,
+          "sumMs": 203.53785399795743,
+          "medianMs": 0.008167000007233582,
+          "maxMs": 1.058208000002196
+        },
+        "verifyStagedAndRecordReady/open": {
+          "count": 3985,
+          "sumMs": 110.67916899973352,
+          "medianMs": 0.026291999995009974,
+          "maxMs": 1.1213330000027781
+        },
+        "verifyStagedAndRecordReady/readFile": {
+          "count": 3983,
+          "sumMs": 107.79142199989292,
+          "medianMs": 0.01841699999931734,
+          "maxMs": 8.02529200000572
+        },
+        "verifyStagedAndRecordReady/readdir": {
+          "count": 451,
+          "sumMs": 19.29770799994003,
+          "medianMs": 0.036999999996623956,
+          "maxMs": 0.5397079999966081
+        },
+        "offlineSelfTest/lstat": {
+          "count": 22554,
+          "sumMs": 210.67789599757816,
+          "medianMs": 0.008291999998618849,
+          "maxMs": 1.0018750000017462
+        },
+        "offlineSelfTest/open": {
+          "count": 3984,
+          "sumMs": 114.99343399966892,
+          "medianMs": 0.027125000007799827,
+          "maxMs": 0.16575000000011642
+        },
+        "offlineSelfTest/readFile": {
+          "count": 3984,
+          "sumMs": 107.48345999952289,
+          "medianMs": 0.018374999999650754,
+          "maxMs": 6.714500000001863
+        },
+        "offlineSelfTest/readdir": {
+          "count": 452,
+          "sumMs": 19.58854000006977,
+          "medianMs": 0.0372499999939464,
+          "maxMs": 0.7602499999920838
+        },
+        "offlineSelfTest/mkdir": {
+          "count": 8,
+          "sumMs": 0.8212079999793787,
+          "medianMs": 0.13420800000312738,
+          "maxMs": 0.20216699999582488
+        },
+        "offlineSelfTest/rm": {
+          "count": 1,
+          "sumMs": 3.811333999998169,
+          "medianMs": 3.811333999998169,
+          "maxMs": 3.811333999998169
+        },
+        "verifyStagedAndRecordReady/writeFile": {
+          "count": 1,
+          "sumMs": 0.28616600000532344,
+          "medianMs": 0.28616600000532344,
+          "maxMs": 0.28616600000532344
+        },
+        "verifyStagedAndRecordReady/fileSync": {
+          "count": 1,
+          "sumMs": 6.727083000005223,
+          "medianMs": 6.727083000005223,
+          "maxMs": 6.727083000005223
+        },
+        "verifyStagedAndRecordReady/rename": {
+          "count": 1,
+          "sumMs": 0.09704100000089966,
+          "medianMs": 0.09704100000089966,
+          "maxMs": 0.09704100000089966
+        },
+        "verifyStagedAndRecordReady/directorySync": {
+          "count": 1,
+          "sumMs": 4.808874999987893,
+          "medianMs": 4.808874999987893,
+          "maxMs": 4.808874999987893
+        },
+        "verifyStagedAndRecordReady/rm": {
+          "count": 1,
+          "sumMs": 0.04741699999431148,
+          "medianMs": 0.04741699999431148,
+          "maxMs": 0.04741699999431148
+        },
+        "publishPointer/lstat": {
+          "count": 6,
+          "sumMs": 0.0777070000040112,
+          "medianMs": 0.014165999993565492,
+          "maxMs": 0.016875000001164153
+        },
+        "publishPointer/open": {
+          "count": 2,
+          "sumMs": 0.10995899999397807,
+          "medianMs": 0.07483399999910034,
+          "maxMs": 0.07483399999910034
+        },
+        "publishPointer/writeFile": {
+          "count": 1,
+          "sumMs": 0.05474999999569263,
+          "medianMs": 0.05474999999569263,
+          "maxMs": 0.05474999999569263
+        },
+        "publishPointer/fileSync": {
+          "count": 1,
+          "sumMs": 4.098292000009678,
+          "medianMs": 4.098292000009678,
+          "maxMs": 4.098292000009678
+        },
+        "publishPointer/rename": {
+          "count": 1,
+          "sumMs": 0.09454099999857135,
+          "medianMs": 0.09454099999857135,
+          "maxMs": 0.09454099999857135
+        },
+        "publishPointer/directorySync": {
+          "count": 1,
+          "sumMs": 4.00533300000825,
+          "medianMs": 4.00533300000825,
+          "maxMs": 4.00533300000825
+        },
+        "publishPointer/rm": {
+          "count": 1,
+          "sumMs": 0.03604200000700075,
+          "medianMs": 0.03604200000700075,
+          "maxMs": 0.03604200000700075
+        },
+        "cleanup/lstat": {
+          "count": 6,
+          "sumMs": 0.05703999998513609,
+          "medianMs": 0.009374999994179234,
+          "maxMs": 0.012332999991485849
+        },
+        "cleanup/open": {
+          "count": 1,
+          "sumMs": 0.02916700000059791,
+          "medianMs": 0.02916700000059791,
+          "maxMs": 0.02916700000059791
+        },
+        "cleanup/readFile": {
+          "count": 1,
+          "sumMs": 0.023583000001963228,
+          "medianMs": 0.023583000001963228,
+          "maxMs": 0.023583000001963228
+        },
+        "cleanup/readdir": {
+          "count": 1,
+          "sumMs": 0.05333300000347663,
+          "medianMs": 0.05333300000347663,
+          "maxMs": 0.05333300000347663
+        },
+        "freshStatus/lstat": {
+          "count": 22560,
+          "sumMs": 201.3657780004578,
+          "medianMs": 0.00812499999301508,
+          "maxMs": 1.110499999995227
+        },
+        "freshStatus/open": {
+          "count": 3985,
+          "sumMs": 126.30633100033447,
+          "medianMs": 0.031000000002677552,
+          "maxMs": 0.993958000006387
+        },
+        "freshStatus/readFile": {
+          "count": 3985,
+          "sumMs": 107.65722999972058,
+          "medianMs": 0.018916000000899658,
+          "maxMs": 6.0499999999883585
+        },
+        "freshStatus/readdir": {
+          "count": 451,
+          "sumMs": 19.446575000009034,
+          "medianMs": 0.035957999993115664,
+          "maxMs": 0.5054579999996349
+        },
+        "firstArticleCompile/lstat": {
+          "count": 22566,
+          "sumMs": 212.49354800039146,
+          "medianMs": 0.00858299998799339,
+          "maxMs": 1.2002920000086306
+        },
+        "firstArticleCompile/open": {
+          "count": 3986,
+          "sumMs": 110.75549099988712,
+          "medianMs": 0.026624999998603016,
+          "maxMs": 0.44683299999451265
+        },
+        "firstArticleCompile/readFile": {
+          "count": 3986,
+          "sumMs": 108.99057600037486,
+          "medianMs": 0.01887499999429565,
+          "maxMs": 6.291791999989073
+        },
+        "firstArticleCompile/readdir": {
+          "count": 453,
+          "sumMs": 15.791717000072822,
+          "medianMs": 0.028624999991734512,
+          "maxMs": 0.5444169999973383
+        },
+        "firstArticleCompile/mkdir": {
+          "count": 7,
+          "sumMs": 0.5970399999932852,
+          "medianMs": 0.09100000000034925,
+          "maxMs": 0.1400829999911366
+        },
+        "firstArticleCompile/rm": {
+          "count": 1,
+          "sumMs": 3.7637090000062017,
+          "medianMs": 3.7637090000062017,
+          "maxMs": 3.7637090000062017
+        },
+        "warmChangedCompile1/lstat": {
+          "count": 22566,
+          "sumMs": 221.42242099938449,
+          "medianMs": 0.008625000002211891,
+          "maxMs": 0.8357079999987036
+        },
+        "warmChangedCompile1/open": {
+          "count": 3986,
+          "sumMs": 136.35879700016812,
+          "medianMs": 0.03270899999188259,
+          "maxMs": 0.5354169999918668
+        },
+        "warmChangedCompile1/readFile": {
+          "count": 3986,
+          "sumMs": 112.44933200041123,
+          "medianMs": 0.019125000006170012,
+          "maxMs": 5.852292000010493
+        },
+        "warmChangedCompile1/readdir": {
+          "count": 453,
+          "sumMs": 18.56996400015487,
+          "medianMs": 0.036082999999052845,
+          "maxMs": 0.4163750000006985
+        },
+        "warmChangedCompile1/mkdir": {
+          "count": 7,
+          "sumMs": 0.6049990000319667,
+          "medianMs": 0.0932500000053551,
+          "maxMs": 0.16325000001234002
+        },
+        "warmChangedCompile1/rm": {
+          "count": 1,
+          "sumMs": 3.7797909999935655,
+          "medianMs": 3.7797909999935655,
+          "maxMs": 3.7797909999935655
+        },
+        "warmChangedCompile2/lstat": {
+          "count": 22566,
+          "sumMs": 199.72911200065573,
+          "medianMs": 0.00812499999301508,
+          "maxMs": 1.3999169999879086
+        },
+        "warmChangedCompile2/open": {
+          "count": 3986,
+          "sumMs": 126.57003099974827,
+          "medianMs": 0.03149999999732245,
+          "maxMs": 0.1309999999939464
+        },
+        "warmChangedCompile2/readFile": {
+          "count": 3986,
+          "sumMs": 108.9487700003665,
+          "medianMs": 0.01900000000023283,
+          "maxMs": 6.503209000002244
+        },
+        "warmChangedCompile2/readdir": {
+          "count": 453,
+          "sumMs": 18.70404600002803,
+          "medianMs": 0.03720800000883173,
+          "maxMs": 0.3887079999985872
+        },
+        "warmChangedCompile2/mkdir": {
+          "count": 7,
+          "sumMs": 0.6452089999802411,
+          "medianMs": 0.09308399999281392,
+          "maxMs": 0.16300000000046566
+        },
+        "warmChangedCompile2/rm": {
+          "count": 1,
+          "sumMs": 3.42841700000281,
+          "medianMs": 3.42841700000281,
+          "maxMs": 3.42841700000281
+        },
+        "warmChangedCompile3/lstat": {
+          "count": 22566,
+          "sumMs": 216.04592700152716,
+          "medianMs": 0.00858299998799339,
+          "maxMs": 1.1931669999903534
+        },
+        "warmChangedCompile3/open": {
+          "count": 3986,
+          "sumMs": 132.79226200003177,
+          "medianMs": 0.03250000000116415,
+          "maxMs": 0.6497499999968568
+        },
+        "warmChangedCompile3/readFile": {
+          "count": 3986,
+          "sumMs": 108.62455100016086,
+          "medianMs": 0.019166999991284683,
+          "maxMs": 6.292082999992999
+        },
+        "warmChangedCompile3/readdir": {
+          "count": 453,
+          "sumMs": 17.327575000061188,
+          "medianMs": 0.03454100000089966,
+          "maxMs": 0.38950000000477303
+        },
+        "warmChangedCompile3/mkdir": {
+          "count": 7,
+          "sumMs": 0.444459000005736,
+          "medianMs": 0.057874999998603016,
+          "maxMs": 0.09937500000523869
+        },
+        "warmChangedCompile3/rm": {
+          "count": 1,
+          "sumMs": 3.872625000003609,
+          "medianMs": 3.872625000003609,
+          "maxMs": 3.872625000003609
+        },
+        "subsequentInitialize/lstat": {
+          "count": 6,
+          "sumMs": 0.28641599998809397,
+          "medianMs": 0.04029099999752361,
+          "maxMs": 0.12091700000746641
+        },
+        "subsequentInitialize/open": {
+          "count": 1,
+          "sumMs": 0.04700000000593718,
+          "medianMs": 0.04700000000593718,
+          "maxMs": 0.04700000000593718
+        },
+        "subsequentInitialize/readFile": {
+          "count": 1,
+          "sumMs": 0.05537499999627471,
+          "medianMs": 0.05537499999627471,
+          "maxMs": 0.05537499999627471
+        },
+        "subsequentStatus/lstat": {
+          "count": 22560,
+          "sumMs": 202.8067479992751,
+          "medianMs": 0.008167000007233582,
+          "maxMs": 1.1852910000015981
+        },
+        "subsequentStatus/open": {
+          "count": 3985,
+          "sumMs": 126.01586200007296,
+          "medianMs": 0.031291999999666587,
+          "maxMs": 0.09241699999256525
+        },
+        "subsequentStatus/readFile": {
+          "count": 3985,
+          "sumMs": 107.22893699914857,
+          "medianMs": 0.018916999993962236,
+          "maxMs": 6.1206249999959255
+        },
+        "subsequentStatus/readdir": {
+          "count": 451,
+          "sumMs": 17.031212999980198,
+          "medianMs": 0.033624999996391125,
+          "maxMs": 0.35245799999393057
+        }
+      }
+    },
+    {
+      "index": 3,
+      "steps": [
+        {
+          "name": "freshInitialize",
+          "elapsedMs": 39052.641292000015,
+          "cpuUserMs": 3657.258,
+          "cpuSystemMs": 6909.106
+        },
+        {
+          "name": "freshStatus",
+          "elapsedMs": 702.9850830000069,
+          "cpuUserMs": 385.148,
+          "cpuSystemMs": 380.565
+        },
+        {
+          "name": "firstArticleCompile",
+          "elapsedMs": 1472.1310829999857,
+          "cpuUserMs": 406.829,
+          "cpuSystemMs": 378.557
+        },
+        {
+          "name": "warmChangedCompile1",
+          "elapsedMs": 970.8818749999919,
+          "cpuUserMs": 440.236,
+          "cpuSystemMs": 463.689
+        },
+        {
+          "name": "warmChangedCompile2",
+          "elapsedMs": 869.8248749999912,
+          "cpuUserMs": 410.901,
+          "cpuSystemMs": 415.442
+        },
+        {
+          "name": "warmChangedCompile3",
+          "elapsedMs": 877.7799170000071,
+          "cpuUserMs": 416.273,
+          "cpuSystemMs": 416.534
+        },
+        {
+          "name": "subsequentInitialize",
+          "elapsedMs": 7.636209000018425,
+          "cpuUserMs": 7.845,
+          "cpuSystemMs": 0.394
+        },
+        {
+          "name": "subsequentStatus",
+          "elapsedMs": 707.0228750000242,
+          "cpuUserMs": 392.633,
+          "cpuSystemMs": 380.854
+        }
+      ],
+      "checkpoints": [
+        {
+          "name": "staged",
+          "atMs": 29813.069374999992
+        },
+        {
+          "name": "tested",
+          "atMs": 39041.07824999999
+        },
+        {
+          "name": "published",
+          "atMs": 39052.15020800001
+        }
+      ],
+      "methods": [
+        {
+          "method": "probe",
+          "elapsedMs": 8521.58720899999
+        },
+        {
+          "method": "publish",
+          "elapsedMs": 11.059542000002693
+        },
+        {
+          "method": "cleanup",
+          "elapsedMs": 0.46695899998303503
+        },
+        {
+          "method": "install",
+          "elapsedMs": 39030.839250000005
+        },
+        {
+          "method": "acquire",
+          "elapsedMs": 681.6427499999991
+        },
+        {
+          "method": "run",
+          "elapsedMs": 777.1447909999988
+        },
+        {
+          "method": "cleanup",
+          "elapsedMs": 0.7182500000053551
+        },
+        {
+          "method": "acquire",
+          "elapsedMs": 815.8230419999745
+        },
+        {
+          "method": "run",
+          "elapsedMs": 138.41950000001816
+        },
+        {
+          "method": "cleanup",
+          "elapsedMs": 0.5435409999918193
+        },
+        {
+          "method": "acquire",
+          "elapsedMs": 723.5835000000079
+        },
+        {
+          "method": "run",
+          "elapsedMs": 132.58487500000047
+        },
+        {
+          "method": "cleanup",
+          "elapsedMs": 0.6954160000022966
+        },
+        {
+          "method": "acquire",
+          "elapsedMs": 726.0073339999944
+        },
+        {
+          "method": "run",
+          "elapsedMs": 137.58908400000655
+        },
+        {
+          "method": "cleanup",
+          "elapsedMs": 0.7652499999967404
+        }
+      ],
+      "pdfBytes": 6176,
+      "elapsedMs": 44661.05587499999,
+      "cpuUserMs": 6117.318,
+      "cpuSystemMs": 9345.166,
+      "peakHostRssBytes": 471777280,
+      "io": {
+        "freshInitialize/lstat": {
+          "count": 49113,
+          "sumMs": 1524.1609940013877,
+          "medianMs": 0.014291999992565252,
+          "maxMs": 5.010209000000032
+        },
+        "freshInitialize/mkdir": {
+          "count": 3990,
+          "sumMs": 4599.720597000152,
+          "medianMs": 0.06783300000824966,
+          "maxMs": 16.717541999998502
+        },
+        "freshInitialize/open": {
+          "count": 15944,
+          "sumMs": 19026.51898200091,
+          "medianMs": 0.12679100001696497,
+          "maxMs": 48.71362500000396
+        },
+        "freshInitialize/directorySync": {
+          "count": 3990,
+          "sumMs": 34309.63838900052,
+          "medianMs": 8.018334000007599,
+          "maxMs": 58.44574999999895
+        },
+        "freshInitialize/readFile": {
+          "count": 7969,
+          "sumMs": 756.0088280006021,
+          "medianMs": 0.05708299999241717,
+          "maxMs": 17.89824999999837
+        },
+        "freshInitialize/readdir": {
+          "count": 451,
+          "sumMs": 15.542419999881531,
+          "medianMs": 0.030416000008699484,
+          "maxMs": 0.38595799999893643
+        },
+        "freshInitialize/writeFile": {
+          "count": 3985,
+          "sumMs": 7403.567120000167,
+          "medianMs": 0.32933300000149757,
+          "maxMs": 304.3486249999987
+        },
+        "freshInitialize/fileSync": {
+          "count": 3985,
+          "sumMs": 33535.07596200018,
+          "medianMs": 8.365000000005239,
+          "maxMs": 58.5122080000001
+        },
+        "freshInitialize/rename": {
+          "count": 3985,
+          "sumMs": 11361.23676500014,
+          "medianMs": 3.753208000009181,
+          "maxMs": 20.345082999992883
+        },
+        "freshInitialize/rm": {
+          "count": 3985,
+          "sumMs": 1876.6091559995693,
+          "medianMs": 0.24891599999682512,
+          "maxMs": 37.62045799999032
+        },
+        "verifyStagedAndRecordReady/lstat": {
+          "count": 22553,
+          "sumMs": 201.83556599912117,
+          "medianMs": 0.008000000001629815,
+          "maxMs": 1.531833999993978
+        },
+        "verifyStagedAndRecordReady/open": {
+          "count": 3985,
+          "sumMs": 112.47747600104776,
+          "medianMs": 0.026542000006884336,
+          "maxMs": 0.5694580000126734
+        },
+        "verifyStagedAndRecordReady/readFile": {
+          "count": 3983,
+          "sumMs": 108.4533689985401,
+          "medianMs": 0.01808300000266172,
+          "maxMs": 7.323583999997936
+        },
+        "verifyStagedAndRecordReady/readdir": {
+          "count": 451,
+          "sumMs": 19.849781999801053,
+          "medianMs": 0.03800000000046566,
+          "maxMs": 0.4144580000138376
+        },
+        "offlineSelfTest/lstat": {
+          "count": 22554,
+          "sumMs": 224.62310299952514,
+          "medianMs": 0.008707999979378656,
+          "maxMs": 1.4425000000046566
+        },
+        "offlineSelfTest/open": {
+          "count": 3984,
+          "sumMs": 126.03394199974719,
+          "medianMs": 0.030082999990554526,
+          "maxMs": 1.1549999999988358
+        },
+        "offlineSelfTest/readFile": {
+          "count": 3984,
+          "sumMs": 111.77756900023087,
+          "medianMs": 0.01920899999095127,
+          "maxMs": 6.45920899999328
+        },
+        "offlineSelfTest/readdir": {
+          "count": 452,
+          "sumMs": 15.861250999907497,
+          "medianMs": 0.02866599999833852,
+          "maxMs": 0.5889170000154991
+        },
+        "offlineSelfTest/mkdir": {
+          "count": 8,
+          "sumMs": 1.198830999986967,
+          "medianMs": 0.20995799999218434,
+          "maxMs": 0.27741599999717437
+        },
+        "offlineSelfTest/rm": {
+          "count": 1,
+          "sumMs": 3.958042000012938,
+          "medianMs": 3.958042000012938,
+          "maxMs": 3.958042000012938
+        },
+        "verifyStagedAndRecordReady/writeFile": {
+          "count": 1,
+          "sumMs": 0.06404100000509061,
+          "medianMs": 0.06404100000509061,
+          "maxMs": 0.06404100000509061
+        },
+        "verifyStagedAndRecordReady/fileSync": {
+          "count": 1,
+          "sumMs": 9.784583000000566,
+          "medianMs": 9.784583000000566,
+          "maxMs": 9.784583000000566
+        },
+        "verifyStagedAndRecordReady/rename": {
+          "count": 1,
+          "sumMs": 0.11170899998978712,
+          "medianMs": 0.11170899998978712,
+          "maxMs": 0.11170899998978712
+        },
+        "verifyStagedAndRecordReady/directorySync": {
+          "count": 1,
+          "sumMs": 4.797041999991052,
+          "medianMs": 4.797041999991052,
+          "maxMs": 4.797041999991052
+        },
+        "verifyStagedAndRecordReady/rm": {
+          "count": 1,
+          "sumMs": 0.07291700001223944,
+          "medianMs": 0.07291700001223944,
+          "maxMs": 0.07291700001223944
+        },
+        "publishPointer/lstat": {
+          "count": 6,
+          "sumMs": 0.09745800000382587,
+          "medianMs": 0.014583000011043623,
+          "maxMs": 0.025249999976949766
+        },
+        "publishPointer/open": {
+          "count": 2,
+          "sumMs": 0.1320430000196211,
+          "medianMs": 0.09570900001563132,
+          "maxMs": 0.09570900001563132
+        },
+        "publishPointer/writeFile": {
+          "count": 1,
+          "sumMs": 0.06995800000731833,
+          "medianMs": 0.06995800000731833,
+          "maxMs": 0.06995800000731833
+        },
+        "publishPointer/fileSync": {
+          "count": 1,
+          "sumMs": 4.154624999995576,
+          "medianMs": 4.154624999995576,
+          "maxMs": 4.154624999995576
+        },
+        "publishPointer/rename": {
+          "count": 1,
+          "sumMs": 0.08941600000252947,
+          "medianMs": 0.08941600000252947,
+          "maxMs": 0.08941600000252947
+        },
+        "publishPointer/directorySync": {
+          "count": 1,
+          "sumMs": 5.987999999983003,
+          "medianMs": 5.987999999983003,
+          "maxMs": 5.987999999983003
+        },
+        "publishPointer/rm": {
+          "count": 1,
+          "sumMs": 0.07220900000538677,
+          "medianMs": 0.07220900000538677,
+          "maxMs": 0.07220900000538677
+        },
+        "cleanup/lstat": {
+          "count": 6,
+          "sumMs": 0.07562499996856786,
+          "medianMs": 0.01179200000478886,
+          "maxMs": 0.020790999988093972
+        },
+        "cleanup/open": {
+          "count": 1,
+          "sumMs": 0.0519170000043232,
+          "medianMs": 0.0519170000043232,
+          "maxMs": 0.0519170000043232
+        },
+        "cleanup/readFile": {
+          "count": 1,
+          "sumMs": 0.03079200000502169,
+          "medianMs": 0.03079200000502169,
+          "maxMs": 0.03079200000502169
+        },
+        "cleanup/readdir": {
+          "count": 1,
+          "sumMs": 0.060249999980442226,
+          "medianMs": 0.060249999980442226,
+          "maxMs": 0.060249999980442226
+        },
+        "freshStatus/lstat": {
+          "count": 22560,
+          "sumMs": 205.02771099627716,
+          "medianMs": 0.008333000005222857,
+          "maxMs": 0.591374999989057
+        },
+        "freshStatus/open": {
+          "count": 3985,
+          "sumMs": 126.16276699968148,
+          "medianMs": 0.031208000000333413,
+          "maxMs": 0.4409579999919515
+        },
+        "freshStatus/readFile": {
+          "count": 3985,
+          "sumMs": 107.57069000040065,
+          "medianMs": 0.01883400001679547,
+          "maxMs": 6.47904199999175
+        },
+        "freshStatus/readdir": {
+          "count": 451,
+          "sumMs": 19.425988999631954,
+          "medianMs": 0.03720799999427982,
+          "maxMs": 0.42058400000678375
+        },
+        "firstArticleCompile/lstat": {
+          "count": 22566,
+          "sumMs": 205.1449189998675,
+          "medianMs": 0.008249999984400347,
+          "maxMs": 1.3552909999853
+        },
+        "firstArticleCompile/open": {
+          "count": 3986,
+          "sumMs": 108.55660299907322,
+          "medianMs": 0.026291999995009974,
+          "maxMs": 0.08900000000721775
+        },
+        "firstArticleCompile/readFile": {
+          "count": 3986,
+          "sumMs": 104.19851699951687,
+          "medianMs": 0.01837499998509884,
+          "maxMs": 5.994124999997439
+        },
+        "firstArticleCompile/readdir": {
+          "count": 453,
+          "sumMs": 14.82054100043024,
+          "medianMs": 0.028208000003360212,
+          "maxMs": 0.3907089999993332
+        },
+        "firstArticleCompile/mkdir": {
+          "count": 7,
+          "sumMs": 0.9269569999887608,
+          "medianMs": 0.1290830000070855,
+          "maxMs": 0.23458300001220778
+        },
+        "firstArticleCompile/rm": {
+          "count": 1,
+          "sumMs": 3.609208000008948,
+          "medianMs": 3.609208000008948,
+          "maxMs": 3.609208000008948
+        },
+        "warmChangedCompile1/lstat": {
+          "count": 22566,
+          "sumMs": 260.90622099646134,
+          "medianMs": 0.009166000003460795,
+          "maxMs": 4.330832999985432
+        },
+        "warmChangedCompile1/open": {
+          "count": 3986,
+          "sumMs": 137.72806899933494,
+          "medianMs": 0.029375000012805685,
+          "maxMs": 1.478917000000365
+        },
+        "warmChangedCompile1/readFile": {
+          "count": 3986,
+          "sumMs": 135.6859819999081,
+          "medianMs": 0.01929199998266995,
+          "maxMs": 10.309084000007715
+        },
+        "warmChangedCompile1/readdir": {
+          "count": 453,
+          "sumMs": 18.32987299951492,
+          "medianMs": 0.03541599999880418,
+          "maxMs": 0.3763749999925494
+        },
+        "warmChangedCompile1/mkdir": {
+          "count": 7,
+          "sumMs": 1.0563730000285432,
+          "medianMs": 0.12320800000452437,
+          "maxMs": 0.41466599999694154
+        },
+        "warmChangedCompile1/rm": {
+          "count": 1,
+          "sumMs": 5.148791999992682,
+          "medianMs": 5.148791999992682,
+          "maxMs": 5.148791999992682
+        },
+        "warmChangedCompile2/lstat": {
+          "count": 22566,
+          "sumMs": 214.8735180022195,
+          "medianMs": 0.0086660000088159,
+          "maxMs": 1.2406250000058208
+        },
+        "warmChangedCompile2/open": {
+          "count": 3986,
+          "sumMs": 129.70851700106869,
+          "medianMs": 0.030707999976584688,
+          "maxMs": 0.25591599999461323
+        },
+        "warmChangedCompile2/readFile": {
+          "count": 3986,
+          "sumMs": 108.50443100061966,
+          "medianMs": 0.018500000005587935,
+          "maxMs": 6.75
+        },
+        "warmChangedCompile2/readdir": {
+          "count": 453,
+          "sumMs": 18.441616000112845,
+          "medianMs": 0.03570800001034513,
+          "maxMs": 0.3814589999965392
+        },
+        "warmChangedCompile2/mkdir": {
+          "count": 7,
+          "sumMs": 0.7407080000266433,
+          "medianMs": 0.10441699999500997,
+          "maxMs": 0.18370799999684095
+        },
+        "warmChangedCompile2/rm": {
+          "count": 1,
+          "sumMs": 4.025583000009647,
+          "medianMs": 4.025583000009647,
+          "maxMs": 4.025583000009647
+        },
+        "warmChangedCompile3/lstat": {
+          "count": 22566,
+          "sumMs": 217.9142319993116,
+          "medianMs": 0.008624999987659976,
+          "maxMs": 1.3125
+        },
+        "warmChangedCompile3/open": {
+          "count": 3986,
+          "sumMs": 131.2878530016169,
+          "medianMs": 0.03191700001480058,
+          "maxMs": 0.23445899999933317
+        },
+        "warmChangedCompile3/readFile": {
+          "count": 3986,
+          "sumMs": 107.51880900000106,
+          "medianMs": 0.018792000017128885,
+          "maxMs": 6.388666999991983
+        },
+        "warmChangedCompile3/readdir": {
+          "count": 453,
+          "sumMs": 17.9572900000785,
+          "medianMs": 0.03379200000199489,
+          "maxMs": 0.36249999998835847
+        },
+        "warmChangedCompile3/mkdir": {
+          "count": 7,
+          "sumMs": 0.6252080000122078,
+          "medianMs": 0.09008300001733005,
+          "maxMs": 0.1769579999963753
+        },
+        "warmChangedCompile3/rm": {
+          "count": 1,
+          "sumMs": 3.897832999995444,
+          "medianMs": 3.897832999995444,
+          "maxMs": 3.897832999995444
+        },
+        "subsequentInitialize/lstat": {
+          "count": 6,
+          "sumMs": 0.13262499999837019,
+          "medianMs": 0.018833000009180978,
+          "maxMs": 0.041458000021521
+        },
+        "subsequentInitialize/open": {
+          "count": 1,
+          "sumMs": 0.04379200001130812,
+          "medianMs": 0.04379200001130812,
+          "maxMs": 0.04379200001130812
+        },
+        "subsequentInitialize/readFile": {
+          "count": 1,
+          "sumMs": 0.05141600000206381,
+          "medianMs": 0.05141600000206381,
+          "maxMs": 0.05141600000206381
+        },
+        "subsequentStatus/lstat": {
+          "count": 22560,
+          "sumMs": 203.12445400521392,
+          "medianMs": 0.00820799998473376,
+          "maxMs": 1.1909579999919515
+        },
+        "subsequentStatus/open": {
+          "count": 3985,
+          "sumMs": 128.60716499993578,
+          "medianMs": 0.0317090000025928,
+          "maxMs": 0.6282499999797437
+        },
+        "subsequentStatus/readFile": {
+          "count": 3985,
+          "sumMs": 109.97708300038357,
+          "medianMs": 0.019167000020388514,
+          "maxMs": 5.69208300000173
+        },
+        "subsequentStatus/readdir": {
+          "count": 451,
+          "sumMs": 18.345335999678355,
+          "medianMs": 0.0358330000017304,
+          "maxMs": 0.4117919999989681
+        }
+      }
+    },
+    {
+      "index": 4,
+      "steps": [
+        {
+          "name": "freshInitialize",
+          "elapsedMs": 39263.133333999984,
+          "cpuUserMs": 3488.259,
+          "cpuSystemMs": 6712.932
+        },
+        {
+          "name": "freshStatus",
+          "elapsedMs": 731.4395829999994,
+          "cpuUserMs": 399.314,
+          "cpuSystemMs": 403.214
+        },
+        {
+          "name": "firstArticleCompile",
+          "elapsedMs": 1477.0728329999838,
+          "cpuUserMs": 426.349,
+          "cpuSystemMs": 370.142
+        },
+        {
+          "name": "warmChangedCompile1",
+          "elapsedMs": 890.0970419999794,
+          "cpuUserMs": 413.591,
+          "cpuSystemMs": 415.498
+        },
+        {
+          "name": "warmChangedCompile2",
+          "elapsedMs": 912.5072919999948,
+          "cpuUserMs": 425.347,
+          "cpuSystemMs": 431.589
+        },
+        {
+          "name": "warmChangedCompile3",
+          "elapsedMs": 843.0431249999965,
+          "cpuUserMs": 409.501,
+          "cpuSystemMs": 397.625
+        },
+        {
+          "name": "subsequentInitialize",
+          "elapsedMs": 7.802957999985665,
+          "cpuUserMs": 8.112,
+          "cpuSystemMs": 0.332
+        },
+        {
+          "name": "subsequentStatus",
+          "elapsedMs": 722.7152499999793,
+          "cpuUserMs": 398.376,
+          "cpuSystemMs": 395.06
+        }
+      ],
+      "checkpoints": [
+        {
+          "name": "staged",
+          "atMs": 29245.868208
+        },
+        {
+          "name": "tested",
+          "atMs": 39252.805666
+        },
+        {
+          "name": "published",
+          "atMs": 39262.68625000003
+        }
+      ],
+      "methods": [
+        {
+          "method": "probe",
+          "elapsedMs": 9274.155417000002
+        },
+        {
+          "method": "publish",
+          "elapsedMs": 9.875457999994978
+        },
+        {
+          "method": "cleanup",
+          "elapsedMs": 0.42058299999916926
+        },
+        {
+          "method": "install",
+          "elapsedMs": 39237.82579099998
+        },
+        {
+          "method": "acquire",
+          "elapsedMs": 677.925917000015
+        },
+        {
+          "method": "run",
+          "elapsedMs": 786.5245829999913
+        },
+        {
+          "method": "cleanup",
+          "elapsedMs": 0.5849999999918509
+        },
+        {
+          "method": "acquire",
+          "elapsedMs": 740.9559160000063
+        },
+        {
+          "method": "run",
+          "elapsedMs": 136.35533399999258
+        },
+        {
+          "method": "cleanup",
+          "elapsedMs": 0.6567499999946449
+        },
+        {
+          "method": "acquire",
+          "elapsedMs": 771.009625000006
+        },
+        {
+          "method": "run",
+          "elapsedMs": 129.96100000001024
+        },
+        {
+          "method": "cleanup",
+          "elapsedMs": 0.6110829999961425
+        },
+        {
+          "method": "acquire",
+          "elapsedMs": 697.9332500000019
+        },
+        {
+          "method": "run",
+          "elapsedMs": 131.06724999999278
+        },
+        {
+          "method": "cleanup",
+          "elapsedMs": 0.7495420000050217
+        }
+      ],
+      "pdfBytes": 6176,
+      "elapsedMs": 44847.95608300003,
+      "cpuUserMs": 5969.035,
+      "cpuSystemMs": 9126.412,
+      "peakHostRssBytes": 470122496,
+      "io": {
+        "freshInitialize/lstat": {
+          "count": 49113,
+          "sumMs": 1496.6830370022217,
+          "medianMs": 0.01333299998077564,
+          "maxMs": 5.31287500000326
+        },
+        "freshInitialize/mkdir": {
+          "count": 3990,
+          "sumMs": 4542.6701519995695,
+          "medianMs": 0.06629099999554455,
+          "maxMs": 21.653167000011308
+        },
+        "freshInitialize/open": {
+          "count": 15944,
+          "sumMs": 18293.562761001784,
+          "medianMs": 0.11362499999813735,
+          "maxMs": 16.379625000001397
+        },
+        "freshInitialize/directorySync": {
+          "count": 3990,
+          "sumMs": 34067.88959499961,
+          "medianMs": 7.9720410000009,
+          "maxMs": 52.24862500000745
+        },
+        "freshInitialize/readFile": {
+          "count": 7969,
+          "sumMs": 751.9049349985144,
+          "medianMs": 0.05775000000721775,
+          "maxMs": 11.799874999996973
+        },
+        "freshInitialize/readdir": {
+          "count": 451,
+          "sumMs": 15.71891999989748,
+          "medianMs": 0.030999999988125637,
+          "maxMs": 0.34700000000884756
+        },
+        "freshInitialize/writeFile": {
+          "count": 3985,
+          "sumMs": 6786.820482999523,
+          "medianMs": 0.28437499998835847,
+          "maxMs": 231.27670899999794
+        },
+        "freshInitialize/fileSync": {
+          "count": 3985,
+          "sumMs": 33552.476525999635,
+          "medianMs": 8.374209000001429,
+          "maxMs": 58.45024999999441
+        },
+        "freshInitialize/rename": {
+          "count": 3985,
+          "sumMs": 11060.08974099977,
+          "medianMs": 3.7038339999853633,
+          "maxMs": 13.10770899997442
+        },
+        "freshInitialize/rm": {
+          "count": 3985,
+          "sumMs": 1578.507849999849,
+          "medianMs": 0.22912499998346902,
+          "maxMs": 8.47204199997941
+        },
+        "verifyStagedAndRecordReady/lstat": {
+          "count": 22553,
+          "sumMs": 212.3360919992847,
+          "medianMs": 0.008457999996608123,
+          "maxMs": 1.4132919999829028
+        },
+        "verifyStagedAndRecordReady/open": {
+          "count": 3985,
+          "sumMs": 113.45559600164415,
+          "medianMs": 0.02712499999324791,
+          "maxMs": 0.7410410000011325
+        },
+        "verifyStagedAndRecordReady/readFile": {
+          "count": 3983,
+          "sumMs": 115.29628300035256,
+          "medianMs": 0.018958000000566244,
+          "maxMs": 9.07712500001071
+        },
+        "verifyStagedAndRecordReady/readdir": {
+          "count": 451,
+          "sumMs": 19.636231999582378,
+          "medianMs": 0.03762499999720603,
+          "maxMs": 0.5162079999863636
+        },
+        "offlineSelfTest/lstat": {
+          "count": 22554,
+          "sumMs": 202.5703809975821,
+          "medianMs": 0.00820799998473376,
+          "maxMs": 1.1570000000065193
+        },
+        "offlineSelfTest/open": {
+          "count": 3984,
+          "sumMs": 108.4155479996407,
+          "medianMs": 0.02629100001649931,
+          "maxMs": 0.11262500000884756
+        },
+        "offlineSelfTest/readFile": {
+          "count": 3984,
+          "sumMs": 106.64088800031459,
+          "medianMs": 0.01845799997681752,
+          "maxMs": 6.469332999986364
+        },
+        "offlineSelfTest/readdir": {
+          "count": 452,
+          "sumMs": 17.076280999812298,
+          "medianMs": 0.031124999979510903,
+          "maxMs": 0.9307079999998678
+        },
+        "offlineSelfTest/mkdir": {
+          "count": 8,
+          "sumMs": 0.921331999998074,
+          "medianMs": 0.15625,
+          "maxMs": 0.21754200002760626
+        },
+        "offlineSelfTest/rm": {
+          "count": 1,
+          "sumMs": 4.502458000002662,
+          "medianMs": 4.502458000002662,
+          "maxMs": 4.502458000002662
+        },
+        "verifyStagedAndRecordReady/writeFile": {
+          "count": 1,
+          "sumMs": 0.06437499998719431,
+          "medianMs": 0.06437499998719431,
+          "maxMs": 0.06437499998719431
+        },
+        "verifyStagedAndRecordReady/fileSync": {
+          "count": 1,
+          "sumMs": 8.155166000011377,
+          "medianMs": 8.155166000011377,
+          "maxMs": 8.155166000011377
+        },
+        "verifyStagedAndRecordReady/rename": {
+          "count": 1,
+          "sumMs": 0.12574999997741543,
+          "medianMs": 0.12574999997741543,
+          "maxMs": 0.12574999997741543
+        },
+        "verifyStagedAndRecordReady/directorySync": {
+          "count": 1,
+          "sumMs": 3.9412500000034925,
+          "medianMs": 3.9412500000034925,
+          "maxMs": 3.9412500000034925
+        },
+        "verifyStagedAndRecordReady/rm": {
+          "count": 1,
+          "sumMs": 0.08233299999847077,
+          "medianMs": 0.08233299999847077,
+          "maxMs": 0.08233299999847077
+        },
+        "publishPointer/lstat": {
+          "count": 6,
+          "sumMs": 0.0966259999840986,
+          "medianMs": 0.01983399997698143,
+          "maxMs": 0.022875000024214387
+        },
+        "publishPointer/open": {
+          "count": 2,
+          "sumMs": 0.17108399997232482,
+          "medianMs": 0.12704199997824617,
+          "maxMs": 0.12704199997824617
+        },
+        "publishPointer/writeFile": {
+          "count": 1,
+          "sumMs": 0.2578749999811407,
+          "medianMs": 0.2578749999811407,
+          "maxMs": 0.2578749999811407
+        },
+        "publishPointer/fileSync": {
+          "count": 1,
+          "sumMs": 3.843916999991052,
+          "medianMs": 3.843916999991052,
+          "maxMs": 3.843916999991052
+        },
+        "publishPointer/rename": {
+          "count": 1,
+          "sumMs": 0.11745900000096299,
+          "medianMs": 0.11745900000096299,
+          "maxMs": 0.11745900000096299
+        },
+        "publishPointer/directorySync": {
+          "count": 1,
+          "sumMs": 4.909458000009181,
+          "medianMs": 4.909458000009181,
+          "maxMs": 4.909458000009181
+        },
+        "publishPointer/rm": {
+          "count": 1,
+          "sumMs": 0.0565000000060536,
+          "medianMs": 0.0565000000060536,
+          "maxMs": 0.0565000000060536
+        },
+        "cleanup/lstat": {
+          "count": 6,
+          "sumMs": 0.06454200003645383,
+          "medianMs": 0.012750000023515895,
+          "maxMs": 0.015125000005355105
+        },
+        "cleanup/open": {
+          "count": 1,
+          "sumMs": 0.03700000001117587,
+          "medianMs": 0.03700000001117587,
+          "maxMs": 0.03700000001117587
+        },
+        "cleanup/readFile": {
+          "count": 1,
+          "sumMs": 0.02583299999241717,
+          "medianMs": 0.02583299999241717,
+          "maxMs": 0.02583299999241717
+        },
+        "cleanup/readdir": {
+          "count": 1,
+          "sumMs": 0.06470800001989119,
+          "medianMs": 0.06470800001989119,
+          "maxMs": 0.06470800001989119
+        },
+        "freshStatus/lstat": {
+          "count": 22560,
+          "sumMs": 215.62641599815106,
+          "medianMs": 0.0086660000088159,
+          "maxMs": 1.2572910000162665
+        },
+        "freshStatus/open": {
+          "count": 3985,
+          "sumMs": 133.47329200120294,
+          "medianMs": 0.032540999993216246,
+          "maxMs": 1.2015419999952428
+        },
+        "freshStatus/readFile": {
+          "count": 3985,
+          "sumMs": 112.62308800080791,
+          "medianMs": 0.019208000012440607,
+          "maxMs": 9.708041000005323
+        },
+        "freshStatus/readdir": {
+          "count": 451,
+          "sumMs": 20.6536540001689,
+          "medianMs": 0.039625000004889444,
+          "maxMs": 0.5076249999983702
+        },
+        "firstArticleCompile/lstat": {
+          "count": 22566,
+          "sumMs": 203.46582599612884,
+          "medianMs": 0.00812499999301508,
+          "maxMs": 1.120667000010144
+        },
+        "firstArticleCompile/open": {
+          "count": 3986,
+          "sumMs": 106.4599510008411,
+          "medianMs": 0.025834000000031665,
+          "maxMs": 0.14804099997854792
+        },
+        "firstArticleCompile/readFile": {
+          "count": 3986,
+          "sumMs": 108.45613099983893,
+          "medianMs": 0.018958000000566244,
+          "maxMs": 6.218082999985199
+        },
+        "firstArticleCompile/readdir": {
+          "count": 453,
+          "sumMs": 14.998081999772694,
+          "medianMs": 0.028666999976849183,
+          "maxMs": 0.34849999999278225
+        },
+        "firstArticleCompile/mkdir": {
+          "count": 7,
+          "sumMs": 0.6044169999659061,
+          "medianMs": 0.09479199998895638,
+          "maxMs": 0.13620799998170696
+        },
+        "firstArticleCompile/rm": {
+          "count": 1,
+          "sumMs": 4.307750000007218,
+          "medianMs": 4.307750000007218,
+          "maxMs": 4.307750000007218
+        },
+        "warmChangedCompile1/lstat": {
+          "count": 22566,
+          "sumMs": 224.26394299734966,
+          "medianMs": 0.008375000004889444,
+          "maxMs": 2.9604160000162665
+        },
+        "warmChangedCompile1/open": {
+          "count": 3986,
+          "sumMs": 131.23937699885573,
+          "medianMs": 0.031291999999666587,
+          "maxMs": 0.6945830000040587
+        },
+        "warmChangedCompile1/readFile": {
+          "count": 3986,
+          "sumMs": 110.28289599969867,
+          "medianMs": 0.018749999988358468,
+          "maxMs": 6.509124999982305
+        },
+        "warmChangedCompile1/readdir": {
+          "count": 453,
+          "sumMs": 16.636502999870572,
+          "medianMs": 0.03250000000116415,
+          "maxMs": 0.35570800001733005
+        },
+        "warmChangedCompile1/mkdir": {
+          "count": 7,
+          "sumMs": 1.0633330000273418,
+          "medianMs": 0.09645899999304675,
+          "maxMs": 0.284791000012774
+        },
+        "warmChangedCompile1/rm": {
+          "count": 1,
+          "sumMs": 3.4452500000188593,
+          "medianMs": 3.4452500000188593,
+          "maxMs": 3.4452500000188593
+        },
+        "warmChangedCompile2/lstat": {
+          "count": 22566,
+          "sumMs": 238.74094199883984,
+          "medianMs": 0.008874999999534339,
+          "maxMs": 2.4987079999991693
+        },
+        "warmChangedCompile2/open": {
+          "count": 3986,
+          "sumMs": 140.06625800044276,
+          "medianMs": 0.033042000024579465,
+          "maxMs": 2.09870800000499
+        },
+        "warmChangedCompile2/readFile": {
+          "count": 3986,
+          "sumMs": 114.25992900022538,
+          "medianMs": 0.019207999983336776,
+          "maxMs": 7.036416000017198
+        },
+        "warmChangedCompile2/readdir": {
+          "count": 453,
+          "sumMs": 18.188848999678157,
+          "medianMs": 0.0353330000070855,
+          "maxMs": 0.36166600001160987
+        },
+        "warmChangedCompile2/mkdir": {
+          "count": 7,
+          "sumMs": 0.4260000000358559,
+          "medianMs": 0.05275000000256114,
+          "maxMs": 0.11775000000488944
+        },
+        "warmChangedCompile2/rm": {
+          "count": 1,
+          "sumMs": 3.32254200000898,
+          "medianMs": 3.32254200000898,
+          "maxMs": 3.32254200000898
+        },
+        "warmChangedCompile3/lstat": {
+          "count": 22566,
+          "sumMs": 203.46677999693202,
+          "medianMs": 0.008166999992681667,
+          "maxMs": 1.2281669999938458
+        },
+        "warmChangedCompile3/open": {
+          "count": 3986,
+          "sumMs": 126.19840499950806,
+          "medianMs": 0.031457999983103946,
+          "maxMs": 0.10362500001792796
+        },
+        "warmChangedCompile3/readFile": {
+          "count": 3986,
+          "sumMs": 106.73584399971878,
+          "medianMs": 0.018833000009180978,
+          "maxMs": 6.265625
+        },
+        "warmChangedCompile3/readdir": {
+          "count": 453,
+          "sumMs": 18.10187100004987,
+          "medianMs": 0.03325000000768341,
+          "maxMs": 0.6637080000073183
+        },
+        "warmChangedCompile3/mkdir": {
+          "count": 7,
+          "sumMs": 0.6383330000098795,
+          "medianMs": 0.08170899999095127,
+          "maxMs": 0.1885830000101123
+        },
+        "warmChangedCompile3/rm": {
+          "count": 1,
+          "sumMs": 4.355458000005456,
+          "medianMs": 4.355458000005456,
+          "maxMs": 4.355458000005456
+        },
+        "subsequentInitialize/lstat": {
+          "count": 6,
+          "sumMs": 0.10575099996640347,
+          "medianMs": 0.015333999996073544,
+          "maxMs": 0.03599999999278225
+        },
+        "subsequentInitialize/open": {
+          "count": 1,
+          "sumMs": 0.03258300002198666,
+          "medianMs": 0.03258300002198666,
+          "maxMs": 0.03258300002198666
+        },
+        "subsequentInitialize/readFile": {
+          "count": 1,
+          "sumMs": 0.05708299999241717,
+          "medianMs": 0.05708299999241717,
+          "maxMs": 0.05708299999241717
+        },
+        "subsequentStatus/lstat": {
+          "count": 22560,
+          "sumMs": 214.54168499962543,
+          "medianMs": 0.008625000016763806,
+          "maxMs": 0.6304159999999683
+        },
+        "subsequentStatus/open": {
+          "count": 3985,
+          "sumMs": 131.46832200081553,
+          "medianMs": 0.032124999997904524,
+          "maxMs": 0.7138749999867287
+        },
+        "subsequentStatus/readFile": {
+          "count": 3985,
+          "sumMs": 108.60577399944304,
+          "medianMs": 0.019124999991618097,
+          "maxMs": 6.020707999996375
+        },
+        "subsequentStatus/readdir": {
+          "count": 451,
+          "sumMs": 18.424518000188982,
+          "medianMs": 0.03662499997881241,
+          "maxMs": 0.3885000000009313
+        }
+      }
+    },
+    {
+      "index": 5,
+      "steps": [
+        {
+          "name": "freshInitialize",
+          "elapsedMs": 37872.184582999995,
+          "cpuUserMs": 3677.883,
+          "cpuSystemMs": 6973.868
+        },
+        {
+          "name": "freshStatus",
+          "elapsedMs": 713.5554999999877,
+          "cpuUserMs": 401.273,
+          "cpuSystemMs": 386.938
+        },
+        {
+          "name": "firstArticleCompile",
+          "elapsedMs": 1501.888500000001,
+          "cpuUserMs": 412.594,
+          "cpuSystemMs": 402.443
+        },
+        {
+          "name": "warmChangedCompile1",
+          "elapsedMs": 850.612958999991,
+          "cpuUserMs": 398.136,
+          "cpuSystemMs": 399.949
+        },
+        {
+          "name": "warmChangedCompile2",
+          "elapsedMs": 835.7695829999866,
+          "cpuUserMs": 402.402,
+          "cpuSystemMs": 394.32
+        },
+        {
+          "name": "warmChangedCompile3",
+          "elapsedMs": 884.3280000000086,
+          "cpuUserMs": 408.165,
+          "cpuSystemMs": 423.757
+        },
+        {
+          "name": "subsequentInitialize",
+          "elapsedMs": 8.274208999995608,
+          "cpuUserMs": 9.002,
+          "cpuSystemMs": 0.409
+        },
+        {
+          "name": "subsequentStatus",
+          "elapsedMs": 735.79779099999,
+          "cpuUserMs": 399.706,
+          "cpuSystemMs": 389.293
+        }
+      ],
+      "checkpoints": [
+        {
+          "name": "staged",
+          "atMs": 29060.856583999994
+        },
+        {
+          "name": "tested",
+          "atMs": 37861.77908400001
+        },
+        {
+          "name": "published",
+          "atMs": 37871.765209000005
+        }
+      ],
+      "methods": [
+        {
+          "method": "probe",
+          "elapsedMs": 8050.539667000005
+        },
+        {
+          "method": "publish",
+          "elapsedMs": 9.979042000020854
+        },
+        {
+          "method": "cleanup",
+          "elapsedMs": 0.3833749999757856
+        },
+        {
+          "method": "install",
+          "elapsedMs": 37846.440207999985
+        },
+        {
+          "method": "acquire",
+          "elapsedMs": 714.3262920000125
+        },
+        {
+          "method": "run",
+          "elapsedMs": 775.1684580000001
+        },
+        {
+          "method": "cleanup",
+          "elapsedMs": 0.5948749999806751
+        },
+        {
+          "method": "acquire",
+          "elapsedMs": 704.9225409999781
+        },
+        {
+          "method": "run",
+          "elapsedMs": 132.17949999999837
+        },
+        {
+          "method": "cleanup",
+          "elapsedMs": 0.656875000015134
+        },
+        {
+          "method": "acquire",
+          "elapsedMs": 699.1352499999921
+        },
+        {
+          "method": "run",
+          "elapsedMs": 124.20145800002501
+        },
+        {
+          "method": "cleanup",
+          "elapsedMs": 0.6730000000097789
+        },
+        {
+          "method": "acquire",
+          "elapsedMs": 728.4774169999873
+        },
+        {
+          "method": "run",
+          "elapsedMs": 140.6255419999943
+        },
+        {
+          "method": "cleanup",
+          "elapsedMs": 0.45637500000884756
+        }
+      ],
+      "pdfBytes": 6176,
+      "elapsedMs": 43402.557583999995,
+      "cpuUserMs": 6109.349,
+      "cpuSystemMs": 9371.001,
+      "peakHostRssBytes": 463568896,
+      "io": {
+        "freshInitialize/lstat": {
+          "count": 49113,
+          "sumMs": 1548.4371710014238,
+          "medianMs": 0.015041999984532595,
+          "maxMs": 5.452208000002429
+        },
+        "freshInitialize/mkdir": {
+          "count": 3990,
+          "sumMs": 4624.122640998074,
+          "medianMs": 0.0675420000043232,
+          "maxMs": 16.985625000001164
+        },
+        "freshInitialize/open": {
+          "count": 15944,
+          "sumMs": 18731.755682999472,
+          "medianMs": 0.1199579999956768,
+          "maxMs": 51.45029199999408
+        },
+        "freshInitialize/directorySync": {
+          "count": 3990,
+          "sumMs": 33287.41353000037,
+          "medianMs": 7.837541000015335,
+          "maxMs": 25.849666999973124
+        },
+        "freshInitialize/readFile": {
+          "count": 7969,
+          "sumMs": 624.5633980006096,
+          "medianMs": 0.04420799997751601,
+          "maxMs": 10.981499999994412
+        },
+        "freshInitialize/readdir": {
+          "count": 451,
+          "sumMs": 15.990752999787219,
+          "medianMs": 0.030457999993814155,
+          "maxMs": 0.3649169999989681
+        },
+        "freshInitialize/writeFile": {
+          "count": 3985,
+          "sumMs": 7227.437856001197,
+          "medianMs": 0.348375000001397,
+          "maxMs": 248.20300000000861
+        },
+        "freshInitialize/fileSync": {
+          "count": 3985,
+          "sumMs": 32557.992515999416,
+          "medianMs": 8.201792000007117,
+          "maxMs": 54.4170420000155
+        },
+        "freshInitialize/rename": {
+          "count": 3985,
+          "sumMs": 11355.304140000284,
+          "medianMs": 3.7565410000097472,
+          "maxMs": 47.379667000001064
+        },
+        "freshInitialize/rm": {
+          "count": 3985,
+          "sumMs": 1706.8050909988815,
+          "medianMs": 0.24529099999926984,
+          "maxMs": 7.977416000008816
+        },
+        "verifyStagedAndRecordReady/lstat": {
+          "count": 22553,
+          "sumMs": 216.1156800033932,
+          "medianMs": 0.008457999996608123,
+          "maxMs": 1.3767500000249129
+        },
+        "verifyStagedAndRecordReady/open": {
+          "count": 3985,
+          "sumMs": 133.89780099879135,
+          "medianMs": 0.03250000000116415,
+          "maxMs": 0.5709159999969415
+        },
+        "verifyStagedAndRecordReady/readFile": {
+          "count": 3983,
+          "sumMs": 113.93037700006971,
+          "medianMs": 0.018958000000566244,
+          "maxMs": 7.343499999988126
+        },
+        "verifyStagedAndRecordReady/readdir": {
+          "count": 451,
+          "sumMs": 21.847120000020368,
+          "medianMs": 0.04341700000804849,
+          "maxMs": 0.4274589999986347
+        },
+        "offlineSelfTest/lstat": {
+          "count": 22554,
+          "sumMs": 213.73735299805412,
+          "medianMs": 0.00833399998373352,
+          "maxMs": 1.4514170000038575
+        },
+        "offlineSelfTest/open": {
+          "count": 3984,
+          "sumMs": 115.19218599822489,
+          "medianMs": 0.02733400001307018,
+          "maxMs": 0.17120800001430325
+        },
+        "offlineSelfTest/readFile": {
+          "count": 3984,
+          "sumMs": 109.48025999942911,
+          "medianMs": 0.01891699997941032,
+          "maxMs": 6.443334000010509
+        },
+        "offlineSelfTest/readdir": {
+          "count": 452,
+          "sumMs": 17.647170000942424,
+          "medianMs": 0.03158300000359304,
+          "maxMs": 0.7451249999867287
+        },
+        "offlineSelfTest/mkdir": {
+          "count": 8,
+          "sumMs": 0.9026659999508411,
+          "medianMs": 0.10237499998765998,
+          "maxMs": 0.22095799999078736
+        },
+        "offlineSelfTest/rm": {
+          "count": 1,
+          "sumMs": 3.8953329999931157,
+          "medianMs": 3.8953329999931157,
+          "maxMs": 3.8953329999931157
+        },
+        "verifyStagedAndRecordReady/writeFile": {
+          "count": 1,
+          "sumMs": 0.052792000002227724,
+          "medianMs": 0.052792000002227724,
+          "maxMs": 0.052792000002227724
+        },
+        "verifyStagedAndRecordReady/fileSync": {
+          "count": 1,
+          "sumMs": 6.198915999993915,
+          "medianMs": 6.198915999993915,
+          "maxMs": 6.198915999993915
+        },
+        "verifyStagedAndRecordReady/rename": {
+          "count": 1,
+          "sumMs": 0.11737500000162981,
+          "medianMs": 0.11737500000162981,
+          "maxMs": 0.11737500000162981
+        },
+        "verifyStagedAndRecordReady/directorySync": {
+          "count": 1,
+          "sumMs": 4.622791000001598,
+          "medianMs": 4.622791000001598,
+          "maxMs": 4.622791000001598
+        },
+        "verifyStagedAndRecordReady/rm": {
+          "count": 1,
+          "sumMs": 0.07483300002058968,
+          "medianMs": 0.07483300002058968,
+          "maxMs": 0.07483300002058968
+        },
+        "publishPointer/lstat": {
+          "count": 6,
+          "sumMs": 0.08958400005940348,
+          "medianMs": 0.015375000017229468,
+          "maxMs": 0.021000000007916242
+        },
+        "publishPointer/open": {
+          "count": 2,
+          "sumMs": 0.1564580000413116,
+          "medianMs": 0.09904200001619756,
+          "maxMs": 0.09904200001619756
+        },
+        "publishPointer/writeFile": {
+          "count": 1,
+          "sumMs": 0.05904199997894466,
+          "medianMs": 0.05904199997894466,
+          "maxMs": 0.05904199997894466
+        },
+        "publishPointer/fileSync": {
+          "count": 1,
+          "sumMs": 4.45516700000735,
+          "medianMs": 4.45516700000735,
+          "maxMs": 4.45516700000735
+        },
+        "publishPointer/rename": {
+          "count": 1,
+          "sumMs": 0.10866699999314733,
+          "medianMs": 0.10866699999314733,
+          "maxMs": 0.10866699999314733
+        },
+        "publishPointer/directorySync": {
+          "count": 1,
+          "sumMs": 4.645790999988094,
+          "medianMs": 4.645790999988094,
+          "maxMs": 4.645790999988094
+        },
+        "publishPointer/rm": {
+          "count": 1,
+          "sumMs": 0.0629999999946449,
+          "medianMs": 0.0629999999946449,
+          "maxMs": 0.0629999999946449
+        },
+        "cleanup/lstat": {
+          "count": 6,
+          "sumMs": 0.06233299997984432,
+          "medianMs": 0.00958300000638701,
+          "maxMs": 0.01791699999012053
+        },
+        "cleanup/open": {
+          "count": 1,
+          "sumMs": 0.037333999993279576,
+          "medianMs": 0.037333999993279576,
+          "maxMs": 0.037333999993279576
+        },
+        "cleanup/readFile": {
+          "count": 1,
+          "sumMs": 0.022958000015933067,
+          "medianMs": 0.022958000015933067,
+          "maxMs": 0.022958000015933067
+        },
+        "cleanup/readdir": {
+          "count": 1,
+          "sumMs": 0.06837500000256114,
+          "medianMs": 0.06837500000256114,
+          "maxMs": 0.06837500000256114
+        },
+        "freshStatus/lstat": {
+          "count": 22560,
+          "sumMs": 210.55503599901567,
+          "medianMs": 0.00858299998799339,
+          "maxMs": 1.301207999989856
+        },
+        "freshStatus/open": {
+          "count": 3985,
+          "sumMs": 130.43918999988819,
+          "medianMs": 0.03195800000685267,
+          "maxMs": 1.0198329999984708
+        },
+        "freshStatus/readFile": {
+          "count": 3985,
+          "sumMs": 107.90722800072399,
+          "medianMs": 0.019166999991284683,
+          "maxMs": 5.866791999986162
+        },
+        "freshStatus/readdir": {
+          "count": 451,
+          "sumMs": 18.097586000076262,
+          "medianMs": 0.034291000018129125,
+          "maxMs": 0.429959000000963
+        },
+        "firstArticleCompile/lstat": {
+          "count": 22566,
+          "sumMs": 211.58883599741966,
+          "medianMs": 0.008457999996608123,
+          "maxMs": 1.257584000006318
+        },
+        "firstArticleCompile/open": {
+          "count": 3986,
+          "sumMs": 126.87184599929606,
+          "medianMs": 0.031749999994644895,
+          "maxMs": 0.4834170000103768
+        },
+        "firstArticleCompile/readFile": {
+          "count": 3986,
+          "sumMs": 109.35976999989362,
+          "medianMs": 0.01891700000851415,
+          "maxMs": 6.05387500001234
+        },
+        "firstArticleCompile/readdir": {
+          "count": 453,
+          "sumMs": 16.6588749998773,
+          "medianMs": 0.03062500001396984,
+          "maxMs": 0.4684580000175629
+        },
+        "firstArticleCompile/mkdir": {
+          "count": 7,
+          "sumMs": 0.7988750000367872,
+          "medianMs": 0.10450000001583248,
+          "maxMs": 0.18275000000721775
+        },
+        "firstArticleCompile/rm": {
+          "count": 1,
+          "sumMs": 3.5039169999945443,
+          "medianMs": 3.5039169999945443,
+          "maxMs": 3.5039169999945443
+        },
+        "warmChangedCompile1/lstat": {
+          "count": 22566,
+          "sumMs": 204.5660050017177,
+          "medianMs": 0.008209000021452084,
+          "maxMs": 1.228000000002794
+        },
+        "warmChangedCompile1/open": {
+          "count": 3986,
+          "sumMs": 128.38432899987674,
+          "medianMs": 0.03195799997774884,
+          "maxMs": 0.11554199998499826
+        },
+        "warmChangedCompile1/readFile": {
+          "count": 3986,
+          "sumMs": 108.00475899872254,
+          "medianMs": 0.01891700000851415,
+          "maxMs": 6.21112500000163
+        },
+        "warmChangedCompile1/readdir": {
+          "count": 453,
+          "sumMs": 17.594221000006655,
+          "medianMs": 0.03495800000382587,
+          "maxMs": 0.35758400001213886
+        },
+        "warmChangedCompile1/mkdir": {
+          "count": 7,
+          "sumMs": 0.7567509999789763,
+          "medianMs": 0.0926669999898877,
+          "maxMs": 0.21404200000688434
+        },
+        "warmChangedCompile1/rm": {
+          "count": 1,
+          "sumMs": 3.4529579999798443,
+          "medianMs": 3.4529579999798443,
+          "maxMs": 3.4529579999798443
+        },
+        "warmChangedCompile2/lstat": {
+          "count": 22566,
+          "sumMs": 201.6090320024814,
+          "medianMs": 0.008166999992681667,
+          "maxMs": 1.2830419999954756
+        },
+        "warmChangedCompile2/open": {
+          "count": 3986,
+          "sumMs": 126.37734199935221,
+          "medianMs": 0.03158299997448921,
+          "maxMs": 0.09545799999614246
+        },
+        "warmChangedCompile2/readFile": {
+          "count": 3986,
+          "sumMs": 107.02418899940676,
+          "medianMs": 0.01891700000851415,
+          "maxMs": 6.052499999990687
+        },
+        "warmChangedCompile2/readdir": {
+          "count": 453,
+          "sumMs": 19.41300600048271,
+          "medianMs": 0.03804200000013225,
+          "maxMs": 0.4423749999841675
+        },
+        "warmChangedCompile2/mkdir": {
+          "count": 7,
+          "sumMs": 0.6419180000084452,
+          "medianMs": 0.09208400000352412,
+          "maxMs": 0.17420899998978712
+        },
+        "warmChangedCompile2/rm": {
+          "count": 1,
+          "sumMs": 3.2880829999921843,
+          "medianMs": 3.2880829999921843,
+          "maxMs": 3.2880829999921843
+        },
+        "warmChangedCompile3/lstat": {
+          "count": 22566,
+          "sumMs": 219.69299499716726,
+          "medianMs": 0.008457999996608123,
+          "maxMs": 1.1738339999865275
+        },
+        "warmChangedCompile3/open": {
+          "count": 3986,
+          "sumMs": 133.3237419995712,
+          "medianMs": 0.03216599998995662,
+          "maxMs": 1.1719580000208225
+        },
+        "warmChangedCompile3/readFile": {
+          "count": 3986,
+          "sumMs": 110.02613099987502,
+          "medianMs": 0.018875000008847564,
+          "maxMs": 7.982499999983702
+        },
+        "warmChangedCompile3/readdir": {
+          "count": 453,
+          "sumMs": 16.727411999745527,
+          "medianMs": 0.032540999993216246,
+          "maxMs": 0.3563340000109747
+        },
+        "warmChangedCompile3/mkdir": {
+          "count": 7,
+          "sumMs": 0.8248740000126418,
+          "medianMs": 0.10787499998696148,
+          "maxMs": 0.20137500000419095
+        },
+        "warmChangedCompile3/rm": {
+          "count": 1,
+          "sumMs": 4.489250000013271,
+          "medianMs": 4.489250000013271,
+          "maxMs": 4.489250000013271
+        },
+        "subsequentInitialize/lstat": {
+          "count": 6,
+          "sumMs": 0.12437600002158433,
+          "medianMs": 0.015209000004688278,
+          "maxMs": 0.051749999984167516
+        },
+        "subsequentInitialize/open": {
+          "count": 1,
+          "sumMs": 0.031042000016896054,
+          "medianMs": 0.031042000016896054,
+          "maxMs": 0.031042000016896054
+        },
+        "subsequentInitialize/readFile": {
+          "count": 1,
+          "sumMs": 0.05029199999989942,
+          "medianMs": 0.05029199999989942,
+          "maxMs": 0.05029199999989942
+        },
+        "subsequentStatus/lstat": {
+          "count": 22560,
+          "sumMs": 220.5306609988329,
+          "medianMs": 0.008165999985067174,
+          "maxMs": 2.4483750000072177
+        },
+        "subsequentStatus/open": {
+          "count": 3985,
+          "sumMs": 135.92793199789594,
+          "medianMs": 0.03170799999497831,
+          "maxMs": 2.6071670000092126
+        },
+        "subsequentStatus/readFile": {
+          "count": 3985,
+          "sumMs": 109.917668999522,
+          "medianMs": 0.018832999980077147,
+          "maxMs": 6.171958999999333
+        },
+        "subsequentStatus/readdir": {
+          "count": 451,
+          "sumMs": 18.6225919999124,
+          "medianMs": 0.036334000003989786,
+          "maxMs": 0.38320899999234825
+        }
+      }
+    }
+  ],
+  "finishedAt": "2026-09-26T18:40:42.418Z",
+  "passed": true
+}

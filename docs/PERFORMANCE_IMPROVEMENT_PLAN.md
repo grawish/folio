@@ -1,6 +1,6 @@
 # Performance investigation and improvement plan
 
-Measured 26 September 2026. The largest measured delays are first-time runtime preparation and repeated runtime verification. This report contains a real backend baseline and a prioritized plan. It does not claim that every app workflow or the plan's reference-device budgets have passed.
+Measured 26–27 September 2026. The largest measured delays are first-time runtime preparation and repeated runtime verification. This report contains a real backend baseline and a prioritized plan. It does not claim that every app workflow or the plan's reference-device budgets have passed.
 
 ## Reproduce the baseline
 
@@ -47,6 +47,23 @@ The measured self-test runs an app-owned TeX document with Biber and bibliograph
 ### Resource observations
 
 Sampled Node-host peak RSS is 342.8, 423.4 and 457.0 MiB. This includes instrumentation and retained allocations across samples, excludes native child-process memory and does not establish an application leak or memory-budget pass. Host CPU totals also exclude compiler children. Physical high-DPI rendering, whole-app CPU/memory and process-tree termination measurements remain required.
+
+## Faster runtime preparation: directory flushes
+
+The source implementation now flushes each copied file, then flushes each folder once, working from the deepest folders toward the runtime root. The copy remains unpublished throughout. Only after all workers and folder flushes finish does the app verify the complete copy, run its offline TeX/Biber check, write readiness and switch the active pointer. Readiness and pointer writes keep their separate immediate file/folder flushes. Cancellation or a failed flush leaves the previous compiler selected.
+
+A matched five-sample run on the same M4 Pro/48 GiB host used `node --import tsx scripts/profile-runtime.mjs 5`, first at source `adfeb0a`, then with this change. Both runs used the identical script, compiler manifest, verifier, compiler and synthetic documents. The [before](performance/runtime-copy-before.json) and [after](performance/runtime-copy-after.json) records retain every sample and the exact implementation hashes. This task ran no local native tests or other Folio benchmarks concurrently; ordinary desktop work and read-only hosted-log review continued. OS caches were not purged.
+
+| Measurement | Before | After | Change |
+| --- | ---: | ---: | --- |
+| Median verification/copy through the durable staged checkpoint | 29.061 s | 18.571 s | 36.1% lower |
+| Median complete fresh preparation, including offline self-test | 39.053 s | 28.003 s | 28.3% lower |
+| Folder flushes in the preparation/copy phase, each sample | 3,990 | 456 | Repeated parent flushes removed; intermediate folders included |
+| File flushes in that phase, each sample | 3,985 | 3,985 | Every copied file still flushed |
+
+Fresh preparation ranged from 37.790–56.452 seconds before and 27.142–46.060 seconds after. The slower first sample in each run remains included. These are backend measurements on one development Mac, not full-window startup, cold physical storage, a supported-device budget pass or a population p95. Warm runtime verification is unchanged. The copy improvement is below the plan’s 40% target; that target remains open.
+
+Two new controls reject the old implementation and pass after the change: all files/folders must be flushed before readiness, and a failed deepest/intermediate/root folder flush must retain the exact old active copy. The 23 focused runtime/pack tests pass. Core repair and signed-pack installation also survive real process kills before the folder flush, after staging, after self-test and after pointer publication. These checks cover process interruption, not physical power loss. See [the implementation verification record](releases/runtime-copy-verification.json) for broader checks and their scope.
 
 ## Actual packaged app startup
 
@@ -146,7 +163,7 @@ Targets below are acceptance targets for experiments, not achieved results.
 
 | Priority | Change to investigate | Why | Experiment target | Required protection |
 | --- | --- | --- | --- | --- |
-| 1 | Batch directory durability work within the unpublished runtime generation; avoid repeatedly syncing the same parent after every file | About 31 s in verify/copy; nearly 4,000 directory syncs | At least 40% lower median preparation/copy time across five fresh profiles | Sync every required file and directory before publishing readiness; force-kill at every publication boundary; failed install preserves the previous compiler |
+| 1 | Batch directory durability work within the unpublished runtime generation; first implementation achieves 36.1%, so the target remains open | About 31 s in verify/copy; nearly 4,000 directory syncs | At least 40% lower median preparation/copy time across five fresh profiles | Sync every required file and directory before publishing readiness; force-kill at every publication boundary; failed install preserves the previous compiler |
 | 1 | Let recovery and editing become usable while first-time compiler preparation continues | Main bootstrap currently waits for preparation; an included compiler should not keep all project controls inert for tens of seconds | Usable recovered project within the original plan's startup budget; progress remains visible until builds are ready | Load the real recovery project first; early close must preserve it; no compilation, export or AI apply may assume an unverified compiler |
 | 2 | Eliminate duplicate verification within one tightly scoped operation/verified lease, and assess safe reuse between requests | About 0.70–0.85 s of each small warm build precedes native execution | Median changed-source warm build below 0.5 s for this fixture, with runtime-acquire work below 0.2 s | No global forever-valid cache; changed/corrupt files, replacement paths and compiler pins must still fail before execution; mutation/replacement tests must defeat stale reuse |
 | 2 | Profile the self-test's TeX/Biber subprocess stages and first-execution behavior | Probe varies from 8.7 to 24.9 s | Attribute the variance first; target stable fresh preparation without first-user bibliography timeouts | Keep an actual offline bibliography self-test, immutable runtime files, restricted native execution and bounded timeouts |

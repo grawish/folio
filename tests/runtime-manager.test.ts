@@ -14,7 +14,7 @@ import { ProjectImporter } from '../electron/core/project-import';
 import { WorkspaceStore } from '../electron/core/workspace';
 
 const hash = (value: string) => createHash('sha256').update(value).digest('hex');
-async function fixture(t: TestContext) {
+async function fixture(t: TestContext, extraFiles: Record<string, string> = {}) {
   const root = await fs.realpath(await fs.mkdtemp(path.join(os.tmpdir(), 'folio-runtime-')));
   t.after(() => fs.rm(root, { recursive: true, force: true }));
   const bundle = path.join(root, 'bundle'),
@@ -23,12 +23,22 @@ async function fixture(t: TestContext) {
   const executable = process.platform === 'win32' ? 'tectonic.exe' : 'tectonic';
   await fs.writeFile(path.join(bundle, executable), 'Synthetic engine', { mode: 0o700 });
   await fs.writeFile(path.join(bundle, 'bundle.zip'), 'Resources version one');
+  for (const [name, content] of Object.entries(extraFiles)) {
+    await fs.mkdir(path.dirname(path.join(bundle, name)), { recursive: true });
+    await fs.writeFile(path.join(bundle, name), content);
+  }
   const manifest: RuntimeManifest = {
     schemaVersion: 1,
     version: '0.17.0',
     bundle: 'folio-core-v1',
     platform: `${process.platform}-${process.arch}`,
-    files: { [executable]: hash('Synthetic engine'), 'bundle.zip': hash('Resources version one') },
+    files: {
+      [executable]: hash('Synthetic engine'),
+      'bundle.zip': hash('Resources version one'),
+      ...Object.fromEntries(
+        Object.entries(extraFiles).map(([name, content]) => [name, hash(content)]),
+      ),
+    },
   };
   await fs.writeFile(path.join(bundle, 'manifest.json'), JSON.stringify(manifest));
   const pin = runtimePin(manifest);
@@ -40,6 +50,97 @@ async function fixture(t: TestContext) {
     path.join(data, pin.id!, 'copies', (await pointer()).generation, 'runtime');
   return { root, bundle, data, executable, manifest, pin, manager, pointer, active };
 }
+
+const nestedResources = {
+  'extras/deep/a.txt': 'First nested resource',
+  'extras/deep/b.txt': 'Second nested resource',
+  'extras/sibling/c.txt': 'Sibling resource',
+};
+
+test('staging flushes every file and nested directory before readiness, with one bottom-up directory pass', async (t) => {
+  const f = await fixture(t, nestedResources);
+  const events: { name: string; directory: boolean }[] = [];
+  const open = fs.open.bind(fs);
+  t.mock.method(fs, 'open', async (...args: Parameters<typeof fs.open>) => {
+    const handle = await open(...args);
+    const sync = handle.sync.bind(handle);
+    handle.sync = async () => {
+      await sync();
+      if (typeof args[0] === 'string' && args[0].startsWith(f.data + path.sep))
+        events.push({ name: args[0], directory: (await handle.stat()).isDirectory() });
+    };
+    return handle;
+  });
+  const before = await f.pointer();
+  let checked = false;
+  const manager = new RuntimeManager(f.bundle, f.data, {
+    probe: async (runtime) => {
+      checked = true;
+      assert.deepEqual(await f.pointer(), before);
+      await assert.rejects(fs.access(path.join(path.dirname(runtime), 'ready.json')));
+      const inside = events.filter(
+        (e) => e.name === runtime || e.name.startsWith(runtime + path.sep),
+      );
+      const directories = inside.filter((e) => e.directory).map((e) => e.name);
+      const expected = ['', 'extras', 'extras/deep', 'extras/sibling'].map((name) =>
+        path.join(runtime, name),
+      );
+      assert.deepEqual([...directories].sort(), expected.sort());
+      assert.equal(
+        inside.filter((e) => !e.directory).length,
+        Object.keys(f.manifest.files).length + 1,
+      );
+      const firstDirectory = inside.findIndex((e) => e.directory);
+      assert.ok(inside.every((event, index) => event.directory || index < firstDirectory));
+      for (const name of directories.filter((name) => name !== runtime))
+        assert.ok(directories.indexOf(name) < directories.indexOf(path.dirname(name)));
+      await verifyRuntime(runtime, f.pin);
+    },
+  });
+  await manager.repair(f.pin);
+  assert.equal(checked, true);
+  assert.notEqual((await f.pointer()).generation, before.generation);
+  await verifyRuntime(await f.active(), f.pin);
+});
+
+test('a failed staged directory flush cannot publish readiness or replace the active compiler', async (t) => {
+  const f = await fixture(t, nestedResources),
+    before = await f.pointer();
+  let failurePath = '',
+    failures = 0,
+    probes = 0;
+  const open = fs.open.bind(fs);
+  t.mock.method(fs, 'open', async (...args: Parameters<typeof fs.open>) => {
+    const handle = await open(...args),
+      sync = handle.sync.bind(handle);
+    handle.sync = async () => {
+      if (
+        typeof args[0] === 'string' &&
+        args[0].startsWith(f.data + path.sep) &&
+        args[0].endsWith(path.join('runtime', failurePath)) &&
+        (await handle.stat()).isDirectory()
+      ) {
+        failures++;
+        throw new Error('Injected staged directory flush failure');
+      }
+      await sync();
+    };
+    return handle;
+  });
+  const manager = new RuntimeManager(f.bundle, f.data, {
+    probe: async () => {
+      probes++;
+    },
+  });
+  for (failurePath of ['extras/deep', 'extras', '']) {
+    await assert.rejects(manager.repair(f.pin), /staged directory flush failure/);
+    assert.deepEqual(await f.pointer(), before);
+    await verifyRuntime(await f.active(), f.pin);
+    assert.deepEqual(await fs.readdir(path.join(f.data, f.pin.id!, 'copies')), [before.generation]);
+  }
+  assert.equal(failures, 3);
+  assert.equal(probes, 0);
+});
 
 test('runtime identity pins contents, normalizes field order and strictly validates paths and choices', async (t) => {
   const f = await fixture(t);
@@ -259,9 +360,9 @@ test('runtime pins survive source save, recovery, history, Save As and ZIP impor
   await assert.rejects(defaulted.open(folder), /manifest could not be read/);
 });
 
-test('process interruption at staging, testing and pointer publication preserves an exact recoverable compiler', async (t) => {
+test('process interruption before directory flush, after staging, testing and pointer publication preserves an exact recoverable compiler', async (t) => {
   const f = await fixture(t);
-  for (const boundary of ['staged', 'tested', 'published']) {
+  for (const boundary of ['copied', 'staged', 'tested', 'published']) {
     const before = await f.pointer();
     const child = spawn(
       process.execPath,

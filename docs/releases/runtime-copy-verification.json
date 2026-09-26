@@ -1,0 +1,231 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-26T18:58:18.002064+00:00",
+  "sourceBase": "adfeb0a4e9e40ab601e1798138429a48446670d5",
+  "scope": "Source backend and compiled source-app checks on the development Apple silicon Mac. A full hosted package qualification remains required.",
+  "implementation": [
+    {
+      "path": "electron/core/runtime-manager.ts",
+      "bytes": 19800,
+      "sha256": "7e056e2ad3a441fbb986b54b41ab3c4d741b40b78fe62637222d0dec1d9e619c"
+    },
+    {
+      "path": "electron/core/save-io.ts",
+      "bytes": 3141,
+      "sha256": "03357fef0d222d9a06b26a911901b7bdee76b71741d8b120df08f90bdab6d91c"
+    },
+    {
+      "path": "tests/runtime-manager.test.ts",
+      "bytes": 17783,
+      "sha256": "cae3c802c51384322e9a13fd803e7650fff3ff0bf8106f10e1979d79c32cf36e"
+    },
+    {
+      "path": "tests/resource-pack.test.ts",
+      "bytes": 18652,
+      "sha256": "2988e37ee851d4f7abed7a621faecbf922a1837e88a350a66c1f22e7e9ad7540"
+    }
+  ],
+  "runtimeManifest": {
+    "path": "resources/runtime/mac-arm64/manifest.json",
+    "bytes": 490036,
+    "sha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0"
+  },
+  "performance": {
+    "samplesPerImplementation": 5,
+    "before": {
+      "path": "docs/performance/runtime-copy-before.json",
+      "bytes": 86762,
+      "sha256": "1f2f3b5e6e9822dc26ee4b827977cf941f80abf9f2be1a8eddd5c6a4f28e3a68"
+    },
+    "after": {
+      "path": "docs/performance/runtime-copy-after.json",
+      "bytes": 87269,
+      "sha256": "54037c351aa946e6ac626e47391dbd6c92b11c2692c9a28a9501ea9d181a5d50"
+    },
+    "medianStagedMs": {
+      "before": 29060.856583999994,
+      "after": 18571.439916,
+      "reductionPercent": 36.09465756000855
+    },
+    "medianPreparationMs": {
+      "before": 39052.641292000015,
+      "after": 28002.633124999993,
+      "reductionPercent": 28.29516212329441
+    },
+    "preparationFileSyncCount": {
+      "before": 3985,
+      "after": 3985
+    },
+    "preparationDirectorySyncCount": {
+      "before": 3990,
+      "after": 456
+    },
+    "copyReductionTargetPercent": 40,
+    "targetMet": false,
+    "limits": [
+      "Single M4 Pro development host; five samples per implementation do not establish population p95 or supported-device performance.",
+      "Fresh isolated app/runtime/TeX caches; OS disk caches were not purged.",
+      "Backend instrumentation is not full-window startup or total process-tree memory/CPU."
+    ]
+  },
+  "checks": {
+    "negativeControlsBefore": {
+      "failedAsExpected": 2,
+      "log": {
+        "path": "test-results/runtime-copy-before-controls.log",
+        "bytes": 5509,
+        "sha256": "cd24128035e33ebab56a8cc52220569503fd44fd324d80b04681e8c630d2e9ff"
+      }
+    },
+    "focusedRuntimeAndPackTests": {
+      "passed": 23,
+      "log": {
+        "path": "test-results/runtime-copy-focused.log",
+        "bytes": 2689,
+        "sha256": "d596ab896c0e4809fa77d3c52c05f87d1c9b4654d84ec260d224373ad29ac75b"
+      }
+    },
+    "sourceTests": {
+      "passed": 229,
+      "failed": 0,
+      "log": {
+        "path": "test-results/runtime-copy-all-unit.log",
+        "bytes": 24109,
+        "sha256": "ec4fc26459767426b3a963427565019d2e70b0d998a4d5622b299f6066560eea"
+      }
+    },
+    "compilerIntegrations": {
+      "passed": 15,
+      "failed": 0,
+      "log": {
+        "path": "test-results/runtime-copy-integration.log",
+        "bytes": 1989,
+        "sha256": "6014e22ee92d9a770ea394f932fb77ff7fda19af52b2904e407cc8d8ce5c56bf"
+      }
+    },
+    "typecheckAndBuild": {
+      "passed": true,
+      "log": {
+        "path": "test-results/runtime-copy-build.log",
+        "bytes": 1719,
+        "sha256": "fc727e0e31296abad45096830b6eb1af9c643550900dd12fd5a98d9c00b17c15"
+      }
+    },
+    "processKillBoundaries": [
+      "copied, before directory flushing",
+      "staged, after directory flushing",
+      "tested, after offline checks and readiness",
+      "published, after pointer replacement"
+    ],
+    "processKillScope": "Both core repair and signed-pack installation were killed and reopened at all four boundaries. Process interruption is not physical power-loss validation.",
+    "nativeRuntime": {
+      "result": {
+        "passed": true,
+        "errors": [],
+        "pin": {
+          "engine": "tectonic",
+          "version": "0.17.0",
+          "bundle": "folio-core-v1",
+          "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+          "platform": "darwin-arm64",
+          "biberVersion": "2.17"
+        }
+      },
+      "record": {
+        "path": "test-results/runtime-Cmr1qG/result.json",
+        "bytes": 271,
+        "sha256": "0a97096929cc7bd4411062f45bd10d12c879ca631704b2433bdb63b11bf23905"
+      },
+      "log": {
+        "path": "test-results/runtime-copy-native.log",
+        "bytes": 653,
+        "sha256": "f5e2991be93e45bb253bd85cad1ed0d56586648c40cdf35ffe7f0b1046a8c7a8"
+      }
+    },
+    "nativePublicPack": {
+      "result": {
+        "passed": true,
+        "errors": [],
+        "artifact": {
+          "url": "https://github.com/grawish/folio/releases/download/resource-packs-v1/Folio-multirow-2.9-v1.foliopack",
+          "bytes": 2259484,
+          "sha256": "b11d22b915fba8f7a4efaa82d900912341cc2af1a05cd2dcee298ca48a4bbbfe"
+        },
+        "before": {
+          "engine": "tectonic",
+          "version": "0.17.0",
+          "bundle": "folio-core-v1",
+          "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+          "platform": "darwin-arm64",
+          "biberVersion": "2.17"
+        },
+        "target": {
+          "engine": "tectonic",
+          "version": "0.17.0",
+          "bundle": "folio-multirow-2.9-v1",
+          "id": "f08d496354bb88e604ca8c2394935f8bf2e842a021d1b54b02ff210344a1d670",
+          "platform": "darwin-arm64",
+          "biberVersion": "2.17"
+        },
+        "publicCatalog": true,
+        "testPublisher": false,
+        "packaged": false,
+        "scope": "Normal compiled trust, actual public HTTPS catalog/archive, native install/checks, import notices, PDF preview, explicit Apply, backup, save and restart. No provider account used."
+      },
+      "record": {
+        "path": "test-results/pack-catalog-CEoGFF/result.json",
+        "bytes": 1026,
+        "sha256": "11cff788f1014afdf28ed3d2700dbb24dc7d15924d5957173eb0afb7915189c4"
+      },
+      "log": {
+        "path": "test-results/runtime-copy-pack-native.log",
+        "bytes": 301,
+        "sha256": "a9b2d15064ccacfd1956f96d65a3354e8cdb3b5f029e7f16535fc9524ac9b9c9"
+      }
+    }
+  },
+  "compiledSourceFilesUnchanged": {
+    "dist/assets/index-B7Sz9lqg.css": "c0f1ff7a1ca9712855a7e3a1a251135e6e74fd0dc50e3555196dae5cfaff6746",
+    "dist/assets/index-BdxvLh5c.js": "a0d094d0181b524cca24513eed70f62c63baadc9360bdbaed076ea8cb3e690ad",
+    "dist/assets/jetbrains-mono-italic-cyrillic-CY-YXjkl.woff2": "a79035476e5f8408e7f2b2599dfd50b7262862ecb853e028ba7b4a00bed16e73",
+    "dist/assets/jetbrains-mono-italic-greek-CoTSRNcy.woff2": "44ca7e27fef33e684d50e1009d0b886b83d4783e383223e7b13e173a623db0d3",
+    "dist/assets/jetbrains-mono-italic-latin-BW896jpM.woff2": "00ba27973ba2965d3e7e03ee0f2c66491956cda2ecf8cc6066c969696577f47b",
+    "dist/assets/jetbrains-mono-italic-latin-ext-C5V3_1R8.woff2": "31434d4924e83d1c6bf10136077f96d0c541226301ba98a583b14bded0576a75",
+    "dist/assets/jetbrains-mono-italic-vietnamese-DP5VCyMl.woff2": "9c54e21b500492314341e2041e23cf141d43a0c102bca07a7fe281f487eec5f6",
+    "dist/assets/jetbrains-mono-normal-cyrillic-D0W76x1T.woff2": "4188276a58108d04eb0c6f5b8c9e4b5ac2d9e31e81b2b4fa7da263b92f1b35c3",
+    "dist/assets/jetbrains-mono-normal-greek-FADJ2lFV.woff2": "0164d0c055dced93435b1d6c2986db2fb7d068ce21950c85b776695f56238b8a",
+    "dist/assets/jetbrains-mono-normal-latin-RruCX7RW.woff2": "d3dcdccdaba31643defe2317942155d4af3ee03951d058adbe8bc02b13e61b0a",
+    "dist/assets/jetbrains-mono-normal-latin-ext-e2G1hK0J.woff2": "d5f407e28185790518c49ec8738fa89916ddc99f793010d249165d0e2c2452cc",
+    "dist/assets/manrope-normal-cyrillic-DJ9PYDpy.woff2": "95a493061fe0a8d0d027c2892747134ba747141112d3be4d5022e70ab7d3a1a6",
+    "dist/assets/manrope-normal-greek-vbHvg7sP.woff2": "40af11327fe5308166c6cb5787808b042db6da889abf602f0a4876c49675d87e",
+    "dist/assets/manrope-normal-latin-C46ZzDBF.woff2": "e310b55a7fd9677f5e3555e6c6c4d064fa1f1d24393f0ddbe217cea12a8c432f",
+    "dist/assets/manrope-normal-latin-ext-CDracvZH.woff2": "ce093b341d9c10658ee1eaa85c5f8042ff3307bc6ccfc5f405616eb437f0009e",
+    "dist/assets/manrope-normal-vietnamese-C9-d800b.woff2": "bab757f8a0a1bc04055ee98cb5777f3254aab11f6d222366e1f40a36f390506a",
+    "dist/assets/pdf.worker.min-Dswkl-cV.mjs": "8ab0e5e30031b4a06ecfddd5ae9562f0227f830ee7ec9ed1a968b134243d2386",
+    "dist/index.html": "89072f3f0c9de1d4cbf6fceccf8ab7942b3f107d1066a3c9e7a7ac6c5c0fd0f5",
+    "dist/licenses/JetBrains-Mono-OFL.txt": "b2fe5e8987594e9ffd1d2ca52a2f5d73eb8335243893c5d6254b5ad69269591d",
+    "dist/licenses/Manrope-OFL.txt": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b",
+    "dist/templates/academic-a4.png": "e149b33dc14f9bb99469b5dc9b39cf0f698de720894af8f9ef2bd74d31f1115d",
+    "dist/templates/academic-letter.png": "1fb69ee0e825acb916781022f7bb5e65576f7911b7fb08d34009aa21b60964e0",
+    "dist/templates/classic-a4.png": "38f95f3b25a51669105de7efdba08fe5b2633e7f7fde5ee15c3057862551fee3",
+    "dist/templates/classic-letter.png": "5e3ef1114cd3c728118e01c4161722b5c2a3a5e27a058f43f6bb5b825023c8ee",
+    "dist/templates/compact-technical-a4.png": "5878085cef410ee1b1463c0b71de8ebb48fc845899aed90d7b52c16ee577fc51",
+    "dist/templates/compact-technical-letter.png": "9fcc6a929547407948a5a23fe9d481bb197f20e195c7bbae2af125fb75e34a3a",
+    "dist/templates/manifest.json": "db231613ba3b1a69e01ffd5a111422874736d51d9b8f6509de7c71511b4a4a86",
+    "dist/templates/minimal-a4.png": "9bb702aae1e721255a0632010a22a82bcb283a49b16b6ce8bfbe74a99ef48353",
+    "dist/templates/minimal-letter.png": "10bfd6c692eac97a9e25bc2361d0113d43584069a05c3af4fbef64ad78cfb368",
+    "dist/templates/modern-a4.png": "bd6a55401f8642fcf375c18fe952d7ff2185635c7fa4ece24c7be3e157515b41",
+    "dist/templates/modern-letter.png": "99062be87eabf30184d937ea0ceef3768387beb81cd850110ce335819d5474a0",
+    "dist/templates/two-column-a4.png": "b7cca2c36d149da1af024d1095801051817084c536724f2f5c7d68f75e3cc348",
+    "dist/templates/two-column-letter.png": "d23fb748c48033f314d40fac502c42953d9003e478ec2360144e55da68c19802",
+    "dist-electron/main.cjs": "4fa0bbb451c0aeb18f858242e423efe4c073883e897fe250fe7f151b25ff99b3",
+    "dist-electron/main.cjs.map": "40c79a5e9a3ddb50b21956c30a22b30cbaa2983e4f165534b15df5494152e4c8",
+    "dist-electron/preload.cjs": "3ec2324f6364d098d91bbe8f6dc36b3069050f32e87792f1eab4287929b07ac6",
+    "dist-electron/preload.cjs.map": "f1737013d2c5c836b8a41b22542a113b51dc0e3b62c985e627062223afc28f97"
+  },
+  "remaining": [
+    "The 40% copy-time reduction target remains open.",
+    "Full hosted package qualification, reference-device/Mac-version measurements and physical power-loss validation.",
+    "Signing/notarization, complete binary redistribution review and all other open release-audit requirements."
+  ]
+}

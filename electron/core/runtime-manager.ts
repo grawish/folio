@@ -13,6 +13,7 @@ import {
 } from './runtime';
 import { Compiler } from './compiler';
 import { packDirectory } from './pack-io';
+import { syncDirectory } from './save-io';
 import {
   assembleResourcePack,
   requireResourcePack,
@@ -34,7 +35,12 @@ async function directory(name: string) {
   await packDirectory(name);
 }
 
-async function durableWrite(name: string, data: Uint8Array | string, mode = 0o600) {
+async function durableWrite(
+  name: string,
+  data: Uint8Array | string,
+  mode = 0o600,
+  pendingDirectories?: Set<string>,
+) {
   const temporary = `${name}.${randomUUID()}.tmp`;
   try {
     const handle = await fs.open(temporary, 'wx', mode);
@@ -45,12 +51,8 @@ async function durableWrite(name: string, data: Uint8Array | string, mode = 0o60
       await handle.close();
     }
     await fs.rename(temporary, name);
-    const parent = await fs.open(path.dirname(name), 'r');
-    try {
-      await parent.sync();
-    } finally {
-      await parent.close();
-    }
+    if (pendingDirectories) pendingDirectories.add(path.dirname(name));
+    else await syncDirectory(path.dirname(name));
   } finally {
     await fs.rm(temporary, { force: true });
   }
@@ -68,7 +70,7 @@ export class RuntimeManager implements RuntimeSource {
     readonly root: string,
     private options: {
       probe?(root: string, pin: RuntimePin): Promise<void>;
-      checkpoint?(phase: 'staged' | 'tested' | 'published'): Promise<void>;
+      checkpoint?(phase: 'copied' | 'staged' | 'tested' | 'published'): Promise<void>;
       packs?: ResourcePackStore;
     } = {},
   ) {}
@@ -269,6 +271,7 @@ export class RuntimeManager implements RuntimeSource {
       // Bound concurrent reads/writes; engine files can be much larger than a font.
       let next = 0;
       const files = [...names];
+      const pendingDirectories = new Set([runtime]);
       let count = 0;
       progress?.('copy', 0, files.length);
       const copied = await Promise.allSettled(
@@ -284,7 +287,15 @@ export class RuntimeManager implements RuntimeSource {
                 ? 0o700
                 : 0o600;
             await fs.mkdir(path.dirname(destination), { recursive: true, mode: 0o700 });
-            await durableWrite(destination, data, mode);
+            // This generation is still private. Flush each file now, then all
+            // directory entries once after every copy worker has finished.
+            for (
+              let parent = path.dirname(destination);
+              parent !== runtime;
+              parent = path.dirname(parent)
+            )
+              pendingDirectories.add(parent);
+            await durableWrite(destination, data, mode, pendingDirectories);
             if (++count % 32 === 0 || count === files.length)
               progress?.('copy', count, files.length);
           }
@@ -292,6 +303,13 @@ export class RuntimeManager implements RuntimeSource {
       );
       const failed = copied.find((result) => result.status === 'rejected');
       if (failed?.status === 'rejected') throw failed.reason;
+      await this.options.checkpoint?.('copied');
+      // Include intermediate folders created by recursive mkdir, and persist
+      // children before parents. No ready marker or pointer can precede this.
+      for (const parent of [...pendingDirectories].sort((a, b) => b.length - a.length)) {
+        signal?.throwIfAborted();
+        await syncDirectory(parent);
+      }
       await this.options.checkpoint?.('staged');
       signal?.throwIfAborted();
       await verifyRuntime(runtime, pin);

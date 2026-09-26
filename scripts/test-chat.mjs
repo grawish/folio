@@ -23,6 +23,8 @@ Built a document preview for a school project.
 Community library website. Kept the existing catalogue easy to search.
 \end{document}`;
 const requests = [];
+const delayedDiskRequest = 'Try another heading while file notifications are delayed.';
+let delayedDiskReview = false;
 let mode = 'edit',
   release = null,
   held = false;
@@ -65,6 +67,13 @@ const server = createServer(async (req, res) => {
       model: body.model,
     });
     if (type === 'review') {
+      if (prompt.request === delayedDiskRequest) {
+        delayedDiskReview = true;
+        // A final draft can legitimately take longer than Playwright's 5 s
+        // default. Keep this slow-provider control within the ordinary agent
+        // deadline and require the actual completed result below.
+        await new Promise((resolve) => setTimeout(resolve, 6500));
+      }
       send({ approved: true, issues: [], message: 'Both pages are readable.' });
       return;
     }
@@ -481,7 +490,7 @@ try {
   // native event timing. The real project scanner and agent still run normally.
   held = false;
   const beforeUnreportedReply = await page.locator('.chat-message.assistant').count();
-  await send('Try another heading while file notifications are delayed.');
+  await send(delayedDiskRequest);
   await expect.poll(() => held, { timeout: 60_000 }).toBe(true);
   await page.evaluate(() => window.folio.watchProject(null));
   await fs.writeFile(path.join(saved, 'main.tex'), source.replace('Projects', 'Delayed Outside'));
@@ -492,7 +501,9 @@ try {
   });
   await expect(page.locator('.chat-message.assistant').last()).toContainText(
     'kept your newer edits',
+    { timeout: 60_000 },
   );
+  expect(delayedDiskReview).toBe(true);
   await code();
   await expect(editor()).toContainText('My Manual Heading');
   await fs.writeFile(path.join(saved, 'main.tex'), beforeOutside);
