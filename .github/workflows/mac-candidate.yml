@@ -22,6 +22,8 @@ jobs:
         run: test "$(uname -m)" = arm64
       - run: npm ci
       - run: npm run setup
+      - name: Verify the prepared compiler matches the public pack
+        run: node --import tsx scripts/verify-pack-base.ts
       - name: Prepare PDF comparison tools
         run: |
           brew install poppler
@@ -45,6 +47,7 @@ jobs:
             release/SHA256SUMS
             release/disk-image-verification.log
             test-results/*-final.log
+            test-results/published-pack-base.json
             test-results/chat-*/failure.png
             test-results/chat-*/lifecycle.json
             test-results/chat-*/native-output.log

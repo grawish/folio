@@ -1,0 +1,290 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-26T18:17:32.204989+00:00",
+  "sourceBase": "d1223e65891f8eaec9cc507cd666c8c4c694b4ef",
+  "scope": "Source preparation and original signed-pack compatibility on Apple silicon. Hosted package rerun required; no signing, notarization or full release-completion claim.",
+  "hostedFailure": {
+    "run": "https://github.com/grawish/folio/actions/runs/36243314674",
+    "source": "bfbe7d95031a5975edf6a0a3c6bfeb1537b09f3b",
+    "conclusion": "failure",
+    "nativeSuitesPassed": 12,
+    "failedSuite": "pack-catalog",
+    "failure": "Fresh UTC-built base identity differed from the exact published pack base; final packaged suite and artifact verifier did not run."
+  },
+  "bundle": {
+    "before": {
+      "originalBundleSha256": "bc569e8a85d4508900936a164e612d22bcfea0b84faf17c013cbb2e9a4218509",
+      "timezones": [
+        {
+          "timezone": "Asia/Calcutta",
+          "sha": "bc569e8a85d4508900936a164e612d22bcfea0b84faf17c013cbb2e9a4218509",
+          "runtimeId": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059"
+        },
+        {
+          "timezone": "UTC",
+          "sha": "f3434b8e3e839601629dddfef502fbd6780599d770c1b375f5202100d1b8deb0",
+          "runtimeId": "e074f069a3923955e62382bfcd56154eb1d5e89fbd3e83e345cf28ff934322e1"
+        },
+        {
+          "timezone": "America/Los_Angeles",
+          "sha": "39396183958cd3acd1b8ae7cbfe4e3215410f2da05aa13e4fe22cd20186d5887",
+          "runtimeId": "5e21a8e6ac183f859d4f1f4ddc70ad964ee38f1a38c6fedab80d8e773666fc49"
+        }
+      ]
+    },
+    "after": {
+      "originalBundleSha256": "bc569e8a85d4508900936a164e612d22bcfea0b84faf17c013cbb2e9a4218509",
+      "expectedRuntimeId": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+      "timezones": [
+        {
+          "timezone": "Asia/Kolkata",
+          "bundleSha256": "bc569e8a85d4508900936a164e612d22bcfea0b84faf17c013cbb2e9a4218509",
+          "runtimeId": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+          "publishedBytesMatch": true
+        },
+        {
+          "timezone": "UTC",
+          "bundleSha256": "bc569e8a85d4508900936a164e612d22bcfea0b84faf17c013cbb2e9a4218509",
+          "runtimeId": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+          "publishedBytesMatch": true
+        },
+        {
+          "timezone": "America/Los_Angeles",
+          "bundleSha256": "bc569e8a85d4508900936a164e612d22bcfea0b84faf17c013cbb2e9a4218509",
+          "runtimeId": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+          "publishedBytesMatch": true
+        },
+        {
+          "timezone": "Pacific/Auckland",
+          "bundleSha256": "bc569e8a85d4508900936a164e612d22bcfea0b84faf17c013cbb2e9a4218509",
+          "runtimeId": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+          "publishedBytesMatch": true
+        }
+      ]
+    },
+    "fixedDosFields": "2024-01-01 05:30:00, constructed as local calendar fields without timezone conversion",
+    "negativeControl": "The cross-timezone regression fails with the original UTC-instant ZIP writer."
+  },
+  "notices": {
+    "historicalSource": "e6c92210fa8c4c3a15fa5bbd417a26f95bd127e2:THIRD_PARTY_NOTICES.md",
+    "retained": {
+      "path": "resources/runtime-core-v1-notices.md",
+      "bytes": 2826,
+      "sha256": "f73320bb1070df34893eaa1ab58345daf693f7e141938f1e2959a1299dbf717b"
+    },
+    "currentAppNotices": {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "bytes": 4709,
+      "sha256": "55d0540466200e0025ad2fc6c2347973a1b2e66f5e95f9a48af693fc17949a2f"
+    },
+    "negativeControl": "Using current app notices in the core retains its base identity but rejects assembly against the original signed pack target. Preparation now retains the historical core bytes; package.json independently includes the current app notices."
+  },
+  "utcPreparation": {
+    "passed": true,
+    "offlineFixtures": [
+      "classic-a4.tex",
+      "classic-letter.tex",
+      "modern-a4.tex",
+      "modern-letter.tex",
+      "academic-a4.tex",
+      "academic-letter.tex",
+      "minimal-a4.tex",
+      "minimal-letter.tex",
+      "compact-technical-a4.tex",
+      "compact-technical-letter.tex",
+      "two-column-a4.tex",
+      "two-column-letter.tex",
+      "basic-headings.tex",
+      "resume-packages.tex"
+    ],
+    "inventory": {
+      "passed": true,
+      "pack": "folio-multirow-2.9-v1",
+      "pin": {
+        "engine": "tectonic",
+        "version": "0.17.0",
+        "bundle": "folio-core-v1",
+        "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+        "platform": "darwin-arm64",
+        "biberVersion": "2.17"
+      },
+      "target": {
+        "engine": "tectonic",
+        "version": "0.17.0",
+        "bundle": "folio-multirow-2.9-v1",
+        "id": "f08d496354bb88e604ca8c2394935f8bf2e842a021d1b54b02ff210344a1d670",
+        "platform": "darwin-arm64",
+        "biberVersion": "2.17"
+      },
+      "signatureVerified": true,
+      "archiveSha256": "b11d22b915fba8f7a4efaa82d900912341cc2af1a05cd2dcee298ca48a4bbbfe",
+      "coreNoticesSha256": "f73320bb1070df34893eaa1ab58345daf693f7e141938f1e2959a1299dbf717b",
+      "filesVerified": 3982,
+      "manifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+      "scope": "Exact included runtime inventory, original signed public pack and assembled target; no signature or UI bypass."
+    }
+  },
+  "signedPackCorpus": {
+    "passed": true,
+    "results": [
+      {
+        "id": "folio-multirow-2.9-v1",
+        "artifact": {
+          "url": "https://github.com/grawish/folio/releases/download/resource-packs-v1/Folio-multirow-2.9-v1.foliopack",
+          "bytes": 2259484,
+          "sha256": "b11d22b915fba8f7a4efaa82d900912341cc2af1a05cd2dcee298ca48a4bbbfe"
+        },
+        "base": {
+          "engine": "tectonic",
+          "version": "0.17.0",
+          "bundle": "folio-core-v1",
+          "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+          "platform": "darwin-arm64",
+          "biberVersion": "2.17"
+        },
+        "target": {
+          "engine": "tectonic",
+          "version": "0.17.0",
+          "bundle": "folio-multirow-2.9-v1",
+          "id": "f08d496354bb88e604ca8c2394935f8bf2e842a021d1b54b02ff210344a1d670",
+          "platform": "darwin-arm64",
+          "biberVersion": "2.17"
+        },
+        "offlineCompile": true,
+        "baseUnchanged": true,
+        "corpus": [
+          {
+            "size": 10,
+            "paper": "a4paper",
+            "pdfBytes": 8790,
+            "passed": true
+          },
+          {
+            "size": 10,
+            "paper": "letterpaper",
+            "pdfBytes": 8784,
+            "passed": true
+          },
+          {
+            "size": 11,
+            "paper": "a4paper",
+            "pdfBytes": 8791,
+            "passed": true
+          },
+          {
+            "size": 11,
+            "paper": "letterpaper",
+            "pdfBytes": 8786,
+            "passed": true
+          },
+          {
+            "size": 12,
+            "paper": "a4paper",
+            "pdfBytes": 8831,
+            "passed": true
+          },
+          {
+            "size": 12,
+            "paper": "letterpaper",
+            "pdfBytes": 8828,
+            "passed": true
+          }
+        ]
+      }
+    ],
+    "scope": "Actual publisher signature, real native core and sandboxed offline compiler; source artifact, not packaged UI acceptance."
+  },
+  "checks": {
+    "unitTests": {
+      "passed": 227,
+      "failed": 0,
+      "skipped": 0
+    },
+    "typecheck": "passed",
+    "formatCheck": "passed"
+  },
+  "implementation": [
+    {
+      "path": "scripts/lib/runtime-bundle.mjs",
+      "bytes": 505,
+      "sha256": "244f1a4d84e4c31cb1e07a590a84d68191b20b0d5d483eec5128073aa65410bc"
+    },
+    {
+      "path": "scripts/prepare-runtime.mjs",
+      "bytes": 8636,
+      "sha256": "94281edefdd3ceee01d07c436aee1e4534d05969d56e85a9e6150e56108674b4"
+    },
+    {
+      "path": "scripts/verify-pack-base.ts",
+      "bytes": 2653,
+      "sha256": "225d37efe8ce1a3e2744e931c593211659d3fc4df9140d17375e3909100a960f"
+    },
+    {
+      "path": "tests/runtime-bundle.test.ts",
+      "bytes": 2286,
+      "sha256": "c98cc55c3bc1d822ab1615697a9f3fa5e71df4e928301050fed881ea8aeb3840"
+    },
+    {
+      "path": ".github/workflows/mac-candidate.yml",
+      "bytes": 3039,
+      "sha256": "f433461c2d2a3d1f05b20638fbd225def413a6ca62beb12a890d5116fd672af6"
+    }
+  ],
+  "localEvidence": [
+    {
+      "path": "test-results/runtime-timezone-before-controls.log",
+      "bytes": 2109,
+      "sha256": "8678b2ade2e8f4583ed2e35e1336fd816bf936a9a6445ae8297cc8498fc087fe"
+    },
+    {
+      "path": "test-results/runtime-timezone-after-controls.log",
+      "bytes": 291,
+      "sha256": "cfd3acb667ce3f718642d40e54d5ba685f4714494960bb6de2f3c0105e9f2971"
+    },
+    {
+      "path": "test-results/runtime-timezone-notices-before.log",
+      "bytes": 456,
+      "sha256": "750efd2c81ea7228ee741cc693ba4bedbd81fd6e3728bee3f6bd7431beb7f073"
+    },
+    {
+      "path": "test-results/runtime-timezone-utc-prepare.log",
+      "bytes": 2252,
+      "sha256": "d66a824b8af6ec6fa587cd71a06909f95de8b43e3da21f202eda7b7deffef2cb"
+    },
+    {
+      "path": "test-results/runtime-timezone-pack-base.log",
+      "bytes": 186,
+      "sha256": "94e46ecbf6dd362d8923f943f0bf7cb2dd95a7dfec0faaa505cdaf8701433783"
+    },
+    {
+      "path": "test-results/runtime-timezone-pack-corpus.log",
+      "bytes": 175,
+      "sha256": "3f57c50f4bcf0cb997dcd91b15c422165711d92ba16f64671f919639e204fd39"
+    },
+    {
+      "path": "test-results/runtime-timezone-all-unit.log",
+      "bytes": 23650,
+      "sha256": "0d885b5d14bcc73a08240e138209f5f9f8a7e42fab7226a1fb7cd21eaab7540d"
+    },
+    {
+      "path": "test-results/runtime-timezone-typecheck.log",
+      "bytes": 64,
+      "sha256": "5e0497e27df921e099efd62066b397df0bfe0eb796edd626db840b92aaa1ccec"
+    },
+    {
+      "path": "test-results/runtime-timezone-format.log",
+      "bytes": 183,
+      "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+    },
+    {
+      "path": "test-results/published-pack-p83t0f/result.json",
+      "bytes": 1883,
+      "sha256": "1f02f809dec6420eb9ecfc7d3090e3eec73f68a25d8564540073aa33b4c15bc9"
+    }
+  ],
+  "limitations": [
+    "A full hosted Mac qualification has not yet completed for this repair.",
+    "No changes to published pack bytes, catalog signatures, required target identities or old project pins.",
+    "Production redistribution, signing/notarization and remaining release-audit requirements stay open."
+  ]
+}

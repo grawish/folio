@@ -9,7 +9,7 @@ Folio now keeps a verified local copy of each compiler used by a project. Updati
 - A damaged or missing compiler prevents builds. Editing and saving remain available. If that exact compiler is unavailable locally, the app explains that a matching Folio version is needed; it does not substitute the current version.
 - First launch copies and checks the included runtime and runs a small offline TeX and bibliography build when Biber is included. Later launches reuse that copy. Repair stages another copy before switching to it.
 - A preparation screen protects the workspace until recovery has loaded. Closing during preparation leaves the previous recovery file untouched. If startup fails, Retry is available and the starter draft is never written over saved recovery.
-- General, privacy and AI connection settings remain separate. AI provider and model selection still happens only in Settings.
+- General, privacy and AI connection settings remain separate. AI connections are configured and selected in Settings; the active connection’s model can be selected beside Send in Chat.
 
 ## Identity and persistence
 
@@ -18,6 +18,14 @@ Folio now keeps a verified local copy of each compiler used by a project. Updati
 The project manifest includes `runtime` plus legacy `engine`/`bundle` labels derived from that same choice. A legacy labels-only project adopts the included complete identity only when the labels match; an incompatible recorded choice remains unavailable. Projects with no prior choice adopt the included version. Malformed compiler choices are rejected instead of discarded.
 
 Build fingerprints include the compiler choice. A PDF from another compiler identity cannot be exported as the current build, even when source and project revision otherwise match. Source/PDF history retains each version's compiler choice. Older history without a recorded choice uses the current project's choice when restored; it cannot reconstruct information that was never saved.
+
+## Reproducible resource bundles
+
+The core ZIP uses fixed DOS date/time fields: 1 January 2024 at 05:30. ZIP metadata has no timezone; the builder must write those local clock fields directly. Converting a UTC instant previously created different ZIP bytes on machines in different timezones, even when every TeX/font resource matched. The resulting compiler identities prevented a fresh GitHub build from using the published table pack.
+
+`scripts/lib/runtime-bundle.mjs` now preserves the first published bundle’s exact bytes in Kolkata, UTC, Los Angeles and Auckland. Runtime identities and all file checks remain strict. A full UTC preparation passes the offline corpus, retains the published core identity and verifies all 3,982 inventory entries. `scripts/verify-pack-base.ts` checks that prepared inventory, authenticates the original public pack and reproduces its signed target before Mac packaging. See [the regression evidence](releases/runtime-timezone-verification.json). This fixes build reproducibility; it does not migrate a project already pinned to another compiler identity.
+
+The first published pack also combines the original core notices into its signed target. `resources/runtime-core-v1-notices.md` preserves those exact bytes from the original preview (SHA-256 `f73320bb1070df34893eaa1ab58345daf693f7e141938f1e2959a1299dbf717b`). Preparation checks that digest. Later edits to the root-level notices must not change this compatibility input: the app separately includes the current `THIRD_PARTY_NOTICES.md`, and the license collectors retain updated material. Substituting current documentation into the historical core previously passed the base identity check but failed signed pack assembly. The new gate checks both. Neither the published pack nor its required target identity is changed.
 
 ## Repair transaction
 

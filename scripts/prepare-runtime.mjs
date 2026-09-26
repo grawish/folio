@@ -2,9 +2,10 @@ import { createHash } from 'node:crypto';
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { spawn } from 'node:child_process';
-import { zipSync, unzipSync, strToU8 } from 'fflate';
+import { unzipSync, strToU8 } from 'fflate';
 import { version, releases, bundleUrl, upstreamBundleDigest, biber } from './runtime-config.mjs';
 import { templateInputs } from './template-inputs.mjs';
+import { createRuntimeBundle } from './lib/runtime-bundle.mjs';
 
 const platform = `${process.platform}-${process.arch}`;
 const spec = releases[platform];
@@ -171,15 +172,7 @@ if (process.argv.includes('--update-lock')) {
 }
 const bundleDigest = hash(JSON.stringify(locked.files));
 content.SHA256SUM = strToU8(bundleDigest);
-const zip = zipSync(
-  Object.fromEntries(
-    Object.entries(content).map(([name, bytes]) => [
-      name,
-      [bytes, { mtime: new Date('2024-01-01T00:00:00Z') }],
-    ]),
-  ),
-  { level: 6 },
-);
+const zip = createRuntimeBundle(content);
 await fs.writeFile(path.join(root, 'bundle.zip'), zip);
 const manifest = {
   schemaVersion: 1,
@@ -210,7 +203,12 @@ if (process.platform === 'darwin') {
   await visit('biber-cache');
 }
 await fs.writeFile(path.join(root, 'manifest.json'), JSON.stringify(manifest, null, 2) + '\n');
-await fs.copyFile('THIRD_PARTY_NOTICES.md', path.join(root, 'THIRD_PARTY_NOTICES.md'));
+// Pack v1 combines these historical core notices into its signed target. Keep
+// their bytes stable; the app separately ships the current root-level notices.
+const coreNotices = await fs.readFile('resources/runtime-core-v1-notices.md');
+if (hash(coreNotices) !== 'f73320bb1070df34893eaa1ab58345daf693f7e141938f1e2959a1299dbf717b')
+  throw new Error('The published core notices changed. Preserve their exact pack-v1 bytes.');
+await fs.writeFile(path.join(root, 'THIRD_PARTY_NOTICES.md'), coreNotices);
 await fs.copyFile(lockedPath, path.join(root, 'bundle.lock.json'));
 console.log(
   `Prepared ${manifest.resourceCount} locked resources. Bundle: ${(zip.length / 1024 / 1024).toFixed(1)} MB.`,
