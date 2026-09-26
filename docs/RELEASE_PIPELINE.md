@@ -23,7 +23,7 @@ An initial branch-based deployment also passed before workflow access was grante
 
 | Workflow | Trigger | Result |
 | --- | --- | --- |
-| Check source | Main pushes, pull requests, manual | Formatting, unit tests, eight offline Rust source/notices controls, typecheck/build, website build and generated-skill consistency |
+| Check source | Main pushes, pull requests, manual | Formatting, unit tests, offline Rust source/notices and compiler-provenance controls, typecheck/build, website build and generated-skill consistency |
 | Publish website | Relevant main changes or manual | Static site deployment to GitHub Pages |
 | Release source preview | `source-v*` tag | Tested source/docs/skill archives, checksums and provenance in a public prerelease |
 | Qualify Apple silicon candidate | Manual | Fresh runtime setup, sequential real compiler integration, twelve rendered-PDF comparisons, arm64 packaging, fourteen native suites (including compiler help, local fonts, support export, save recovery and the public resource-pack catalog) and artifact verification |

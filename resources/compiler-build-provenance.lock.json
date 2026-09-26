@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "scope": "Exact upstream build artifact identity and installed native build dependencies; not a final linked-binary SBOM or redistribution approval.",
+  "compiler": {
+    "version": "0.17.0",
+    "sourceCommit": "8c0126a9653239a2e6e0a5274af9b8510f643030",
+    "target": "aarch64-apple-darwin",
+    "archive": "tectonic-0.17.0-aarch64-apple-darwin.tar.gz",
+    "archiveBytes": 21704674,
+    "archiveSha256": "a3f1cac7c5678f01661a92212f58480ae3b0634115d880dbc59e2953ded45667",
+    "binaryBytes": 53998928,
+    "binarySha256": "b52b5a730e2b0b33087304f7720f649603953f270a6b1c88bb031e1ae01f7f9c"
+  },
+  "upstream": {
+    "repository": "tectonic-typesetting/tectonic",
+    "release": "tectonic@0.17.0",
+    "tagObject": "7141d67aba85eb1cf38a769eac0b1bb2180c51d7",
+    "runId": 30227680364,
+    "runHeadSha": "f617f15912e26fe5300015f6fd26fdb639d53d60",
+    "jobId": 89864241906,
+    "artifactId": 8639168690,
+    "artifact": {
+      "filename": "tectonic-arm64-upstream-build-artifact.zip",
+      "bytes": 21594052,
+      "sha256": "b35ff7ca786c4dbc7b37613239bda636e7ab163cd669c5e29a5319c46ab1deba"
+    },
+    "log": {
+      "filename": "tectonic-0.17-arm64-upstream-build.log",
+      "bytes": 361580,
+      "sha256": "314c36a7e1f56bb47c8e869353d58e98ac3ae33f3c8ba0c3eee72ac034f7bb71"
+    },
+    "rustc": "1.97.1",
+    "rustcCommit": "8bab26f4f68e0e26f0bb7960be334d5b520ea452",
+    "cargo": "1.97.1",
+    "cranko": "0.17.3"
+  },
+  "vcpkg": {
+    "repository": "microsoft/vcpkg",
+    "commit": "a62ce77d56ee07513b4b67de1ec2daeaebfae51a",
+    "archive": "vcpkg-a62ce77d56ee07513b4b67de1ec2daeaebfae51a.tar.gz",
+    "bytes": 4801435,
+    "sha256": "6bb68555a0653a5ff62b2133dd9b96896322ae53e6c4e1f7d9cb8df051b77ca5",
+    "triplet": "arm64-osx",
+    "ports": [
+      {
+        "name": "vcpkg-cmake",
+        "version": "2024-04-23",
+        "features": []
+      },
+      {
+        "name": "vcpkg-cmake-config",
+        "version": "2024-05-23",
+        "features": []
+      },
+      {
+        "name": "brotli",
+        "version": "1.1.0#1",
+        "features": []
+      },
+      {
+        "name": "bzip2",
+        "version": "1.0.8#6",
+        "features": ["core", "tool"]
+      },
+      {
+        "name": "dirent",
+        "version": "1.26",
+        "features": []
+      },
+      {
+        "name": "expat",
+        "version": "2.7.3",
+        "features": []
+      },
+      {
+        "name": "zlib",
+        "version": "1.3.1",
+        "features": []
+      },
+      {
+        "name": "libpng",
+        "version": "1.6.50",
+        "features": []
+      },
+      {
+        "name": "freetype",
+        "version": "2.13.3",
+        "features": ["brotli", "bzip2", "core", "png", "zlib"]
+      },
+      {
+        "name": "vcpkg-cmake-get-vars",
+        "version": "2025-05-29",
+        "features": []
+      },
+      {
+        "name": "vcpkg-make",
+        "version": "2025-09-29",
+        "features": []
+      },
+      {
+        "name": "gperf",
+        "version": "3.3",
+        "features": []
+      },
+      {
+        "name": "libiconv",
+        "version": "1.18#2",
+        "features": []
+      },
+      {
+        "name": "pthreads",
+        "version": "3.0.0#14",
+        "features": []
+      },
+      {
+        "name": "pthread",
+        "version": "3.0.0#2",
+        "features": []
+      },
+      {
+        "name": "vcpkg-tool-meson",
+        "version": "1.9.0#1",
+        "features": []
+      },
+      {
+        "name": "fontconfig",
+        "version": "2.15.0#4",
+        "features": []
+      },
+      {
+        "name": "graphite2",
+        "version": "1.3.14#4",
+        "features": []
+      },
+      {
+        "name": "harfbuzz",
+        "version": "11.3.3",
+        "features": ["core", "freetype", "graphite2"]
+      },
+      {
+        "name": "icu",
+        "version": "74.2#6",
+        "features": ["core", "tools"]
+      }
+    ]
+  }
+}

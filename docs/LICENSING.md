@@ -38,4 +38,6 @@ This inventory deliberately covers the entire upstream lockfile, including devel
 
 ## License provenance
 
+The [compiler build provenance check](COMPILER_PROVENANCE.md) connects the bundled Tectonic executable byte for byte to its retained original upstream build artifact. It also verifies the build's 20 installed native port versions and preserves 139 recipe/patch/manifest and root notice files. Collecting their payload sources and resolving final linkage remain open; installed build dependencies are not automatically shipped libraries.
+
 The root LICENSE is copied without modifications from the [official PolyForm license repository at tag 1.0.0](https://github.com/polyformproject/polyform-licenses/blob/1.0.0/PolyForm-Noncommercial-1.0.0.md). The original project copyright notice is separate in NOTICE. The [PolyForm project](https://polyformproject.org/licenses/noncommercial/1.0.0) publishes the same standard terms.

@@ -24,6 +24,7 @@ jobs:
         with:
           python-version: '3.14'
       - run: python tests/rust-license-materials.py
+      - run: python tests/compiler-build-evidence.py
       - run: npm run format:check
       - run: npm test
       - run: npm run build

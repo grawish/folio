@@ -26,6 +26,8 @@ This audit uses the current implementation, actual native tests, package artifac
 
 ## Latest concrete artifacts
 
+- The included Tectonic compiler now matches its original upstream Apple silicon build artifact byte for byte. The same build log, pinned source manifest and vcpkg source archive agree on 20 installed native dependency versions; 139 original recipe/patch/manifest and root notice files are retained. Six tamper controls pass. Native payload source/notices and final linkage still need review; see `COMPILER_PROVENANCE.md` and `releases/compiler-build-verification.json`.
+
 - The Rust source collector verifies all 437 registry crates from Tectonic's exact upstream lockfile, preserves 770 included notices and adds 17 exact-commit notices for 13 packages. Eight offline controls and a full offline replay pass. Two missing notice texts, the exact shipped dependency graph and the full binary redistribution audit remain open; see `LICENSING.md` and `releases/rust-source-verification.json`.
 
 - Hosted candidate `433a5c8` passed 198 source tests, all 15 sequential compiler integrations and all twelve image comparisons with zero changed pixels. Packaging and five native suites passed; chat failed before the remaining suites and final artifact verification. Two local failures exposed test input attempted while Settings was still closing. Waiting for the native dialog to disappear and checking the exact draft makes the complete source-native chat workflow pass without an application change. See `releases/chat-modal-verification.json`; completed hosted qualification is still required.
