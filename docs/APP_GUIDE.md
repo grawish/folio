@@ -22,10 +22,14 @@ A desktop workspace where you can chat about your resume, mark changes on its PD
 - Native save/Save As, optional autosave, external-file watching with review and preserved copies, PDF export, and source ZIP export.
 - Safe ZIP project import with main-file selection, preserved chat/PDF history, fresh project identities, and ordinary folder opening.
 - Journaled multi-file saves with rollback after write failures or interrupted saves, protected external edits, and recovery flush before closing the window.
+- Guided interrupted-save review with before/attempted/current copies and retained editor drafts. See [save recovery](tutorials/save-and-recover.md#recover-an-interrupted-save).
 - A bundled compiler and locked local resources. Included templates compile with a fresh cache and network access denied.
 - Recorded compiler versions retained across app updates, with verified offline repair in Settings. Saves, recovery and exported projects keep their compiler choice.
 - Explicit compiler comparison in Settings: view both real PDFs, keep a full source/asset/history backup, and apply the included compiler only after review. See [compiler migration](COMPILER_MIGRATION.md).
 - Common imported XeLaTeX resume packages, Roboto/Source Sans Pro fonts, Font Awesome icons, and local Biber bibliography processing on macOS.
+- Signed resource-pack discovery, download/import, verification, cancellation/retry and explicit compiler preview/Apply in Settings. See [resource packs](tutorials/resource-packs.md).
+
+Current development source also allows editing and saving while the compiler prepares, and compresses PDF history in the background during saves. These improvements postdate the preview-4 download; the linked tutorials identify that difference.
 
 ## Platform status
 
@@ -41,7 +45,7 @@ macOS compiler isolation currently uses `sandbox-exec`/Seatbelt. It must be revi
 
 Developer prerequisite: Node.js 24 with npm. End users of a packaged build do not need Node.js or a separate LaTeX installation.
 
-The latest verified Apple silicon build is in `release/import-recovery/mac-arm64/Folio.app`; its disk image is `release/import-recovery/Folio-0.1.0-mac-arm64.dmg`. It adds crash recovery and review for interrupted ZIP imports, preserves outside edits, and fixes compiler readiness when reopening the same project. Chat, PDF annotations, six templates, bounded PDF rendering, resizable panes, autosave, journaled saves, outside-file review, compiler comparison and offline repair remain available. Earlier milestone builds are retained. Save your work and quit Folio before opening or installing the new build. These contain the runtime and template resources and are unsigned development artifacts. The exact local qualification is summarized in [implementation status](IMPLEMENTATION_STATUS.md).
+For a ready-made download, use the published [preview-4 release](https://github.com/grawish/folio/releases/tag/v0.1.0-preview.4) and read its [release notes and limitations](releases/v0.1.0-preview.4.md). It includes the compiler and template resources but is unsigned, not notarized, and older than current development source. Save your work and quit Folio before installing another build. Local milestone directories are developer evidence, not the public download location. [Package qualification](RELEASE_PIPELINE.md) records the tested source and artifacts; a newer source commit does not imply a new installer has been published.
 
 ```sh
 npm ci
@@ -219,7 +223,7 @@ See [chat implementation evidence](CHAT_FIRST_IMPLEMENTATION.md), [implementatio
 
 Original Folio source and documentation use [PolyForm Noncommercial 1.0.0](../LICENSE), with the [required notice](../NOTICE). This is a noncommercial, source-available project. Third-party components keep their own licenses; see [licensing scope and remaining redistribution work](LICENSING.md).
 
-The public [grawish/folio repository](https://github.com/grawish/folio) contains the source. Start with [your first resume](tutorials/first-resume.md), browse the [22 screenshot walkthroughs](FEATURE_GUIDE_INDEX.md), or install the [documentation skill](DOCUMENTATION_SKILL.md). The [release pipeline](RELEASE_PIPELINE.md) distinguishes source prereleases, Mac candidate qualification and the remaining production installer work.
+The public [grawish/folio repository](https://github.com/grawish/folio) contains the source. Start with [your first resume](tutorials/first-resume.md), browse the [30 screenshot walkthroughs](FEATURE_GUIDE_INDEX.md), or install the [documentation skill](DOCUMENTATION_SKILL.md). The [release pipeline](RELEASE_PIPELINE.md) distinguishes source prereleases, Mac candidate qualification and the remaining production installer work.
 
 
-The [performance investigation and optimization plan](PERFORMANCE_IMPROVEMENT_PLAN.md) includes three measured backend runs and their raw evidence. It identifies runtime-copy/self-test cost during first setup and verification cost during small warm builds. Full app, AI, storage and reference-device measurements remain open.
+The [performance investigation and optimization plan](PERFORMANCE_IMPROVEMENT_PLAN.md) includes backend and packaged startup measurements, before/after preparation and history-save comparisons, and sixty real source-edit-to-PDF samples across all twelve template/paper variants. It identifies runtime preparation and native build work as priorities and preserves raw evidence and measurement limits. AI timing, larger documents, whole-process resource budgets and broader device/OS acceptance remain open.
