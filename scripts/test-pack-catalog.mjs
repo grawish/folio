@@ -19,6 +19,8 @@ delete env.ELECTRON_RUN_AS_NODE;
 delete env.FOLIO_TEST_RUNTIME_SEED;
 const errors = [];
 const settingsReadyMs = [];
+const packReadyMs = {};
+const integrityTimeout = 120_000;
 let app, page;
 const launch = async () => {
   app = await electron.launch({
@@ -57,10 +59,10 @@ const settings = async () => {
   // Unlike Reload, this also requires the library response to have arrived;
   // Reload can briefly be enabled before the mount effect starts checking.
   await expect(page.getByRole('button', { name: 'Check for packs', exact: true })).toBeEnabled({
-    timeout: 120_000,
+    timeout: integrityTimeout,
   });
   await expect(page.getByRole('button', { name: 'Reload saved packs', exact: true })).toBeEnabled({
-    timeout: 120_000,
+    timeout: integrityTimeout,
   });
   settingsReadyMs.push(Math.round(performance.now() - started));
 };
@@ -87,10 +89,12 @@ try {
   expect(original.runtime).toEqual(row.base);
   await settings();
   await page.getByRole('button', { name: 'Check for packs', exact: true }).click();
-  await expect(card()).toBeVisible();
+  const catalogStarted = performance.now();
+  await expect(card()).toBeVisible({ timeout: integrityTimeout });
   await expect(
     card().getByRole('button', { name: 'Download and install', exact: true }),
-  ).toBeEnabled();
+  ).toBeEnabled({ timeout: integrityTimeout });
+  packReadyMs.catalog = Math.round(performance.now() - catalogStarted);
   await page.screenshot({ path: path.join(root, 'catalog-dark.png') });
   await card().getByRole('button', { name: 'Download and install', exact: true }).click();
   await expect(
@@ -112,8 +116,13 @@ try {
 
   await choose(archivePath);
   await page.getByRole('button', { name: 'Import pack file', exact: true }).click();
+  const importStarted = performance.now();
   const review = page.getByRole('article', { name: 'Review imported pack' });
-  await expect(review).toContainText(row.title);
+  // The review is created only after native signature/file verification and
+  // installed-runtime checks complete. Use the same bounded window as those checks,
+  // rather than Playwright's five-second default for a local DOM assertion.
+  await expect(review).toContainText(row.title, { timeout: integrityTimeout });
+  packReadyMs.importReview = Math.round(performance.now() - importStarted);
   await review.getByText('Package notices', { exact: true }).click();
   await expect(page.getByLabel('Imported pack notices')).toHaveValue(
     /LaTeX Project Public License/,
@@ -121,7 +130,7 @@ try {
   await expect(page.getByLabel('Imported pack notices')).toHaveValue(/SIL OPEN FONT LICENSE/);
   await page.screenshot({ path: path.join(root, 'import-review-dark.png') });
   await page.getByRole('button', { name: 'Discard import', exact: true }).click();
-  await expect(review).toHaveCount(0);
+  await expect(review).toHaveCount(0, { timeout: integrityTimeout });
 
   await app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0].setSize(1040, 680));
   await page.getByRole('button', { name: 'General', exact: true }).click();
@@ -131,13 +140,13 @@ try {
   // Await that real integrity check with the pack-operation window.
   await expect(
     card().getByRole('button', { name: 'Preview for this project', exact: true }),
-  ).toBeEnabled({ timeout: 120_000 });
+  ).toBeEnabled({ timeout: integrityTimeout });
   await expect(page.getByRole('button', { name: 'Done', exact: true })).toBeInViewport();
   await page.screenshot({ path: path.join(root, 'installed-small-light.png') });
   await card().getByRole('button', { name: 'Preview for this project', exact: true }).click();
   await page.getByRole('button', { name: 'Build comparison', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Use this pack', exact: true })).toBeEnabled({
-    timeout: 120_000,
+    timeout: integrityTimeout,
   });
   await expect(
     page.getByText('No before PDF is available for this source.', { exact: true }),
@@ -183,6 +192,7 @@ try {
         testPublisher: false,
         packaged: Boolean(process.argv[2]),
         settingsReadyMs,
+        packReadyMs,
         scope:
           'Normal compiled trust, actual public HTTPS catalog/archive, native install/checks, import notices, PDF preview, explicit Apply, backup, save and restart. No provider account used.',
       },

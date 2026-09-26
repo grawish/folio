@@ -26,9 +26,9 @@ test(
     const sibling = spawn(process.execPath, ['-e', 'setInterval(()=>{},1000)'], {
       stdio: 'ignore',
     });
-    let sampler;
+    const sampler = new ProcessSampler(executable, target.pid!, 50);
     t.after(async () => {
-      await sampler?.stop().catch(() => {});
+      await sampler.stop().catch(() => {});
       if (target.pid) {
         try {
           process.kill(-target.pid, 'SIGKILL');
@@ -38,7 +38,6 @@ test(
       await fs.rm(folder, { recursive: true, force: true });
     });
     const [ready] = await once(target, 'message');
-    sampler = new ProcessSampler(executable, target.pid!, 50);
     await sampler.start();
     const initial = sampler.samples[0];
     const initialLeaf = initial.processes.find((row) => row.pid === ready.pid)!;

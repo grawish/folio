@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-26T23:43:09.581843+00:00",
+  "applicationSourceCommit": "349d6cec3d09e35b88424c8b42a7f44c7bd47129",
+  "applicationInputsChanged": false,
+  "appAsarSha256": "690e78289d9b79d5c05084fc809d7da2497652943523307deb733e1c690e721d",
+  "hostedCandidate": {
+    "runId": 36278270166,
+    "url": "https://github.com/grawish/folio/actions/runs/36278270166",
+    "conclusion": "failure",
+    "artifact": {
+      "id": 10918097228,
+      "path": "artifacts/mac-349d6ce.zip",
+      "bytes": 4539903,
+      "sha256": "de3d8f0fd6b501fc9ac8771410ce73861c7f332559e45b943e5b2af017fe92c4"
+    },
+    "sourceTestsPassed": 252,
+    "compilerIntegrationsPassed": 15,
+    "templateImagesPassed": 12,
+    "changedPixels": 0,
+    "nativeSuitesPassed": [
+      "import-recovery",
+      "import",
+      "pdf-viewer",
+      "pdf-lifecycle",
+      "migration",
+      "chat",
+      "runtime",
+      "workspace",
+      "diagnostics",
+      "fonts",
+      "support",
+      "save-recovery"
+    ],
+    "failedSuite": "pack-catalog",
+    "notReached": [
+      "packaged",
+      "final package verification"
+    ],
+    "failure": "A five-second assertion waited for the imported-pack review while native signature/file and installed-runtime verification remained active. The public pack download and installation had passed. The retained screenshot shows Checking the pack\u2019s signature and files\u2026; it does not establish an application failure.",
+    "log": {
+      "path": "artifacts/mac-349d6ce/test-results/release-pack-catalog-final.log",
+      "bytes": 5939,
+      "sha256": "2d47605a3a996400060b271c1e2287de6acf02410e685080efdfc9c9427e20e5"
+    },
+    "screenshot": {
+      "path": "artifacts/mac-349d6ce/test-results/pack-catalog-SoAQjA/failure.png",
+      "bytes": 124992,
+      "sha256": "6d3f79b0a9169cfe230060a1ef1b03a5ce5e9878f95876d5d66e09bcef364430"
+    },
+    "nativeRecord": {
+      "path": "artifacts/mac-349d6ce/release/native-tests.json",
+      "bytes": 5943,
+      "sha256": "613296d2699ec2a21ec2b40681db5dc8ce830e820fb7df8b6949bedc902e57dd"
+    },
+    "testScriptsMatchCommit": true
+  },
+  "sourceCi": {
+    "runId": 36280010896,
+    "commit": "7e3562b4b768b1d3d371b285429fee9fce8309cd",
+    "conclusion": "failure",
+    "sourceTestsPassed": 253,
+    "nativeControlCpuSeconds": 0.814,
+    "failure": "Production build type checking rejected the new JavaScript helper import because its TypeScript declaration was missing, with consequent implicit-any errors in the calibration test.",
+    "log": {
+      "path": "test-results/process-profile-source-failed.log",
+      "bytes": 3685,
+      "sha256": "3da40a77ec62614c2fb861c5f8596e187bb544ede3d8166fbf6df9ceef9d34fe"
+    }
+  },
+  "repair": {
+    "packAssertions": "Use the existing bounded 120-second native verification window for catalog readiness, imported-pack review and discard, and retain exact content/readiness assertions. Record catalog and imported-review waits.",
+    "types": "Add mac-process-sampler.d.mts and construct a typed sampler once in the calibration test. No application or observer implementation change.",
+    "files": [
+      {
+        "path": "scripts/test-pack-catalog.mjs",
+        "bytes": 10521,
+        "sha256": "bdaf2bac1235655ff6dcba1f77567021e9b623acc9afdb452e2fbb3b3a0c2ad4"
+      },
+      {
+        "path": "scripts/mac-process-sampler.d.mts",
+        "bytes": 867,
+        "sha256": "29220c6b981c24c2233c885a8b3a914a73e01698fc6521183d79e1ddc4a1855a"
+      },
+      {
+        "path": "tests/mac-process-sampler.test.ts",
+        "bytes": 4251,
+        "sha256": "c93ab9a78b782451b084639ce0d914d1d5540409ad7032f94aeab398c4ad5a82"
+      }
+    ]
+  },
+  "localVerification": {
+    "packCatalog": {
+      "result": {
+        "path": "test-results/pack-catalog-duok6g/result.json",
+        "bytes": 1139,
+        "sha256": "21d8c0935cecd6402495b09371a8ce0385e267ca112a6d5504f3b5c95e88c46f"
+      },
+      "log": {
+        "path": "test-results/pack-catalog-import-wait.log",
+        "bytes": 301,
+        "sha256": "ccaf35c558659dcb5dc72ee51bd43570d8307012ef0b440c783f04b1c0fa6bf9"
+      },
+      "passed": true,
+      "settingsReadyMs": [
+        29,
+        2849
+      ],
+      "packReadyMs": {
+        "catalog": 816,
+        "importReview": 2362
+      },
+      "scope": "Normal compiled trust, actual public HTTPS catalog/archive, native install/checks, import notices, PDF preview, explicit Apply, backup, save and restart. No provider account used."
+    },
+    "sourceTestsPassed": 253,
+    "unitLog": {
+      "path": "test-results/qualification-repair-unit.log",
+      "bytes": 26379,
+      "sha256": "9f58ae45e8a5f22552deec80f4cdc6937f0070ac2a218acbfbe4bed9fbc5a36c"
+    },
+    "buildPassed": true,
+    "buildLog": {
+      "path": "test-results/qualification-repair-build.log",
+      "bytes": 1719,
+      "sha256": "44139e631ca5e233fdf2ab1790cf4897247226251af1081f548223497ef314f8"
+    },
+    "formatPassed": true,
+    "formatLog": {
+      "path": "test-results/qualification-repair-format.log",
+      "bytes": 183,
+      "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+    }
+  },
+  "scope": "Test synchronization and developer-tool type declarations only. Full hosted qualification of the unchanged compiler-limit application remains required. Earlier full hosted milestone 2e720b7 and public preview.4 keep their original scope."
+}
