@@ -31,8 +31,6 @@ __pycache__/
 # Unused historical branding explorations.
 assets/branding/
 
-# Generated launch-video frames, review images, and intermediate audio.
-brag-output/work/frames/
-brag-output/work/stills/
-brag-output/work/*.png
-brag-output/work/*.wav
+# Local video production output. Publish only curated media under docs/.
+/brag-output/
+/brag-output-*/

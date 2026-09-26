@@ -1,1 +1,0 @@
-Folio: draw a box on your resume PDF, say "lead with the 28%", and your AI edits the LaTeX, rebuilds it on your Mac and checks the finished page. Chat-first LaTeX resumes for Apple silicon, source available: github.com/grawish/folio
