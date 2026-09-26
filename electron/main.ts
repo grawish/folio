@@ -33,7 +33,7 @@ import { adoptRuntime, validateRuntimePin } from '../src/shared/runtime';
 import { WorkspaceStore, safeId } from './core/workspace';
 import { ConnectionStore } from './core/connections';
 import { ProviderService } from './core/ai-provider';
-import { ResumeAgent, validateRenderedPdf } from './core/agent';
+import { ResumeAgent, validateRenderedPdf, validatePdfInspection } from './core/agent';
 import type { PdfAnnotation, RenderedPdf } from '../src/shared/ai';
 
 protocol.registerSchemesAsPrivileged([
@@ -86,12 +86,17 @@ const support = new SupportBundles({
   write: atomicWrite,
 });
 let workspaces: WorkspaceStore;
+type PdfInspection = import('../src/shared/ai').PdfInspection;
 let connections: ConnectionStore;
 let providers: ProviderService;
 let agent: ResumeAgent;
 const renders = new Map<
   string,
-  { resolve(value: RenderedPdf): void; reject(error: Error): void }
+  {
+    mode: 'images' | 'metadata';
+    resolve(value: RenderedPdf | PdfInspection): void;
+    reject(error: Error): void;
+  }
 >();
 let recoveryQueue = Promise.resolve();
 let requestGeneration = 0;
@@ -134,12 +139,13 @@ const runtimeRoot = app.isPackaged
     );
 const devUrl = !app.isPackaged ? process.env.VITE_DEV_SERVER_URL : undefined;
 
-function renderPdf(
+function requestPdf(
   runId: string,
   pdf: Uint8Array,
   annotations: PdfAnnotation[],
   signal: AbortSignal,
-): Promise<RenderedPdf> {
+  mode: 'images' | 'metadata',
+): Promise<RenderedPdf | PdfInspection> {
   signal.throwIfAborted();
   if (!window || window.isDestroyed())
     return Promise.reject(new Error('Open Folio to review the PDF.'));
@@ -159,6 +165,7 @@ function renderPdf(
       reject(new Error('The PDF could not be rendered in time. Try again.'));
     }, 45_000);
     renders.set(requestId, {
+      mode,
       resolve: (value) => {
         cleanup();
         resolve(value);
@@ -169,7 +176,7 @@ function renderPdf(
       },
     });
     signal.addEventListener('abort', abort, { once: true });
-    window!.webContents.send('agent:render', { requestId, runId, pdf, annotations });
+    window!.webContents.send('agent:render', { requestId, runId, pdf, annotations, mode });
   });
 }
 
@@ -345,14 +352,32 @@ function registerHandlers() {
     workspaces.version(safeId(projectId), safeId(versionId)),
   );
   handle('ai:settings', () => connections.list());
-  handle('ai:save', (input) => connections.save(input));
-  handle('ai:remove', (id: string) => {
-    providers.cancelLogin(safeId(id));
-    return connections.remove(id);
+  handle('ai:save', async (input) => {
+    const result = await connections.save(input);
+    // Retire the old session after its current call without blocking Settings.
+    void providers.invalidate().catch(() => {});
+    return result;
   });
-  handle('ai:select', (id: string | null) => connections.select(id === null ? null : safeId(id)));
+  handle('ai:models', (id: string) => providers.catalog(safeId(id)));
+  handle('ai:model', (id: string, selection: import('../src/shared/ai').ModelSelection) =>
+    connections.selectModel(safeId(id), selection),
+  );
+  handle('ai:remove', async (id: string) => {
+    providers.cancelLogin(safeId(id));
+    const result = await connections.remove(id);
+    // Retire the old session after its current call without blocking Settings.
+    void providers.invalidate().catch(() => {});
+    return result;
+  });
+  handle('ai:select', async (id: string | null) => {
+    const result = await connections.select(id === null ? null : safeId(id));
+    // Retire the old session after its current call without blocking Settings.
+    void providers.invalidate().catch(() => {});
+    return result;
+  });
   handle('ai:check', (id: string, images: boolean) => providers.check(safeId(id), images === true));
   handle('ai:login', async (id: string) => {
+    await providers.invalidate();
     const login = await providers.login(safeId(id));
     if (login.url) await shell.openExternal(login.url);
     return { message: login.message, loginId: login.loginId };
@@ -371,7 +396,9 @@ function registerHandlers() {
       return;
     }
     try {
-      pending.resolve(validateRenderedPdf(data));
+      pending.resolve(
+        pending.mode === 'metadata' ? validatePdfInspection(data) : validateRenderedPdf(data),
+      );
     } catch (error) {
       pending.reject(error as Error);
     }
@@ -593,7 +620,13 @@ function registerHandlers() {
       };
     const result = await compiler.compile(project, assets);
     if (result.status === 'success' && result.pdf && generation === requestGeneration) {
-      const version = await workspaces.checkpoint(project, result.pdf, 'Built from source');
+      const version = await workspaces.checkpoint(
+        project,
+        result.pdf,
+        'Built from source',
+        false,
+        result.buildFingerprint,
+      );
       result.versionId = version.id;
     }
     return result;
@@ -671,7 +704,7 @@ function registerHandlers() {
     await migrations.cancel();
     await recoveryQueue;
     await agent.cancel();
-    providers.close();
+    await providers.close();
     await workspaces.flush();
     await compiler.cancel();
     closing = true;
@@ -871,14 +904,17 @@ if (primaryInstance)
     providers = new ProviderService(connections, path.join(dataRoot, 'ai-requests'));
     agent = new ResumeAgent({
       workspace: workspaces,
-      model: () => providers.model(),
+      model: (input, signal) => providers.model(input?.connectionId, input?.selection, signal),
       assets: async (project) => {
         await store.requireReviewedDisk(project.id);
         return store.assets(project);
       },
       compile: (project, assets) => agentCompiler.compile(project, assets),
       cancelBuild: () => agentCompiler.cancel(),
-      render: renderPdf,
+      render: (id, pdf, notes, signal) =>
+        requestPdf(id, pdf, notes, signal, 'images') as Promise<RenderedPdf>,
+      inspect: (id, pdf, signal) =>
+        requestPdf(id, pdf, [], signal, 'metadata') as Promise<PdfInspection>,
       progress: (event) => window?.webContents.send('agent:progress', event),
     });
     session.defaultSession.setPermissionRequestHandler((_webContents, _permission, callback) =>

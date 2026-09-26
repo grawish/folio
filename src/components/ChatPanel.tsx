@@ -9,15 +9,18 @@ import {
   Undo2,
   X,
 } from 'lucide-react';
-import { useEffect, useRef } from 'react';
-import type { AgentProgress, PdfAnnotation, WorkspaceState } from '../shared/ai';
+import { useEffect, useRef, useState } from 'react';
+import type { AgentProgress, PdfAnnotation, WorkspaceState, AISettings } from '../shared/ai';
 import { NoteThumbnail } from './NoteThumbnail';
+import { ChatModelPicker } from './ChatModelPicker';
 
 export function ChatPanel({
   workspace,
   update,
   progress,
   connected,
+  connections,
+  onConnections,
   ready,
   onSend,
   onStop,
@@ -31,6 +34,8 @@ export function ChatPanel({
   update: (next: WorkspaceState) => void;
   progress: AgentProgress | null;
   connected: boolean;
+  connections: AISettings;
+  onConnections(settings: AISettings): void;
   ready: boolean;
   onSend(): void;
   onStop(): void;
@@ -41,6 +46,7 @@ export function ChatPanel({
   onNote(note: PdfAnnotation): void;
 }) {
   const scroll = useRef<HTMLDivElement>(null);
+  const [selectingModel, setSelectingModel] = useState(false);
   const busy = !!progress && !['complete', 'error', 'cancelled'].includes(progress.phase);
   const attached = workspace.annotations.filter((note) =>
     workspace.attachedNoteIds.includes(note.id),
@@ -128,6 +134,12 @@ export function ChatPanel({
                   </time>
                 </div>
                 <p>{message.text}</p>
+                {!!message.execution?.models.length && (
+                  <small className="chat-model-used">
+                    {message.execution.models.join(' → ')}
+                    {message.execution.escalated ? ' · Auto escalated' : ''}
+                  </small>
+                )}
                 <div className="chat-notes">
                   {(
                     message.annotationSnapshot ??
@@ -169,7 +181,9 @@ export function ChatPanel({
                   <div className="chat-result-actions">
                     <span>
                       <CheckCircle2 size={15} />
-                      PDF checked
+                      {message.execution?.validation === 'compiled'
+                        ? 'Built successfully'
+                        : 'Visually checked'}
                     </span>
                     <button onClick={() => onHistory(message.versionId)}>
                       <History size={14} />
@@ -233,7 +247,7 @@ export function ChatPanel({
         className="chat-composer"
         onSubmit={(event) => {
           event.preventDefault();
-          if (!busy && ready && connected) onSend();
+          if (!busy && !selectingModel && ready && connected) onSend();
         }}
       >
         <textarea
@@ -245,17 +259,33 @@ export function ChatPanel({
           onKeyDown={(event) => {
             if (event.key === 'Enter' && !event.shiftKey && !event.nativeEvent.isComposing) {
               event.preventDefault();
-              if (!busy && ready && connected && (workspace.draft.trim() || attached.length))
+              if (
+                !busy &&
+                !selectingModel &&
+                ready &&
+                connected &&
+                (workspace.draft.trim() || attached.length)
+              )
                 onSend();
             }
           }}
         />
         <div className="chat-notes">{attached.map((note) => noteChip(note, true))}</div>
         <div className="composer-bottom">
-          <span className="composer-hint">
-            <Paperclip size={16} />
-            Mark the PDF to attach feedback
-          </span>
+          {connected ? (
+            <ChatModelPicker
+              connection={connections.connections.find((c) => c.id === connections.activeId)}
+              disabled={busy || selectingModel}
+              onChange={onConnections}
+              onBusy={setSelectingModel}
+              onSettings={onSettings}
+            />
+          ) : (
+            <span className="composer-hint">
+              <Paperclip size={16} />
+              Mark the PDF to attach feedback
+            </span>
+          )}
           {busy ? (
             <button className="button primary" type="button" onClick={onStop}>
               <Square size={14} />
@@ -265,7 +295,12 @@ export function ChatPanel({
             <button
               className="button primary"
               type="submit"
-              disabled={!ready || !connected || (!workspace.draft.trim() && !attached.length)}
+              disabled={
+                selectingModel ||
+                !ready ||
+                !connected ||
+                (!workspace.draft.trim() && !attached.length)
+              }
             >
               Send
               <Send size={15} />

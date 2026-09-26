@@ -401,7 +401,8 @@ test('agent supplies selected old-version source, pages and crops to the model',
   });
   assert.equal(result.status, 'needs-input');
   assert.equal(result.project, undefined);
-  assert.equal(requests[0].images.length, 3);
+  // Only the anchored historical page and crop are needed before a clarification.
+  assert.equal(requests[0].images.length, 2);
   assert.ok(requests[0].prompt.includes('Original facts'));
   assert.ok(requests[0].prompt.includes('Earlier PDF version'));
 });

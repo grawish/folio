@@ -2,6 +2,8 @@
 
 # Release completion audit — 26 September 2026
 
+**Preview publication:** [v0.1.0-preview.4](https://github.com/grawish/folio/blob/main/docs/releases/v0.1.0-preview.4.md) adds an unsigned Apple silicon DMG and application ZIP with chat model selection and the faster editing harness. Collected third-party materials and explicit qualification records accompany the download. This development preview does not close the production requirements in this audit; historical milestones below retain their original scope.
+
 **Overall goal remains active.** The chat-first amendment is implemented and verified on the development Mac, but the Apple silicon macOS release still has open production requirements. A successful local chat build does not prove that release complete.
 
 This audit uses the current implementation, actual native tests, package artifacts and documented limits. It preserves the original requirements. Items marked partial or open remain required for the Mac release. The user has explicitly removed Windows, Linux, Intel Mac and cross-platform runtime equivalence from this goal.

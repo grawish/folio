@@ -1,5 +1,7 @@
 # Publication and release pipeline
 
+The first downloadable app preview is [v0.1.0-preview.4](releases/v0.1.0-preview.4.md), an unsigned Apple silicon DMG and application ZIP. It includes the faster editing harness, chat model selection, collected third-party materials, checksums and package qualification records. This manual preview publication is separate from automated source previews. Production signing, notarization, updater and redistribution-audit requirements remain open; earlier milestones below describe their state at the time.
+
 The first reviewed source commit was pushed to `grawish/folio` before these workflows were added, as requested. Only source, tests, docs, synthetic screenshots, templates and required static assets are tracked. Local profiles, private design captures, runtime downloads, old installers and caches stay ignored.
 
 ## Current hosting state

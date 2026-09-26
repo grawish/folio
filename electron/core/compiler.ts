@@ -6,6 +6,7 @@ import type { BuildResult, Project } from '../../src/shared/types';
 import { fingerprint, safeRelative } from './project';
 import { inspectRuntime, macSandboxProfile } from './runtime';
 import { parseDiagnostics } from './diagnostics';
+import { buildFingerprint } from './build-provenance';
 import type { RuntimeLease, RuntimeSource } from './runtime-manager';
 
 export class Compiler {
@@ -148,6 +149,7 @@ export class Compiler {
           if (!pdf.subarray(0, 5).equals(Buffer.from('%PDF-')))
             throw new Error('The compiler did not produce a valid PDF.');
           result.pdf = new Uint8Array(pdf);
+          result.buildFingerprint = buildFingerprint(project, assets, runtime.pin);
           this.last = { projectId: project.id, fingerprint: fingerprint(project), result };
         } else if (!diagnostics.some((d) => d.severity === 'error'))
           diagnostics.push({

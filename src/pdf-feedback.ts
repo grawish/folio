@@ -1,6 +1,20 @@
 import { withPdfJob } from './pdf-job';
-import type { PdfAnnotation, RenderedPdf } from './shared/ai';
+import type { PdfAnnotation, RenderedPdf, PdfInspection } from './shared/ai';
 import { checkPdfPages, checkPdfPageSize } from './pdf-policy';
+
+export function inspectPdf(pdf: Uint8Array): Promise<PdfInspection> {
+  return withPdfJob(pdf, 15_000, async (documentPdf) => {
+    if (documentPdf.numPages < 1 || documentPdf.numPages > 20)
+      throw new Error('PDF validation supports up to 20 pages.');
+    // No canvases, text layers or image encoding are needed to compare pagination.
+    for (let number = 1; number <= documentPdf.numPages; number++) {
+      const page = await documentPdf.getPage(number);
+      checkPdfPageSize(page.getViewport({ scale: 1 }), number);
+      page.cleanup();
+    }
+    return { pageCount: documentPdf.numPages };
+  });
+}
 
 export function drawAnnotation(
   context: CanvasRenderingContext2D,

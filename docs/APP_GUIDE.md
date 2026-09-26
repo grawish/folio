@@ -5,7 +5,7 @@ A desktop workspace where you can chat about your resume, mark changes on its PD
 ## What works
 
 - Chat beside the real PDF, with the existing file sidebar and a secondary Code tab.
-- Settings-only AI setup and selection: installed Codex/Claude Code subscriptions, OpenAI/Anthropic API keys, and compatible custom endpoints.
+- Chat model selection with Auto and manual choices; connection setup in Settings: installed Codex/Claude Code subscriptions, OpenAI/Anthropic API keys, and compatible custom endpoints.
 - An agent that reads source and PDF images, proposes edits in a separate copy, builds locally, and checks every output page before applying changes.
 - PDF highlights, boxes, freehand marks, and notes. Attach selected marked areas to a message, including their page and source context.
 - Persistent conversations, drafts, notes, and matching source/PDF versions; compare, restore, undo, stop, and protection for newer manual edits.

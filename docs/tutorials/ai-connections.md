@@ -1,6 +1,6 @@
 # Connect and choose your AI
 
-All connection setup and selection happen in **Settings → AI connections**. You do not need AI to edit Code or build a PDF locally.
+Set up and select connections in **Settings → AI connections**. Choose the model beside Send in Chat. You do not need AI to edit Code or build a PDF locally.
 
 ![Empty AI connections page](../images/connections-empty.png)
 
@@ -45,6 +45,16 @@ These screenshots contain no keys. Your API provider bills API use separately. F
 Choose **Custom API connection**. Select the service's actual API format: OpenAI Chat Completions, OpenAI Responses, or Anthropic Messages. Enter its **Base URL**, **Model**, and key if required. Save it, select it, and test it. The service must support the selected format and images; a text-only endpoint cannot review PDF images.
 
 ![Custom API connection form](../images/connection-custom.png)
+
+## Choose a model in Chat
+
+The selector beside **Send** offers **Auto**, **Connection default**, and the connection's available models. The connection name opens its settings. Choices are remembered per connection and apply to the next message; an in-flight request keeps its captured connection and selection.
+
+**Auto** uses a Fast model for clear wording changes and source questions, and a Capable model for layout work, PDF notes, broad edits, or uncertain source. It can escalate after an invalid edit or failed build, with at most three edit attempts. Replies show which model was used. Choosing a specific model keeps that model fixed throughout the request.
+
+Edit the connection's **Fast model** and **Capable model** fields to override the suggested roles. Codex and API connections discover models where supported. Claude Code offers its provider aliases. Custom endpoints use the configured model for both roles until you set separate choices. If discovery is unavailable, configured models remain selectable. Image support belongs to each model; testing the connection default does not verify every model in the picker.
+
+New connections start in Auto. Connections saved by earlier versions retain their configured default until you choose Auto. Auto never changes the provider or account for you. Provider usage and billing still apply.
 
 ## Change or remove a connection
 

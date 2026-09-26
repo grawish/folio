@@ -5,12 +5,12 @@ Folio has three main parts. React draws the workspace. Electron handles native f
 ## From request to PDF
 
 1. Chat sends a typed request through `electron/preload.ts`.
-2. `electron/core/agent.ts` collects the current source and relevant PDF images. `ai-provider.ts` and `ai-process.ts` talk to the selected connection.
-3. The agent edits a separate working copy, builds it, and asks the model to inspect the output pages.
+2. `electron/core/agent.ts` captures the connection and model selection, routes locally between Fast and Capable roles, and collects source plus PDF images when needed. `ai-provider.ts` and `ai-process.ts` talk to the selected connection.
+3. Exact-match patches apply atomically to a separate candidate. Every changed candidate builds locally. Narrow text edits use PDF metadata to compare pagination; other changes require every-page visual review.
 4. Folio checks that the original project has not changed before applying the result. A stale result becomes a recoverable draft instead of replacing newer edits.
 5. `src/components/PdfPreview.tsx` displays the successful PDF. Marks and notes are separate from PDF bytes, so exports stay clean.
 
-AI setup and the active connection live only in Settings. The renderer receives connection metadata, not saved key values. Native subscription adapters use installed provider commands. API adapters use the user's configured endpoint and key.
+AI setup and the active connection live in Settings. The chat composer exposes Auto, connection default, and manual model selection, remembered locally per connection. The renderer receives connection metadata, not saved key values. Native subscription adapters use installed provider commands. API adapters use the user's configured endpoint and key.
 
 ## Code map
 
@@ -29,6 +29,16 @@ AI setup and the active connection live only in Settings. The renderer receives 
 | Outside-file review | `project-scan.ts`, `src/components/ExternalChanges.tsx` |
 | PDF worker/render bounds | `src/usePdfDocument.ts`, `pdf-policy.ts`, `pdf-job.ts` |
 | Typed bridge | `electron/preload.ts`, `src/shared/` |
+
+## Latency and model routing
+
+Model catalogs are cached for five minutes and retain configured choices when discovery fails. Auto stays within the selected connection; failures in authentication, quota or transport do not trigger cross-provider fallback. Fast and Capable role overrides live with connection settings. Credentials are captured in the main process for the run. Known supported reasoning options are passed explicitly; unknown options are omitted.
+
+The Codex adapter reuses an isolated process with a 60-second idle timeout, creating fresh ephemeral threads and verifying tool isolation for each inference. Cancellation, connection changes and shutdown release the session. API requests do not create temporary workspaces. Claude command resolution and successful authentication are reused within a run.
+
+PDF build provenance includes source, asset bytes and the exact compiler pin. Older snapshots without provenance remain readable but are rebuilt before reuse as a current baseline. Rendered images are cached by PDF bytes and annotations, bounded to four entries / 24 MiB and cleared on a project change. Run metadata records models, escalation, validation type and stage timings without credentials.
+
+See [harness measurements](HARNESS_PERFORMANCE.md) for the synthetic benchmark and its limits.
 
 ## Stored data
 

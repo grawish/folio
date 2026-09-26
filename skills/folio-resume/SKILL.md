@@ -25,11 +25,11 @@ Read only what the task needs:
 
 ## Product facts that change the answer
 
-Chat is the main workspace; Code is secondary. AI setup, model configuration and active-provider selection happen only in Settings. Folio uses installed Codex/Claude Code commands or user-configured APIs; a subscription is not an API key. Provider account eligibility and image support require checking separately. Never request that users paste keys into chat or documents.
+Chat is the main workspace; Code is secondary. AI setup and active-provider selection happen in Settings. The Chat composer offers Auto, connection default and manual model selection. Auto stays within the current connection; Fast and Capable role overrides live in Settings. Folio uses installed Codex/Claude Code commands or user-configured APIs; a subscription is not an API key. Provider account eligibility and image support require checking separately. Never request that users paste keys into chat or documents.
 
 The local compiler can work without AI. Sending a chat shares relevant source, conversation and PDF images with the selected provider. Source ZIPs contain conversations/history; clean PDF exports do not contain annotations. Explain this difference when helping someone share a project.
 
-Review the actual PDF after changing TeX. A last-good PDF can remain visible while current source fails. Use the current build/render state before recommending export. Viewer bounds are 100 pages/25 MiB; AI review has a separate 20-page bound. A model's visual review does not verify resume facts.
+Inspect the actual PDF after changing TeX. Folio labels compile-only narrow edits Built successfully and reserves Visually checked for a completed model review. A last-good PDF can remain visible while current source fails. Use the current build/render state before recommending export. Viewer bounds are 100 pages/25 MiB; AI review has a separate 20-page bound. A model's visual review does not verify resume facts.
 
 Protect the current draft and outside edits during recovery. A stopped ZIP import can be finished, reopened, moved to Trash when verified, or dismissed while keeping files. Do not bypass a blocked ownership/outside-edit check. Prefer the documented recovery UI over manually deleting recovery data. For interrupted saves, use the project menu or failed-startup review to compare current/before/attempted files. Review every choice, including deletions, and apply with backups. A stale review needs Refresh and new choices. Keep the retained source/conversation copies; ordinary recovery must not erase a pending decision. Unreadable records or damaged retained storage can still require manual repair.
 

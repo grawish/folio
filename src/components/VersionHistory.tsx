@@ -72,7 +72,7 @@ export function VersionHistory({
                 </strong>
                 <small>{new Date(version.createdAt).toLocaleString()}</small>
                 <span>{version.label}</span>
-                {version.verified && <small>Visually checked</small>}
+                <small>{version.verified ? 'Visually checked' : 'Built successfully'}</small>
               </button>
             ))}
           </nav>

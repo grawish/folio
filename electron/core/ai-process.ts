@@ -179,6 +179,7 @@ type Pending = {
   timer: ReturnType<typeof setTimeout>;
 };
 export class CodexRPC {
+  private exited: Promise<void>;
   private child: ChildProcessWithoutNullStreams;
   private id = 0;
   private pending = new Map<number, Pending>();
@@ -202,6 +203,7 @@ export class CodexRPC {
         windowsHide: true,
       },
     );
+    this.exited = new Promise((resolve) => this.child.once('close', () => resolve()));
     this.abort = () => this.close(new Error('Request cancelled.'));
     signal.addEventListener('abort', this.abort, { once: true });
     this.child.stdin.on('error', () => {});
@@ -329,5 +331,8 @@ export class CodexRPC {
     for (const listener of this.listeners) listener('folio/closed', { error });
     this.listeners.clear();
     stopProcess(this.child);
+  }
+  waitClosed() {
+    return this.exited;
   }
 }

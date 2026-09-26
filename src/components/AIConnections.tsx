@@ -78,6 +78,8 @@ export function AIConnections({
                   update({
                     kind: event.target.value as ProviderKind,
                     model: '',
+                    autoModels: undefined,
+                    selection: { mode: 'auto' },
                     baseUrl: '',
                     apiKey: '',
                     executable: '',
@@ -198,6 +200,28 @@ export function AIConnections({
                   ))}
               </datalist>
             </label>
+            <fieldset className="auto-model-fields">
+              <legend>Auto model choices</legend>
+              <p className="settings-hint">
+                Auto stays within this connection. Leave these blank to use the suggested models, or
+                enter model IDs for your endpoint.
+              </p>
+              {(['fast', 'capable'] as const).map((role) => (
+                <label className="ai-field" key={role}>
+                  {role === 'fast' ? 'Fast model' : 'Capable model'}
+                  <input
+                    className="text-input"
+                    list="connection-models"
+                    maxLength={160}
+                    value={form.autoModels?.[role] ?? ''}
+                    placeholder="Automatic"
+                    onChange={(event) =>
+                      update({ autoModels: { ...form.autoModels, [role]: event.target.value } })
+                    }
+                  />
+                </label>
+              ))}
+            </fieldset>
             <div className="modal-actions">
               <button
                 className="button secondary"

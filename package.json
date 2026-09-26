@@ -1,6 +1,6 @@
 {
   "name": "folio-resume-maker",
-  "version": "0.1.0",
+  "version": "0.1.0-preview.4",
   "private": true,
   "description": "A chat-first LaTeX resume studio for Apple silicon Macs.",
   "author": "Folio contributors",

@@ -1,0 +1,100 @@
+{
+  "kind": "controlled-local-fixture",
+  "sourceHashes": {
+    "electron/core/agent.ts": "56f77257383219d209e42a6fcc7c3e2a8af3b9c18dec6f382ded8fe06dcbad88",
+    "electron/core/ai-edits.ts": "dfca533978bbc48b275010b3d5d19563ef422bd1aefaba2e4984e238ae48b446",
+    "electron/core/ai-provider.ts": "5de8ae90597807f948f0573bd8553d0461d91ac04e00a520af6864df47891116",
+    "scripts/profile-agent.mjs": "9c1b193c5164eca27dcb13a5addfc90f261280da23d041f31bd75c8a0d0ac5d6"
+  },
+  "sourceCommit": "2390602bac9041ff31fa02e0478336e24fa9e508",
+  "recordedAt": "2026-09-26T13:40:48.714Z",
+  "node": "v24.21.0",
+  "assumptions": "Five warm-baseline runs. Fixed mock setup 10ms, inference/review 50ms, compile/render 20ms, metadata 1ms. Synthetic PDF. Excludes live provider and actual TeX/PDF renderer latency.",
+  "samples": [
+    {
+      "totalMs": 91.53008299999999,
+      "counts": {
+        "inference": 1,
+        "compile": 1,
+        "render": 0,
+        "inspect": 2
+      },
+      "stages": {
+        "setup": 12.114041,
+        "inference": 52.059375,
+        "compile": 21.068249999999992,
+        "render": 0,
+        "inspect": 2.633626000000021,
+        "review": 0
+      }
+    },
+    {
+      "totalMs": 93.30420800000002,
+      "counts": {
+        "inference": 1,
+        "compile": 1,
+        "render": 0,
+        "inspect": 2
+      },
+      "stages": {
+        "setup": 12.091750000000019,
+        "inference": 52.188874999999996,
+        "compile": 22.09258299999999,
+        "render": 0,
+        "inspect": 2.6574580000000196,
+        "review": 0
+      }
+    },
+    {
+      "totalMs": 91.93141700000001,
+      "counts": {
+        "inference": 1,
+        "compile": 1,
+        "render": 0,
+        "inspect": 2
+      },
+      "stages": {
+        "setup": 12.081166999999994,
+        "inference": 52.08283399999999,
+        "compile": 22.087792000000036,
+        "render": 0,
+        "inspect": 2.5869580000000383,
+        "review": 0
+      }
+    },
+    {
+      "totalMs": 97.44091699999996,
+      "counts": {
+        "inference": 1,
+        "compile": 1,
+        "render": 0,
+        "inspect": 2
+      },
+      "stages": {
+        "setup": 12.052583000000027,
+        "inference": 52.206999999999994,
+        "compile": 22.270416999999952,
+        "render": 0,
+        "inspect": 2.7987919999999917,
+        "review": 0
+      }
+    },
+    {
+      "totalMs": 94.42279200000002,
+      "counts": {
+        "inference": 1,
+        "compile": 1,
+        "render": 0,
+        "inspect": 2
+      },
+      "stages": {
+        "setup": 11.062749999999994,
+        "inference": 52.198667,
+        "compile": 22.302459,
+        "render": 0,
+        "inspect": 1.4349170000000413,
+        "review": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "kind": "controlled-local-fixture",
+  "sourceCommit": "2390602bac9041ff31fa02e0478336e24fa9e508",
+  "recordedAt": "2026-09-26T13:15:43.819Z",
+  "node": "v24.21.0",
+  "assumptions": "Five warm-baseline runs. Fixed mock setup 10ms, inference/review 50ms, compile/render 20ms, metadata 1ms. Synthetic PDF. Excludes live provider and actual TeX/PDF renderer latency.",
+  "samples": [
+    {
+      "totalMs": 180.290291,
+      "counts": {
+        "inference": 2,
+        "compile": 1,
+        "render": 2,
+        "inspect": 0
+      },
+      "stages": {
+        "setup": 11.132959,
+        "inference": 51.094791999999984,
+        "compile": 21.102792000000022,
+        "render": 42.19208399999997,
+        "inspect": 0,
+        "review": 51.11179100000001
+      }
+    },
+    {
+      "totalMs": 185.61075,
+      "counts": {
+        "inference": 2,
+        "compile": 1,
+        "render": 2,
+        "inspect": 0
+      },
+      "stages": {
+        "setup": 11.118832999999995,
+        "inference": 51.295875000000024,
+        "compile": 21.351624999999956,
+        "render": 42.36949999999999,
+        "inspect": 0,
+        "review": 51.21479099999999
+      }
+    },
+    {
+      "totalMs": 184.12775,
+      "counts": {
+        "inference": 2,
+        "compile": 1,
+        "render": 2,
+        "inspect": 0
+      },
+      "stages": {
+        "setup": 11.065957999999966,
+        "inference": 51.118583,
+        "compile": 21.18945800000006,
+        "render": 42.256917000000044,
+        "inspect": 0,
+        "review": 51.73837500000002
+      }
+    },
+    {
+      "totalMs": 181.88641599999994,
+      "counts": {
+        "inference": 2,
+        "compile": 1,
+        "render": 2,
+        "inspect": 0
+      },
+      "stages": {
+        "setup": 11.086834000000067,
+        "inference": 51.00941599999999,
+        "compile": 20.441666000000055,
+        "render": 42.42654200000004,
+        "inspect": 0,
+        "review": 50.23950000000002
+      }
+    },
+    {
+      "totalMs": 181.67595800000004,
+      "counts": {
+        "inference": 2,
+        "compile": 1,
+        "render": 2,
+        "inspect": 0
+      },
+      "stages": {
+        "setup": 11.079374999999914,
+        "inference": 51.381708,
+        "compile": 21.117541999999958,
+        "render": 41.84612600000003,
+        "inspect": 0,
+        "review": 50.92870800000003
+      }
+    }
+  ],
+  "sourceHashes": {
+    "electron/core/agent.ts": "e5041b077bbe2a66441a25db3167ca5fe156eb54ce3cd1f383ff070312ad9656",
+    "electron/core/ai-provider.ts": "7cebdb2e967222fc8fc2e88445e8a7497ce0227d073236b55bcca7288dda86d5"
+  }
+}

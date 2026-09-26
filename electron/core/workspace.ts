@@ -9,6 +9,7 @@ import {
   type VersionInfo,
   type VersionSnapshot,
   type WorkspaceState,
+  type RunMetadata,
 } from '../../src/shared/ai';
 import type { Project } from '../../src/shared/types';
 import { atomicWrite, fingerprint, validateProject } from './project';
@@ -24,6 +25,41 @@ const string = (value: unknown, max: number): string => {
     throw new Error('Workspace text is too large or invalid.');
   return value;
 };
+function execution(value: RunMetadata | undefined): RunMetadata | undefined {
+  if (!value) return undefined;
+  if (
+    !Array.isArray(value.models) ||
+    value.models.length > 12 ||
+    !value.timings ||
+    typeof value.timings !== 'object'
+  )
+    throw new Error('Invalid run metadata.');
+  const timings: RunMetadata['timings'] = {};
+  for (const key of [
+    'setup',
+    'inference',
+    'compile',
+    'render',
+    'inspect',
+    'review',
+    'total',
+  ] as const) {
+    const ms = value.timings[key];
+    if (ms !== undefined) {
+      if (typeof ms !== 'number' || !Number.isFinite(ms) || ms < 0)
+        throw new Error('Invalid run timing.');
+      timings[key] = ms;
+    }
+  }
+  return {
+    models: value.models.map((m) => string(m, 160)),
+    escalated: value.escalated === true,
+    validation: ['compiled', 'visual'].includes(value.validation ?? '')
+      ? value.validation
+      : undefined,
+    timings,
+  };
+}
 const coordinate = (value: unknown): number => {
   if (typeof value !== 'number' || !Number.isFinite(value) || value < 0 || value > 1)
     throw new Error('Invalid annotation position.');
@@ -94,6 +130,7 @@ export function validateWorkspace(value: unknown): WorkspaceState {
       annotationSnapshot: m.annotationSnapshot?.map(validateAnnotation),
       versionId: m.versionId ? safeId(m.versionId) : undefined,
       runId: m.runId ? safeId(m.runId) : undefined,
+      execution: execution(m.execution),
       status:
         m.status && ['complete', 'error', 'cancelled'].includes(m.status) ? m.status : undefined,
     };
@@ -118,7 +155,8 @@ function validateVersion(value: unknown): VersionInfo {
     !Number.isSafeInteger(v.revision) ||
     v.revision < 0 ||
     !/^[a-f0-9]{64}$/.test(v.fingerprint) ||
-    (v.pdfFingerprint !== undefined && !/^[a-f0-9]{64}$/.test(v.pdfFingerprint))
+    (v.pdfFingerprint !== undefined && !/^[a-f0-9]{64}$/.test(v.pdfFingerprint)) ||
+    (v.buildFingerprint !== undefined && !/^[a-f0-9]{64}$/.test(v.buildFingerprint))
   )
     throw new Error('Invalid saved version.');
   return {
@@ -127,6 +165,7 @@ function validateVersion(value: unknown): VersionInfo {
     createdAt: string(v.createdAt, 40),
     fingerprint: v.fingerprint,
     pdfFingerprint: v.pdfFingerprint,
+    buildFingerprint: v.buildFingerprint,
     revision: v.revision,
     verified: v.verified === true,
   };
@@ -217,6 +256,7 @@ export class WorkspaceStore {
     pdf: Uint8Array,
     label = 'Resume updated',
     verified = false,
+    buildFingerprint?: string,
   ): Promise<VersionInfo> {
     return this.enqueue(project.id, async () => {
       if (
@@ -229,8 +269,12 @@ export class WorkspaceStore {
       const pdfHash = pdfFingerprint(pdf);
       const latest = state.versions.at(-1);
       if (latest?.fingerprint === hash && latest.pdfFingerprint === pdfHash) {
-        if (verified && !latest.verified) {
-          latest.verified = true;
+        if (
+          (verified && !latest.verified) ||
+          (buildFingerprint && latest.buildFingerprint !== buildFingerprint)
+        ) {
+          latest.verified ||= verified;
+          latest.buildFingerprint = buildFingerprint ?? latest.buildFingerprint;
           await atomicWrite(path.join(this.root(project.id), 'state.json'), JSON.stringify(state));
         }
         return latest;
@@ -241,6 +285,7 @@ export class WorkspaceStore {
         createdAt: new Date().toISOString(),
         fingerprint: hash,
         pdfFingerprint: pdfHash,
+        buildFingerprint,
         revision: project.revision,
         verified,
       };

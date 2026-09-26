@@ -2,17 +2,33 @@ import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { deflateSync } from 'node:zlib';
-import type { AIConnection, ConnectionStatus, LoginResult } from '../../src/shared/ai';
+import type {
+  AIConnection,
+  ConnectionStatus,
+  LoginResult,
+  ModelCatalog,
+  ModelDescriptor,
+  ModelSelection,
+} from '../../src/shared/ai';
 import { ConnectionStore } from './connections';
 import { CodexRPC, findProgram, runProgram } from './ai-process';
+import { knownModel, modelEffort, resolveModel, validateSelection } from './ai-routing';
 
 export type ModelRequest = {
   system: string;
   prompt: string;
   images: string[];
   schema: Record<string, unknown>;
+  effort?: string;
+  maxOutputTokens?: number;
+  onModel?: (id: string) => void;
+  onSetup?: (durationMs: number) => void;
 };
+export class InvalidModelOutput extends Error {}
 export interface AIModel {
+  automatic?: boolean;
+  route?(capable: boolean, effort: 'low' | 'medium' | 'high', images: boolean): ModelDescriptor;
+  close?(): Promise<void>;
   complete(request: ModelRequest, signal: AbortSignal): Promise<unknown>;
 }
 type Credentials = { profile: AIConnection; apiKey?: string };
@@ -25,7 +41,7 @@ const parseJSON = (text: string): unknown => {
         .replace(/\s*```$/, ''),
     );
   } catch {
-    throw new Error(
+    throw new InvalidModelOutput(
       'The AI response was incomplete or was not valid JSON. Your resume is unchanged.',
     );
   }
@@ -61,7 +77,8 @@ export async function requestAPI(
       model: profile.model,
       store: false,
       instructions: systemPrompt(request),
-      max_output_tokens: 16000,
+      max_output_tokens: request.maxOutputTokens ?? 16000,
+      ...(request.effort ? { reasoning: { effort: request.effort } } : {}),
       input: [
         {
           role: 'user',
@@ -82,8 +99,9 @@ export async function requestAPI(
     headers['anthropic-version'] = '2023-06-01';
     body = {
       model: profile.model,
-      max_tokens: 16000,
+      max_tokens: request.maxOutputTokens ?? 16000,
       system: systemPrompt(request),
+      ...(request.effort ? { output_config: { effort: request.effort } } : {}),
       messages: [
         {
           role: 'user',
@@ -95,7 +113,8 @@ export async function requestAPI(
     endpoint = '/chat/completions';
     body = {
       model: profile.model,
-      max_tokens: 16000,
+      max_tokens: request.maxOutputTokens ?? 16000,
+      ...(request.effort ? { reasoning_effort: request.effort } : {}),
       messages: [
         { role: 'system', content: systemPrompt(request) },
         {
@@ -156,10 +175,11 @@ export async function requestAPI(
     chunks.push(value);
   }
   const data = parseJSON(Buffer.concat(chunks).toString('utf8')) as any;
+  if (typeof data.model === 'string') request.onModel?.(data.model);
   let text: string;
   if (format === 'responses') {
     if (data.status && data.status !== 'completed')
-      throw new Error('The AI response was not completed. Try a smaller change.');
+      throw new InvalidModelOutput('The AI response was not completed. Try a smaller change.');
     text =
       data.output_text ??
       data.output
@@ -169,14 +189,14 @@ export async function requestAPI(
         .join('\n');
   } else if (format === 'anthropic') {
     if (data.stop_reason === 'max_tokens')
-      throw new Error('The AI response was cut off. Try a smaller change.');
+      throw new InvalidModelOutput('The AI response was cut off. Try a smaller change.');
     text = data.content
       ?.filter((item: any) => item.type === 'text')
       .map((item: any) => item.text)
       .join('\n');
   } else {
     if (data.choices?.[0]?.finish_reason !== 'stop')
-      throw new Error('The AI response was not completed. Try a smaller change.');
+      throw new InvalidModelOutput('The AI response was not completed. Try a smaller change.');
     text = data.choices?.[0]?.message?.content;
   }
   if (typeof text !== 'string' || !text.trim())
@@ -189,8 +209,13 @@ export async function requestCodex(
   profile: AIConnection,
   request: ModelRequest,
   signal: AbortSignal,
+  context?: { authenticated: boolean; config: Record<string, unknown> },
 ): Promise<unknown> {
-  const account = await rpc.request('account/read', { refreshToken: false });
+  const setupStarted = performance.now();
+  signal.throwIfAborted();
+  const account = context?.authenticated
+    ? { account: { type: 'chatgpt' } }
+    : await rpc.request('account/read', { refreshToken: false });
   if (account.account?.type !== 'chatgpt')
     throw new Error('Sign in with your subscription in Settings before chatting.');
   const thread = await rpc.request('thread/start', {
@@ -200,10 +225,13 @@ export async function requestCodex(
     sandbox: 'read-only',
     model: profile.model || undefined,
     baseInstructions: systemPrompt(request),
-    config: await rpc.isolatedConfig(),
+    config: context?.config ?? (await rpc.isolatedConfig()),
   });
+  request.onModel?.(thread.thread.model || thread.model || profile.model || 'Account default');
+  signal.throwIfAborted();
   const threadId = thread.thread.id;
   await rpc.assertToolsDisabled(threadId);
+  request.onSetup?.(performance.now() - setupStarted);
   return new Promise((resolve, reject) => {
     let text = '',
       turnId: string | undefined,
@@ -268,10 +296,13 @@ export async function requestCodex(
         approvalPolicy: 'never',
         sandboxPolicy: { type: 'readOnly', networkAccess: false },
         model: profile.model || undefined,
+        effort: request.effort,
       })
       .then(
         (result) => {
           turnId = result.turn.id;
+          if (signal.aborted)
+            void rpc.request('turn/interrupt', { threadId, turnId }).catch(() => {});
         },
         (error) => finish(error),
       );
@@ -284,15 +315,20 @@ export async function requestClaude(
   profile: AIConnection,
   request: ModelRequest,
   signal: AbortSignal,
+  authenticated = false,
 ): Promise<unknown> {
-  const status = JSON.parse(
-    await runProgram(program, ['auth', 'status'], {
-      cwd,
-      signal,
-      timeoutMs: 20_000,
-      allowedExitCodes: [0, 1],
-    }),
-  );
+  const setupStarted = performance.now();
+  signal.throwIfAborted();
+  const status = authenticated
+    ? { loggedIn: true, authMethod: 'claude.ai' }
+    : JSON.parse(
+        await runProgram(program, ['auth', 'status'], {
+          cwd,
+          signal,
+          timeoutMs: 20_000,
+          allowedExitCodes: [0, 1],
+        }),
+      );
   if (!status.loggedIn || status.authMethod !== 'claude.ai')
     throw new Error('Sign in with your subscription in Settings before chatting.');
   const args = [
@@ -319,6 +355,7 @@ export async function requestClaude(
     JSON.stringify(request.schema),
   ];
   if (profile.model) args.push('--model', profile.model);
+  if (request.effort) args.push('--effort', request.effort);
   const input =
     JSON.stringify({
       type: 'user',
@@ -333,11 +370,13 @@ export async function requestClaude(
     throw new Error(
       'These PDF images exceed the local AI app input limit. Use fewer pages or notes.',
     );
+  request.onSetup?.(performance.now() - setupStarted);
   const output = await runProgram(program, args, { cwd, signal, input });
   let result: any;
   for (const line of output.split('\n')) {
     if (!line.trim()) continue;
     const item = parseJSON(line) as any;
+    if (typeof item.message?.model === 'string') request.onModel?.(item.message.model);
     if (item.type === 'result') result = item;
   }
   if (!result || result.is_error || result.subtype !== 'success')
@@ -396,10 +435,307 @@ export class ProviderService {
       await fs.rm(cwd, { recursive: true, force: true });
     }
   }
-  async model(id?: string): Promise<AIModel> {
-    // Capture the connection once: changing Settings never changes an in-flight request.
+  private catalogs = new Map<
+    string,
+    { revision: string; expires: number; catalog: ModelCatalog }
+  >();
+  private warm?: {
+    revision: string;
+    rpc: CodexRPC;
+    cwd: string;
+    controller: AbortController;
+    timer?: ReturnType<typeof setTimeout>;
+    uses: number;
+  };
+  private warmQueue: Promise<unknown> = Promise.resolve();
+  private async dropWarm() {
+    const warm = this.warm;
+    this.warm = undefined;
+    if (!warm) return;
+    clearTimeout(warm.timer);
+    warm.controller.abort();
+    warm.rpc.close();
+    await warm.rpc.waitClosed();
+    await fs.rm(warm.cwd, { recursive: true, force: true });
+  }
+  invalidate() {
+    this.catalogs.clear();
+    return this.serializeWarm(() => this.dropWarm());
+  }
+  private serializeWarm<T>(operation: () => Promise<T>): Promise<T> {
+    const next = this.warmQueue.catch(() => {}).then(operation);
+    this.warmQueue = next;
+    return next;
+  }
+  private async withCodex<T>(
+    credentials: Credentials & { revision: string },
+    signal: AbortSignal,
+    operation: (rpc: CodexRPC) => Promise<T>,
+  ): Promise<T> {
+    // A catalog lookup may already own this connection's process. Stop must also
+    // interrupt that setup, rather than wait for its timeout behind the queue.
+    signal.throwIfAborted();
+    const abortSetup = () => {
+      if (this.warm?.revision === credentials.revision) this.warm.controller.abort();
+    };
+    signal.addEventListener('abort', abortSetup, { once: true });
+    return this.serializeWarm(async () => {
+      signal.throwIfAborted();
+      if (this.warm?.revision !== credentials.revision || this.warm.uses >= 20)
+        await this.dropWarm();
+      const abort = () => this.warm?.controller.abort();
+      signal.addEventListener('abort', abort, { once: true });
+      try {
+        if (!this.warm) {
+          const program = await findProgram(credentials.profile);
+          signal.throwIfAborted();
+          await fs.mkdir(this.workRoot, { recursive: true });
+          const cwd = await fs.mkdtemp(path.join(this.workRoot, 'session-'));
+          const controller = new AbortController();
+          const rpc = new CodexRPC(program, cwd, controller.signal);
+          this.warm = { revision: credentials.revision, rpc, cwd, controller, uses: 0 };
+          if (signal.aborted) abort();
+          await rpc.initialize();
+        }
+        clearTimeout(this.warm.timer);
+        this.warm.uses++;
+        const value = await operation(this.warm.rpc);
+        signal.throwIfAborted();
+        this.warm.timer = setTimeout(() => {
+          void this.serializeWarm(() => this.dropWarm()).catch(() => {});
+        }, 60_000);
+        this.warm.timer.unref();
+        return value;
+      } catch (error) {
+        await this.dropWarm();
+        throw error;
+      } finally {
+        signal.removeEventListener('abort', abort);
+      }
+    }).finally(() => signal.removeEventListener('abort', abortSetup));
+  }
+  async catalog(id: string): Promise<ModelCatalog> {
+    return this.catalogFor(await this.connections.get(id));
+  }
+  private async catalogFor(
+    credentials: Credentials & { revision: string },
+    runSignal?: AbortSignal,
+  ): Promise<ModelCatalog> {
+    const { profile, revision } = credentials;
+    const cached = this.catalogs.get(profile.id);
+    if (cached?.revision === revision && cached.expires > Date.now()) return cached.catalog;
+    const fallback = [
+      ...new Set(
+        [profile.model, profile.autoModels?.fast, profile.autoModels?.capable].filter(
+          (id): id is string => !!id,
+        ),
+      ),
+    ].map((id) => ({
+      id,
+      name: id,
+      ...(profile.kind === 'custom' ? {} : knownModel(id)),
+      ...(id === profile.model && profile.vision === 'verified' ? { images: true } : {}),
+    }));
+    const timeout = AbortSignal.timeout(10_000);
+    const signal = runSignal ? AbortSignal.any([timeout, runSignal]) : timeout;
+    let models: ModelDescriptor[] = [],
+      warning: string | undefined;
+    try {
+      if (profile.kind === 'codex') {
+        models = await this.withCodex(credentials, signal, async (rpc) => {
+          const all: ModelDescriptor[] = [];
+          let cursor: string | undefined;
+          for (let page = 0; page < 20; page++) {
+            const result = await rpc.request('model/list', {
+              limit: 100,
+              includeHidden: false,
+              cursor,
+            });
+            if (!Array.isArray(result.data)) throw new Error('Invalid model catalog.');
+            for (const m of result.data)
+              if (!m.hidden && typeof m.model === 'string' && m.model.length <= 160)
+                all.push({
+                  id: m.model,
+                  name: typeof m.displayName === 'string' ? m.displayName.slice(0, 160) : m.model,
+                  images: m.inputModalities ? m.inputModalities.includes('image') : true,
+                  isDefault: m.isDefault === true,
+                  efforts: m.supportedReasoningEfforts?.map(
+                    (e: { reasoningEffort: string }) => e.reasoningEffort,
+                  ),
+                });
+            cursor = result.nextCursor;
+            if (!cursor) return all;
+          }
+          throw new Error('Model catalog exceeds its limit.');
+        });
+      } else if (profile.kind === 'claude-code') {
+        models = ['haiku', 'sonnet', 'opus'].map((id) => ({
+          id,
+          name: id[0].toUpperCase() + id.slice(1),
+          images: true,
+          ...(id !== 'haiku' ? { efforts: ['low', 'medium', 'high'] } : {}),
+        }));
+      } else {
+        const headers: Record<string, string> = {};
+        if (credentials.apiKey)
+          headers[profile.format === 'anthropic' ? 'x-api-key' : 'Authorization'] =
+            profile.format === 'anthropic' ? credentials.apiKey : `Bearer ${credentials.apiKey}`;
+        if (profile.format === 'anthropic') headers['anthropic-version'] = '2023-06-01';
+        let after = '';
+        for (let page = 0; page < 20; page++) {
+          const suffix =
+            profile.format === 'anthropic'
+              ? `?limit=100${after ? '&after_id=' + encodeURIComponent(after) : ''}`
+              : '';
+          const response = await fetch(`${profile.baseUrl}/models${suffix}`, {
+            headers,
+            signal,
+            redirect: 'error',
+          });
+          if (!response.ok) {
+            await response.body?.cancel();
+            throw new Error('Model discovery unavailable.');
+          }
+          const reader = response.body?.getReader();
+          if (!reader) throw new Error('Empty model catalog.');
+          const chunks: Uint8Array[] = [];
+          let length = 0;
+          for (;;) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            length += value.byteLength;
+            if (length > 2_000_000) {
+              await reader.cancel();
+              throw new Error('Model catalog exceeds its limit.');
+            }
+            chunks.push(value);
+          }
+          const raw = Buffer.concat(chunks).toString('utf8');
+          const result = JSON.parse(raw);
+          if (!Array.isArray(result.data)) throw new Error('Invalid model catalog.');
+          for (const m of result.data.slice(0, 2000))
+            if (typeof m.id === 'string' && m.id.length <= 160) {
+              if (
+                profile.kind === 'openai' &&
+                (!/^(gpt-|chatgpt-|chat-latest$|o[134](?:-|$)|codex-)/.test(m.id) ||
+                  /audio|realtime|transcribe|tts|image|search/.test(m.id))
+              )
+                continue;
+              const efforts = m.capabilities?.effort;
+              models.push({
+                id: m.id,
+                name: typeof m.display_name === 'string' ? m.display_name.slice(0, 160) : m.id,
+                ...(profile.kind === 'custom' ? {} : knownModel(m.id)),
+                ...(m.capabilities?.image_input
+                  ? { images: m.capabilities.image_input.supported === true }
+                  : {}),
+                ...(efforts
+                  ? { efforts: ['low', 'medium', 'high'].filter((e) => efforts[e]?.supported) }
+                  : {}),
+              });
+            }
+          if (!result.has_more || profile.format !== 'anthropic') break;
+          if (!result.last_id || result.last_id === after || page === 19)
+            throw new Error('Model catalog exceeds its limit.');
+          after = result.last_id;
+        }
+      }
+    } catch {
+      runSignal?.throwIfAborted();
+      warning = 'Model discovery is unavailable. Your configured models are still usable.';
+    }
+    const catalog = {
+      models: [...models, ...fallback.filter((m) => !models.some((n) => n.id === m.id))].slice(
+        0,
+        2000,
+      ),
+      warning,
+    };
+    this.catalogs.set(profile.id, {
+      revision,
+      expires: Date.now() + (warning ? 30_000 : 300_000),
+      catalog,
+    });
+    return catalog;
+  }
+  async model(
+    id?: string,
+    selected?: ModelSelection,
+    signal = new AbortController().signal,
+  ): Promise<AIModel> {
+    // Capture credentials and routing preferences once for the entire run.
     const credentials = await this.connections.get(id);
-    return this.createModel(credentials);
+    const selection = validateSelection(
+      selected ?? credentials.profile.selection ?? { mode: 'default' },
+    );
+    signal.throwIfAborted();
+    const cached = this.catalogs.get(credentials.profile.id);
+    const catalog =
+      selection.mode === 'auto'
+        ? await this.catalogFor(credentials, signal)
+        : cached?.revision === credentials.revision
+          ? cached.catalog
+          : { models: [] };
+    signal.throwIfAborted();
+    let chosen = resolveModel(credentials.profile, selection, catalog.models, false);
+    let effort: string | undefined,
+      program: string | undefined,
+      authenticated = false;
+    let config: Record<string, unknown> | undefined;
+    return {
+      automatic: selection.mode === 'auto',
+      route: (capable, requested, images) => {
+        chosen = resolveModel(credentials.profile, selection, catalog.models, capable);
+        if (images && chosen.images === false && selection.mode === 'auto')
+          chosen = resolveModel(credentials.profile, selection, catalog.models, true);
+        if (images && chosen.images === false)
+          throw new Error(
+            'This model cannot read PDF images. Choose an image-capable model in Chat or Settings.',
+          );
+        effort = modelEffort(chosen, requested);
+        return chosen;
+      },
+      complete: async (request, requestSignal) => {
+        const setupStarted = performance.now();
+        requestSignal.throwIfAborted();
+        const profile = { ...credentials.profile, model: chosen.id };
+        const body = { ...request, effort };
+        if (profile.kind === 'codex')
+          return this.withCodex(credentials, requestSignal, async (rpc) => {
+            if (!authenticated) {
+              const account = await rpc.request('account/read', { refreshToken: false });
+              if (account.account?.type !== 'chatgpt')
+                throw new Error('Sign in with your subscription in Settings before chatting.');
+              config = await rpc.isolatedConfig();
+              authenticated = true;
+            }
+            request.onSetup?.(performance.now() - setupStarted);
+            return requestCodex(rpc, profile, body, requestSignal, {
+              authenticated,
+              config: config!,
+            });
+          });
+        if (profile.kind === 'claude-code')
+          return this.temporary(async (cwd) => {
+            program ??= await findProgram(profile);
+            request.onSetup?.(performance.now() - setupStarted);
+            const result = await requestClaude(
+              program,
+              cwd,
+              profile,
+              body,
+              requestSignal,
+              authenticated,
+            );
+            authenticated = true;
+            return result;
+          });
+        return requestAPI({ ...credentials, profile }, body, requestSignal);
+      },
+      close: async () => {
+        if (signal.aborted) await this.serializeWarm(() => this.dropWarm());
+      },
+    };
   }
   private createModel(credentials: Credentials): AIModel {
     return {
@@ -556,5 +892,6 @@ export class ProviderService {
   }
   close() {
     for (const id of this.logins.keys()) this.cancelLogin(id);
+    return this.invalidate();
   }
 }

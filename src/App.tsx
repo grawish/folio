@@ -60,7 +60,7 @@ import { SettingsModal } from './components/SettingsModal';
 import { InterruptedImports } from './components/InterruptedImports';
 import { VersionHistory } from './components/VersionHistory';
 import { CompilerComparison } from './components/CompilerComparison';
-import { renderPdfFeedback } from './pdf-feedback';
+import { renderPdfFeedback, inspectPdf } from './pdf-feedback';
 import { useWorkspace } from './useWorkspace';
 import { errorMessage } from './error-message';
 import { addSource, renameSource, removeSource, restoreSource } from './shared/project-files';
@@ -359,7 +359,11 @@ export default function App() {
       if (event.runId === activeRun.current?.id) setAgentProgress(event);
     });
     const render = desktop.onRenderPdf((event) => {
-      void renderPdfFeedback(event.pdf, event.annotations)
+      void (
+        event.mode === 'metadata'
+          ? inspectPdf(event.pdf)
+          : renderPdfFeedback(event.pdf, event.annotations)
+      )
         .then((result) => desktop.completePdfRender(event.requestId, result))
         .catch((error) =>
           desktop.completePdfRender(event.requestId, { error: error.message }).catch(() => {}),
@@ -1022,6 +1026,9 @@ export default function App() {
     const state = workspaceRef.current,
       snapshot = current.current;
     if (!state.draft.trim() && !state.attachedNoteIds.length) return;
+    const connection = connections.connections.find((c) => c.id === connections.activeId);
+    if (!connection) return;
+    const selection = structuredClone(connection.selection ?? { mode: 'default' as const });
     const id = crypto.randomUUID(),
       baseKey = keyOf(snapshot),
       baseDiskGeneration = diskGeneration.current;
@@ -1056,6 +1063,8 @@ export default function App() {
       await flushWorkspace();
       const reply = await desktop.runAgent({
         runId: id,
+        connectionId: connection.id,
+        selection,
         project: snapshot,
         message: state.draft.trim(),
         annotationIds: state.attachedNoteIds,
@@ -1064,7 +1073,7 @@ export default function App() {
       if (current.current.id !== snapshot.id || activeRun.current?.id !== id) return;
       // A file notification may still be in its debounce window. Reconcile the
       // folder before applying a completed draft, even without a visible notice.
-      if (reply.status === 'complete') await checkDisk();
+      if (reply.status === 'complete' && reply.project) await checkDisk();
       if (current.current.id !== snapshot.id || activeRun.current?.id !== id) return;
       let text = reply.message;
       const apply =
@@ -1082,9 +1091,9 @@ export default function App() {
         setLastGood(reply.build);
         setBuilding(false);
         setLogsOpen(false);
-      } else if (reply.status === 'complete')
+      } else if (reply.status === 'complete' && reply.project)
         text =
-          'The checked draft is saved in History. Your project changed while I was working, so I kept your newer edits. Open History to compare or restore the draft.';
+          'The draft is saved in History. Your project changed while I was working, so I kept your newer edits. Open History to compare or restore the draft.';
       updateWorkspace((previous) => ({
         ...previous,
         messages: [
@@ -1096,6 +1105,7 @@ export default function App() {
             createdAt: new Date().toISOString(),
             annotationIds: [],
             versionId: reply.version?.id,
+            execution: reply.execution,
             runId: id,
             status:
               reply.status === 'error'
@@ -1652,6 +1662,8 @@ export default function App() {
                 ready={workspaceReady}
                 progress={agentProgress}
                 connected={!!connections.activeId}
+                connections={connections}
+                onConnections={setConnections}
                 onSend={() => void sendToAgent()}
                 onStop={() => {
                   if (activeRun.current)

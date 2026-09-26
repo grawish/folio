@@ -8,18 +8,18 @@ Folio is a local LaTeX resume studio for **Apple silicon Macs**. Chat is the mai
 
 ![Folio Chat beside a real sample PDF](docs/images/workspace.png)
 
-The [source preview release](https://github.com/grawish/folio/releases/tag/source-v0.1.0-preview.3) includes source, screenshot guides and the reusable skill. Explore the live [product website](https://grawish.com/folio/) and [screenshot demo gallery](https://grawish.com/folio/demos.html).
+Download the **[Apple silicon DMG preview](https://github.com/grawish/folio/releases/tag/v0.1.0-preview.4)**. This development build is unsigned and not notarized. Open the disk image and drag Folio to Applications. The release includes checksums, build provenance and collected third-party source/license materials. Explore the live [product website](https://grawish.com/folio/) and [screenshot demo gallery](https://grawish.com/folio/demos.html).
 
 ## Development preview
 
-The source is available now. Folio is under active development; a signed, notarized installer and automatic updates are not available yet. The current source passes 207 unit/protocol tests, including project-format rejection and interrupted-upgrade recovery. The hosted guided-recovery candidate passed all 13 native workflow suites, including compiler help, local fonts and support export; see the [release audit](docs/RELEASE_GAP_AUDIT.md). These results do not establish compatibility with every macOS version.
+Folio is under active development; a signed, notarized installer and automatic updates are not available yet. The current source passes 225 unit/protocol tests, including model routing, atomic patches, project-format rejection and interrupted-upgrade recovery. See the [preview release notes](docs/releases/v0.1.0-preview.4.md) for the packaged build and the [release audit](docs/RELEASE_GAP_AUDIT.md) for remaining production requirements. These results do not establish compatibility with every macOS version.
 
 Windows, Linux and Intel Macs are outside this release's scope. Read the [remaining release requirements](docs/RELEASE_GAP_AUDIT.md) before relying on the preview for important documents.
 
 ## What you can do
 
 - Start with six resume templates, each in A4 and US Letter.
-- Chat with an agent that edits TeX, builds locally, and reviews PDF images.
+- Chat with an agent that patches TeX, builds locally, and reviews PDF images when the change needs visual checks.
 - Highlight, draw, or leave notes on the PDF and attach them to a message.
 - Compare versions, undo changes, and restore earlier work.
 - Edit multiple TeX files with syntax highlighting, search, snippets, and undo.
@@ -30,7 +30,7 @@ Windows, Linux and Intel Macs are outside this release's scope. Read the [remain
 - Use dark, light, or system appearance and resize the writing and PDF panes.
 - Review a support summary, leave out sections, and save a ZIP without resume text or raw logs.
 
-**AI lives in Settings.** Add and select an installed Codex or Claude Code connection, use your own OpenAI or Anthropic API key, or configure a compatible endpoint. Account access and model image support depend on your provider. API use is billed separately by that provider. Live Claude/BYOK account acceptance remains on the release checklist.
+**Choose models in Chat.** Use Auto, the connection default, or a specific model beside Send. Auto stays within your selected connection and uses faster models for small changes, escalating when validation fails. Add and select an installed Codex or Claude Code connection, use your own OpenAI or Anthropic API key, or configure a compatible endpoint. Account access and model image support depend on your provider. API use is billed separately by that provider. Live Claude/BYOK account acceptance remains on the release checklist.
 
 The compiler works locally without AI. AI requests send relevant source and PDF images to your selected provider; local compilation does not mean that cloud AI requests stay on your Mac. Keys are kept in protected local storage and excluded from project exports.
 

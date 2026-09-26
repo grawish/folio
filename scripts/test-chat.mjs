@@ -28,6 +28,11 @@ let mode = 'edit',
   held = false;
 const server = createServer(async (req, res) => {
   try {
+    if (req.method === 'GET' && req.url === '/v1/models') {
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify({ data: [{ id: 'fixture-fast' }, { id: 'fixture-model' }] }));
+      return;
+    }
     let raw = '';
     for await (const chunk of req) raw += chunk;
     const body = JSON.parse(raw);
@@ -57,9 +62,18 @@ const server = createServer(async (req, res) => {
       mode,
       url: req.url,
       authorization: req.headers.authorization,
+      model: body.model,
     });
     if (type === 'review') {
       send({ approved: true, issues: [], message: 'Both pages are readable.' });
+      return;
+    }
+    if (mode === 'fast') {
+      send({
+        message: 'Updated the wording.',
+        needsInput: false,
+        edits: [{ path: 'main.tex', search: 'accessible tools', replacement: 'inclusive tools' }],
+      });
       return;
     }
     if (mode === 'error') {
@@ -213,6 +227,8 @@ try {
     .getByLabel('Base URL', { exact: true })
     .fill(`http://127.0.0.1:${server.address().port}/v1`);
   await page.getByLabel('Model', { exact: true }).fill('fixture-model');
+  await page.getByLabel('Fast model', { exact: true }).fill('fixture-fast');
+  await page.getByLabel('Capable model', { exact: true }).fill('fixture-model');
   await page.getByLabel(/^API key/).fill('folio-fixture-key');
   await page.getByRole('button', { name: 'Save connection', exact: true }).click();
   await expect(page.getByRole('radio')).not.toBeChecked();
@@ -227,10 +243,20 @@ try {
   });
   await page.screenshot({ path: path.join(root, 'settings.png') });
   await page.getByRole('button', { name: 'Done', exact: true }).click();
-  await expect(page.locator('body')).not.toContainText('Local vision fixture');
-  await expect(page.locator('body')).not.toContainText('fixture-model');
+  await expect(page.getByLabel('Chat model', { exact: true })).toHaveValue('auto');
+  await expect(
+    page.getByRole('button', { name: 'Local vision fixture', exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByLabel('Chat model').locator('option[value="model:fixture-fast"]'),
+  ).toHaveCount(1);
+  await page.getByLabel('Chat model').selectOption('model:fixture-fast');
+  await expect(page.getByLabel('Chat model')).toHaveValue('model:fixture-fast');
+  await expect(page.getByLabel('Chat model')).toBeEnabled();
+  await page.getByLabel('Chat model').selectOption('auto');
+  await expect(page.getByLabel('Chat model')).toHaveValue('auto');
   console.log(
-    'PASS: Chat is default; connection setup, testing, model and selection stay inside Settings.',
+    'PASS: Chat exposes Auto, connection default and discovered models; connection setup remains in Settings.',
   );
 
   // Draw all four note types using real pointer events, with normalized positions.
@@ -324,6 +350,7 @@ try {
   const review = requests.find((item) => item.type === 'review');
   expect(editRequest.images).toHaveLength(5); // Both pages and three selected crops.
   expect(editRequest.authorization).toBe('Bearer folio-fixture-key');
+  expect(editRequest.model).toBe('fixture-model');
   expect(editRequest.prompt.imageContext[0].notes.map((note) => note.text)).toEqual([
     'Feedback 1',
     'Feedback 2',
@@ -567,9 +594,12 @@ try {
   console.log(
     'PASS: Save As forks chat/history independently; source export includes matching history without AI credentials.',
   );
+  await page.getByLabel('Chat model').selectOption('model:fixture-model');
+  await expect(page.getByLabel('Chat model')).toBeEnabled();
   await close();
   await launch();
   await ready();
+  await expect(page.getByLabel('Chat model')).toHaveValue('model:fixture-model');
   await expect(composer()).toHaveValue('Keep this unsent draft.');
   await expect(page.locator('.chat-message')).toHaveCount(before.messages.length);
   expect((await readWorkspace()).annotations).toEqual(before.annotations);
@@ -648,6 +678,30 @@ try {
   console.log(
     'PASS: clean PDF export excludes annotations; closing during a request restores an actionable conversation without changing source.',
   );
+  mode = 'fast';
+  const fastStart = requests.length;
+  await page.getByLabel('Chat model').selectOption('auto');
+  await expect(page.getByLabel('Chat model')).toBeEnabled();
+  await send('Replace accessible tools with inclusive tools.');
+  await expect(page.locator('.chat-message.assistant').last()).toContainText('Built successfully', {
+    timeout: 60_000,
+  });
+  await expect(page.locator('.chat-message.assistant').last()).toContainText('fixture-fast');
+  await expect(page.locator('.preview-pane .textLayer').first()).toContainText('inclusive tools');
+  const fastRequests = requests.slice(fastStart).filter((r) => r.type !== 'connection-test');
+  expect(fastRequests).toHaveLength(1);
+  expect(fastRequests[0].images).toHaveLength(0);
+  expect(fastRequests[0].model).toBe('fixture-fast');
+  const fastWorkspace = await readWorkspace();
+  const fastMessage = fastWorkspace.messages.at(-1);
+  expect(fastMessage.execution.validation).toBe('compiled');
+  expect(fastWorkspace.versions.find((v) => v.id === fastMessage.versionId).verified).toBe(false);
+  await page.screenshot({ path: path.join(root, 'chat-model-picker.png') });
+  await page.getByLabel('Chat model').selectOption('model:fixture-model');
+  await expect(page.getByLabel('Chat model')).toBeEnabled();
+  console.log(
+    'PASS: a real PDF text edit uses one Fast model call, no input images, and compile-only History status.',
+  );
   const closeCopy = path.join(root, 'copy-on-close');
   await fs.mkdir(closeCopy);
   await app.evaluate(({ dialog }) => {
@@ -678,6 +732,11 @@ try {
   console.log(
     'PASS: closing during Save As waits for the transaction and recovers the newly saved project identity.',
   );
+  const savedAI = JSON.parse(await fs.readFile(path.join(dataRoot, 'ai-connections.json'), 'utf8'));
+  expect(savedAI.connections.find((c) => c.id === savedAI.activeId).selection).toEqual({
+    mode: 'manual',
+    model: 'fixture-model',
+  });
   expect(errors).toEqual([]);
   console.log(
     'PASS: actionable AI errors, retry draft, persistent chat/notes/history, recovery, compact controls and no renderer errors.',

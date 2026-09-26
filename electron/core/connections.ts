@@ -4,6 +4,8 @@ import path from 'node:path';
 import type { AIConnection, AISettings, ConnectionInput } from '../../src/shared/ai';
 import { atomicWrite } from './project';
 import { safeId } from './workspace';
+import { validateSelection } from './ai-routing';
+import type { ModelSelection } from '../../src/shared/ai';
 
 export interface SecretStorage {
   available(): boolean;
@@ -12,7 +14,7 @@ export interface SecretStorage {
 }
 type DiskSettings = AISettings & { secrets: Record<string, string> };
 function connectionRevision(profile: AIConnection, secret?: string): string {
-  const { vision: _vision, ...identity } = profile;
+  const { vision: _vision, selection: _selection, autoModels: _autoModels, ...identity } = profile;
   return createHash('sha256')
     .update(JSON.stringify([identity, secret]))
     .digest('hex');
@@ -80,6 +82,20 @@ export function validateConnection(input: ConnectionInput, previous?: AIConnecti
     previous.executable === (input.executable || undefined) &&
     previous.format === (native ? undefined : format) &&
     !input.clearKey;
+  const selection = validateSelection(
+    input.selection ?? previous?.selection ?? { mode: previous ? 'default' : 'auto' },
+  );
+  const autoModels =
+    input.autoModels ?? (previous?.kind === input.kind ? previous.autoModels : undefined);
+  if (
+    autoModels &&
+    (typeof autoModels !== 'object' ||
+      ['fast', 'capable'].some((key) => {
+        const value = autoModels[key as 'fast' | 'capable'];
+        return value !== undefined && (typeof value !== 'string' || value.length > 160);
+      }))
+  )
+    throw new Error('Enter valid Fast and Capable model IDs.');
   return {
     id: input.id ? safeId(input.id) : randomUUID(),
     name: input.name.trim(),
@@ -90,6 +106,10 @@ export function validateConnection(input: ConnectionInput, previous?: AIConnecti
     executable: native ? input.executable || undefined : undefined,
     hasKey: false,
     vision: unchanged && !input.apiKey ? previous.vision : 'unknown',
+    selection,
+    autoModels: autoModels
+      ? { fast: autoModels.fast?.trim(), capable: autoModels.capable?.trim() }
+      : undefined,
   };
 }
 export class ConnectionStore {
@@ -179,6 +199,13 @@ export class ConnectionStore {
       if (id !== null && !data.connections.some((c) => c.id === id))
         throw new Error('Choose an existing connection.');
       data.activeId = id;
+    });
+  }
+  selectModel(id: string, selection: ModelSelection) {
+    return this.mutate((data) => {
+      const connection = data.connections.find((c) => c.id === safeId(id));
+      if (!connection) throw new Error('This connection no longer exists.');
+      connection.selection = validateSelection(selection);
     });
   }
   async get(id?: string) {

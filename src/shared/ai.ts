@@ -2,6 +2,23 @@ import type { ProjectFile, TemplateId } from './types';
 
 export type ProviderKind = 'codex' | 'claude-code' | 'openai' | 'anthropic' | 'custom';
 export type ApiFormat = 'responses' | 'chat-completions' | 'anthropic';
+export type ModelSelection = { mode: 'auto' | 'default' | 'manual'; model?: string };
+export type ModelDescriptor = {
+  id: string;
+  name: string;
+  images?: boolean;
+  efforts?: string[];
+  isDefault?: boolean;
+};
+export type ModelCatalog = { models: ModelDescriptor[]; warning?: string };
+export type RunMetadata = {
+  models: string[];
+  escalated: boolean;
+  validation?: 'compiled' | 'visual';
+  timings: Partial<
+    Record<'setup' | 'inference' | 'compile' | 'render' | 'inspect' | 'review' | 'total', number>
+  >;
+};
 export type AIConnection = {
   id: string;
   name: string;
@@ -12,6 +29,8 @@ export type AIConnection = {
   executable?: string;
   hasKey: boolean;
   vision: 'unknown' | 'verified';
+  selection?: ModelSelection;
+  autoModels?: { fast?: string; capable?: string };
 };
 export type ConnectionInput = Omit<AIConnection, 'id' | 'hasKey' | 'vision'> & {
   id?: string;
@@ -51,6 +70,7 @@ export type ChatMessage = {
   versionId?: string;
   runId?: string;
   status?: 'complete' | 'error' | 'cancelled';
+  execution?: RunMetadata;
 };
 export type VersionInfo = {
   id: string;
@@ -60,6 +80,7 @@ export type VersionInfo = {
   pdfFingerprint?: string;
   revision: number;
   verified: boolean;
+  buildFingerprint?: string;
 };
 export type VersionSnapshot = {
   info: VersionInfo;
@@ -92,6 +113,7 @@ export const emptyWorkspace = (projectId: string): WorkspaceState => ({
 export type PdfPageImage = { page: number; dataUrl: string; text: string };
 export type PdfNoteImage = { annotationId: string; page: number; dataUrl: string };
 export type RenderedPdf = { pages: PdfPageImage[]; notes: PdfNoteImage[] };
+export type PdfInspection = { pageCount: number };
 export type AgentPhase =
   'reading' | 'editing' | 'building' | 'checking' | 'complete' | 'error' | 'cancelled';
 export type AgentProgress = {
@@ -100,12 +122,14 @@ export type AgentProgress = {
   phase: AgentPhase;
   message: string;
   attempt: number;
+  execution?: RunMetadata;
 };
 export type RenderPdfRequest = {
   requestId: string;
   runId: string;
   pdf: Uint8Array;
   annotations: PdfAnnotation[];
+  mode?: 'images' | 'metadata';
 };
 export type AgentInput = {
   runId: string;
@@ -113,6 +137,8 @@ export type AgentInput = {
   message: string;
   annotationIds: string[];
   pdfVersionId?: string;
+  connectionId?: string;
+  selection?: ModelSelection;
 };
 export type AgentResult = {
   runId: string;
@@ -123,4 +149,5 @@ export type AgentResult = {
   project?: import('./types').Project;
   build?: import('./types').BuildResult;
   version?: VersionInfo;
+  execution?: RunMetadata;
 };

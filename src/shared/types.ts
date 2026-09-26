@@ -35,6 +35,7 @@ export type BuildResult = {
   log: string;
   versionId?: string;
   runtimeUnavailable?: boolean;
+  buildFingerprint?: string;
 };
 export type RuntimeStatus = {
   ready: boolean;
@@ -226,6 +227,11 @@ export interface DesktopAPI {
   saveAIConnection(connection: import('./ai').ConnectionInput): Promise<import('./ai').AISettings>;
   removeAIConnection(id: string): Promise<import('./ai').AISettings>;
   selectAIConnection(id: string | null): Promise<import('./ai').AISettings>;
+  getAIModels(id: string): Promise<import('./ai').ModelCatalog>;
+  selectAIModel(
+    id: string,
+    selection: import('./ai').ModelSelection,
+  ): Promise<import('./ai').AISettings>;
   checkAIConnection(id: string, testImages?: boolean): Promise<import('./ai').ConnectionStatus>;
   loginAIConnection(id: string): Promise<import('./ai').LoginResult>;
   cancelAILogin(id: string): Promise<void>;
@@ -233,7 +239,7 @@ export interface DesktopAPI {
   cancelAgent(runId: string): Promise<void>;
   completePdfRender(
     requestId: string,
-    result: import('./ai').RenderedPdf | { error: string },
+    result: import('./ai').RenderedPdf | import('./ai').PdfInspection | { error: string },
   ): Promise<void>;
   onAgentProgress(callback: (event: import('./ai').AgentProgress) => void): () => void;
   onRenderPdf(callback: (event: import('./ai').RenderPdfRequest) => void): () => void;
