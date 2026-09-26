@@ -1,0 +1,262 @@
+{
+  "schemaVersion": 1,
+  "cargoLockSha256": "4a6e5c44fdb10188005cba9ae6a253fe60d79676b1cef999da669ec71c3850e9",
+  "scope": "Supplementary unmodified license texts from the exact Git commit recorded by each checksum-locked crate; not a complete binary license review.",
+  "sources": [
+    {
+      "name": "defmt-parser",
+      "version": "1.0.0",
+      "crateSha256": "10d60334b3b2e7c9d91ef8150abfb6fa4c1c39ebbcf4a81c2e346aad939fee3e",
+      "repository": "knurling-rs/defmt",
+      "commit": "4a8cdb44891ed57b8ff5a023b6bec7137c48708f",
+      "pathInVcs": "parser",
+      "declaredLicense": "MIT OR Apache-2.0",
+      "materials": [
+        {
+          "path": "LICENSE-APACHE",
+          "url": "https://raw.githubusercontent.com/knurling-rs/defmt/4a8cdb44891ed57b8ff5a023b6bec7137c48708f/LICENSE-APACHE",
+          "bytes": 10850,
+          "sha256": "8173d5c29b4f956d532781d2b86e4e30f83e6b7878dce18c919451d6ba707c90"
+        },
+        {
+          "path": "LICENSE-MIT",
+          "url": "https://raw.githubusercontent.com/knurling-rs/defmt/4a8cdb44891ed57b8ff5a023b6bec7137c48708f/LICENSE-MIT",
+          "bytes": 1053,
+          "sha256": "2710a622a896bba67356913d4d0492cab5465f61b2ecce6d880aeb483834fb50"
+        }
+      ]
+    },
+    {
+      "name": "ignore-files",
+      "version": "3.0.5",
+      "crateSha256": "a3b0030836e50229b1c47a6604ea95268b164492d6104d79989179a02255254f",
+      "repository": "watchexec/watchexec",
+      "commit": "3e8e0fe3f54991781c03a301e01b2cbabef2f5a8",
+      "pathInVcs": "crates/ignore-files",
+      "declaredLicense": "Apache-2.0",
+      "materials": [
+        {
+          "path": "LICENSE",
+          "url": "https://raw.githubusercontent.com/watchexec/watchexec/3e8e0fe3f54991781c03a301e01b2cbabef2f5a8/LICENSE",
+          "bytes": 11357,
+          "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1"
+        }
+      ]
+    },
+    {
+      "name": "jni",
+      "version": "0.22.4",
+      "crateSha256": "5efd9a482cf3a427f00d6b35f14332adc7902ce91efb778580e180ff90fa3498",
+      "repository": "jni-rs/jni-rs",
+      "commit": "5ae9458a4ec44c5318f37ddc7569c1d4ae8a69e7",
+      "pathInVcs": "crates/jni",
+      "declaredLicense": "MIT OR Apache-2.0",
+      "materials": [
+        {
+          "path": "LICENSE-APACHE",
+          "url": "https://raw.githubusercontent.com/jni-rs/jni-rs/5ae9458a4ec44c5318f37ddc7569c1d4ae8a69e7/LICENSE-APACHE",
+          "bytes": 10847,
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "LICENSE-MIT",
+          "url": "https://raw.githubusercontent.com/jni-rs/jni-rs/5ae9458a4ec44c5318f37ddc7569c1d4ae8a69e7/LICENSE-MIT",
+          "bytes": 1104,
+          "sha256": "fea1d5bf3dd71605ce5d7d2ff695c1837e914c77195e523a86b5391716477960"
+        }
+      ]
+    },
+    {
+      "name": "jni-macros",
+      "version": "0.22.4",
+      "crateSha256": "a00109accc170f0bdb141fed3e393c565b6f5e072365c3bd58f5b062591560a3",
+      "repository": "jni-rs/jni-rs",
+      "commit": "33045a124105c939d1e2cbdcb5a39e5d868ffa03",
+      "pathInVcs": "crates/jni-macros",
+      "declaredLicense": "MIT OR Apache-2.0",
+      "materials": [
+        {
+          "path": "LICENSE-APACHE",
+          "url": "https://raw.githubusercontent.com/jni-rs/jni-rs/33045a124105c939d1e2cbdcb5a39e5d868ffa03/LICENSE-APACHE",
+          "bytes": 10847,
+          "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+        },
+        {
+          "path": "LICENSE-MIT",
+          "url": "https://raw.githubusercontent.com/jni-rs/jni-rs/33045a124105c939d1e2cbdcb5a39e5d868ffa03/LICENSE-MIT",
+          "bytes": 1104,
+          "sha256": "fea1d5bf3dd71605ce5d7d2ff695c1837e914c77195e523a86b5391716477960"
+        }
+      ]
+    },
+    {
+      "name": "jni-sys-macros",
+      "version": "0.4.1",
+      "crateSha256": "38c0b942f458fe50cdac086d2f946512305e5631e720728f2a61aabcd47a6264",
+      "repository": "jni-rs/jni-sys",
+      "commit": "64d77b7a5f119d7b55b4e2c169a4668067ff59e6",
+      "pathInVcs": "jni-sys-macros",
+      "declaredLicense": "MIT OR Apache-2.0",
+      "materials": [
+        {
+          "path": "LICENSE-APACHE",
+          "url": "https://raw.githubusercontent.com/jni-rs/jni-sys/64d77b7a5f119d7b55b4e2c169a4668067ff59e6/LICENSE-APACHE",
+          "bytes": 11358,
+          "sha256": "c6596eb7be8581c18be736c846fb9173b69eccf6ef94c5135893ec56bd92ba08"
+        },
+        {
+          "path": "LICENSE-MIT",
+          "url": "https://raw.githubusercontent.com/jni-rs/jni-sys/64d77b7a5f119d7b55b4e2c169a4668067ff59e6/LICENSE-MIT",
+          "bytes": 1071,
+          "sha256": "1d85bd754b04ceec93e98e890edd1fa3c6a22e81bcb32135806beeccefa51cd1"
+        }
+      ]
+    },
+    {
+      "name": "project-origins",
+      "version": "1.4.2",
+      "crateSha256": "e42382141d102db809df94324b513c388b047ebc47926eec5417623b88781527",
+      "repository": "watchexec/watchexec",
+      "commit": "63d6170dbc4fddb9bdcf770e0f598cca78467cf0",
+      "pathInVcs": "crates/project-origins",
+      "declaredLicense": "Apache-2.0",
+      "materials": [
+        {
+          "path": "LICENSE",
+          "url": "https://raw.githubusercontent.com/watchexec/watchexec/63d6170dbc4fddb9bdcf770e0f598cca78467cf0/LICENSE",
+          "bytes": 11357,
+          "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1"
+        }
+      ]
+    },
+    {
+      "name": "valuable",
+      "version": "0.1.1",
+      "crateSha256": "ba73ea9cf16a25df0c8caa16c51acb937d5712a8429db78a3ee29d5dcacd3a65",
+      "repository": "tokio-rs/valuable",
+      "commit": "9efc29b6e58cef28f6566a47aa7e142a55fead77",
+      "pathInVcs": "valuable",
+      "declaredLicense": "MIT",
+      "materials": [
+        {
+          "path": "LICENSE",
+          "url": "https://raw.githubusercontent.com/tokio-rs/valuable/9efc29b6e58cef28f6566a47aa7e142a55fead77/LICENSE",
+          "bytes": 1065,
+          "sha256": "ed60d479b8fd1f64e9cbc3de449a16a53ac1b3d1b6aeb9bf9d190a8e93061b44"
+        }
+      ]
+    },
+    {
+      "name": "watchexec",
+      "version": "8.2.0",
+      "crateSha256": "3de3c4a47a75176b13fc7b3f421a80a55b13cab5b3200547774f9b25d43a79a0",
+      "repository": "watchexec/watchexec",
+      "commit": "f370b82c156e6d4fb30a68864a67bbb4676c29c8",
+      "pathInVcs": "crates/lib",
+      "declaredLicense": "Apache-2.0",
+      "materials": [
+        {
+          "path": "LICENSE",
+          "url": "https://raw.githubusercontent.com/watchexec/watchexec/f370b82c156e6d4fb30a68864a67bbb4676c29c8/LICENSE",
+          "bytes": 11357,
+          "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1"
+        }
+      ]
+    },
+    {
+      "name": "watchexec-events",
+      "version": "6.1.0",
+      "crateSha256": "ad87c046fa1050d22100e7d234db2cbf6ffd020b0ae2deff4bef6faa8f71ac44",
+      "repository": "watchexec/watchexec",
+      "commit": "66f72a52f47b023627e1efa749ed7317f495fd7e",
+      "pathInVcs": "crates/events",
+      "declaredLicense": "Apache-2.0 OR MIT",
+      "materials": [
+        {
+          "path": "LICENSE",
+          "url": "https://raw.githubusercontent.com/watchexec/watchexec/66f72a52f47b023627e1efa749ed7317f495fd7e/LICENSE",
+          "bytes": 11357,
+          "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1"
+        }
+      ]
+    },
+    {
+      "name": "watchexec-filterer-globset",
+      "version": "8.0.0",
+      "crateSha256": "f258297db8519b9dd4c200aa0e7e261cb438c55571cbc6a22cb7b19a5b867080",
+      "repository": "watchexec/watchexec",
+      "commit": "7b93e8176ccac0ec767e1cf47ff13f48ec8872e3",
+      "pathInVcs": "crates/filterer/globset",
+      "declaredLicense": "Apache-2.0",
+      "materials": [
+        {
+          "path": "LICENSE",
+          "url": "https://raw.githubusercontent.com/watchexec/watchexec/7b93e8176ccac0ec767e1cf47ff13f48ec8872e3/LICENSE",
+          "bytes": 11357,
+          "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1"
+        }
+      ]
+    },
+    {
+      "name": "watchexec-filterer-ignore",
+      "version": "7.0.0",
+      "crateSha256": "923b0345fd40893ec39caf41ef2f4ce999b1bf25338001d211719f48ee7d7da4",
+      "repository": "watchexec/watchexec",
+      "commit": "30d90dd6fdbbd225b578f829d66a78562b264a82",
+      "pathInVcs": "crates/filterer/ignore",
+      "declaredLicense": "Apache-2.0",
+      "materials": [
+        {
+          "path": "LICENSE",
+          "url": "https://raw.githubusercontent.com/watchexec/watchexec/30d90dd6fdbbd225b578f829d66a78562b264a82/LICENSE",
+          "bytes": 11357,
+          "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1"
+        }
+      ]
+    },
+    {
+      "name": "watchexec-signals",
+      "version": "5.0.1",
+      "crateSha256": "3fd4537617a323437550d34c73a6aeeb1b489bbcc526e63f044ca3e59347101f",
+      "repository": "watchexec/watchexec",
+      "commit": "f7cac2e4305e644cf43c5cc28c6a94a0168b9ea9",
+      "pathInVcs": "crates/signals",
+      "declaredLicense": "Apache-2.0 OR MIT",
+      "materials": [
+        {
+          "path": "LICENSE",
+          "url": "https://raw.githubusercontent.com/watchexec/watchexec/f7cac2e4305e644cf43c5cc28c6a94a0168b9ea9/LICENSE",
+          "bytes": 11357,
+          "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1"
+        }
+      ]
+    },
+    {
+      "name": "watchexec-supervisor",
+      "version": "5.2.0",
+      "crateSha256": "a710aaac2dfcfb8a2e117c2f5e926bf10c533345f468f2017160c5f0e9ee0c53",
+      "repository": "watchexec/watchexec",
+      "commit": "cebfea763e05080bac9db12811fd97feaa126ee4",
+      "pathInVcs": "crates/supervisor",
+      "declaredLicense": "Apache-2.0 OR MIT",
+      "materials": [
+        {
+          "path": "LICENSE",
+          "url": "https://raw.githubusercontent.com/watchexec/watchexec/cebfea763e05080bac9db12811fd97feaa126ee4/LICENSE",
+          "bytes": 11357,
+          "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1"
+        }
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "package": "rustls-platform-verifier-android",
+      "pending": "No reviewed GitHub commit mapping"
+    },
+    {
+      "package": "seahash",
+      "pending": "No reviewed GitHub commit mapping"
+    }
+  ]
+}

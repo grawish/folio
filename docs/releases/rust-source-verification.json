@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-26",
+  "scope": "Complete upstream Cargo.lock registry-source inventory, including development, optional and non-Mac dependencies. Not the exact shipped binary dependency graph or a legal approval.",
+  "releaseAuditComplete": false,
+  "tectonic": {
+    "version": "0.17.0",
+    "commit": "8c0126a9653239a2e6e0a5274af9b8510f643030",
+    "archiveSha256": "980f2862937cc084eae921ade500c0390c9ae196e973636e0e1b13f5c9479f01",
+    "cargoLockSha256": "4a6e5c44fdb10188005cba9ae6a253fe60d79676b1cef999da669ec71c3850e9"
+  },
+  "collectorSha256": "20518ffb06eebee5f9107333f85f98a5fa9fa488557386f109c9ab83e951eaf1",
+  "sourceLockSha256": "2337891d37e5cbbcd28372273d3222e9af4cc814c246ec724cda9cc5ebf686d6",
+  "supplementalNoticeLockSha256": "89cc2271ba95b54af9588c9d2108a05cda351570435b01cb1ed93856967d8c6b",
+  "localInventorySha256": "cbafd53f6a3401df108951616fc76d93bd7da6516eb153c0675316c6cd1d78df",
+  "registryCrates": 437,
+  "workspaceCrates": 26,
+  "sourceArchiveBytes": 82289482,
+  "packagedNoticeFiles": 770,
+  "selectedCrateMaterialFiles": 2077,
+  "supplementedCrates": 13,
+  "supplementalNoticeFiles": 17,
+  "missingNoticeTexts": ["rustls-platform-verifier-android@0.1.1", "seahash@4.1.0"],
+  "verification": {
+    "python": "3.14.0",
+    "offlineCollectionPassed": true,
+    "offlineControlTests": 8,
+    "controlsSha256": "9b67e5781a528468bc754dcb6b8714416bd11a253ef12a20f527a9d2be1c170b",
+    "commands": [
+      "node scripts/collect-runtime-license-materials.mjs",
+      "python3 scripts/collect-rust-license-materials.py",
+      "python3 scripts/collect-rust-license-materials.py --offline",
+      "python3 tests/rust-license-materials.py"
+    ]
+  },
+  "pending": [
+    "Resolve the exact release target/features and match this source inventory to the distributed Tectonic binary.",
+    "Review workspace crates and all linked native/submodule licenses and corresponding-source/build requirements.",
+    "Complete Biber/Perl, TeX/font inventories and final signed-app SBOM/notices."
+  ],
+  "publication": "No compiler binary, downloaded crate archive or generated notice bundle was published by this verification."
+}
