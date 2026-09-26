@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-26T20:42:40.528068+00:00",
+  "sourceBase": "2752a6d92afbcf543e6a21c6fef1d5a47112b5da",
+  "scope": "Workspace native-test input repair. Application source and all 37 compiled outputs remain unchanged; current third-party notices are a separate package content change.",
+  "hostedFailure": {
+    "run": "https://github.com/grawish/folio/actions/runs/36267829412",
+    "source": "59d28bdeb0637319b41d4709ec141b230284f79d",
+    "nativeSuitesPassed": 7,
+    "failedSuite": "workspace",
+    "artifactId": 10915331488,
+    "artifact": {
+      "path": "artifacts/mac-59d28bd.zip",
+      "bytes": 4532352,
+      "sha256": "772927d70f670b3dd9cf0089aa573f864ef771444b3153b20edd09c3cb2a7e5c"
+    },
+    "githubReportedArtifactDigest": "sha256:772927d70f670b3dd9cf0089aa573f864ef771444b3153b20edd09c3cb2a7e5c",
+    "exactSourceScriptDigestsVerified": 8,
+    "packagedAsarSha256": "b66fb622daf5b69b47a1d5341688baa6c7ba965688e4feef0eb9fdcdcefeda5f",
+    "evidence": [
+      {
+        "path": "artifacts/mac-59d28bd/release/native-tests.json",
+        "bytes": 3771,
+        "sha256": "5369dd744bf835901b410c26de1b1a6ba0ff73a5f4bbc55237c966954031e17c"
+      },
+      {
+        "path": "artifacts/mac-59d28bd/test-results/release-workspace-final.log",
+        "bytes": 1080,
+        "sha256": "eae76c4550a7c62a855560e63a09bd6ad356f7d858fc5591e39eefbcd20ac246"
+      },
+      {
+        "path": "artifacts/mac-59d28bd/test-results/workspace-VzRmqG/failure.png",
+        "bytes": 124895,
+        "sha256": "b29e4eb72d9208dff8e773102e1223fbeea7d91ffa23a47408e7de80b8761ad3"
+      }
+    ],
+    "observation": "The final reopened workspace showed Build needs attention and main.tex:54: Can be used only in preamble. Earlier workspace autosave, conflict, rollback and project-dialog checks passed. Later suites and package verification were not reached. The artifact does not retain the malformed source."
+  },
+  "repair": {
+    "script": {
+      "path": "scripts/test-workspace.mjs",
+      "bytes": 18025,
+      "sha256": "73d73aadd8a7f42c4d8287bf791b004e7571bf93acb06bf9c1658eb6ca1b7043"
+    },
+    "description": "Use the editor document Select All command and keyboard text insertion for full-source replacements. Check exact recovered text or, for intentionally held saves, exact source after release. Explicitly cover a scrolled viewport with the preamble absent from its DOM. App code and timeout bounds are unchanged."
+  },
+  "pairedControl": {
+    "result": {
+      "passed": true,
+      "domFillPreservedUnselectedSource": true,
+      "oldCharacters": 14139,
+      "expectedCharacters": 2861,
+      "keyboardReplacementExact": true,
+      "correctedPDFCompiled": true
+    },
+    "evidence": [
+      {
+        "path": "test-results/check-workspace-editor-input.mjs",
+        "bytes": 2902,
+        "sha256": "1f4722ac8c94e3f33261b755bde0fb3c73b191098b5250f3c6fe936b88189614"
+      },
+      {
+        "path": "test-results/workspace-editor-input.log",
+        "bytes": 196,
+        "sha256": "045b901c74e7939a19e6feb30dd287f9acac47040a4ae21133dad70cace728ea"
+      },
+      {
+        "path": "test-results/workspace-editor-input-FGkpb5/result.json",
+        "bytes": 188,
+        "sha256": "c9e57b6b69a48fc4221976b21b117c3536f21ae59c7bee9fe9063ca54e75701c"
+      },
+      {
+        "path": "test-results/workspace-editor-input-FGkpb5/dom-fill.tex",
+        "bytes": 14140,
+        "sha256": "b1a342342b6f90475962b34fe09ee7b736ebd1d753c60b9953d75f67e556b627"
+      },
+      {
+        "path": "test-results/workspace-editor-input-FGkpb5/keyboard-replacement.tex",
+        "bytes": 2862,
+        "sha256": "965b35cf2b9dfce451343928564c970d18982bd767440e58b4e6dc4ae2f61173"
+      },
+      {
+        "path": "test-results/workspace-editor-input-FGkpb5/dom-fill.png",
+        "bytes": 174931,
+        "sha256": "6dd49d0e9713adcd809d101e85b48a3b7f50994a008ca2f532b4d9812e713d3f"
+      },
+      {
+        "path": "test-results/workspace-editor-input-FGkpb5/keyboard-replacement.png",
+        "bytes": 165784,
+        "sha256": "408f838fae82b086489ba05de54c9bcc0b587a93f977699ff8918341333f3144"
+      }
+    ],
+    "interpretation": "The control demonstrates a failure mechanism consistent with the hosted screenshot. The unmodified full test also passed locally, so the hosted failure is not claimed to reproduce on every run."
+  },
+  "localVerification": {
+    "packaged": false,
+    "result": {
+      "passed": true,
+      "errors": []
+    },
+    "unchangedCompiledFileCount": 37,
+    "evidence": [
+      {
+        "path": "test-results/workspace-reproduce-59d.log",
+        "bytes": 691,
+        "sha256": "232d013e0f0e1f2beb64da39b15e73e8ed83d5c9d3cfe6ab408e19c13a1d590e"
+      },
+      {
+        "path": "test-results/workspace-JLlxOr/result.json",
+        "bytes": 36,
+        "sha256": "ffa3b4d8faab382fd294f7bfae419468db4b226f8892f3926caaaa563c9a381f"
+      },
+      {
+        "path": "test-results/workspace-document-selection-retry.log",
+        "bytes": 691,
+        "sha256": "fe6d16ce6f984ea6fdc6f99734fedbd6bcd811c0d85d54b07bb41cb7fc7a2998"
+      },
+      {
+        "path": "test-results/workspace-8dwh8v/result.json",
+        "bytes": 36,
+        "sha256": "ffa3b4d8faab382fd294f7bfae419468db4b226f8892f3926caaaa563c9a381f"
+      },
+      {
+        "path": "test-results/workspace-8dwh8v/layout-measurements.json",
+        "bytes": 9358,
+        "sha256": "f6a44b08cd5785e26038e5f37383365582f43e185155f91f9d91d67e7baad203"
+      },
+      {
+        "path": "test-results/early-workspace-build-hashes.json",
+        "bytes": 4199,
+        "sha256": "632cfef1151a78b92526b26f2345a0154b28941777493fc5c1a72e05fcc441d5"
+      }
+    ]
+  },
+  "intermediateObservation": "The first repaired test awaited recovery while its synthetic source write was intentionally held. That wait failed as expected for the save ordering. Verification for those two cases now occurs after release; the final full run passed.",
+  "remaining": "Complete a fresh hosted Mac qualification with this test change and the current notice materials. This is not a new installer release or production platform acceptance."
+}

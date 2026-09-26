@@ -41,6 +41,20 @@ const settings = () => page.getByRole('button', { name: 'Settings', exact: true 
 const done = () => page.getByRole('button', { name: 'Done', exact: true }).click();
 const code = () => page.getByRole('tab', { name: 'Code', exact: true }).click();
 const editor = () => page.locator('.cm-content');
+const recoveredSource = async () => {
+  const recovery = JSON.parse(await fs.readFile(path.join(root, 'data/recovery.json'), 'utf8'));
+  return recovery.project.files.find((file) => file.path === 'main.tex').content;
+};
+const replaceSource = async (source, verifyRecovery = true) => {
+  // CodeMirror virtualizes its DOM. A contenteditable fill can replace only
+  // the rendered lines after scrolling, leaving hidden source on either side.
+  // Use the editor's document selection and verify the full recovery buffer.
+  await editor().press('ControlOrMeta+a');
+  await page.keyboard.insertText(source);
+  // A deliberately held autosave also holds recovery; those cases verify the
+  // complete source after releasing the transaction below.
+  if (verifyRecovery) await expect.poll(recoveredSource).toBe(source);
+};
 const separator = () => page.getByRole('separator', { name: 'Resize writing and PDF panes' });
 const width = (selector) =>
   page.locator(selector).evaluate((node) => node.getBoundingClientRect().width);
@@ -226,7 +240,7 @@ try {
   await page.getByRole('button', { name: 'Save project', exact: true }).click();
   await page.getByText('Saved locally', { exact: true }).waitFor();
   await code();
-  await editor().fill(original + '\n% Autosaved source');
+  await replaceSource(original + '\n% Autosaved source');
   await expect.poll(readSource, { timeout: 15_000 }).toContain('Autosaved source');
   await page.getByText('Saved locally', { exact: true }).waitFor();
   await page.getByRole('tab', { name: 'Chat', exact: true }).click();
@@ -239,11 +253,11 @@ try {
     .toBe('Keep this draft in the project folder.');
   await code();
   await holdNextSourceWrite();
-  await editor().fill(original + '\n% First snapshot');
+  await replaceSource(original + '\n% First snapshot');
   await expect.poll(() => app.evaluate(() => globalThis.writeHeld)).toBe(true);
-  await editor().fill(original + '\n% Newer typing');
+  await replaceSource(original + '\n% Newer typing', false);
   await app.evaluate(() => globalThis.releaseWrite());
-  await expect.poll(readSource).toContain('Newer typing');
+  await expect.poll(readSource).toBe(original + '\n% Newer typing');
   await expect(editor()).toContainText('Newer typing');
   console.log('PASS: source and chat autosave, typing during a save remains dirty and saves next.');
 
@@ -251,7 +265,7 @@ try {
   const external = original + '\n% External version';
   await fs.writeFile(path.join(folder, 'main.tex'), external);
   await page.getByRole('region', { name: 'External file changes' }).waitFor();
-  await editor().fill(original + '\n% Retained editor version');
+  await replaceSource(original + '\n% Retained editor version');
   await pause(2700);
   expect(await readSource()).toBe(external);
   await expect(page.getByText('Autosave paused', { exact: true })).toBeVisible();
@@ -280,9 +294,9 @@ try {
   // A failed write must still recover text typed while the transaction was held.
   await holdNextSourceWrite(true);
   const beforeFailure = await readSource();
-  await editor().fill(original + '\n% Earlier failed snapshot');
+  await replaceSource(original + '\n% Earlier failed snapshot');
   await expect.poll(() => app.evaluate(() => globalThis.writeHeld)).toBe(true);
-  await editor().fill(original + '\n% Retry after failure');
+  await replaceSource(original + '\n% Retry after failure', false);
   await pause(750);
   await app.evaluate(() => globalThis.releaseWrite());
   await page.getByRole('button', { name: 'Save to retry', exact: true }).waitFor();
@@ -291,7 +305,7 @@ try {
   const recoveredAfterFailure = JSON.parse(
     await fs.readFile(path.join(root, 'data/recovery.json'), 'utf8'),
   );
-  expect(recoveredAfterFailure.project.files[0].content).toContain('Retry after failure');
+  expect(recoveredAfterFailure.project.files[0].content).toBe(original + '\n% Retry after failure');
   await expect(editor()).toContainText('Retry after failure');
   await page.getByRole('button', { name: 'Save to retry', exact: true }).click();
   await expect.poll(readSource).toContain('Retry after failure');
@@ -306,7 +320,7 @@ try {
         dialog.finishPendingOpen = resolve;
       });
   });
-  await editor().fill(original + '\n% Pending project switch');
+  await replaceSource(original + '\n% Pending project switch');
   await page.getByRole('button', { name: 'Open project', exact: true }).click();
   await page.getByRole('button', { name: 'Discard changes', exact: true }).click();
   await expect.poll(() => app.evaluate(({ dialog }) => !!dialog.finishPendingOpen)).toBe(true);
@@ -317,7 +331,7 @@ try {
   console.log('PASS: choosing another project suspends autosave through the native file dialog.');
 
   await holdNextSourceWrite();
-  await editor().fill(original + '\n% Close during autosave');
+  await replaceSource(original + '\n% Close during autosave');
   await expect.poll(() => app.evaluate(() => globalThis.writeHeld)).toBe(true);
   const closeEvent = page.waitForEvent('close');
   await app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0].close());
@@ -338,7 +352,8 @@ try {
   await code();
   await editor().press('ControlOrMeta+End');
   await expect(editor()).toContainText('Close during autosave');
-  await editor().fill(original + '\n% Disabled autosave');
+  await expect(editor()).not.toContainText('documentclass');
+  await replaceSource(original + '\n% Disabled autosave');
   await pause(2700);
   expect(await readSource()).toContain('Close during autosave');
   await closed();

@@ -1,0 +1,189 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-26T20:41:28.933607+00:00",
+  "sourceBase": "2752a6d92afbcf543e6a21c6fef1d5a47112b5da",
+  "scope": "Byte provenance and source materials for the shipped Biber arm64 executable and every prepared cache file. Not a complete CPAN/native redistribution audit.",
+  "releaseAuditComplete": false,
+  "inputs": [
+    {
+      "path": "scripts/collect-biber-build-evidence.py",
+      "bytes": 19517,
+      "sha256": "d3f9ed3a8248a4ce628b5d5f32e8cfd0bfaaab69b67713c1b0f023b2ec685e03"
+    },
+    {
+      "path": "tests/biber-build-evidence.py",
+      "bytes": 8654,
+      "sha256": "e41009876cb4b4de4bbc412e380e2bbae7b95b0859b7764e7dc6cc73fd7ea112"
+    },
+    {
+      "path": "resources/biber-build-provenance.lock.json",
+      "bytes": 3783,
+      "sha256": "a7a53f3657ea2aeb98431edb89896bb8ff48ad79a2c342725d18c28c5a76c0d6"
+    },
+    {
+      "path": "resources/biber-foundation-releases.json",
+      "bytes": 1575,
+      "sha256": "7d60288717d5db6d401c0d7d3b14547c984b9e87a94f65592049141fc9cbefc4"
+    },
+    {
+      "path": "scripts/collect-rust-license-materials.py",
+      "bytes": 15721,
+      "sha256": "20518ffb06eebee5f9107333f85f98a5fa9fa488557386f109c9ab83e951eaf1"
+    },
+    {
+      "path": "resources/runtime-license-sources.lock.json",
+      "bytes": 3571,
+      "sha256": "2337891d37e5cbbcd28372273d3222e9af4cc814c246ec724cda9cc5ebf686d6"
+    }
+  ],
+  "upstreamArchive": {
+    "archive": "biber-2.17-darwin-universal.tar.gz",
+    "bytes": 89382426,
+    "sha256": "182e1efa074d8a2a23a8893f2a22440d4e463cce55e4ed02076ac4c0ee0614b2"
+  },
+  "universalBinary": {
+    "bytes": 100477200,
+    "sha256": "d894bfb75f2df1935fbcf452e8a79fd80de5c859ade4842d8e0681306b509681"
+  },
+  "arm64Binary": {
+    "bytes": 60205328,
+    "sha256": "ec2e851a60a36ff9aa756120c728ffec7a8727e4a1a6094e504b0863f2bb7bd4"
+  },
+  "runtimeManifest": {
+    "bytes": 490036,
+    "sha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0"
+  },
+  "versions": {
+    "biber": "2.17",
+    "perl": "5.32.1",
+    "par": "1.017",
+    "packer": "1.055"
+  },
+  "layout": {
+    "payloadStart": 3639537,
+    "loaderEnd": 5923286,
+    "zipEnd": 59720273,
+    "parMarker": 59720323,
+    "signatureStart": 59720336
+  },
+  "summary": {
+    "loaderFiles": 98,
+    "zipFiles": 3834,
+    "cacheFiles": 3979,
+    "cacheBytes": 247211520,
+    "biberSourceMatches": 36,
+    "foundationArchives": 3,
+    "foundationArchiveBytes": 18311436,
+    "foundationMaterials": 25,
+    "foundationSourceFileMatches": {
+      "perl-5.32.1": 228,
+      "PAR-1.017": 4,
+      "PAR-Packer-1.055": 3
+    }
+  },
+  "cacheMapping": {
+    "unchangedPayloadFiles": 3974,
+    "generatedScriptWrappers": 2,
+    "chunkedNativeBinaries": 2,
+    "embeddedCanary": 1
+  },
+  "reviewedZipDuplicates": {
+    "lib/Mozilla/CA/cacert.pem": {
+      "bytes": 203007,
+      "sha256": "bcb7d5aaf2e274e69686edf7dd971f93b20eae2fdb0f7c52e1d8a874ae018018",
+      "extraOccurrences": 1
+    },
+    "lib/auto/Unicode/LineBreak/LineBreak.bundle": {
+      "bytes": 193453,
+      "sha256": "c475732c1db052458eb393f7db8626d57b6d22ae90cda521d2846f388706245a",
+      "extraOccurrences": 1
+    }
+  },
+  "foundationSources": [
+    {
+      "id": "perl-5.32.1",
+      "archive": "perl-5.32.1.tar.gz",
+      "root": "perl-5.32.1",
+      "url": "https://cpan.metacpan.org/authors/id/S/SH/SHAY/perl-5.32.1.tar.gz",
+      "bytes": 18038522,
+      "sha256": "03b693901cd8ae807231b1787798cf1f2e0b8a56218d07b7da44f784a7caeb2c",
+      "version": "5.032001",
+      "licenseDeclaration": ["perl_5"]
+    },
+    {
+      "id": "PAR-1.017",
+      "archive": "PAR-1.017.tar.gz",
+      "root": "PAR-1.017",
+      "url": "https://cpan.metacpan.org/authors/id/R/RS/RSCHUPP/PAR-1.017.tar.gz",
+      "bytes": 65942,
+      "sha256": "c37d5b258e754c389fcbd2a21ab7a5d95e04697bc05af7b828e4407d96729650",
+      "version": "1.017",
+      "licenseDeclaration": ["perl_5"]
+    },
+    {
+      "id": "PAR-Packer-1.055",
+      "archive": "PAR-Packer-1.055.tar.gz",
+      "root": "PAR-Packer-1.055",
+      "url": "https://cpan.metacpan.org/authors/id/R/RS/RSCHUPP/PAR-Packer-1.055.tar.gz",
+      "bytes": 206972,
+      "sha256": "d726c2e344517dee1c87553a7f09c1ccd430869208d442e1362eb3e7918188b1",
+      "version": "1.055",
+      "licenseDeclaration": ["perl_5"]
+    }
+  ],
+  "verification": {
+    "offlineControlsPassed": 8,
+    "allCollectorControlsPassed": 47,
+    "cachedReplayFileCount": 35,
+    "cachedReplayByteIdentical": true,
+    "archivesExtractedToFilesystem": false,
+    "upstreamCodeExecuted": false
+  },
+  "evidence": [
+    {
+      "path": "artifacts/license-materials/biber-build/inventory.json",
+      "bytes": 3846,
+      "sha256": "e7597e52cd7a2676fceaefb34dabb4a17a565717052b3709f5e5d6b9ee897ff4"
+    },
+    {
+      "path": "artifacts/license-materials/biber-build/payload-inventory.json",
+      "bytes": 1736548,
+      "sha256": "147275f6e303dbb0ad6163b99dfef7bfad4e5f45d44e3e95446a9156f9112658"
+    },
+    {
+      "path": "test-results/biber-build-controls-final.log",
+      "bytes": 106,
+      "sha256": "133449d6f429f0588126e0403937f271f33f90517460d5c4b39d69c2eeda0f25"
+    },
+    {
+      "path": "test-results/biber-build-all-collector-controls.log",
+      "bytes": 771,
+      "sha256": "55735a367d9a011e008ed0bb5c22db023a21a979ea6d9d1068f46dae5425b934"
+    },
+    {
+      "path": "test-results/biber-build-final.log",
+      "bytes": 325,
+      "sha256": "079dadd05a94dfe29879ac8b636d7a8209556d1f0a8eb99f26568bbca0b79508"
+    },
+    {
+      "path": "test-results/biber-build-replay.log",
+      "bytes": 325,
+      "sha256": "079dadd05a94dfe29879ac8b636d7a8209556d1f0a8eb99f26568bbca0b79508"
+    },
+    {
+      "path": "test-results/biber-build-final-output-hashes.json",
+      "bytes": 3955,
+      "sha256": "5d3dabab34d3f3f75085c6d4d5ab3ee5e0f8dac9d9993e19e8b9a6e75c5cd80b"
+    }
+  ],
+  "observations": [
+    "The first collection rejected two duplicate ZIP entries; inspection confirmed identical contents and each exact duplicate is now explicitly locked.",
+    "Formatting the committed release-field snapshot changed its serialization, and the input digest check correctly rejected it before the reviewed lock was refreshed.",
+    "There are 3,836 regular ZIP entries but 3,834 distinct names; the two reviewed duplicates are byte-identical.",
+    "The PAR metadata aggregate license value is unknown; this is not a conclusion about the licenses of each embedded dependency."
+  ],
+  "remaining": [
+    "Map all additional CPAN modules and native libraries to exact sources, notices and build inputs.",
+    "Complete Biber Artistic 2.0 notice materials and final exact-app SBOM/redistribution review."
+  ]
+}

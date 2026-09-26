@@ -74,6 +74,28 @@ Inputs are pinned in `resources/rust-standard-library.lock.json` and cached in `
 
 This supplies the standard-library source and notice materials missing from the Tectonic crate inventory. The 27 prebuilt libraries are a toolchain inventory, not a claim that all of them are linked into Tectonic. They include compiler/test support. Final linked-component mapping and the wider native/workspace, Biber/Perl, TeX/font and exact-app SBOM review remain required. Generated files are not automatically added to existing releases or installers.
 
+## Collect Biber payload and foundation sources
+
+`python3 scripts/collect-biber-build-evidence.py` checks that the prepared Apple silicon Biber is the exact arm64 slice of the checksum-locked official universal executable. It reads its embedded PAR payload without running Perl or extracting archive paths, then checks every prepared cache file against both that payload and the runtime manifest. All 3,979 files (247,211,520 bytes) have byte provenance: 3,974 match stored files, two scripts add the packager's known wrapper, two native binaries use its documented 32,768-byte chunk format, and one canary matches embedded text.
+
+The embedded ZIP has 3,834 distinct regular files. Two names each occur twice with identical contents; the lock records their exact bytes, digests and occurrence counts. Any other duplicate, changed duplicate, unsafe path, link or oversized member is rejected. The separate loader contributes 98 files. All 36 embedded Biber application/data files match the pinned Biber 2.17 release source.
+
+The embedded configuration identifies Perl 5.32.1, PAR 1.017 and PAR::Packer 1.055. The collector retains their three complete source archives (18,311,436 bytes), 25 original notice/metadata/build materials, and an inventory of exact source-to-payload matches: 228 Perl files, four PAR files and three PAR::Packer files. The packager's original chunk-generation scripts are included. These matches support provenance; they do not establish a reproducible native binary build.
+
+Prepare the runtime and cached Biber release source first:
+
+```sh
+npm run setup
+node scripts/collect-runtime-license-materials.mjs
+python3 scripts/collect-biber-build-evidence.py
+python3 scripts/collect-biber-build-evidence.py --offline
+python3 tests/biber-build-evidence.py
+```
+
+`resources/biber-build-provenance.lock.json` pins the inputs. `resources/biber-foundation-releases.json` retains the reviewed identity, checksum, download URL and license fields from official MetaCPAN release responses, with each response's source URL and original digest. Foundation downloads use those exact pinned CPAN archives; `--offline` requires their existing cache. Selected evidence, original foundation archives and the hashed inventory go to ignored `artifacts/license-materials/biber-build/`. A failed run records `incomplete-inventory.json`; a retained older successful inventory does not describe the failed attempt. Eight offline controls and a byte-identical replay of all 35 retained output files pass; see [verification](releases/biber-build-verification.json).
+
+The PAR metadata declares its aggregate license as `unknown`; that is not a license conclusion for every embedded dependency. Mapping the additional CPAN/native libraries to exact sources and notices, retaining complete Biber Artistic 2.0 materials, reviewing redistribution obligations, and producing the final app SBOM remain open. This collector does not publish or change an installer or the historical compiler resource identity.
+
 ## Collect native build-port sources and notices
 
 Run `python3 scripts/collect-native-license-materials.py` after retaining the [verified vcpkg build inputs](COMPILER_PROVENANCE.md#reproduce-the-check). The Python 3.11+ collector checks `resources/native-license-sources.lock.json` against the compiler-build evidence lock and original vcpkg archive. Every selected port must match its installed version/features, recipe and manifest. Its source archive must match the recipe’s SHA-512 plus the reviewed byte count and SHA-256. Downloads use approved HTTPS hosts and bounded redirects, sizes and time; cached corruption fails instead of fetching a replacement.

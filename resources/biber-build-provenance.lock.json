@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "scope": "Byte provenance and source materials for the shipped Biber arm64 executable and every prepared cache file. Not a complete CPAN/native redistribution audit.",
+  "biberVersion": "2.17",
+  "upstreamArchive": {
+    "archive": "biber-2.17-darwin-universal.tar.gz",
+    "bytes": 89382426,
+    "sha256": "182e1efa074d8a2a23a8893f2a22440d4e463cce55e4ed02076ac4c0ee0614b2"
+  },
+  "universalBinary": {
+    "bytes": 100477200,
+    "sha256": "d894bfb75f2df1935fbcf452e8a79fd80de5c859ade4842d8e0681306b509681"
+  },
+  "arm64Binary": {
+    "bytes": 60205328,
+    "sha256": "ec2e851a60a36ff9aa756120c728ffec7a8727e4a1a6094e504b0863f2bb7bd4"
+  },
+  "runtimeManifest": {
+    "bytes": 490036,
+    "sha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0"
+  },
+  "perlVersion": "5.32.1",
+  "parVersion": "1.017",
+  "packerVersion": "1.055",
+  "sourceCommit": "3091bee31a9706e3aa5e4afef81062856e14735a",
+  "foundationSources": [
+    {
+      "id": "perl-5.32.1",
+      "archive": "perl-5.32.1.tar.gz",
+      "root": "perl-5.32.1",
+      "url": "https://cpan.metacpan.org/authors/id/S/SH/SHAY/perl-5.32.1.tar.gz",
+      "bytes": 18038522,
+      "sha256": "03b693901cd8ae807231b1787798cf1f2e0b8a56218d07b7da44f784a7caeb2c",
+      "version": "5.032001",
+      "licenseDeclaration": ["perl_5"]
+    },
+    {
+      "id": "PAR-1.017",
+      "archive": "PAR-1.017.tar.gz",
+      "root": "PAR-1.017",
+      "url": "https://cpan.metacpan.org/authors/id/R/RS/RSCHUPP/PAR-1.017.tar.gz",
+      "bytes": 65942,
+      "sha256": "c37d5b258e754c389fcbd2a21ab7a5d95e04697bc05af7b828e4407d96729650",
+      "version": "1.017",
+      "licenseDeclaration": ["perl_5"]
+    },
+    {
+      "id": "PAR-Packer-1.055",
+      "archive": "PAR-Packer-1.055.tar.gz",
+      "root": "PAR-Packer-1.055",
+      "url": "https://cpan.metacpan.org/authors/id/R/RS/RSCHUPP/PAR-Packer-1.055.tar.gz",
+      "bytes": 206972,
+      "sha256": "d726c2e344517dee1c87553a7f09c1ccd430869208d442e1362eb3e7918188b1",
+      "version": "1.055",
+      "licenseDeclaration": ["perl_5"]
+    }
+  ],
+  "embeddedBinaries": [
+    {
+      "cachePath": "biber",
+      "offset": 51040,
+      "chunkBytes": 32768,
+      "bytes": 87280,
+      "sha256": "52b0c1f17f5f0d2fe9a237143a69283bffe7c23f3957195eab04835c4567be70"
+    },
+    {
+      "cachePath": "libperl.dylib",
+      "offset": 138323,
+      "chunkBytes": 32768,
+      "bytes": 3454784,
+      "sha256": "ef286919bfe500d84c2c21bd988a688edbe0ea5b55453ae15d43ab271fb6fc7d"
+    }
+  ],
+  "generatedScripts": [
+    {
+      "cachePath": "150ece88.pl",
+      "sourcePath": "script/main.pl"
+    },
+    {
+      "cachePath": "78efcd51.pl",
+      "sourcePath": "script/biber-darwin"
+    }
+  ],
+  "canary": {
+    "cachePath": "_CANARY_.txt",
+    "bytes": 180,
+    "sha256": "012c76143d42867b2d102c6d250184838a668249b43e798f334de9a810b8ffa5"
+  },
+  "biberSourceMappings": {
+    "script/biber-darwin": "bin/biber",
+    "lib/Biber/bcf.rnc": "data/schemata/bcf.rnc",
+    "lib/Biber/bcf.rng": "data/schemata/bcf.rng",
+    "lib/Biber/bcf.xsl": "data/bcf.xsl",
+    "lib/Biber/biber-tool.conf": "data/biber-tool.conf",
+    "lib/Biber/config.rnc": "data/schemata/config.rnc",
+    "lib/Biber/config.rng": "data/schemata/config.rng"
+  },
+  "foundationReleaseSnapshot": {
+    "bytes": 1575,
+    "sha256": "7d60288717d5db6d401c0d7d3b14547c984b9e87a94f65592049141fc9cbefc4"
+  },
+  "reviewedZipDuplicates": {
+    "lib/Mozilla/CA/cacert.pem": {
+      "bytes": 203007,
+      "sha256": "bcb7d5aaf2e274e69686edf7dd971f93b20eae2fdb0f7c52e1d8a874ae018018",
+      "extraOccurrences": 1
+    },
+    "lib/auto/Unicode/LineBreak/LineBreak.bundle": {
+      "bytes": 193453,
+      "sha256": "c475732c1db052458eb393f7db8626d57b6d22ae90cda521d2846f388706245a",
+      "extraOccurrences": 1
+    }
+  }
+}
