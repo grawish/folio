@@ -216,14 +216,34 @@ export function copyWorkspaceArchive(archive: Uint8Array, projectId: string): Ui
 
 export class WorkspaceStore {
   private queues = new Map<string, Promise<unknown>>();
+  private pending = new Map<string, number>();
+  private pendingTotal = 0;
   private archives = new Set<Promise<Uint8Array>>();
   constructor(readonly dataRoot: string) {}
   private root(id: string) {
     return path.join(this.dataRoot, 'workspaces', safeId(id));
   }
   private enqueue<T>(id: string, operation: () => Promise<T>): Promise<T> {
+    // Include the active operation in both limits. Each accepted request can
+    // retain source/PDF bytes until its turn; never silently discard a save.
+    const pending = this.pending.get(id) ?? 0;
+    if (pending >= 4 || this.pendingTotal >= 8)
+      return Promise.reject(
+        new Error('Folio is finishing other workspace saves. Try again in a moment.'),
+      );
+    this.pending.set(id, pending + 1);
+    this.pendingTotal++;
     const next = (this.queues.get(id) ?? Promise.resolve()).catch(() => {}).then(operation);
     this.queues.set(id, next);
+    const settled = () => {
+      this.pendingTotal--;
+      const remaining = this.pending.get(id)! - 1;
+      if (remaining) this.pending.set(id, remaining);
+      else this.pending.delete(id);
+      // A newer request may already be waiting on this promise.
+      if (this.queues.get(id) === next) this.queues.delete(id);
+    };
+    void next.then(settled, settled);
     return next;
   }
   async flush() {

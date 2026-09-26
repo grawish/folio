@@ -225,6 +225,8 @@ A fresh synthetic profile ends at 409.4 MiB of regular-file sizes, mostly its 37
 
 ## Prioritized changes
 
+Workspace draft/history writes now admit at most four pending operations per project and eight across the store, including active writes. They release settled queue records rather than retaining a promise for every previously opened project. Excess requests fail visibly before storage work and can be retried; accepted changes retain their order. Regression controls and two packaged workflows verify the behavior in [the queue record](releases/workspace-queue-verification.json). This is an admission bound, not a measured speedup or a whole-app memory/disk budget. Historical retention and the remaining queues/caches still need work.
+
 Targets below are acceptance targets for experiments, not achieved results.
 
 | Priority | Change to investigate | Why | Experiment target | Required protection |

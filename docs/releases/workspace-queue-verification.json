@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-26T23:54:25.222731+00:00",
+  "baseCommit": "b80edb409ee77c8a74eae7ac8ca7bf1db0a0975d",
+  "applicationChange": {
+    "path": "electron/core/workspace.ts",
+    "bytes": 17529,
+    "sha256": "a5b992a3896e3eab5efc7bad8e9db25f47a7b44db951145b6e7f0b0823019049"
+  },
+  "policy": {
+    "perProjectPendingIncludingActive": 4,
+    "storePendingIncludingActive": 8,
+    "excessRequest": "Reject before storage work; keep accepted requests in order and allow a later retry.",
+    "settledBookkeeping": "Remove the completed promise only if no newer request owns that project queue; release counts after success and failure.",
+    "automaticHistoryDeletion": false
+  },
+  "tests": {
+    "file": {
+      "path": "tests/workspace-queue.test.ts",
+      "bytes": 4573,
+      "sha256": "a0dc1de3baa730055f36d3f4f0248274b941192674cab04737f66e0e9d6f3915"
+    },
+    "focusedPassed": 3,
+    "focusedLog": {
+      "path": "test-results/workspace-queue-focused.log",
+      "bytes": 421,
+      "sha256": "d8ef03f0c3ec17243e6ed99fd4dc5c414bb89a8a10e1eb4a3bd90c14825abf66"
+    },
+    "allSourcePassed": 256,
+    "allSourceLog": {
+      "path": "test-results/workspace-queue-unit.log",
+      "bytes": 26683,
+      "sha256": "bf0a791aa543a829325e36c9a41d7dfb8728c13c2a12e988501c9dfc733a5981"
+    },
+    "buildPassed": true,
+    "buildLog": {
+      "path": "test-results/workspace-queue-build.log",
+      "bytes": 1719,
+      "sha256": "426dad576d97d11a7afec67b49cff711e26b8633de8fb773733548d7b70f7c30"
+    },
+    "formatPassed": true,
+    "formatLog": {
+      "path": "test-results/workspace-queue-format.log",
+      "bytes": 183,
+      "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+    }
+  },
+  "baselineControl": {
+    "sourceCommit": "b80edb409ee77c8a74eae7ac8ca7bf1db0a0975d",
+    "sourceSha256": "7016a88383c559e2ea653a99ccbec81a9a2edd2f5e122fcc9ebe831af20cfd23",
+    "method": "Bundle the unchanged baseline module with esbuild into ignored test-results; run the same three test bodies with only the module import redirected. No production file replacement.",
+    "failedCapacityTests": 2,
+    "passedFailureRecoveryTest": 1,
+    "log": {
+      "path": "test-results/workspace-queue-before.log",
+      "bytes": 1772,
+      "sha256": "11670e16b030070eadd0bce48a21afc073055e496637a56f8f547e179bb7af63"
+    }
+  },
+  "package": {
+    "checkedAt": "2026-09-26T23:52:11.199Z",
+    "app": "release/workspace-queue/mac-arm64/Folio.app",
+    "architecture": "arm64",
+    "comparedOutputFiles": 39,
+    "appAsarSha256": "57acc51c137af76e038665a3149e68556ac4e475ad73919c51b6685b0610fb34",
+    "runtimeManifestMatches": true,
+    "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0"
+  },
+  "native": [
+    {
+      "suite": "chat",
+      "passed": true,
+      "evidence": "test-results/chat-WX9gpp",
+      "script": {
+        "path": "scripts/test-chat.mjs",
+        "bytes": 36762,
+        "sha256": "ecc8c229f5792aefd47b860c7ff318c3bd60962972da2f57be4f9e7a454cd095"
+      },
+      "log": {
+        "path": "test-results/workspace-queue-chat.log",
+        "bytes": 1518,
+        "sha256": "7de80875f05ed6a4904fe08706b4cca9d86f466e84f9f0c5bb4dddc88c857167"
+      }
+    },
+    {
+      "suite": "save-recovery",
+      "passed": true,
+      "evidence": "test-results/save-recovery-MkS3WV",
+      "script": {
+        "path": "scripts/test-save-recovery.mjs",
+        "bytes": 20853,
+        "sha256": "bdf3126f22a6b45b5583a689aa406e2a2ebde1f6db672a182102a44cbc704ee3"
+      },
+      "log": {
+        "path": "test-results/workspace-queue-save-recovery.log",
+        "bytes": 960,
+        "sha256": "a68a9c091a9f207f4e4b0e6616b6e4032b94a967052642f8e3600d298c773a9d"
+      }
+    }
+  ],
+  "scope": "Bound pending workspace writes and release settled bookkeeping. Targeted packaged chat/history and guided-save-recovery workflows pass; no fresh full hosted qualification of this application change yet. Historical storage retention, other queues/caches, aggregate memory/CPU/disk limits and broader-device acceptance remain open."
+}

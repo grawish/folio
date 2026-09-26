@@ -21,6 +21,14 @@ The source/manifest/history transaction determines save success. Failure to upda
 
 Save As writes a new identity into both the manifest and history archive. Source ZIP exports use the same identity in those two files. History export and import share the limits of 1,000 versions, 200 MB expanded, 100 MB compressed, and 25 MB per entry. Export verifies snapshot hashes before writing an archive. Import rejects duplicate or excessive version records before creating files.
 
+## Pending workspace writes
+
+Development builds admit at most four pending workspace writes for one project and eight across the workspace store, counting active operations. These writes save conversation state or create source/PDF history versions. Accepted operations run in order within each project; an excess request receives “Folio is finishing other workspace saves. Try again in a moment.” before its storage operation starts. Requests are not silently discarded or substituted for one another.
+
+Finishing or failing an operation releases its admission slot. The queue removes its last settled promise and count when that project has no pending work, so opening many projects does not retain a promise for every past project. A failed write still rejects its caller; subsequent writes can recover. `flush()` waits for the operations pending when it is called, and reports any failure among those operations. Existing project Save and close paths still flush the current workspace.
+
+Three real-file controls check mixed draft/version ordering, rejection before new version files are created, eight-project saturation, slot reuse over 32 different projects, and recovery after invalid saved state. The two capacity controls reject the former unbounded implementation. These are operation-count limits, not a whole-app memory quota or a historical-storage retention policy. Archive compression has its separate bounded queue below. See [verification](releases/workspace-queue-verification.json).
+
 ## Background history compression
 
 Development builds prepare history ZIPs in one reusable Node worker. `WorkspaceStore.archive()` queues a small loading callback before reading the history, so several requests cannot each load a full history at the same time. It admits one active request and at most three waiting requests. A full queue reports a retryable save error. Source and PDF fingerprints are still checked before compression; the project transaction still waits for a complete archive before replacing any file.

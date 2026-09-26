@@ -8,6 +8,8 @@ To turn on autosave, open **Settings → General → Autosave project**. Save on
 
 In development builds, Folio packs your PDF history in the background while saving. Keep waiting for **Saved locally** before treating the folder as saved. If saving reports an error, your earlier files stay available; fix the problem and try Save again. This improvement is not in the older preview-4 download.
 
+If Folio says it is **finishing other workspace saves**, let the current work finish, then try the action again. For a chat-recovery warning, click **Save** to retry with your current chat and notes. Wait for **Saved locally** before treating that retry as saved.
+
 ![General settings with autosave](../images/general-light.png)
 
 Close Folio normally and reopen it to check recovery. If a dialog asks about unsaved changes, choose the action that fits: save, keep the current project open, or discard only when you intend to lose those changes. Do not test forced crashes with your only copy of a real resume.
