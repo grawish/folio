@@ -178,7 +178,7 @@ test('project ZIP rejects invalid manifests, non-UTF8 source and source/file siz
     assert.throws(
       () =>
         inspectProjectArchive(zip({ 'main.tex': tex, 'resume.project.json': metadata }), 'x.zip'),
-      /manifest/,
+      /manifest|project format/,
     );
   assert.throws(() => inspectProjectArchive(zip({ 'readme.md': 'hello' }), 'x.zip'), /\.tex/);
   assert.throws(

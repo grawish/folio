@@ -183,5 +183,14 @@
     "liveAI": false,
     "testPublisher": false,
     "publicCatalog": true
+  },
+  {
+    "file": "docs/images/unsupported-project-format.png",
+    "sourceSuite": "import",
+    "sourceCapture": "unsupported-project-format.png",
+    "sourceEvidence": "test-results/project-schema-native-import-final.log",
+    "sha256": "c6479b0c4dcbead1eafc70a0ff08fa773068f9da0802e7c0c398958a1265b059",
+    "synthetic": true,
+    "liveAI": false
   }
 ]

@@ -67,6 +67,32 @@ try {
   const oldSource = await fs.readFile(path.join(original, 'main.tex'));
   const originalMetadata = await fs.readFile(path.join(original, 'resume.project.json'));
 
+  const future = path.join(root, 'newer-project');
+  await fs.mkdir(future);
+  const futureMetadata = Buffer.from(
+    JSON.stringify({
+      ...JSON.parse(originalMetadata.toString()),
+      schemaVersion: 99,
+      id: 'future-project',
+      name: 'Project from a newer Folio',
+      futureData: { retained: true },
+    }),
+  );
+  await fs.writeFile(path.join(future, 'main.tex'), oldSource);
+  await fs.writeFile(path.join(future, 'resume.project.json'), futureMetadata);
+  await choose(zipPath, future);
+  await action('Open project folder…');
+  await expect(page.getByRole('status')).toContainText('project format is not supported');
+  await expect(page.locator('.preview-pane .textLayer')).toContainText('Alex Morgan');
+  await expect(page.getByLabel('Project name')).toHaveValue('My resume');
+  expect(await fs.readFile(path.join(future, 'resume.project.json'))).toEqual(futureMetadata);
+  expect(await fs.readFile(path.join(future, 'main.tex'))).toEqual(oldSource);
+  expect(await fs.readFile(path.join(original, 'resume.project.json'))).toEqual(originalMetadata);
+  await page.screenshot({ path: path.join(root, 'unsupported-project-format.png') });
+  console.log(
+    'PASS: a newer project format is rejected visibly; both folders and the current PDF remain unchanged.',
+  );
+
   await page.getByLabel('Project name').fill('Keep my unsaved changes');
   await action('Import ZIP project…');
   await expect(page.getByRole('dialog')).toContainText('Keep your latest changes?');

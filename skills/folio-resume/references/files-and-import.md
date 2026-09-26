@@ -10,6 +10,10 @@ Use the **…** menu beside the project name. **Open project…** selects a TeX 
 
 Use **Save project as…** for an independent copy. The copy keeps its conversation and history but gets its own project identity. Use **Export LaTeX source…** for a ZIP you can move or share. That ZIP includes source, assets, and conversation/history, so review its contents before sharing. AI credentials are excluded.
 
+If Folio says the project's format is not supported, open it with the Folio version that saved it. Do not change the version number inside the project file just to hide the error. The folder stays unchanged, and your current project remains open. Older supported projects open normally; their next Save updates the project information together with source and history. A plain TeX folder does not need a Folio project file.
+
+[Screenshot: Folio keeps the current project open when another project's format is unsupported](https://github.com/grawish/folio/blob/main/docs/images/unsupported-project-format.png)
+
 ## Import a ZIP
 
 1. Choose **… → Import ZIP project…** and select the archive.

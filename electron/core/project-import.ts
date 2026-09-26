@@ -11,6 +11,7 @@ import {
 } from './project';
 import { safeRelative } from './file-io';
 import { copyWorkspaceArchive } from './workspace';
+import { readProjectManifest } from './project-manifest';
 import { ImportTransactions, writeImportFile, type ImportHooks } from './import-transactions';
 import type { Project, ProjectImportPreview } from '../../src/shared/types';
 
@@ -46,19 +47,7 @@ export function inspectProjectArchive(archive: Uint8Array, archiveName: string) 
     const name = original.slice(prefix.length);
     safeRelative(name);
     if (name === 'resume.project.json') {
-      if (data.length > 64 * 1024) throw new Error('The project manifest exceeds 64 KB.');
-      try {
-        metadata = JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(data));
-      } catch {
-        throw new Error('The project manifest is damaged.');
-      }
-      if (
-        !metadata ||
-        Array.isArray(metadata) ||
-        typeof metadata !== 'object' ||
-        ![1, 2].includes(Number(metadata.schemaVersion))
-      )
-        throw new Error('This project manifest version is not supported.');
+      metadata = readProjectManifest(data);
       continue;
     }
     if (name === 'resume.folio' || name === 'resume.trash') {

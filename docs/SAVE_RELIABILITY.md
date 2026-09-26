@@ -21,6 +21,18 @@ The source/manifest/history transaction determines save success. Failure to upda
 
 Save As writes a new identity into both the manifest and history archive. Source ZIP exports use the same identity in those two files. History export and import share the limits of 1,000 versions, 200 MB expanded, 100 MB compressed, and 25 MB per entry. Export verifies snapshot hashes before writing an archive. Import rejects duplicate or excessive version records before creating files.
 
+## Project format upgrades
+
+Folder and ZIP opening share a strict manifest reader: a present `resume.project.json` must be a UTF-8 JSON object, at most 64 KiB, with numeric `schemaVersion` 1 or 2. Unknown versions are rejected before the project is registered for editing. A folder without a manifest is still a normal supported TeX project. A malformed manifest is not treated as a missing one.
+
+Opening a version-1 project leaves its folder unchanged. Matching old compiler labels may resolve to the included exact compiler identity in memory; differing labels stay pinned to their original selection. The next Save writes version 2, source and history through the existing durable journal, retaining the project identity and template origin. No separate in-place migration runs during open.
+
+`tests/project-schema.test.ts` checks rejected newer/malformed manifests, folder/ZIP agreement, read-only opening, compiler-pin preservation, and a successful upgrade with history. Its child-process fixture invokes the real `ProjectStore.save()` and is killed after a source replacement, manifest replacement, history replacement, durable commit, and during rollback cleanup. Reopening restores the complete old project before commit, or retains the complete new project afterward. It verifies exact file bytes, matching history/source, stable identity and a second idempotent reopen. PDFs in these storage tests are synthetic header fixtures; compiler and viewer qualification remain separate.
+
+The new nine-case suite and the full 207-test unit/protocol suite pass on the development Mac. Before the fix, the tests reproduced a newer version being accepted and malformed `null` metadata causing an unhelpful exception. Broader filesystem, power-loss and signed-app upgrade acceptance remain required.
+
+The source-native import suite passes with no renderer errors in `test-results/import-u2e6E0/`. It opens a synthetic newer-format folder through the actual app, verifies the visible error and retained current PDF, and compares both folders' bytes before continuing the existing ZIP import/export, folder-open and close-during-import workflows. The [plain-language guide](tutorials/files-and-import.md) includes the reviewed native screenshot; its hash is recorded in `images/qualified-captures.json`.
+
 ## Evidence
 
 `tests/save-transactions.test.ts` and `tests/fixtures/save-crash.ts` exercise actual files and a child process killed at specific journal boundaries:

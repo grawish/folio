@@ -11,6 +11,7 @@ import type {
 } from '../../src/shared/save-recovery';
 import { validateRemovedFiles } from '../../src/shared/project-files';
 import { ProjectScanner, compareDisk, diskKind } from './project-scan';
+import { PROJECT_MANIFEST_LIMIT, readProjectManifest } from './project-manifest';
 import { templateCatalog } from '../../src/shared/template-catalog';
 import {
   adoptRuntime,
@@ -181,25 +182,16 @@ export class ProjectStore {
     const files: ProjectFile[] = [...tree]
       .filter(([p]) => TEXT_EXTENSIONS.has(path.extname(p).toLowerCase()))
       .map(([p, data]) => ({ path: p, content: data.toString('utf8') }));
-    let metadata: {
-      mainFile?: string;
-      name?: string;
-      id?: string;
-      revision?: number;
-      templateId?: Project['templateId'];
-      templateVersion?: number;
-      runtime?: unknown;
-      engine?: unknown;
-      bundle?: unknown;
-    } = {};
+    let manifest: Uint8Array | undefined;
     try {
-      metadata = JSON.parse((await readWithin(root, 'resume.project.json')).toString());
+      manifest = await readWithin(root, 'resume.project.json', PROJECT_MANIFEST_LIMIT);
     } catch (error) {
       if ((error as NodeJS.ErrnoException).code !== 'ENOENT')
         throw new Error(
-          'The project manifest could not be read. Keep a copy and repair its JSON before reopening.',
+          'The project manifest could not be read. It must be a regular file no larger than 64 KB inside your project.',
         );
     }
+    const metadata = manifest ? readProjectManifest(manifest) : {};
     const mainFile =
       selectedMain ??
       metadata.mainFile ??
@@ -212,7 +204,11 @@ export class ProjectStore {
           : randomUUID(),
       name: metadata.name ?? path.basename(root),
       revision:
-        Number.isSafeInteger(metadata.revision) && metadata.revision! >= 0 ? metadata.revision : 0,
+        typeof metadata.revision === 'number' &&
+        Number.isSafeInteger(metadata.revision) &&
+        metadata.revision >= 0
+          ? metadata.revision
+          : 0,
       files,
       mainFile,
       templateId: metadata.templateId,
