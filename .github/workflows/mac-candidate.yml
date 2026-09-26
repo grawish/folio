@@ -45,6 +45,9 @@ jobs:
             release/SHA256SUMS
             release/disk-image-verification.log
             test-results/*-final.log
+            test-results/chat-*/failure.png
+            test-results/chat-*/lifecycle.json
+            test-results/chat-*/native-output.log
             test-results/workspace-*/layout-measurements.json
             test-results/workspace-*/failure.png
             test-results/workspace-*/result.json

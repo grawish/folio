@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-26",
+  "applicationSourceCommit": "3b5efbaf1aab1cbeb1ca54baa0a27da56fac82d8",
+  "scope": "Source-native full chat workflow with a local synthetic AI protocol fixture; real renderer, compiler, PDF and storage. Test synchronization change, no application behavior change.",
+  "command": "node scripts/test-chat.mjs",
+  "passed": true,
+  "rendererErrors": [],
+  "scriptSha256": "88dfc7b0c58ea5a8865095e78b85d14579b0e73ed6528ce8292fb0eaa711afbf",
+  "localMainBuildSha256": "bd59a3e5b66410f59c8b9df981a5b48889c5968efaa03e8d287f22bcb6c3180c",
+  "lifecycleSha256": "f8275185a03f272947c20a39a88a86b8fb137613e925998a149e497800553650",
+  "localEvidence": "test-results/chat-KKzABS",
+  "failedLocalLogs": [
+    "test-results/chat-composer-investigation.log",
+    "test-results/chat-focus-investigation.log"
+  ],
+  "earlierHostedFailure": {
+    "run": "https://github.com/grawish/folio/actions/runs/36240831283",
+    "sourceCommit": "433a5c8d4b050652b92f42637d2ad9ba9df63ff1",
+    "unitTestsPassed": 198,
+    "compilerIntegrationsPassed": 15,
+    "templateImagesPassed": 12,
+    "nativeSuitesPassed": 5,
+    "failedNativeSuite": "chat",
+    "completePackageQualification": false
+  },
+  "finding": "Settings remains a native modal until asynchronous pack cancellation finishes. The earlier test attempted textarea input before it closed. Two local runs retained the old draft; the passing trace observed an open modal at both sends immediately following Settings.",
+  "composerFillEvents": 8,
+  "fillsThatWaitedForOpenModal": 2,
+  "assertions": [
+    "No open dialog before filling",
+    "Composer value equals requested message before Send",
+    "All existing chat, PDF, annotation, autosave, cancellation, restart and Save As assertions retained"
+  ],
+  "limits": [
+    "Live provider subscriptions were not used.",
+    "A local source-native pass is not complete hosted package qualification."
+  ],
+  "additionalHostedFailure": {
+    "run": "https://github.com/grawish/folio/actions/runs/36241823787",
+    "sourceCommit": "3b5efbaf1aab1cbeb1ca54baa0a27da56fac82d8",
+    "nativeSuitesPassed": 5,
+    "failedNativeSuite": "chat",
+    "failedStep": "Send after turning autosave off in Settings",
+    "nativeReportSha256": "29914d8749dc05c3e7a4bc5b49dd192d78f66153a7d605450974f33fc9821862",
+    "chatLogSha256": "641d1e3becce369dfc999239ee1a55367e91a36620ea4bfcc42d508a6953e499",
+    "templateImagesPassed": 12,
+    "changedTemplatePixels": 0,
+    "completePackageQualification": false
+  }
+}

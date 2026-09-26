@@ -142,7 +142,23 @@ const editor = () => page.locator('.cm-content');
 const composer = () => page.getByRole('textbox', { name: 'Message the resume agent' });
 const readWorkspace = () => page.evaluate((id) => window.folio.loadWorkspace(id), projectId);
 const send = async (text) => {
+  const focus = await app.evaluate(({ BrowserWindow }) =>
+    BrowserWindow.getAllWindows().map((window) => ({
+      focused: window.isFocused(),
+      contentsFocused: window.webContents.isFocused(),
+      visible: window.isVisible(),
+    })),
+  );
+  event('composer-fill', {
+    focus,
+    documentFocused: await page.evaluate(() => document.hasFocus()),
+    modalOpen: await page.locator('dialog[open]').count(),
+  });
+  // Settings waits for pack cancellation before closing its native modal. A
+  // textarea behind that modal cannot receive input even though it is enabled.
+  await expect(page.locator('dialog[open]')).toHaveCount(0);
   await composer().fill(text);
+  await expect(composer()).toHaveValue(text);
   await page.getByRole('button', { name: 'Send', exact: true }).click();
 };
 const close = async () => {
@@ -671,6 +687,23 @@ try {
   event('test-failed', { message: error.message });
   console.error('Lifecycle:', JSON.stringify(lifecycle));
   console.error('Native output:', nativeOutput || 'none');
+  console.error(
+    'Composer state:',
+    await page
+      ?.evaluate(() => {
+        const field = document.querySelector('textarea[aria-label="Message the resume agent"]');
+        const button = document.querySelector('.chat-composer button[type="submit"]');
+        return {
+          draftLength: field?.value.length,
+          documentFocused: document.hasFocus(),
+          composerDisabled: field?.disabled,
+          sendDisabled: button?.disabled,
+          connectionNotice: !!document.querySelector('.chat-connection-notice'),
+          progressVisible: !!document.querySelector('.agent-progress'),
+        };
+      })
+      .catch(() => 'unavailable'),
+  );
   console.error(
     'Visible build state:',
     await page
