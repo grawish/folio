@@ -1,6 +1,7 @@
 import { createHash, createPublicKey, verify, type KeyObject } from 'node:crypto';
 import { validateRuntimePin, type RuntimePin } from '../../src/shared/runtime';
 import { packFile, savePackFile } from './pack-io';
+import { resourceName } from './pack-resource-name';
 
 export const MAX_CATALOG_BYTES = 1024 * 1024;
 export const MAX_PACK_BYTES = 128 * 1024 * 1024;
@@ -129,8 +130,7 @@ export class CatalogVerifier {
     }
   }
 
-  verify(input: Uint8Array, now = Date.now(), historical = false): VerifiedCatalog {
-    if (!Number.isFinite(now)) throw new Error('The catalog verification time is invalid.');
+  authenticate(input: Uint8Array, context: string) {
     if (input.length > MAX_CATALOG_BYTES * 2) throw new Error('The signed catalog is too large.');
     const envelope = object(JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(input)), [
       'keyId',
@@ -144,14 +144,15 @@ export class CatalogVerifier {
       signature = base64(envelope.signature, 64);
     if (
       signature.length !== 64 ||
-      !verify(
-        null,
-        Buffer.concat([Buffer.from(CATALOG_SIGNATURE_CONTEXT), payload]),
-        key,
-        signature,
-      )
+      !verify(null, Buffer.concat([Buffer.from(context), payload]), key, signature)
     )
       throw new Error('The pack catalog signature is invalid.');
+    return { keyId, payload };
+  }
+
+  verify(input: Uint8Array, now = Date.now(), historical = false): VerifiedCatalog {
+    if (!Number.isFinite(now)) throw new Error('The catalog verification time is invalid.');
+    const { keyId, payload } = this.authenticate(input, CATALOG_SIGNATURE_CONTEXT);
     const catalog = object(JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(payload)), [
       'schemaVersion',
       'sequence',
@@ -209,14 +210,8 @@ export class CatalogVerifier {
         !Array.isArray(record.packages) ||
         !record.packages.length ||
         record.packages.length > 128 ||
-        record.packages.some(
-          (name) =>
-            typeof name !== 'string' ||
-            !/^[A-Za-z0-9][A-Za-z0-9._-]{0,99}\.(?:sty|cls|otf|ttf|tex|def|fd|map|enc|tfm|pfb)$/.test(
-              name,
-            ),
-        ) ||
-        new Set(record.packages.map((name) => name.toLowerCase())).size !== record.packages.length
+        new Set(record.packages.map((name) => resourceName(name).toLowerCase())).size !==
+          record.packages.length
       )
         throw new Error('The pack resource names are invalid or repeated.');
       const artifact = object(record.artifact, ['url', 'sha256', 'bytes']);
