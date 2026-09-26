@@ -1,0 +1,3043 @@
+{
+  "startedAt": "2026-09-26T22:22:01.042Z",
+  "sourceCommit": "0ad984feaabd205cb34605e69d5a4fd795da9fe7",
+  "scriptSha256": "5d54de695a59532eeed98bc7edcfece7710ef318967d0938059a922be08b2f5e",
+  "appAsarSha256": "d15091a0fa95c5259a621b569262ce846ff4087450a63674fe44c8ffe1d09ca3",
+  "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+  "catalogSha256": "62518f8802f12517c16a372f61f96eec5c7b3b5c212702fa53172d4a9ba79f07",
+  "host": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "os": "27.0.0",
+    "cpu": "Apple M4 Pro",
+    "logicalCpus": 14,
+    "ramBytes": 51539607552,
+    "node": "v24.21.0"
+  },
+  "samplesPerVariant": 5,
+  "pdfInspector": {
+    "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+    "pypdf": "6.10.0"
+  },
+  "smoke": false,
+  "scope": "Real keyboard edits in the packaged Code view, production IPC/compiler/history, and current PDF canvas/text rendering. No AI calls.",
+  "limits": [
+    "A fresh isolated app profile is prepared before timing. Each variant is compiled once before its measured edits; these are warm builds, not cold-cache samples.",
+    "All cases share one app/runtime/engine-cache session. OS caches are not purged; case order and every sample are retained.",
+    "Input and DOM timing use one renderer performance clock. Two animation frames after current text and Up to date are a rendering opportunity, not a physical display measurement.",
+    "Native IPC timing includes validation, assets, compiler and history checkpoint. Compiler duration is the production rounded field, not TeX-only time.",
+    "The harness temporarily wraps the existing private Electron IPC handler, preserving its event, arguments, result and errors. This is version-sensitive instrumentation, not a production API.",
+    "Renderer timer/frame gaps are observations under automation, not proof of typing latency, OS CPU/memory quotas or full app resource budgets.",
+    "Empirical percentiles describe this finite ordered corpus on one development Mac; they are not population p95 or acceptance on every supported device/OS."
+  ],
+  "variants": [
+    {
+      "variant": "classic-a4",
+      "sourceSha256": "1f0b21921a6ca62d39a3424719885c56e5dd6c0d332ad615043671f3e6a4dcd0",
+      "templateSourceSha256": "1f0b21921a6ca62d39a3424719885c56e5dd6c0d332ad615043671f3e6a4dcd0"
+    },
+    {
+      "variant": "modern-a4",
+      "sourceSha256": "224fbb81d2bb8c2e082a6d42e0c082714b26e2ffce28b71cf88186238e00feda",
+      "templateSourceSha256": "224fbb81d2bb8c2e082a6d42e0c082714b26e2ffce28b71cf88186238e00feda"
+    },
+    {
+      "variant": "academic-a4",
+      "sourceSha256": "1d0ea033bb9265e7d51c677e4b256c16f16168ec461bcba004dd7eed545d57ca",
+      "templateSourceSha256": "1d0ea033bb9265e7d51c677e4b256c16f16168ec461bcba004dd7eed545d57ca"
+    },
+    {
+      "variant": "minimal-a4",
+      "sourceSha256": "8165dc7109ce1044048a384df189ab179e1ef8260e3a03cc980d13e4829174dc",
+      "templateSourceSha256": "8165dc7109ce1044048a384df189ab179e1ef8260e3a03cc980d13e4829174dc"
+    },
+    {
+      "variant": "compact-technical-a4",
+      "sourceSha256": "53117105f8cda5ceea6f09efc56b773f72e92a001fddc0337249ecc80163f75e",
+      "templateSourceSha256": "53117105f8cda5ceea6f09efc56b773f72e92a001fddc0337249ecc80163f75e"
+    },
+    {
+      "variant": "two-column-a4",
+      "sourceSha256": "ec39a757f5862eaa7d0d32dfb4f66123a3af9ee9048ff06b568e55330f49c4cd",
+      "templateSourceSha256": "ec39a757f5862eaa7d0d32dfb4f66123a3af9ee9048ff06b568e55330f49c4cd"
+    },
+    {
+      "variant": "classic-letter",
+      "sourceSha256": "7eed1e55103a383d1635a5e64cf932258ec3177e4f95aeb8440b230ca7c2a0f6",
+      "templateSourceSha256": "1f0b21921a6ca62d39a3424719885c56e5dd6c0d332ad615043671f3e6a4dcd0"
+    },
+    {
+      "variant": "modern-letter",
+      "sourceSha256": "2e733c17ef679556883a4cdf89889859d90964ba490df5a1ea23cf9053a42403",
+      "templateSourceSha256": "224fbb81d2bb8c2e082a6d42e0c082714b26e2ffce28b71cf88186238e00feda"
+    },
+    {
+      "variant": "academic-letter",
+      "sourceSha256": "ac5d89d91ef33898a00f1140828b2fe0875ef1eeea1596559c37dbd4f63a612b",
+      "templateSourceSha256": "1d0ea033bb9265e7d51c677e4b256c16f16168ec461bcba004dd7eed545d57ca"
+    },
+    {
+      "variant": "minimal-letter",
+      "sourceSha256": "12d108dd163491a63cb90c30c63a5721afbd1597f1901bea742dd9f0146ae406",
+      "templateSourceSha256": "8165dc7109ce1044048a384df189ab179e1ef8260e3a03cc980d13e4829174dc"
+    },
+    {
+      "variant": "compact-technical-letter",
+      "sourceSha256": "5ccacb40cacab8f93f1e74b25a3e33d24d25eec189be5e31f607c900263e0795",
+      "templateSourceSha256": "53117105f8cda5ceea6f09efc56b773f72e92a001fddc0337249ecc80163f75e"
+    },
+    {
+      "variant": "two-column-letter",
+      "sourceSha256": "8e579fdac8715c112461336eedbd914f2734e565c7fa56357bb3f5cafa3647fc",
+      "templateSourceSha256": "ec39a757f5862eaa7d0d32dfb4f66123a3af9ee9048ff06b568e55330f49c4cd"
+    }
+  ],
+  "runs": [
+    {
+      "variant": "classic-a4",
+      "sample": 1,
+      "key": "classic-a4-1",
+      "marker": "Sample 01",
+      "sourceSha256": "318ddacf6b9c26a2e878673f285cee647cd4da808b7dd8aaaa7492cf299ec4ac",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 27.399999976158142
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 28
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 733
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2376.2999999523163
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2433.399999976158
+        }
+      ],
+      "maxTimerLatenessMs": 22.600000023841858,
+      "maxFrameGapMs": 18.60000000000582,
+      "inputToCompileUiMs": 733,
+      "compileUiSpanMs": 1643.2999999523163,
+      "compileUiEndToReadyMs": 57.10000002384186,
+      "inputToTextMs": 2419.7000000476837,
+      "inputToReadyMs": 2433.399999976158,
+      "inputToTwoFramesMs": 2458.600000023842,
+      "afterDebounceUiMs": 1725.6000000238419,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1643.7197919999962,
+      "compilerMs": 1636,
+      "nativeNonCompilerMs": 7.719791999996232,
+      "pdfSha256": "4a47d69fc153b6da7588d6edeeae4365c47a3a8623a2a301d307ac0bb0c64be1",
+      "pdfBytes": 23118,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "classic-a4",
+      "sample": 2,
+      "key": "classic-a4-2",
+      "marker": "Sample 02",
+      "sourceSha256": "9178b7d20c7667865d842ccba6b09624b6e37e912379b1cfce212e0f9d648538",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 26.299999952316284
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 26.899999976158142
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 733.6000000238419
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2158.5
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2215.600000023842
+        }
+      ],
+      "maxTimerLatenessMs": 20.700000047683716,
+      "maxFrameGapMs": 18.60000000000582,
+      "inputToCompileUiMs": 733.6000000238419,
+      "compileUiSpanMs": 1424.8999999761581,
+      "compileUiEndToReadyMs": 57.10000002384186,
+      "inputToTextMs": 2201.5,
+      "inputToReadyMs": 2215.600000023842,
+      "inputToTwoFramesMs": 2240.7000000476837,
+      "afterDebounceUiMs": 1507.1000000238419,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1426.2810830000017,
+      "compilerMs": 1418,
+      "nativeNonCompilerMs": 8.281083000001672,
+      "pdfSha256": "57331558569cec36d642700898ea27ddad2fe734866b0fa8527b6151db09361e",
+      "pdfBytes": 23173,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "classic-a4",
+      "sample": 3,
+      "key": "classic-a4-3",
+      "marker": "Sample 03",
+      "sourceSha256": "cb94920e3695c73f3ca0d8c104e0c41d906cc79377c021b9f4a924157d909344",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 24.899999976158142
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 25.600000023841858
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 732.2000000476837
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2188.100000023842
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2249.5
+        }
+      ],
+      "maxTimerLatenessMs": 19.200000047683716,
+      "maxFrameGapMs": 18.60000000000582,
+      "inputToCompileUiMs": 732.2000000476837,
+      "compileUiSpanMs": 1455.8999999761581,
+      "compileUiEndToReadyMs": 61.39999997615814,
+      "inputToTextMs": 2231.2000000476837,
+      "inputToReadyMs": 2249.5,
+      "inputToTwoFramesMs": 2274.899999976158,
+      "afterDebounceUiMs": 1542.6999999284744,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1456.5185839999976,
+      "compilerMs": 1450,
+      "nativeNonCompilerMs": 6.518583999997645,
+      "pdfSha256": "23200e0e346638ba43cfc06d4ffb723113993c0d07a9fcd9d198038d7ef59c74",
+      "pdfBytes": 23226,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "classic-a4",
+      "sample": 4,
+      "key": "classic-a4-4",
+      "marker": "Sample 04",
+      "sourceSha256": "d15cbb25da5c181869b9608012b4a9718bda9d2e589e87b61464809e24285ee5",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 24.100000023841858
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 24.700000047683716
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 735.7000000476837
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2170.600000023842
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2232.899999976158
+        }
+      ],
+      "maxTimerLatenessMs": 17.899999976158142,
+      "maxFrameGapMs": 18.60000000000582,
+      "inputToCompileUiMs": 735.7000000476837,
+      "compileUiSpanMs": 1434.8999999761581,
+      "compileUiEndToReadyMs": 62.299999952316284,
+      "inputToTextMs": 2214.2000000476837,
+      "inputToReadyMs": 2232.899999976158,
+      "inputToTwoFramesMs": 2257.8000000715256,
+      "afterDebounceUiMs": 1522.1000000238419,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1436.9889170000024,
+      "compilerMs": 1430,
+      "nativeNonCompilerMs": 6.988917000002402,
+      "pdfSha256": "93ff4b5febe78f0ef4596c792af2e22741dcfa2afb8f6a3bf053a6a6a0c5556f",
+      "pdfBytes": 23140,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "classic-a4",
+      "sample": 5,
+      "key": "classic-a4-5",
+      "marker": "Sample 05",
+      "sourceSha256": "41a6129b17b56daffd77bf91da234308201da4c4309ff40a025c2156ad986f6f",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 24.199999928474426
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 24.799999952316284
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 735.0999999046326
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2185.399999976158
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2248.399999976158
+        }
+      ],
+      "maxTimerLatenessMs": 18.299999952316284,
+      "maxFrameGapMs": 18.69999999999709,
+      "inputToCompileUiMs": 735.0999999046326,
+      "compileUiSpanMs": 1450.3000000715256,
+      "compileUiEndToReadyMs": 63,
+      "inputToTextMs": 2228,
+      "inputToReadyMs": 2248.399999976158,
+      "inputToTwoFramesMs": 2273.7999999523163,
+      "afterDebounceUiMs": 1538.7000000476837,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1452.386916000003,
+      "compilerMs": 1445,
+      "nativeNonCompilerMs": 7.3869160000031115,
+      "pdfSha256": "f179b7ee9776cf8712f8700426143cd0eebb920f2bed36767e418d19a1cd0153",
+      "pdfBytes": 23250,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "modern-a4",
+      "sample": 1,
+      "key": "modern-a4-1",
+      "marker": "Sample 01",
+      "sourceSha256": "1c75316ebd9d48cf84327d2c0469a6d2430ba1c411575e49a2344ceacfbbef5c",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 21.699999928474426
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 22.299999952316284
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 735.2999999523163
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2196.6999999284744
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2258.399999976158
+        }
+      ],
+      "maxTimerLatenessMs": 15.700000047683716,
+      "maxFrameGapMs": 18.69999999999709,
+      "inputToCompileUiMs": 735.2999999523163,
+      "compileUiSpanMs": 1461.3999999761581,
+      "compileUiEndToReadyMs": 61.700000047683716,
+      "inputToTextMs": 2238.600000023842,
+      "inputToReadyMs": 2258.399999976158,
+      "inputToTwoFramesMs": 2284.899999976158,
+      "afterDebounceUiMs": 1549.6000000238419,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1463.1932080000042,
+      "compilerMs": 1456,
+      "nativeNonCompilerMs": 7.193208000004233,
+      "pdfSha256": "4239b7a13db28680d9e2bc7eae7f8188c49fd31450b24bdb9da623081df20ed3",
+      "pdfBytes": 16699,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "modern-a4",
+      "sample": 2,
+      "key": "modern-a4-2",
+      "marker": "Sample 02",
+      "sourceSha256": "996918f118604411d89d9ff182b748bc345abbbed978bbc8faa830b30d832a53",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 19.399999976158142
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 19.899999976158142
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 725.2999999523163
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2171.1999999284744
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2232.1999999284744
+        }
+      ],
+      "maxTimerLatenessMs": 12.599999904632568,
+      "maxFrameGapMs": 18.700000000004366,
+      "inputToCompileUiMs": 725.2999999523163,
+      "compileUiSpanMs": 1445.8999999761581,
+      "compileUiEndToReadyMs": 61,
+      "inputToTextMs": 2213.5999999046326,
+      "inputToReadyMs": 2232.1999999284744,
+      "inputToTwoFramesMs": 2260.0999999046326,
+      "afterDebounceUiMs": 1534.7999999523163,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1447.7609589999993,
+      "compilerMs": 1441,
+      "nativeNonCompilerMs": 6.760958999999275,
+      "pdfSha256": "c84f82c06baa2fb6c43a2732b5e500bbb2ee9e9e5b60936997d5ffae93bf7c42",
+      "pdfBytes": 16752,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "modern-a4",
+      "sample": 3,
+      "key": "modern-a4-3",
+      "marker": "Sample 03",
+      "sourceSha256": "1ae1514ca414252f8e5daeb0bc0c87be8bd1f6533300bb20ab4e299c139c9de5",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 19.799999952316284
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 20.399999976158142
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 725.1000000238419
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2179.7999999523163
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2232.2000000476837
+        }
+      ],
+      "maxTimerLatenessMs": 13.300000071525574,
+      "maxFrameGapMs": 18.700000000004366,
+      "inputToCompileUiMs": 725.1000000238419,
+      "compileUiSpanMs": 1454.6999999284744,
+      "compileUiEndToReadyMs": 52.40000009536743,
+      "inputToTextMs": 2221.5,
+      "inputToReadyMs": 2232.2000000476837,
+      "inputToTwoFramesMs": 2259.399999976158,
+      "afterDebounceUiMs": 1534.2999999523163,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1457.0793330000015,
+      "compilerMs": 1447,
+      "nativeNonCompilerMs": 10.079333000001498,
+      "pdfSha256": "721bca90bd089f6c6ebcedcb55ee54d5c132ca7eda4cb595509920e1b5109f3b",
+      "pdfBytes": 16761,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "modern-a4",
+      "sample": 4,
+      "key": "modern-a4-4",
+      "marker": "Sample 04",
+      "sourceSha256": "e01eb42822ead9640f350c2891ce962dc437bc715dc7f6d0ce067fb0e75f33c6",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 19.299999952316284
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 19.799999952316284
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 722.3999999761581
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2153.7000000476837
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2217.100000023842
+        }
+      ],
+      "maxTimerLatenessMs": 12.700000047683716,
+      "maxFrameGapMs": 18.5,
+      "inputToCompileUiMs": 722.3999999761581,
+      "compileUiSpanMs": 1431.3000000715256,
+      "compileUiEndToReadyMs": 63.39999997615814,
+      "inputToTextMs": 2195.7000000476837,
+      "inputToReadyMs": 2217.100000023842,
+      "inputToTwoFramesMs": 2242,
+      "afterDebounceUiMs": 1519.6000000238419,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1432.231667,
+      "compilerMs": 1425,
+      "nativeNonCompilerMs": 7.231667000000016,
+      "pdfSha256": "0d0e60f7d34daaae63547e83da9f67cc4e99171e22f8079423b0fd46a1053b4f",
+      "pdfBytes": 16725,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "modern-a4",
+      "sample": 5,
+      "key": "modern-a4-5",
+      "marker": "Sample 05",
+      "sourceSha256": "21f0c589263291a2f3f31e8feb0ce2f3f40a6d549be1676322da7662ee0493d8",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 19.199999928474426
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 19.799999952316284
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 724.7999999523163
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2173
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2228.6999999284744
+        }
+      ],
+      "maxTimerLatenessMs": 12.899999976158142,
+      "maxFrameGapMs": 18.60000000000582,
+      "inputToCompileUiMs": 724.7999999523163,
+      "compileUiSpanMs": 1448.2000000476837,
+      "compileUiEndToReadyMs": 55.699999928474426,
+      "inputToTextMs": 2214.6999999284744,
+      "inputToReadyMs": 2228.6999999284744,
+      "inputToTwoFramesMs": 2255.1999999284744,
+      "afterDebounceUiMs": 1530.3999999761581,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1450.6292499999981,
+      "compilerMs": 1443,
+      "nativeNonCompilerMs": 7.629249999998137,
+      "pdfSha256": "175275e3700ed7cf43ee2988931943a6fc72b003f253557190bd43b20f5eb77c",
+      "pdfBytes": 16750,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "academic-a4",
+      "sample": 1,
+      "key": "academic-a4-1",
+      "marker": "Sample 01",
+      "sourceSha256": "94e646f8828709dce557a01c42ece035f028eb6a3809af168adb3854070a9048",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 18.100000023841858
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 18.699999928474426
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 722.1999999284744
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2170.6999999284744
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2238.5
+        }
+      ],
+      "maxTimerLatenessMs": 11.899999976158142,
+      "maxFrameGapMs": 18.60000000000582,
+      "inputToCompileUiMs": 722.1999999284744,
+      "compileUiSpanMs": 1448.5,
+      "compileUiEndToReadyMs": 67.80000007152557,
+      "inputToTextMs": 2213.5,
+      "inputToReadyMs": 2238.5,
+      "inputToTwoFramesMs": 2264.7999999523163,
+      "afterDebounceUiMs": 1542.6000000238419,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1448.3281669999997,
+      "compilerMs": 1442,
+      "nativeNonCompilerMs": 6.328166999999667,
+      "pdfSha256": "4f199f34032b5a9c28b6cc5dfb6fce5ded3630c1bb771874cfd9d891426f78b0",
+      "pdfBytes": 19529,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "academic-a4",
+      "sample": 2,
+      "key": "academic-a4-2",
+      "marker": "Sample 02",
+      "sourceSha256": "d4735db665f794eb1f0f7b885abb8bd7c50308a641185738aecdabd84567999e",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 17.799999952316284
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 18.299999952316284
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 722.5
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2161.100000023842
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2215.2000000476837
+        }
+      ],
+      "maxTimerLatenessMs": 10.799999952316284,
+      "maxFrameGapMs": 18.60000000000582,
+      "inputToCompileUiMs": 722.5,
+      "compileUiSpanMs": 1438.6000000238419,
+      "compileUiEndToReadyMs": 54.10000002384186,
+      "inputToTextMs": 2203.2000000476837,
+      "inputToReadyMs": 2215.2000000476837,
+      "inputToTwoFramesMs": 2241.600000023842,
+      "afterDebounceUiMs": 1519.1000000238419,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1439.205375000005,
+      "compilerMs": 1432,
+      "nativeNonCompilerMs": 7.205375000005006,
+      "pdfSha256": "3dbf20e1768afc3ee7f5d80d763b46a5e068f08c6a41403580f506d499722314",
+      "pdfBytes": 19583,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "academic-a4",
+      "sample": 3,
+      "key": "academic-a4-3",
+      "marker": "Sample 03",
+      "sourceSha256": "e4a01b0e54b46dd41258b1423b2ac4b69e7e116fc2dd7c96f64308879490e2a5",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 17.899999976158142
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 18.5
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 726
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2201
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2264.7999999523163
+        }
+      ],
+      "maxTimerLatenessMs": 11.200000047683716,
+      "maxFrameGapMs": 18.69999999999709,
+      "inputToCompileUiMs": 726,
+      "compileUiSpanMs": 1475,
+      "compileUiEndToReadyMs": 63.799999952316284,
+      "inputToTextMs": 2243,
+      "inputToReadyMs": 2264.7999999523163,
+      "inputToTwoFramesMs": 2291.2000000476837,
+      "afterDebounceUiMs": 1565.2000000476837,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1477.7829159999965,
+      "compilerMs": 1467,
+      "nativeNonCompilerMs": 10.782915999996476,
+      "pdfSha256": "fffe47e19b0dcd9b816a24354e2eded4f119f542ecfe399ab6592dfa2e8df894",
+      "pdfBytes": 19640,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "academic-a4",
+      "sample": 4,
+      "key": "academic-a4-4",
+      "marker": "Sample 04",
+      "sourceSha256": "1e02f28aec2bcc1e96de8460e70777269bdea52564cf0ac5b55f6e2ec96cb153",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 17.899999976158142
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 18.399999976158142
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 723.7999999523163
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2163.2999999523163
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2215.6999999284744
+        }
+      ],
+      "maxTimerLatenessMs": 10.799999952316284,
+      "maxFrameGapMs": 18.69999999999709,
+      "inputToCompileUiMs": 723.7999999523163,
+      "compileUiSpanMs": 1439.5,
+      "compileUiEndToReadyMs": 52.39999997615814,
+      "inputToTextMs": 2204.6999999284744,
+      "inputToReadyMs": 2215.6999999284744,
+      "inputToTwoFramesMs": 2242.5,
+      "afterDebounceUiMs": 1518.7000000476837,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1439.826165999999,
+      "compilerMs": 1433,
+      "nativeNonCompilerMs": 6.826165999998921,
+      "pdfSha256": "796baec166968d19ed81948753eea13e62ac30b4d08220cd579f15ec313c8e18",
+      "pdfBytes": 19551,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "academic-a4",
+      "sample": 5,
+      "key": "academic-a4-5",
+      "marker": "Sample 05",
+      "sourceSha256": "eed6e4960930401b1d257872f5700eea2d44aa83644c813c4bbb7c0fad665ac6",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 18.199999928474426
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 18.699999928474426
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 723.6999999284744
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2168.600000023842
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2230.100000023842
+        }
+      ],
+      "maxTimerLatenessMs": 11.5,
+      "maxFrameGapMs": 18.69999999999709,
+      "inputToCompileUiMs": 723.6999999284744,
+      "compileUiSpanMs": 1444.9000000953674,
+      "compileUiEndToReadyMs": 61.5,
+      "inputToTextMs": 2210.399999976158,
+      "inputToReadyMs": 2230.100000023842,
+      "inputToTwoFramesMs": 2258,
+      "afterDebounceUiMs": 1534.3000000715256,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1445.2460830000055,
+      "compilerMs": 1439,
+      "nativeNonCompilerMs": 6.246083000005456,
+      "pdfSha256": "3c43cb64c912e92fe079fdd0ec3458ba039fc0ef63867b8cd78845c9a7898029",
+      "pdfBytes": 19661,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "minimal-a4",
+      "sample": 1,
+      "key": "minimal-a4-1",
+      "marker": "Sample 01",
+      "sourceSha256": "2e53c2ef308657b0de6d1dc3f6462e6a95a203becb682a40dfbd19de6ea0ae07",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 21.200000047683716
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 22
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 732.7000000476837
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2170.5
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2234
+        }
+      ],
+      "maxTimerLatenessMs": 15.400000095367432,
+      "maxFrameGapMs": 18.70000000001164,
+      "inputToCompileUiMs": 732.7000000476837,
+      "compileUiSpanMs": 1437.7999999523163,
+      "compileUiEndToReadyMs": 63.5,
+      "inputToTextMs": 2210.8000000715256,
+      "inputToReadyMs": 2234,
+      "inputToTwoFramesMs": 2262.7000000476837,
+      "afterDebounceUiMs": 1530,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1439.434625000009,
+      "compilerMs": 1432,
+      "nativeNonCompilerMs": 7.434625000008964,
+      "pdfSha256": "998722c06786bf24d6f2bd687c80ebebd6b191929d49a3d3fb18c6127d246ee3",
+      "pdfBytes": 14592,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "minimal-a4",
+      "sample": 2,
+      "key": "minimal-a4-2",
+      "marker": "Sample 02",
+      "sourceSha256": "ffe3d379eef5782dea8555aaf73021c103dae6341a4812b8e3b35ec9d4af0187",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 17
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 17.5
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 725.6999999284744
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2169.2999999523163
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2231.6999999284744
+        }
+      ],
+      "maxTimerLatenessMs": 10,
+      "maxFrameGapMs": 18.60000000000582,
+      "inputToCompileUiMs": 725.6999999284744,
+      "compileUiSpanMs": 1443.6000000238419,
+      "compileUiEndToReadyMs": 62.39999997615814,
+      "inputToTextMs": 2210.5,
+      "inputToReadyMs": 2231.6999999284744,
+      "inputToTwoFramesMs": 2258.399999976158,
+      "afterDebounceUiMs": 1532.7000000476837,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1445.9459999999963,
+      "compilerMs": 1439,
+      "nativeNonCompilerMs": 6.945999999996275,
+      "pdfSha256": "4df6aa060f24689054620c9c8bcd6292cec54b56d0404e9d750b7fd1a8c14da0",
+      "pdfBytes": 14647,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "minimal-a4",
+      "sample": 3,
+      "key": "minimal-a4-3",
+      "marker": "Sample 03",
+      "sourceSha256": "64f4b6a2c24ac454b19e6d67fe831ea939786263232b598544486fbfdd06343f",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 17.100000023841858
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 17.600000023841858
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 722.8000000715256
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2139.3000000715256
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2198.100000023842
+        }
+      ],
+      "maxTimerLatenessMs": 10.300000071525574,
+      "maxFrameGapMs": 18.60000000000582,
+      "inputToCompileUiMs": 722.8000000715256,
+      "compileUiSpanMs": 1416.5,
+      "compileUiEndToReadyMs": 58.799999952316284,
+      "inputToTextMs": 2180.3000000715256,
+      "inputToReadyMs": 2198.100000023842,
+      "inputToTwoFramesMs": 2225.4000000953674,
+      "afterDebounceUiMs": 1502.6000000238419,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1416.5177919999987,
+      "compilerMs": 1410,
+      "nativeNonCompilerMs": 6.517791999998735,
+      "pdfSha256": "fc06e631491554c1f0dac94b8e321d22b07efc7b510d1bcbd9ba74034e77557a",
+      "pdfBytes": 14704,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "minimal-a4",
+      "sample": 4,
+      "key": "minimal-a4-4",
+      "marker": "Sample 04",
+      "sourceSha256": "a8a50f1259387e5fabb43ee06b5d690868f827afc3692e2cb75bd9bbdf748139",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 16.90000009536743
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 17.40000009536743
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 725.7000000476837
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2163.9000000953674
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2214.100000023842
+        }
+      ],
+      "maxTimerLatenessMs": 9.900000095367432,
+      "maxFrameGapMs": 18.70000000001164,
+      "inputToCompileUiMs": 725.7000000476837,
+      "compileUiSpanMs": 1438.2000000476837,
+      "compileUiEndToReadyMs": 50.199999928474426,
+      "inputToTextMs": 2205.4000000953674,
+      "inputToReadyMs": 2214.100000023842,
+      "inputToTwoFramesMs": 2241.600000023842,
+      "afterDebounceUiMs": 1515.8999999761581,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1440.8472080000065,
+      "compilerMs": 1433,
+      "nativeNonCompilerMs": 7.847208000006503,
+      "pdfSha256": "60ade73aafed5a824973cd3fd2843d2e0a515ffcfccea091de88833b5ee213a5",
+      "pdfBytes": 14616,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "minimal-a4",
+      "sample": 5,
+      "key": "minimal-a4-5",
+      "marker": "Sample 05",
+      "sourceSha256": "137ac616ff5b0f364f4f4fb382c97b74be3b415c2874ff3ea84559159a3766b0",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 17
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 17.399999976158142
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 725.1999999284744
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2140.6999999284744
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2197.5
+        }
+      ],
+      "maxTimerLatenessMs": 9.800000071525574,
+      "maxFrameGapMs": 18.60000000000582,
+      "inputToCompileUiMs": 725.1999999284744,
+      "compileUiSpanMs": 1415.5,
+      "compileUiEndToReadyMs": 56.800000071525574,
+      "inputToTextMs": 2183,
+      "inputToReadyMs": 2197.5,
+      "inputToTwoFramesMs": 2225.7999999523163,
+      "afterDebounceUiMs": 1500.6000000238419,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1417.2101250000123,
+      "compilerMs": 1410,
+      "nativeNonCompilerMs": 7.21012500001234,
+      "pdfSha256": "affaa7e79cfa309c108f7c373e8e5b8d57b4add837633b4fa927ffcc58a78c08",
+      "pdfBytes": 14718,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "compact-technical-a4",
+      "sample": 1,
+      "key": "compact-technical-a4-1",
+      "marker": "Sample 01",
+      "sourceSha256": "2f22e497d19c3fb10e1013b9afe066fe390532ca8e6c16628b2ced014e1bf729",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 28
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 28.600000023841858
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 732.8999999761581
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2174.3000000715256
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2233.8000000715256
+        }
+      ],
+      "maxTimerLatenessMs": 22.200000047683716,
+      "maxFrameGapMs": 18.59999999999127,
+      "inputToCompileUiMs": 732.8999999761581,
+      "compileUiSpanMs": 1441.4000000953674,
+      "compileUiEndToReadyMs": 59.5,
+      "inputToTextMs": 2216.899999976158,
+      "inputToReadyMs": 2233.8000000715256,
+      "inputToTwoFramesMs": 2260.899999976158,
+      "afterDebounceUiMs": 1528,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1442.7367499999964,
+      "compilerMs": 1436,
+      "nativeNonCompilerMs": 6.736749999996391,
+      "pdfSha256": "7ee59c7f9bdf0d29dfdae402b399cc359ddaeffa1b868c2299367af6e8e9f009",
+      "pdfBytes": 15986,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "compact-technical-a4",
+      "sample": 2,
+      "key": "compact-technical-a4-2",
+      "marker": "Sample 02",
+      "sourceSha256": "b0a6136c15dd94b37a6d2770957515d180a1f3555685708f7626b87a044ea7c6",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 22.399999976158142
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 22.899999976158142
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 733.2999999523163
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2182.899999976158
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2249.399999976158
+        }
+      ],
+      "maxTimerLatenessMs": 15.899999976158142,
+      "maxFrameGapMs": 18.60000000000582,
+      "inputToCompileUiMs": 733.2999999523163,
+      "compileUiSpanMs": 1449.6000000238419,
+      "compileUiEndToReadyMs": 66.5,
+      "inputToTextMs": 2224.7999999523163,
+      "inputToReadyMs": 2249.399999976158,
+      "inputToTwoFramesMs": 2275.5,
+      "afterDebounceUiMs": 1542.2000000476837,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1450.4091670000053,
+      "compilerMs": 1443,
+      "nativeNonCompilerMs": 7.4091670000052545,
+      "pdfSha256": "679646b1c9ede07ff7a808482a5163543ad208151c3b638c3931d5878d02ffa2",
+      "pdfBytes": 16039,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "compact-technical-a4",
+      "sample": 3,
+      "key": "compact-technical-a4-3",
+      "marker": "Sample 03",
+      "sourceSha256": "8431005d85ec47b41839c03eb63de2e110e58a097e2968f7be23cde2a4553b2e",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 22.300000071525574
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 22.800000071525574
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 733.8000000715256
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2167.2000000476837
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2232.4000000953674
+        }
+      ],
+      "maxTimerLatenessMs": 15.899999976158142,
+      "maxFrameGapMs": 18.69999999999709,
+      "inputToCompileUiMs": 733.8000000715256,
+      "compileUiSpanMs": 1433.3999999761581,
+      "compileUiEndToReadyMs": 65.20000004768372,
+      "inputToTextMs": 2209,
+      "inputToReadyMs": 2232.4000000953674,
+      "inputToTwoFramesMs": 2260.2000000476837,
+      "afterDebounceUiMs": 1526.3999999761581,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1434.9929160000029,
+      "compilerMs": 1428,
+      "nativeNonCompilerMs": 6.992916000002879,
+      "pdfSha256": "e6317f86c1a3d2c3552f3c488070a320623e0d684c81069f011fab7b49afcdf7",
+      "pdfBytes": 16054,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "compact-technical-a4",
+      "sample": 4,
+      "key": "compact-technical-a4-4",
+      "marker": "Sample 04",
+      "sourceSha256": "16e431d09e12d1ad54f5b5de5fb47a0906f1fa86d2dbd52c70397063822e814e",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 22.300000071525574
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 22.700000047683716
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 735
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2185.3000000715256
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2249
+        }
+      ],
+      "maxTimerLatenessMs": 15.700000047683716,
+      "maxFrameGapMs": 18.69999999999709,
+      "inputToCompileUiMs": 735,
+      "compileUiSpanMs": 1450.3000000715256,
+      "compileUiEndToReadyMs": 63.699999928474426,
+      "inputToTextMs": 2227.2000000476837,
+      "inputToReadyMs": 2249,
+      "inputToTwoFramesMs": 2275.2000000476837,
+      "afterDebounceUiMs": 1540.2000000476837,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1452.7333329999965,
+      "compilerMs": 1445,
+      "nativeNonCompilerMs": 7.733332999996492,
+      "pdfSha256": "3ce32af7f50162deb311a1bd6fc8dffd31203ae50e05edf22d3ffd4bfaab5ace",
+      "pdfBytes": 16008,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "compact-technical-a4",
+      "sample": 5,
+      "key": "compact-technical-a4-5",
+      "marker": "Sample 05",
+      "sourceSha256": "c170b6e21a8719a618fece6b5ea5b71dc2b4764102fdda9e119cecc3c8103dde",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 22.600000023841858
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 23
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 732.7999999523163
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2172.600000023842
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2233
+        }
+      ],
+      "maxTimerLatenessMs": 16.199999928474426,
+      "maxFrameGapMs": 18.69999999999709,
+      "inputToCompileUiMs": 732.7999999523163,
+      "compileUiSpanMs": 1439.8000000715256,
+      "compileUiEndToReadyMs": 60.39999997615814,
+      "inputToTextMs": 2215.1999999284744,
+      "inputToReadyMs": 2233,
+      "inputToTwoFramesMs": 2259,
+      "afterDebounceUiMs": 1526.2000000476837,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1440.0890409999993,
+      "compilerMs": 1433,
+      "nativeNonCompilerMs": 7.08904099999927,
+      "pdfSha256": "2bca48c9c6b0b9d1f605ab76e983c800d45840e5eb40c1f866001e766ce0debb",
+      "pdfBytes": 16036,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "two-column-a4",
+      "sample": 1,
+      "key": "two-column-a4-1",
+      "marker": "Sample 01",
+      "sourceSha256": "5e43a8f27d898eaa44341dc9b69b3ec8db9d69a94053dbbb23f5aa5114df6545",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 26.600000023841858
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 27.100000023841858
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 734.1000000238419
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2192.5
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2244
+        }
+      ],
+      "maxTimerLatenessMs": 20.399999976158142,
+      "maxFrameGapMs": 18.60000000000582,
+      "inputToCompileUiMs": 734.1000000238419,
+      "compileUiSpanMs": 1458.3999999761581,
+      "compileUiEndToReadyMs": 51.5,
+      "inputToTextMs": 2233.9000000953674,
+      "inputToReadyMs": 2244,
+      "inputToTwoFramesMs": 2270.600000023842,
+      "afterDebounceUiMs": 1536.5,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1460.6264999999985,
+      "compilerMs": 1454,
+      "nativeNonCompilerMs": 6.626499999998487,
+      "pdfSha256": "400492cca98c05ce346e06bd8f7b8a19edc059faaa6ed7d313d581839e850886",
+      "pdfBytes": 14241,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "two-column-a4",
+      "sample": 2,
+      "key": "two-column-a4-2",
+      "marker": "Sample 02",
+      "sourceSha256": "7c325f097c770d997705167f49a430f64001dce455a61a2c9b76865869db8bf4",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 27.200000047683716
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 27.700000047683716
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 734.1000000238419
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2180.7000000476837
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2231.7999999523163
+        }
+      ],
+      "maxTimerLatenessMs": 20.899999976158142,
+      "maxFrameGapMs": 18.60000000000582,
+      "inputToCompileUiMs": 734.1000000238419,
+      "compileUiSpanMs": 1446.6000000238419,
+      "compileUiEndToReadyMs": 51.09999990463257,
+      "inputToTextMs": 2222,
+      "inputToReadyMs": 2231.7999999523163,
+      "inputToTwoFramesMs": 2258.7000000476837,
+      "afterDebounceUiMs": 1524.6000000238419,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1448.5097499999974,
+      "compilerMs": 1441,
+      "nativeNonCompilerMs": 7.509749999997439,
+      "pdfSha256": "a9a0a24ba4b85a320a396a26b35131b98f48345d4be09b38ae49023450d49639",
+      "pdfBytes": 14294,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "two-column-a4",
+      "sample": 3,
+      "key": "two-column-a4-3",
+      "marker": "Sample 03",
+      "sourceSha256": "9daa2b865ea078795a706adcf4d1c5b4095a867ae8d842c96bca68b641f7ba78",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 27.100000023841858
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 27.600000023841858
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 734.1000000238419
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2176.3000000715256
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2231.8000000715256
+        }
+      ],
+      "maxTimerLatenessMs": 20.800000071525574,
+      "maxFrameGapMs": 18.60000000000582,
+      "inputToCompileUiMs": 734.1000000238419,
+      "compileUiSpanMs": 1442.2000000476837,
+      "compileUiEndToReadyMs": 55.5,
+      "inputToTextMs": 2217.399999976158,
+      "inputToReadyMs": 2231.8000000715256,
+      "inputToTwoFramesMs": 2258.5,
+      "afterDebounceUiMs": 1524.3999999761581,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1443.2675000000017,
+      "compilerMs": 1436,
+      "nativeNonCompilerMs": 7.267500000001746,
+      "pdfSha256": "244ac460cd8ce6fc52cca6b765622374525c1bc4957c8e131428e440f6a373a0",
+      "pdfBytes": 14314,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "two-column-a4",
+      "sample": 4,
+      "key": "two-column-a4-4",
+      "marker": "Sample 04",
+      "sourceSha256": "de6401a1fb09539942f4de74cf38932fca3a39e15329c1c9797f6b0243163f1b",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 27.200000047683716
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 27.700000047683716
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 734.5
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2177.2000000476837
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2231.5
+        }
+      ],
+      "maxTimerLatenessMs": 20.899999976158142,
+      "maxFrameGapMs": 18.70000000001164,
+      "inputToCompileUiMs": 734.5,
+      "compileUiSpanMs": 1442.7000000476837,
+      "compileUiEndToReadyMs": 54.299999952316284,
+      "inputToTextMs": 2218.5,
+      "inputToReadyMs": 2231.5,
+      "inputToTwoFramesMs": 2258.100000023842,
+      "afterDebounceUiMs": 1523.6000000238419,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1444.7768340000039,
+      "compilerMs": 1437,
+      "nativeNonCompilerMs": 7.776834000003873,
+      "pdfSha256": "fbdc1a01e289f231f224acd93f087357db61eff4122cff75bca4ccf493f9e96e",
+      "pdfBytes": 14276,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "two-column-a4",
+      "sample": 5,
+      "key": "two-column-a4-5",
+      "marker": "Sample 05",
+      "sourceSha256": "e9ee6230674e37cd2426800e10c809e14ae7f78382c67d8ede2cdc3419153f08",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 27.200000047683716
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 27.700000047683716
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 733.3000000715256
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2228.8000000715256
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2281.899999976158
+        }
+      ],
+      "maxTimerLatenessMs": 21,
+      "maxFrameGapMs": 18.69999999999709,
+      "inputToCompileUiMs": 733.3000000715256,
+      "compileUiSpanMs": 1495.5,
+      "compileUiEndToReadyMs": 53.09999990463257,
+      "inputToTextMs": 2269.899999976158,
+      "inputToReadyMs": 2281.899999976158,
+      "inputToTwoFramesMs": 2308.7000000476837,
+      "afterDebounceUiMs": 1575.3999999761581,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1495.6955000000016,
+      "compilerMs": 1489,
+      "nativeNonCompilerMs": 6.69550000000163,
+      "pdfSha256": "63618084e4f581fe3cd886bd8553d90614e79575b04f722fd6a072234495f519",
+      "pdfBytes": 14298,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "classic-letter",
+      "sample": 1,
+      "key": "classic-letter-1",
+      "marker": "Sample 01",
+      "sourceSha256": "60d4a2219908107e63eb38e6edc9d86288ee63d060d405b8bde4be8c5c8b34aa",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 31.700000047683716
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 32.39999997615814
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 743.3999999761581
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2206.5
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2275.7000000476837
+        }
+      ],
+      "maxTimerLatenessMs": 26.5,
+      "maxFrameGapMs": 18.70000000001164,
+      "inputToCompileUiMs": 743.3999999761581,
+      "compileUiSpanMs": 1463.1000000238419,
+      "compileUiEndToReadyMs": 69.20000004768372,
+      "inputToTextMs": 2248.899999976158,
+      "inputToReadyMs": 2275.7000000476837,
+      "inputToTwoFramesMs": 2300.899999976158,
+      "afterDebounceUiMs": 1557.5,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1464.7239169999957,
+      "compilerMs": 1458,
+      "nativeNonCompilerMs": 6.7239169999957085,
+      "pdfSha256": "eefedb4092a97c5ecace897ef2a1d7a4193ddccc8d3ff661f7c4124e972555d0",
+      "pdfBytes": 23110,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "classic-letter",
+      "sample": 2,
+      "key": "classic-letter-2",
+      "marker": "Sample 02",
+      "sourceSha256": "fe2ff25522147dfc20e955fe4e70c3a0f1ea8c34f0376960290c02dfae7e9495",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 23.700000047683716
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 24.300000071525574
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 732.7000000476837
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2177.5
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2233.600000023842
+        }
+      ],
+      "maxTimerLatenessMs": 17.5,
+      "maxFrameGapMs": 18.699999999982538,
+      "inputToCompileUiMs": 732.7000000476837,
+      "compileUiSpanMs": 1444.7999999523163,
+      "compileUiEndToReadyMs": 56.10000002384186,
+      "inputToTextMs": 2220,
+      "inputToReadyMs": 2233.600000023842,
+      "inputToTwoFramesMs": 2258.9000000953674,
+      "afterDebounceUiMs": 1526.2000000476837,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1445.1402919999964,
+      "compilerMs": 1439,
+      "nativeNonCompilerMs": 6.140291999996407,
+      "pdfSha256": "987ad9edec5d98081fc42c4ce1b642500efcf633d6265ce26f03499a01cf4c92",
+      "pdfBytes": 23163,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "classic-letter",
+      "sample": 3,
+      "key": "classic-letter-3",
+      "marker": "Sample 03",
+      "sourceSha256": "8db23599703c6bc8d307d83caf6906071873eb2fdad55a046ee07a96303d9646",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 24
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 24.5
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 733.3000000715256
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2187.8000000715256
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2249.8000000715256
+        }
+      ],
+      "maxTimerLatenessMs": 17.700000047683716,
+      "maxFrameGapMs": 18.60000000000582,
+      "inputToCompileUiMs": 733.3000000715256,
+      "compileUiSpanMs": 1454.5,
+      "compileUiEndToReadyMs": 62,
+      "inputToTextMs": 2230.600000023842,
+      "inputToReadyMs": 2249.8000000715256,
+      "inputToTwoFramesMs": 2275.399999976158,
+      "afterDebounceUiMs": 1542.0999999046326,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1456.3504580000008,
+      "compilerMs": 1449,
+      "nativeNonCompilerMs": 7.350458000000799,
+      "pdfSha256": "8e2132bf14f65ebc806038619f95f0dfa388d45b4615273fcc173d5b7b1d1b6e",
+      "pdfBytes": 23220,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "classic-letter",
+      "sample": 4,
+      "key": "classic-letter-4",
+      "marker": "Sample 04",
+      "sourceSha256": "a2f8e612fcd39dc6e9e3dd6bff8d2e7b964c55f9c9a3b7cc63da86025791e062",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 23.799999952316284
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 24.399999976158142
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 733.3999999761581
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2191.399999976158
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2251.399999976158
+        }
+      ],
+      "maxTimerLatenessMs": 17.5,
+      "maxFrameGapMs": 18.60000000000582,
+      "inputToCompileUiMs": 733.3999999761581,
+      "compileUiSpanMs": 1458,
+      "compileUiEndToReadyMs": 60,
+      "inputToTextMs": 2237.0999999046326,
+      "inputToReadyMs": 2251.399999976158,
+      "inputToTwoFramesMs": 2275.0999999046326,
+      "afterDebounceUiMs": 1541.6999999284744,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1458.6680419999757,
+      "compilerMs": 1451,
+      "nativeNonCompilerMs": 7.668041999975685,
+      "pdfSha256": "72e2c321ac17719c23898fb1b0d462c53f0a5d941d47c144d480b48f4fe55968",
+      "pdfBytes": 23133,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "classic-letter",
+      "sample": 5,
+      "key": "classic-letter-5",
+      "marker": "Sample 05",
+      "sourceSha256": "d3300b6c32daac26db6dd990b8e9480ebc709660c6276d6a522e03968374f6a5",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 24.100000023841858
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 24.600000023841858
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 732.2000000476837
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2177.3000000715256
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2232.8000000715256
+        }
+      ],
+      "maxTimerLatenessMs": 17.800000071525574,
+      "maxFrameGapMs": 18.60000000000582,
+      "inputToCompileUiMs": 732.2000000476837,
+      "compileUiSpanMs": 1445.1000000238419,
+      "compileUiEndToReadyMs": 55.5,
+      "inputToTextMs": 2220.2000000476837,
+      "inputToReadyMs": 2232.8000000715256,
+      "inputToTwoFramesMs": 2258.100000023842,
+      "afterDebounceUiMs": 1525.8999999761581,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1445.1242499999935,
+      "compilerMs": 1438,
+      "nativeNonCompilerMs": 7.124249999993481,
+      "pdfSha256": "c85c2f5900d9e397c267b44b2643d429fffd7085e81a1ee80d7985128b12599d",
+      "pdfBytes": 23243,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "modern-letter",
+      "sample": 1,
+      "key": "modern-letter-1",
+      "marker": "Sample 01",
+      "sourceSha256": "0f5e7f8b4a38cfa9976c0255c9a1be2ab20ed2c910c1f039ac2fc8e7df8c3de7",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 23.600000023841858
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 24.200000047683716
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 731.2000000476837
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2172.399999976158
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2234.600000023842
+        }
+      ],
+      "maxTimerLatenessMs": 17.700000047683716,
+      "maxFrameGapMs": 18.599999999976717,
+      "inputToCompileUiMs": 731.2000000476837,
+      "compileUiSpanMs": 1441.1999999284744,
+      "compileUiEndToReadyMs": 62.200000047683716,
+      "inputToTextMs": 2214,
+      "inputToReadyMs": 2234.600000023842,
+      "inputToTwoFramesMs": 2260.5,
+      "afterDebounceUiMs": 1529.2999999523163,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1441.535292000015,
+      "compilerMs": 1435,
+      "nativeNonCompilerMs": 6.535292000015033,
+      "pdfSha256": "edba385f973d077256a607a30b3e8da691343dc51d8ebc577e9586a19d6174b8",
+      "pdfBytes": 16700,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "modern-letter",
+      "sample": 2,
+      "key": "modern-letter-2",
+      "marker": "Sample 02",
+      "sourceSha256": "559c59fd038812ee94a50585cbebadfb683d5f38be88ed8eb00d578005795b5f",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 19.300000071525574
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 19.700000047683716
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 723.8000000715256
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2163.600000023842
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2214.899999976158
+        }
+      ],
+      "maxTimerLatenessMs": 12.399999976158142,
+      "maxFrameGapMs": 18.70000000001164,
+      "inputToCompileUiMs": 723.8000000715256,
+      "compileUiSpanMs": 1439.7999999523163,
+      "compileUiEndToReadyMs": 51.299999952316284,
+      "inputToTextMs": 2205.3000000715256,
+      "inputToReadyMs": 2214.899999976158,
+      "inputToTwoFramesMs": 2241.100000023842,
+      "afterDebounceUiMs": 1517.2999999523163,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1440.7055840000103,
+      "compilerMs": 1434,
+      "nativeNonCompilerMs": 6.705584000010276,
+      "pdfSha256": "e2d28ab836701e114fafdb9ea4c476c6df6c7a110f8bdd8fc4f91103af7c563c",
+      "pdfBytes": 16754,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "modern-letter",
+      "sample": 3,
+      "key": "modern-letter-3",
+      "marker": "Sample 03",
+      "sourceSha256": "e6bef2dfc726a155e2aeb80b6ad4d16842baa1b3931511f6a4282a63c9b7149f",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 19.09999990463257
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 19.699999928474426
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 725.3999999761581
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2165.6999999284744
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2215.2999999523163
+        }
+      ],
+      "maxTimerLatenessMs": 12.100000023841858,
+      "maxFrameGapMs": 18.5,
+      "inputToCompileUiMs": 725.3999999761581,
+      "compileUiSpanMs": 1440.2999999523163,
+      "compileUiEndToReadyMs": 49.60000002384186,
+      "inputToTextMs": 2206.899999976158,
+      "inputToReadyMs": 2215.2999999523163,
+      "inputToTwoFramesMs": 2242.2999999523163,
+      "afterDebounceUiMs": 1516.8999999761581,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1442.2768339999893,
+      "compilerMs": 1435,
+      "nativeNonCompilerMs": 7.2768339999893215,
+      "pdfSha256": "b8eb2f7907eb26b9d1ed75e0c424b70fdc486380221daff6ef10d21b2d8330cc",
+      "pdfBytes": 16757,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "modern-letter",
+      "sample": 4,
+      "key": "modern-letter-4",
+      "marker": "Sample 04",
+      "sourceSha256": "e56ee67ab5e612b740bcae64e7498427faa5864b2b12b08196109bb12fe8ae92",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 19
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 19.5
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 724.6999999284744
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2223.6999999284744
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2281.2999999523163
+        }
+      ],
+      "maxTimerLatenessMs": 12.199999928474426,
+      "maxFrameGapMs": 18.60000000000582,
+      "inputToCompileUiMs": 724.6999999284744,
+      "compileUiSpanMs": 1499,
+      "compileUiEndToReadyMs": 57.60000002384186,
+      "inputToTextMs": 2265.5,
+      "inputToReadyMs": 2281.2999999523163,
+      "inputToTwoFramesMs": 2308.100000023842,
+      "afterDebounceUiMs": 1583.4000000953674,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1500.362832999992,
+      "compilerMs": 1492,
+      "nativeNonCompilerMs": 8.362832999991952,
+      "pdfSha256": "7706e63832346f6f22725cbc0b4a40e678d7fefe65742843812c740eabc85771",
+      "pdfBytes": 16725,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "modern-letter",
+      "sample": 5,
+      "key": "modern-letter-5",
+      "marker": "Sample 05",
+      "sourceSha256": "ed3b61744c7864e372524ca1794daa8405c5fef7f3421dd6aaf41e546f2f0cd7",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 19.100000023841858
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 19.699999928474426
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 726.1000000238419
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2172.5
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2229.1999999284744
+        }
+      ],
+      "maxTimerLatenessMs": 12.399999976158142,
+      "maxFrameGapMs": 18.70000000001164,
+      "inputToCompileUiMs": 726.1000000238419,
+      "compileUiSpanMs": 1446.3999999761581,
+      "compileUiEndToReadyMs": 56.699999928474426,
+      "inputToTextMs": 2214.399999976158,
+      "inputToReadyMs": 2229.1999999284744,
+      "inputToTwoFramesMs": 2257.7999999523163,
+      "afterDebounceUiMs": 1531.6999999284744,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1448.5339169999934,
+      "compilerMs": 1441,
+      "nativeNonCompilerMs": 7.53391699999338,
+      "pdfSha256": "6dbe0688d29c20fad7f914f7128008fa28659dbb058f902b0cc150d691d9bb92",
+      "pdfBytes": 16749,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "academic-letter",
+      "sample": 1,
+      "key": "academic-letter-1",
+      "marker": "Sample 01",
+      "sourceSha256": "bd3b977fe1d17ec1de286c5365e2a68428de4fa2ecd660b9ee5ef7720c3c0524",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 24.800000071525574
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 25.5
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 735.1000000238419
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2181.600000023842
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2242.9000000953674
+        }
+      ],
+      "maxTimerLatenessMs": 19.100000023841858,
+      "maxFrameGapMs": 18.599999999976717,
+      "inputToCompileUiMs": 735.1000000238419,
+      "compileUiSpanMs": 1446.5,
+      "compileUiEndToReadyMs": 61.300000071525574,
+      "inputToTextMs": 2223.7000000476837,
+      "inputToReadyMs": 2242.9000000953674,
+      "inputToTwoFramesMs": 2269.8000000715256,
+      "afterDebounceUiMs": 1534.7000000476837,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1448.8286249999946,
+      "compilerMs": 1442,
+      "nativeNonCompilerMs": 6.828624999994645,
+      "pdfSha256": "7497b5c71b91cca500d6334b167e232b0600911bd2389b66a72b88f4df2a8fd2",
+      "pdfBytes": 19522,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "academic-letter",
+      "sample": 2,
+      "key": "academic-letter-2",
+      "marker": "Sample 02",
+      "sourceSha256": "ca4173e7e3a8bf090b667a669b667d0b9d3bb2fe0a0358da9200f445879d7034",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 18.100000023841858
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 18.600000023841858
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 725.8000000715256
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2198.2000000476837
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2266.100000023842
+        }
+      ],
+      "maxTimerLatenessMs": 11,
+      "maxFrameGapMs": 18.60000000000582,
+      "inputToCompileUiMs": 725.8000000715256,
+      "compileUiSpanMs": 1472.3999999761581,
+      "compileUiEndToReadyMs": 67.89999997615814,
+      "inputToTextMs": 2241.7000000476837,
+      "inputToReadyMs": 2266.100000023842,
+      "inputToTwoFramesMs": 2292.2000000476837,
+      "afterDebounceUiMs": 1566.3999999761581,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1474.4915830000245,
+      "compilerMs": 1467,
+      "nativeNonCompilerMs": 7.491583000024548,
+      "pdfSha256": "66baa67eea2ea2c305084f7afd7c11edc39f60b8b835b4133fb00cf8d668074a",
+      "pdfBytes": 19575,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "academic-letter",
+      "sample": 3,
+      "key": "academic-letter-3",
+      "marker": "Sample 03",
+      "sourceSha256": "bfa44ac33bfc6c3b791241afc65f4bf1af44c604ff392e35f30c18895e8ae8b6",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 18.799999952316284
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 19.399999976158142
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 725.7999999523163
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2168.2000000476837
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2232.2999999523163
+        }
+      ],
+      "maxTimerLatenessMs": 11.899999976158142,
+      "maxFrameGapMs": 18.70000000001164,
+      "inputToCompileUiMs": 725.7999999523163,
+      "compileUiSpanMs": 1442.4000000953674,
+      "compileUiEndToReadyMs": 64.09999990463257,
+      "inputToTextMs": 2209.600000023842,
+      "inputToReadyMs": 2232.2999999523163,
+      "inputToTwoFramesMs": 2259.600000023842,
+      "afterDebounceUiMs": 1533.8000000715256,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1444.682124999992,
+      "compilerMs": 1436,
+      "nativeNonCompilerMs": 8.682124999992084,
+      "pdfSha256": "0d0c8b3298193f82a49c34835c071d7e7f73840864ed8087472c039d69ca3add",
+      "pdfBytes": 19632,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "academic-letter",
+      "sample": 4,
+      "key": "academic-letter-4",
+      "marker": "Sample 04",
+      "sourceSha256": "8953aea7a51d4962126f7256051078cc51db688fc4f9116dbbe25ed6e7113079",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 18
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 18.399999976158142
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 725.8999999761581
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2165.399999976158
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2232.8000000715256
+        }
+      ],
+      "maxTimerLatenessMs": 10.799999952316284,
+      "maxFrameGapMs": 18.699999999982538,
+      "inputToCompileUiMs": 725.8999999761581,
+      "compileUiSpanMs": 1439.5,
+      "compileUiEndToReadyMs": 67.40000009536743,
+      "inputToTextMs": 2207.7000000476837,
+      "inputToReadyMs": 2232.8000000715256,
+      "inputToTwoFramesMs": 2258.899999976158,
+      "afterDebounceUiMs": 1533,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1441.7047500000044,
+      "compilerMs": 1433,
+      "nativeNonCompilerMs": 8.704750000004424,
+      "pdfSha256": "71dd54c270e55c32fe3690ce51812344bcef8c5c5f37351f38ce96008ecd5161",
+      "pdfBytes": 19546,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "academic-letter",
+      "sample": 5,
+      "key": "academic-letter-5",
+      "marker": "Sample 05",
+      "sourceSha256": "de5da71df27b61a69a131146a217beaf2f251e3760d83593b65899a06b7bc524",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 18.200000047683716
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 18.600000023841858
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 725.8999999761581
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2174
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2231.899999976158
+        }
+      ],
+      "maxTimerLatenessMs": 11.299999952316284,
+      "maxFrameGapMs": 18.70000000001164,
+      "inputToCompileUiMs": 725.8999999761581,
+      "compileUiSpanMs": 1448.1000000238419,
+      "compileUiEndToReadyMs": 57.89999997615814,
+      "inputToTextMs": 2216.2000000476837,
+      "inputToReadyMs": 2231.899999976158,
+      "inputToTwoFramesMs": 2258.5,
+      "afterDebounceUiMs": 1532.6000000238419,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1450.5044169999892,
+      "compilerMs": 1444,
+      "nativeNonCompilerMs": 6.504416999989189,
+      "pdfSha256": "64a483e5ebd990f9dfe4cc2fa9bef273d05d4c47d335a4f407bc1727afe7e828",
+      "pdfBytes": 19656,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "minimal-letter",
+      "sample": 1,
+      "key": "minimal-letter-1",
+      "marker": "Sample 01",
+      "sourceSha256": "00181ac546e9805700bf4511b83731e1715e167677edef3b7c86e32666083b2d",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 18.700000047683716
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 19.300000071525574
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 724.3000000715256
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2155.8000000715256
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2217.899999976158
+        }
+      ],
+      "maxTimerLatenessMs": 12.400000095367432,
+      "maxFrameGapMs": 18.70000000001164,
+      "inputToCompileUiMs": 724.3000000715256,
+      "compileUiSpanMs": 1431.5,
+      "compileUiEndToReadyMs": 62.09999990463257,
+      "inputToTextMs": 2196.8000000715256,
+      "inputToReadyMs": 2217.899999976158,
+      "inputToTwoFramesMs": 2244.899999976158,
+      "afterDebounceUiMs": 1520.5999999046326,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1432.7875000000058,
+      "compilerMs": 1426,
+      "nativeNonCompilerMs": 6.787500000005821,
+      "pdfSha256": "08108b84a016839463185cc6ea2de429f140d6cede423451042bef9e3926dff6",
+      "pdfBytes": 14568,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "minimal-letter",
+      "sample": 2,
+      "key": "minimal-letter-2",
+      "marker": "Sample 02",
+      "sourceSha256": "a9251f3b2accb084ec6d786c326000f4edfca1da1ae9ecc4235c3496fb27fb8f",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 17.100000023841858
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 17.600000023841858
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 723.7999999523163
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2148.5
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2198.2000000476837
+        }
+      ],
+      "maxTimerLatenessMs": 10.199999928474426,
+      "maxFrameGapMs": 18.70000000001164,
+      "inputToCompileUiMs": 723.7999999523163,
+      "compileUiSpanMs": 1424.7000000476837,
+      "compileUiEndToReadyMs": 49.700000047683716,
+      "inputToTextMs": 2189,
+      "inputToReadyMs": 2198.2000000476837,
+      "inputToTwoFramesMs": 2225.7999999523163,
+      "afterDebounceUiMs": 1502,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1426.0008329999982,
+      "compilerMs": 1419,
+      "nativeNonCompilerMs": 7.000832999998238,
+      "pdfSha256": "1b73523877dcf9d4a315dd65a1bc94a58991a1291ae332aa69b72dbf5415b270",
+      "pdfBytes": 14624,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "minimal-letter",
+      "sample": 3,
+      "key": "minimal-letter-3",
+      "marker": "Sample 03",
+      "sourceSha256": "dcdca88de996ce92e67c2c8d1954966a01e42425d06b5512868b6698fd7449a1",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 17.5
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 17.899999976158142
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 725.3999999761581
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2184.2999999523163
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2248
+        }
+      ],
+      "maxTimerLatenessMs": 10.399999976158142,
+      "maxFrameGapMs": 18.5,
+      "inputToCompileUiMs": 725.3999999761581,
+      "compileUiSpanMs": 1458.8999999761581,
+      "compileUiEndToReadyMs": 63.700000047683716,
+      "inputToTextMs": 2225,
+      "inputToReadyMs": 2248,
+      "inputToTwoFramesMs": 2275.2999999523163,
+      "afterDebounceUiMs": 1549.8999999761581,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1460.789832999988,
+      "compilerMs": 1449,
+      "nativeNonCompilerMs": 11.789832999987993,
+      "pdfSha256": "d9608d353f6531911574553c5bb56f8b686a8bd06a65fa2e3d9c59f73e460c2b",
+      "pdfBytes": 14677,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "minimal-letter",
+      "sample": 4,
+      "key": "minimal-letter-4",
+      "marker": "Sample 04",
+      "sourceSha256": "5080dd447796791bac0a98590ee76e80962dee64b5e10d3b33d279a33c0dae3a",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 17.899999976158142
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 18.5
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 724.7999999523163
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2162.6999999284744
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2214.6999999284744
+        }
+      ],
+      "maxTimerLatenessMs": 11,
+      "maxFrameGapMs": 18.70000000001164,
+      "inputToCompileUiMs": 724.7999999523163,
+      "compileUiSpanMs": 1437.8999999761581,
+      "compileUiEndToReadyMs": 52,
+      "inputToTextMs": 2203.7999999523163,
+      "inputToReadyMs": 2214.6999999284744,
+      "inputToTwoFramesMs": 2242.1999999284744,
+      "afterDebounceUiMs": 1517.3999999761581,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1439.7666250000184,
+      "compilerMs": 1432,
+      "nativeNonCompilerMs": 7.766625000018394,
+      "pdfSha256": "4caaece2ab2c5497a996c93e29bb11980348bfd70166e69a994c2a8bd4d9e36d",
+      "pdfBytes": 14589,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "minimal-letter",
+      "sample": 5,
+      "key": "minimal-letter-5",
+      "marker": "Sample 05",
+      "sourceSha256": "a52f755384189bafce75ea40107ecceeef10bffd0d334cd1e7e1c9c850fa6d14",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 17.299999952316284
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 17.700000047683716
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 725.2999999523163
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2151.399999976158
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2214.7999999523163
+        }
+      ],
+      "maxTimerLatenessMs": 10.299999952316284,
+      "maxFrameGapMs": 18.60000000000582,
+      "inputToCompileUiMs": 725.2999999523163,
+      "compileUiSpanMs": 1426.1000000238419,
+      "compileUiEndToReadyMs": 63.39999997615814,
+      "inputToTextMs": 2194.2999999523163,
+      "inputToReadyMs": 2214.7999999523163,
+      "inputToTwoFramesMs": 2242.100000023842,
+      "afterDebounceUiMs": 1516.8000000715256,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1428.0587919999962,
+      "compilerMs": 1420,
+      "nativeNonCompilerMs": 8.058791999996174,
+      "pdfSha256": "8b6f74243072fbb2da17c004017d1125f4b50e256c86ad265eb5c1a4626e1b4e",
+      "pdfBytes": 14694,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "compact-technical-letter",
+      "sample": 1,
+      "key": "compact-technical-letter-1",
+      "marker": "Sample 01",
+      "sourceSha256": "a38a9433bd9540cb6b94af2a6f345439ac14c36b3ebd1e79fde20df4af8e1a86",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 25.299999952316284
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 25.799999952316284
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 733.0999999046326
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2164.0999999046326
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2227.0999999046326
+        }
+      ],
+      "maxTimerLatenessMs": 19.299999952316284,
+      "maxFrameGapMs": 18.70000000001164,
+      "inputToCompileUiMs": 733.0999999046326,
+      "compileUiSpanMs": 1431,
+      "compileUiEndToReadyMs": 63,
+      "inputToTextMs": 2206.5,
+      "inputToReadyMs": 2227.0999999046326,
+      "inputToTwoFramesMs": 2254.5999999046326,
+      "afterDebounceUiMs": 1521.5,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1432.200582999998,
+      "compilerMs": 1425,
+      "nativeNonCompilerMs": 7.200582999998005,
+      "pdfSha256": "22285629759b8843d217b42be55d70382acc280604eb244c89fefc00a21eeca0",
+      "pdfBytes": 15943,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "compact-technical-letter",
+      "sample": 2,
+      "key": "compact-technical-letter-2",
+      "marker": "Sample 02",
+      "sourceSha256": "f7c6658a9101c24c48022be83ed7ee00deefd85be6e5932cb53f088889b81140",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 22.799999952316284
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 23.299999952316284
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 733.6999999284744
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2176.7999999523163
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2231.2999999523163
+        }
+      ],
+      "maxTimerLatenessMs": 16.700000047683716,
+      "maxFrameGapMs": 18.60000000000582,
+      "inputToCompileUiMs": 733.6999999284744,
+      "compileUiSpanMs": 1443.1000000238419,
+      "compileUiEndToReadyMs": 54.5,
+      "inputToTextMs": 2219.2999999523163,
+      "inputToReadyMs": 2231.2999999523163,
+      "inputToTwoFramesMs": 2258.0999999046326,
+      "afterDebounceUiMs": 1524.3999999761581,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1443.2567500000005,
+      "compilerMs": 1436,
+      "nativeNonCompilerMs": 7.256750000000466,
+      "pdfSha256": "65a22f660b2b1ecc3e8818086cd04ab7e18cf8e1f3f81950c9a350727dfd5836",
+      "pdfBytes": 15994,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "compact-technical-letter",
+      "sample": 3,
+      "key": "compact-technical-letter-3",
+      "marker": "Sample 03",
+      "sourceSha256": "545fcf4a60958e1e20db40c3b55d223132c485da0a91cb87d216740a2cacefe3",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 22.100000023841858
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 22.700000047683716
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 732.1000000238419
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2226.8000000715256
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2284.4000000953674
+        }
+      ],
+      "maxTimerLatenessMs": 15.700000047683716,
+      "maxFrameGapMs": 18.70000000001164,
+      "inputToCompileUiMs": 732.1000000238419,
+      "compileUiSpanMs": 1494.7000000476837,
+      "compileUiEndToReadyMs": 57.60000002384186,
+      "inputToTextMs": 2268.5,
+      "inputToReadyMs": 2284.4000000953674,
+      "inputToTwoFramesMs": 2308.600000023842,
+      "afterDebounceUiMs": 1576.5,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1494.377542000002,
+      "compilerMs": 1488,
+      "nativeNonCompilerMs": 6.377542000001995,
+      "pdfSha256": "66fd96eb87955089d8e699ceec28a1d8952e11112a5665cea40be1c3c49c899e",
+      "pdfBytes": 16004,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "compact-technical-letter",
+      "sample": 4,
+      "key": "compact-technical-letter-4",
+      "marker": "Sample 04",
+      "sourceSha256": "c37a8265a4d5937d9f50982ceb04c10c498c1b71e0c1b0f78b77026e42752822",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 23.299999952316284
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 23.799999952316284
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 734.3999999761581
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2197.100000023842
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2264.1999999284744
+        }
+      ],
+      "maxTimerLatenessMs": 16.899999976158142,
+      "maxFrameGapMs": 18.70000000001164,
+      "inputToCompileUiMs": 734.3999999761581,
+      "compileUiSpanMs": 1462.7000000476837,
+      "compileUiEndToReadyMs": 67.09999990463257,
+      "inputToTextMs": 2239.399999976158,
+      "inputToReadyMs": 2264.1999999284744,
+      "inputToTwoFramesMs": 2291.600000023842,
+      "afterDebounceUiMs": 1557.2000000476837,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1464.2571669999743,
+      "compilerMs": 1456,
+      "nativeNonCompilerMs": 8.257166999974288,
+      "pdfSha256": "62e63d3ac2c4a219568df53e68aafbe06f4f330bb65d82d2d8e4b6f6d8555089",
+      "pdfBytes": 15959,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "compact-technical-letter",
+      "sample": 5,
+      "key": "compact-technical-letter-5",
+      "marker": "Sample 05",
+      "sourceSha256": "6e53e52648d79f694a26b4e06266c800820f7ddad7abe364a62c7bae761e17a3",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 23.700000047683716
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 24.300000071525574
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 732.3000000715256
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2184.899999976158
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2249.8000000715256
+        }
+      ],
+      "maxTimerLatenessMs": 17.799999952316284,
+      "maxFrameGapMs": 18.70000000001164,
+      "inputToCompileUiMs": 732.3000000715256,
+      "compileUiSpanMs": 1452.5999999046326,
+      "compileUiEndToReadyMs": 64.90000009536743,
+      "inputToTextMs": 2228,
+      "inputToReadyMs": 2249.8000000715256,
+      "inputToTwoFramesMs": 2275.8000000715256,
+      "afterDebounceUiMs": 1543.5,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1452.5921249999956,
+      "compilerMs": 1446,
+      "nativeNonCompilerMs": 6.592124999995576,
+      "pdfSha256": "30fb4c5899001fe3545e6e7a7b9f5412f6718217bfeee8ec67e57269c61315c6",
+      "pdfBytes": 15986,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "two-column-letter",
+      "sample": 1,
+      "key": "two-column-letter-1",
+      "marker": "Sample 01",
+      "sourceSha256": "c0a04673f685e1ac71c1cc8fdfc511bb743d62abc835929cf77ffdb2c811ea9c",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 32.300000071525574
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 32.90000009536743
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 745.2000000476837
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2162.2000000476837
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2216.4000000953674
+        }
+      ],
+      "maxTimerLatenessMs": 26.600000023841858,
+      "maxFrameGapMs": 18.60000000000582,
+      "inputToCompileUiMs": 745.2000000476837,
+      "compileUiSpanMs": 1417,
+      "compileUiEndToReadyMs": 54.200000047683716,
+      "inputToTextMs": 2203.5,
+      "inputToReadyMs": 2216.4000000953674,
+      "inputToTwoFramesMs": 2242.9000000953674,
+      "afterDebounceUiMs": 1497.7000000476837,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1418.7882079999836,
+      "compilerMs": 1411,
+      "nativeNonCompilerMs": 7.78820799998357,
+      "pdfSha256": "aee3fe55561a789301f6aef9b9d1cd1cd13ebc12fbaec01da9c12610a7ac0930",
+      "pdfBytes": 14225,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "two-column-letter",
+      "sample": 2,
+      "key": "two-column-letter-2",
+      "marker": "Sample 02",
+      "sourceSha256": "a6b5ff60cead0a4d9528d5925541fad09b88765837c21f52c00e5b1b17c06335",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 27.40000009536743
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 27.90000009536743
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 733.5
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2173.9000000953674
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2230.7000000476837
+        }
+      ],
+      "maxTimerLatenessMs": 21.300000071525574,
+      "maxFrameGapMs": 18.70000000001164,
+      "inputToCompileUiMs": 733.5,
+      "compileUiSpanMs": 1440.4000000953674,
+      "compileUiEndToReadyMs": 56.799999952316284,
+      "inputToTextMs": 2215.2000000476837,
+      "inputToReadyMs": 2230.7000000476837,
+      "inputToTwoFramesMs": 2257.600000023842,
+      "afterDebounceUiMs": 1524.1000000238419,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1440.806500000006,
+      "compilerMs": 1434,
+      "nativeNonCompilerMs": 6.806500000006054,
+      "pdfSha256": "56ab33ed97f6c86b8b854e72fb45354917b7a9606d99a47365728857ac2d6b0e",
+      "pdfBytes": 14280,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "two-column-letter",
+      "sample": 3,
+      "key": "two-column-letter-3",
+      "marker": "Sample 03",
+      "sourceSha256": "b58d463b4ecbb1a275addc19c7d4498c89c7d49bfeb73a6bc3b113186bb3a2a7",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 27.399999976158142
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 27.899999976158142
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 732.3999999761581
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2151.399999976158
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2216.5
+        }
+      ],
+      "maxTimerLatenessMs": 21.200000047683716,
+      "maxFrameGapMs": 18.60000000000582,
+      "inputToCompileUiMs": 732.3999999761581,
+      "compileUiSpanMs": 1419,
+      "compileUiEndToReadyMs": 65.10000002384186,
+      "inputToTextMs": 2192.2999999523163,
+      "inputToReadyMs": 2216.5,
+      "inputToTwoFramesMs": 2243.2000000476837,
+      "afterDebounceUiMs": 1510.8000000715256,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1418.842250000016,
+      "compilerMs": 1413,
+      "nativeNonCompilerMs": 5.842250000016065,
+      "pdfSha256": "3794f91cc130c39498d87051c360413dab0618d2a527c68203bfccb1c27cdf3b",
+      "pdfBytes": 14300,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "two-column-letter",
+      "sample": 4,
+      "key": "two-column-letter-4",
+      "marker": "Sample 04",
+      "sourceSha256": "ed06d625ff4f9c6f445feda169df8fe24efee1f43f41bca9536a13acdab2bef0",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 27.100000023841858
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 27.700000047683716
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 733.3999999761581
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2200.2000000476837
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2266.399999976158
+        }
+      ],
+      "maxTimerLatenessMs": 21.100000023841858,
+      "maxFrameGapMs": 18.70000000001164,
+      "inputToCompileUiMs": 733.3999999761581,
+      "compileUiSpanMs": 1466.8000000715256,
+      "compileUiEndToReadyMs": 66.19999992847443,
+      "inputToTextMs": 2242.100000023842,
+      "inputToReadyMs": 2266.399999976158,
+      "inputToTwoFramesMs": 2290.8000000715256,
+      "afterDebounceUiMs": 1557.4000000953674,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1469.1024159999797,
+      "compilerMs": 1462,
+      "nativeNonCompilerMs": 7.102415999979712,
+      "pdfSha256": "aae0f00580da364cb405643dda24a1ef3c88d9022ab218e6e75305ff31cdcd01",
+      "pdfBytes": 14263,
+      "exactSourceMatches": true
+    },
+    {
+      "variant": "two-column-letter",
+      "sample": 5,
+      "key": "two-column-letter-5",
+      "marker": "Sample 05",
+      "sourceSha256": "0d3f924bdf382031ed06b1b4da047e83244a232659bf80b2968f9b492d0c9e2e",
+      "passed": true,
+      "inputEvents": 1,
+      "states": [
+        {
+          "state": "Up to date",
+          "elapsedMs": 27.299999952316284
+        },
+        {
+          "state": "Awaiting compile",
+          "elapsedMs": 27.799999952316284
+        },
+        {
+          "state": "Typesetting",
+          "elapsedMs": 734
+        },
+        {
+          "state": "Rendering…",
+          "elapsedMs": 2169.600000023842
+        },
+        {
+          "state": "Up to date",
+          "elapsedMs": 2231.899999976158
+        }
+      ],
+      "maxTimerLatenessMs": 21.100000023841858,
+      "maxFrameGapMs": 18.79999999998836,
+      "inputToCompileUiMs": 734,
+      "compileUiSpanMs": 1435.6000000238419,
+      "compileUiEndToReadyMs": 62.299999952316284,
+      "inputToTextMs": 2210.6999999284744,
+      "inputToReadyMs": 2231.899999976158,
+      "inputToTwoFramesMs": 2258.6999999284744,
+      "afterDebounceUiMs": 1524.6999999284744,
+      "done": true,
+      "pdfPages": 1,
+      "nativeIpcMs": 1437.1289590000233,
+      "compilerMs": 1430,
+      "nativeNonCompilerMs": 7.128959000023315,
+      "pdfSha256": "98accda3ba1e3570d761bc0785081b627e3cf2a3cf8a4dc25220e41a6f69e6ed",
+      "pdfBytes": 14286,
+      "exactSourceMatches": true
+    }
+  ],
+  "errors": [],
+  "passed": true,
+  "viewport": {
+    "width": 1480,
+    "height": 960,
+    "devicePixelRatio": 1
+  },
+  "summary": {
+    "inputToTwoFramesMs": {
+      "count": 60,
+      "min": 2225.4000000953674,
+      "median": 2258.900000035763,
+      "empiricalP95": 2308.100000023842,
+      "max": 2458.600000023842
+    },
+    "afterDebounceUiMs": {
+      "count": 60,
+      "min": 1497.7000000476837,
+      "median": 1530.199999988079,
+      "empiricalP95": 1575.3999999761581,
+      "max": 1725.6000000238419
+    },
+    "inputToCompileUiMs": {
+      "count": 60,
+      "min": 722.1999999284744,
+      "median": 732.2500000596046,
+      "empiricalP95": 735.2999999523163,
+      "max": 745.2000000476837
+    },
+    "compilerMs": {
+      "count": 60,
+      "min": 1410,
+      "median": 1438.5,
+      "empiricalP95": 1488,
+      "max": 1636
+    },
+    "nativeNonCompilerMs": {
+      "count": 60,
+      "min": 5.842250000016065,
+      "median": 7.2029790000015055,
+      "empiricalP95": 8.704750000004424,
+      "max": 11.789832999987993
+    },
+    "compileUiEndToReadyMs": {
+      "count": 60,
+      "min": 49.60000002384186,
+      "median": 60.69999998807907,
+      "empiricalP95": 67.40000009536743,
+      "max": 69.20000004768372
+    },
+    "maxTimerLatenessMs": {
+      "count": 60,
+      "min": 9.800000071525574,
+      "median": 15.800000011920929,
+      "empiricalP95": 22.200000047683716,
+      "max": 26.600000023841858
+    },
+    "maxFrameGapMs": {
+      "count": 60,
+      "min": 18.5,
+      "median": 18.699999999982538,
+      "empiricalP95": 18.70000000001164,
+      "max": 18.79999999998836
+    }
+  },
+  "finishedAt": "2026-09-26T22:25:47.713Z"
+}

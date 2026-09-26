@@ -1,6 +1,6 @@
 # Performance investigation and improvement plan
 
-Measured 26–27 September 2026. The largest measured delays are first-time runtime preparation and repeated runtime verification. This report contains a real backend baseline and a prioritized plan. It does not claim that every app workflow or the plan's reference-device budgets have passed.
+Measured 26–27 September 2026. The largest measured delays are first-time runtime preparation and repeated runtime verification. This report contains backend and packaged-app measurements with a prioritized plan. It does not claim that every app workflow or the plan's reference-device budgets have passed.
 
 ## Reproduce the baseline
 
@@ -64,6 +64,38 @@ A matched five-sample run on the same M4 Pro/48 GiB host used `node --import tsx
 Fresh preparation ranged from 37.790–56.452 seconds before and 27.142–46.060 seconds after. The slower first sample in each run remains included. These are backend measurements on one development Mac, not full-window startup, cold physical storage, a supported-device budget pass or a population p95. Warm runtime verification is unchanged. The copy improvement is below the plan’s 40% target; that target remains open.
 
 Two new controls reject the old implementation and pass after the change: all files/folders must be flushed before readiness, and a failed deepest/intermediate/root folder flush must retain the exact old active copy. The 23 focused runtime/pack tests pass. Core repair and signed-pack installation also survive real process kills before the folder flush, after staging, after self-test and after pointer publication. These checks cover process interruption, not physical power loss. See [the implementation verification record](releases/runtime-copy-verification.json) for broader checks and their scope.
+
+## Measure editing through the rendered PDF
+
+The packaged preview profiler exercises Code view with real keyboard replacement, automatic compilation and the current PDF canvas/text layer. It uses all six layouts in A4 and US Letter, with five measured edits per variant. Each variant receives an untimed first build. A separate app profile keeps synthetic resumes and compiler preparation away from ordinary user data.
+
+```sh
+# Use Python 3.11+ with scripts/template-test-requirements.txt installed.
+FOLIO_PYTHON=/path/to/python node scripts/profile-preview.mjs /path/to/Folio.app/Contents/MacOS/Folio 5
+# Validate the measurement setup with one Classic A4 edit first:
+FOLIO_PYTHON=/path/to/python node scripts/profile-preview.mjs /path/to/Folio.app/Contents/MacOS/Folio 1 --smoke
+```
+
+The renderer records the actual input event, visible compilation start/end, changed text, completed current preview and two subsequent animation frames using one clock. It reports the observed delay before compilation separately; it does not simply subtract an assumed 700 ms. A temporary wrapper around the existing native IPC handler passes the original event, arguments, result and errors unchanged. The wrapper records total native handling and the compiler's existing duration field, which includes runtime verification and preparation of the build snapshot. It uses Electron's private handler map only in this developer harness and fails if the expected handler is missing; it is not an application feature or a supported extension API.
+
+Every sample checks the exact source received by the production handler, one successful matching revision, a saved history version, the new text in both the preview and actual PDF, one page and the selected paper dimensions. PDFs, all individual timings, failures, app/runtime/script/fixture hashes and host details remain in `test-results/preview-profile-*/`. A failed sample stops the run and remains recorded. PDF inspection runs after the timed interval. No AI provider is contacted.
+
+The tests replace a complete small synthetic source document in one keyboard operation; they do not measure individual keystroke latency. Renderer timer lateness and frame gaps describe automation observations, not physical display or VoiceOver acceptance. The native handling interval includes validation, assets and history work as well as compilation. Its difference from the rounded compiler duration is combined overhead, not an isolated checkpoint measurement. Shared engine/OS caches, fixed case order and one development Mac limit generalization. Any reported 95th percentile is an empirical nearest-rank statistic over the retained samples, not a claim about all supported Macs.
+
+The [60-sample record](performance/preview-warm-baseline.json) measures the unchanged local history-worker package from source `0ad984f`: app.asar SHA-256 begins `d15091a0fa95c525`. The full hash, successful final smoke, initial missing-tool failure and independently checked summaries are in [verification](releases/preview-performance-verification.json). All sixty edits preserve the exact source, produce the matching one-page PDF and pass text/paper checks with no renderer errors. The host is the same M4 Pro/48 GiB Mac, at a 1480 × 960 logical viewport and device-pixel ratio 1. No local native suite, other Folio benchmark or packaging ran concurrently; normal desktop/documentation work continued. Hosted qualification runs on another machine.
+
+| Measured interval, 60 warm edits | Median | Empirical 95th percentile | Slowest |
+| --- | ---: | ---: | ---: |
+| Input to current PDF plus two renderer frames | 2.259 s | 2.308 s | 2.459 s |
+| Input to displayed compilation start, including debounce | 0.732 s | 0.735 s | 0.745 s |
+| Displayed compilation start to current PDF plus two frames | 1.530 s | 1.575 s | 1.726 s |
+| Compiler-reported duration, including runtime verification/snapshot | 1.439 s | 1.488 s | 1.636 s |
+| Other work within the native IPC handler | 7.20 ms | 8.70 ms | 11.79 ms |
+| Displayed compilation end to current rendered-preview readiness | 60.7 ms | 67.4 ms | 69.2 ms |
+
+The observed post-debounce 95th percentile is below the plan's three-second warm-preview target **for this recorded corpus and development Mac**. The data points to the native compiler path as the largest remaining warm-edit cost; it does not isolate runtime verification from TeX in this packaged run. The earlier backend stage measurements motivate investigating verification first. Individual stage medians/percentiles should not be added as if they came from a single sample.
+
+Maximum renderer timer lateness per edit ranges from 9.8 to 26.6 ms, and the largest observed animation-frame gap is 18.8 ms. The timing includes source replacement, mutation observation and automation. These observations do not establish a typing-latency or whole-process memory/CPU budget, physical high-DPI behavior, cold-cache performance or acceptance of larger/multi-file/bibliography documents. The slower first Classic edit remains in the statistics.
 
 ## Actual packaged app startup
 
@@ -204,7 +236,7 @@ Avoid treating the 700 ms source-edit debounce as compiler execution time. Measu
 ## Measurements still needed for the complete app report
 
 1. Add event-level recovery/compile/render timing and an actual first-paint marker to the five current-package launch pairs above. Expand sample count/device coverage for statistical performance claims, retaining failures.
-2. Break native self-test/build work into snapshot creation, runtime verification, TeX, Biber, PDF reading, worker loading, first visible page and export readiness. Use small, multi-file, bibliography and 100-page fixtures.
+2. The sixty warm edit-to-preview samples above now separate the visible debounce, compiler duration, other native handling and completed rendering. Break down the native self-test/build interval further into snapshot creation, runtime verification, TeX, Biber and PDF reading. Extend worker loading, first visible page and export readiness measurements to multi-file, bibliography and 100-page fixtures and cold caches.
 3. Measure AI edit requests, input-page rendering, candidate compilation, candidate-page rendering/review, retry and apply separately. Keep local protocol fixtures distinct from real-provider network latency.
 4. Extend the nine backend save/history cases above to autosave, Save As, source ZIP import/export, recovery and supported upper bounds, including larger PDFs/assets/chat images. Record actual UI responsiveness while checksums/inflation/history work runs.
 5. Measure peak memory and CPU for the entire Electron/compiler process tree and on-disk cache/history growth. Extend the compiler-group cancellation/timeout observations above to end-to-end user actions, supported devices and more samples. The existing canvas budget is only one part of application memory.

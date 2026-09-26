@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-26T22:27:12.540195+00:00",
+  "applicationSourceCommit": "0ad984feaabd205cb34605e69d5a4fd795da9fe7",
+  "scope": "60 successful warm keyboard source replacements across twelve one-page template/paper variants in the exact unchanged local packaged app. The profiler is a new developer tool identified by its hash; no production application input changes. This is separate from the still-running full hosted Mac qualification.",
+  "appAsarSha256": "d15091a0fa95c5259a621b569262ce846ff4087450a63674fe44c8ffe1d09ca3",
+  "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+  "script": {
+    "path": "scripts/profile-preview.mjs",
+    "bytes": 15431,
+    "sha256": "5d54de695a59532eeed98bc7edcfece7710ef318967d0938059a922be08b2f5e"
+  },
+  "rawMeasurements": {
+    "path": "docs/performance/preview-warm-baseline.json",
+    "bytes": 94383,
+    "sha256": "fc430e8c804811831928ff4983fa3c3a783365a672ba9a5c3a70507f6299497c"
+  },
+  "originalMeasurements": {
+    "path": "test-results/preview-profile-Ey0NE8/measurements.json",
+    "bytes": 94383,
+    "sha256": "fc430e8c804811831928ff4983fa3c3a783365a672ba9a5c3a70507f6299497c"
+  },
+  "smoke": {
+    "path": "test-results/preview-profile-GMHlOY/measurements.json",
+    "bytes": 5447,
+    "sha256": "fd1710563bd47df49864c2b958fa2391c182b8c7d747dd75c95679655c5fba00"
+  },
+  "fullRunLog": {
+    "path": "test-results/preview-profile-full.log",
+    "bytes": 4944,
+    "sha256": "dd2607d76a54e784f9851078d9cb137e7a8b632f6ec8dc0f8dc9a8e592b78b12"
+  },
+  "unitChanges": false,
+  "applicationInputsChanged": false,
+  "runs": 60,
+  "variants": 12,
+  "allPdfHashesChecked": true,
+  "allSummariesIndependentlyRecomputed": true,
+  "allSourceMatchesAndPaperChecksPassed": true,
+  "rendererErrors": [],
+  "summary": {
+    "inputToTwoFramesMs": {
+      "count": 60,
+      "min": 2225.4000000953674,
+      "median": 2258.900000035763,
+      "empiricalP95": 2308.100000023842,
+      "max": 2458.600000023842
+    },
+    "afterDebounceUiMs": {
+      "count": 60,
+      "min": 1497.7000000476837,
+      "median": 1530.199999988079,
+      "empiricalP95": 1575.3999999761581,
+      "max": 1725.6000000238419
+    },
+    "inputToCompileUiMs": {
+      "count": 60,
+      "min": 722.1999999284744,
+      "median": 732.2500000596046,
+      "empiricalP95": 735.2999999523163,
+      "max": 745.2000000476837
+    },
+    "compilerMs": {
+      "count": 60,
+      "min": 1410,
+      "median": 1438.5,
+      "empiricalP95": 1488,
+      "max": 1636
+    },
+    "nativeNonCompilerMs": {
+      "count": 60,
+      "min": 5.842250000016065,
+      "median": 7.2029790000015055,
+      "empiricalP95": 8.704750000004424,
+      "max": 11.789832999987993
+    },
+    "compileUiEndToReadyMs": {
+      "count": 60,
+      "min": 49.60000002384186,
+      "median": 60.69999998807907,
+      "empiricalP95": 67.40000009536743,
+      "max": 69.20000004768372
+    },
+    "maxTimerLatenessMs": {
+      "count": 60,
+      "min": 9.800000071525574,
+      "median": 15.800000011920929,
+      "empiricalP95": 22.200000047683716,
+      "max": 26.600000023841858
+    },
+    "maxFrameGapMs": {
+      "count": 60,
+      "min": 18.5,
+      "median": 18.699999999982538,
+      "empiricalP95": 18.70000000001164,
+      "max": 18.79999999998836
+    }
+  },
+  "measurementLimits": [
+    "A fresh isolated app profile is prepared before timing. Each variant is compiled once before its measured edits; these are warm builds, not cold-cache samples.",
+    "All cases share one app/runtime/engine-cache session. OS caches are not purged; case order and every sample are retained.",
+    "Input and DOM timing use one renderer performance clock. Two animation frames after current text and Up to date are a rendering opportunity, not a physical display measurement.",
+    "Native IPC timing includes validation, assets, compiler and history checkpoint. Compiler duration is the production rounded field, not TeX-only time.",
+    "The harness temporarily wraps the existing private Electron IPC handler, preserving its event, arguments, result and errors. This is version-sensitive instrumentation, not a production API.",
+    "Renderer timer/frame gaps are observations under automation, not proof of typing latency, OS CPU/memory quotas or full app resource budgets.",
+    "Empirical percentiles describe this finite ordered corpus on one development Mac; they are not population p95 or acceptance on every supported device/OS."
+  ],
+  "warmTarget": {
+    "criterion": "Observed empirical 95th percentile below 3000 ms from displayed automatic-compilation start to the current PDF plus two renderer frames.",
+    "empiricalP95Ms": 1575.3999999761581,
+    "passesThisRecordedCorpus": true,
+    "scope": "One development M4 Pro, five ordered samples per variant, 1480 x 960 logical viewport and devicePixelRatio 1. Not population p95 or all supported-device acceptance."
+  },
+  "harnessDevelopment": {
+    "initialFailure": "Initial smoke compiled and rendered the edit but stopped because pdftotext was absent. The final harness preflights the existing pypdf environment before launching; the final smoke and full run both pass without installing tools or changing app/runtime bytes.",
+    "initialReport": {
+      "path": "test-results/preview-profile-edGXhf/measurements.json",
+      "bytes": 3642,
+      "sha256": "df9d686378c4f1720a8afe3b3b49add8157f98aa25e6472e6b46ca60ef12d53e"
+    }
+  },
+  "remaining": [
+    "Fresh/prepared editing-startup pairs for this current package.",
+    "Native-stage profiling for larger, multi-file and bibliography documents; cold compiler caches.",
+    "Physical display/typing/VoiceOver and supported macOS/device acceptance.",
+    "Whole-process-tree CPU/RSS, storage retention and OS resource bounds.",
+    "AI network/provider timing and real Claude/BYOK account acceptance."
+  ]
+}
