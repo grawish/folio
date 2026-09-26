@@ -1,0 +1,218 @@
+{
+  "schemaVersion": 1,
+  "scope": "Verified source payloads and notice texts for eleven ports installed by the original Tectonic Apple silicon build, including the gperf build tool. Not a final linked-binary SBOM or a completed redistribution review.",
+  "buildEvidenceLockSha256": "e5993d9995414dd85d65f472509cb73acd8742d73fb473c71a9d21fd11e7ebe7",
+  "vcpkgCommit": "a62ce77d56ee07513b4b67de1ec2daeaebfae51a",
+  "sources": [
+    {
+      "name": "brotli",
+      "version": "1.1.0#1",
+      "features": [],
+      "url": "https://github.com/google/brotli/archive/v1.1.0.tar.gz",
+      "archive": "brotli-1.1.0.tar.gz",
+      "archiveRoot": "brotli-1.1.0",
+      "sha512": "6eb280d10d8e1b43d22d00fa535435923c22ce8448709419d676ff47d4a644102ea04f488fc65a179c6c09fee12380992e9335bad8dfebd5d1f20908d10849d9",
+      "requiredNotices": ["LICENSE"],
+      "recipeSha256": "f95cbfbd877b11da6e6dd4411c7d9744a8c7ea99cc77e9c967c4d9418a265310",
+      "manifestSha256": "98b60e394a4b54e250ddf315d319ff17bae4057c7ab7bf14790e57e437731417",
+      "bytes": 511969,
+      "sha256": "e720a6ca29428b803f4ad165371771f5398faba397edf6778837a18599ea13ff"
+    },
+    {
+      "name": "bzip2",
+      "version": "1.0.8#6",
+      "features": ["core", "tool"],
+      "url": "https://sourceware.org/pub/bzip2/bzip2-1.0.8.tar.gz",
+      "archive": "bzip2-1.0.8.tar.gz",
+      "archiveRoot": "bzip2-1.0.8",
+      "sha512": "083f5e675d73f3233c7930ebe20425a533feedeaaa9d8cc86831312a6581cefbe6ed0d08d2fa89be81082f2a5abdabca8b3c080bf97218a1bd59dc118a30b9f3",
+      "requiredNotices": ["LICENSE"],
+      "recipeSha256": "f9214fef97e792ca76f2cf97343edb1b83d6457e7320ae36b06306d0f038b439",
+      "manifestSha256": "35206824e39f99a709f69465e685a93bca265aa9c83c812d1fa18f3b536a75d9",
+      "bytes": 810029,
+      "sha256": "ab5a03176ee106d3f0fa90e381da478ddae405918153cca248e682cd0c4a2269"
+    },
+    {
+      "name": "expat",
+      "version": "2.7.3",
+      "features": [],
+      "url": "https://github.com/libexpat/libexpat/archive/R_2_7_3.tar.gz",
+      "archive": "libexpat-R_2_7_3.tar.gz",
+      "archiveRoot": "libexpat-R_2_7_3",
+      "sha512": "34400f7dff0151a38c5ff7d73b65b57c7fdf648cf407ed94beddf2d11511b650c4ea16e417a15ebe1707456e7279210e929cc97a0caf7a1ff45bf1d07275e815",
+      "requiredNotices": ["expat/COPYING"],
+      "recipeSha256": "a1412832cd8e083b8c4faaa615d1be23011e924c610d21adbc65e890a0cd5210",
+      "manifestSha256": "3a1568563124d32ed514d89cc43444b205cc5ade5ed2b36bacf026ffb5a8ec2c",
+      "bytes": 8441347,
+      "sha256": "7c853a76f7c2a562c3edfd84ca47e487d9eff3966786191dfb60cc441daf82d6"
+    },
+    {
+      "name": "zlib",
+      "version": "1.3.1",
+      "features": [],
+      "url": "https://github.com/madler/zlib/archive/v1.3.1.tar.gz",
+      "archive": "zlib-1.3.1.tar.gz",
+      "archiveRoot": "zlib-1.3.1",
+      "sha512": "8c9642495bafd6fad4ab9fb67f09b268c69ff9af0f4f20cf15dfc18852ff1f312bd8ca41de761b3f8d8e90e77d79f2ccacd3d4c5b19e475ecf09d021fdfe9088",
+      "requiredNotices": ["LICENSE"],
+      "recipeSha256": "b14cee469c2da06e036e63293c0b6e6509924462e9b341b317986df46b281695",
+      "manifestSha256": "8ad7072167e1bf56d2ed531e43ecc95026d5b305ed0393140d5ec78f5c6b6c00",
+      "bytes": 1572744,
+      "sha256": "17e88863f3600672ab49182f217281b6fc4d3c762bde361935e436a95214d05c"
+    },
+    {
+      "name": "libpng",
+      "version": "1.6.50",
+      "features": [],
+      "url": "https://github.com/pnggroup/libpng/archive/v1.6.50.tar.gz",
+      "archive": "libpng-1.6.50.tar.gz",
+      "archiveRoot": "libpng-1.6.50",
+      "sha512": "34c806e0dda960b480ce2f5ea13e2e55a9540f07c51948be25d312b901c431bc814f730f9322a2e3b6f88d4104a0c49bde9e616762b342d07db44e2c7fd5f2dc",
+      "requiredNotices": ["LICENSE"],
+      "recipeSha256": "db16d8f03a9ce807f26176cc50b112ff950df419f096b276aea16249b3c30f66",
+      "manifestSha256": "863dd0627adf8a69f7dd99f25ba214bc89eb8683064005fb4324ba178d74ccf3",
+      "bytes": 1582079,
+      "sha256": "71158e53cfdf2877bc99bcab33641d78df3f48e6e0daad030afe9cb8c031aa46"
+    },
+    {
+      "name": "freetype",
+      "version": "2.13.3",
+      "features": ["brotli", "bzip2", "core", "png", "zlib"],
+      "url": "https://gitlab.freedesktop.org/freetype/freetype/-/archive/VER-2-13-3/freetype-VER-2-13-3.tar.gz",
+      "archive": "freetype-VER-2-13-3.tar.gz",
+      "archiveRoot": "freetype-VER-2-13-3",
+      "sha512": "fccfaa15eb79a105981bf634df34ac9ddf1c53550ec0b334903a1b21f9f8bf5eb2b3f9476e554afa112a0fca58ec85ab212d674dfd853670efec876bacbe8a53",
+      "requiredNotices": ["LICENSE.TXT", "docs/FTL.TXT", "docs/GPLv2.TXT"],
+      "recipeSha256": "bb01ffcba667f059c2551d1ed0e6ef0a16e3c68457514038f830412086387d65",
+      "manifestSha256": "ecd02245a50543938b6d608d38f2379a336cc3298d4e3edfb0599c36ab6b5773",
+      "bytes": 2482495,
+      "sha256": "bc5c898e4756d373e0d991bab053036c5eb2aa7c0d5c67e8662ddc6da40c4103"
+    },
+    {
+      "name": "fontconfig",
+      "version": "2.15.0#4",
+      "features": [],
+      "url": "https://gitlab.freedesktop.org/fontconfig/fontconfig/-/archive/2.15.0/fontconfig-2.15.0.tar.gz",
+      "archive": "fontconfig-2.15.0.tar.gz",
+      "archiveRoot": "fontconfig-2.15.0",
+      "sha512": "daa6d1e6058e12c694d9e1512e09be957ff7f3fa375246b9d13eb0a8cf2f21e1512a5cabe93f270e96790e2c20420bf7422d213e43ab9749da3255286ea65a7c",
+      "requiredNotices": ["COPYING"],
+      "recipeSha256": "8ab307a14d60a7c9b3657da1f133b2f67c00a145ca1d6b3876c95692dd851078",
+      "manifestSha256": "dc1f611b2d94486716546dfc5bf6ee1ce69f2561e72ffdd28688a797fe3a0c8d",
+      "bytes": 572009,
+      "sha256": "cdebb4b805d33e9bdefcc0ef9743db638d2acb21139bbe1a6a85878d4c3e8c9e"
+    },
+    {
+      "name": "graphite2",
+      "version": "1.3.14#4",
+      "features": [],
+      "url": "https://github.com/silnrsi/graphite/archive/92f59dcc52f73ce747f1cdc831579ed2546884aa.tar.gz",
+      "archive": "graphite-92f59dcc52f73ce747f1cdc831579ed2546884aa.tar.gz",
+      "archiveRoot": "graphite-92f59dcc52f73ce747f1cdc831579ed2546884aa",
+      "sha512": "011855576124b2f9ae9d7d3a0dfc5489794cf82b81bebc02c11c9cca350feb9fbb411844558811dff1ebbacac58a24a7cf56a374fc2c27e97a5fb4795a01486e",
+      "requiredNotices": ["COPYING", "LICENSE"],
+      "recipeSha256": "4e1e8894051aa61c6f7305efff5f5c3cc4684639efda7bc725dfcad09facfffc",
+      "manifestSha256": "b5ed9971f079e2d7b242172ec08d1a24b47267223a2f4e6941612613f5484d96",
+      "bytes": 6632395,
+      "sha256": "aeb8ca511ebe76500377b05ec08722f5083de15b84a37a4860980cbd8a78db33"
+    },
+    {
+      "name": "harfbuzz",
+      "version": "11.3.3",
+      "features": ["core", "freetype", "graphite2"],
+      "url": "https://github.com/harfbuzz/harfbuzz/archive/11.3.3.tar.gz",
+      "archive": "harfbuzz-11.3.3.tar.gz",
+      "archiveRoot": "harfbuzz-11.3.3",
+      "sha512": "1d0f19e6aebc6aa273e749fb7968eff851dcfb15a0b5ef6cf268c74e77a81175d845c20c9285be7e9a7cb79871cb08bdac5c9d802a50fc5bd11a7225d510f48f",
+      "requiredNotices": ["COPYING"],
+      "recipeSha256": "b37e8531162078d403885cc84041c73d7c1456c1baed6c82f8b949dced66bb5d",
+      "manifestSha256": "6c43772812f9b11c2f72cbdeb7eee6b905cb853b2c74e43b7bb9f0a2bdcee789",
+      "bytes": 35281028,
+      "sha256": "5563e1eeea7399c37dc7f0f92a89bbc79d8741bbdd134d22d2885ddb95944314"
+    },
+    {
+      "name": "icu",
+      "version": "74.2#6",
+      "features": ["core", "tools"],
+      "url": "https://github.com/unicode-org/icu/releases/download/release-74-2/icu4c-74_2-src.tgz",
+      "archive": "icu.tar.gz",
+      "archiveRoot": "icu",
+      "sha512": "e6c7876c0f3d756f3a6969cad9a8909e535eeaac352f3a721338b9cbd56864bf7414469d29ec843462997815d2ca9d0dab06d38c37cdd4d8feb28ad04d8781b0",
+      "requiredNotices": ["LICENSE"],
+      "recipeSha256": "1e82ef851fdeb2a44bee981a96b81176bdd3ec0e635e1cb558e978eea7e81a5c",
+      "manifestSha256": "fa0ff98d29dcb77e8ff764666221cbcd30a72b6bb71a66e2cec054c555afe89b",
+      "bytes": 26529443,
+      "sha256": "68db082212a96d6f53e35d60f47d38b962e9f9d207a74cfac78029ae8ff5e08c"
+    },
+    {
+      "name": "gperf",
+      "version": "3.3",
+      "features": [],
+      "url": "https://ftp.gnu.org/pub/gnu/gperf/gperf-3.3.tar.gz",
+      "archive": "gperf-3.3.tar.gz",
+      "archiveRoot": "gperf-3.3",
+      "sha512": "246b75b8ce7d77d6a8725cd15f1cf2e68da404812573af1d5bf32dbe6ad4228f48757baefc77bcb1f5597c2397043c04d31d8a04ab507bfa7a80f85e1ab6045f",
+      "requiredNotices": ["COPYING"],
+      "recipeSha256": "63a0b214e9f79ded20de93ca131d5300cb2a81a76652d32117c0c880bad525de",
+      "manifestSha256": "1f724e1468d88426c6ce2fe4ef54e6fe76ab3c55572d5b348129e51d465bb792",
+      "bytes": 1831294,
+      "sha256": "fd87e0aba7e43ae054837afd6cd4db03a3f2693deb3619085e6ed9d8d9604ad8"
+    }
+  ],
+  "otherBuildPorts": [
+    {
+      "name": "vcpkg-cmake",
+      "version": "2024-04-23",
+      "features": [],
+      "scope": "Build-helper recipe retained in compiler-build inventory; tool payload review remains separate"
+    },
+    {
+      "name": "vcpkg-cmake-config",
+      "version": "2024-05-23",
+      "features": [],
+      "scope": "Build-helper recipe retained in compiler-build inventory; tool payload review remains separate"
+    },
+    {
+      "name": "dirent",
+      "version": "1.26",
+      "features": [],
+      "scope": "macOS empty compatibility port; recipe retained in compiler-build inventory"
+    },
+    {
+      "name": "vcpkg-cmake-get-vars",
+      "version": "2025-05-29",
+      "features": [],
+      "scope": "Build-helper recipe retained in compiler-build inventory; tool payload review remains separate"
+    },
+    {
+      "name": "vcpkg-make",
+      "version": "2025-09-29",
+      "features": [],
+      "scope": "Build-helper recipe retained in compiler-build inventory; tool payload review remains separate"
+    },
+    {
+      "name": "libiconv",
+      "version": "1.18#2",
+      "features": [],
+      "scope": "macOS empty compatibility port; recipe retained in compiler-build inventory"
+    },
+    {
+      "name": "pthreads",
+      "version": "3.0.0#14",
+      "features": [],
+      "scope": "macOS empty compatibility port; recipe retained in compiler-build inventory"
+    },
+    {
+      "name": "pthread",
+      "version": "3.0.0#2",
+      "features": [],
+      "scope": "macOS empty compatibility port; recipe retained in compiler-build inventory"
+    },
+    {
+      "name": "vcpkg-tool-meson",
+      "version": "1.9.0#1",
+      "features": [],
+      "scope": "Build-helper recipe retained in compiler-build inventory; tool payload review remains separate"
+    }
+  ]
+}

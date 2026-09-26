@@ -36,8 +36,24 @@ Two crates still lack verified notice text: `rustls-platform-verifier-android@0.
 
 This inventory deliberately covers the entire upstream lockfile, including development, optional and non-Mac packages. It is **not** the exact dependency graph of the distributed Apple silicon compiler or the final app SBOM. Matching build features and targets to the binary, reviewing workspace and native components, Biber's embedded Perl libraries, TeX/fonts, corresponding-source requirements and the final signed app remain required. Generated archives and notices are not automatically published or bundled into the app. A failure during crate or supplemental-notice collection exits unsuccessfully and records `incomplete-inventory.json`; an older `inventory.json`, if present, remains the last successful collection rather than evidence that the failed attempt completed.
 
+## Collect native build-port sources and notices
+
+Run `python3 scripts/collect-native-license-materials.py` after retaining the [verified vcpkg build inputs](COMPILER_PROVENANCE.md#reproduce-the-check). The Python 3.11+ collector checks `resources/native-license-sources.lock.json` against the compiler-build evidence lock and original vcpkg archive. Every selected port must match its installed version/features, recipe and manifest. Its source archive must match the recipe’s SHA-512 plus the reviewed byte count and SHA-256. Downloads use approved HTTPS hosts and bounded redirects, sizes and time; cached corruption fails instead of fetching a replacement.
+
+The collected set contains 11 original archives (86,246,832 bytes) and 33 unmodified notice files (182,380 bytes): Brotli, bzip2, Expat, zlib, libpng, FreeType, Fontconfig, Graphite2, HarfBuzz, ICU and the gperf build tool. The full archives preserve source headers and other materials beyond the selected notice files. The source-build inventory separately retains the vcpkg recipes and patches. See [the verification record](releases/native-source-verification.json) for individual hashes and scope.
+
+```sh
+python3 scripts/collect-native-license-materials.py
+python3 scripts/collect-native-license-materials.py --offline
+python3 tests/native-license-materials.py
+```
+
+Output stays under ignored `artifacts/license-materials/compiler-native/`; the original cache is `.cache/license-sources/native/`. Collection reads archive members without extracting archive paths or executing code. Eleven offline controls cover altered archive sizes/digests, mismatched build evidence/recipes, changed versions/features, missing notices, unsafe paths, links, duplicate members, forbidden redirects and preservation of prior successful evidence when a run fails. Source CI runs these controls without downloading the source corpus. A failed collection writes `incomplete-inventory.json` and exits unsuccessfully; an existing `inventory.json` remains the last successful run.
+
+This is a source inventory of selected installed **build ports**, including a build tool and potentially unused components. It does not establish that all 11 are linked into Folio’s compiler, choose between license options, or complete corresponding-source/redistribution review. Four macOS compatibility ports and five build-helper ports remain classified separately in the lock; helper tool payloads, exact target/features/linkage, Biber/Perl, TeX/fonts and the final signed-app SBOM still need review. No existing public release asset is changed, and generated files are not automatically included in future installers.
+
 ## License provenance
 
-The [compiler build provenance check](COMPILER_PROVENANCE.md) connects the bundled Tectonic executable byte for byte to its retained original upstream build artifact. It also verifies the build's 20 installed native port versions and preserves 139 recipe/patch/manifest and root notice files. Collecting their payload sources and resolving final linkage remain open; installed build dependencies are not automatically shipped libraries.
+The [compiler build provenance check](COMPILER_PROVENANCE.md) connects the bundled Tectonic executable byte for byte to its retained original upstream build artifact. It also verifies the build's 20 installed native port versions and preserves 139 recipe/patch/manifest and root notice files. The native collector above now retains 11 payload archives and 33 notices. Final linkage and remaining materials still need review; installed build dependencies are not automatically shipped libraries.
 
 The root LICENSE is copied without modifications from the [official PolyForm license repository at tag 1.0.0](https://github.com/polyformproject/polyform-licenses/blob/1.0.0/PolyForm-Noncommercial-1.0.0.md). The original project copyright notice is separate in NOTICE. The [PolyForm project](https://polyformproject.org/licenses/noncommercial/1.0.0) publishes the same standard terms.

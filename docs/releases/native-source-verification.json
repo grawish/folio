@@ -1,0 +1,567 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-26T18:29:52.680168+00:00",
+  "sourceBase": "e208e476566d0af14b172e5b6228a500bd32b516",
+  "scope": "Verified source payloads and notice texts for eleven ports installed by the original Tectonic Apple silicon build, including the gperf build tool. Not a final linked-binary SBOM or a completed redistribution review.",
+  "releaseAuditComplete": false,
+  "sourceArchiveBytes": 86246832,
+  "noticeFiles": 33,
+  "noticeBytes": 182380,
+  "vcpkgCommit": "a62ce77d56ee07513b4b67de1ec2daeaebfae51a",
+  "buildEvidenceLockSha256": "e5993d9995414dd85d65f472509cb73acd8742d73fb473c71a9d21fd11e7ebe7",
+  "collector": {
+    "path": "scripts/collect-native-license-materials.py",
+    "bytes": 10598,
+    "sha256": "171a46a467d62659954beaef32541cb1a96779027a0561ae829ef5d4bde5990f"
+  },
+  "controls": {
+    "passed": 11,
+    "testScript": {
+      "path": "tests/native-license-materials.py",
+      "bytes": 10748,
+      "sha256": "e4929f750aec21f169c18e138fa01b1bea2cebd9106b59d01c2940d20a258a5c"
+    },
+    "log": {
+      "path": "test-results/native-materials-controls.log",
+      "bytes": 110,
+      "sha256": "d2fb41082e408e2f5f8300e0c9aff827e840b3ea83198866cf636f19a4657296"
+    }
+  },
+  "lock": {
+    "path": "resources/native-license-sources.lock.json",
+    "bytes": 10426,
+    "sha256": "f22ee6c40185dc30cda1c041fdeb8e7a3e17451111f73e74c725d9ca2d73b709"
+  },
+  "inventory": {
+    "path": "artifacts/license-materials/compiler-native/inventory.json",
+    "bytes": 18803,
+    "sha256": "9ea75001b4e661ce174ca7a2855b13e4814b92c392a405e37e49645b6a36a9f4"
+  },
+  "onlinePinnedInputChecks": {
+    "path": "test-results/native-payload-downloads.json",
+    "bytes": 10926,
+    "sha256": "a6a1616121a817a95adb50130bbc33cc01fda457b90f35a35d5ecee0c42440df"
+  },
+  "offlineReplay": {
+    "passed": true,
+    "log": {
+      "path": "test-results/native-materials-replay.log",
+      "bytes": 648,
+      "sha256": "2da9dc5a2497cc1202d533e8652f7c9e154faf617749d6daeaabc312f6b84808"
+    }
+  },
+  "ports": [
+    {
+      "name": "brotli",
+      "version": "1.1.0#1",
+      "features": [],
+      "url": "https://github.com/google/brotli/archive/v1.1.0.tar.gz",
+      "archive": "brotli-1.1.0.tar.gz",
+      "archiveRoot": "brotli-1.1.0",
+      "sha512": "6eb280d10d8e1b43d22d00fa535435923c22ce8448709419d676ff47d4a644102ea04f488fc65a179c6c09fee12380992e9335bad8dfebd5d1f20908d10849d9",
+      "requiredNotices": [
+        "LICENSE"
+      ],
+      "recipeSha256": "f95cbfbd877b11da6e6dd4411c7d9744a8c7ea99cc77e9c967c4d9418a265310",
+      "manifestSha256": "98b60e394a4b54e250ddf315d319ff17bae4057c7ab7bf14790e57e437731417",
+      "bytes": 511969,
+      "sha256": "e720a6ca29428b803f4ad165371771f5398faba397edf6778837a18599ea13ff",
+      "declaredLicense": "MIT",
+      "materials": [
+        {
+          "path": "LICENSE",
+          "bytes": 1084,
+          "sha256": "3d180008e36922a4e8daec11c34c7af264fed5962d07924aea928c38e8663c94"
+        }
+      ],
+      "scope": "Source payload of an installed upstream build port; final binary linkage is not asserted."
+    },
+    {
+      "name": "bzip2",
+      "version": "1.0.8#6",
+      "features": [
+        "core",
+        "tool"
+      ],
+      "url": "https://sourceware.org/pub/bzip2/bzip2-1.0.8.tar.gz",
+      "archive": "bzip2-1.0.8.tar.gz",
+      "archiveRoot": "bzip2-1.0.8",
+      "sha512": "083f5e675d73f3233c7930ebe20425a533feedeaaa9d8cc86831312a6581cefbe6ed0d08d2fa89be81082f2a5abdabca8b3c080bf97218a1bd59dc118a30b9f3",
+      "requiredNotices": [
+        "LICENSE"
+      ],
+      "recipeSha256": "f9214fef97e792ca76f2cf97343edb1b83d6457e7320ae36b06306d0f038b439",
+      "manifestSha256": "35206824e39f99a709f69465e685a93bca265aa9c83c812d1fa18f3b536a75d9",
+      "bytes": 810029,
+      "sha256": "ab5a03176ee106d3f0fa90e381da478ddae405918153cca248e682cd0c4a2269",
+      "declaredLicense": "bzip2-1.0.6",
+      "materials": [
+        {
+          "path": "LICENSE",
+          "bytes": 1896,
+          "sha256": "c6dbbf828498be844a89eaa3b84adbab3199e342eb5cb2ed2f0d4ba7ec0f38a3"
+        }
+      ],
+      "scope": "Source payload of an installed upstream build port; final binary linkage is not asserted."
+    },
+    {
+      "name": "expat",
+      "version": "2.7.3",
+      "features": [],
+      "url": "https://github.com/libexpat/libexpat/archive/R_2_7_3.tar.gz",
+      "archive": "libexpat-R_2_7_3.tar.gz",
+      "archiveRoot": "libexpat-R_2_7_3",
+      "sha512": "34400f7dff0151a38c5ff7d73b65b57c7fdf648cf407ed94beddf2d11511b650c4ea16e417a15ebe1707456e7279210e929cc97a0caf7a1ff45bf1d07275e815",
+      "requiredNotices": [
+        "expat/COPYING"
+      ],
+      "recipeSha256": "a1412832cd8e083b8c4faaa615d1be23011e924c610d21adbc65e890a0cd5210",
+      "manifestSha256": "3a1568563124d32ed514d89cc43444b205cc5ade5ed2b36bacf026ffb5a8ec2c",
+      "bytes": 8441347,
+      "sha256": "7c853a76f7c2a562c3edfd84ca47e487d9eff3966786191dfb60cc441daf82d6",
+      "declaredLicense": "MIT",
+      "materials": [
+        {
+          "path": "COPYING",
+          "bytes": 1144,
+          "sha256": "31b15de82aa19a845156169a17a5488bf597e561b2c318d159ed583139b25e87"
+        },
+        {
+          "path": "expat/AUTHORS",
+          "bytes": 142,
+          "sha256": "59f14371c6b75912cfebb46e6247ee5146766e803a0365b124e5d3011e7d0877"
+        },
+        {
+          "path": "expat/COPYING",
+          "bytes": 1144,
+          "sha256": "31b15de82aa19a845156169a17a5488bf597e561b2c318d159ed583139b25e87"
+        }
+      ],
+      "scope": "Source payload of an installed upstream build port; final binary linkage is not asserted."
+    },
+    {
+      "name": "fontconfig",
+      "version": "2.15.0#4",
+      "features": [],
+      "url": "https://gitlab.freedesktop.org/fontconfig/fontconfig/-/archive/2.15.0/fontconfig-2.15.0.tar.gz",
+      "archive": "fontconfig-2.15.0.tar.gz",
+      "archiveRoot": "fontconfig-2.15.0",
+      "sha512": "daa6d1e6058e12c694d9e1512e09be957ff7f3fa375246b9d13eb0a8cf2f21e1512a5cabe93f270e96790e2c20420bf7422d213e43ab9749da3255286ea65a7c",
+      "requiredNotices": [
+        "COPYING"
+      ],
+      "recipeSha256": "8ab307a14d60a7c9b3657da1f133b2f67c00a145ca1d6b3876c95692dd851078",
+      "manifestSha256": "dc1f611b2d94486716546dfc5bf6ee1ce69f2561e72ffdd28688a797fe3a0c8d",
+      "bytes": 572009,
+      "sha256": "cdebb4b805d33e9bdefcc0ef9743db638d2acb21139bbe1a6a85878d4c3e8c9e",
+      "declaredLicense": "MIT",
+      "materials": [
+        {
+          "path": "AUTHORS",
+          "bytes": 62,
+          "sha256": "db6d73a160bb2de10268f88ef60aae91771fefdeee4992b791c76ce6592a4a4b"
+        },
+        {
+          "path": "COPYING",
+          "bytes": 8616,
+          "sha256": "51a51aa9823704fd90bccc616cdd17ebabb5b2b3e9cbde886ca02c7002288067"
+        }
+      ],
+      "scope": "Source payload of an installed upstream build port; final binary linkage is not asserted."
+    },
+    {
+      "name": "freetype",
+      "version": "2.13.3",
+      "features": [
+        "brotli",
+        "bzip2",
+        "core",
+        "png",
+        "zlib"
+      ],
+      "url": "https://gitlab.freedesktop.org/freetype/freetype/-/archive/VER-2-13-3/freetype-VER-2-13-3.tar.gz",
+      "archive": "freetype-VER-2-13-3.tar.gz",
+      "archiveRoot": "freetype-VER-2-13-3",
+      "sha512": "fccfaa15eb79a105981bf634df34ac9ddf1c53550ec0b334903a1b21f9f8bf5eb2b3f9476e554afa112a0fca58ec85ab212d674dfd853670efec876bacbe8a53",
+      "requiredNotices": [
+        "LICENSE.TXT",
+        "docs/FTL.TXT",
+        "docs/GPLv2.TXT"
+      ],
+      "recipeSha256": "bb01ffcba667f059c2551d1ed0e6ef0a16e3c68457514038f830412086387d65",
+      "manifestSha256": "ecd02245a50543938b6d608d38f2379a336cc3298d4e3edfb0599c36ab6b5773",
+      "bytes": 2482495,
+      "sha256": "bc5c898e4756d373e0d991bab053036c5eb2aa7c0d5c67e8662ddc6da40c4103",
+      "declaredLicense": "FTL OR GPL-2.0-or-later",
+      "materials": [
+        {
+          "path": "LICENSE.TXT",
+          "bytes": 2074,
+          "sha256": "2e3bbb7d7c5c396368dd0853a790ec29ce5b8647163dde42a0493fb0d6556b2b"
+        },
+        {
+          "path": "docs/FTL.TXT",
+          "bytes": 6743,
+          "sha256": "08c135755dd589039470f1fdbb400daaabaaa50d0b366d19cebff4d22986baa1"
+        },
+        {
+          "path": "docs/GPLv2.TXT",
+          "bytes": 17994,
+          "sha256": "c4120c6752c910c299e3bd9cb3a46ff262c268303ca2069b61f92f10a5656c18"
+        }
+      ],
+      "scope": "Source payload of an installed upstream build port; final binary linkage is not asserted."
+    },
+    {
+      "name": "gperf",
+      "version": "3.3",
+      "features": [],
+      "url": "https://ftp.gnu.org/pub/gnu/gperf/gperf-3.3.tar.gz",
+      "archive": "gperf-3.3.tar.gz",
+      "archiveRoot": "gperf-3.3",
+      "sha512": "246b75b8ce7d77d6a8725cd15f1cf2e68da404812573af1d5bf32dbe6ad4228f48757baefc77bcb1f5597c2397043c04d31d8a04ab507bfa7a80f85e1ab6045f",
+      "requiredNotices": [
+        "COPYING"
+      ],
+      "recipeSha256": "63a0b214e9f79ded20de93ca131d5300cb2a81a76652d32117c0c880bad525de",
+      "manifestSha256": "1f724e1468d88426c6ce2fe4ef54e6fe76ab3c55572d5b348129e51d465bb792",
+      "bytes": 1831294,
+      "sha256": "fd87e0aba7e43ae054837afd6cd4db03a3f2693deb3619085e6ed9d8d9604ad8",
+      "declaredLicense": "GPL-3.0-or-later",
+      "materials": [
+        {
+          "path": "AUTHORS",
+          "bytes": 80,
+          "sha256": "6a3308c4cc682cb8f45f02d100b97939fabc56f86bc4fdeade60efa64c0dcbd5"
+        },
+        {
+          "path": "COPYING",
+          "bytes": 35147,
+          "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+        }
+      ],
+      "scope": "Source payload of an installed upstream build port; final binary linkage is not asserted."
+    },
+    {
+      "name": "graphite2",
+      "version": "1.3.14#4",
+      "features": [],
+      "url": "https://github.com/silnrsi/graphite/archive/92f59dcc52f73ce747f1cdc831579ed2546884aa.tar.gz",
+      "archive": "graphite-92f59dcc52f73ce747f1cdc831579ed2546884aa.tar.gz",
+      "archiveRoot": "graphite-92f59dcc52f73ce747f1cdc831579ed2546884aa",
+      "sha512": "011855576124b2f9ae9d7d3a0dfc5489794cf82b81bebc02c11c9cca350feb9fbb411844558811dff1ebbacac58a24a7cf56a374fc2c27e97a5fb4795a01486e",
+      "requiredNotices": [
+        "COPYING",
+        "LICENSE"
+      ],
+      "recipeSha256": "4e1e8894051aa61c6f7305efff5f5c3cc4684639efda7bc725dfcad09facfffc",
+      "manifestSha256": "b5ed9971f079e2d7b242172ec08d1a24b47267223a2f4e6941612613f5484d96",
+      "bytes": 6632395,
+      "sha256": "aeb8ca511ebe76500377b05ec08722f5083de15b84a37a4860980cbd8a78db33",
+      "declaredLicense": null,
+      "materials": [
+        {
+          "path": "COPYING",
+          "bytes": 1235,
+          "sha256": "2c272829ff23f182c8bf7ea12fedea69b0ae148663123ed5240c117cb129c9c1"
+        },
+        {
+          "path": "LICENSE",
+          "bytes": 26527,
+          "sha256": "a9bdde5616ecdd1e980b44f360600ee8783b1f99b8cc83a2beb163a0a390e861"
+        },
+        {
+          "path": "debian-src/copyright",
+          "bytes": 10027,
+          "sha256": "88f17179e66c9efcdd88316a0294499bd5e221e8ccb14523c389fccc491bfb3a"
+        }
+      ],
+      "scope": "Source payload of an installed upstream build port; final binary linkage is not asserted."
+    },
+    {
+      "name": "harfbuzz",
+      "version": "11.3.3",
+      "features": [
+        "core",
+        "freetype",
+        "graphite2"
+      ],
+      "url": "https://github.com/harfbuzz/harfbuzz/archive/11.3.3.tar.gz",
+      "archive": "harfbuzz-11.3.3.tar.gz",
+      "archiveRoot": "harfbuzz-11.3.3",
+      "sha512": "1d0f19e6aebc6aa273e749fb7968eff851dcfb15a0b5ef6cf268c74e77a81175d845c20c9285be7e9a7cb79871cb08bdac5c9d802a50fc5bd11a7225d510f48f",
+      "requiredNotices": [
+        "COPYING"
+      ],
+      "recipeSha256": "b37e8531162078d403885cc84041c73d7c1456c1baed6c82f8b949dced66bb5d",
+      "manifestSha256": "6c43772812f9b11c2f72cbdeb7eee6b905cb853b2c74e43b7bb9f0a2bdcee789",
+      "bytes": 35281028,
+      "sha256": "5563e1eeea7399c37dc7f0f92a89bbc79d8741bbdd134d22d2885ddb95944314",
+      "declaredLicense": "MIT-Modern-Variant",
+      "materials": [
+        {
+          "path": "AUTHORS",
+          "bytes": 201,
+          "sha256": "19bfe8f5ed100636cd24ab0c90a3f71c21d8b02d9ba00719447a0faab364d49f"
+        },
+        {
+          "path": "COPYING",
+          "bytes": 1971,
+          "sha256": "ba8f810f2455c2f08e2d56bb49b72f37fcf68f1f4fade38977cfd7372050ad64"
+        },
+        {
+          "path": "src/ms-use/COPYING",
+          "bytes": 1141,
+          "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+        },
+        {
+          "path": "test/COPYING",
+          "bytes": 4370,
+          "sha256": "9b35b8485f69cd298fccbb3c40a827dc06cf1185553bef827903497d2944a8d7"
+        },
+        {
+          "path": "test/shape/data/aots/COPYING",
+          "bytes": 593,
+          "sha256": "f55f74bf740db07bb032a90aa74af4307adea3d489c1ccba12453cf0c0a764cb"
+        },
+        {
+          "path": "test/shape/data/text-rendering-tests/COPYING",
+          "bytes": 584,
+          "sha256": "d24039e4d22c9bc72096f6174374539d92a3d6e1163938546ec59179fe095e6f"
+        }
+      ],
+      "scope": "Source payload of an installed upstream build port; final binary linkage is not asserted."
+    },
+    {
+      "name": "icu",
+      "version": "74.2#6",
+      "features": [
+        "core",
+        "tools"
+      ],
+      "url": "https://github.com/unicode-org/icu/releases/download/release-74-2/icu4c-74_2-src.tgz",
+      "archive": "icu.tar.gz",
+      "archiveRoot": "icu",
+      "sha512": "e6c7876c0f3d756f3a6969cad9a8909e535eeaac352f3a721338b9cbd56864bf7414469d29ec843462997815d2ca9d0dab06d38c37cdd4d8feb28ad04d8781b0",
+      "requiredNotices": [
+        "LICENSE"
+      ],
+      "recipeSha256": "1e82ef851fdeb2a44bee981a96b81176bdd3ec0e635e1cb558e978eea7e81a5c",
+      "manifestSha256": "fa0ff98d29dcb77e8ff764666221cbcd30a72b6bb71a66e2cec054c555afe89b",
+      "bytes": 26529443,
+      "sha256": "68db082212a96d6f53e35d60f47d38b962e9f9d207a74cfac78029ae8ff5e08c",
+      "declaredLicense": "ICU",
+      "materials": [
+        {
+          "path": "LICENSE",
+          "bytes": 25185,
+          "sha256": "17510cf7a58b4879b887ec05a45d72cf1b73544dd9ec7e72f20110ed104229ee"
+        },
+        {
+          "path": "license.html",
+          "bytes": 622,
+          "sha256": "c62d7697c03979f5056d28b338fafc7a1152820f7b379adf4a9d88cd37160f96"
+        }
+      ],
+      "scope": "Source payload of an installed upstream build port; final binary linkage is not asserted."
+    },
+    {
+      "name": "libpng",
+      "version": "1.6.50",
+      "features": [],
+      "url": "https://github.com/pnggroup/libpng/archive/v1.6.50.tar.gz",
+      "archive": "libpng-1.6.50.tar.gz",
+      "archiveRoot": "libpng-1.6.50",
+      "sha512": "34c806e0dda960b480ce2f5ea13e2e55a9540f07c51948be25d312b901c431bc814f730f9322a2e3b6f88d4104a0c49bde9e616762b342d07db44e2c7fd5f2dc",
+      "requiredNotices": [
+        "LICENSE"
+      ],
+      "recipeSha256": "db16d8f03a9ce807f26176cc50b112ff950df419f096b276aea16249b3c30f66",
+      "manifestSha256": "863dd0627adf8a69f7dd99f25ba214bc89eb8683064005fb4324ba178d74ccf3",
+      "bytes": 1582079,
+      "sha256": "71158e53cfdf2877bc99bcab33641d78df3f48e6e0daad030afe9cb8c031aa46",
+      "declaredLicense": "libpng-2.0",
+      "materials": [
+        {
+          "path": "AUTHORS",
+          "bytes": 1544,
+          "sha256": "5d9d94afa7d911c590ee287da91787d84e49a04a9ee67ef57f1f42970249f5c2"
+        },
+        {
+          "path": "LICENSE",
+          "bytes": 5345,
+          "sha256": "16d9daaafbf63a31a5bdc91d4600972548fef5aaa1244202393288dbd079c49a"
+        },
+        {
+          "path": "ci/LICENSE_MIT.txt",
+          "bytes": 1036,
+          "sha256": "508a77d2e7b51d98adeed32648ad124b7b30241a8e70b2e72c99f92d8e5874d1"
+        },
+        {
+          "path": "contrib/gregbook/COPYING",
+          "bytes": 18097,
+          "sha256": "d6cb0e9e560f51085556949a84af12b79a00f10ab8b66c752537faf7cd665572"
+        },
+        {
+          "path": "contrib/gregbook/LICENSE",
+          "bytes": 2373,
+          "sha256": "b6a03c1803eb58ffb1f1278d5c7d4096c4c116e66dce8a7553e8c77d163c3438"
+        },
+        {
+          "path": "contrib/pngexif/LICENSE_MIT.txt",
+          "bytes": 1036,
+          "sha256": "508a77d2e7b51d98adeed32648ad124b7b30241a8e70b2e72c99f92d8e5874d1"
+        },
+        {
+          "path": "contrib/pngminus/LICENSE.txt",
+          "bytes": 1164,
+          "sha256": "1806f1f10d393e9e377b3a8d1b968452b54f1a90378f14eeef45426946ace330"
+        },
+        {
+          "path": "scripts/cmake/AUTHORS.md",
+          "bytes": 842,
+          "sha256": "4691b0d26afaaac9681957a307c0c79d1e834380ca1ea483320ddcf003eb4637"
+        }
+      ],
+      "scope": "Source payload of an installed upstream build port; final binary linkage is not asserted."
+    },
+    {
+      "name": "zlib",
+      "version": "1.3.1",
+      "features": [],
+      "url": "https://github.com/madler/zlib/archive/v1.3.1.tar.gz",
+      "archive": "zlib-1.3.1.tar.gz",
+      "archiveRoot": "zlib-1.3.1",
+      "sha512": "8c9642495bafd6fad4ab9fb67f09b268c69ff9af0f4f20cf15dfc18852ff1f312bd8ca41de761b3f8d8e90e77d79f2ccacd3d4c5b19e475ecf09d021fdfe9088",
+      "requiredNotices": [
+        "LICENSE"
+      ],
+      "recipeSha256": "b14cee469c2da06e036e63293c0b6e6509924462e9b341b317986df46b281695",
+      "manifestSha256": "8ad7072167e1bf56d2ed531e43ecc95026d5b305ed0393140d5ec78f5c6b6c00",
+      "bytes": 1572744,
+      "sha256": "17e88863f3600672ab49182f217281b6fc4d3c762bde361935e436a95214d05c",
+      "declaredLicense": "Zlib",
+      "materials": [
+        {
+          "path": "LICENSE",
+          "bytes": 1002,
+          "sha256": "845efc77857d485d91fb3e0b884aaa929368c717ae8186b66fe1ed2495753243"
+        },
+        {
+          "path": "contrib/dotzlib/LICENSE_1_0.txt",
+          "bytes": 1359,
+          "sha256": "36266a8fd073568394cb81cdb2b124f7fdae2c64c1a7ed09db34b4d22efa2951"
+        }
+      ],
+      "scope": "Source payload of an installed upstream build port; final binary linkage is not asserted."
+    }
+  ],
+  "otherBuildPorts": [
+    {
+      "name": "vcpkg-cmake",
+      "version": "2024-04-23",
+      "features": [],
+      "scope": "Build-helper recipe retained in compiler-build inventory; tool payload review remains separate"
+    },
+    {
+      "name": "vcpkg-cmake-config",
+      "version": "2024-05-23",
+      "features": [],
+      "scope": "Build-helper recipe retained in compiler-build inventory; tool payload review remains separate"
+    },
+    {
+      "name": "dirent",
+      "version": "1.26",
+      "features": [],
+      "scope": "macOS empty compatibility port; recipe retained in compiler-build inventory"
+    },
+    {
+      "name": "vcpkg-cmake-get-vars",
+      "version": "2025-05-29",
+      "features": [],
+      "scope": "Build-helper recipe retained in compiler-build inventory; tool payload review remains separate"
+    },
+    {
+      "name": "vcpkg-make",
+      "version": "2025-09-29",
+      "features": [],
+      "scope": "Build-helper recipe retained in compiler-build inventory; tool payload review remains separate"
+    },
+    {
+      "name": "libiconv",
+      "version": "1.18#2",
+      "features": [],
+      "scope": "macOS empty compatibility port; recipe retained in compiler-build inventory"
+    },
+    {
+      "name": "pthreads",
+      "version": "3.0.0#14",
+      "features": [],
+      "scope": "macOS empty compatibility port; recipe retained in compiler-build inventory"
+    },
+    {
+      "name": "pthread",
+      "version": "3.0.0#2",
+      "features": [],
+      "scope": "macOS empty compatibility port; recipe retained in compiler-build inventory"
+    },
+    {
+      "name": "vcpkg-tool-meson",
+      "version": "1.9.0#1",
+      "features": [],
+      "scope": "Build-helper recipe retained in compiler-build inventory; tool payload review remains separate"
+    }
+  ],
+  "pending": [
+    "Determine the exact linked Apple silicon dependency graph and enabled features.",
+    "Review build-helper tool payloads, source/patch sufficiency and redistribution obligations.",
+    "Complete workspace, Biber/Perl, TeX/font and final signed-app materials and SBOM."
+  ],
+  "publicReleaseAssetsChanged": false,
+  "appNoticeCompatibility": {
+    "passed": true,
+    "timezone": "UTC",
+    "offlineFixturesPassed": 14,
+    "currentAppNotices": {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "bytes": 5185,
+      "sha256": "60a0a9c924325092bc139db6e3cc057cef34c541af1f896fe822c08648ef263f"
+    },
+    "preparationLog": {
+      "path": "test-results/native-notices-runtime-prepare.log",
+      "bytes": 2252,
+      "sha256": "d66a824b8af6ec6fa587cd71a06909f95de8b43e3da21f202eda7b7deffef2cb"
+    },
+    "signedPackAssemblyLog": {
+      "path": "test-results/native-notices-pack-compatibility.log",
+      "bytes": 186,
+      "sha256": "94e46ecbf6dd362d8923f943f0bf7cb2dd95a7dfec0faaa505cdaf8701433783"
+    },
+    "result": {
+      "passed": true,
+      "pack": "folio-multirow-2.9-v1",
+      "pin": {
+        "engine": "tectonic",
+        "version": "0.17.0",
+        "bundle": "folio-core-v1",
+        "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+        "platform": "darwin-arm64",
+        "biberVersion": "2.17"
+      },
+      "target": {
+        "engine": "tectonic",
+        "version": "0.17.0",
+        "bundle": "folio-multirow-2.9-v1",
+        "id": "f08d496354bb88e604ca8c2394935f8bf2e842a021d1b54b02ff210344a1d670",
+        "platform": "darwin-arm64",
+        "biberVersion": "2.17"
+      },
+      "signatureVerified": true,
+      "archiveSha256": "b11d22b915fba8f7a4efaa82d900912341cc2af1a05cd2dcee298ca48a4bbbfe",
+      "coreNoticesSha256": "f73320bb1070df34893eaa1ab58345daf693f7e141938f1e2959a1299dbf717b",
+      "filesVerified": 3982,
+      "manifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+      "scope": "Exact included runtime inventory, original signed public pack and assembled target; no signature or UI bypass."
+    }
+  }
+}
