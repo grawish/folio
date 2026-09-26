@@ -5,7 +5,8 @@ const manager = new RuntimeManager(bundle, data, {
   checkpoint: async (phase) => {
     if (phase === boundary) {
       console.log('READY-TO-KILL');
-      await new Promise(() => {});
+      // An unresolved promise alone does not keep Node's event loop alive.
+      await new Promise(() => setInterval(() => {}, 60_000));
     }
   },
 });

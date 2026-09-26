@@ -274,19 +274,23 @@ test('process interruption at staging, testing and pointer publication preserves
       error += data;
     });
     await new Promise<void>((resolve, reject) => {
+      let killTimer: ReturnType<typeof setTimeout> | undefined;
       const timeout = setTimeout(() => {
         child.kill('SIGKILL');
         reject(new Error('Runtime checkpoint timeout: ' + error));
       }, 15_000);
       child.stdout.on('data', (data) => {
         output += data;
-        if (output.includes('READY-TO-KILL')) child.kill('SIGKILL');
+        // A paused fixture must stay alive even when the parent is briefly busy.
+        if (output.includes('READY-TO-KILL') && !killTimer)
+          killTimer = setTimeout(() => child.kill('SIGKILL'), 250);
       });
       child.on('error', reject);
       child.on('exit', (_code, signal) => {
         clearTimeout(timeout);
+        clearTimeout(killTimer);
         if (signal === 'SIGKILL' && output.includes('READY-TO-KILL')) resolve();
-        else reject(new Error('Runtime fixture exited unexpectedly: ' + error));
+        else reject(new Error(`Runtime fixture exited unexpectedly at ${boundary}: ` + error));
       });
     });
     const restarted = new RuntimeManager(f.bundle, f.data, { probe: async () => {} });
