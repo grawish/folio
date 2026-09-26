@@ -23,6 +23,11 @@ import {
 export type RuntimeLease = { root: string; status: RuntimeStatus; release(): Promise<void> };
 export type RuntimeSource = { acquire(pin?: RuntimePin): Promise<RuntimeLease> };
 type Pointer = { generation: string; previous?: string };
+export type PackInstallProgress = (
+  phase: 'assemble' | 'copy' | 'check' | 'publish',
+  completed?: number,
+  total?: number,
+) => void;
 const generationName = /^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/;
 
 async function directory(name: string) {
@@ -240,6 +245,7 @@ export class RuntimeManager implements RuntimeSource {
     manifest: RuntimeManifest,
     overrides = new Map<string, Buffer>(),
     signal?: AbortSignal,
+    progress?: PackInstallProgress,
   ) {
     signal?.throwIfAborted();
     if (pin.platform !== `${process.platform}-${process.arch}`)
@@ -263,6 +269,8 @@ export class RuntimeManager implements RuntimeSource {
       // Bound concurrent reads/writes; engine files can be much larger than a font.
       let next = 0;
       const files = [...names];
+      let count = 0;
+      progress?.('copy', 0, files.length);
       const copied = await Promise.allSettled(
         Array.from({ length: 4 }, async () => {
           while (next < files.length) {
@@ -277,6 +285,8 @@ export class RuntimeManager implements RuntimeSource {
                 : 0o600;
             await fs.mkdir(path.dirname(destination), { recursive: true, mode: 0o700 });
             await durableWrite(destination, data, mode);
+            if (++count % 32 === 0 || count === files.length)
+              progress?.('copy', count, files.length);
           }
         }),
       );
@@ -285,11 +295,13 @@ export class RuntimeManager implements RuntimeSource {
       await this.options.checkpoint?.('staged');
       signal?.throwIfAborted();
       await verifyRuntime(runtime, pin);
+      progress?.('check');
       await this.probe(runtime, pin, signal);
       signal?.throwIfAborted();
       await durableWrite(path.join(copy, 'ready.json'), JSON.stringify({ pin }));
       await this.options.checkpoint?.('tested');
       signal?.throwIfAborted();
+      progress?.('publish');
       await this.publish(pin, generation);
       await this.options.checkpoint?.('published');
     } catch (error) {
@@ -321,20 +333,25 @@ export class RuntimeManager implements RuntimeSource {
     }
   }
 
-  private async installResourcePack(pack: ResourcePack, signal?: AbortSignal) {
+  private async installResourcePack(
+    pack: ResourcePack,
+    signal?: AbortSignal,
+    progress?: PackInstallProgress,
+  ) {
     signal?.throwIfAborted();
     const root = await this.packBase(pack);
     signal?.throwIfAborted();
+    progress?.('assemble');
     const { manifest, pin, overrides } = await assembleResourcePack(pack, root);
     signal?.throwIfAborted();
-    await this.stage(pin, root, manifest, overrides, signal);
+    await this.stage(pin, root, manifest, overrides, signal, progress);
   }
 
-  async installPack(pack: ResourcePack, signal?: AbortSignal) {
+  async installPack(pack: ResourcePack, signal?: AbortSignal, progress?: PackInstallProgress) {
     requireResourcePack(pack);
     signal?.throwIfAborted();
     await this.initialize();
-    await this.serial(() => this.installResourcePack(pack, signal));
+    await this.serial(() => this.installResourcePack(pack, signal, progress));
     return this.status(pack.target);
   }
 

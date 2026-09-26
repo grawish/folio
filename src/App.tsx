@@ -176,13 +176,18 @@ export default function App() {
   const message = useCallback((text: string) => setToast(errorMessage(text)), []);
   const [view, setView] = useState<'chat' | 'code'>('chat');
   const [connections, setConnections] = useState<AISettings>({ connections: [], activeId: null });
-  const [settingsTab, setSettingsTab] = useState<'general' | 'ai' | 'about' | 'privacy'>('general');
+  const [settingsTab, setSettingsTab] = useState<
+    'general' | 'ai' | 'about' | 'privacy' | 'resources'
+  >('general');
+  const packBusyRef = useRef(false);
+  const [packBusy, setPackBusy] = useState(false);
   const [agentProgress, setAgentProgress] = useState<AgentProgress | null>(null);
   const activeRun = useRef<{ id: string; projectId: string } | null>(null);
   const saving = useRef(false);
   const savingFinished = useRef(Promise.resolve());
   const [savingCopy, setSavingCopy] = useState(false);
   const migrationId = useRef<string | undefined>(undefined);
+  const migrationTarget = useRef<Project['runtime']>(undefined);
   const fontImport = useRef<{ id: string; started: boolean } | undefined>(undefined);
   const [historyId, setHistoryId] = useState<string>();
   const [historyNote, setHistoryNote] = useState<PdfAnnotation>();
@@ -423,7 +428,7 @@ export default function App() {
 
   const compile = useCallback(async (): Promise<BuildResult | null> => {
     const desktop = api();
-    if (!desktop || migrationId.current || fontImport.current) return null;
+    if (!desktop || migrationId.current || fontImport.current || packBusyRef.current) return null;
     if (requireDiskReview()) return null;
     const snapshot = current.current;
     const token = ++buildToken.current;
@@ -459,6 +464,7 @@ export default function App() {
       !initialized ||
       !runtime?.ready ||
       !autoCompile ||
+      packBusy ||
       dialog === 'compiler-migration' ||
       dialog === 'fonts' ||
       dialog === 'save-recovery' ||
@@ -477,6 +483,7 @@ export default function App() {
     initialized,
     runtime?.ready,
     autoCompile,
+    packBusy,
     dialog,
     project.id,
     project.revision,
@@ -491,6 +498,7 @@ export default function App() {
       !initialized ||
       !window.folio ||
       saveActive ||
+      packBusy ||
       dialog === 'compiler-migration' ||
       dialog === 'fonts' ||
       dialog === 'save-recovery'
@@ -503,7 +511,7 @@ export default function App() {
         .catch((e) => message(`Recovery could not be saved: ${e.message}`));
     }, 500);
     return () => clearTimeout(timer);
-  }, [project, initialized, message, saveActive, dialog]);
+  }, [project, initialized, message, saveActive, dialog, packBusy]);
   useEffect(() => {
     if (!toast) return;
     const timer = setTimeout(() => setToast(''), 6500);
@@ -868,6 +876,7 @@ export default function App() {
       return;
     }
     if (migrationId.current && action !== 'close') return;
+    if (packBusyRef.current && action !== 'close') return;
     if (fontImport.current && action !== 'close') return;
     if (reloadingDisk && action !== 'close') return;
     if (pendingImport && action !== 'close') return;
@@ -894,6 +903,7 @@ export default function App() {
         closing.current = true;
         try {
           await savingFinished.current;
+          await window.folio?.cancelPackOperation();
           if (migrationId.current) await window.folio?.cancelCompilerMigration(migrationId.current);
           if (fontImport.current) await window.folio?.cancelFontImport(fontImport.current.id);
           await window.folio?.recover(current.current);
@@ -2144,7 +2154,20 @@ export default function App() {
             setFontSize={setFontSize}
             runtime={runtime}
             projectId={project.id}
-            onCompareCompiler={() => {
+            onPackBusy={(busy) => {
+              packBusyRef.current = busy;
+              setPackBusy(busy);
+            }}
+            onPackBegin={async () => {
+              if (saving.current || agentBusy || !workspaceReady || closing.current)
+                throw new Error('Finish saving or the AI request before managing packs.');
+              buildToken.current++;
+              setBuilding(false);
+              await flushWorkspace();
+              await window.folio?.recover(current.current);
+              if (closing.current) throw new Error('Pack operation cancelled while closing.');
+            }}
+            onCompareCompiler={(target) => {
               if (saving.current || agentBusy || !workspaceReady || needsDiskReview) {
                 message(
                   'Finish saving or the AI request, and review outside changes before comparing compilers.',
@@ -2152,6 +2175,7 @@ export default function App() {
                 return;
               }
               migrationId.current = crypto.randomUUID();
+              migrationTarget.current = target;
               setDialog('compiler-migration');
             }}
             onRepairRuntime={async () => {
@@ -2204,14 +2228,19 @@ export default function App() {
         {dialog === 'compiler-migration' && migrationId.current && (
           <CompilerComparison
             from={project.runtime}
-            to={runtime?.defaultPin}
+            to={migrationTarget.current ?? runtime?.defaultPin}
+            isPack={!!migrationTarget.current}
             onPrepare={async () => {
               const desktop = window.folio!;
               buildToken.current++;
               setBuilding(false);
               await flushWorkspace();
               await desktop.recover(current.current);
-              return desktop.prepareCompilerMigration(migrationId.current!, current.current);
+              return desktop.prepareCompilerMigration(
+                migrationId.current!,
+                current.current,
+                migrationTarget.current?.id,
+              );
             }}
             onApply={async (comparison) => {
               saving.current = true;
@@ -2231,6 +2260,7 @@ export default function App() {
                 setResult(reply.build);
                 setLastGood(reply.build);
                 migrationId.current = undefined;
+                migrationTarget.current = undefined;
                 setDialog(null);
                 setAutoSaveError('');
                 void window
@@ -2254,7 +2284,8 @@ export default function App() {
                 .folio!.cancelCompilerMigration(migrationId.current)
                 .then(() => {
                   migrationId.current = undefined;
-                  setSettingsTab('about');
+                  setSettingsTab(migrationTarget.current ? 'resources' : 'about');
+                  migrationTarget.current = undefined;
                   setDialog('settings');
                 })
                 .catch((error) => message(error.message));

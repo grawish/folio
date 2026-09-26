@@ -1,11 +1,21 @@
 import { useEffect, useState } from 'react';
-import { AlertTriangle, FileText, Info, Network, Settings2, ShieldCheck } from 'lucide-react';
+import {
+  AlertTriangle,
+  FileText,
+  Info,
+  Network,
+  Settings2,
+  ShieldCheck,
+  Package,
+} from 'lucide-react';
 import type { CompilerBackup } from '../shared/migration';
 import type { AISettings } from '../shared/ai';
 import type { Appearance, RuntimeStatus } from '../shared/types';
 import { version } from '../../package.json';
 import { Modal } from './Modal';
 import { AIConnections } from './AIConnections';
+import { ResourcePacks } from './ResourcePacks';
+import type { RuntimePin } from '../shared/runtime';
 
 export function SettingsModal({
   appearance,
@@ -22,6 +32,8 @@ export function SettingsModal({
   onRepairRuntime,
   projectId,
   onCompareCompiler,
+  onPackBegin,
+  onPackBusy,
   onSupportBundle,
   connections,
   onConnections,
@@ -41,17 +53,29 @@ export function SettingsModal({
   runtime: RuntimeStatus | null;
   onRepairRuntime(): Promise<void>;
   projectId: string;
-  onCompareCompiler(): void;
+  onCompareCompiler(target?: RuntimePin): void;
+  onPackBegin(): Promise<void>;
+  onPackBusy(value: boolean): void;
   onSupportBundle(): void;
   connections: AISettings;
   onConnections(settings: AISettings): void;
-  initialTab?: 'general' | 'ai' | 'about' | 'privacy';
+  initialTab?: 'general' | 'ai' | 'about' | 'privacy' | 'resources';
   onClose(): void;
 }) {
   const [tab, setTab] = useState<string>(initialTab);
   const [repairing, setRepairing] = useState(false),
     [repairError, setRepairError] = useState('');
   const [backups, setBackups] = useState<CompilerBackup[]>([]);
+  const [packBusy, setPackBusy] = useState(false);
+  const [closing, setClosing] = useState(false);
+  const close = () => {
+    if (closing) return;
+    setClosing(true);
+    void (window.folio?.cancelPackOperation() ?? Promise.resolve())
+      .then(onClose)
+      .catch((error) => setRepairError(error.message))
+      .finally(() => setClosing(false));
+  };
   useEffect(() => {
     let cancelled = false;
     void window.folio
@@ -67,19 +91,21 @@ export function SettingsModal({
     };
   }, [projectId]);
   return (
-    <Modal wide title="Settings" onClose={onClose}>
+    <Modal wide title="Settings" onClose={close} dismissible={!closing}>
       <div className="settings-layout">
         <nav className="settings-navigation" aria-label="Settings sections">
           {[
             ['general', 'General', Settings2],
             ['ai', 'AI connections', Network],
             ['editor', 'Editor & PDF', FileText],
+            ['resources', 'LaTeX resources', Package],
             ['privacy', 'Privacy', ShieldCheck],
             ['about', 'About', Info],
           ].map(([id, label, Icon]) => (
             <button
               key={id as string}
               className={tab === id ? 'active' : ''}
+              disabled={packBusy || closing}
               onClick={() => setTab(id as string)}
             >
               <Icon size={17} />
@@ -91,6 +117,17 @@ export function SettingsModal({
           <AIConnections settings={connections} onChange={onConnections} />
         ) : (
           <div className="settings-content">
+            {tab === 'resources' && (
+              <ResourcePacks
+                current={runtime?.pin}
+                onBegin={onPackBegin}
+                onBusy={(busy) => {
+                  setPackBusy(busy);
+                  onPackBusy(busy);
+                }}
+                onUse={onCompareCompiler}
+              />
+            )}
             {tab === 'general' && (
               <>
                 <h3>General</h3>
@@ -316,7 +353,7 @@ export function SettingsModal({
                       <button
                         className="button secondary small"
                         disabled={repairing}
-                        onClick={onCompareCompiler}
+                        onClick={() => onCompareCompiler()}
                       >
                         Compare compilers
                       </button>
@@ -361,8 +398,8 @@ export function SettingsModal({
         )}
       </div>
       <div className="modal-actions">
-        <button className="button primary" onClick={onClose}>
-          Done
+        <button className="button primary" onClick={close} disabled={closing}>
+          {closing ? 'Finishing…' : 'Done'}
         </button>
       </div>
     </Modal>

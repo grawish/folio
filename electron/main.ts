@@ -22,6 +22,8 @@ import { ProjectImporter } from './core/project-import';
 import { ProjectWatcher } from './core/project-scan';
 import { Compiler } from './core/compiler';
 import { RuntimeManager } from './core/runtime-manager';
+import { PackService } from './core/pack-service';
+import { packTrust } from './core/pack-trust';
 import { CompilerMigration } from './core/compiler-migration';
 import { FontImport } from './core/font-import';
 import { SupportBundles } from './core/support-bundle';
@@ -57,6 +59,7 @@ let watchedDirectory: string | undefined;
 let importer: ProjectImporter;
 let compiler: Compiler;
 let runtimes: RuntimeManager;
+let packs: PackService;
 let agentCompiler: Compiler;
 let migrationCompiler: Compiler;
 let migrations: CompilerMigration;
@@ -181,6 +184,7 @@ function requireProjectIdle() {
   if (saveReviewId) throw new Error('Close save recovery before changing the workspace.');
   migrations.requireIdle();
   fonts.requireIdle();
+  packs.requireIdle();
 }
 
 function handle(channel: string, callback: (...args: any[]) => unknown) {
@@ -282,10 +286,31 @@ function registerHandlers() {
     },
   );
   handle('runtime:inspect', (pin: unknown) => runtimes.status(validateRuntimePin(pin)));
-  handle('runtime:repair', (pin: unknown) => runtimes.repair(validateRuntimePin(pin)));
-  handle('runtime:compare', (id: string, value: unknown) => {
+  handle('runtime:repair', (pin: unknown) => {
     requireProjectIdle();
-    return migrations.prepare(id, checkedProject(value));
+    return runtimes.repair(validateRuntimePin(pin));
+  });
+  handle('packs:list', () => packs.list());
+  handle('packs:refresh', (id: string) => {
+    requireProjectIdle();
+    return packs.refresh(id);
+  });
+  handle('packs:import', (id: string) => {
+    requireProjectIdle();
+    return packs.prepareImport(id);
+  });
+  handle('packs:install', (id: string, key: string, source: 'catalog' | 'retained' | 'import') => {
+    requireProjectIdle();
+    return packs.install(id, key, source);
+  });
+  handle('packs:remove-download', (id: string, key: string) => {
+    requireProjectIdle();
+    return packs.removeDownload(id, key);
+  });
+  handle('packs:cancel', (id?: string) => packs.cancel(id));
+  handle('runtime:compare', (id: string, value: unknown, target?: string) => {
+    requireProjectIdle();
+    return migrations.prepare(id, checkedProject(value), target);
   });
   handle('fonts:begin', (id: string, value: unknown) => {
     requireProjectIdle();
@@ -358,6 +383,7 @@ function registerHandlers() {
     window?.setBackgroundColor(windowBackground());
   });
   handle('app:bootstrap', async () => {
+    await packs.cancel();
     await endSaveReview();
     await support.cancel();
     // A renderer reload loses its comparison token. Release the abandoned
@@ -638,6 +664,7 @@ function registerHandlers() {
     await shell.openExternal(url.href);
   });
   handle('app:close', async () => {
+    await packs.cancel();
     await endSaveReview();
     await support.cancel();
     await fonts.cancel();
@@ -694,7 +721,32 @@ if (primaryInstance)
     const dataRoot = app.getPath('userData');
     await fs.mkdir(dataRoot, { recursive: true });
     importer = new ProjectImporter(dataRoot);
-    runtimes = new RuntimeManager(runtimeRoot, path.join(dataRoot, 'runtimes'));
+    packs = new PackService(path.join(dataRoot, 'resource-packs'), packTrust, {
+      runtime: {
+        status: (pin) => runtimes.status(pin),
+        installPack: (pack, signal, progress) => runtimes.installPack(pack, signal, progress),
+      },
+      choose: async () => {
+        const chosen = await dialog.showOpenDialog(window!, {
+          title: 'Import a signed resource pack',
+          properties: ['openFile'],
+          filters: [{ name: 'Folio resource pack', extensions: ['foliopack'] }],
+        });
+        return chosen.canceled ? undefined : chosen.filePaths[0];
+      },
+      start: async () => {
+        requestGeneration++;
+        await agent.cancel();
+        await compiler.cancel();
+        await recoveryQueue;
+      },
+      progress: (value) => {
+        if (window && !window.isDestroyed()) window.webContents.send('packs:progress', value);
+      },
+    });
+    runtimes = new RuntimeManager(runtimeRoot, path.join(dataRoot, 'runtimes'), {
+      packs: packs.archives,
+    });
     void runtimes.initialize();
     store = new ProjectStore(dataRoot, undefined, () => runtimes.defaultPin);
     watcher = new ProjectWatcher(
@@ -710,6 +762,14 @@ if (primaryInstance)
     migrationCompiler = new Compiler(runtimes, path.join(dataRoot, 'migration-builds'));
     migrations = new CompilerMigration(path.join(dataRoot, 'compiler-backups'), {
       target: () => runtimes.defaultPin,
+      selectTarget: (key) => packs.target(key),
+      checkTarget: async (pin) => {
+        const status = await runtimes.status(pin);
+        if (!status.ready)
+          throw new Error(
+            'The previewed compiler changed or became unavailable. Repair it and compare again.',
+          );
+      },
       start: async () => {
         requestGeneration++;
         await agent.cancel();

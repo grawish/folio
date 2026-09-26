@@ -9,6 +9,7 @@ const names = [
   'recover-an-import',
   'editor-and-pdf',
   'settings-and-compiler',
+  'resource-packs',
 ];
 const sources = [
   ...names.map((name) => `docs/tutorials/${name}.md`),

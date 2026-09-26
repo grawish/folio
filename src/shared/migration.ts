@@ -10,7 +10,8 @@ export type CompilerBackup = {
 export type CompilerComparison = CompilerBackup & {
   before: Uint8Array;
   after: Uint8Array;
-  baseline: 'rebuilt' | 'saved-pdf';
+  baseline: 'rebuilt' | 'saved-pdf' | 'build-error';
+  beforeError?: string;
 };
 export type CompilerMigrationResult = {
   project: Project;

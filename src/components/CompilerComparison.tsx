@@ -11,6 +11,7 @@ export function CompilerComparison({
   onApply,
   onClose,
   onShowBackup,
+  isPack = false,
 }: {
   from?: RuntimePin;
   to?: RuntimePin;
@@ -18,6 +19,7 @@ export function CompilerComparison({
   onApply(comparison: Comparison): Promise<void>;
   onClose(): void;
   onShowBackup(id: string): Promise<void>;
+  isPack?: boolean;
 }) {
   const [comparison, setComparison] = useState<Comparison>();
   const [working, setWorking] = useState(false);
@@ -28,14 +30,21 @@ export function CompilerComparison({
       wide
       className="compiler-comparison"
       title="Compare compilers"
-      description="Review both PDFs before changing how this resume is built."
+      description={
+        isPack
+          ? 'Preview the installed pack before changing this project’s compiler.'
+          : 'Review both PDFs before changing how this resume is built.'
+      }
       onClose={onClose}
       dismissible={!applying}
     >
       {comparison ? (
         <>
           <p className="settings-hint">
-            A backup of your source, assets and saved history is ready. Both comparison PDFs are
+            A backup of your source, assets and saved history is ready. The preview PDF
+            {comparison.baseline === 'build-error'
+              ? ' and the earlier build error are'
+              : 's are'}{' '}
             kept with it.
           </p>
           {comparison.baseline === 'saved-pdf' && (
@@ -54,10 +63,24 @@ export function CompilerComparison({
               <p className="settings-hint">
                 Tectonic {from?.version} · {from?.bundle}
               </p>
-              <PdfPreview data={comparison.before} building={false} stale={false} status={null} />
+              {comparison.baseline === 'build-error' ? (
+                <div className="pack-baseline-error" role="status">
+                  <strong>No before PDF is available for this source.</strong>
+                  <p>
+                    The recorded compiler could not build it. Check the new PDF carefully before
+                    choosing to use this pack.
+                  </p>
+                  <details>
+                    <summary>Show original build error</summary>
+                    <pre>{comparison.beforeError}</pre>
+                  </details>
+                </div>
+              ) : (
+                <PdfPreview data={comparison.before} building={false} stale={false} status={null} />
+              )}
             </section>
             <section>
-              <h4>After · included compiler</h4>
+              <h4>After · {isPack ? 'installed pack' : 'included compiler'}</h4>
               <p className="settings-hint">
                 Tectonic {to?.version} · {to?.bundle}
               </p>
@@ -68,23 +91,24 @@ export function CompilerComparison({
       ) : (
         <div className="compiler-comparison-intro">
           <p>
-            Folio will build your resume with the recorded compiler and this app’s included
-            compiler, then show the results together.
+            Folio will build your resume with the recorded compiler and{' '}
+            {isPack ? 'the selected installed pack' : 'this app’s included compiler'}, then show the
+            results together.
           </p>
           <dl>
             <dt>Recorded compiler</dt>
             <dd>
               Tectonic {from?.version} · {from?.bundle}
             </dd>
-            <dt>Included compiler</dt>
+            <dt>{isPack ? 'Selected pack' : 'Included compiler'}</dt>
             <dd>
               Tectonic {to?.version} · {to?.bundle}
             </dd>
           </dl>
           <p>
             Your compiler choice stays the same until you select{' '}
-            <strong>Use included compiler</strong>. A local backup will keep your source, assets,
-            history and the comparison PDFs.
+            <strong>{isPack ? 'Use this pack' : 'Use included compiler'}</strong>. A local backup
+            will keep your source, assets, history and the comparison PDFs.
           </p>
           {working && <p role="status">Building the comparison and saving your backup…</p>}
         </div>
@@ -119,7 +143,7 @@ export function CompilerComparison({
                 .finally(() => setApplying(false));
             }}
           >
-            {applying ? 'Applying…' : 'Use included compiler'}
+            {applying ? 'Applying…' : isPack ? 'Use this pack' : 'Use included compiler'}
           </button>
         ) : (
           <button

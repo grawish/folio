@@ -251,4 +251,26 @@ export class PackDownloads {
       activeRoots.delete(this.root);
     }
   }
+
+  async cachedBytes(pack: CatalogPack) {
+    requireKnownPack(pack);
+    const root = packPath(this.root, pack.artifact.sha256);
+    await packDirectory(root);
+    for (const name of ['payload.foliopack', 'payload.part']) {
+      try {
+        const stat = await fs.lstat(packPath(root, name));
+        if (
+          !stat.isFile() ||
+          stat.isSymbolicLink() ||
+          stat.nlink !== 1 ||
+          stat.size > pack.artifact.bytes
+        )
+          throw new Error('The cached download is damaged. Remove it before retrying.');
+        return stat.size;
+      } catch (error) {
+        if (!isMissing(error)) throw error;
+      }
+    }
+    return 0;
+  }
 }

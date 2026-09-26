@@ -28,7 +28,10 @@ Every currently implemented feature group below has a plain-language walkthrough
 | Editor and PDF preferences | [Walkthrough](tutorials/settings-and-compiler.md) | [Screenshot](images/editor-settings.png) · Real app · synthetic project |
 | Offline compiler repair | [Walkthrough](tutorials/settings-and-compiler.md) | [Screenshot](images/compiler-repair.png) · Real app · isolated damaged-runtime fixture |
 | Compare compiler versions | [Walkthrough](tutorials/settings-and-compiler.md) | [Screenshot](images/compiler-comparison.png) · Real app · synthetic compiler identity |
+| Import a signed resource pack | [Walkthrough](tutorials/resource-packs.md) | [Screenshot](images/pack-import-review.png) · Real source app · temporary test publisher |
+| Install and retry a pack offline | [Walkthrough](tutorials/resource-packs.md) | [Screenshot](images/pack-installed-light.png) · Real source app/compiler · test catalog |
+| Preview a pack before using it | [Walkthrough](tutorials/resource-packs.md) | [Screenshot](images/pack-preview-light.png) · Real source app/compiler · controlled missing package |
 | Reviewable support ZIP | [Walkthrough](tutorials/settings-and-compiler.md#make-a-support-bundle) | [Screenshot](images/support-bundle.png) · Real app · synthetic privacy fixture |
 | Privacy and support | [Walkthrough](tutorials/settings-and-compiler.md) | [Screenshot](images/privacy.png) · Real app · synthetic project |
 
-See [demo reproduction](demos/README.md) for commands and capture provenance. Managed expansion packs, online repair, and automatic updates remain planned in [the release audit](RELEASE_GAP_AUDIT.md). They have no working-feature demo yet. Wider OS, physical accessibility and live AI acceptance also remain open.
+See [demo reproduction](demos/README.md) for commands and capture provenance. Pack workflows are now demonstrated with a test publisher; production trust roots, a public catalog, licensed distributable packs and final package acceptance remain open in [the release audit](RELEASE_GAP_AUDIT.md). Automatic updates have no working-feature demo yet. Wider OS, physical accessibility and live AI acceptance also remain open.

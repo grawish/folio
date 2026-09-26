@@ -10,6 +10,8 @@ import { readSafeZip } from './safe-zip';
 import { runtimeFile, runtimePin, verifyRuntime, type RuntimeManifest } from './runtime';
 import { validateRuntimePin, type RuntimePin } from '../../src/shared/runtime';
 import { packFile, savePackFile } from './pack-io';
+import { packDirectory } from './pack-io';
+import { promises as fs } from 'node:fs';
 import { resourceName } from './pack-resource-name';
 
 export const PACK_SIGNATURE_CONTEXT = 'Folio resource pack archive v1\n';
@@ -245,6 +247,11 @@ export function requireResourcePack(pack: ResourcePack) {
   if (!contents.has(pack)) throw new Error('Choose an authenticated resource pack.');
 }
 
+export function resourcePackNotices(pack: ResourcePack) {
+  requireResourcePack(pack);
+  return contents.get(pack)!.notices.toString('utf8');
+}
+
 async function assemble(
   baseRoot: string,
   info: PackDescription,
@@ -446,5 +453,33 @@ export class ResourcePackStore {
     if (JSON.stringify(pack.target) !== JSON.stringify(selected))
       throw new Error('The retained resource pack has a different compiler identity.');
     return pack;
+  }
+
+  async list() {
+    await packDirectory(this.root);
+    const entries = await fs.readdir(this.root, { withFileTypes: true });
+    if (entries.length > 128)
+      throw new Error('Too many retained pack files. Review the pack storage folder.');
+    const packs: Omit<ResourcePack, never>[] = [];
+    const warnings: string[] = [];
+    for (const entry of entries) {
+      if (!entry.isFile() || !/^[a-f0-9]{64}\.foliopack$/.test(entry.name)) {
+        warnings.push('An unexpected retained pack file was ignored.');
+        continue;
+      }
+      try {
+        const data = await packFile(this.root, entry.name, MAX_PACK_BYTES);
+        if (!data) continue;
+        const pack = this.verifier.read(data);
+        if (`${pack.target.id}.foliopack` !== entry.name) throw new Error('Identity mismatch.');
+        // Metadata only; do not hold every archive/resource buffer in memory.
+        packs.push({ ...pack });
+      } catch {
+        warnings.push(
+          `A retained pack (${entry.name.slice(0, 12)}) could not be verified. Reimport its signed file or download it again.`,
+        );
+      }
+    }
+    return { packs, warnings };
   }
 }

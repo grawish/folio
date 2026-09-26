@@ -146,10 +146,22 @@ export interface DesktopAPI {
   bootstrap(): Promise<Bootstrap>;
   inspectRuntime(pin?: import('./runtime').RuntimePin): Promise<RuntimeStatus>;
   repairRuntime(pin?: import('./runtime').RuntimePin): Promise<RuntimeStatus>;
+  listPacks(): Promise<import('./packs').PackLibrary>;
+  refreshPacks(id: string): Promise<import('./packs').PackLibrary>;
+  preparePackImport(id: string): Promise<import('./packs').PackImportPreview | null>;
+  installPack(
+    id: string,
+    key: string,
+    source: 'catalog' | 'retained' | 'import',
+  ): Promise<import('./packs').PackLibrary>;
+  removePackDownload(id: string, key: string): Promise<import('./packs').PackLibrary>;
+  cancelPackOperation(id?: string): Promise<void>;
+  onPackProgress(callback: (value: import('./packs').PackActivity) => void): () => void;
 
   prepareCompilerMigration(
     id: string,
     project: Project,
+    target?: string,
   ): Promise<import('./migration').CompilerComparison>;
   applyCompilerMigration(
     id: string,

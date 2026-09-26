@@ -24,7 +24,20 @@ const api: DesktopAPI = {
   bootstrap: () => ipcRenderer.invoke('app:bootstrap'),
   inspectRuntime: (pin) => ipcRenderer.invoke('runtime:inspect', pin),
   repairRuntime: (pin) => ipcRenderer.invoke('runtime:repair', pin),
-  prepareCompilerMigration: (id, project) => ipcRenderer.invoke('runtime:compare', id, project),
+  listPacks: () => ipcRenderer.invoke('packs:list'),
+  refreshPacks: (id) => ipcRenderer.invoke('packs:refresh', id),
+  preparePackImport: (id) => ipcRenderer.invoke('packs:import', id),
+  installPack: (id, key, source) => ipcRenderer.invoke('packs:install', id, key, source),
+  removePackDownload: (id, key) => ipcRenderer.invoke('packs:remove-download', id, key),
+  cancelPackOperation: (id) => ipcRenderer.invoke('packs:cancel', id),
+  onPackProgress: (callback) => {
+    const handler = (_: unknown, value: import('../src/shared/packs').PackActivity) =>
+      callback(value);
+    ipcRenderer.on('packs:progress', handler);
+    return () => ipcRenderer.removeListener('packs:progress', handler);
+  },
+  prepareCompilerMigration: (id, project, target) =>
+    ipcRenderer.invoke('runtime:compare', id, project, target),
   applyCompilerMigration: (id, project) => ipcRenderer.invoke('runtime:apply', id, project),
   cancelCompilerMigration: (id) => ipcRenderer.invoke('runtime:cancel-comparison', id),
   compilerBackups: (projectId) => ipcRenderer.invoke('runtime:backups', projectId),

@@ -182,6 +182,77 @@ test('failed builds do not substitute a saved PDF for actual TeX errors or chang
   assert.equal(f.state.commits, 0);
 });
 
+test('an explicitly selected installed pack can preview a repaired build without inventing a before PDF', async (t) => {
+  const f = await fixture(t);
+  let targetReady = true;
+  const manager = new CompilerMigration(path.join(f.root, 'pack-backups'), {
+    ...f.deps,
+    selectTarget: async (key) => {
+      assert.equal(key, target.id);
+      return target;
+    },
+    checkTarget: async () => {
+      if (!targetReady) throw new Error('Previewed compiler unavailable');
+    },
+    compile: async (p) =>
+      p.runtime?.id === old.id
+        ? {
+            projectId: p.id,
+            revision: p.revision,
+            status: 'error',
+            diagnostics: [],
+            durationMs: 1,
+            log: 'Missing example.sty in the recorded compiler.',
+          }
+        : f.deps.compile(p),
+  });
+  const id = randomUUID();
+  const comparison = await manager.prepare(id, project, target.id);
+  assert.equal(comparison.baseline, 'build-error');
+  assert.equal(comparison.before.length, 0);
+  assert.match(comparison.beforeError!, /Missing example/);
+  assert.deepEqual(Buffer.from(comparison.after), pdf('after'));
+  assert.equal(f.state.commits, 0);
+  const folder = path.dirname(await manager.backupPath(project.id, id));
+  assert.equal(
+    await fs.readFile(path.join(folder, 'before-error.txt'), 'utf8'),
+    comparison.beforeError,
+  );
+  await assert.rejects(fs.stat(path.join(folder, 'before.pdf')), { code: 'ENOENT' });
+  targetReady = false;
+  await assert.rejects(manager.apply(id, project), /Previewed compiler unavailable/);
+  assert.equal(f.state.commits, 0);
+  targetReady = true;
+  const applied = await manager.apply(id, project);
+  assert.deepEqual(applied.project.runtime, target);
+  const versions = (await f.workspace.load(project.id)).versions;
+  assert.equal(versions.length, 1);
+  assert.equal((await f.workspace.version(project.id, versions[0].id)).runtime?.id, target.id);
+});
+
+test('unverified selected targets and failed target builds cannot bypass comparison or change a project', async (t) => {
+  const f = await fixture(t);
+  const denied = new CompilerMigration(path.join(f.root, 'denied'), {
+    ...f.deps,
+    selectTarget: async () => {
+      throw new Error('Pack not installed');
+    },
+  });
+  await assert.rejects(denied.prepare(randomUUID(), project, 'untrusted'), /not installed/);
+  assert.equal(denied.active, false);
+  const failed = new CompilerMigration(path.join(f.root, 'failed-target'), {
+    ...f.deps,
+    selectTarget: async () => target,
+  });
+  f.state.failedBuild = true;
+  await assert.rejects(
+    failed.prepare(randomUUID(), project, target.id),
+    /selected compiler could not build/,
+  );
+  assert.equal(f.state.commits, 0);
+  assert.deepEqual(await failed.backups(project.id), []);
+});
+
 test('cancelling a running comparison waits for it and never commits a compiler choice', async (t) => {
   const f = await fixture(t);
   let release = () => {};

@@ -265,10 +265,10 @@ export class PackCatalogStore {
     this.queue = result.catch(() => {});
     return result;
   }
-  load() {
+  load(historical = false) {
     return this.serial(async () => {
       const bytes = await packFile(this.root, 'catalog.json', MAX_CATALOG_BYTES * 2);
-      return bytes ? this.verifier.verify(bytes, this.now()) : null;
+      return bytes ? this.verifier.verify(bytes, this.now(), historical) : null;
     });
   }
   accept(input: Uint8Array) {

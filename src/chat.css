@@ -375,6 +375,75 @@
   font-size: 14px;
   margin: 18px 0 8px;
 }
+
+.resource-packs .pack-toolbar,
+.resource-packs .pack-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0;
+}
+.resource-packs .pack-card,
+.resource-packs .pack-progress {
+  padding: 14px;
+  margin: 14px 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+}
+.resource-packs .pack-card-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.resource-packs .pack-card-heading h4 {
+  margin: 0;
+}
+.resource-packs .pack-badge {
+  font-size: 10px;
+  color: var(--muted);
+}
+.resource-packs .pack-card p {
+  overflow-wrap: anywhere;
+  font-size: 12px;
+}
+.resource-packs .pack-progress {
+  display: grid;
+  gap: 10px;
+}
+.resource-packs .pack-progress progress {
+  width: 100%;
+  accent-color: var(--accent);
+}
+.resource-packs .pack-progress > button {
+  justify-self: start;
+}
+.resource-packs details {
+  font-size: 12px;
+}
+.resource-packs textarea {
+  width: 100%;
+  height: 150px;
+  margin-top: 10px;
+  resize: vertical;
+  padding: 10px;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font: 11px/1.5 var(--font-mono);
+}
+.pack-baseline-error {
+  padding: 18px;
+  overflow: auto;
+  font-size: 12px;
+}
+.pack-baseline-error pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
 .settings-hint {
   color: var(--muted);
   font-size: 12px;

@@ -150,5 +150,38 @@
     "sha256": "4cd8813cd21eb3a8c7ced9669ace7ddc863c1819eebccaf3c9b8a633dcb116e8",
     "synthetic": true,
     "liveAI": false
+  },
+  {
+    "file": "docs/images/pack-import-review.png",
+    "sourceSuite": "packs",
+    "sourceCapture": "import-review-dark.png",
+    "sourceEvidence": "test-results/packs-6h4KFI/result.json",
+    "sha256": "e742b43ecd77fc126eb1ae5086a0c75793da19865b122342e0cf1b88fad0346c",
+    "synthetic": true,
+    "liveAI": false,
+    "testPublisher": true,
+    "publicCatalog": false
+  },
+  {
+    "file": "docs/images/pack-installed-light.png",
+    "sourceSuite": "packs",
+    "sourceCapture": "installed-small-light.png",
+    "sourceEvidence": "test-results/packs-6h4KFI/result.json",
+    "sha256": "bf4208be404b4ac605b3b6ad23c4df108558d30ba6b7b4c6527ed747432bf470",
+    "synthetic": true,
+    "liveAI": false,
+    "testPublisher": true,
+    "publicCatalog": false
+  },
+  {
+    "file": "docs/images/pack-preview-light.png",
+    "sourceSuite": "packs",
+    "sourceCapture": "pack-preview-light.png",
+    "sourceEvidence": "test-results/packs-6h4KFI/result.json",
+    "sha256": "7d0c2c3224d2da354f45474092fdb16648ca12d6d5d8102e22eea7cdd2c3f971",
+    "synthetic": true,
+    "liveAI": false,
+    "testPublisher": true,
+    "publicCatalog": false
   }
 ]

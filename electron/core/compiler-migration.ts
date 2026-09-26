@@ -16,6 +16,8 @@ import { runtimeFile } from './runtime';
 
 type Dependencies = {
   target(): RuntimePin | undefined;
+  selectTarget?(id: string): Promise<RuntimePin>;
+  checkTarget?(pin: RuntimePin): Promise<void>;
   start?(): Promise<void>;
   assets(project: Project): Promise<Map<string, Buffer>>;
   checkDisk(project: Project): Promise<void>;
@@ -153,7 +155,7 @@ export class CompilerMigration {
     };
     await walk(this.root);
   }
-  prepare(id: string, value: unknown): Promise<CompilerComparison> {
+  prepare(id: string, value: unknown, selected?: string): Promise<CompilerComparison> {
     this.requireIdle();
     if (!uuid.test(id)) throw new Error('Invalid compiler comparison.');
     const operation = { id, cancelled: false, done: Promise.resolve() as Promise<unknown> };
@@ -163,13 +165,16 @@ export class CompilerMigration {
     };
     const work = async () => {
       const project = validateProject(value),
-        target = validateRuntimePin(this.deps.target());
+        target = validateRuntimePin(
+          selected === undefined ? this.deps.target() : await this.deps.selectTarget?.(selected),
+        );
+      check();
       if (!project.runtime || !target?.id || project.runtime.id === target.id)
         throw new Error(
-          'This project already uses the included compiler, or no complete compiler is available.',
+          'This project already uses the selected compiler, or no complete compiler is available.',
         );
       if (target.platform !== `${process.platform}-${process.arch}`)
-        throw new Error('The included compiler does not support this computer.');
+        throw new Error('The selected compiler does not support this computer.');
       await this.deps.start?.();
       check();
       await this.deps.checkDisk(project);
@@ -178,29 +183,40 @@ export class CompilerMigration {
       const beforeBuild = await this.deps.compile(project, assets);
       check();
       let before = beforeBuild.pdf,
+        beforeError: string | undefined,
         baseline: CompilerComparison['baseline'] = 'rebuilt';
       if (beforeBuild.status !== 'success' || !before) {
-        if (!beforeBuild.runtimeUnavailable)
-          throw new Error(
-            `The recorded compiler could not build this resume. Fix its errors before comparing compilers. ${beforeBuild.log.slice(-1200)}`,
-          );
-        const saved = (await this.deps.workspace.load(project.id)).versions
-          .slice()
-          .reverse()
-          .find((v) => v.fingerprint === fingerprint(project));
-        if (!saved)
-          throw new Error(
-            'The recorded compiler is unavailable and there is no saved PDF matching this source. Repair that compiler or restore a saved version before comparing. Your compiler choice is unchanged.',
-          );
-        before = (await this.deps.workspace.version(project.id, saved.id)).pdf;
-        baseline = 'saved-pdf';
+        if (selected !== undefined) {
+          // A supported pack can repair a missing dependency. Never invent a
+          // before PDF or switch automatically: keep the failed build text and
+          // require the real target PDF plus the same explicit backed-up Apply.
+          before = new Uint8Array();
+          beforeError =
+            beforeBuild.log.slice(-1200) || 'The recorded compiler could not build this source.';
+          baseline = 'build-error';
+        } else {
+          if (!beforeBuild.runtimeUnavailable)
+            throw new Error(
+              `The recorded compiler could not build this resume. Fix its errors before comparing compilers. ${beforeBuild.log.slice(-1200)}`,
+            );
+          const saved = (await this.deps.workspace.load(project.id)).versions
+            .slice()
+            .reverse()
+            .find((v) => v.fingerprint === fingerprint(project));
+          if (!saved)
+            throw new Error(
+              'The recorded compiler is unavailable and there is no saved PDF matching this source. Repair that compiler or restore a saved version before comparing. Your compiler choice is unchanged.',
+            );
+          before = (await this.deps.workspace.version(project.id, saved.id)).pdf;
+          baseline = 'saved-pdf';
+        }
       }
       const next = validateProject({ ...project, runtime: target, revision: project.revision + 1 });
       const build = await this.deps.compile(next, assets);
       check();
       if (build.status !== 'success' || !build.pdf)
         throw new Error(
-          `The included compiler could not build this resume. Your compiler choice is unchanged. ${build.log.slice(-1200)}`,
+          `The ${selected === undefined ? 'included' : 'selected'} compiler could not build this resume. Your compiler choice is unchanged. ${build.log.slice(-1200)}`,
         );
       if (before.byteLength > 25 * MiB || build.pdf.byteLength > 25 * MiB)
         throw new Error('The comparison PDF exceeds the 25 MB limit.');
@@ -247,7 +263,10 @@ export class CompilerMigration {
       await fs.mkdir(folder, { mode: 0o700 });
       try {
         await durableFile(path.join(folder, 'source.zip'), archive);
-        await durableFile(path.join(folder, 'before.pdf'), before);
+        await durableFile(
+          path.join(folder, beforeError ? 'before-error.txt' : 'before.pdf'),
+          beforeError ?? before,
+        );
         await durableFile(path.join(folder, 'after.pdf'), build.pdf);
         await durableFile(
           path.join(folder, 'record.json'),
@@ -255,7 +274,7 @@ export class CompilerMigration {
             ...backup,
             baseline,
             archiveHash: digest(archive),
-            beforeHash: digest(before),
+            beforeHash: digest(beforeError ?? before),
             afterHash: digest(build.pdf),
           }),
         );
@@ -276,6 +295,7 @@ export class CompilerMigration {
         before: new Uint8Array(before),
         after: new Uint8Array(build.pdf),
         baseline,
+        ...(beforeError ? { beforeError } : {}),
       };
       this.pending = {
         project,
@@ -307,12 +327,16 @@ export class CompilerMigration {
       await this.deps.checkDisk(current);
       if (assetKey(await this.deps.assets(current)) !== pending.assetsKey)
         throw new Error('Project assets changed since this comparison. Compare again.');
+      await this.deps.checkTarget?.(pending.next.runtime!);
       const record = JSON.parse(
         (await this.readFile(current.id, id, 'record.json', 4096)).toString(),
       );
       for (const [name, hash] of [
         ['source.zip', record.archiveHash],
-        ['before.pdf', record.beforeHash],
+        [
+          pending.comparison.baseline === 'build-error' ? 'before-error.txt' : 'before.pdf',
+          record.beforeHash,
+        ],
         ['after.pdf', record.afterHash],
       ]) {
         if (digest(await this.readFile(current.id, id, name, 100 * MiB)) !== hash)
@@ -320,11 +344,12 @@ export class CompilerMigration {
             'The compiler backup failed its integrity check. Compare again before changing compilers.',
           );
       }
-      await this.deps.workspace.checkpoint(
-        current,
-        pending.comparison.before,
-        'Before compiler change',
-      );
+      if (pending.comparison.baseline !== 'build-error')
+        await this.deps.workspace.checkpoint(
+          current,
+          pending.comparison.before,
+          'Before compiler change',
+        );
       // Recovery is the commit point. The project folder changes only through
       // the normal explicit Save/autosave transaction after this draft is used.
       await this.deps.recover(pending.next);

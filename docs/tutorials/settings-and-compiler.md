@@ -44,6 +44,8 @@ This ZIP contains counts and status information, not the full compiler log or th
 
 ## Repair a compiler
 
+For extra LaTeX files, see [resource packs](resource-packs.md). Their Settings workflow has a separate publisher-availability requirement; it does not use your AI subscription or API key.
+
 The compiler is the local tool that turns TeX into PDF. Projects record which compiler they use so an update does not silently change their output.
 
 1. If Folio reports damaged compiler files, save your source.
