@@ -1,0 +1,2851 @@
+{
+  "schemaVersion": 1,
+  "scope": "Matching original CPAN sources and selected notice materials for Biber payload files, including byte-exact documented packager transformations. Not a complete native/generated-code redistribution audit.",
+  "biberEvidenceLockSha256": "a7a53f3657ea2aeb98431edb89896bb8ff48ad79a2c342725d18c28c5a76c0d6",
+  "packagerFilterSha256": "fadefbc1e86b818a34c36ddf5c946d3a2038ef86424cf571f83f3acfdfb5e7ac",
+  "biberLicenseText": {
+    "archive": "Artistic-2.0.txt",
+    "url": "https://raw.githubusercontent.com/spdx/license-list-data/d46e94e2c78ceede1cfc63cfa0396472d2798d4c/text/Artistic-2.0.txt",
+    "bytes": 8764,
+    "sha256": "bae466ac8d7100c304fe76632ccc627203a3897d3f7166f3cce00fb9df8c2074"
+  },
+  "sources": [
+    {
+      "id": "AnyEvent-7.17",
+      "distribution": "AnyEvent",
+      "version": "7.17",
+      "archive": "AnyEvent-7.17.tar.gz",
+      "root": "AnyEvent-7.17",
+      "url": "https://cpan.metacpan.org/authors/id/M/ML/MLEHMANN/AnyEvent-7.17.tar.gz",
+      "bytes": 304845,
+      "sha256": "50beea689c098fe4aaeb83806c40b9fe7f946d5769acf99f849f099091a4b985",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/MLEHMANN/AnyEvent-7.17",
+      "metadataResponseSha256": "eeef32a7c368b6e1dca88aa04a5c1061b319d986ef373b2d80fa5903f1891b39",
+      "declaredLicense": ["unknown"],
+      "anchors": [
+        {
+          "module": "AnyEvent",
+          "version": "7.17",
+          "payload": "par/lib/AnyEvent.pm",
+          "sha256": "5624b4005d9f0886ca7dbf06eeed4ead78066453af1361fbaea0a08feca7554c",
+          "source": "lib/AnyEvent.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "AnyEvent-AIO-1.1",
+      "distribution": "AnyEvent-AIO",
+      "version": "1.1",
+      "archive": "AnyEvent-AIO-1.1.tar.gz",
+      "root": "AnyEvent-AIO-1.1",
+      "url": "https://cpan.metacpan.org/authors/id/M/ML/MLEHMANN/AnyEvent-AIO-1.1.tar.gz",
+      "bytes": 2062,
+      "sha256": "6b105b8c641561631f533ec3423e8067a3d7d58043bf85f0f5e09d706905706b",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/MLEHMANN/AnyEvent-AIO-1.1",
+      "metadataResponseSha256": "53c122be529357efa980cc2014786487113cb675cabba8025e7c084d6d23e1f4",
+      "declaredLicense": ["unknown"],
+      "anchors": [
+        {
+          "module": "AnyEvent::AIO",
+          "version": "1.1",
+          "payload": "par/lib/AnyEvent/AIO.pm",
+          "sha256": "76fa554b29101fd76cfa8e8ab186f14f67e37a13360cef448b0635816703a87f",
+          "source": "AIO.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Archive-Zip-1.68",
+      "distribution": "Archive-Zip",
+      "version": "1.68",
+      "archive": "Archive-Zip-1.68.tar.gz",
+      "root": "Archive-Zip-1.68",
+      "url": "https://cpan.metacpan.org/authors/id/P/PH/PHRED/Archive-Zip-1.68.tar.gz",
+      "bytes": 163490,
+      "sha256": "984e185d785baf6129c6e75f8eb44411745ac00bf6122fb1c8e822a3861ec650",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/PHRED/Archive-Zip-1.68",
+      "metadataResponseSha256": "77d89605786f5e78199e8d5a2ae0a57c91738f095f3d81a47ee15610105d3dfa",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Archive::Zip",
+          "version": "1.68",
+          "payload": "loader/382622e0/Archive/Zip.pm",
+          "sha256": "2025ab80c717e8b4cbdc393ee36aaf3c18edf53e4105f6626ef08c8e563a3db9",
+          "source": "lib/Archive/Zip.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "B-Hooks-EndOfScope-0.25",
+      "distribution": "B-Hooks-EndOfScope",
+      "version": "0.25",
+      "archive": "B-Hooks-EndOfScope-0.25.tar.gz",
+      "root": "B-Hooks-EndOfScope-0.25",
+      "url": "https://cpan.metacpan.org/authors/id/E/ET/ETHER/B-Hooks-EndOfScope-0.25.tar.gz",
+      "bytes": 39161,
+      "sha256": "da1b6a9f7c7424776363182f9673e666b06136f13dc744241f7adce3d1ad0c1a",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/ETHER/B-Hooks-EndOfScope-0.25",
+      "metadataResponseSha256": "86184b9e8320fcfb5277b102ea6ad54b2e850b5cec9305eda44f4f88fc28ae6c",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "B::Hooks::EndOfScope",
+          "version": "0.25",
+          "payload": "par/lib/B/Hooks/EndOfScope.pm",
+          "sha256": "37106ef8153c56ffa853486e732b2b4658a1d7a1963961ebd3be8af1dcf491e3",
+          "source": "lib/B/Hooks/EndOfScope.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Business-ISBN-3.006",
+      "distribution": "Business-ISBN",
+      "version": "3.006",
+      "archive": "Business-ISBN-3.006.tar.gz",
+      "root": "Business-ISBN-3.006",
+      "url": "https://cpan.metacpan.org/authors/id/B/BD/BDFOY/Business-ISBN-3.006.tar.gz",
+      "bytes": 362014,
+      "sha256": "c1fefe68354ffb80cdbd24303ebe684b3b6828df3d5f09b429a09fc4f0919c9a",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/BDFOY/Business-ISBN-3.006",
+      "metadataResponseSha256": "a8fd32acf70a826bf0e11a8e50f43a70d74f0a4d0ddfa57f04e04023cd66b864",
+      "declaredLicense": ["artistic_2"],
+      "anchors": [
+        {
+          "module": "Business::ISBN",
+          "version": "3.006",
+          "payload": "par/lib/Business/ISBN.pm",
+          "sha256": "da3b717ea1da37f18cf3712c2ef0a55f2f00fadcb1acb20ac229c89f5bce1def",
+          "source": "lib/Business/ISBN.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Business-ISBN-Data-20210112.006",
+      "distribution": "Business-ISBN-Data",
+      "version": "20210112.006",
+      "archive": "Business-ISBN-Data-20210112.006.tar.gz",
+      "root": "Business-ISBN-Data-20210112.006",
+      "url": "https://cpan.metacpan.org/authors/id/B/BD/BDFOY/Business-ISBN-Data-20210112.006.tar.gz",
+      "bytes": 29035,
+      "sha256": "98c2cfb266b5fdd016989abaa471d9dd4c1d593c508a6f01f66d184d5fee8bae",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/BDFOY/Business-ISBN-Data-20210112.006",
+      "metadataResponseSha256": "98c1a624d517f9ac08941ef6dc08cea466bf72191f98c88a2afd1a1660485084",
+      "declaredLicense": ["artistic_2"],
+      "anchors": [
+        {
+          "module": "Business::ISBN::Data",
+          "version": "20210112.006",
+          "payload": "par/lib/Business/ISBN/Data.pm",
+          "sha256": "28a701f7f604bd6e59eb5e5a93ee982d9cda3a69b023d16be54a58b616a7eed6",
+          "source": "lib/Business/ISBN/Data.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Business-ISMN-1.202",
+      "distribution": "Business-ISMN",
+      "version": "1.202",
+      "archive": "Business-ISMN-1.202.tar.gz",
+      "root": "Business-ISMN-1.202",
+      "url": "https://cpan.metacpan.org/authors/id/B/BD/BDFOY/Business-ISMN-1.202.tar.gz",
+      "bytes": 14872,
+      "sha256": "ca8db9253ddda906b47d5068e745b9f2a03754589455ffcf26b0706c8194db26",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/BDFOY/Business-ISMN-1.202",
+      "metadataResponseSha256": "0cf5a03ba8ca92ee5e5d737760c836ca97b132c990c2460ef8c8255c7478c6d1",
+      "declaredLicense": ["artistic_2"],
+      "anchors": [
+        {
+          "module": "Business::ISMN",
+          "version": "1.202",
+          "payload": "par/lib/Business/ISMN.pm",
+          "sha256": "eb6b4d276d6d298dd0cf4f64c5ef5802417d6bfb6916156e3ea6d62eaef68eaf",
+          "source": "lib/Business/ISMN.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Business-ISSN-1.004",
+      "distribution": "Business-ISSN",
+      "version": "1.004",
+      "archive": "Business-ISSN-1.004.tar.gz",
+      "root": "Business-ISSN-1.004",
+      "url": "https://cpan.metacpan.org/authors/id/B/BD/BDFOY/Business-ISSN-1.004.tar.gz",
+      "bytes": 10175,
+      "sha256": "97ecab15d24d11e2852bf0b28f84c8798bd38402a0a69e17be0e6689b272715e",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/BDFOY/Business-ISSN-1.004",
+      "metadataResponseSha256": "a704dd147c86f3fde6605c5450a3530fb44421079251a0e90788b9a5050fbb7b",
+      "declaredLicense": ["artistic_2"],
+      "anchors": [
+        {
+          "module": "Business::ISSN",
+          "version": "1.004",
+          "payload": "par/lib/Business/ISSN.pm",
+          "sha256": "f765c28fc8e96e606f44f69881155d2f95411372ba2b04c98dacabef7cd57ff2",
+          "source": "lib/Business/ISSN.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Class-Accessor-0.51",
+      "distribution": "Class-Accessor",
+      "version": "0.51",
+      "archive": "Class-Accessor-0.51.tar.gz",
+      "root": "Class-Accessor-0.51",
+      "url": "https://cpan.metacpan.org/authors/id/K/KA/KASEI/Class-Accessor-0.51.tar.gz",
+      "bytes": 13013,
+      "sha256": "bf12a3e5de5a2c6e8a447b364f4f5a050bf74624c56e315022ae7992ff2f411c",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/KASEI/Class-Accessor-0.51",
+      "metadataResponseSha256": "47a72dbd911b21f42d8c195d0bda860b6c3379311f405a7d744ff59f5ceaa779",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Class::Accessor",
+          "version": "0.51",
+          "payload": "par/lib/Class/Accessor.pm",
+          "sha256": "0cfa91564ef52cbf6cd5b70975cbebc3e9cdd945ce37aa805dfd9400c54c5ba5",
+          "source": "lib/Class/Accessor.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Class-Data-Inheritable-0.09",
+      "distribution": "Class-Data-Inheritable",
+      "version": "0.09",
+      "archive": "Class-Data-Inheritable-0.09.tar.gz",
+      "root": "Class-Data-Inheritable-0.09",
+      "url": "https://cpan.metacpan.org/authors/id/R/RS/RSHERER/Class-Data-Inheritable-0.09.tar.gz",
+      "bytes": 6087,
+      "sha256": "44088d6e90712e187b8a5b050ca5b1c70efe2baa32ae123e9bd8f59f29f06e4d",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/RSHERER/Class-Data-Inheritable-0.09",
+      "metadataResponseSha256": "4bb39a2b985750a6c91aea2712c19854281e5a98ecf518d2aeb897ffc25ea2a2",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Class::Data::Inheritable",
+          "version": "0.09",
+          "payload": "par/lib/Class/Data/Inheritable.pm",
+          "sha256": "bfe116f4317619837d56434b567fdc086c72fdaee8471da30f2e9333209aa682",
+          "source": "lib/Class/Data/Inheritable.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Class-Inspector-1.36",
+      "distribution": "Class-Inspector",
+      "version": "1.36",
+      "archive": "Class-Inspector-1.36.tar.gz",
+      "root": "Class-Inspector-1.36",
+      "url": "https://cpan.metacpan.org/authors/id/P/PL/PLICEASE/Class-Inspector-1.36.tar.gz",
+      "bytes": 27412,
+      "sha256": "cc295d23a472687c24489d58226ead23b9fdc2588e522f0b5f0747741700694e",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/PLICEASE/Class-Inspector-1.36",
+      "metadataResponseSha256": "43a9aff23f15578d8fb7ffca5e6539d12bec17c2f86216e1530a12c664127e76",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Class::Inspector",
+          "version": "1.36",
+          "payload": "par/lib/Class/Inspector.pm",
+          "sha256": "817d3e7261305da5be9686d41f9fdd4444c59ad59777985f81679202688e05aa",
+          "source": "lib/Class/Inspector.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Class-Method-Modifiers-2.13",
+      "distribution": "Class-Method-Modifiers",
+      "version": "2.13",
+      "archive": "Class-Method-Modifiers-2.13.tar.gz",
+      "root": "Class-Method-Modifiers-2.13",
+      "url": "https://cpan.metacpan.org/authors/id/E/ET/ETHER/Class-Method-Modifiers-2.13.tar.gz",
+      "bytes": 41385,
+      "sha256": "ab5807f71018a842de6b7a4826d6c1f24b8d5b09fcce5005a3309cf6ea40fd63",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/ETHER/Class-Method-Modifiers-2.13",
+      "metadataResponseSha256": "8ccdf3d5efbf40b6ea6504407073a35ff98579af3636026957170ded6e4df1a6",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Class::Method::Modifiers",
+          "version": "2.13",
+          "payload": "par/lib/Class/Method/Modifiers.pm",
+          "sha256": "963c0658ae3d8c6f130f2c68c01f11f9225a46c5c0cda3ade2aaf139dd7f72ea",
+          "source": "lib/Class/Method/Modifiers.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Class-Singleton-1.6",
+      "distribution": "Class-Singleton",
+      "version": "1.6",
+      "archive": "Class-Singleton-1.6.tar.gz",
+      "root": "Class-Singleton-1.6",
+      "url": "https://cpan.metacpan.org/authors/id/S/SH/SHAY/Class-Singleton-1.6.tar.gz",
+      "bytes": 16164,
+      "sha256": "27ba13f0d9512929166bbd8c9ef95d90d630fc80f0c9a1b7458891055e9282a4",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/SHAY/Class-Singleton-1.6",
+      "metadataResponseSha256": "1f1e924d278326980d3bbc9b9ac0a0703bd0dca4f7c911805bcbf1cdf33686bf",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Class::Singleton",
+          "version": "1.6",
+          "payload": "par/lib/Class/Singleton.pm",
+          "sha256": "d514041d501979c47d334ad1a6193dab990c5de135c098828b5375c12ec7bb38",
+          "source": "lib/Class/Singleton.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Class-XSAccessor-1.19",
+      "distribution": "Class-XSAccessor",
+      "version": "1.19",
+      "archive": "Class-XSAccessor-1.19.tar.gz",
+      "root": "Class-XSAccessor-1.19",
+      "url": "https://cpan.metacpan.org/authors/id/S/SM/SMUELLER/Class-XSAccessor-1.19.tar.gz",
+      "bytes": 80786,
+      "sha256": "99c56b395f1239af19901f2feeb125d9ecb4e351a0d80daa9529211a4700a6f2",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/SMUELLER/Class-XSAccessor-1.19",
+      "metadataResponseSha256": "3bd1c30f9c1f146deb0dd4042e3f0a1355f7c0d9b70eff6567c3bf71042d5752",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Class::XSAccessor",
+          "version": "1.19",
+          "payload": "par/lib/Class/XSAccessor.pm",
+          "sha256": "463cf1f9ad2e206358a2174c9490a7b006070846077141fd9f6653df05dcbf7b",
+          "source": "lib/Class/XSAccessor.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Clone-0.45",
+      "distribution": "Clone",
+      "version": "0.45",
+      "archive": "Clone-0.45.tar.gz",
+      "root": "Clone-0.45",
+      "url": "https://cpan.metacpan.org/authors/id/A/AT/ATOOMIC/Clone-0.45.tar.gz",
+      "bytes": 16130,
+      "sha256": "cbb6ee348afa95432e4878893b46752549e70dc68fe6d9e430d1d2e99079a9e6",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/ATOOMIC/Clone-0.45",
+      "metadataResponseSha256": "1ed5756aeb1d6cf38164e41b29034d0f452c4dc58245aa4897435169821b5941",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Clone",
+          "version": "0.45",
+          "payload": "par/lib/Clone.pm",
+          "sha256": "7e080f563541f12b0708f2e6e884440ed400bb521bb3e63f7c99cd6093e6ad0b",
+          "source": "Clone.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Coro-6.57",
+      "distribution": "Coro",
+      "version": "6.57",
+      "archive": "Coro-6.57.tar.gz",
+      "root": "Coro-6.57",
+      "url": "https://cpan.metacpan.org/authors/id/M/ML/MLEHMANN/Coro-6.57.tar.gz",
+      "bytes": 198128,
+      "sha256": "1928e48033540e11ebf5506986dd101af78d2421d210f96599223b15d51714c6",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/MLEHMANN/Coro-6.57",
+      "metadataResponseSha256": "1f8dc03be82da43efcfafdb03f5f860bce813ae29b63af8c3c30f38c1d70acb7",
+      "declaredLicense": ["unknown"],
+      "anchors": [
+        {
+          "module": "Coro",
+          "version": "6.57",
+          "payload": "par/lib/Coro.pm",
+          "sha256": "21dc002d01f598fe8e5a708fd7d747ee7814a0ca1c984805eca5b2e3a5b4fd63",
+          "source": "Coro.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "DBD-CSV-0.58",
+      "distribution": "DBD-CSV",
+      "version": "0.58",
+      "archive": "DBD-CSV-0.58.tgz",
+      "root": "DBD-CSV-0.58",
+      "url": "https://cpan.metacpan.org/authors/id/H/HM/HMBRAND/DBD-CSV-0.58.tgz",
+      "bytes": 43748,
+      "sha256": "6c26f710453b14d7b3cf5f3e1697e8ddaa48c0a66f5d811f4394bd8c32f287ef",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/HMBRAND/DBD-CSV-0.58",
+      "metadataResponseSha256": "ce6c8ade1bfce239896123770a90b3d16882898d0442eb1f3ec0495290426201",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "DBD::CSV",
+          "version": "0.58",
+          "payload": "par/lib/DBD/CSV.pm",
+          "sha256": "07d7d5711a5905c5143b21abc096ddb06e8dd2ce035258469df62f3d021d1b0e",
+          "source": "lib/DBD/CSV.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "DBD-SQLite-1.70",
+      "distribution": "DBD-SQLite",
+      "version": "1.70",
+      "archive": "DBD-SQLite-1.70.tar.gz",
+      "root": "DBD-SQLite-1.70",
+      "url": "https://cpan.metacpan.org/authors/id/I/IS/ISHIGAKI/DBD-SQLite-1.70.tar.gz",
+      "bytes": 2537672,
+      "sha256": "40fd8ddf539e0e773a7a4e6d376794c3301459f9ab0050978bdcf97113dafe3e",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/ISHIGAKI/DBD-SQLite-1.70",
+      "metadataResponseSha256": "df9a30bc926337e93cd4b702cf3c957950496e4c57364d68b29b72cd0cd8723c",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "DBD::SQLite",
+          "version": "1.70",
+          "payload": "par/lib/DBD/SQLite.pm",
+          "sha256": "f5f7b908fff21a8859bb2f89be5fefea3ed156aa48a06cd8f5804ab5f288955a",
+          "source": "lib/DBD/SQLite.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "DBD-mysql-4.050",
+      "distribution": "DBD-mysql",
+      "version": "4.050",
+      "archive": "DBD-mysql-4.050.tar.gz",
+      "root": "DBD-mysql-4.050",
+      "url": "https://cpan.metacpan.org/authors/id/D/DV/DVEEDEN/DBD-mysql-4.050.tar.gz",
+      "bytes": 161579,
+      "sha256": "4f48541ff15a0a7405f76adc10f81627c33996fbf56c95c26c094444c0928d78",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/DVEEDEN/DBD-mysql-4.050",
+      "metadataResponseSha256": "fd532422adb95e36c51cc8388f4432f86585296add70626b026004afd09ca63b",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "DBD::mysql",
+          "version": "4.050",
+          "payload": "par/lib/DBD/mysql.pm",
+          "sha256": "4babb3f90bbfa2ddbfefa5e59e188ce18a284ad776036225955dd9ef3789f865",
+          "source": "lib/DBD/mysql.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "DBI-1.643",
+      "distribution": "DBI",
+      "version": "1.643",
+      "archive": "DBI-1.643.tar.gz",
+      "root": "DBI-1.643",
+      "url": "https://cpan.metacpan.org/authors/id/T/TI/TIMB/DBI-1.643.tar.gz",
+      "bytes": 612372,
+      "sha256": "8a2b993db560a2c373c174ee976a51027dd780ec766ae17620c20393d2e836fa",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/TIMB/DBI-1.643",
+      "metadataResponseSha256": "5dfdc5b2d8e15b8093140d96c0a616442dd18df36f77e645c322a03901524c23",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "DBI",
+          "version": "1.643",
+          "payload": "par/lib/DBI.pm",
+          "sha256": "d31bb0652a448cee4b965401273cef6a5d3b4b4e6e1115e9bb489d4513d99b03",
+          "source": "DBI.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Data-Compare-1.27",
+      "distribution": "Data-Compare",
+      "version": "1.27",
+      "archive": "Data-Compare-1.27.tar.gz",
+      "root": "Data-Compare-1.27",
+      "url": "https://cpan.metacpan.org/authors/id/D/DC/DCANTRELL/Data-Compare-1.27.tar.gz",
+      "bytes": 27111,
+      "sha256": "818a20f1f38f74e65253cf8bcf6fed7f94a5a8dd662f75330dcaf4b117cee8bd",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/DCANTRELL/Data-Compare-1.27",
+      "metadataResponseSha256": "c0979ee111d3b8a16d6b06b051445f946880560bb73412de2cef49a93e8dd57b",
+      "declaredLicense": ["artistic_1", "gpl_2"],
+      "anchors": [
+        {
+          "module": "Data::Compare",
+          "version": "1.27",
+          "payload": "par/lib/Data/Compare.pm",
+          "sha256": "c94483ebad96ebce65ee1a5a1f47c73301794d63275867808d059050021c7c92",
+          "source": "lib/Data/Compare.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Data-Dump-1.25",
+      "distribution": "Data-Dump",
+      "version": "1.25",
+      "archive": "Data-Dump-1.25.tar.gz",
+      "root": "Data-Dump-1.25",
+      "url": "https://cpan.metacpan.org/authors/id/G/GA/GARU/Data-Dump-1.25.tar.gz",
+      "bytes": 20912,
+      "sha256": "a4aa6e0ddbf39d5ad49bddfe0f89d9da864e3bc00f627125d1bc580472f53fbd",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/GARU/Data-Dump-1.25",
+      "metadataResponseSha256": "626a6892288c243c0f69dd64e2e1bf853159bfc268cece02f481686f0f58c14e",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Data::Dump",
+          "version": "1.25",
+          "payload": "par/lib/Data/Dump.pm",
+          "sha256": "967e7e9584ce2352f9331d5579070e44af1724c7806848c56adbcb76ce667f08",
+          "source": "lib/Data/Dump.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Data-OptList-0.112",
+      "distribution": "Data-OptList",
+      "version": "0.112",
+      "archive": "Data-OptList-0.112.tar.gz",
+      "root": "Data-OptList-0.112",
+      "url": "https://cpan.metacpan.org/authors/id/R/RJ/RJBS/Data-OptList-0.112.tar.gz",
+      "bytes": 19764,
+      "sha256": "62c60ccaae88d5339ae36bcc8940b03388cf84adbf27828b1f8b300307103bab",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/RJBS/Data-OptList-0.112",
+      "metadataResponseSha256": "67780552aefbf03821b387c9340dee0ab2b4ef5ebfc992d6be4bb8f7589cf43b",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Data::OptList",
+          "version": "0.112",
+          "payload": "par/lib/Data/OptList.pm",
+          "sha256": "b9db021fb2a7274b175e5b7266c0a314ae6e15da5fcae3743d63685cc57db42e",
+          "source": "lib/Data/OptList.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Data-Uniqid-0.12",
+      "distribution": "Data-Uniqid",
+      "version": "0.12",
+      "archive": "Data-Uniqid-0.12.tar.gz",
+      "root": "Data-Uniqid-0.12",
+      "url": "https://cpan.metacpan.org/authors/id/M/MW/MWX/Data-Uniqid-0.12.tar.gz",
+      "bytes": 2141,
+      "sha256": "b6919ba49b9fe98bfdf3e8accae7b9b7f78dc9e71ebbd0b7fef7a45d99324ccb",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/MWX/Data-Uniqid-0.12",
+      "metadataResponseSha256": "381597a635686965a238992c4c546d0198d6c10f0782b00afefebb675a691086",
+      "declaredLicense": ["unknown"],
+      "anchors": [
+        {
+          "module": "Data::Uniqid",
+          "version": "0.12",
+          "payload": "par/lib/Data/Uniqid.pm",
+          "sha256": "7d9d1208b4f83ab22b7aa591a9889a0ce4136b3708ccb8ba04ee8674d7e8f364",
+          "source": "Uniqid.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Date-Manip-6.85",
+      "distribution": "Date-Manip",
+      "version": "6.85",
+      "archive": "Date-Manip-6.85.tar.gz",
+      "root": "Date-Manip-6.85",
+      "url": "https://cpan.metacpan.org/authors/id/S/SB/SBECK/Date-Manip-6.85.tar.gz",
+      "bytes": 2022449,
+      "sha256": "1662393943b7c588478ea9d975200d825f500d26fe9996f2bf7f829cfaa5ccdc",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/SBECK/Date-Manip-6.85",
+      "metadataResponseSha256": "01644d2c6801350da7f87e1ae53a24433457166bfe324ba199e837878fb39d1b",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Date::Manip",
+          "version": "6.85",
+          "payload": "par/lib/Date/Manip.pm",
+          "sha256": "733bf0cd4f0d58e1b6886e422f09290f8f85f421980163ff026654d34f7ae1c9",
+          "source": "lib/Date/Manip.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "DateTime-1.54",
+      "distribution": "DateTime",
+      "version": "1.54",
+      "archive": "DateTime-1.54.tar.gz",
+      "root": "DateTime-1.54",
+      "url": "https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/DateTime-1.54.tar.gz",
+      "bytes": 314605,
+      "sha256": "b12eda6d900713f227964dc4dc0e2efb86d294e8bc2f16be9e95b659f953b2e7",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/DROLSKY/DateTime-1.54",
+      "metadataResponseSha256": "947feb5e3d09c94bfcd949985362f36415143051f6750b55d60c3e02af8a85ae",
+      "declaredLicense": ["artistic_2"],
+      "anchors": [
+        {
+          "module": "DateTime",
+          "version": "1.54",
+          "payload": "par/lib/DateTime.pm",
+          "sha256": "3f8b3a3a1850f2cecf5b8b4decd1a81dc650678a8be7c525d19fd14e88f51d5c",
+          "source": "lib/DateTime.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "DateTime-Calendar-Julian-0.106",
+      "distribution": "DateTime-Calendar-Julian",
+      "version": "0.106",
+      "archive": "DateTime-Calendar-Julian-0.106.tar.gz",
+      "root": "DateTime-Calendar-Julian-0.106",
+      "url": "https://cpan.metacpan.org/authors/id/W/WY/WYANT/DateTime-Calendar-Julian-0.106.tar.gz",
+      "bytes": 18681,
+      "sha256": "faafa769a5e70ff1b584f6e2ef16561588d88c74bc336bddc1aa00f3381ba86c",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/WYANT/DateTime-Calendar-Julian-0.106",
+      "metadataResponseSha256": "7578759633332a6ce4004bcc57c92dc371227650e8a5082a10acf345f4bdf7be",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "DateTime::Calendar::Julian",
+          "version": "0.106",
+          "payload": "par/lib/DateTime/Calendar/Julian.pm",
+          "sha256": "c60c00b121fd2ec692e552533af6d37db139312ca10d8070c18734071159dbe6",
+          "source": "lib/DateTime/Calendar/Julian.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "DateTime-Format-Builder-0.83",
+      "distribution": "DateTime-Format-Builder",
+      "version": "0.83",
+      "archive": "DateTime-Format-Builder-0.83.tar.gz",
+      "root": "DateTime-Format-Builder-0.83",
+      "url": "https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/DateTime-Format-Builder-0.83.tar.gz",
+      "bytes": 63355,
+      "sha256": "61ffb23d85b3ca1786b2da3289e99b57e0625fe0e49db02a6dc0cb62c689e2f2",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/DROLSKY/DateTime-Format-Builder-0.83",
+      "metadataResponseSha256": "6c6b5962be26989be5b343b367c7ea902226d330c6ecc517f59d24ffe30da722",
+      "declaredLicense": ["artistic_2"],
+      "anchors": [
+        {
+          "module": "DateTime::Format::Builder",
+          "version": "0.83",
+          "payload": "par/lib/DateTime/Format/Builder.pm",
+          "sha256": "8ef15b8fe042f12af7b8dee92a16cd8aea7ebf3a667a2291a847a2992585394f",
+          "source": "lib/DateTime/Format/Builder.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "DateTime-Format-Strptime-1.79",
+      "distribution": "DateTime-Format-Strptime",
+      "version": "1.79",
+      "archive": "DateTime-Format-Strptime-1.79.tar.gz",
+      "root": "DateTime-Format-Strptime-1.79",
+      "url": "https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/DateTime-Format-Strptime-1.79.tar.gz",
+      "bytes": 119122,
+      "sha256": "701e46802c86ed4d88695c1a6dacbbe90b3390beeb794f387e7c792300037579",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/DROLSKY/DateTime-Format-Strptime-1.79",
+      "metadataResponseSha256": "d73c90a09dabf7c4227c66cbd6521dc671320e854bc9c1b3d158966d2591ad5a",
+      "declaredLicense": ["artistic_2"],
+      "anchors": [
+        {
+          "module": "DateTime::Format::Strptime",
+          "version": "1.79",
+          "payload": "par/lib/DateTime/Format/Strptime.pm",
+          "sha256": "78278a571de1a33777730b2cd666da21409f350a242de001ee5862907c3860e5",
+          "source": "lib/DateTime/Format/Strptime.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "DateTime-Locale-1.33",
+      "distribution": "DateTime-Locale",
+      "version": "1.33",
+      "archive": "DateTime-Locale-1.33.tar.gz",
+      "root": "DateTime-Locale-1.33",
+      "url": "https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/DateTime-Locale-1.33.tar.gz",
+      "bytes": 1497673,
+      "sha256": "52bfefad9ff39c4d8fd1f5e78642e38b8dcd33363f337d8e89bf19e6ad185cb9",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/DROLSKY/DateTime-Locale-1.33",
+      "metadataResponseSha256": "b4bb3f58d27f04d35a0798ba6b3dc82c8fb375b5f9925e51ab7f957088d13275",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "DateTime::Locale",
+          "version": "1.33",
+          "payload": "par/lib/DateTime/Locale.pm",
+          "sha256": "d0d12650361b42469a09ca06f6e164c9919b6ed97a58265375590362b0bd2231",
+          "source": "lib/DateTime/Locale.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "DateTime-TimeZone-2.51",
+      "distribution": "DateTime-TimeZone",
+      "version": "2.51",
+      "archive": "DateTime-TimeZone-2.51.tar.gz",
+      "root": "DateTime-TimeZone-2.51",
+      "url": "https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/DateTime-TimeZone-2.51.tar.gz",
+      "bytes": 996675,
+      "sha256": "e376b0fa34a31978a407e7bca4f8cf89fe86103e18d67c6f6f6ce72a5f1e6c6a",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/DROLSKY/DateTime-TimeZone-2.51",
+      "metadataResponseSha256": "5cfcba3066586927abcb9e22033c35766802de7437a9f56de42df90273f18935",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "DateTime::TimeZone",
+          "version": "2.51",
+          "payload": "par/lib/DateTime/TimeZone.pm",
+          "sha256": "495c82ec436835b75bb5e63664a3f543c9699911b254c3f32051d3350060492a",
+          "source": "lib/DateTime/TimeZone.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Devel-Caller-2.06",
+      "distribution": "Devel-Caller",
+      "version": "2.06",
+      "archive": "Devel-Caller-2.06.tar.gz",
+      "root": "Devel-Caller-2.06",
+      "url": "https://cpan.metacpan.org/authors/id/R/RC/RCLAMP/Devel-Caller-2.06.tar.gz",
+      "bytes": 6540,
+      "sha256": "6a73ae6a292834255b90da9409205425305fcfe994b148dcb6d2d6ef628db7df",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/RCLAMP/Devel-Caller-2.06",
+      "metadataResponseSha256": "993cbb922b394e70aa416c9bf1d2adabd00352f1fb10a403233cb2305e68bad8",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Devel::Caller",
+          "version": "2.06",
+          "payload": "par/lib/Devel/Caller.pm",
+          "sha256": "9837cff0dfa06bffa4c389d6b34d61a7c118fcc3442f57903f5073055272dcfb",
+          "source": "lib/Devel/Caller.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Devel-GlobalDestruction-0.14",
+      "distribution": "Devel-GlobalDestruction",
+      "version": "0.14",
+      "archive": "Devel-GlobalDestruction-0.14.tar.gz",
+      "root": "Devel-GlobalDestruction-0.14",
+      "url": "https://cpan.metacpan.org/authors/id/H/HA/HAARG/Devel-GlobalDestruction-0.14.tar.gz",
+      "bytes": 10041,
+      "sha256": "34b8a5f29991311468fe6913cadaba75fd5d2b0b3ee3bb41fe5b53efab9154ab",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/HAARG/Devel-GlobalDestruction-0.14",
+      "metadataResponseSha256": "6995e611cbf2c04577bdbcf5f5f1eaa68d320ac92668c92648d8953004baebe1",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Devel::GlobalDestruction",
+          "version": "0.14",
+          "payload": "par/lib/Devel/GlobalDestruction.pm",
+          "sha256": "dca6a057b8ea1793aad3243788b1da24967ab74022607b241a6a749a759b394b",
+          "source": "lib/Devel/GlobalDestruction.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Devel-LexAlias-0.05",
+      "distribution": "Devel-LexAlias",
+      "version": "0.05",
+      "archive": "Devel-LexAlias-0.05.tar.gz",
+      "root": "Devel-LexAlias-0.05",
+      "url": "https://cpan.metacpan.org/authors/id/R/RC/RCLAMP/Devel-LexAlias-0.05.tar.gz",
+      "bytes": 3123,
+      "sha256": "5e0ad9d43e266033856e424e104a0009f8e63449e40cd5aba59ad94cb1bcee72",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/RCLAMP/Devel-LexAlias-0.05",
+      "metadataResponseSha256": "4f694c47844de73f8a7d54c8ce46c7590070b35a759346bab63ebac91d009abb",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Devel::LexAlias",
+          "version": "0.05",
+          "payload": "par/lib/Devel/LexAlias.pm",
+          "sha256": "527319529c07c0d363b17ed02fbc66e27f7c1d109985a77328b5fb2e70c95192",
+          "source": "LexAlias.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Devel-StackTrace-2.04",
+      "distribution": "Devel-StackTrace",
+      "version": "2.04",
+      "archive": "Devel-StackTrace-2.04.tar.gz",
+      "root": "Devel-StackTrace-2.04",
+      "url": "https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/Devel-StackTrace-2.04.tar.gz",
+      "bytes": 41516,
+      "sha256": "cd3c03ed547d3d42c61fa5814c98296139392e7971c092e09a431f2c9f5d6855",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/DROLSKY/Devel-StackTrace-2.04",
+      "metadataResponseSha256": "7c4b2dab7f4e629aba1df4954cfafe947b7ce24ce47bcd49230db61a569e043f",
+      "declaredLicense": ["artistic_2"],
+      "anchors": [
+        {
+          "module": "Devel::StackTrace",
+          "version": "2.04",
+          "payload": "par/lib/Devel/StackTrace.pm",
+          "sha256": "4235f1a0bd705d15097c677752b53487981b6905ff2f5328ad107aef64b14522",
+          "source": "lib/Devel/StackTrace.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Dist-CheckConflicts-0.11",
+      "distribution": "Dist-CheckConflicts",
+      "version": "0.11",
+      "archive": "Dist-CheckConflicts-0.11.tar.gz",
+      "root": "Dist-CheckConflicts-0.11",
+      "url": "https://cpan.metacpan.org/authors/id/D/DO/DOY/Dist-CheckConflicts-0.11.tar.gz",
+      "bytes": 19964,
+      "sha256": "ea844b9686c94d666d9d444321d764490b2cde2f985c4165b4c2c77665caedc4",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/DOY/Dist-CheckConflicts-0.11",
+      "metadataResponseSha256": "f32bc051d0ffa534ecf047aa134d0627ebe2eaca77e9e623b9e40168cf4a77b1",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Dist::CheckConflicts",
+          "version": "0.11",
+          "payload": "par/lib/Dist/CheckConflicts.pm",
+          "sha256": "912c02b40a5945deb52cfe0ef7702707d21b7331281a4699e9b3d21d82b4852e",
+          "source": "lib/Dist/CheckConflicts.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "EV-4.33",
+      "distribution": "EV",
+      "version": "4.33",
+      "archive": "EV-4.33.tar.gz",
+      "root": "EV-4.33",
+      "url": "https://cpan.metacpan.org/authors/id/M/ML/MLEHMANN/EV-4.33.tar.gz",
+      "bytes": 218067,
+      "sha256": "4aee8391b88113b42187f91fd49245fdc8e9b193a15ac202f519caae2aa8ea35",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/MLEHMANN/EV-4.33",
+      "metadataResponseSha256": "c51fc207ce3ead1c383d5ab024bf2bfdf25a0339c1c64d424383ae9692d76848",
+      "declaredLicense": ["unknown"],
+      "anchors": [
+        {
+          "module": "EV",
+          "version": "4.33",
+          "payload": "par/lib/EV.pm",
+          "sha256": "69a91de6aa48f5147c7c5c6855a5a9a2eecfea531955b763ff8a063e43739528",
+          "source": "EV.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Encode-3.16",
+      "distribution": "Encode",
+      "version": "3.16",
+      "archive": "Encode-3.16.tar.gz",
+      "root": "Encode-3.16",
+      "url": "https://cpan.metacpan.org/authors/id/D/DA/DANKOGAI/Encode-3.16.tar.gz",
+      "bytes": 2056783,
+      "sha256": "e5e91d98a97de70dccecc2a25d049a0b5f5f12228c618680020d73043355294c",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/DANKOGAI/Encode-3.16",
+      "metadataResponseSha256": "24aa1b48aa38da7390f935cea32ca4f2be46b7abc92b7463db27f926f2311832",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Encode",
+          "version": "3.16",
+          "payload": "par/lib/Encode.pm",
+          "sha256": "8e753870500116c18d19cd947b6df8542891e2c318eef52715f26418dc3d4285",
+          "source": "Encode.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Encode-EUCJPASCII-0.03",
+      "distribution": "Encode-EUCJPASCII",
+      "version": "0.03",
+      "archive": "Encode-EUCJPASCII-0.03.tar.gz",
+      "root": "Encode-EUCJPASCII-0.03",
+      "url": "https://cpan.metacpan.org/authors/id/N/NE/NEZUMI/Encode-EUCJPASCII-0.03.tar.gz",
+      "bytes": 131775,
+      "sha256": "f998d34d55fd9c82cf910786a0448d1edfa60bf68e2c2306724ca67c629de861",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/NEZUMI/Encode-EUCJPASCII-0.03",
+      "metadataResponseSha256": "8b2222b53bbc597aab18a3a96441aef7718d017b8820ef1c726b46eb9ab8cc74",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Encode::EUCJPASCII",
+          "version": "0.03",
+          "payload": "par/lib/Encode/EUCJPASCII.pm",
+          "sha256": "cbb1e0f83d30b1e6e2a6af6acd754eeba3a16bd1c0c4878f8d8ad2cca1636ca6",
+          "source": "EUCJPASCII.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Encode-HanExtra-0.23",
+      "distribution": "Encode-HanExtra",
+      "version": "0.23",
+      "archive": "Encode-HanExtra-0.23.tar.gz",
+      "root": "Encode-HanExtra-0.23",
+      "url": "https://cpan.metacpan.org/authors/id/A/AU/AUDREYT/Encode-HanExtra-0.23.tar.gz",
+      "bytes": 1566682,
+      "sha256": "1fd4b06cada70858003af153f94c863b3b95f2e3d03ba18d0451a81d51db443a",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/AUDREYT/Encode-HanExtra-0.23",
+      "metadataResponseSha256": "c96d40fc695c2b102cff780ebf036d4533329582259134524346fca9517ec753",
+      "declaredLicense": ["mit"],
+      "anchors": [
+        {
+          "module": "Encode::HanExtra",
+          "version": "0.23",
+          "payload": "par/lib/Encode/HanExtra.pm",
+          "sha256": "dda8e56cb928b541cb2ef410a68904d2c40cb0e689df61f4a1d3cfe963736104",
+          "source": "lib/Encode/HanExtra.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Encode-JIS2K-0.03",
+      "distribution": "Encode-JIS2K",
+      "version": "0.03",
+      "archive": "Encode-JIS2K-0.03.tar.gz",
+      "root": "Encode-JIS2K-0.03",
+      "url": "https://cpan.metacpan.org/authors/id/D/DA/DANKOGAI/Encode-JIS2K-0.03.tar.gz",
+      "bytes": 419693,
+      "sha256": "1ec84d72db39deb4dad6fca95acfcc21033f45a24d347c20f9a1a696896c35cc",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/DANKOGAI/Encode-JIS2K-0.03",
+      "metadataResponseSha256": "a2182d28a933416ceb8262bb38c30b4451b2d6caeae0a0b6c668765ba7838e40",
+      "declaredLicense": ["unknown"],
+      "anchors": [
+        {
+          "module": "Encode::JIS2K",
+          "version": "0.03",
+          "payload": "par/lib/Encode/JIS2K.pm",
+          "sha256": "67354629ad4213e937f847b222948c00dab460355fcc86cc01394fe4dc4a577a",
+          "source": "JIS2K.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Encode-Locale-1.05",
+      "distribution": "Encode-Locale",
+      "version": "1.05",
+      "archive": "Encode-Locale-1.05.tar.gz",
+      "root": "Encode-Locale-1.05",
+      "url": "https://cpan.metacpan.org/authors/id/G/GA/GAAS/Encode-Locale-1.05.tar.gz",
+      "bytes": 8355,
+      "sha256": "176fa02771f542a4efb1dbc2a4c928e8f4391bf4078473bd6040d8f11adb0ec1",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/GAAS/Encode-Locale-1.05",
+      "metadataResponseSha256": "1dc835b68ec0e122e96191d26d6a1af0543ac534151a655227d9cce4ba720f46",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Encode::Locale",
+          "version": "1.05",
+          "payload": "par/lib/Encode/Locale.pm",
+          "sha256": "1b5ded6313c0d57aeb8159171c34ca4c16607d260f590cf815471f5f69184fe3",
+          "source": "lib/Encode/Locale.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Eval-Closure-0.14",
+      "distribution": "Eval-Closure",
+      "version": "0.14",
+      "archive": "Eval-Closure-0.14.tar.gz",
+      "root": "Eval-Closure-0.14",
+      "url": "https://cpan.metacpan.org/authors/id/D/DO/DOY/Eval-Closure-0.14.tar.gz",
+      "bytes": 20128,
+      "sha256": "ea0944f2f5ec98d895bef6d503e6e4a376fea6383a6bc64c7670d46ff2218cad",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/DOY/Eval-Closure-0.14",
+      "metadataResponseSha256": "57460be6f3cce80673b3580fb3f344f85a5a7dd1cee4cfa5a356592250153e92",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Eval::Closure",
+          "version": "0.14",
+          "payload": "par/lib/Eval/Closure.pm",
+          "sha256": "97467b134801412fd6011cf85640d7bac45a19b5c651382194e4bdcb9a62bd46",
+          "source": "lib/Eval/Closure.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Event-1.28",
+      "distribution": "Event",
+      "version": "1.28",
+      "archive": "Event-1.28.tar.gz",
+      "root": "Event-1.28",
+      "url": "https://cpan.metacpan.org/authors/id/E/ET/ETJ/Event-1.28.tar.gz",
+      "bytes": 256630,
+      "sha256": "0504242229a2bcef418eeb04e29044f5a1854fcd7fcdce1276068d3b21510cc4",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/ETJ/Event-1.28",
+      "metadataResponseSha256": "9d62294f643b8d40eeb1acb1caf071c5a34cb9515a23d8c745d3940b8d2f3f69",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Event",
+          "version": "1.28",
+          "payload": "par/lib/Event.pm",
+          "sha256": "7590e04a838dbdb8111c27fcf446e4cde44b81fdfd47bcf95e160f420e2f27a1",
+          "source": "lib/Event.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Exception-Class-1.45",
+      "distribution": "Exception-Class",
+      "version": "1.45",
+      "archive": "Exception-Class-1.45.tar.gz",
+      "root": "Exception-Class-1.45",
+      "url": "https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/Exception-Class-1.45.tar.gz",
+      "bytes": 50933,
+      "sha256": "5482a77ef027ca1f9f39e1f48c558356e954936fc8fbbdee6c811c512701b249",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/DROLSKY/Exception-Class-1.45",
+      "metadataResponseSha256": "66d86b23c605ec069465f26435a33887c19ab597c5fbdf4d6b0f93ea9914c2b2",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Exception::Class",
+          "version": "1.45",
+          "payload": "par/lib/Exception/Class.pm",
+          "sha256": "90b160f97abb4774f8d6ee58882b6856a08276071bb0751f72fa372844d7ef28",
+          "source": "lib/Exception/Class.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "File-Find-Rule-0.34",
+      "distribution": "File-Find-Rule",
+      "version": "0.34",
+      "archive": "File-Find-Rule-0.34.tar.gz",
+      "root": "File-Find-Rule-0.34",
+      "url": "https://cpan.metacpan.org/authors/id/R/RC/RCLAMP/File-Find-Rule-0.34.tar.gz",
+      "bytes": 16165,
+      "sha256": "7e6f16cc33eb1f29ff25bee51d513f4b8a84947bbfa18edb2d3cc40a2d64cafe",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/RCLAMP/File-Find-Rule-0.34",
+      "metadataResponseSha256": "300af919c80168c72a8b6497ea2472f043379269eb367fb7a7e368d3b5e26f79",
+      "declaredLicense": ["unknown"],
+      "anchors": [
+        {
+          "module": "File::Find::Rule",
+          "version": "0.34",
+          "payload": "par/lib/File/Find/Rule.pm",
+          "sha256": "2e0abbacc15c6f15199477caf48afaee0a243af164b26ff9d07598859e4b9f5c",
+          "source": "lib/File/Find/Rule.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "File-Listing-6.14",
+      "distribution": "File-Listing",
+      "version": "6.14",
+      "archive": "File-Listing-6.14.tar.gz",
+      "root": "File-Listing-6.14",
+      "url": "https://cpan.metacpan.org/authors/id/P/PL/PLICEASE/File-Listing-6.14.tar.gz",
+      "bytes": 80562,
+      "sha256": "15b3a4871e23164a36f226381b74d450af41f12cc94985f592a669fcac7b48ff",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/PLICEASE/File-Listing-6.14",
+      "metadataResponseSha256": "a1b79916130f42081fed48410b6a3ce2acaade3ba5bdbaf4f2c67329afa3a19e",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "File::Listing",
+          "version": "6.14",
+          "payload": "par/lib/File/Listing.pm",
+          "sha256": "7364d04433103d7ced60952138824e43880da017b8caa6b69e578736268b1eda",
+          "source": "lib/File/Listing.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "File-ShareDir-1.118",
+      "distribution": "File-ShareDir",
+      "version": "1.118",
+      "archive": "File-ShareDir-1.118.tar.gz",
+      "root": "File-ShareDir-1.118",
+      "url": "https://cpan.metacpan.org/authors/id/R/RE/REHSACK/File-ShareDir-1.118.tar.gz",
+      "bytes": 29631,
+      "sha256": "3bb2a20ba35df958dc0a4f2306fc05d903d8b8c4de3c8beefce17739d281c958",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/REHSACK/File-ShareDir-1.118",
+      "metadataResponseSha256": "eba52b28406e3ea952533981e56d4fc16eb2795901709c608a1e3c25a7a04cdb",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "File::ShareDir",
+          "version": "1.118",
+          "payload": "par/lib/File/ShareDir.pm",
+          "sha256": "f9114d159c52e63a7c996a4dbb72a933f7d9048421b929129b7a8a377dad1904",
+          "source": "lib/File/ShareDir.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "File-Slurper-0.012",
+      "distribution": "File-Slurper",
+      "version": "0.012",
+      "archive": "File-Slurper-0.012.tar.gz",
+      "root": "File-Slurper-0.012",
+      "url": "https://cpan.metacpan.org/authors/id/L/LE/LEONT/File-Slurper-0.012.tar.gz",
+      "bytes": 15517,
+      "sha256": "4efb2ea416b110a1bda6f8133549cc6ea3676402e3caf7529fce0313250aa578",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/LEONT/File-Slurper-0.012",
+      "metadataResponseSha256": "b3f6b69538e6fdb4f0e9f7180ae529f84fc2be1e25581b59923a2118b0a5d59c",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "File::Slurper",
+          "version": "0.012",
+          "payload": "par/lib/File/Slurper.pm",
+          "sha256": "4d91e7f3367e8e59f7ddaacd9ee942aba0e14d4dcdb933ca52d7dd27022ea237",
+          "source": "lib/File/Slurper.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Guard-1.023",
+      "distribution": "Guard",
+      "version": "1.023",
+      "archive": "Guard-1.023.tar.gz",
+      "root": "Guard-1.023",
+      "url": "https://cpan.metacpan.org/authors/id/M/ML/MLEHMANN/Guard-1.023.tar.gz",
+      "bytes": 7065,
+      "sha256": "34c4ddf91fc93d1090d86da14df706d175b1610c67372c01e12ce9555d4dd1dc",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/MLEHMANN/Guard-1.023",
+      "metadataResponseSha256": "e9ecbf336073c8d90687f72f6de42dc9bfde7be1a6928e867ff01e077bef2bf9",
+      "declaredLicense": ["unknown"],
+      "anchors": [
+        {
+          "module": "Guard",
+          "version": "1.023",
+          "payload": "par/lib/Guard.pm",
+          "sha256": "69abf47662351d6fdc22de901abeef3c355d59a046fa99b7822ff63cd28133b3",
+          "source": "Guard.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "HTML-Parser-3.76",
+      "distribution": "HTML-Parser",
+      "version": "3.76",
+      "archive": "HTML-Parser-3.76.tar.gz",
+      "root": "HTML-Parser-3.76",
+      "url": "https://cpan.metacpan.org/authors/id/O/OA/OALDERS/HTML-Parser-3.76.tar.gz",
+      "bytes": 120473,
+      "sha256": "64d9e2eb2b420f1492da01ec0e6976363245b4be9290f03f10b7d2cb63fa2f61",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/OALDERS/HTML-Parser-3.76",
+      "metadataResponseSha256": "068bca67d90739e87bb7d8bce8591dee562e6e757c29ef8cc57469a0ee2340b2",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "HTML::Parser",
+          "version": "3.76",
+          "payload": "par/lib/HTML/Parser.pm",
+          "sha256": "669d8e0086108a5a1403336c62781f55b6f83af18ed42f74217ff2c1f7dc2189",
+          "source": "lib/HTML/Parser.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "HTTP-Cookies-6.10",
+      "distribution": "HTTP-Cookies",
+      "version": "6.10",
+      "archive": "HTTP-Cookies-6.10.tar.gz",
+      "root": "HTTP-Cookies-6.10",
+      "url": "https://cpan.metacpan.org/authors/id/O/OA/OALDERS/HTTP-Cookies-6.10.tar.gz",
+      "bytes": 42448,
+      "sha256": "e36f36633c5ce6b5e4b876ffcf74787cc5efe0736dd7f487bdd73c14f0bd7007",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/OALDERS/HTTP-Cookies-6.10",
+      "metadataResponseSha256": "4351417e32ca7b78a0977f413ee7e8d7895ca902dada8db06f5feec4d0b6c844",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "HTTP::Cookies",
+          "version": "6.10",
+          "payload": "par/lib/HTTP/Cookies.pm",
+          "sha256": "5ec3f33bb3d28f132082a360435dec864ef482936e49026b9d08c3a96901f1f3",
+          "source": "lib/HTTP/Cookies.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "HTTP-Date-6.05",
+      "distribution": "HTTP-Date",
+      "version": "6.05",
+      "archive": "HTTP-Date-6.05.tar.gz",
+      "root": "HTTP-Date-6.05",
+      "url": "https://cpan.metacpan.org/authors/id/O/OA/OALDERS/HTTP-Date-6.05.tar.gz",
+      "bytes": 29673,
+      "sha256": "365d6294dfbd37ebc51def8b65b81eb79b3934ecbc95a2ec2d4d827efe6a922b",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/OALDERS/HTTP-Date-6.05",
+      "metadataResponseSha256": "6a4c6c5868c3c254156f913f813eb8d1a659787da99bbffd5b1c2b485e2e6011",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "HTTP::Date",
+          "version": "6.05",
+          "payload": "par/lib/HTTP/Date.pm",
+          "sha256": "51fc2d57e4deb956860b8493c7ee3159378fd35e40d4eb3f3def67963c21a640",
+          "source": "lib/HTTP/Date.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "HTTP-Message-6.34",
+      "distribution": "HTTP-Message",
+      "version": "6.34",
+      "archive": "HTTP-Message-6.34.tar.gz",
+      "root": "HTTP-Message-6.34",
+      "url": "https://cpan.metacpan.org/authors/id/O/OA/OALDERS/HTTP-Message-6.34.tar.gz",
+      "bytes": 89397,
+      "sha256": "fe7ebb9e67899d12cd45487581ce4dcb33e491d30342ecb59d047770fa967634",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/OALDERS/HTTP-Message-6.34",
+      "metadataResponseSha256": "04831e30185864cc440b875eafc0db5778f84d7ce847ae3224ae207976116f55",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "HTTP::Message",
+          "version": "6.34",
+          "payload": "par/lib/HTTP/Message.pm",
+          "sha256": "a206a9447341b8fb1b8459afd734015aa6f4b05665da6c26864e7e11212faf5e",
+          "source": "lib/HTTP/Message.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "HTTP-Negotiate-6.01",
+      "distribution": "HTTP-Negotiate",
+      "version": "6.01",
+      "archive": "HTTP-Negotiate-6.01.tar.gz",
+      "root": "HTTP-Negotiate-6.01",
+      "url": "https://cpan.metacpan.org/authors/id/G/GA/GAAS/HTTP-Negotiate-6.01.tar.gz",
+      "bytes": 8596,
+      "sha256": "1c729c1ea63100e878405cda7d66f9adfd3ed4f1d6cacaca0ee9152df728e016",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/GAAS/HTTP-Negotiate-6.01",
+      "metadataResponseSha256": "af87578e98e37b649d5753caeb7903c39375841eed683ba157e69544c8f48c21",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "HTTP::Negotiate",
+          "version": "6.01",
+          "payload": "par/lib/HTTP/Negotiate.pm",
+          "sha256": "11b15afe7736f0818b9fee791baa8d34cc67fa137380bafbb0c2c963a6f01e88",
+          "source": "lib/HTTP/Negotiate.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "IO-AIO-4.76",
+      "distribution": "IO-AIO",
+      "version": "4.76",
+      "archive": "IO-AIO-4.76.tar.gz",
+      "root": "IO-AIO-4.76",
+      "url": "https://cpan.metacpan.org/authors/id/M/ML/MLEHMANN/IO-AIO-4.76.tar.gz",
+      "bytes": 185929,
+      "sha256": "39f5044a93ce2114b908afe77a4615881a3d78a0ed53e4502708dd5d4333208f",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/MLEHMANN/IO-AIO-4.76",
+      "metadataResponseSha256": "6ebb6c5933bf06d5ed00888c6456328ed74d9b1a8a80ebc5ea62b486bf5ad208",
+      "declaredLicense": ["unknown"],
+      "anchors": [
+        {
+          "module": "IO::AIO",
+          "version": "4.76",
+          "payload": "par/lib/IO/AIO.pm",
+          "sha256": "393e08ae38ec8223dbb4cfcfe54bdd37b9b6f6a39b305ef7b4fff7318262afed",
+          "source": "AIO.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "IO-HTML-1.004",
+      "distribution": "IO-HTML",
+      "version": "1.004",
+      "archive": "IO-HTML-1.004.tar.gz",
+      "root": "IO-HTML-1.004",
+      "url": "https://cpan.metacpan.org/authors/id/C/CJ/CJM/IO-HTML-1.004.tar.gz",
+      "bytes": 20927,
+      "sha256": "c87b2df59463bbf2c39596773dfb5c03bde0f7e1051af339f963f58c1cbd8bf5",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/CJM/IO-HTML-1.004",
+      "metadataResponseSha256": "671f018b97b7db3d2a967d0149816fab878040e2e5ed3178cdba2860faf61809",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "IO::HTML",
+          "version": "1.004",
+          "payload": "par/lib/IO/HTML.pm",
+          "sha256": "83066f6a1b40d2fe6b41c059af06350733a36b8bad6b85036adf9645d7d28daf",
+          "source": "lib/IO/HTML.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "IO-Socket-SSL-2.072",
+      "distribution": "IO-Socket-SSL",
+      "version": "2.072",
+      "archive": "IO-Socket-SSL-2.072.tar.gz",
+      "root": "IO-Socket-SSL-2.072",
+      "url": "https://cpan.metacpan.org/authors/id/S/SU/SULLR/IO-Socket-SSL-2.072.tar.gz",
+      "bytes": 253643,
+      "sha256": "b5bee81db3905a9069340a450a48e1e1b32dec4ede0064f5703bafb9a707b89d",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/SULLR/IO-Socket-SSL-2.072",
+      "metadataResponseSha256": "d0aba97729bd69040013d2c7cdbbb4b9337e3c61571bdc621533d8a83ce25a2a",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "IO::Socket::SSL",
+          "version": "2.072",
+          "payload": "par/lib/IO/Socket/SSL.pm",
+          "sha256": "c93a1f73f751e1b4acb2131c4493dbccd9343490dcf72ec1c4716ea609fdbe5f",
+          "source": "lib/IO/Socket/SSL.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "IO-String-1.08",
+      "distribution": "IO-String",
+      "version": "1.08",
+      "archive": "IO-String-1.08.tar.gz",
+      "root": "IO-String-1.08",
+      "url": "https://cpan.metacpan.org/authors/id/G/GA/GAAS/IO-String-1.08.tar.gz",
+      "bytes": 7480,
+      "sha256": "2a3f4ad8442d9070780e58ef43722d19d1ee21a803bf7c8206877a10482de5a0",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/GAAS/IO-String-1.08",
+      "metadataResponseSha256": "823b0ecd3d9080d66e37854bbda6f5a2e4b693eed633ed6daa97355f50cc595b",
+      "declaredLicense": ["unknown"],
+      "anchors": [
+        {
+          "module": "IO::String",
+          "version": "1.08",
+          "payload": "par/lib/IO/String.pm",
+          "sha256": "1ab64bb458aff8fa644ef8b89ffdf28b7e76f647ecc130032ee25df4b95ca993",
+          "source": "String.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "IPC-Run3-0.048",
+      "distribution": "IPC-Run3",
+      "version": "0.048",
+      "archive": "IPC-Run3-0.048.tar.gz",
+      "root": "IPC-Run3-0.048",
+      "url": "https://cpan.metacpan.org/authors/id/R/RJ/RJBS/IPC-Run3-0.048.tar.gz",
+      "bytes": 20312,
+      "sha256": "3d81c3cc1b5cff69cca9361e2c6e38df0352251ae7b41e2ff3febc850e463565",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/RJBS/IPC-Run3-0.048",
+      "metadataResponseSha256": "f52dcf14dd66be95e8f95e608c9fc9e0e6812db85768b7ef3be841963a959616",
+      "declaredLicense": ["open_source"],
+      "anchors": [
+        {
+          "module": "IPC::Run3",
+          "version": "0.048",
+          "payload": "par/lib/IPC/Run3.pm",
+          "sha256": "597dfd873f4032e2dd1f2b712dfba5cf8ff3108716ee3e30e090bbc224daa1aa",
+          "source": "lib/IPC/Run3.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "LWP-MediaTypes-6.04",
+      "distribution": "LWP-MediaTypes",
+      "version": "6.04",
+      "archive": "LWP-MediaTypes-6.04.tar.gz",
+      "root": "LWP-MediaTypes-6.04",
+      "url": "https://cpan.metacpan.org/authors/id/O/OA/OALDERS/LWP-MediaTypes-6.04.tar.gz",
+      "bytes": 40000,
+      "sha256": "8f1bca12dab16a1c2a7c03a49c5e58cce41a6fec9519f0aadfba8dad997919d9",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/OALDERS/LWP-MediaTypes-6.04",
+      "metadataResponseSha256": "df099aa44e8ae11b0e73facebffbca1fb1567c296ab4bf031f7bc740d651ee2e",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "LWP::MediaTypes",
+          "version": "6.04",
+          "payload": "par/lib/LWP/MediaTypes.pm",
+          "sha256": "c5cbe9fd328ecdb7374ad0bd493cc05ea64251a43e1ed97e447b52e8999a1de5",
+          "source": "lib/LWP/MediaTypes.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "LWP-Protocol-https-6.10",
+      "distribution": "LWP-Protocol-https",
+      "version": "6.10",
+      "archive": "LWP-Protocol-https-6.10.tar.gz",
+      "root": "LWP-Protocol-https-6.10",
+      "url": "https://cpan.metacpan.org/authors/id/O/OA/OALDERS/LWP-Protocol-https-6.10.tar.gz",
+      "bytes": 33691,
+      "sha256": "cecfc31fe2d4fc854cac47fce13d3a502e8fdfe60c5bc1c09535743185f2a86c",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/OALDERS/LWP-Protocol-https-6.10",
+      "metadataResponseSha256": "1e7fd5d43afcc3caefa1931214308bf2dcde9bc63d8f9e3a42c5fe06e59785df",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "LWP::Protocol::https",
+          "version": "6.10",
+          "payload": "par/lib/LWP/Protocol/https.pm",
+          "sha256": "da541920a0f11e94ff1e567aff5bb08a44269987a33fd2c8e8bac531146fa409",
+          "source": "lib/LWP/Protocol/https.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Lingua-Translit-0.28",
+      "distribution": "Lingua-Translit",
+      "version": "0.28",
+      "archive": "Lingua-Translit-0.28.tar.gz",
+      "root": "Lingua-Translit-0.28",
+      "url": "https://cpan.metacpan.org/authors/id/A/AL/ALINKE/Lingua-Translit-0.28.tar.gz",
+      "bytes": 110433,
+      "sha256": "113f91d8fc2c630437153a49fb7a52b023af8f6278ed96c070b1f60824b8eae1",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/ALINKE/Lingua-Translit-0.28",
+      "metadataResponseSha256": "2440467b215a4c1a8516180322337785d9357298ae2d4eacd9720528f9c2bd8d",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Lingua::Translit",
+          "version": "0.28",
+          "payload": "par/lib/Lingua/Translit.pm",
+          "sha256": "64bd7397876dee458d163d7e3efcef1e83cb8d92f2facc0ce6a87058ba8368e3",
+          "source": "lib/Lingua/Translit.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "List-AllUtils-0.19",
+      "distribution": "List-AllUtils",
+      "version": "0.19",
+      "archive": "List-AllUtils-0.19.tar.gz",
+      "root": "List-AllUtils-0.19",
+      "url": "https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/List-AllUtils-0.19.tar.gz",
+      "bytes": 56605,
+      "sha256": "30a8146ab21a7787b8c56d5829cf9a7f2b15276d3b3fca07336ac38d3002ffbc",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/DROLSKY/List-AllUtils-0.19",
+      "metadataResponseSha256": "d87fe24e1740d0dbeff5938208351b93a7ea78eadaf2ef54c27884b59a74c10e",
+      "declaredLicense": ["artistic_2"],
+      "anchors": [
+        {
+          "module": "List::AllUtils",
+          "version": "0.19",
+          "payload": "par/lib/List/AllUtils.pm",
+          "sha256": "e4d212bd0fcebd48510ac8d267c0026c27aa4e7b7d96c3f3b015837ac1a627bb",
+          "source": "lib/List/AllUtils.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "List-MoreUtils-0.430",
+      "distribution": "List-MoreUtils",
+      "version": "0.430",
+      "archive": "List-MoreUtils-0.430.tar.gz",
+      "root": "List-MoreUtils-0.430",
+      "url": "https://cpan.metacpan.org/authors/id/R/RE/REHSACK/List-MoreUtils-0.430.tar.gz",
+      "bytes": 150571,
+      "sha256": "63b1f7842cd42d9b538d1e34e0330de5ff1559e4c2737342506418276f646527",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/REHSACK/List-MoreUtils-0.430",
+      "metadataResponseSha256": "b5a066f4cc13891802dbb60883103a5e5112dc546aacff3ee8e406d1f83549be",
+      "declaredLicense": ["apache_2_0"],
+      "anchors": [
+        {
+          "module": "List::MoreUtils::PP",
+          "version": "0.430",
+          "payload": "par/lib/List/MoreUtils/PP.pm",
+          "sha256": "74faa49477d85610fab2b31669ba3f51ba70ccf55cb9f18f68bdbb2f87b6601d",
+          "source": "lib/List/MoreUtils/PP.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "List-MoreUtils-XS-0.430",
+      "distribution": "List-MoreUtils-XS",
+      "version": "0.430",
+      "archive": "List-MoreUtils-XS-0.430.tar.gz",
+      "root": "List-MoreUtils-XS-0.430",
+      "url": "https://cpan.metacpan.org/authors/id/R/RE/REHSACK/List-MoreUtils-XS-0.430.tar.gz",
+      "bytes": 163827,
+      "sha256": "e8ce46d57c179eecd8758293e9400ff300aaf20fefe0a9d15b9fe2302b9cb242",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/REHSACK/List-MoreUtils-XS-0.430",
+      "metadataResponseSha256": "bc9d9468cb35de114d0854b29beab7bf1fddd4f59b09ca0e5ec7a52ae6add753",
+      "declaredLicense": ["apache_2_0"],
+      "anchors": [
+        {
+          "module": "List::MoreUtils::XS",
+          "version": "0.430",
+          "payload": "par/lib/List/MoreUtils/XS.pm",
+          "sha256": "d23abecf1b10a13394a82fab807c5232bb17634dd2a2b5a186fb13410fc90d5f",
+          "source": "lib/List/MoreUtils/XS.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "List-SomeUtils-0.58",
+      "distribution": "List-SomeUtils",
+      "version": "0.58",
+      "archive": "List-SomeUtils-0.58.tar.gz",
+      "root": "List-SomeUtils-0.58",
+      "url": "https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/List-SomeUtils-0.58.tar.gz",
+      "bytes": 67003,
+      "sha256": "96eafb359339d22bf2a2de421298847a3c40f6a28b6d44005d0965da86a5469d",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/DROLSKY/List-SomeUtils-0.58",
+      "metadataResponseSha256": "a9c71c02c3a571f59b56b48ebe11a90cd82a613921d20cd7d4023ba961c598df",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "List::SomeUtils",
+          "version": "0.58",
+          "payload": "par/lib/List/SomeUtils.pm",
+          "sha256": "a555c8d33d075c58b49da973dc4e44c32d30c71cff6b24493d53c3a7bd42b83c",
+          "source": "lib/List/SomeUtils.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "List-SomeUtils-XS-0.58",
+      "distribution": "List-SomeUtils-XS",
+      "version": "0.58",
+      "archive": "List-SomeUtils-XS-0.58.tar.gz",
+      "root": "List-SomeUtils-XS-0.58",
+      "url": "https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/List-SomeUtils-XS-0.58.tar.gz",
+      "bytes": 94190,
+      "sha256": "4f9e4d2622481b79cc298e8e29de8a30943aff9f4be7992c0ebb7b22e5b4b297",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/DROLSKY/List-SomeUtils-XS-0.58",
+      "metadataResponseSha256": "dbcd95a0a86a20fbfa5a4ea70c51dd0f8255a65088a2d8d4cdaa34e37a3f290d",
+      "declaredLicense": ["artistic_2"],
+      "anchors": [
+        {
+          "module": "List::SomeUtils::XS",
+          "version": "0.58",
+          "payload": "par/lib/List/SomeUtils/XS.pm",
+          "sha256": "170de1cc4284e3cfbddb424438465aab18b648c442d7f8c99a989e951c7f9d75",
+          "source": "lib/List/SomeUtils/XS.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "List-UtilsBy-0.11",
+      "distribution": "List-UtilsBy",
+      "version": "0.11",
+      "archive": "List-UtilsBy-0.11.tar.gz",
+      "root": "List-UtilsBy-0.11",
+      "url": "https://cpan.metacpan.org/authors/id/P/PE/PEVANS/List-UtilsBy-0.11.tar.gz",
+      "bytes": 22939,
+      "sha256": "faddf43b4bc21db8e4c0e89a26e5f23fe626cde3491ec651b6aa338627f5775a",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/PEVANS/List-UtilsBy-0.11",
+      "metadataResponseSha256": "f333b4d0205d788d037f0f3d39fdceccbe95c1ddbfcf0ad581e3812da08886c0",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "List::UtilsBy",
+          "version": "0.11",
+          "payload": "par/lib/List/UtilsBy.pm",
+          "sha256": "ecc3a977dc7d0c2ce7a70783990248738b192c9c61d91ba7d98ca5c12c3ca95b",
+          "source": "lib/List/UtilsBy.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Log-Dispatch-2.70",
+      "distribution": "Log-Dispatch",
+      "version": "2.70",
+      "archive": "Log-Dispatch-2.70.tar.gz",
+      "root": "Log-Dispatch-2.70",
+      "url": "https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/Log-Dispatch-2.70.tar.gz",
+      "bytes": 70808,
+      "sha256": "a3d91cc52467d3a3c6683103f3df4472d71e405a45f553289448713ac4293f21",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/DROLSKY/Log-Dispatch-2.70",
+      "metadataResponseSha256": "40c41ac4de198ffb4df4a631c4be0d8fa933eede3e4da3722e01ed90fe596f58",
+      "declaredLicense": ["artistic_2"],
+      "anchors": [
+        {
+          "module": "Log::Dispatch",
+          "version": "2.70",
+          "payload": "par/lib/Log/Dispatch.pm",
+          "sha256": "bb37e9fadda12ab56eff31925f18487298b328d4320f5aff134e96e8ee8bdecf",
+          "source": "lib/Log/Dispatch.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Log-Dispatch-FileRotate-1.38",
+      "distribution": "Log-Dispatch-FileRotate",
+      "version": "1.38",
+      "archive": "Log-Dispatch-FileRotate-1.38.tar.gz",
+      "root": "Log-Dispatch-FileRotate-1.38",
+      "url": "https://cpan.metacpan.org/authors/id/M/MS/MSCHOUT/Log-Dispatch-FileRotate-1.38.tar.gz",
+      "bytes": 30103,
+      "sha256": "b55d6cede3f0a06426488fbfa554f4561320b014c1023893ced29508e5bce4ec",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/MSCHOUT/Log-Dispatch-FileRotate-1.38",
+      "metadataResponseSha256": "cc24a81678543c434cde49242971682ab3286a77af313af2a3c529e15edd106c",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Log::Dispatch::FileRotate",
+          "version": "1.38",
+          "payload": "par/lib/Log/Dispatch/FileRotate.pm",
+          "sha256": "29efa351157e24b199727ca6879896fc2ac56db45057a0228ad1c636b6798109",
+          "source": "lib/Log/Dispatch/FileRotate.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Log-Log4perl-1.54",
+      "distribution": "Log-Log4perl",
+      "version": "1.54",
+      "archive": "Log-Log4perl-1.54.tar.gz",
+      "root": "Log-Log4perl-1.54",
+      "url": "https://cpan.metacpan.org/authors/id/E/ET/ETJ/Log-Log4perl-1.54.tar.gz",
+      "bytes": 280001,
+      "sha256": "bbabe42d3b4cdaa3a47666b957be81d55bbd1cbcffcdff2b119586d33602eabe",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/ETJ/Log-Log4perl-1.54",
+      "metadataResponseSha256": "bedab7a6d46f892460f88cba8d9f6900a7a7564cf8c989af6a97b978ab769a6d",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Log::Log4perl",
+          "version": "1.54",
+          "payload": "par/lib/Log/Log4perl.pm",
+          "sha256": "d652451ffa92fe87d4270bf3b27ea1e73c85d70f07cef2d7425391523379b87c",
+          "source": "lib/Log/Log4perl.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "MIME-Charset-1.012.2",
+      "distribution": "MIME-Charset",
+      "version": "1.012.2",
+      "archive": "MIME-Charset-1.012.2.tar.gz",
+      "root": "MIME-Charset-1.012.2",
+      "url": "https://cpan.metacpan.org/authors/id/N/NE/NEZUMI/MIME-Charset-1.012.2.tar.gz",
+      "bytes": 55609,
+      "sha256": "878c779c0256c591666bd06c0cde4c0d7820eeeb98fd1183082aee9a1e7b1d13",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/NEZUMI/MIME-Charset-1.012.2",
+      "metadataResponseSha256": "725473909860977a65d1b4f7fab992ca33962052f018daa5f044d6c988f8c088",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "MIME::Charset",
+          "version": "1.012.2",
+          "payload": "par/lib/MIME/Charset.pm",
+          "sha256": "906c39d7641644551bf995aeca673530c387c6854ca2d664a15f25eb87666175",
+          "source": "lib/MIME/Charset.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "MRO-Compat-0.13",
+      "distribution": "MRO-Compat",
+      "version": "0.13",
+      "archive": "MRO-Compat-0.13.tar.gz",
+      "root": "MRO-Compat-0.13",
+      "url": "https://cpan.metacpan.org/authors/id/H/HA/HAARG/MRO-Compat-0.13.tar.gz",
+      "bytes": 8711,
+      "sha256": "8a2c3b6ccc19328d5579d02a7d91285e2afd85d801f49d423a8eb16f323da4f8",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/HAARG/MRO-Compat-0.13",
+      "metadataResponseSha256": "423060bfe806481a08d41b34e31d32d18c1c7580ac1b1d709736f113877f026d",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "MRO::Compat",
+          "version": "0.13",
+          "payload": "par/lib/MRO/Compat.pm",
+          "sha256": "33ee7935cbc127bacc4bb84569bf50bd795594b2763a9096436b1a7afd9cca57",
+          "source": "lib/MRO/Compat.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Module-Implementation-0.09",
+      "distribution": "Module-Implementation",
+      "version": "0.09",
+      "archive": "Module-Implementation-0.09.tar.gz",
+      "root": "Module-Implementation-0.09",
+      "url": "https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/Module-Implementation-0.09.tar.gz",
+      "bytes": 18553,
+      "sha256": "c15f1a12f0c2130c9efff3c2e1afe5887b08ccd033bd132186d1e7d5087fd66d",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/DROLSKY/Module-Implementation-0.09",
+      "metadataResponseSha256": "5705d04193d73595051ce3aa4eda498ef98c377cbae994aaa403ec8b7c2c45cf",
+      "declaredLicense": ["artistic_2"],
+      "anchors": [
+        {
+          "module": "Module::Implementation",
+          "version": "0.09",
+          "payload": "par/lib/Module/Implementation.pm",
+          "sha256": "4ee910c05c48bc086cc3d88d594b4655928747c1db271c21604d0ddfffdfb8d0",
+          "source": "lib/Module/Implementation.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Module-Runtime-0.016",
+      "distribution": "Module-Runtime",
+      "version": "0.016",
+      "archive": "Module-Runtime-0.016.tar.gz",
+      "root": "Module-Runtime-0.016",
+      "url": "https://cpan.metacpan.org/authors/id/Z/ZE/ZEFRAM/Module-Runtime-0.016.tar.gz",
+      "bytes": 18275,
+      "sha256": "68302ec646833547d410be28e09676db75006f4aa58a11f3bdb44ffe99f0f024",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/ZEFRAM/Module-Runtime-0.016",
+      "metadataResponseSha256": "7a985202264ee6b63ff016aa914acb6d06e32687141309435c220ec2a66e1087",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Module::Runtime",
+          "version": "0.016",
+          "payload": "par/lib/Module/Runtime.pm",
+          "sha256": "40a2264baee46070db9a84e0bfb6a15b349619661ec3cafd40b7a45695774763",
+          "source": "lib/Module/Runtime.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Mozilla-CA-20211001",
+      "distribution": "Mozilla-CA",
+      "version": "20211001",
+      "archive": "Mozilla-CA-20211001.tar.gz",
+      "root": "Mozilla-CA-20211001",
+      "url": "https://cpan.metacpan.org/authors/id/A/AB/ABH/Mozilla-CA-20211001.tar.gz",
+      "bytes": 127461,
+      "sha256": "122c8900000a9d388aa8e44f911cab6c118fe8497417917a84a8ec183971b449",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/ABH/Mozilla-CA-20211001",
+      "metadataResponseSha256": "1bfbaf8ba4d4b6143ea9ed5d519b415a9a439e3ba74ed5a6187f2e6dde7b4235",
+      "declaredLicense": ["open_source"],
+      "anchors": [
+        {
+          "module": "Mozilla::CA",
+          "version": "20211001",
+          "payload": "par/lib/Mozilla/CA.pm",
+          "sha256": "8872a3ab956e138d4b032c9a569efb3ad66098eaa107f915dab5d2bc9a7faf03",
+          "source": "lib/Mozilla/CA.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Net-HTTP-6.21",
+      "distribution": "Net-HTTP",
+      "version": "6.21",
+      "archive": "Net-HTTP-6.21.tar.gz",
+      "root": "Net-HTTP-6.21",
+      "url": "https://cpan.metacpan.org/authors/id/O/OA/OALDERS/Net-HTTP-6.21.tar.gz",
+      "bytes": 38914,
+      "sha256": "375aa35b76be99f06464089174d66ac76f78ce83a5c92a907bbfab18b099eec4",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/OALDERS/Net-HTTP-6.21",
+      "metadataResponseSha256": "0e0aa48a7b9c40b199f82bd8769702cc851c279d70f224101484feead71bc68a",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Net::HTTP",
+          "version": "6.21",
+          "payload": "par/lib/Net/HTTP.pm",
+          "sha256": "de857853f399fb1085868127b9f35f4d67b47063987c54f63b6de5645c63ef70",
+          "source": "lib/Net/HTTP.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Net-SSLeay-1.90",
+      "distribution": "Net-SSLeay",
+      "version": "1.90",
+      "archive": "Net-SSLeay-1.90.tar.gz",
+      "root": "Net-SSLeay-1.90",
+      "url": "https://cpan.metacpan.org/authors/id/C/CH/CHRISN/Net-SSLeay-1.90.tar.gz",
+      "bytes": 534246,
+      "sha256": "f8696cfaca98234679efeedc288a9398fcf77176f1f515dbc589ada7c650dc93",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/CHRISN/Net-SSLeay-1.90",
+      "metadataResponseSha256": "e2f7e77e0c9bbce4700d2c8f99313db36e8f28402ab0a808f34d8e90380ff74f",
+      "declaredLicense": ["artistic_2"],
+      "anchors": [
+        {
+          "module": "Net::SSLeay",
+          "version": "1.90",
+          "payload": "par/lib/Net/SSLeay.pm",
+          "sha256": "0c8e8a24e340c97e508cba9ded9f7186017031e9d5650947e8ed83df69ac7cf6",
+          "source": "lib/Net/SSLeay.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Number-Compare-0.03",
+      "distribution": "Number-Compare",
+      "version": "0.03",
+      "archive": "Number-Compare-0.03.tar.gz",
+      "root": "Number-Compare-0.03",
+      "url": "https://cpan.metacpan.org/authors/id/R/RC/RCLAMP/Number-Compare-0.03.tar.gz",
+      "bytes": 2572,
+      "sha256": "83293737e803b43112830443fb5208ec5208a2e6ea512ed54ef8e4dd2b880827",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/RCLAMP/Number-Compare-0.03",
+      "metadataResponseSha256": "3809d1c6dcdb6442c89106a2e35bb50fed5e964e40bad128310332475f35276a",
+      "declaredLicense": ["unknown"],
+      "anchors": [
+        {
+          "module": "Number::Compare",
+          "version": "0.03",
+          "payload": "par/lib/Number/Compare.pm",
+          "sha256": "624e30890c19bd56089bd8318235ca995bfab7d31bcf2a371e4ae3e6bd79c008",
+          "source": "lib/Number/Compare.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "PAR-Dist-0.51",
+      "distribution": "PAR-Dist",
+      "version": "0.51",
+      "archive": "PAR-Dist-0.51.tar.gz",
+      "root": "PAR-Dist-0.51",
+      "url": "https://cpan.metacpan.org/authors/id/R/RS/RSCHUPP/PAR-Dist-0.51.tar.gz",
+      "bytes": 42492,
+      "sha256": "d242062df9b689f39040e4c4e09131a6c464d0eefadbd1c9ac947173af33dff8",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/RSCHUPP/PAR-Dist-0.51",
+      "metadataResponseSha256": "7f0caa5032b320e72018ea8b06c43d1935bd628311f0d203f82928a07757397a",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "PAR::Dist",
+          "version": "0.51",
+          "payload": "loader/031e39f4/PAR/Dist.pm",
+          "sha256": "8e555dbb69a325fe5181e1cf62e51ea189727c4552b6bfbaec47851f42acdb0c",
+          "source": "lib/PAR/Dist.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Package-Stash-0.39",
+      "distribution": "Package-Stash",
+      "version": "0.39",
+      "archive": "Package-Stash-0.39.tar.gz",
+      "root": "Package-Stash-0.39",
+      "url": "https://cpan.metacpan.org/authors/id/E/ET/ETHER/Package-Stash-0.39.tar.gz",
+      "bytes": 55606,
+      "sha256": "9165f555112e080493ce0e9129de0886da30b2593fb353a2abd1c76b2d2621b5",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/ETHER/Package-Stash-0.39",
+      "metadataResponseSha256": "23b8d362aeeb95d2d1dc3ef4e12135b9584467856403c91fca8dd7397f51fee8",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Package::Stash",
+          "version": "0.39",
+          "payload": "par/lib/Package/Stash.pm",
+          "sha256": "a567eb1ee6abd4648f26bf40ddf71d77f94f350290bad9ea418027451c2299ef",
+          "source": "lib/Package/Stash.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Package-Stash-XS-0.29",
+      "distribution": "Package-Stash-XS",
+      "version": "0.29",
+      "archive": "Package-Stash-XS-0.29.tar.gz",
+      "root": "Package-Stash-XS-0.29",
+      "url": "https://cpan.metacpan.org/authors/id/E/ET/ETHER/Package-Stash-XS-0.29.tar.gz",
+      "bytes": 87491,
+      "sha256": "d3676ba94641e03d6a30e951f09266c4c3ca3f5b58aa7b314a67f28e419878aa",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/ETHER/Package-Stash-XS-0.29",
+      "metadataResponseSha256": "b493c3a9bc4b11cef9fe4e2f8ec06fcbbd4ca4947a221b625e9f49120f193619",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Package::Stash::XS",
+          "version": "0.29",
+          "payload": "par/lib/Package/Stash/XS.pm",
+          "sha256": "1be0ac4865505c3fa9267ec09a6fa2e8abde0e1d9e0a0ef836b2d71ec4c60ec6",
+          "source": "lib/Package/Stash/XS.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "PadWalker-2.5",
+      "distribution": "PadWalker",
+      "version": "2.5",
+      "archive": "PadWalker-2.5.tar.gz",
+      "root": "PadWalker-2.5",
+      "url": "https://cpan.metacpan.org/authors/id/R/RO/ROBIN/PadWalker-2.5.tar.gz",
+      "bytes": 16342,
+      "sha256": "07b26abb841146af32072a8d68cb90176ffb176fd9268e6f2f7d106f817a0cd0",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/ROBIN/PadWalker-2.5",
+      "metadataResponseSha256": "5737b6e976bdc000129377f9ed1a94b83a73a20ec28841efa5a00ea2907553e5",
+      "declaredLicense": ["unknown"],
+      "anchors": [
+        {
+          "module": "PadWalker",
+          "version": "2.5",
+          "payload": "par/lib/PadWalker.pm",
+          "sha256": "1ea84d36106c6a7c219839ca703cdac66eaf931ae1c63008993857fea4a8d59f",
+          "source": "PadWalker.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Params-Util-1.102",
+      "distribution": "Params-Util",
+      "version": "1.102",
+      "archive": "Params-Util-1.102.tar.gz",
+      "root": "Params-Util-1.102",
+      "url": "https://cpan.metacpan.org/authors/id/R/RE/REHSACK/Params-Util-1.102.tar.gz",
+      "bytes": 194986,
+      "sha256": "499bb1b482db24fda277a51525596ad092c2bd51dd508fa8fec2e9f849097402",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/REHSACK/Params-Util-1.102",
+      "metadataResponseSha256": "3828d2d547a0802cd25f39d5c0aec1f28b8ba9fa18715544192cf43f6154da7b",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Params::Util",
+          "version": "1.102",
+          "payload": "par/lib/Params/Util.pm",
+          "sha256": "5ed61f1d7ac654911ee666cf49e41393c904795c2a7e1ad9c57fbba9ad63149c",
+          "source": "lib/Params/Util.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Params-Validate-1.30",
+      "distribution": "Params-Validate",
+      "version": "1.30",
+      "archive": "Params-Validate-1.30.tar.gz",
+      "root": "Params-Validate-1.30",
+      "url": "https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/Params-Validate-1.30.tar.gz",
+      "bytes": 207327,
+      "sha256": "9a3a35583d3125d07e8c802c1f92f5be7d526e76dd496e944da270b1e273d812",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/DROLSKY/Params-Validate-1.30",
+      "metadataResponseSha256": "79853027e287d91781fda288a66b8351a2320d21091b92fcf83722ac2806626f",
+      "declaredLicense": ["artistic_2"],
+      "anchors": [
+        {
+          "module": "Params::Validate",
+          "version": "1.30",
+          "payload": "par/lib/Params/Validate.pm",
+          "sha256": "0ef888e38f77ef95113430ccef2b545d1d6ec065258ed02f84b5d640105fcd1b",
+          "source": "lib/Params/Validate.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Params-ValidationCompiler-0.30",
+      "distribution": "Params-ValidationCompiler",
+      "version": "0.30",
+      "archive": "Params-ValidationCompiler-0.30.tar.gz",
+      "root": "Params-ValidationCompiler-0.30",
+      "url": "https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/Params-ValidationCompiler-0.30.tar.gz",
+      "bytes": 49796,
+      "sha256": "dc5bee23383be42765073db284bed9fbd819d4705ad649c20b644452090d16cb",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/DROLSKY/Params-ValidationCompiler-0.30",
+      "metadataResponseSha256": "336a3b7c0dbad4b85863587a04366595a48d5a43d9930872e901043652d2936d",
+      "declaredLicense": ["artistic_2"],
+      "anchors": [
+        {
+          "module": "Params::ValidationCompiler",
+          "version": "0.30",
+          "payload": "par/lib/Params/ValidationCompiler.pm",
+          "sha256": "84784c3800f8c76283f2a7c2e526d65ea1794015d4e69733cffa10b8c4c0ca92",
+          "source": "lib/Params/ValidationCompiler.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Parse-RecDescent-1.967015",
+      "distribution": "Parse-RecDescent",
+      "version": "1.967015",
+      "archive": "Parse-RecDescent-1.967015.tar.gz",
+      "root": "Parse-RecDescent-1.967015",
+      "url": "https://cpan.metacpan.org/authors/id/J/JT/JTBRAUN/Parse-RecDescent-1.967015.tar.gz",
+      "bytes": 176996,
+      "sha256": "1943336a4cb54f1788a733f0827c0c55db4310d5eae15e542639c9dd85656e37",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/JTBRAUN/Parse-RecDescent-1.967015",
+      "metadataResponseSha256": "4bf2810c5d5e79a2a95e19ccb1b96831a862eb5a039ae1d01ad6b3287c5ea993",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Parse::RecDescent",
+          "version": "1.967015",
+          "payload": "par/lib/Parse/RecDescent.pm",
+          "sha256": "093ddd1287581fa4369c1dbc71f3696af3348c7e60da88de60af5b1db15d9680",
+          "source": "lib/Parse/RecDescent.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "PerlIO-utf8_strict-0.008",
+      "distribution": "PerlIO-utf8_strict",
+      "version": "0.008",
+      "archive": "PerlIO-utf8_strict-0.008.tar.gz",
+      "root": "PerlIO-utf8_strict-0.008",
+      "url": "https://cpan.metacpan.org/authors/id/L/LE/LEONT/PerlIO-utf8_strict-0.008.tar.gz",
+      "bytes": 95180,
+      "sha256": "5f798ded50dcc7d421b57850f837310666d817f4c67c15ba0f5a1d38c74df459",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/LEONT/PerlIO-utf8_strict-0.008",
+      "metadataResponseSha256": "51077f87bb9ad62d1b6b63735c6f49deeb7b936585c4c72b5d7e0589b4f6dd7e",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "PerlIO::utf8_strict",
+          "version": "0.008",
+          "payload": "par/lib/PerlIO/utf8_strict.pm",
+          "sha256": "c3b072b934705f9e0b1d552d66327721e50f1b91a5da291f30004310d7ffb1e1",
+          "source": "lib/PerlIO/utf8_strict.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Regexp-Common-2017060201",
+      "distribution": "Regexp-Common",
+      "version": "2017060201",
+      "archive": "Regexp-Common-2017060201.tar.gz",
+      "root": "Regexp-Common-2017060201",
+      "url": "https://cpan.metacpan.org/authors/id/A/AB/ABIGAIL/Regexp-Common-2017060201.tar.gz",
+      "bytes": 237881,
+      "sha256": "ee07853aee06f310e040b6bf1a0199a18d81896d3219b9b35c9630d0eb69089b",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/ABIGAIL/Regexp-Common-2017060201",
+      "metadataResponseSha256": "05edd28f35b7546a9ab2895c64f14f14a7e2406f499fdc05d8bec4bf1b296f7b",
+      "declaredLicense": ["mit", "mit", "bsd", "artistic_1", "artistic_2"],
+      "anchors": [
+        {
+          "module": "Regexp::Common",
+          "version": "2017060201",
+          "payload": "par/lib/Regexp/Common.pm",
+          "sha256": "ccafea2abbebf6f4e76004c4a174f7e690480a4992fc0b812c721eb6f58b7371",
+          "source": "lib/Regexp/Common.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Role-Tiny-2.002004",
+      "distribution": "Role-Tiny",
+      "version": "2.002004",
+      "archive": "Role-Tiny-2.002004.tar.gz",
+      "root": "Role-Tiny-2.002004",
+      "url": "https://cpan.metacpan.org/authors/id/H/HA/HAARG/Role-Tiny-2.002004.tar.gz",
+      "bytes": 35940,
+      "sha256": "d7bdee9e138a4f83aa52d0a981625644bda87ff16642dfa845dcb44d9a242b45",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/HAARG/Role-Tiny-2.002004",
+      "metadataResponseSha256": "0870ff3cfd8fcff52289aaf3c9d09363437697ba95fc50bf7dc121cc860341fc",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Role::Tiny",
+          "version": "2.002004",
+          "payload": "par/lib/Role/Tiny.pm",
+          "sha256": "370b0faca1d6dff2759ac2685e04c157161e21603bcb0f1c221e65dc7dcd1858",
+          "source": "lib/Role/Tiny.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Scalar-List-Utils-1.60",
+      "distribution": "Scalar-List-Utils",
+      "version": "1.60",
+      "archive": "Scalar-List-Utils-1.60.tar.gz",
+      "root": "Scalar-List-Utils-1.60",
+      "url": "https://cpan.metacpan.org/authors/id/P/PE/PEVANS/Scalar-List-Utils-1.60.tar.gz",
+      "bytes": 177368,
+      "sha256": "c685bad8021f008f321288b7c3182ec724ab198a77610e877c86f3fad4b85f07",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/PEVANS/Scalar-List-Utils-1.60",
+      "metadataResponseSha256": "eb71f8e8433b3a57f02804454171eacceaf325550d480d9999a51b1da15960b2",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "List::Util",
+          "version": "1.60",
+          "payload": "par/lib/List/Util.pm",
+          "sha256": "6af15faccb38df0b5eeb9856d28d94184b43bcc77c1672a2ab3a58ed35927786",
+          "source": "lib/List/Util.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Sort-Key-1.33",
+      "distribution": "Sort-Key",
+      "version": "1.33",
+      "archive": "Sort-Key-1.33.tar.gz",
+      "root": "Sort-Key-1.33",
+      "url": "https://cpan.metacpan.org/authors/id/S/SA/SALVA/Sort-Key-1.33.tar.gz",
+      "bytes": 58324,
+      "sha256": "ed6a4ccfab094c9cd164f564024e98bd21d94f4312ccac4d6246d22b34081acf",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/SALVA/Sort-Key-1.33",
+      "metadataResponseSha256": "792d9e083f65ef8272ed9beeca8aec4a38efe000977cd31679c0d9cffb4a7c14",
+      "declaredLicense": ["unknown"],
+      "anchors": [
+        {
+          "module": "Sort::Key",
+          "version": "1.33",
+          "payload": "par/lib/Sort/Key.pm",
+          "sha256": "ec40376dae00bf22e183d7bf1233db825b6ccacd80a7f86fc76b423e21878d6f",
+          "source": "lib/Sort/Key.pm",
+          "transformation": "none"
+        },
+        {
+          "module": "Sort::Key::Types",
+          "version": "1.30",
+          "payload": "par/lib/Sort/Key/Types.pm",
+          "sha256": "b2c3a0f48affc4a529bb2dc51c4a77305f2f49af70674f0f5c1add62abe1ae8e",
+          "source": "lib/Sort/Key/Types.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Specio-0.47",
+      "distribution": "Specio",
+      "version": "0.47",
+      "archive": "Specio-0.47.tar.gz",
+      "root": "Specio-0.47",
+      "url": "https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/Specio-0.47.tar.gz",
+      "bytes": 108288,
+      "sha256": "f41307f14444f8777e572f27eeb6a964084399e7e382c47c577827ad8a286a1c",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/DROLSKY/Specio-0.47",
+      "metadataResponseSha256": "1e3ec8a95c21343697542296a4b8bc6c960bb7f09549bc6adeb781468e57d227",
+      "declaredLicense": ["artistic_2"],
+      "anchors": [
+        {
+          "module": "Specio",
+          "version": "0.47",
+          "payload": "par/lib/Specio.pm",
+          "sha256": "7e519fd8d42dda41184fb0c00869244eddcb4e421f4fb76a1ecffcbf140442dd",
+          "source": "lib/Specio.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Sub-Exporter-0.988",
+      "distribution": "Sub-Exporter",
+      "version": "0.988",
+      "archive": "Sub-Exporter-0.988.tar.gz",
+      "root": "Sub-Exporter-0.988",
+      "url": "https://cpan.metacpan.org/authors/id/R/RJ/RJBS/Sub-Exporter-0.988.tar.gz",
+      "bytes": 56906,
+      "sha256": "23324887d6c590f145702f077d8ca42f1b2f26a3b76f08d66c2c1e21e606040c",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/RJBS/Sub-Exporter-0.988",
+      "metadataResponseSha256": "a5c679e77ca7839548931310ed84cee8bf2c67e0bc988481d1e6d628b32479e3",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Sub::Exporter",
+          "version": "0.988",
+          "payload": "par/lib/Sub/Exporter.pm",
+          "sha256": "f42bdd60fc028bde6b3c029770e0ebdb73aa46d43985899b848b700f58eff3e5",
+          "source": "lib/Sub/Exporter.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Sub-Exporter-Progressive-0.001013",
+      "distribution": "Sub-Exporter-Progressive",
+      "version": "0.001013",
+      "archive": "Sub-Exporter-Progressive-0.001013.tar.gz",
+      "root": "Sub-Exporter-Progressive-0.001013",
+      "url": "https://cpan.metacpan.org/authors/id/F/FR/FREW/Sub-Exporter-Progressive-0.001013.tar.gz",
+      "bytes": 13468,
+      "sha256": "d535b7954d64da1ac1305b1fadf98202769e3599376854b2ced90c382beac056",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/FREW/Sub-Exporter-Progressive-0.001013",
+      "metadataResponseSha256": "6a8ccadcc0e7b7298aaf05a3fb3c0174dd82e0584e19933c683c36d26181f5a0",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Sub::Exporter::Progressive",
+          "version": "0.001013",
+          "payload": "par/lib/Sub/Exporter/Progressive.pm",
+          "sha256": "61f45a2e4fe6f979e4f4562f7255e5eeecb63471bfc080005701ce0f8fabc1bd",
+          "source": "lib/Sub/Exporter/Progressive.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Sub-Identify-0.14",
+      "distribution": "Sub-Identify",
+      "version": "0.14",
+      "archive": "Sub-Identify-0.14.tar.gz",
+      "root": "Sub-Identify-0.14",
+      "url": "https://cpan.metacpan.org/authors/id/R/RG/RGARCIA/Sub-Identify-0.14.tar.gz",
+      "bytes": 53135,
+      "sha256": "068d272086514dd1e842b6a40b1bedbafee63900e5b08890ef6700039defad6f",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/RGARCIA/Sub-Identify-0.14",
+      "metadataResponseSha256": "9aa646bae5c1075cb4d85ed44f6401ee3ac90fd4022c9b8b2856b1f6a9935871",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Sub::Identify",
+          "version": "0.14",
+          "payload": "par/lib/Sub/Identify.pm",
+          "sha256": "9b7160d05caf371030379bd5c1fc28ba0c07f300dfb4348122c99ac8d77e1c41",
+          "source": "lib/Sub/Identify.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Sub-Install-0.928",
+      "distribution": "Sub-Install",
+      "version": "0.928",
+      "archive": "Sub-Install-0.928.tar.gz",
+      "root": "Sub-Install-0.928",
+      "url": "https://cpan.metacpan.org/authors/id/R/RJ/RJBS/Sub-Install-0.928.tar.gz",
+      "bytes": 18669,
+      "sha256": "61e567a7679588887b7b86d427bc476ea6d77fffe7e0d17d640f89007d98ef0f",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/RJBS/Sub-Install-0.928",
+      "metadataResponseSha256": "7df9b5018b420d667c8256a3e16b759d6b001e5db3d3e442864339dcc9992da1",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Sub::Install",
+          "version": "0.928",
+          "payload": "par/lib/Sub/Install.pm",
+          "sha256": "920fcceac8f67d0b631845619347583563ac18511d577300e41a8a8a387b4432",
+          "source": "lib/Sub/Install.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Test-Simple-1.302188",
+      "distribution": "Test-Simple",
+      "version": "1.302188",
+      "archive": "Test-Simple-1.302188.tar.gz",
+      "root": "Test-Simple-1.302188",
+      "url": "https://cpan.metacpan.org/authors/id/E/EX/EXODIST/Test-Simple-1.302188.tar.gz",
+      "bytes": 333394,
+      "sha256": "0b7a0e304ca24d657d79b73c9ff3f381dc460f356e4044de326ed03ddab16c95",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/EXODIST/Test-Simple-1.302188",
+      "metadataResponseSha256": "0ab7dfb4e2eae3a730ea991d4fd350f7c466c104c111101c218c5f3d3ac5b6de",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Test::More",
+          "version": "1.302188",
+          "payload": "par/lib/Test/More.pm",
+          "sha256": "6377e10f63995041e956d08283a8bc7fc074fab16254d3cb17bcbcd79209ddc4",
+          "source": "lib/Test/More.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Text-BibTeX-0.88",
+      "distribution": "Text-BibTeX",
+      "version": "0.88",
+      "archive": "Text-BibTeX-0.88.tar.gz",
+      "root": "Text-BibTeX-0.88",
+      "url": "https://cpan.metacpan.org/authors/id/A/AM/AMBS/Text-BibTeX-0.88.tar.gz",
+      "bytes": 301812,
+      "sha256": "b014586e68bdbcafb0a2cfa0401eb0a04ea5de8c4d5bc36dd0f7faeab6acf42c",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/AMBS/Text-BibTeX-0.88",
+      "metadataResponseSha256": "b09a8ba44b8e3dfea54121fb44ac9f190c44106aa8915d60cd36ac42a866546e",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Text::BibTeX",
+          "version": "0.88",
+          "payload": "par/lib/Text/BibTeX.pm",
+          "sha256": "b7c50439fd7db3618f18dba20fd4250847b44c1e10a605330e83649af7ac207f",
+          "source": "lib/Text/BibTeX.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Text-CSV-2.01",
+      "distribution": "Text-CSV",
+      "version": "2.01",
+      "archive": "Text-CSV-2.01.tar.gz",
+      "root": "Text-CSV-2.01",
+      "url": "https://cpan.metacpan.org/authors/id/I/IS/ISHIGAKI/Text-CSV-2.01.tar.gz",
+      "bytes": 134279,
+      "sha256": "2a90a5eea3f22c40b87932a929621680609ab5f6b874a77c4134c8a04eb8e74b",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/ISHIGAKI/Text-CSV-2.01",
+      "metadataResponseSha256": "f569c932ef9548cab3e9c13a45191c8363b4c3fc0228d39d421d0983065e234f",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Text::CSV",
+          "version": "2.01",
+          "payload": "par/lib/Text/CSV.pm",
+          "sha256": "95a11b5800d8f4e872700144af39b3c13b7b69dc5da894f6650ada2feb97c4fb",
+          "source": "lib/Text/CSV.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Text-CSV_XS-1.46",
+      "distribution": "Text-CSV_XS",
+      "version": "1.46",
+      "archive": "Text-CSV_XS-1.46.tgz",
+      "root": "Text-CSV_XS-1.46",
+      "url": "https://cpan.metacpan.org/authors/id/H/HM/HMBRAND/Text-CSV_XS-1.46.tgz",
+      "bytes": 256628,
+      "sha256": "27e39f0d5f2322aaf78ff90eb1221f3cbed1d4c514d0956bda19407fcb98bed6",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/HMBRAND/Text-CSV_XS-1.46",
+      "metadataResponseSha256": "0d62d11631c9877e5ac020b269648e709d2e24851ebbd50864c4b30060b9f409",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Text::CSV_XS",
+          "version": "1.46",
+          "payload": "par/lib/Text/CSV_XS.pm",
+          "sha256": "6b0f1e190191a3ac87211e9ed00c48e8d992c43f37b58bc12e4e3fcfa564350c",
+          "source": "CSV_XS.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Text-Glob-0.11",
+      "distribution": "Text-Glob",
+      "version": "0.11",
+      "archive": "Text-Glob-0.11.tar.gz",
+      "root": "Text-Glob-0.11",
+      "url": "https://cpan.metacpan.org/authors/id/R/RC/RCLAMP/Text-Glob-0.11.tar.gz",
+      "bytes": 4862,
+      "sha256": "069ccd49d3f0a2dedb115f4bdc9fbac07a83592840953d1fcdfc39eb9d305287",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/RCLAMP/Text-Glob-0.11",
+      "metadataResponseSha256": "c1866734de10d0fd744461fa9832ad63d57790e86a88efc4c9a4a101d0810265",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Text::Glob",
+          "version": "0.11",
+          "payload": "par/lib/Text/Glob.pm",
+          "sha256": "39edabab69b3a5438b39682149581dbc36c98932821eb160e9dc13760aed4c12",
+          "source": "lib/Text/Glob.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Text-Roman-3.5",
+      "distribution": "Text-Roman",
+      "version": "3.5",
+      "archive": "Text-Roman-3.5.tar.gz",
+      "root": "Text-Roman-3.5",
+      "url": "https://cpan.metacpan.org/authors/id/S/SY/SYP/Text-Roman-3.5.tar.gz",
+      "bytes": 18122,
+      "sha256": "cb4a08a3b151802ffb2fce3258a416542ab81db0f739ee474a9583ffb73e046a",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/SYP/Text-Roman-3.5",
+      "metadataResponseSha256": "52daa26badd2d1869cbc0fb6a43247aa69a549f349d361e89424d8230a526fa0",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Text::Roman",
+          "version": "3.5",
+          "payload": "par/lib/Text/Roman.pm",
+          "sha256": "7f5bb920141a700fc4b91b73e9f4b4bd65aaa9cf1bbb324adff4f8ad900d69a2",
+          "source": "lib/Text/Roman.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Tie-Cycle-1.226",
+      "distribution": "Tie-Cycle",
+      "version": "1.226",
+      "archive": "Tie-Cycle-1.226.tar.gz",
+      "root": "Tie-Cycle-1.226",
+      "url": "https://cpan.metacpan.org/authors/id/B/BD/BDFOY/Tie-Cycle-1.226.tar.gz",
+      "bytes": 11064,
+      "sha256": "0987e1c053bb080c3052710e9733a81ab6fb84e60da76828efa7fc92e7f47633",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/BDFOY/Tie-Cycle-1.226",
+      "metadataResponseSha256": "00806b7340851072da4231444c05047ba4d33e7fbfdc081c4e8841557883612e",
+      "declaredLicense": ["artistic_2"],
+      "anchors": [
+        {
+          "module": "Tie::Cycle",
+          "version": "1.226",
+          "payload": "par/lib/Tie/Cycle.pm",
+          "sha256": "11bb3689e5d8a5ca29c2725171f78f26584fd2ed68afc9ef15d65997d93001d3",
+          "source": "lib/Tie/Cycle.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Tk-804.036",
+      "distribution": "Tk",
+      "version": "804.036",
+      "archive": "Tk-804.036.tar.gz",
+      "root": "Tk-804.036",
+      "url": "https://cpan.metacpan.org/authors/id/S/SR/SREZIC/Tk-804.036.tar.gz",
+      "bytes": 7024993,
+      "sha256": "32aa7271a6bdfedc3330119b3825daddd0aa4b5c936f84ad74eabb932a200a5e",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/SREZIC/Tk-804.036",
+      "metadataResponseSha256": "f79f54c8b534da72caff84e5662fb90baba11aa88124e1b9c137178b18f43758",
+      "declaredLicense": ["unrestricted"],
+      "anchors": [
+        {
+          "module": "Tk",
+          "version": "804.036",
+          "payload": "par/lib/Tk.pm",
+          "sha256": "db0358f44d0400fd35a2014ec6661ad2f771999352b402597eb938433db3d754",
+          "source": "Tk.pm",
+          "transformation": "PAR::Filter::PatchContent:Tk.pm"
+        }
+      ]
+    },
+    {
+      "id": "Try-Tiny-0.30",
+      "distribution": "Try-Tiny",
+      "version": "0.30",
+      "archive": "Try-Tiny-0.30.tar.gz",
+      "root": "Try-Tiny-0.30",
+      "url": "https://cpan.metacpan.org/authors/id/E/ET/ETHER/Try-Tiny-0.30.tar.gz",
+      "bytes": 34395,
+      "sha256": "da5bd0d5c903519bbf10bb9ba0cb7bcac0563882bcfe4503aee3fb143eddef6b",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/ETHER/Try-Tiny-0.30",
+      "metadataResponseSha256": "79ff77c9d7495738bd950db5ed106dd1214119956f24a818d60ea2201dddfd4d",
+      "declaredLicense": ["mit"],
+      "anchors": [
+        {
+          "module": "Try::Tiny",
+          "version": "0.30",
+          "payload": "par/lib/Try/Tiny.pm",
+          "sha256": "7010b15c12e237d17cb989df3167201f01f825a5bcf3f7cb10bd3908b96d1b4e",
+          "source": "lib/Try/Tiny.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "URI-5.10",
+      "distribution": "URI",
+      "version": "5.10",
+      "archive": "URI-5.10.tar.gz",
+      "root": "URI-5.10",
+      "url": "https://cpan.metacpan.org/authors/id/O/OA/OALDERS/URI-5.10.tar.gz",
+      "bytes": 109471,
+      "sha256": "16325d5e308c7b7ab623d1bf944e1354c5f2245afcfadb8eed1e2cae9a0bd0b5",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/OALDERS/URI-5.10",
+      "metadataResponseSha256": "1f1216492bdd4fa75e3ce088ac2de80994504449e67d26c381b7020e90e484b6",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "URI",
+          "version": "5.10",
+          "payload": "par/lib/URI.pm",
+          "sha256": "949b5da316d90f295753119b894c3a9b499733c5bba9b2f140cdcbeca9616413",
+          "source": "lib/URI.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Unicode-Collate-1.31",
+      "distribution": "Unicode-Collate",
+      "version": "1.31",
+      "archive": "Unicode-Collate-1.31.tar.gz",
+      "root": "Unicode-Collate-1.31",
+      "url": "https://cpan.metacpan.org/authors/id/S/SA/SADAHIRO/Unicode-Collate-1.31.tar.gz",
+      "bytes": 926842,
+      "sha256": "b75dd07bbc252937b1b87064bf79ccd0a1b7ee993b8cf0e80f47406c3205639f",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/SADAHIRO/Unicode-Collate-1.31",
+      "metadataResponseSha256": "0ad01fcb905c913988cdff68e770257014e632b2bafc22a08f25f4b7c85768ae",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Unicode::Collate",
+          "version": "1.31",
+          "payload": "par/lib/Unicode/Collate.pm",
+          "sha256": "0a2de3e87f453601bcca0f5dcdf0ebae9e71f6cdce4dc96edc6a3603be61cd84",
+          "source": "Collate.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Unicode-LineBreak-2019.001",
+      "distribution": "Unicode-LineBreak",
+      "version": "2019.001",
+      "archive": "Unicode-LineBreak-2019.001.tar.gz",
+      "root": "Unicode-LineBreak-2019.001",
+      "url": "https://cpan.metacpan.org/authors/id/N/NE/NEZUMI/Unicode-LineBreak-2019.001.tar.gz",
+      "bytes": 312225,
+      "sha256": "486762e4cacddcc77b13989f979a029f84630b8175e7fef17989e157d4b6318a",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/NEZUMI/Unicode-LineBreak-2019.001",
+      "metadataResponseSha256": "1fe27c5c4b25d6e6c1578d0acbf541011f136e5c83ea2fb27a927e83735c502b",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Unicode::LineBreak",
+          "version": "2019.001",
+          "payload": "par/lib/Unicode/LineBreak.pm",
+          "sha256": "93c0f47c958521f9a2d634a9b4faac25fe0cb89a28b06dcd01a2e011dfa01032",
+          "source": "lib/Unicode/LineBreak.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "Variable-Magic-0.62",
+      "distribution": "Variable-Magic",
+      "version": "0.62",
+      "archive": "Variable-Magic-0.62.tar.gz",
+      "root": "Variable-Magic-0.62",
+      "url": "https://cpan.metacpan.org/authors/id/V/VP/VPIT/Variable-Magic-0.62.tar.gz",
+      "bytes": 79009,
+      "sha256": "3f9a18517e33f006a9c2fc4f43f01b54abfe6ff2eae7322424f31069296b615c",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/VPIT/Variable-Magic-0.62",
+      "metadataResponseSha256": "c9dafb881694e0842ebd8494073be9ca57eab263f636cb2a0168406765feaf88",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "Variable::Magic",
+          "version": "0.62",
+          "payload": "par/lib/Variable/Magic.pm",
+          "sha256": "76b5e48df688555481bd36509816649533b4de399b1154ce2e6823ea246cbc76",
+          "source": "lib/Variable/Magic.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "XML-DOM-1.46",
+      "distribution": "XML-DOM",
+      "version": "1.46",
+      "archive": "XML-DOM-1.46.tar.gz",
+      "root": "XML-DOM-1.46",
+      "url": "https://cpan.metacpan.org/authors/id/T/TJ/TJMATHER/XML-DOM-1.46.tar.gz",
+      "bytes": 117291,
+      "sha256": "8ba24b0b459b01d6c5e5b0408829c7d5dfe47ff79b3548c813759048099b175e",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/TJMATHER/XML-DOM-1.46",
+      "metadataResponseSha256": "a1346e8f48ccad86167d0c71063c5b0d943630b49430b5ffcc7f370ba73b708d",
+      "declaredLicense": ["unknown"],
+      "anchors": [
+        {
+          "module": "XML::DOM",
+          "version": "1.46",
+          "payload": "par/lib/XML/DOM.pm",
+          "sha256": "c3585e390312aab87de5f597966af41c7a0cfc6d9e63f5f15457b94e3a2e3897",
+          "source": "lib/XML/DOM.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "XML-LibXML-2.0207",
+      "distribution": "XML-LibXML",
+      "version": "2.0207",
+      "archive": "XML-LibXML-2.0207.tar.gz",
+      "root": "XML-LibXML-2.0207",
+      "url": "https://cpan.metacpan.org/authors/id/S/SH/SHLOMIF/XML-LibXML-2.0207.tar.gz",
+      "bytes": 462595,
+      "sha256": "903436c9859875bef5593243aae85ced329ad0fb4b57bbf45975e32547c50c15",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/SHLOMIF/XML-LibXML-2.0207",
+      "metadataResponseSha256": "c32eb29e0636be253962f8a3106857b3ab47ebf94f607e0eac1d55f6715cd54d",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "XML::LibXML",
+          "version": "2.0207",
+          "payload": "par/lib/XML/LibXML.pm",
+          "sha256": "8aa24f493f8665fe6b4a66b5a808a6d36a9b7c85c657aa20d66c2c7955d90a63",
+          "source": "LibXML.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "XML-LibXML-Simple-1.01",
+      "distribution": "XML-LibXML-Simple",
+      "version": "1.01",
+      "archive": "XML-LibXML-Simple-1.01.tar.gz",
+      "root": "XML-LibXML-Simple-1.01",
+      "url": "https://cpan.metacpan.org/authors/id/M/MA/MARKOV/XML-LibXML-Simple-1.01.tar.gz",
+      "bytes": 24793,
+      "sha256": "cd98c8104b70d7672bfa26b4513b78adf2b4b9220e586aa8beb1a508500365a6",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/MARKOV/XML-LibXML-Simple-1.01",
+      "metadataResponseSha256": "5462a752beb1510a0d67e02e05144e02a2641c24a06875d1998f19085afff4de",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "XML::LibXML::Simple",
+          "version": "1.01",
+          "payload": "par/lib/XML/LibXML/Simple.pm",
+          "sha256": "fb0544293d61e23c75045b4217466205260e78f626b945be761661d8dd848873",
+          "source": "lib/XML/LibXML/Simple.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "XML-LibXSLT-1.99",
+      "distribution": "XML-LibXSLT",
+      "version": "1.99",
+      "archive": "XML-LibXSLT-1.99.tar.gz",
+      "root": "XML-LibXSLT-1.99",
+      "url": "https://cpan.metacpan.org/authors/id/S/SH/SHLOMIF/XML-LibXSLT-1.99.tar.gz",
+      "bytes": 114083,
+      "sha256": "127e17a877fb61e47b9e8b87bf8daad31339a62a00121f9751d522b438b0f7f0",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/SHLOMIF/XML-LibXSLT-1.99",
+      "metadataResponseSha256": "7fc2543f4b86d675a98d9a44aca673527ba339f1367bfaa2530875a41bcd62ec",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "XML::LibXSLT",
+          "version": "1.99",
+          "payload": "par/lib/XML/LibXSLT.pm",
+          "sha256": "a75f41738c7ef2d6726a12bbb76d432935da773e170d7000d02a533d6fa2d261",
+          "source": "LibXSLT.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "XML-Parser-2.46",
+      "distribution": "XML-Parser",
+      "version": "2.46",
+      "archive": "XML-Parser-2.46.tar.gz",
+      "root": "XML-Parser-2.46",
+      "url": "https://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-2.46.tar.gz",
+      "bytes": 254763,
+      "sha256": "d331332491c51cccfb4cb94ffc44f9cd73378e618498d4a37df9e043661c515d",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/TODDR/XML-Parser-2.46",
+      "metadataResponseSha256": "97b1e284c6a7650b38d71eac92ec51acd26b1ef0c66270f16ea5912f7099fa4f",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "XML::Parser",
+          "version": "2.46",
+          "payload": "par/lib/XML/Parser.pm",
+          "sha256": "eddda975129b32f56b9f0876eb28658155f38c5fbc2dc89adf552c1168ab6518",
+          "source": "Parser.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "XML-RegExp-0.04",
+      "distribution": "XML-RegExp",
+      "version": "0.04",
+      "archive": "XML-RegExp-0.04.tar.gz",
+      "root": "XML-RegExp-0.04",
+      "url": "https://cpan.metacpan.org/authors/id/T/TJ/TJMATHER/XML-RegExp-0.04.tar.gz",
+      "bytes": 3601,
+      "sha256": "df1990096036085c8e2d45904fe180f82bfed40f1a7e05243f334ea10090fc54",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/TJMATHER/XML-RegExp-0.04",
+      "metadataResponseSha256": "41cfb13871e7e776f452ea9c29e65d27703254f00c62baba311263b52f893be7",
+      "declaredLicense": ["unknown"],
+      "anchors": [
+        {
+          "module": "XML::RegExp",
+          "version": "0.04",
+          "payload": "par/lib/XML/RegExp.pm",
+          "sha256": "177224c0060fd3d0c6fa4f4060754be7622e62eac8015a5ab21f89ae99c6406f",
+          "source": "lib/XML/RegExp.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "XML-SAX-Base-1.09",
+      "distribution": "XML-SAX-Base",
+      "version": "1.09",
+      "archive": "XML-SAX-Base-1.09.tar.gz",
+      "root": "XML-SAX-Base-1.09",
+      "url": "https://cpan.metacpan.org/authors/id/G/GR/GRANTM/XML-SAX-Base-1.09.tar.gz",
+      "bytes": 28215,
+      "sha256": "66cb355ba4ef47c10ca738bd35999723644386ac853abbeb5132841f5e8a2ad0",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/GRANTM/XML-SAX-Base-1.09",
+      "metadataResponseSha256": "c3b5ed49334f24aef60c101e74e2645b46455747782e65d67262bea75a0e7a61",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "XML::SAX::Exception",
+          "version": "1.09",
+          "payload": "par/lib/XML/SAX/Exception.pm",
+          "sha256": "879f703178761d9dbea2ba4f11201c75ad75531e724255471f0f4da60692dc51",
+          "source": "lib/XML/SAX/Exception.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "XML-Writer-0.900",
+      "distribution": "XML-Writer",
+      "version": "0.900",
+      "archive": "XML-Writer-0.900.tar.gz",
+      "root": "XML-Writer-0.900",
+      "url": "https://cpan.metacpan.org/authors/id/J/JO/JOSEPHW/XML-Writer-0.900.tar.gz",
+      "bytes": 29817,
+      "sha256": "73c8f5bd3ecf2b350f4adae6d6676d52e08ecc2d7df4a9f089fa68360d400d1f",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/JOSEPHW/XML-Writer-0.900",
+      "metadataResponseSha256": "73c289f4c7c20b098b966bd33cb3e89d2c2ce1e79b5265aa9f002145245e4ca6",
+      "declaredLicense": ["unrestricted"],
+      "anchors": [
+        {
+          "module": "XML::Writer",
+          "version": "0.900",
+          "payload": "par/lib/XML/Writer.pm",
+          "sha256": "35a34d939d2f987739382ab7d499fb21d849d69d229cb8790e8994dd886cf866",
+          "source": "Writer.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "autovivification-0.18",
+      "distribution": "autovivification",
+      "version": "0.18",
+      "archive": "autovivification-0.18.tar.gz",
+      "root": "autovivification-0.18",
+      "url": "https://cpan.metacpan.org/authors/id/V/VP/VPIT/autovivification-0.18.tar.gz",
+      "bytes": 55854,
+      "sha256": "2d99975685242980d0a9904f639144c059d6ece15899efde4acb742d3253f105",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/VPIT/autovivification-0.18",
+      "metadataResponseSha256": "32936d358ca36377cbae2b86f15a8186b99b2565850500dde0574db34e648d92",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "autovivification",
+          "version": "0.18",
+          "payload": "par/lib/autovivification.pm",
+          "sha256": "b2f12387b90d8631d6c3cb9c095dcde1e7223a027c39ef54b0676e3545c6c284",
+          "source": "lib/autovivification.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "libwww-perl-6.58",
+      "distribution": "libwww-perl",
+      "version": "6.58",
+      "archive": "libwww-perl-6.58.tar.gz",
+      "root": "libwww-perl-6.58",
+      "url": "https://cpan.metacpan.org/authors/id/O/OA/OALDERS/libwww-perl-6.58.tar.gz",
+      "bytes": 178862,
+      "sha256": "f881f52775073a685cefd6aed4f8c53d0c17a808d4dc6e2231530426b997edbd",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/OALDERS/libwww-perl-6.58",
+      "metadataResponseSha256": "fc65781989e940a5e18304605ab764a6276fd45ccf9e112490eb0f85c819f82a",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "LWP",
+          "version": "6.58",
+          "payload": "par/lib/LWP.pm",
+          "sha256": "5008ea5be3a84d53e885f4c5b28c0162482aca0090e646581ee6c33165ab4b4e",
+          "source": "lib/LWP.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "namespace-autoclean-0.29",
+      "distribution": "namespace-autoclean",
+      "version": "0.29",
+      "archive": "namespace-autoclean-0.29.tar.gz",
+      "root": "namespace-autoclean-0.29",
+      "url": "https://cpan.metacpan.org/authors/id/E/ET/ETHER/namespace-autoclean-0.29.tar.gz",
+      "bytes": 38791,
+      "sha256": "45ebd8e64a54a86f88d8e01ae55212967c8aa8fed57e814085def7608ac65804",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/ETHER/namespace-autoclean-0.29",
+      "metadataResponseSha256": "fbc73a7a699a649d10a21f3da6d3d7bc5a54429e42c8cbb7f45ab99b0fc6ec9d",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "namespace::autoclean",
+          "version": "0.29",
+          "payload": "par/lib/namespace/autoclean.pm",
+          "sha256": "46450efc830c1e8cbc33361aec98158d6fa4d7dcac76c773c5b571346b00d6b9",
+          "source": "lib/namespace/autoclean.pm",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "id": "namespace-clean-0.27",
+      "distribution": "namespace-clean",
+      "version": "0.27",
+      "archive": "namespace-clean-0.27.tar.gz",
+      "root": "namespace-clean-0.27",
+      "url": "https://cpan.metacpan.org/authors/id/R/RI/RIBASUSHI/namespace-clean-0.27.tar.gz",
+      "bytes": 17801,
+      "sha256": "8a10a83c3e183dc78f9e7b7aa4d09b47c11fb4e7d3a33b9a12912fd22e31af9d",
+      "metadataUrl": "https://fastapi.metacpan.org/v1/release/RIBASUSHI/namespace-clean-0.27",
+      "metadataResponseSha256": "98b77d3abc0f699ee3e913c186a92bb38f19db301d726f4f7c685169f0bcb310",
+      "declaredLicense": ["perl_5"],
+      "anchors": [
+        {
+          "module": "namespace::clean",
+          "version": "0.27",
+          "payload": "par/lib/namespace/clean.pm",
+          "sha256": "b692d61e8395129e32c37f0fafc57e6963945573afd9765c6527c31774ec7216",
+          "source": "lib/namespace/clean.pm",
+          "transformation": "none"
+        }
+      ]
+    }
+  ]
+}

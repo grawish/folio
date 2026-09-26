@@ -94,7 +94,27 @@ python3 tests/biber-build-evidence.py
 
 `resources/biber-build-provenance.lock.json` pins the inputs. `resources/biber-foundation-releases.json` retains the reviewed identity, checksum, download URL and license fields from official MetaCPAN release responses, with each response's source URL and original digest. Foundation downloads use those exact pinned CPAN archives; `--offline` requires their existing cache. Selected evidence, original foundation archives and the hashed inventory go to ignored `artifacts/license-materials/biber-build/`. A failed run records `incomplete-inventory.json`; a retained older successful inventory does not describe the failed attempt. Eight offline controls and a byte-identical replay of all 35 retained output files pass; see [verification](releases/biber-build-verification.json).
 
-The PAR metadata declares its aggregate license as `unknown`; that is not a license conclusion for every embedded dependency. Mapping the additional CPAN/native libraries to exact sources and notices, retaining complete Biber Artistic 2.0 materials, reviewing redistribution obligations, and producing the final app SBOM remain open. This collector does not publish or change an installer or the historical compiler resource identity.
+The PAR metadata declares its aggregate license as `unknown`; that is not a license conclusion for every embedded dependency. The CPAN collector below adds matching dependency sources and the full Biber Artistic 2.0 text. Generated/native-library evidence, redistribution review and the final app SBOM remain open. Neither collector publishes or changes an installer or the historical compiler resource identity.
+
+## Collect Biber CPAN source and notice materials
+
+`python3 scripts/collect-biber-cpan-materials.py` retains 123 original CPAN source archives (30,004,935 bytes) and 727 selected notice, metadata, build and module files. The source releases are pinned in `resources/biber-cpan-sources.lock.json`. Each has at least one reviewed module whose complete bytes match the embedded Biber payload, either unchanged or after an exact documented PAR::Packer replacement. The tool preserves original source archives and source notices; it never executes Perl, builds upstream code or extracts archive paths.
+
+The CPAN sources account for 2,756 distinct payload files. Together with the earlier Perl/PAR and Biber sources, the collector maps 3,056 of the 3,932 distinct ZIP/loader files. Four matches use the original packager's compatibility changes to `Tk.pm`, `Tk/Widget.pm`, `AutoLoader.pm` and `Pod/Usage.pm`. The collector parses only the reviewed literal string replacements from the checksum-verified `PAR::Filter::PatchContent` source, then requires an exact match of the entire resulting file. It rejects executable expressions and unsupported patch forms.
+
+The 876 unmatched files remain in a separate inventory. They include 541 generated Unicode tables, other generated Perl/packager files, autosplit output, compiled Perl modules and native libraries. This is a source-matching inventory, not a claim that all dependencies have been audited or that every source file contributes executable code. Matching the source of a Perl module does not establish the corresponding native library's build inputs.
+
+Forty-four source distributions have no file with a recognized standalone notice name. Their root READMEs and anchor modules are retained so the embedded POD copyright/license grants can be reviewed. The collector also retains Biber's original README and `Build.PL`, plus the complete unmodified Artistic 2.0 text from a pinned SPDX license-list commit. The README names Artistic 2.0 while `Build.PL` declares `perl`; both original declarations are preserved for redistribution review. Do not replace upstream terms with Folio's noncommercial license.
+
+After preparing the runtime and Biber release sources as above:
+
+```sh
+python3 scripts/collect-biber-cpan-materials.py
+python3 scripts/collect-biber-cpan-materials.py --offline
+python3 tests/biber-cpan-materials.py
+```
+
+Downloads are limited to the reviewed CPAN archives and pinned SPDX text. Sizes, digests and original MetaCPAN release metadata URLs are recorded in the lock. A module/version lookup is only a discovery hint: the audit rejected a mismatching MIME::Charset candidate and retained the exact 1.012.2 source after byte comparison. Output goes to ignored `artifacts/license-materials/biber-cpan/`, including the full archives, selected original materials, the packager patch source and detailed match/unmatched inventories. Eight offline controls pass, and all 856 retained output files are byte-identical on a cached replay. See [verification](releases/biber-cpan-verification.json). Generated artifacts are not automatically published or bundled into Folio; final license obligations and the exact-app SBOM still require completion.
 
 ## Collect native build-port sources and notices
 
