@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "runId": 36231643343,
+  "url": "https://github.com/grawish/folio/actions/runs/36231643343",
+  "sourceCommit": "274ff95b73c51ed501355a3012fa28a3cf21d289",
+  "conclusion": "success",
+  "finishedAt": "2026-09-26T09:22:34Z",
+  "scope": "Unsigned guided-save-recovery milestone, including support export, local fonts and all thirteen native suites. No app binary was published. Later pack work is outside this qualification.",
+  "artifactVerification": {
+    "checkedAt": "2026-09-26T09:22:28.007Z",
+    "architecture": "arm64",
+    "comparedOutputFiles": 37,
+    "runtimeManifestMatches": true,
+    "appBytes": 678763487,
+    "hashes": [
+      {
+        "path": "Folio-0.1.0-mac-arm64.dmg",
+        "bytes": 302707790,
+        "sha256": "3ac8780e6b886bd29f1895cd42ae8cbd9879bbc6d77e92e6434ce3cc5ef2f449"
+      },
+      {
+        "path": "mac-arm64/Folio.app/Contents/Resources/app.asar",
+        "bytes": 5116271,
+        "sha256": "dd9b1edd74789abe7b5f2da19fb6a1c8139f036304170f5685840ec01bb2ccf5"
+      }
+    ],
+    "nativeTestsPassed": true
+  },
+  "nativeSuites": [
+    {
+      "suite": "import-recovery",
+      "scriptSha256": "e97265e34ad4331f733de7bc3bd681f9bb7eaddb9286746c1a429ec95f31b300",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "import",
+      "scriptSha256": "ba04eff272c24d4bc15723c9fcf55db50931336600d466979e8dd874e8fd51d7",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "pdf-viewer",
+      "scriptSha256": "b34f9cedfa00a21bc378736390ba6b2f5ac35f3407c1123f44a6f4cf546165eb",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "pdf-lifecycle",
+      "scriptSha256": "a93fc02dbbcee98461c7558cdea04412833f3da02752e793fe534e6114955d6a",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "migration",
+      "scriptSha256": "ce129cb15803f063cde705cef81cf5510f61e29602e2774f969a08a93675248f",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "chat",
+      "scriptSha256": "d74bd0935448fbba3b801e03a8ac857e68dc9a2342ecff851984110b5887afa8",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "runtime",
+      "scriptSha256": "4201416b63e2f5810d750ad5cea37fb128088ca14053dcad2d87c5d4e9ab4957",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "workspace",
+      "scriptSha256": "8c4cd25edf748a0103fd9e22e32cd7721f782f723ff6324ef6167aed74a4ebd3",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "diagnostics",
+      "scriptSha256": "22c01d5d6b64efcc7ef0b0039a5114bb21cc392db7c50edf159753b01ae0e9cb",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "fonts",
+      "scriptSha256": "33a1fd7e4b81190383277b57456a984349df7f05c4df4636111cb0cedc6b7e24",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "support",
+      "scriptSha256": "048db2314ded7e46201c1be514defee7a201749877a65ca6576ecaa472bf657e",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "save-recovery",
+      "scriptSha256": "b9f6842ce5c452b07ff3ff10902acdf6ca613638970e8ec0b6ee95b74649b991",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "packaged",
+      "scriptSha256": "5b24667a35c008b6e489a0af1d82f1e149acdfd336c2f7c9a160b394e0412f26",
+      "passed": true,
+      "unchanged": true
+    }
+  ]
+}

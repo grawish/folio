@@ -12,7 +12,7 @@ The [source preview release](https://github.com/grawish/folio/releases/tag/sourc
 
 ## Development preview
 
-The source is available now. Folio is under active development; a signed, notarized installer and automatic updates are not available yet. The current source passes 158 unit/protocol tests. The earlier import-recovery build passed nine packaged native workflow suites on the development Mac; newer compiler-help, local-font and support-export changes have separate evidence in the [release audit](docs/RELEASE_GAP_AUDIT.md). These results do not establish compatibility with every macOS version.
+The source is available now. Folio is under active development; a signed, notarized installer and automatic updates are not available yet. The current source passes 173 unit/protocol tests. The hosted guided-recovery candidate passed all 13 native workflow suites, including compiler help, local fonts and support export; see the [release audit](docs/RELEASE_GAP_AUDIT.md). These results do not establish compatibility with every macOS version.
 
 Windows, Linux and Intel Macs are outside this release's scope. Read the [remaining release requirements](docs/RELEASE_GAP_AUDIT.md) before relying on the preview for important documents.
 
@@ -55,7 +55,7 @@ npm run build
 npm start
 ```
 
-The [release pipeline](docs/RELEASE_PIPELINE.md) covers source checks, source previews, website deployment and Mac candidate qualification. Hosted source checks and website deployment have passed. The hosted Mac baseline at c861ead passed all nine native suites and artifact verification after correcting a window-size assumption in the test. The later 22829fd milestone passed all eleven hosted suites, including compiler help and local fonts. Support-export and guided-save recovery have separate feature verification; the full production-release requirements remain open. See [contributing](CONTRIBUTING.md) for native integration tests and packaging, and [architecture](docs/ARCHITECTURE.md) for the code map.
+The [release pipeline](docs/RELEASE_PIPELINE.md) covers source checks, source previews, website deployment and Mac candidate qualification. Hosted source checks and website deployment have passed. The hosted Mac baseline at c861ead passed all nine native suites and artifact verification after correcting a window-size assumption in the test. The later 22829fd milestone passed all eleven hosted suites, including compiler help and local fonts. The guided-recovery milestone at 274ff95 passed all thirteen suites and artifact verification, including support export. The new pack-catalog/download core has protocol tests but is not connected to the desktop app yet; the full production-release requirements remain open. See [contributing](CONTRIBUTING.md) for native integration tests and packaging, and [architecture](docs/ARCHITECTURE.md) for the code map.
 
 ## Learn and contribute
 

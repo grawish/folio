@@ -50,6 +50,6 @@ Preparation now exercises both TeX and Biber before making the managed runtime a
 
 ## Still required by the original plan
 
-An explicit included-compiler migration with a backup and visible before/after PDFs is now implemented; see `COMPILER_MIGRATION.md`. A signed pack catalog, offline pack import and resumable online repair; signing-aware manifests; bounded retention across all historical identities; clean-machine, power-loss and reference-device performance acceptance remain open. The current local repair does not implement these requirements or fetch packages during compilation.
+An explicit included-compiler migration with a backup and visible before/after PDFs is now implemented; see `COMPILER_MIGRATION.md`. The signed catalog and resumable transfer core now has separate [protocol tests](MANAGED_PACKS.md), but no pack installation or Settings workflow is available yet. Catalog publication, offline pack import and integrated online repair; signing-aware manifests; bounded retention across all historical identities; clean-machine, power-loss and reference-device performance acceptance remain open. The current local repair does not implement these requirements or fetch packages during compilation.
 
 Pins currently identify one OS/CPU build. Opening a project on a different platform preserves that pin and refuses compilation rather than guessing an equivalent compiler. Existing project files remain editable. Other operating systems and CPU targets are outside the user’s current Apple silicon Mac scope.
