@@ -13,7 +13,7 @@ Folio includes six original resume layouts. Open **Templates**, choose **A4** or
 
 All twelve samples are one page. Single-column sources can continue onto later pages as content grows. Two Column uses two nonbreaking columns and is intended for a concise one-page resume; shorten content or switch layouts if a column becomes too long. Its PDF content stream puts the full left column before the right column. Other readers and hiring systems may interpret columns differently. No template has a guaranteed ATS score or universal compatibility claim.
 
-Names, contact details, employers and achievements are examples. Replace them with your own facts. The template fonts are included in the runtime; no operating-system font installation is needed. Arbitrary custom fonts and a guided font-import workflow remain outside the currently implemented picker.
+Names, contact details, employers and achievements are examples. Replace them with your own facts. The template fonts are included in the runtime; no operating-system font installation is needed. The template picker lists the included fonts. For your own fonts, use the separate [guided local-font workflow](LOCAL_FONTS.md).
 
 ## Change an existing resume's paper
 
@@ -23,7 +23,7 @@ Imported sources keep their own paper and font declarations. Folio does not rewr
 
 ## Origin and persistence
 
-New projects record a template ID and origin version (`1`) in `resume.project.json`. Source, origin and version survive Save, Save As, recovery, version snapshots, source ZIP export and ZIP import. Existing projects without this metadata continue to work; their origin version remains unknown. This records where a project began, not a promise that edited source still matches the original layout. It is separate from planned per-project compiler/resource pinning.
+New projects record a template ID and origin version (`1`) in `resume.project.json`. Source, origin and version survive Save, Save As, recovery, version snapshots, source ZIP export and ZIP import. Existing projects without this metadata continue to work; their origin version remains unknown. This records where a project began, not a promise that edited source still matches the original layout. It is separate from the exact compiler/resource pin saved with each project.
 
 ## Reproducible corpus
 
@@ -50,4 +50,6 @@ The unit gate rejects stale source/image hashes. Native desktop tests create eve
 
 The 82 unit/protocol tests, 10 compiler integration tests and runtime integrity/offline verification passed on this Apple silicon Mac. The first native twelve-variant run passed in `test-results/templates-CmgiI8/`; visual review then found nested scrolling and compressed cards. Both were corrected, with checks for card-content bounds and fixed footer placement. The final development test passed in `test-results/templates-fpYGsY/`. The compact workflow suite passed in `test-results/compact-hCHOK8/` after updating two obsolete editor-label expectations. Final package evidence is recorded in the release README and `design-qa.md`.
 
-This milestone implements the requested styles, paper sizes, real thumbnails, font descriptions and sample corpus. Native cross-platform acceptance, controlled cross-platform rendered-image comparisons, broader custom-font support and production distribution requirements remain open in `RELEASE_GAP_AUDIT.md`.
+This milestone implements the requested styles, paper sizes, real thumbnails, font descriptions and sample corpus. The Apple silicon [rendered-image gate](TEMPLATE_VISUAL_CHECKS.md) now compares all twelve fresh PDF renders against the reviewed previews. Broader supported-macOS, font compatibility and production distribution requirements remain open in `RELEASE_GAP_AUDIT.md`; other desktop platforms are outside this goal.
+
+For a read-only visual regression check, run `npm run test:template-images`. It writes current renders, numeric results and an HTML comparison under `test-results/`; it never overwrites the reviewed picker images. See [tool setup, tolerances and baseline review](TEMPLATE_VISUAL_CHECKS.md).

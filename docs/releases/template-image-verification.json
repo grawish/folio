@@ -1,0 +1,503 @@
+{
+  "schemaVersion": 1,
+  "variants": [
+    {
+      "name": "classic-a4",
+      "sourceHash": "1f0b21921a6ca62d39a3424719885c56e5dd6c0d332ad615043671f3e6a4dcd0",
+      "pdfHash": "fe4dd00328e0310be3a6fe83b9a5475604fa870e582c2b71222fca477bb777c6",
+      "pageCount": 1,
+      "width": 595.28,
+      "height": 841.89,
+      "textBounds": [
+        51.840089999999975,
+        48.80907528199998,
+        543.4498444416,
+        701.799723072
+      ],
+      "fonts": [
+        "/IHAIZV+LMRoman12-Bold",
+        "/BZIVMZ+LMRoman12-Regular",
+        "/IXFAWU+LMRoman10-Regular",
+        "/TQTHRL+LMMathSymbols10-Regular",
+        "/YEUUOC+LMRoman10-Bold",
+        "/AKHCZK+LMRoman10-Italic",
+        "/VDVGTR+LMRoman10-Regular"
+      ],
+      "textChecks": true,
+      "linksChecked": 2,
+      "previewHash": "38f95f3b25a51669105de7efdba08fe5b2633e7f7fde5ee15c3057862551fee3",
+      "visualComparison": {
+        "passed": true,
+        "width": 849,
+        "height": 1200,
+        "inkPixels": 51353,
+        "changedPixels": 0,
+        "changedInkFraction": 0.0,
+        "meanInkError": 0.0,
+        "tolerances": {
+          "maximumIgnoredChannelChange": 12,
+          "maximumChangedInkFraction": 0.001,
+          "maximumMeanInkError": 2.0
+        }
+      },
+      "referenceHash": "38f95f3b25a51669105de7efdba08fe5b2633e7f7fde5ee15c3057862551fee3"
+    },
+    {
+      "name": "classic-letter",
+      "sourceHash": "7eed1e55103a383d1635a5e64cf932258ec3177e4f95aeb8440b230ca7c2a0f6",
+      "pdfHash": "47d2e12f9eeaec8d93c7b4fd3c2c3bbfabc80ee8f2a7f5a3b5457d50c115b07f",
+      "pageCount": 1,
+      "width": 612.0,
+      "height": 792.0,
+      "textBounds": [
+        51.840089999999975,
+        48.80883528200002,
+        560.171294528,
+        674.7010830720001
+      ],
+      "fonts": [
+        "/IHAIZV+LMRoman12-Bold",
+        "/BZIVMZ+LMRoman12-Regular",
+        "/IXFAWU+LMRoman10-Regular",
+        "/TQTHRL+LMMathSymbols10-Regular",
+        "/YEUUOC+LMRoman10-Bold",
+        "/AKHCZK+LMRoman10-Italic",
+        "/VDVGTR+LMRoman10-Regular"
+      ],
+      "textChecks": true,
+      "linksChecked": 2,
+      "previewHash": "5e3ef1114cd3c728118e01c4161722b5c2a3a5e27a058f43f6bb5b825023c8ee",
+      "visualComparison": {
+        "passed": true,
+        "width": 928,
+        "height": 1200,
+        "inkPixels": 59679,
+        "changedPixels": 0,
+        "changedInkFraction": 0.0,
+        "meanInkError": 0.0,
+        "tolerances": {
+          "maximumIgnoredChannelChange": 12,
+          "maximumChangedInkFraction": 0.001,
+          "maximumMeanInkError": 2.0
+        }
+      },
+      "referenceHash": "5e3ef1114cd3c728118e01c4161722b5c2a3a5e27a058f43f6bb5b825023c8ee"
+    },
+    {
+      "name": "modern-a4",
+      "sourceHash": "224fbb81d2bb8c2e082a6d42e0c082714b26e2ffce28b71cf88186238e00feda",
+      "pdfHash": "ecae1266320738f8468287e0a18813b7c7413254c345bba61f6f1069b309cdc8",
+      "pageCount": 1,
+      "width": 595.28,
+      "height": 841.89,
+      "textBounds": [
+        56.159909999999996,
+        53.395165281999994,
+        539.1108391679995,
+        603.3262121599998
+      ],
+      "fonts": [
+        "/IHAIZV+LMSans10-Bold",
+        "/BZIVMZ+LMSans12-Regular",
+        "/IXFAWU+LMSans10-Regular",
+        "/TQTHRL+LMSans10-Oblique",
+        "/YEUUOC+LMSans10-Regular"
+      ],
+      "textChecks": true,
+      "linksChecked": 2,
+      "previewHash": "bd6a55401f8642fcf375c18fe952d7ff2185635c7fa4ece24c7be3e157515b41",
+      "visualComparison": {
+        "passed": true,
+        "width": 849,
+        "height": 1200,
+        "inkPixels": 34467,
+        "changedPixels": 0,
+        "changedInkFraction": 0.0,
+        "meanInkError": 0.0,
+        "tolerances": {
+          "maximumIgnoredChannelChange": 12,
+          "maximumChangedInkFraction": 0.001,
+          "maximumMeanInkError": 2.0
+        }
+      },
+      "referenceHash": "bd6a55401f8642fcf375c18fe952d7ff2185635c7fa4ece24c7be3e157515b41"
+    },
+    {
+      "name": "modern-letter",
+      "sourceHash": "2e733c17ef679556883a4cdf89889859d90964ba490df5a1ea23cf9053a42403",
+      "pdfHash": "9442f2db4c1503145ef6c8c1d0b5603fb4c907ba66174880cec48cfe238809e2",
+      "pageCount": 1,
+      "width": 612.0,
+      "height": 792.0,
+      "textBounds": [
+        56.159909999999996,
+        53.39492528200003,
+        555.83361824,
+        603.32597216
+      ],
+      "fonts": [
+        "/IHAIZV+LMSans10-Bold",
+        "/BZIVMZ+LMSans12-Regular",
+        "/IXFAWU+LMSans10-Regular",
+        "/TQTHRL+LMSans10-Oblique",
+        "/YEUUOC+LMSans10-Regular"
+      ],
+      "textChecks": true,
+      "linksChecked": 2,
+      "previewHash": "99062be87eabf30184d937ea0ceef3768387beb81cd850110ce335819d5474a0",
+      "visualComparison": {
+        "passed": true,
+        "width": 928,
+        "height": 1200,
+        "inkPixels": 38073,
+        "changedPixels": 0,
+        "changedInkFraction": 0.0,
+        "meanInkError": 0.0,
+        "tolerances": {
+          "maximumIgnoredChannelChange": 12,
+          "maximumChangedInkFraction": 0.001,
+          "maximumMeanInkError": 2.0
+        }
+      },
+      "referenceHash": "99062be87eabf30184d937ea0ceef3768387beb81cd850110ce335819d5474a0"
+    },
+    {
+      "name": "academic-a4",
+      "sourceHash": "1d0ea033bb9265e7d51c677e4b256c16f16168ec461bcba004dd7eed545d57ca",
+      "pdfHash": "5149fb350c57b5a85dde58ecec7923aa409f9e7d6d3af3faac65909f8118ce8c",
+      "pageCount": 1,
+      "width": 595.28,
+      "height": 841.89,
+      "textBounds": [
+        57.60021999999998,
+        55.495154553999896,
+        537.6917283391997,
+        667.656463072
+      ],
+      "fonts": [
+        "/IHAIZV+LMRoman12-Bold",
+        "/BZIVMZ+LMRoman10-Regular",
+        "/IXFAWU+LMMathSymbols10-Regular",
+        "/TQTHRL+LMRomanCaps10-Regular",
+        "/YEUUOC+LMRoman10-Bold",
+        "/AKHCZK+LMRoman10-Regular"
+      ],
+      "textChecks": true,
+      "linksChecked": 1,
+      "previewHash": "e149b33dc14f9bb99469b5dc9b39cf0f698de720894af8f9ef2bd74d31f1115d",
+      "visualComparison": {
+        "passed": true,
+        "width": 849,
+        "height": 1200,
+        "inkPixels": 45056,
+        "changedPixels": 0,
+        "changedInkFraction": 0.0,
+        "meanInkError": 0.0,
+        "tolerances": {
+          "maximumIgnoredChannelChange": 12,
+          "maximumChangedInkFraction": 0.001,
+          "maximumMeanInkError": 2.0
+        }
+      },
+      "referenceHash": "e149b33dc14f9bb99469b5dc9b39cf0f698de720894af8f9ef2bd74d31f1115d"
+    },
+    {
+      "name": "academic-letter",
+      "sourceHash": "ac5d89d91ef33898a00f1140828b2fe0875ef1eeea1596559c37dbd4f63a612b",
+      "pdfHash": "df323d5c9fda5089af555e17b950075197f2132422794b57490a0b03496a6248",
+      "pageCount": 1,
+      "width": 612.0,
+      "height": 792.0,
+      "textBounds": [
+        57.60021999999998,
+        55.494914553999934,
+        554.4131784255997,
+        667.656223072
+      ],
+      "fonts": [
+        "/IHAIZV+LMRoman12-Bold",
+        "/BZIVMZ+LMRoman10-Regular",
+        "/IXFAWU+LMMathSymbols10-Regular",
+        "/TQTHRL+LMRomanCaps10-Regular",
+        "/YEUUOC+LMRoman10-Bold",
+        "/AKHCZK+LMRoman10-Regular"
+      ],
+      "textChecks": true,
+      "linksChecked": 1,
+      "previewHash": "1fb69ee0e825acb916781022f7bb5e65576f7911b7fb08d34009aa21b60964e0",
+      "visualComparison": {
+        "passed": true,
+        "width": 928,
+        "height": 1200,
+        "inkPixels": 52757,
+        "changedPixels": 0,
+        "changedInkFraction": 0.0,
+        "meanInkError": 0.0,
+        "tolerances": {
+          "maximumIgnoredChannelChange": 12,
+          "maximumChangedInkFraction": 0.001,
+          "maximumMeanInkError": 2.0
+        }
+      },
+      "referenceHash": "1fb69ee0e825acb916781022f7bb5e65576f7911b7fb08d34009aa21b60964e0"
+    },
+    {
+      "name": "minimal-a4",
+      "sourceHash": "8165dc7109ce1044048a384df189ab179e1ef8260e3a03cc980d13e4829174dc",
+      "pdfHash": "9ce4c013eec0b3a0970ac0fc3f19da6c5e10f88ab9ef7af203568766379363c7",
+      "pageCount": 1,
+      "width": 595.28,
+      "height": 841.89,
+      "textBounds": [
+        57.60021999999998,
+        55.495154553999896,
+        537.6808192512001,
+        615.347833072
+      ],
+      "fonts": [
+        "/IHAIZV+LMRoman12-Bold",
+        "/BZIVMZ+LMRoman10-Regular",
+        "/IXFAWU+LMRoman10-Bold",
+        "/TQTHRL+LMRoman10-Regular"
+      ],
+      "textChecks": true,
+      "linksChecked": 2,
+      "previewHash": "9bb702aae1e721255a0632010a22a82bcb283a49b16b6ce8bfbe74a99ef48353",
+      "visualComparison": {
+        "passed": true,
+        "width": 849,
+        "height": 1200,
+        "inkPixels": 36340,
+        "changedPixels": 0,
+        "changedInkFraction": 0.0,
+        "meanInkError": 0.0,
+        "tolerances": {
+          "maximumIgnoredChannelChange": 12,
+          "maximumChangedInkFraction": 0.001,
+          "maximumMeanInkError": 2.0
+        }
+      },
+      "referenceHash": "9bb702aae1e721255a0632010a22a82bcb283a49b16b6ce8bfbe74a99ef48353"
+    },
+    {
+      "name": "minimal-letter",
+      "sourceHash": "12d108dd163491a63cb90c30c63a5721afbd1597f1901bea742dd9f0146ae406",
+      "pdfHash": "97922193cd602ba2de63bf1ab5700ccb77b9a536cf46b3b0ae433a17e360dd86",
+      "pageCount": 1,
+      "width": 612.0,
+      "height": 792.0,
+      "textBounds": [
+        57.60021999999998,
+        55.494914553999934,
+        554.4055420640001,
+        601.798393072
+      ],
+      "fonts": [
+        "/IHAIZV+LMRoman12-Bold",
+        "/BZIVMZ+LMRoman10-Regular",
+        "/IXFAWU+LMRoman10-Bold",
+        "/TQTHRL+LMRoman10-Regular"
+      ],
+      "textChecks": true,
+      "linksChecked": 2,
+      "previewHash": "10bfd6c692eac97a9e25bc2361d0113d43584069a05c3af4fbef64ad78cfb368",
+      "visualComparison": {
+        "passed": true,
+        "width": 928,
+        "height": 1200,
+        "inkPixels": 42828,
+        "changedPixels": 0,
+        "changedInkFraction": 0.0,
+        "meanInkError": 0.0,
+        "tolerances": {
+          "maximumIgnoredChannelChange": 12,
+          "maximumChangedInkFraction": 0.001,
+          "maximumMeanInkError": 2.0
+        }
+      },
+      "referenceHash": "10bfd6c692eac97a9e25bc2361d0113d43584069a05c3af4fbef64ad78cfb368"
+    },
+    {
+      "name": "compact-technical-a4",
+      "sourceHash": "53117105f8cda5ceea6f09efc56b773f72e92a001fddc0337249ecc80163f75e",
+      "pdfHash": "4ed174de8f6f0a10f940de9bdfab9ecfbc3a2c8f0e6fa468335a317c217f5ed6",
+      "pageCount": 1,
+      "width": 595.28,
+      "height": 841.89,
+      "textBounds": [
+        46.799559999999985,
+        44.87942455399991,
+        548.481830104,
+        628.2267621599999
+      ],
+      "fonts": [
+        "/IHAIZV+LMSans10-Bold",
+        "/BZIVMZ+LMSans12-Regular",
+        "/IXFAWU+LMSans10-Regular",
+        "/TQTHRL+LMSans10-Regular"
+      ],
+      "textChecks": true,
+      "linksChecked": 2,
+      "previewHash": "5878085cef410ee1b1463c0b71de8ebb48fc845899aed90d7b52c16ee577fc51",
+      "visualComparison": {
+        "passed": true,
+        "width": 849,
+        "height": 1200,
+        "inkPixels": 57037,
+        "changedPixels": 0,
+        "changedInkFraction": 0.0,
+        "meanInkError": 0.0,
+        "tolerances": {
+          "maximumIgnoredChannelChange": 12,
+          "maximumChangedInkFraction": 0.001,
+          "maximumMeanInkError": 2.0
+        }
+      },
+      "referenceHash": "5878085cef410ee1b1463c0b71de8ebb48fc845899aed90d7b52c16ee577fc51"
+    },
+    {
+      "name": "compact-technical-letter",
+      "sourceHash": "5ccacb40cacab8f93f1e74b25a3e33d24d25eec189be5e31f607c900263e0795",
+      "pdfHash": "a0fffc89c1b872bd8840d1ff245908c3578775065ed77615476bc71b1cae3616",
+      "pageCount": 1,
+      "width": 612.0,
+      "height": 792.0,
+      "textBounds": [
+        46.799559999999985,
+        44.87918455399995,
+        565.2062401039999,
+        616.2713521599999
+      ],
+      "fonts": [
+        "/IHAIZV+LMSans10-Bold",
+        "/BZIVMZ+LMSans12-Regular",
+        "/IXFAWU+LMSans10-Regular",
+        "/TQTHRL+LMSans10-Regular"
+      ],
+      "textChecks": true,
+      "linksChecked": 2,
+      "previewHash": "9fcc6a929547407948a5a23fe9d481bb197f20e195c7bbae2af125fb75e34a3a",
+      "visualComparison": {
+        "passed": true,
+        "width": 928,
+        "height": 1200,
+        "inkPixels": 62668,
+        "changedPixels": 0,
+        "changedInkFraction": 0.0,
+        "meanInkError": 0.0,
+        "tolerances": {
+          "maximumIgnoredChannelChange": 12,
+          "maximumChangedInkFraction": 0.001,
+          "maximumMeanInkError": 2.0
+        }
+      },
+      "referenceHash": "9fcc6a929547407948a5a23fe9d481bb197f20e195c7bbae2af125fb75e34a3a"
+    },
+    {
+      "name": "two-column-a4",
+      "sourceHash": "ec39a757f5862eaa7d0d32dfb4f66123a3af9ee9048ff06b568e55330f49c4cd",
+      "pdfHash": "a0e78d6018a5584a9be29db26b8ee8104317157fa4b68a744fd98b127a585f41",
+      "pageCount": 1,
+      "width": 595.28,
+      "height": 841.89,
+      "textBounds": [
+        50.399789999999996,
+        47.635045281999965,
+        544.874383784,
+        509.49631215999995
+      ],
+      "fonts": [
+        "/IHAIZV+LMSans10-Bold",
+        "/BZIVMZ+LMSans12-Regular",
+        "/IXFAWU+LMSans10-Regular",
+        "/TQTHRL+LMSans10-Regular"
+      ],
+      "textChecks": true,
+      "linksChecked": 2,
+      "previewHash": "b7cca2c36d149da1af024d1095801051817084c536724f2f5c7d68f75e3cc348",
+      "visualComparison": {
+        "passed": true,
+        "width": 849,
+        "height": 1200,
+        "inkPixels": 35188,
+        "changedPixels": 0,
+        "changedInkFraction": 0.0,
+        "meanInkError": 0.0,
+        "tolerances": {
+          "maximumIgnoredChannelChange": 12,
+          "maximumChangedInkFraction": 0.001,
+          "maximumMeanInkError": 2.0
+        }
+      },
+      "referenceHash": "b7cca2c36d149da1af024d1095801051817084c536724f2f5c7d68f75e3cc348"
+    },
+    {
+      "name": "two-column-letter",
+      "sourceHash": "8e579fdac8715c112461336eedbd914f2734e565c7fa56357bb3f5cafa3647fc",
+      "pdfHash": "0abf7de55f05204e4434dc70afe9abcf2ca1a3be9451d0bb9721ff95c919ff2a",
+      "pageCount": 1,
+      "width": 612.0,
+      "height": 792.0,
+      "textBounds": [
+        50.399789999999996,
+        47.634805282,
+        561.600619464,
+        473.63057216
+      ],
+      "fonts": [
+        "/IHAIZV+LMSans10-Bold",
+        "/BZIVMZ+LMSans12-Regular",
+        "/IXFAWU+LMSans10-Regular",
+        "/TQTHRL+LMSans10-Regular"
+      ],
+      "textChecks": true,
+      "linksChecked": 2,
+      "previewHash": "d23fb748c48033f314d40fac502c42953d9003e478ec2360144e55da68c19802",
+      "visualComparison": {
+        "passed": true,
+        "width": 928,
+        "height": 1200,
+        "inkPixels": 39685,
+        "changedPixels": 0,
+        "changedInkFraction": 0.0,
+        "meanInkError": 0.0,
+        "tolerances": {
+          "maximumIgnoredChannelChange": 12,
+          "maximumChangedInkFraction": 0.001,
+          "maximumMeanInkError": 2.0
+        }
+      },
+      "referenceHash": "d23fb748c48033f314d40fac502c42953d9003e478ec2360144e55da68c19802"
+    }
+  ],
+  "provenance": {
+    "platform": "darwin-arm64",
+    "kernel": "27.0.0",
+    "node": "v24.21.0",
+    "runtime": {
+      "version": "0.17.0",
+      "bundle": "folio-core-v1",
+      "biberVersion": "2.17",
+      "resourceCount": 516,
+      "manifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0"
+    },
+    "files": {
+      "electron/core/compiler.ts": "92ef72920d2585a46dd9c49a7af5942d1103e9c787f9ef3f70d54265a55fbf60",
+      "electron/core/runtime.ts": "da0bc73d9042a08af5f7623a252e5f95be36a33313bc6372faed5def6944be1a",
+      "scripts/build-template-corpus.ts": "34e6c95f05b16923190b6bfb545ded05de6fa83c70cc07b195266e6f585a1120",
+      "scripts/check-template-pdfs.py": "b542132094fb5950718388d62a400e2e73ee51799c732216ae1fd34c3d3bb700",
+      "scripts/template_image_diff.py": "df140f37065af4d6ed7b96a316483dc65bb277af085ee84d71a2c676a539684d",
+      "tests/template-image-diff.py": "c1dd8828ab1cdfa732abdb139251d5729f363b3ca64637c65aaaf6c108e7f272"
+    }
+  },
+  "renderer": {
+    "version": "pdftoppm version 26.05.0",
+    "scaleTo": 1200,
+    "pillow": "12.3.0",
+    "pypdf": "6.10.0",
+    "pdfplumber": "0.11.9"
+  },
+  "passed": true,
+  "controls": 7,
+  "scope": "Twelve fresh-cache sandboxed builds on the Apple silicon development Mac compared with previously reviewed template images. All PNG bytes and pixels match; all seven comparison controls pass. Hosted Mac and wider OS acceptance remain separate."
+}

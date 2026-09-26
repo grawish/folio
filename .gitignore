@@ -26,6 +26,7 @@ design-qa.md
 # Generated website and release evidence.
 .site/
 artifacts/
+__pycache__/
 
 # Unused historical branding explorations.
 assets/branding/
