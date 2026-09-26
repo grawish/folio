@@ -38,6 +38,7 @@
     "test:pdf-viewer": "npm run build && node scripts/test-pdf-viewer.mjs",
     "test:runtime": "npm run build && node scripts/test-runtime.mjs",
     "test:packs": "npm run build && node --import tsx scripts/test-packs.mjs",
+    "test:pack-catalog": "npm run build && node scripts/test-pack-catalog.mjs",
     "templates:build": "node --import tsx scripts/build-template-corpus.ts",
     "test:compact": "npm run build && node scripts/test-compact.mjs && node scripts/test-compact-states.mjs",
     "runtime:prepare": "node scripts/prepare-runtime.mjs",

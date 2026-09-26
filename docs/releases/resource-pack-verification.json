@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "release": "https://github.com/grawish/folio/releases/tag/resource-packs-v1",
+  "publisherSourceCommit": "ce62ce2b2b8b3a39a1c497a69f561034d585b849",
+  "sourceChecks": "https://github.com/grawish/folio/actions/runs/36239030309",
+  "unitTests": 198,
+  "publishedAssets": 13,
+  "offlineCorpus": {
+    "passed": true,
+    "results": [
+      {
+        "id": "folio-multirow-2.9-v1",
+        "artifact": {
+          "url": "https://github.com/grawish/folio/releases/download/resource-packs-v1/Folio-multirow-2.9-v1.foliopack",
+          "bytes": 2259484,
+          "sha256": "b11d22b915fba8f7a4efaa82d900912341cc2af1a05cd2dcee298ca48a4bbbfe"
+        },
+        "base": {
+          "engine": "tectonic",
+          "version": "0.17.0",
+          "bundle": "folio-core-v1",
+          "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+          "platform": "darwin-arm64",
+          "biberVersion": "2.17"
+        },
+        "target": {
+          "engine": "tectonic",
+          "version": "0.17.0",
+          "bundle": "folio-multirow-2.9-v1",
+          "id": "f08d496354bb88e604ca8c2394935f8bf2e842a021d1b54b02ff210344a1d670",
+          "platform": "darwin-arm64",
+          "biberVersion": "2.17"
+        },
+        "offlineCompile": true,
+        "baseUnchanged": true,
+        "corpus": [
+          {
+            "size": 10,
+            "paper": "a4paper",
+            "pdfBytes": 8790,
+            "passed": true
+          },
+          {
+            "size": 10,
+            "paper": "letterpaper",
+            "pdfBytes": 8784,
+            "passed": true
+          },
+          {
+            "size": 11,
+            "paper": "a4paper",
+            "pdfBytes": 8791,
+            "passed": true
+          },
+          {
+            "size": 11,
+            "paper": "letterpaper",
+            "pdfBytes": 8786,
+            "passed": true
+          },
+          {
+            "size": 12,
+            "paper": "a4paper",
+            "pdfBytes": 8832,
+            "passed": true
+          },
+          {
+            "size": 12,
+            "paper": "letterpaper",
+            "pdfBytes": 8828,
+            "passed": true
+          }
+        ]
+      }
+    ],
+    "scope": "Actual publisher signature, real native core and sandboxed offline compiler; source artifact, not packaged UI acceptance."
+  },
+  "httpsTransfer": {
+    "passed": true,
+    "catalogSequence": 1,
+    "catalogSha256": "ea4256f1b83a319f7ed7c110579400c148d97d6a685b287bd0ce14136aec2795",
+    "artifact": {
+      "url": "https://github.com/grawish/folio/releases/download/resource-packs-v1/Folio-multirow-2.9-v1.foliopack",
+      "sha256": "b11d22b915fba8f7a4efaa82d900912341cc2af1a05cd2dcee298ca48a4bbbfe",
+      "bytes": 2259484
+    },
+    "cancelledAt": 32768,
+    "requests": [
+      {
+        "host": "github.com",
+        "range": null,
+        "status": 302,
+        "contentRange": null
+      },
+      {
+        "host": "release-assets.githubusercontent.com",
+        "range": null,
+        "status": 200,
+        "contentRange": null
+      },
+      {
+        "host": "github.com",
+        "range": "bytes=32768-2259483",
+        "status": 302,
+        "contentRange": null
+      },
+      {
+        "host": "release-assets.githubusercontent.com",
+        "range": "bytes=32768-2259483",
+        "status": 206,
+        "contentRange": "bytes 32768-2259483/2259484"
+      }
+    ],
+    "signatureVerified": true,
+    "scope": "Ordinary app trust, public HTTPS, actual cancellation and HTTP 206 resume; no transport fixtures."
+  },
+  "catalogRenewal": {
+    "workflow": "https://github.com/grawish/folio/actions/runs/36239242245",
+    "passed": true,
+    "commit": "0ca1e15",
+    "sequence": 2,
+    "expiresAt": "2026-11-10T11:34:38.061Z"
+  },
+  "scope": "Resource pack and source/native core verification. No signed Mac installer or final packaged application qualification is claimed.",
+  "nativeWorkflow": {
+    "passed": true,
+    "errors": [],
+    "artifact": {
+      "url": "https://github.com/grawish/folio/releases/download/resource-packs-v1/Folio-multirow-2.9-v1.foliopack",
+      "bytes": 2259484,
+      "sha256": "b11d22b915fba8f7a4efaa82d900912341cc2af1a05cd2dcee298ca48a4bbbfe"
+    },
+    "before": {
+      "engine": "tectonic",
+      "version": "0.17.0",
+      "bundle": "folio-core-v1",
+      "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+      "platform": "darwin-arm64",
+      "biberVersion": "2.17"
+    },
+    "target": {
+      "engine": "tectonic",
+      "version": "0.17.0",
+      "bundle": "folio-multirow-2.9-v1",
+      "id": "f08d496354bb88e604ca8c2394935f8bf2e842a021d1b54b02ff210344a1d670",
+      "platform": "darwin-arm64",
+      "biberVersion": "2.17"
+    },
+    "publicCatalog": true,
+    "testPublisher": false,
+    "packaged": false,
+    "scope": "Normal compiled trust, actual public HTTPS catalog/archive, native install/checks, import notices, PDF preview, explicit Apply, backup, save and restart. No provider account used.",
+    "scriptSha256": "272ac5a72e7306a321c8737bfa137dce1fdcee8c14ca3ac3ba1b9835598d8785"
+  }
+}

@@ -368,41 +368,41 @@
     "title": "Review a signed resource pack",
     "image": "pack-import-review.png",
     "guide": "tutorials/resource-packs.md#import-a-file-from-another-computer",
-    "description": "Development workflow: review an original sample pack using a temporary test publisher. Public pack publishing is not configured yet.",
+    "description": "Review the published table pack and its upstream notices before installing the selected file.",
     "steps": [
-      "Open Settings \u2192 LaTeX resources in a publisher-configured build.",
+      "Open Settings \u2192 LaTeX resources.",
       "Choose Import pack file and read its name, requirements and notices.",
       "Install the reviewed bytes or discard the import."
     ],
-    "kind": "Real source app \u00b7 temporary test publisher",
-    "alt": "A signed sample pack and its notices in the dark Folio Settings window"
+    "kind": "Real source app \u00b7 public table pack",
+    "alt": "The published Multirow table pack and its notices in the dark Folio Settings window"
   },
   {
     "id": "pack-install",
-    "title": "Install and retry a pack offline",
+    "title": "Install a published resource pack",
     "image": "pack-installed-light.png",
     "guide": "tutorials/resource-packs.md#get-a-pack",
-    "description": "The test uses simulated catalog downloads and real compiler checks. Installing keeps the project\u2019s compiler choice unchanged.",
+    "description": "The normal app downloads from the public HTTPS catalog and checks the compiler. Installing keeps the project\u2019s compiler choice unchanged.",
     "steps": [
-      "Download a pack; cancellation keeps its received part for resume.",
-      "Retry a retained signed archive offline after an interrupted installation.",
-      "Wait for checks to finish, then preview it for the project."
+      "Open LaTeX resources in Settings and check for packs.",
+      "Download the table pack and wait for copying and offline checks.",
+      "Preview it for the project before choosing to use it."
     ],
-    "kind": "Real source app/compiler \u00b7 test catalog",
-    "alt": "An installed test pack with a project preview action in the compact light Folio Settings window"
+    "kind": "Real source app/compiler \u00b7 public HTTPS catalog",
+    "alt": "The published table pack installed in the compact light Folio Settings window"
   },
   {
     "id": "pack-preview",
     "title": "Preview a pack before using it",
     "image": "pack-preview-light.png",
     "guide": "tutorials/resource-packs.md#use-an-installed-pack-for-this-project",
-    "description": "A controlled missing package prevents the old build. The test pack produces a real PDF, with a backup and explicit Apply.",
+    "description": "A sample table needs the added resources. The published pack builds its PDF, with a backup and explicit Apply.",
     "steps": [
       "Choose Preview for this project, then Build comparison.",
       "Read the new PDF and the explanation for an unavailable before PDF.",
       "Choose Use this pack only when ready, then save."
     ],
-    "kind": "Real compiler \u00b7 controlled missing package",
+    "kind": "Real public pack/compiler \u00b7 synthetic table document",
     "alt": "A real PDF beside an honest unavailable-before message in Folio\u2019s compiler comparison"
   }
 ]

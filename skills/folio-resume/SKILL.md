@@ -19,7 +19,7 @@ Read only what the task needs:
 - Interrupted ZIP copies and keeping outside edits: [recover-an-import](references/recover-an-import.md).
 - TeX edits, local font files, search, diagnostics, page navigation and viewer limits: [editor-and-pdf](references/editor-and-pdf.md).
 - Appearance, panes, privacy, reviewable support ZIPs, help, compiler repair/comparison: [settings-and-compiler](references/settings-and-compiler.md).
-- Pack import, downloads, offline retry and explicit compiler selection: [resource-packs](references/resource-packs.md). Check publisher availability first; the current source UI is tested with a temporary publisher, while public trust/catalog setup remains open.
+- Pack import, downloads, offline retry and explicit compiler selection: [resource-packs](references/resource-packs.md). The current source build includes the public table-pack publisher and catalog. Keep final signed-installer status separate from source/native pack checks.
 - Implementation questions: [architecture](references/ARCHITECTURE.md), then the relevant source files in a local checkout.
 - Release/support claims: [release audit](references/RELEASE_GAP_AUDIT.md). Do not turn an open requirement into an available feature.
 

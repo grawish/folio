@@ -26,7 +26,7 @@ An initial branch-based deployment also passed before workflow access was grante
 | Check source | Main pushes, pull requests, manual | Formatting, unit tests, typecheck/build, website build and generated-skill consistency |
 | Publish website | Relevant main changes or manual | Static site deployment to GitHub Pages |
 | Release source preview | `source-v*` tag | Tested source/docs/skill archives, checksums and provenance in a public prerelease |
-| Qualify Apple silicon candidate | Manual | Fresh runtime setup, real compiler integration, arm64 packaging, thirteen native suites (including compiler help, local fonts, support export and save recovery) and artifact verification |
+| Qualify Apple silicon candidate | Manual | Fresh runtime setup, real compiler integration, arm64 packaging, fourteen native suites (including compiler help, local fonts, support export, save recovery and the public resource-pack catalog) and artifact verification |
 
 Official actions are pinned to immutable revisions. Jobs have bounded timeouts. Pull requests use read-only repository permissions and receive no provider keys or signing credentials. Native suites run sequentially. Qualification publishes test metadata/logs, not a downloadable compiler bundle or installer while the binary redistribution audit remains unfinished.
 
@@ -55,3 +55,9 @@ The fixture repair 274ff95b73c51ed501355a3012fa28a3cf21d289 passed [hosted sourc
 The [recovery gallery deployment](https://github.com/grawish/folio/actions/runs/36231328786) passed at b7dd6ea. The live gallery contains all 26 demo cards, including save recovery; the gallery and recovery screenshot both returned HTTP 200 with normal TLS verification on 26 September 2026.
 
 The fresh [thirteen-suite Mac qualification](https://github.com/grawish/folio/actions/runs/36231643343) passed at 274ff95b73c51ed501355a3012fa28a3cf21d289. Its 158 unit tests, 14 compiler integrations, all thirteen native suites, 37 packaged-output comparisons, runtime-manifest match and disk-image integrity check passed. Downloaded native logs and all thirteen script hashes were checked against that exact commit; retained native result files report no renderer errors. The [verification record](releases/mac-save-recovery-verification.json) preserves the app/DMG hashes and scope. This qualifies the unsigned guided-recovery milestone, including support export; no installer was published. Subsequent managed-pack work requires its own completed desktop integration and qualification.
+
+## Public table-resource packs
+
+[Resource preview 1](https://github.com/grawish/folio/releases/tag/resource-packs-v1) is published from `ce62ce2b2b8b3a39a1c497a69f561034d585b849`, whose [source checks](https://github.com/grawish/folio/actions/runs/36239030309) passed all 198 tests. Its 13 assets include the signed pack, unchanged upstream source/material archives, notices and checksums. The selected pack contains no native compiler executable or app installer.
+
+The ordinary application bundles the public key and catalog URL from `resources/pack-publisher.json`. The separate [catalog renewal workflow](https://github.com/grawish/folio/actions/runs/36239242245) passed with the private repository secret, reverified published assets and committed sequence 2. It runs on the 1st and 15th monthly with 45-day catalog expiry; expired metadata cannot authorize new downloads. See [publisher operation and key retirement](PACK_PUBLISHING.md) and the [verification record](releases/resource-pack-verification.json). The Mac candidate pipeline now includes the public-catalog workflow as its fourteenth native suite; prior thirteen-suite qualification does not cover it.

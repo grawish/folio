@@ -48,6 +48,8 @@ jobs:
             test-results/support-*/failure.png
             test-results/save-recovery-*/result.json
             test-results/save-recovery-*/failure.png
+            test-results/pack-catalog-*/result.json
+            test-results/pack-catalog-*/failure.png
           if-no-files-found: warn
           retention-days: 14
       # Do not upload the runtime/DMG yet: redistribution materials, signing,

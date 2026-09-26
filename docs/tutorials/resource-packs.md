@@ -2,11 +2,11 @@
 
 A resource pack adds files that the compiler needs to build certain documents. Installing a pack keeps your resume and its compiler choice the same. You choose when a project starts using it.
 
-**Development status:** the Settings workflow is implemented, but the normal build does not yet have a public publisher key or pack catalog. Its import and catalog buttons stay disabled. These screenshots show the real app with a temporary test publisher and a small original sample package. They are not evidence that public packs are available. Do not add a key from an unknown download or paste an AI API key here.
+**Available in the current source build:** the first public pack adds **Multirow 2.9**, **bigstrut** and **bigdelim** for table cells, row spacing and braces. The app already knows which publisher to trust. These screenshots use the normal app and real public pack, with a made-up sample document. A signed Mac installer is still being prepared.
+
+AI connections stay in their own Settings page. You do not need to choose an AI provider or enter an API key to install a resource pack.
 
 ## Get a pack
-
-Once a build has a configured publisher:
 
 1. Open **Settings → LaTeX resources**.
 2. Choose **Check for packs** to read the signed catalog.
@@ -19,12 +19,12 @@ Each pack needs its exact base compiler. If that compiler is missing, install or
 
 ## Import a file from another computer
 
-1. Choose **Import pack file** and pick a `.foliopack` file.
+1. Download the `.foliopack` from the [Folio table-pack release](https://github.com/grawish/folio/releases/tag/resource-packs-v1). Choose **Import pack file** and pick it.
 2. Read its name, description and required compiler. Open **Package notices** to read the included notices.
 3. Choose **Install reviewed pack**, or **Discard import** to leave it unused.
 4. Wait for the offline checks to finish.
 
-![Reviewing a signed sample pack and its notices in the real dark-theme interface](../images/pack-import-review.png)
+![Reviewing the published table pack and its notices in the real dark-theme interface](../images/pack-import-review.png)
 
 Folio uses the bytes you reviewed. If that file changes afterward, it does not secretly replace your reviewed copy. A valid signature is still followed by file checks and a real compiler test.
 
@@ -38,7 +38,7 @@ Folio uses the bytes you reviewed. If that file changes afterward, it does not s
 
 ![An installed pack in the compact light-theme Settings window](../images/pack-installed-light.png)
 
-![Previewing a real PDF after a sample pack fixes a missing package](../images/pack-preview-light.png)
+![Previewing the table PDF after the published pack adds its missing resources](../images/pack-preview-light.png)
 
 The backup keeps your source, assets, saved history and the new PDF. It keeps either the before PDF or the old build error. Find it under **Settings → About → Compiler backups**. If the previewed compiler becomes damaged before you apply it, Folio asks you to repair it and compare again.
 
@@ -48,4 +48,4 @@ Closing the window or reloading it cancels active pack work and waits for it to 
 
 An installation that already finished stays installed. It still does not change the project by itself. Your chosen compiler stays recorded when you save, close, restart or export the source.
 
-Maintainers can reproduce these screens with `npm run test:packs`. It uses a temporary build-time test key, simulated HTTPS responses and the real compiler sandbox, then restores the ordinary application build. See [the protocol, evidence and remaining release work](../MANAGED_PACKS.md).
+Maintainers can reproduce these screens with `npm run test:pack-catalog`. It uses the normal app key, public HTTPS catalog, real compiler sandbox and an isolated sample project. The separate `npm run test:packs` checks interruptions with a temporary test publisher and simulated network responses. See [the protocol, evidence and remaining release work](../MANAGED_PACKS.md).

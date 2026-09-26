@@ -1,9 +1,6 @@
 import type { PackTrust } from './pack-service';
+import publisher from '../../resources/pack-publisher.json';
 
-// Replaced only by a reviewed publisher configuration. Renderer settings and
-// imported archives cannot add trusted keys or hosts.
-export const packTrust: PackTrust = {
-  keys: {},
-  hosts: ['grawish.com', 'github.com', 'release-assets.githubusercontent.com'],
-  minimumSequence: 1,
-};
+// Reviewed public configuration is bundled into native code. Renderer settings,
+// runtime environment variables and imported archives cannot add trust.
+export const packTrust: PackTrust = publisher;

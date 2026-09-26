@@ -153,35 +153,35 @@
   },
   {
     "file": "docs/images/pack-import-review.png",
-    "sourceSuite": "packs",
+    "sourceSuite": "pack-catalog",
     "sourceCapture": "import-review-dark.png",
-    "sourceEvidence": "test-results/packs-6h4KFI/result.json",
-    "sha256": "e742b43ecd77fc126eb1ae5086a0c75793da19865b122342e0cf1b88fad0346c",
+    "sourceEvidence": "test-results/pack-catalog-meOC9s/result.json",
+    "sha256": "d639880acc24ad0589c7012a3614f498227a5d92ac7d04bea7668c486521b560",
     "synthetic": true,
     "liveAI": false,
-    "testPublisher": true,
-    "publicCatalog": false
+    "testPublisher": false,
+    "publicCatalog": true
   },
   {
     "file": "docs/images/pack-installed-light.png",
-    "sourceSuite": "packs",
+    "sourceSuite": "pack-catalog",
     "sourceCapture": "installed-small-light.png",
-    "sourceEvidence": "test-results/packs-6h4KFI/result.json",
-    "sha256": "bf4208be404b4ac605b3b6ad23c4df108558d30ba6b7b4c6527ed747432bf470",
+    "sourceEvidence": "test-results/pack-catalog-meOC9s/result.json",
+    "sha256": "6d87c8cb744b6c18de79ceaef8b870eb998341b52e1bfc4fb55164ad2ad975d1",
     "synthetic": true,
     "liveAI": false,
-    "testPublisher": true,
-    "publicCatalog": false
+    "testPublisher": false,
+    "publicCatalog": true
   },
   {
     "file": "docs/images/pack-preview-light.png",
-    "sourceSuite": "packs",
+    "sourceSuite": "pack-catalog",
     "sourceCapture": "pack-preview-light.png",
-    "sourceEvidence": "test-results/packs-6h4KFI/result.json",
-    "sha256": "7d0c2c3224d2da354f45474092fdb16648ca12d6d5d8102e22eea7cdd2c3f971",
+    "sourceEvidence": "test-results/pack-catalog-meOC9s/result.json",
+    "sha256": "3344111d0c5e8d506a0f8343d7fd6d0c5cc7c432d1160ebc071482bcaaf18463",
     "synthetic": true,
     "liveAI": false,
-    "testPublisher": true,
-    "publicCatalog": false
+    "testPublisher": false,
+    "publicCatalog": true
   }
 ]
