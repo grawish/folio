@@ -16,6 +16,7 @@ Every currently implemented feature group below has a plain-language walkthrough
 | Compare, undo and restore | [Walkthrough](tutorials/chat-and-feedback.md) | [Screenshot](images/history.png) · Real app · scripted local AI fixture |
 | Code and build errors | [Walkthrough](tutorials/editor-and-pdf.md) | [Screenshot](images/code.png) · Real app · synthetic project |
 | Missing files, fonts and engine help | [Walkthrough](tutorials/editor-and-pdf.md#fix-a-missing-file-font-or-package) | [Screenshot](images/build-help-font.png) · Real compiler · synthetic missing font |
+| Local font files | [Walkthrough](tutorials/editor-and-pdf.md#use-your-own-font-files) | [Screenshot](images/local-fonts.png) · Real app/compiler · synthetic project |
 | Files and retained copies | [Walkthrough](tutorials/files-and-import.md) | [Screenshot](images/restore-file.png) · Real app · synthetic project |
 | Open, import and export source | [Walkthrough](tutorials/files-and-import.md) | [Screenshot](images/import.png) · Real app · synthetic project |
 | Recover an import | [Walkthrough](tutorials/recover-an-import.md) | [Screenshot](images/import-recovery.png) · Real app · controlled interruption fixture |
@@ -28,4 +29,4 @@ Every currently implemented feature group below has a plain-language walkthrough
 | Compare compiler versions | [Walkthrough](tutorials/settings-and-compiler.md) | [Screenshot](images/compiler-comparison.png) · Real app · synthetic compiler identity |
 | Privacy and support | [Walkthrough](tutorials/settings-and-compiler.md) | [Screenshot](images/privacy.png) · Real app · synthetic project |
 
-See [demo reproduction](demos/README.md) for commands and capture provenance. Guided custom fonts, managed expansion packs, online repair, automatic updates and support bundles remain planned in [the release audit](RELEASE_GAP_AUDIT.md). They have no working-feature demo yet. Wider OS, physical accessibility and live AI acceptance also remain open.
+See [demo reproduction](demos/README.md) for commands and capture provenance. Managed expansion packs, online repair, automatic updates and support bundles remain planned in [the release audit](RELEASE_GAP_AUDIT.md). They have no working-feature demo yet. Wider OS, physical accessibility and live AI acceptance also remain open.

@@ -321,12 +321,39 @@ export class ProjectStore {
     return operation;
   }
 
+  saveWithAssets(
+    value: Project,
+    additions: Map<string, Buffer>,
+    history?: (id: string) => Promise<Uint8Array>,
+  ) {
+    const project = validateProject(value);
+    if (
+      additions.size > 200 ||
+      [...additions.values()].reduce((sum, bytes) => sum + bytes.length, 0) > MAX_BYTES
+    )
+      throw new Error('New assets exceed the project size limit.');
+    const assets = new Map(
+      [...additions].map(([name, bytes]) => {
+        safeRelative(name);
+        if (!ASSET_EXTENSIONS.has(path.extname(name).toLowerCase()))
+          throw new Error('Unsupported project asset.');
+        return [name, Buffer.from(bytes)] as const;
+      }),
+    );
+    const operation = this.saves.then(() =>
+      this.saveSnapshot(project, undefined, false, history, true, assets),
+    );
+    this.saves = operation.catch(() => {});
+    return operation;
+  }
+
   private async saveSnapshot(
     project: Project,
     selectedDirectory?: string,
     overwrite = false,
     history?: (projectId: string) => Promise<Uint8Array>,
     requireCleanDisk = false,
+    additions = new Map<string, Buffer>(),
   ) {
     const registration = this.registered.get(project.id);
     if (requireCleanDisk && (!registration || selectedDirectory || overwrite))
@@ -347,6 +374,40 @@ export class ProjectStore {
       project.files.map((file) => [file.path, Buffer.from(file.content)]),
     );
     const assets = new Set<string>();
+    if (additions.size) {
+      const tree = await readProjectTree(directory);
+      const spellings = new Map<string, string>();
+      for (const name of [...tree.keys(), ...files.keys(), ...additions.keys()]) {
+        const parts = name.split('/');
+        for (let length = 1; length < parts.length; length++) {
+          const parent = parts.slice(0, length).join('/');
+          const folded = parent.normalize('NFC').toLowerCase();
+          if (spellings.has(folded) && spellings.get(folded) !== parent)
+            throw new Error('Use the existing folder spelling, including letter case and accents.');
+          spellings.set(folded, parent);
+        }
+      }
+      const existing = new Set(
+        [...tree.keys(), ...files.keys()].map((name) => name.normalize('NFC').toLowerCase()),
+      );
+      for (const [name, bytes] of additions) {
+        const folded = name.normalize('NFC').toLowerCase();
+        if (existing.has(folded))
+          throw new Error(`A file named ${name} already exists. Choose a new font setup.`);
+        existing.add(folded);
+        files.set(name, bytes);
+        assets.add(name);
+      }
+      const combined = new Map(
+        [...tree].filter(([name]) => !TEXT_EXTENSIONS.has(path.extname(name).toLowerCase())),
+      );
+      for (const [name, bytes] of files) combined.set(name, bytes);
+      if (
+        combined.size > 200 ||
+        [...combined.values()].reduce((sum, data) => sum + data.length, 0) > MAX_BYTES
+      )
+        throw new Error('Adding these fonts would exceed the project limit of 200 files or 25 MB.');
+    }
     const removedFiles = [...(project.removedFiles ?? [])];
     const removals: SaveEntry[] = [];
     if (registration?.directory === directory) {

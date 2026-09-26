@@ -1008,6 +1008,99 @@ a {
   width: 870px;
 }
 
+.font-setup {
+  width: 1040px;
+  height: min(840px, 92vh);
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  padding: 22px;
+  overflow: hidden;
+}
+
+.font-setup-content {
+  display: grid;
+  grid-template-columns: 285px minmax(0, 1fr);
+  gap: 18px;
+  flex: 1;
+  min-height: 0;
+}
+
+.font-options {
+  border: 0;
+  margin: 0;
+  padding: 0 6px 0 0;
+  overflow: auto;
+  min-width: 0;
+}
+
+.font-choice {
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+}
+
+.font-choice > span {
+  overflow-wrap: anywhere;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.font-choice > div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.font-preview {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.font-preview-empty {
+  margin: auto;
+  padding: 30px;
+  font-size: 12px;
+  line-height: 1.65;
+  color: var(--muted);
+  text-align: center;
+}
+
+.font-start {
+  font-size: 13px;
+  line-height: 1.7;
+  flex: 1;
+}
+
+.font-setup .modal-heading,
+.font-setup .modal-actions {
+  flex-shrink: 0;
+}
+
+.font-setup .modal-heading {
+  margin-bottom: 16px;
+}
+
+.font-setup .modal-actions {
+  margin-top: 14px;
+}
+
+.font-error {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  overflow: auto;
+  max-height: 90px;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
 .modal-heading {
   display: flex;
   align-items: flex-start;

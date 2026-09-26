@@ -44,7 +44,26 @@ Click **Compile**. Read the font advice, then replace `Folio Missing Font` with 
 
 ![The real compiler reporting that a synthetic document requires LuaTeX](../images/build-help-engine.png)
 
-The advice covers recognized messages, not every possible LaTeX error. An unfamiliar failure keeps its original diagnostics and raw log. Compiler-file damage has a separate Settings repair flow. This help does not install fonts or packages automatically; a guided font importer remains planned.
+The advice covers recognized messages, not every possible LaTeX error. An unfamiliar failure keeps its original diagnostics and raw log. Compiler-file damage has a separate Settings repair flow. A recognized font error also offers **Add local fonts…**. This opens the font picker; it does not automatically fix an earlier broken command or install packages.
+
+## Use your own font files
+
+1. Open **More project actions → Add local fonts…**. If asked, save your resume in a project folder first.
+2. Choose an `.otf` or `.ttf` file for **Regular**.
+3. Choose the matching **Bold**, **Italic** and **Bold italic** files if you have them. A style left empty uses the regular file, so bold or italic text may lose that look.
+4. Click **Build font preview**. Scroll through every page. A new font can make words wider, move lines, or add a page.
+5. If you like it, click **Use fonts & save**. Folio saves the font files with your resume. It does not install them for the rest of your Mac.
+6. Choose **Cancel** if you want to keep the current resume. Picking files and building the preview alone do not change the saved project.
+
+![Local font files with the real resume preview before saving](../images/local-fonts.png)
+
+The files can total up to 20 MB, and the whole project must stay within 200 files and 25 MB. Choose regular OTF/TTF files, not a font collection or web font. **Save As** and **Export LaTeX source…** include the fonts. Check the font's sharing terms before sending that ZIP to someone else.
+
+![The font preview in a small window with the light theme](../images/local-fonts-light.png)
+
+This changes the usual body and heading fonts. Some templates choose their own fonts in other places. If a missing-font error remains, open Code and fix or remove the earlier command that asks for that missing font. The picker adds a new setup; it does not rewrite every font command. Use **History** to restore an earlier source/PDF version, then build and save it. Folio keeps old imported font files so those versions can still use them.
+
+If another app changes your project while you preview, Folio stops the save. Close the font screen, review the outside changes, then start a new preview. See [local font details and checks](../LOCAL_FONTS.md). `npm run test:fonts` reproduces the workflow with synthetic data and the real compiler.
 
 ## Read and export the PDF
 

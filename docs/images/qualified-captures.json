@@ -102,5 +102,21 @@
     "sha256": "5578d3398370b27b25cd6f950dc3a2cd0a294819eecf53e8cbf9b47ea14473af",
     "synthetic": true,
     "liveAI": false
+  },
+  {
+    "file": "docs/images/local-fonts.png",
+    "sourceSuite": "fonts",
+    "sourceCapture": "font-preview-dark.png",
+    "sha256": "c098beffc94b79b110398a7c8a28006dc286d23222eca6338ca04d08a0b5757a",
+    "synthetic": true,
+    "liveAI": false
+  },
+  {
+    "file": "docs/images/local-fonts-light.png",
+    "sourceSuite": "fonts",
+    "sourceCapture": "font-preview-compact-light.png",
+    "sha256": "bc9fcd9b46bfee14e113fa16013a1eb77fbde4bb8c79f24cb8d6bd8a110b6fe0",
+    "synthetic": true,
+    "liveAI": false
   }
 ]

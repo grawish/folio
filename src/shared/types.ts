@@ -100,6 +100,19 @@ export type ProjectDiskChanges = {
 };
 
 export interface DesktopAPI {
+  beginFontImport(id: string, project: Project): Promise<void>;
+  chooseFont(
+    id: string,
+    style: import('./fonts').FontStyle,
+  ): Promise<import('./fonts').SelectedFont | null>;
+  removeFont(id: string, style: import('./fonts').FontStyle): Promise<void>;
+  previewFonts(
+    id: string,
+    project: Project,
+    target: import('./fonts').FontTarget,
+  ): Promise<import('./fonts').FontPreview>;
+  applyFonts(id: string, project: Project): Promise<import('./fonts').FontApplyResult>;
+  cancelFontImport(id?: string): Promise<void>;
   bootstrap(): Promise<Bootstrap>;
   inspectRuntime(pin?: import('./runtime').RuntimePin): Promise<RuntimeStatus>;
   repairRuntime(pin?: import('./runtime').RuntimePin): Promise<RuntimeStatus>;

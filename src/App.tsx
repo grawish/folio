@@ -70,6 +70,7 @@ import { PaneDivider } from './components/PaneDivider';
 import { usePaneLayout } from './usePaneLayout';
 import { minimumSidebar, minimumEditor } from './shared/workspace-layout';
 import { buildHelp } from './shared/build-help';
+import { FontSetup } from './components/FontSetup';
 
 type Dialog =
   | 'templates'
@@ -81,6 +82,7 @@ type Dialog =
   | 'snippets'
   | 'main-file'
   | 'compiler-migration'
+  | 'fonts'
   | 'history'
   | 'file-manager'
   | 'removed-files'
@@ -174,6 +176,7 @@ export default function App() {
   const savingFinished = useRef(Promise.resolve());
   const [savingCopy, setSavingCopy] = useState(false);
   const migrationId = useRef<string | undefined>(undefined);
+  const fontImport = useRef<{ id: string; started: boolean } | undefined>(undefined);
   const [historyId, setHistoryId] = useState<string>();
   const [historyNote, setHistoryNote] = useState<PdfAnnotation>();
   const [focusNoteId, setFocusNoteId] = useState<string>();
@@ -413,7 +416,7 @@ export default function App() {
 
   const compile = useCallback(async (): Promise<BuildResult | null> => {
     const desktop = api();
-    if (!desktop || migrationId.current) return null;
+    if (!desktop || migrationId.current || fontImport.current) return null;
     if (requireDiskReview()) return null;
     const snapshot = current.current;
     const token = ++buildToken.current;
@@ -450,6 +453,7 @@ export default function App() {
       !runtime?.ready ||
       !autoCompile ||
       dialog === 'compiler-migration' ||
+      dialog === 'fonts' ||
       agentBusy ||
       needsDiskReview ||
       reloadingDisk
@@ -475,7 +479,14 @@ export default function App() {
     reloadingDisk,
   ]);
   useEffect(() => {
-    if (!initialized || !window.folio || saveActive || dialog === 'compiler-migration') return;
+    if (
+      !initialized ||
+      !window.folio ||
+      saveActive ||
+      dialog === 'compiler-migration' ||
+      dialog === 'fonts'
+    )
+      return;
     const timer = setTimeout(() => {
       if (saving.current) return;
       void window.folio
@@ -835,6 +846,7 @@ export default function App() {
       return;
     }
     if (migrationId.current && action !== 'close') return;
+    if (fontImport.current && action !== 'close') return;
     if (reloadingDisk && action !== 'close') return;
     if (pendingImport && action !== 'close') return;
     if (resolvingImport && action !== 'close') return;
@@ -861,6 +873,7 @@ export default function App() {
         try {
           await savingFinished.current;
           if (migrationId.current) await window.folio?.cancelCompilerMigration(migrationId.current);
+          if (fontImport.current) await window.folio?.cancelFontImport(fontImport.current.id);
           await window.folio?.recover(current.current);
           await flushWorkspace();
           await window.folio?.closeWindow();
@@ -1172,6 +1185,41 @@ export default function App() {
     if (nextActive) setActiveFile(nextActive);
     else if (!next.files.some((file) => file.path === activeFile)) setActiveFile(next.mainFile);
   };
+
+  const openFonts = () => {
+    if (
+      !window.folio ||
+      saving.current ||
+      agentBusy ||
+      !workspaceReady ||
+      needsDiskReview ||
+      !runtime?.ready
+    ) {
+      message('Finish the current work and review any outside changes before adding fonts.');
+      return;
+    }
+    fontImport.current = { id: crypto.randomUUID(), started: false };
+    setDialog('fonts');
+  };
+  const beginFonts = async () => {
+    const session = fontImport.current;
+    if (!session) throw new Error('Open a new font setup.');
+    if (!session.started) {
+      buildToken.current++;
+      setBuilding(false);
+      await flushWorkspace();
+      if (fontImport.current !== session) throw new Error('Font setup was closed.');
+      await window.folio!.recover(current.current);
+      if (fontImport.current !== session) throw new Error('Font setup was closed.');
+      await window.folio!.beginFontImport(session.id, current.current);
+      if (fontImport.current !== session) {
+        await window.folio!.cancelFontImport(session.id);
+        throw new Error('Font setup was closed.');
+      }
+      session.started = true;
+    }
+    return session.id;
+  };
   const open = () =>
     guard(() => {
       void openProject();
@@ -1245,6 +1293,7 @@ export default function App() {
               },
               { label: 'Explore templates', action: () => setDialog('templates') },
               { label: 'Add source file', action: newFile },
+              { label: 'Add local fonts…', action: openFonts },
               { label: 'Rename or remove current file…', action: () => manageFile(active.path) },
               { label: 'Removed files & saved copies…', action: () => setDialog('removed-files') },
               { label: 'Insert a section', action: () => setDialog('snippets') },
@@ -1631,6 +1680,11 @@ export default function App() {
                               <li key={step}>{step}</li>
                             ))}
                           </ul>
+                          {recoveryHelp.kind === 'font' && (
+                            <button className="text-button active" onClick={openFonts}>
+                              Add local fonts…
+                            </button>
+                          )}
                         </aside>
                       )}
                       {!result?.diagnostics.length ? (
@@ -1833,6 +1887,67 @@ export default function App() {
             onCopy={() => {
               setDialog(null);
               void save(true);
+            }}
+          />
+        )}
+        {dialog === 'fonts' && fontImport.current && (
+          <FontSetup
+            saved={!!project.directory}
+            onSaveProject={() => save()}
+            onChoose={async (style) => window.folio!.chooseFont(await beginFonts(), style)}
+            onRemove={async (style) => window.folio!.removeFont(await beginFonts(), style)}
+            onPreview={async (target) =>
+              window.folio!.previewFonts(await beginFonts(), current.current, target)
+            }
+            onApply={async () => {
+              saving.current = true;
+              setSaveActive(true);
+              let finish = () => {};
+              savingFinished.current = new Promise<void>((resolve) => {
+                finish = resolve;
+              });
+              try {
+                const reply = await window.folio!.applyFonts(
+                  fontImport.current!.id,
+                  current.current,
+                );
+                const next = reply.project;
+                flushSync(() => {
+                  current.current = next;
+                  setProject(next);
+                  setSavedKey(keyOf(next));
+                  setResult(reply.build);
+                  setLastGood(reply.build);
+                  setAutoSaveError(reply.warning ?? '');
+                  fontImport.current = undefined;
+                  setDialog(null);
+                });
+                let warning = reply.warning;
+                try {
+                  await refreshVersions();
+                  setSavedWorkspace(workspaceRef.current);
+                  await checkDisk();
+                } catch {
+                  warning = [
+                    warning,
+                    'Fonts were saved, but the workspace could not refresh. Reopen the saved project if needed.',
+                  ]
+                    .filter(Boolean)
+                    .join(' ');
+                  setAutoSaveError(warning);
+                }
+                message(warning ?? 'Font files and source saved. Review the PDF before exporting.');
+              } finally {
+                saving.current = false;
+                setSaveActive(false);
+                finish();
+              }
+            }}
+            onClose={() => {
+              const id = fontImport.current?.id;
+              fontImport.current = undefined;
+              setDialog(null);
+              void window.folio!.cancelFontImport(id).catch((error) => message(error.message));
             }}
           />
         )}

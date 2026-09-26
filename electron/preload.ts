@@ -2,6 +2,12 @@ import { contextBridge, ipcRenderer } from 'electron';
 import type { DesktopAPI } from '../src/shared/types';
 
 const api: DesktopAPI = {
+  beginFontImport: (id, project) => ipcRenderer.invoke('fonts:begin', id, project),
+  chooseFont: (id, style) => ipcRenderer.invoke('fonts:choose', id, style),
+  removeFont: (id, style) => ipcRenderer.invoke('fonts:remove', id, style),
+  previewFonts: (id, project, target) => ipcRenderer.invoke('fonts:preview', id, project, target),
+  applyFonts: (id, project) => ipcRenderer.invoke('fonts:apply', id, project),
+  cancelFontImport: (id) => ipcRenderer.invoke('fonts:cancel', id),
   bootstrap: () => ipcRenderer.invoke('app:bootstrap'),
   inspectRuntime: (pin) => ipcRenderer.invoke('runtime:inspect', pin),
   repairRuntime: (pin) => ipcRenderer.invoke('runtime:repair', pin),

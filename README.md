@@ -12,7 +12,7 @@ The [source preview release](https://github.com/grawish/folio/releases/tag/sourc
 
 ## Development preview
 
-The source is available now. Folio is under active development; a signed, notarized installer and automatic updates are not available yet. The current source passes 123 unit/protocol tests. The earlier import-recovery build passed nine packaged native workflow suites on the development Mac; newer compiler-help changes have separate evidence in the [release audit](docs/RELEASE_GAP_AUDIT.md). These results do not establish compatibility with every macOS version.
+The source is available now. Folio is under active development; a signed, notarized installer and automatic updates are not available yet. The current source passes 130 unit/protocol tests. The earlier import-recovery build passed nine packaged native workflow suites on the development Mac; newer compiler-help and local-font changes have separate evidence in the [release audit](docs/RELEASE_GAP_AUDIT.md). These results do not establish compatibility with every macOS version.
 
 Windows, Linux and Intel Macs are outside this release's scope. Read the [remaining release requirements](docs/RELEASE_GAP_AUDIT.md) before relying on the preview for important documents.
 
@@ -24,6 +24,7 @@ Windows, Linux and Intel Macs are outside this release's scope. Read the [remain
 - Compare versions, undo changes, and restore earlier work.
 - Edit multiple TeX files with syntax highlighting, search, snippets, and undo.
 - Get specific next steps for recognized missing files, packages, fonts and engine requirements.
+- Preview local OTF/TTF fonts, then save them with the resume without a system-wide installation.
 - Save, use optional autosave, import source ZIPs, and export a clean PDF.
 - Review outside-file changes and recover interrupted saves or imports.
 - Use dark, light, or system appearance and resize the writing and PDF panes.
@@ -53,11 +54,11 @@ npm run build
 npm start
 ```
 
-The [release pipeline](docs/RELEASE_PIPELINE.md) covers source checks, source previews, website deployment and Mac candidate qualification. Hosted source checks and website deployment have passed. The hosted Mac baseline at c861ead passed all nine native suites and artifact verification after correcting a window-size assumption in the test. The newer compiler-help feature has separate targeted package verification; the full production-release requirements remain open. See [contributing](CONTRIBUTING.md) for native integration tests and packaging, and [architecture](docs/ARCHITECTURE.md) for the code map.
+The [release pipeline](docs/RELEASE_PIPELINE.md) covers source checks, source previews, website deployment and Mac candidate qualification. Hosted source checks and website deployment have passed. The hosted Mac baseline at c861ead passed all nine native suites and artifact verification after correcting a window-size assumption in the test. The newer compiler-help and local-font features have separate targeted package verification; the full production-release requirements remain open. See [contributing](CONTRIBUTING.md) for native integration tests and packaging, and [architecture](docs/ARCHITECTURE.md) for the code map.
 
 ## Learn and contribute
 
-Start with [your first resume](docs/tutorials/first-resume.md). The [feature matrix](docs/FEATURE_GUIDE_INDEX.md) links 23 screenshot walkthroughs and reproducible demos. A [reusable Folio skill](docs/DOCUMENTATION_SKILL.md) packages the guides for your assistant. The [performance investigation](docs/PERFORMANCE_IMPROVEMENT_PLAN.md) includes raw measurements and ranked optimization experiments.
+Start with [your first resume](docs/tutorials/first-resume.md). The [feature matrix](docs/FEATURE_GUIDE_INDEX.md) links 24 screenshot walkthroughs and reproducible demos. A [reusable Folio skill](docs/DOCUMENTATION_SKILL.md) packages the guides for your assistant. The [performance investigation](docs/PERFORMANCE_IMPROVEMENT_PLAN.md) includes raw measurements and ranked optimization experiments.
 
 Bug reports should describe what happened, what you expected, and your macOS/app version. Use a small synthetic example and remove personal details from logs and screenshots. See [security reporting](SECURITY.md) for sensitive issues.
 

@@ -17,7 +17,7 @@ Read only what the task needs:
 - Source files, main document, ZIP import, Save As and source export: [files-and-import](references/files-and-import.md).
 - Autosave, recovery, outside-file changes and conflicts: [save-and-recover](references/save-and-recover.md).
 - Interrupted ZIP copies and keeping outside edits: [recover-an-import](references/recover-an-import.md).
-- TeX edits, search, diagnostics, page navigation and viewer limits: [editor-and-pdf](references/editor-and-pdf.md).
+- TeX edits, local font files, search, diagnostics, page navigation and viewer limits: [editor-and-pdf](references/editor-and-pdf.md).
 - Appearance, panes, privacy, help, compiler repair/comparison: [settings-and-compiler](references/settings-and-compiler.md).
 - Implementation questions: [architecture](references/ARCHITECTURE.md), then the relevant source files in a local checkout.
 - Release/support claims: [release audit](references/RELEASE_GAP_AUDIT.md). Do not turn an open requirement into an available feature.

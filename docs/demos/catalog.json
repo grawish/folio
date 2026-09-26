@@ -168,6 +168,20 @@
     "alt": "Missing-font guidance beside the last successful PDF in Folio"
   },
   {
+    "id": "local-fonts",
+    "title": "Use your own fonts",
+    "image": "local-fonts.png",
+    "guide": "tutorials/editor-and-pdf.md#use-your-own-font-files",
+    "description": "Choose font files, review the real PDF, then save them with your resume.",
+    "steps": [
+      "Open More project actions \u2192 Add local fonts\u2026.",
+      "Choose regular and optional style files; build the preview.",
+      "Review every page, then choose Use fonts & save or Cancel."
+    ],
+    "kind": "Real app \u00b7 synthetic project",
+    "alt": "Local OTF font selections beside a real Folio resume preview before saving"
+  },
+  {
     "id": "files",
     "title": "Files and retained copies",
     "image": "restore-file.png",

@@ -23,6 +23,7 @@ AI setup and the active connection live only in Settings. The renderer receives 
 | Local compiler and isolation | `electron/core/compiler.ts`, `runtime.ts` |
 | Managed compiler copies | `electron/core/runtime-manager.ts`, `compiler-migration.ts` |
 | Projects, assets and recovery | `electron/core/project.ts`, `workspace.ts`, `save-transactions.ts` |
+| Guided font selection and preview | `electron/core/local-fonts.ts`, `font-import.ts`, `src/components/FontSetup.tsx` |
 | ZIP validation and recovery | `safe-zip.ts`, `project-import.ts`, `import-transactions.ts` |
 | Outside-file review | `project-scan.ts`, `src/components/ExternalChanges.tsx` |
 | PDF worker/render bounds | `src/usePdfDocument.ts`, `pdf-policy.ts`, `pdf-job.ts` |
@@ -37,6 +38,8 @@ App storage holds preferences, connection settings, protected keys, recovery dat
 Save transactions journal changes before modifying a project. Import transactions stage and hash archive contents before creating the destination copy. Recovery checks ownership and outside edits before finishing or removing files. The detailed protocols and limitations are in [save reliability](https://github.com/grawish/folio/blob/main/docs/SAVE_RELIABILITY.md) and [ZIP import](https://github.com/grawish/folio/blob/main/docs/ZIP_IMPORT.md).
 
 The runtime manifest pins all managed compiler bytes. A project keeps its compiler identity. Repair prepares and checks a replacement before activation. Comparison shows real PDFs and preserves a backup before a compiler change. See [runtime management](https://github.com/grawish/folio/blob/main/docs/RUNTIME_MANAGEMENT.md) and [migration](https://github.com/grawish/folio/blob/main/docs/COMPILER_MIGRATION.md).
+
+Local font selection keeps bytes in a native session until the user accepts a real PDF preview. Apply verifies the source and existing assets, then journals source/setup/font additions together. A post-commit History/recovery problem reports a warning without claiming rollback. See [local fonts](https://github.com/grawish/folio/blob/main/docs/LOCAL_FONTS.md).
 
 ## Trust boundaries and limits
 

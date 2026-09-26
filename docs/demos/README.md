@@ -17,3 +17,5 @@ FOLIO_TEST_OUTPUT=/private/tmp/folio-demos npm run test:import-recovery
 ```
 
 Inspect screenshots before publishing. Use no real resume, API key, signed-in account or private folder. `capture-manifest.json` and `qualified-captures.json` identify synthetic captures and their hashes. Screenshot evidence is distinct from live provider acceptance and wider macOS certification.
+
+The local-font demo uses `npm run test:fonts`. It selects bundled Roboto files through scripted native dialog results, builds the real PDF, and verifies cancellation, outside edits, reload, close during Apply, persistence and portable font bytes. It does not use an AI account or install fonts system-wide. The dark preview and compact light capture are `docs/images/local-fonts.png` and `local-fonts-light.png`.

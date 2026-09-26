@@ -22,6 +22,8 @@ import { ProjectWatcher } from './core/project-scan';
 import { Compiler } from './core/compiler';
 import { RuntimeManager } from './core/runtime-manager';
 import { CompilerMigration } from './core/compiler-migration';
+import { FontImport } from './core/font-import';
+import type { FontStyle, FontTarget } from '../src/shared/fonts';
 import { adoptRuntime, validateRuntimePin } from '../src/shared/runtime';
 import { WorkspaceStore, safeId } from './core/workspace';
 import { ConnectionStore } from './core/connections';
@@ -55,6 +57,7 @@ let runtimes: RuntimeManager;
 let agentCompiler: Compiler;
 let migrationCompiler: Compiler;
 let migrations: CompilerMigration;
+let fonts: FontImport;
 let workspaces: WorkspaceStore;
 let connections: ConnectionStore;
 let providers: ProviderService;
@@ -117,9 +120,15 @@ function renderPdf(
 }
 
 async function openProject(directory: string, main?: string) {
+  requireProjectIdle();
   const project = await store.open(directory, main);
   await workspaces.importFrom(project.id, project.directory!);
   return project;
+}
+
+function requireProjectIdle() {
+  migrations.requireIdle();
+  fonts.requireIdle();
 }
 
 function handle(channel: string, callback: (...args: any[]) => unknown) {
@@ -145,9 +154,21 @@ function registerHandlers() {
   };
   handle('runtime:inspect', (pin: unknown) => runtimes.status(validateRuntimePin(pin)));
   handle('runtime:repair', (pin: unknown) => runtimes.repair(validateRuntimePin(pin)));
-  handle('runtime:compare', (id: string, value: unknown) =>
-    migrations.prepare(id, checkedProject(value)),
+  handle('runtime:compare', (id: string, value: unknown) => {
+    requireProjectIdle();
+    return migrations.prepare(id, checkedProject(value));
+  });
+  handle('fonts:begin', (id: string, value: unknown) => {
+    migrations.requireIdle();
+    return fonts.begin(id, checkedProject(value));
+  });
+  handle('fonts:choose', (id: string, style: FontStyle) => fonts.choose(id, style));
+  handle('fonts:remove', (id: string, style: FontStyle) => fonts.remove(id, style));
+  handle('fonts:preview', (id: string, value: unknown, target: FontTarget) =>
+    fonts.preview(id, checkedProject(value), target),
   );
+  handle('fonts:apply', (id: string, value: unknown) => fonts.apply(id, checkedProject(value)));
+  handle('fonts:cancel', (id?: string) => fonts.cancel(id));
   handle('runtime:apply', (id: string, value: unknown) =>
     migrations.apply(id, checkedProject(value)),
   );
@@ -181,7 +202,7 @@ function registerHandlers() {
   });
   handle('ai:cancel-login', (id: string) => providers.cancelLogin(safeId(id)));
   handle('agent:run', (input) => {
-    migrations.requireIdle();
+    requireProjectIdle();
     return agent.run(input);
   });
   handle('agent:cancel', (id: string) => agent.cancel(safeId(id)));
@@ -207,6 +228,7 @@ function registerHandlers() {
   handle('app:bootstrap', async () => {
     // A renderer reload loses its comparison token. Release the abandoned
     // comparison (or wait for Apply) before restoring the recovered draft.
+    await fonts.cancel();
     await migrations.cancel();
     await recoveryQueue.catch(() => {});
     await runtimes.initialize();
@@ -297,13 +319,14 @@ function registerHandlers() {
   });
   handle('project:changes', (id: string) => store.inspectChanges(safeId(id)));
   handle('project:use-disk-source', async (value: unknown, token: string, mainFile: string) => {
+    requireProjectIdle();
     await recoveryQueue.catch(() => {});
     const next = await store.useDiskSource(value, token, mainFile);
     void watcher.check();
     return next;
   });
   const saveProject = async (value: unknown, saveAs: boolean, automatic = false) => {
-    migrations.requireIdle();
+    requireProjectIdle();
     const project = checkedProject(value);
     let directory = store.directory(project.id);
     if (automatic && !directory)
@@ -371,7 +394,7 @@ function registerHandlers() {
   handle('project:save', (value: unknown, saveAs: boolean) => saveProject(value, !!saveAs));
   handle('project:autosave', (value: unknown) => saveProject(value, false, true));
   handle('project:recover', (value: unknown) => {
-    migrations.requireIdle();
+    requireProjectIdle();
     const project = checkedProject(value);
     recoveryQueue = recoveryQueue.catch(() => {}).then(() => store.recover(project));
     return recoveryQueue;
@@ -381,7 +404,7 @@ function registerHandlers() {
     await store.clearRecovery();
   });
   handle('build:compile', async (value: unknown) => {
-    migrations.requireIdle();
+    requireProjectIdle();
     const project = checkedProject(value);
     const generation = ++requestGeneration;
     await store.requireReviewedDisk(project.id);
@@ -407,6 +430,7 @@ function registerHandlers() {
     return compiler.cancel();
   });
   handle('project:export-pdf', async (value: unknown) => {
+    requireProjectIdle();
     const project = checkedProject(value);
     await store.requireReviewedDisk(project.id);
     const pdf =
@@ -424,6 +448,7 @@ function registerHandlers() {
     return true;
   });
   handle('project:export-source', async (value: unknown) => {
+    requireProjectIdle();
     const project = checkedProject(value);
     await store.requireReviewedDisk(project.id);
     const result = await dialog.showSaveDialog(window!, {
@@ -466,6 +491,7 @@ function registerHandlers() {
     await shell.openExternal(url.href);
   });
   handle('app:close', async () => {
+    await fonts.cancel();
     await migrations.cancel();
     await recoveryQueue;
     await agent.cancel();
@@ -556,6 +582,75 @@ if (primaryInstance)
         return recoveryQueue;
       },
       workspace: workspaces,
+    });
+    fonts = new FontImport({
+      start: async () => {
+        requestGeneration++;
+        await agent.cancel();
+        await compiler.cancel();
+        await recoveryQueue;
+      },
+      choose: async (style) => {
+        const result = await dialog.showOpenDialog(window!, {
+          title: `Choose the ${style === 'boldItalic' ? 'bold italic' : style} font`,
+          properties: ['openFile'],
+          filters: [{ name: 'Font files', extensions: ['otf', 'ttf'] }],
+        });
+        return result.canceled ? undefined : result.filePaths[0];
+      },
+      checkDisk: async (project) => {
+        if (!store.directory(project.id))
+          throw new Error('Save this project before adding font files.');
+        const changes = await store.inspectChanges(project.id);
+        if (changes?.error || changes?.changes.length)
+          throw new Error(
+            'Files changed outside Folio. Close font setup and review or save those changes first.',
+          );
+      },
+      assets: (project) => store.assets(project),
+      compile: (project, assets) => migrationCompiler.compile(project, assets),
+      cancel: () => migrationCompiler.cancel(),
+      save: async (project, assets, build) => {
+        const history = (id: string) => workspaces.archive(project.id, id);
+        const saved = await store.saveWithAssets(project, assets, history);
+        if (saved.conflict)
+          throw new Error(
+            'Files changed outside Folio. Your font setup was not saved. Close this setup and review the changes.',
+          );
+        const next = {
+          ...project,
+          directory: saved.directory,
+          removedFiles: saved.removedFiles ?? project.removedFiles,
+        };
+        const warnings = [saved.warning];
+        // The source and font files have committed together. Later history or
+        // recovery errors must not pretend that the font change was rolled back.
+        try {
+          build.versionId = (
+            await workspaces.checkpoint(next, build.pdf!, 'Changed local fonts')
+          ).id;
+          const archived = await store.save(next, undefined, false, history, true);
+          if (archived.conflict)
+            warnings.push(
+              'Fonts were saved, but outside changes prevented saving the new PDF history. Review the changes, then save.',
+            );
+          if (archived.warning) warnings.push(archived.warning);
+        } catch {
+          warnings.push(
+            'Fonts were saved, but the new PDF history could not be saved. Compile and save again.',
+          );
+        }
+        recoveryQueue = recoveryQueue.catch(() => {}).then(() => store.recover(next));
+        try {
+          await recoveryQueue;
+        } catch {
+          warnings.push(
+            'Fonts were saved, but draft recovery could not be updated. Reopen the saved project if needed.',
+          );
+        }
+        void watcher.check();
+        return { project: next, build, warning: warnings.filter(Boolean).join(' ') || undefined };
+      },
     });
     connections = new ConnectionStore(dataRoot, {
       available: () =>

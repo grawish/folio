@@ -9,5 +9,6 @@ export const macReleaseSuites = [
   'runtime',
   'workspace',
   'diagnostics',
+  'fonts',
   'packaged',
 ];

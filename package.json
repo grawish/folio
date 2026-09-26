@@ -31,6 +31,7 @@
     "test:templates": "npm run build && node scripts/test-templates.mjs",
     "test:workspace": "npm run build && node scripts/test-workspace.mjs",
     "test:diagnostics": "npm run build && node scripts/test-diagnostics.mjs",
+    "test:fonts": "npm run build && node scripts/test-fonts.mjs",
     "test:pdf-lifecycle": "npm run build && node scripts/test-pdf-lifecycle.mjs",
     "test:pdf-viewer": "npm run build && node scripts/test-pdf-viewer.mjs",
     "test:runtime": "npm run build && node scripts/test-runtime.mjs",

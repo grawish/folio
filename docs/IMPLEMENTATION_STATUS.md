@@ -103,3 +103,7 @@ Local tests do not establish support for other systems or a clean-machine public
 ## Compiler error help
 
 The current source adds specific next steps for recognized missing files/packages/fonts, engine requirements, syntax errors and timeouts, while preserving raw output and source links. All 123 unit tests, the real missing-dependency/repair integration and the source-native suite passed without renderer errors. Curated synthetic screenshots extend the editor tutorial and demo gallery. See [implementation and verification details](BUILD_HELP.md). The earlier import-recovery package and its nine-suite results remain separate; the qualification set now includes a tenth diagnostic suite.
+
+## Guided local fonts
+
+The project menu now offers local OTF/TTF selection, a real PDF preview, and an explicit journaled save of source and font files. Preview/cancel, outside-edit rejection, reload, close during Apply, reopen, History checkpoints, Save As and ZIP asset preservation passed in the native app. All 130 unit tests and 14 compiler integrations passed, including all twelve template/paper variants with chosen fonts and a local TrueType fixture. See [local-font behavior, limits and evidence](LOCAL_FONTS.md). The qualification set now includes an eleventh local-font suite; older nine-suite hosted results remain evidence for their recorded earlier commit only.
