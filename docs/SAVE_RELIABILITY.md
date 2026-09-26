@@ -40,7 +40,7 @@ Save As writes a new identity into both the manifest and history archive. Source
 
 The save milestone passed **49 unit/protocol tests**, production build, TypeScript and formatting checks. The original native desktop suite passed after the new save path. The final packaged chat suite passed with damaged-history save rejection, a second process exiting, and closing during Save As (`test-results/chat-vEiVJh/`). Artifact hashes and scope are recorded in `release/reliable-save/README.md`.
 
-The later file-management work extends the same journal to deletion entries. Tests cover rollback after a deletion and a real process kill after a source file is removed, plus preservation of both unsaved buffers and newer disk bytes. See [file management](FILE_MANAGEMENT.md). The current unit/protocol suite has 80 passing tests.
+The later file-management work extends the same journal to deletion entries. Tests cover rollback after a deletion and a real process kill after a source file is removed, plus preservation of both unsaved buffers and newer disk bytes. See [file management](FILE_MANAGEMENT.md). That file-management milestone had 80 passing unit/protocol tests.
 
 [External-file watching](EXTERNAL_CHANGES.md) compares both source and assets against the accepted disk baseline. Scans wait for complete saves. Reload writes preserved editor buffers and the new accepted source/asset baseline to recovery before publishing the result. Source replacement after an explicit save-conflict choice retains differing outside UTF-8 text in `resume.trash`; storage limits and invalid text fail before writing any file. Metadata/history conflicts remain pending after a source reload.
 
@@ -50,4 +50,4 @@ This provides crash-recoverable application consistency, not a filesystem primit
 
 Process-kill recovery is tested on the development Mac. Power-loss behavior, network filesystems, Windows/Linux directory-flush behavior and native installer upgrades still need target-platform validation. The app does not promise survival of damaged storage or unavailable backups. Empty directories created before a failed save may remain; original file bytes and user edits are protected.
 
-Journals and backups live in application data and follow its local permissions; they are not encrypted. Recovery after a conflicting external edit currently gives the affected path and preserves backups for manual resolution. A guided recovery/conflict UI remains future release work.
+Journals and backups live in application data and follow its local permissions; they are not encrypted. Recovery after a conflicting external edit currently gives the affected path and preserves backups for manual resolution. The guided recovery engine now has tested version selection, retained copies and resumable decisions; its desktop UI/store integration remains open. See [implementation progress and remaining acceptance](SAVE_RECOVERY_IMPLEMENTATION.md).

@@ -1,110 +1,47 @@
-import { createHash, randomUUID } from 'node:crypto';
-import { promises as fs, constants } from 'node:fs';
+import { randomUUID } from 'node:crypto';
+import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { safeRelative } from './file-io';
-
-export const fileDigest = (data: Uint8Array | string) =>
-  createHash('sha256').update(data).digest('hex');
-const LIMIT = 100 * 1024 * 1024;
-const missing = (error: unknown) => (error as NodeJS.ErrnoException).code === 'ENOENT';
-
-// Check each parent, not just the leaf: a dangling symlink must never cause mkdir
-// or a replacement write outside the chosen project directory.
-async function parentPath(root: string, relative: string, create = false): Promise<string> {
-  safeRelative(relative);
-  let parent = root;
-  for (const part of relative.split('/').slice(0, -1)) {
-    parent = path.join(parent, part);
-    if (create) {
-      try {
-        await fs.mkdir(parent);
-        await syncDirectory(path.dirname(parent));
-      } catch (error) {
-        if ((error as NodeJS.ErrnoException).code !== 'EEXIST') throw error;
-      }
-    }
-    const stat = await fs.lstat(parent);
-    if (!stat.isDirectory() || stat.isSymbolicLink())
-      throw new Error('Project folders must be real directories, without symbolic links.');
-  }
-  return parent;
-}
-
-export async function readTarget(root: string, relative: string): Promise<Buffer | null> {
-  try {
-    await parentPath(root, relative);
-    const leaf = await fs.lstat(path.join(root, relative));
-    if (leaf.isSymbolicLink() || !leaf.isFile())
-      throw new Error(
-        `Cannot save over ${relative}: expected a regular file without symbolic links.`,
-      );
-    const handle = await fs.open(
-      path.join(root, relative),
-      constants.O_RDONLY | (constants.O_NOFOLLOW ?? 0),
-    );
-    try {
-      const stat = await handle.stat();
-      if (!stat.isFile() || stat.size > LIMIT)
-        throw new Error(`Cannot save over ${relative}: invalid or oversized file.`);
-      return await handle.readFile();
-    } finally {
-      await handle.close();
-    }
-  } catch (error) {
-    if (missing(error)) return null;
-    throw error;
-  }
-}
-
-async function syncDirectory(directory: string) {
-  // Windows does not expose portable directory fsync through Node; each file is
-  // still flushed. Native power-loss durability must be validated per platform.
-  if (process.platform === 'win32') return;
-  const handle = await fs.open(directory, constants.O_RDONLY);
-  try {
-    await handle.sync();
-  } finally {
-    await handle.close();
-  }
-}
-async function writeDurable(filename: string, data: Uint8Array | string, mode = 0o600) {
-  const handle = await fs.open(filename, 'wx', mode);
-  try {
-    await handle.writeFile(data);
-    await handle.sync();
-  } finally {
-    await handle.close();
-  }
-}
-async function replaceDurable(
-  filename: string,
-  data: Uint8Array | string,
-  suffix: string,
-  mode = 0o600,
-) {
-  const temporary = `${filename}.${suffix}.tmp`;
-  try {
-    await writeDurable(temporary, data, mode);
-    await fs.rename(temporary, filename);
-    await syncDirectory(path.dirname(filename));
-  } finally {
-    await fs.rm(temporary, { force: true });
-  }
-}
-
-type Entry = { path: string; before: string | null; after: string | null; mode: number };
-type Journal = {
+import {
+  fileDigest,
+  readTarget,
+  LIMIT,
+  missing,
+  parentPath,
+  syncDirectory,
+  writeDurable,
+  replaceDurable,
+} from './save-io';
+export { fileDigest, readTarget } from './save-io';
+import {
+  previewSaveRecovery,
+  readSaveRecoveryText,
+  resolveSaveRecovery,
+  finishSaveRecovery,
+} from './save-recovery';
+import type { RecoveryVersion, SaveRecoveryChoice } from '../../src/shared/save-recovery';
+export type SaveJournalEntry = {
+  path: string;
+  before: string | null;
+  after: string | null;
+  mode: number;
+};
+export type SaveJournal = {
   schema: 1;
   root: string;
   nonce: string;
   phase: 'prepared' | 'committed' | 'rolled-back';
-  entries: Entry[];
+  entries: SaveJournalEntry[];
 };
 export type SaveEntry = { path: string; data: Uint8Array | null; before: Uint8Array | null };
 export type SaveHooks = {
   afterApply?(index: number): Promise<void>;
   afterCommit?(): Promise<void>;
   afterRollback?(): Promise<void>;
+  afterResolutionPrepared?(): Promise<void>;
+  afterResolutionApply?(index: number): Promise<void>;
+  afterResolutionCommit?(): Promise<void>;
+  afterResolutionArchive?(): Promise<void>;
 };
 
 export class SaveTransactions {
@@ -115,7 +52,7 @@ export class SaveTransactions {
   private location(root: string) {
     return path.join(this.dataRoot, 'save-transactions', fileDigest(root));
   }
-  private async readJournal(root: string): Promise<Journal | null> {
+  private async readJournal(root: string): Promise<SaveJournal | null> {
     const directory = this.location(root);
     try {
       const stat = await fs.lstat(directory);
@@ -125,7 +62,7 @@ export class SaveTransactions {
       if (missing(error)) return null;
       throw error;
     }
-    let raw: Journal;
+    let raw: SaveJournal;
     try {
       const data = await readTarget(directory, 'journal.json');
       if (!data) {
@@ -142,6 +79,7 @@ export class SaveTransactions {
       !raw ||
       raw.schema !== 1 ||
       raw.root !== root ||
+      typeof raw.nonce !== 'string' ||
       !/^[\w-]{1,80}$/.test(raw.nonce) ||
       !['prepared', 'committed', 'rolled-back'].includes(raw.phase) ||
       !Array.isArray(raw.entries) ||
@@ -150,11 +88,15 @@ export class SaveTransactions {
       throw new Error('Invalid interrupted save record. Its backups were kept.');
     const seen = new Set<string>();
     for (const entry of raw.entries) {
+      if (!entry || typeof entry !== 'object')
+        throw new Error('Invalid interrupted save entry. Its backups were kept.');
       const name = safeRelative(entry.path).toLowerCase();
       if (
         seen.has(name) ||
-        (entry.before !== null && !/^[a-f0-9]{64}$/.test(entry.before)) ||
-        (entry.after !== null && !/^[a-f0-9]{64}$/.test(entry.after)) ||
+        (entry.before !== null &&
+          (typeof entry.before !== 'string' || !/^[a-f0-9]{64}$/.test(entry.before))) ||
+        (entry.after !== null &&
+          (typeof entry.after !== 'string' || !/^[a-f0-9]{64}$/.test(entry.after))) ||
         !Number.isInteger(entry.mode) ||
         entry.mode < 0 ||
         entry.mode > 0o777
@@ -164,11 +106,42 @@ export class SaveTransactions {
     }
     return raw;
   }
-  async recover(root: string): Promise<'none' | 'rolled-back' | 'committed'> {
+  async review(root: string) {
+    root = await fs.realpath(root);
+    const journal = await this.readJournal(root);
+    if (!journal) return null;
+    return previewSaveRecovery(root, this.location(root), journal);
+  }
+
+  async reviewText(root: string, token: string, filename: string, version: RecoveryVersion) {
+    root = await fs.realpath(root);
+    const journal = await this.readJournal(root);
+    if (!journal) throw new Error('This save no longer needs recovery.');
+    return readSaveRecoveryText(root, this.location(root), journal, token, filename, version);
+  }
+
+  async resolve(root: string, token: string, choices: SaveRecoveryChoice[]) {
+    root = await fs.realpath(root);
+    const journal = await this.readJournal(root);
+    if (!journal) throw new Error('This save no longer needs recovery.');
+    return resolveSaveRecovery(
+      root,
+      this.location(root),
+      this.dataRoot,
+      journal,
+      token,
+      choices,
+      this.hooks,
+    );
+  }
+
+  async recover(root: string): Promise<'none' | 'rolled-back' | 'committed' | 'resolved'> {
     root = await fs.realpath(root);
     const journal = await this.readJournal(root);
     if (!journal) return 'none';
     const directory = this.location(root);
+    if (await finishSaveRecovery(root, directory, this.dataRoot, journal, this.hooks))
+      return 'resolved';
     if (journal.phase === 'prepared') {
       // Validate all backups and all current targets before restoring any of them.
       // An external edit made after the crash is never silently overwritten.
@@ -243,7 +216,7 @@ export class SaveTransactions {
     await fs.mkdir(path.dirname(directory), { recursive: true, mode: 0o700 });
     await syncDirectory(this.dataRoot);
     await fs.mkdir(directory, { mode: 0o700 });
-    const journal: Journal = { schema: 1, root, nonce, phase: 'prepared', entries: [] };
+    const journal: SaveJournal = { schema: 1, root, nonce, phase: 'prepared', entries: [] };
     let prepared = false;
     try {
       const seen = new Set<string>();
