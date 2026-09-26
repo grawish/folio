@@ -21,6 +21,7 @@ AI setup and the active connection live only in Settings. The renderer receives 
 | Local compiler and isolation | `electron/core/compiler.ts`, `runtime.ts` |
 | Managed compiler copies | `electron/core/runtime-manager.ts`, `compiler-migration.ts` |
 | Projects, assets and recovery | `electron/core/project.ts`, `workspace.ts`, `save-transactions.ts` |
+| Support snapshot and ZIP export | `src/shared/support.ts`, `electron/core/support-bundle.ts`, `src/components/SupportBundle.tsx` |
 | Guided font selection and preview | `electron/core/local-fonts.ts`, `font-import.ts`, `src/components/FontSetup.tsx` |
 | ZIP validation and recovery | `safe-zip.ts`, `project-import.ts`, `import-transactions.ts` |
 | Outside-file review | `project-scan.ts`, `src/components/ExternalChanges.tsx` |

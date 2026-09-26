@@ -100,6 +100,11 @@ export type ProjectDiskChanges = {
 };
 
 export interface DesktopAPI {
+  prepareSupportBundle(
+    context: import('./support').SupportContext,
+  ): Promise<import('./support').SupportPreview>;
+  exportSupportBundle(id: string, selected: import('./support').SupportSection[]): Promise<boolean>;
+  cancelSupportBundle(id?: string): Promise<void>;
   beginFontImport(id: string, project: Project): Promise<void>;
   chooseFont(
     id: string,

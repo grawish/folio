@@ -118,5 +118,21 @@
     "sha256": "bc9fcd9b46bfee14e113fa16013a1eb77fbde4bb8c79f24cb8d6bd8a110b6fe0",
     "synthetic": true,
     "liveAI": false
+  },
+  {
+    "file": "docs/images/support-bundle.png",
+    "sourceSuite": "support",
+    "sourceCapture": "support-dark.png",
+    "sha256": "660271fd87f7d438245ab87d94f81197dd812ecb77cdd4284217d5459bb9f1cb",
+    "synthetic": true,
+    "liveAI": false
+  },
+  {
+    "file": "docs/images/support-bundle-light.png",
+    "sourceSuite": "support",
+    "sourceCapture": "support-small-light.png",
+    "sha256": "6f2236714d7e422c0079dfc9fda3951137002a00840eb378e5b94264fd72ba01",
+    "synthetic": true,
+    "liveAI": false
   }
 ]

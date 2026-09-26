@@ -13,6 +13,7 @@ import {
 } from 'electron';
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
+import { release as kernelRelease } from 'node:os';
 import { randomUUID } from 'node:crypto';
 import { pathToFileURL } from 'node:url';
 import { zipSync, strToU8 } from 'fflate';
@@ -23,6 +24,7 @@ import { Compiler } from './core/compiler';
 import { RuntimeManager } from './core/runtime-manager';
 import { CompilerMigration } from './core/compiler-migration';
 import { FontImport } from './core/font-import';
+import { SupportBundles } from './core/support-bundle';
 import type { FontStyle, FontTarget } from '../src/shared/fonts';
 import { adoptRuntime, validateRuntimePin } from '../src/shared/runtime';
 import { WorkspaceStore, safeId } from './core/workspace';
@@ -58,6 +60,27 @@ let agentCompiler: Compiler;
 let migrationCompiler: Compiler;
 let migrations: CompilerMigration;
 let fonts: FontImport;
+const support = new SupportBundles({
+  system: () => ({
+    app: app.getVersion(),
+    electron: process.versions.electron,
+    chromium: process.versions.chrome,
+    node: process.versions.node,
+    kernel: kernelRelease(),
+    architecture: process.arch,
+    platform: process.platform,
+    packaged: app.isPackaged,
+  }),
+  choose: async () => {
+    const chosen = await dialog.showSaveDialog(window!, {
+      title: 'Save support bundle',
+      defaultPath: 'folio-support.zip',
+      filters: [{ name: 'Support ZIP', extensions: ['zip'] }],
+    });
+    return chosen.canceled ? undefined : chosen.filePath;
+  },
+  write: atomicWrite,
+});
 let workspaces: WorkspaceStore;
 let connections: ConnectionStore;
 let providers: ProviderService;
@@ -148,6 +171,9 @@ function handle(channel: string, callback: (...args: any[]) => unknown) {
 }
 
 function registerHandlers() {
+  handle('support:prepare', (value: unknown) => support.prepare(value));
+  handle('support:export', (id: string, selected: unknown) => support.export(id, selected));
+  handle('support:cancel', (id?: string) => support.cancel(id));
   const checkedProject = (value: unknown) => {
     const project = validateProject(value);
     return { ...project, runtime: adoptRuntime(project.runtime, runtimes.defaultPin) };
@@ -226,6 +252,7 @@ function registerHandlers() {
     window?.setBackgroundColor(windowBackground());
   });
   handle('app:bootstrap', async () => {
+    await support.cancel();
     // A renderer reload loses its comparison token. Release the abandoned
     // comparison (or wait for Apply) before restoring the recovered draft.
     await fonts.cancel();
@@ -491,6 +518,7 @@ function registerHandlers() {
     await shell.openExternal(url.href);
   });
   handle('app:close', async () => {
+    await support.cancel();
     await fonts.cancel();
     await migrations.cancel();
     await recoveryQueue;

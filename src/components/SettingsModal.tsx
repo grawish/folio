@@ -22,6 +22,7 @@ export function SettingsModal({
   onRepairRuntime,
   projectId,
   onCompareCompiler,
+  onSupportBundle,
   connections,
   onConnections,
   initialTab = 'general',
@@ -41,9 +42,10 @@ export function SettingsModal({
   onRepairRuntime(): Promise<void>;
   projectId: string;
   onCompareCompiler(): void;
+  onSupportBundle(): void;
   connections: AISettings;
   onConnections(settings: AISettings): void;
-  initialTab?: 'general' | 'ai' | 'about';
+  initialTab?: 'general' | 'ai' | 'about' | 'privacy';
   onClose(): void;
 }) {
   const [tab, setTab] = useState<string>(initialTab);
@@ -223,6 +225,20 @@ export function SettingsModal({
                     Exported PDFs contain your resume without annotations or chat. Source ZIP
                     exports include the project conversation and version history.
                   </p>
+                </section>
+                <section className="privacy-row">
+                  <h4>Ask for help without sharing your resume</h4>
+                  <p>
+                    Review a small support summary, choose its sections, then save a ZIP on your
+                    Mac.
+                  </p>
+                  <button
+                    className="button secondary small"
+                    disabled={!window.folio}
+                    onClick={onSupportBundle}
+                  >
+                    Review support bundle
+                  </button>
                 </section>
               </>
             )}

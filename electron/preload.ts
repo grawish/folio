@@ -2,6 +2,9 @@ import { contextBridge, ipcRenderer } from 'electron';
 import type { DesktopAPI } from '../src/shared/types';
 
 const api: DesktopAPI = {
+  prepareSupportBundle: (context) => ipcRenderer.invoke('support:prepare', context),
+  exportSupportBundle: (id, selected) => ipcRenderer.invoke('support:export', id, selected),
+  cancelSupportBundle: (id) => ipcRenderer.invoke('support:cancel', id),
   beginFontImport: (id, project) => ipcRenderer.invoke('fonts:begin', id, project),
   chooseFont: (id, style) => ipcRenderer.invoke('fonts:choose', id, style),
   removeFont: (id, style) => ipcRenderer.invoke('fonts:remove', id, style),

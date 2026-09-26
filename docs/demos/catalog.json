@@ -334,5 +334,19 @@
     ],
     "kind": "Real app \u00b7 synthetic project",
     "alt": "Privacy and support in the real Folio app"
+  },
+  {
+    "id": "support-bundle",
+    "title": "Review a support bundle",
+    "image": "support-bundle.png",
+    "guide": "tutorials/settings-and-compiler.md#make-a-support-bundle",
+    "description": "Share a small diagnostic summary after reviewing exactly what it contains.",
+    "steps": [
+      "Open Settings \u2192 Privacy \u2192 Review support bundle.",
+      "Read each file and untick any section to leave it out.",
+      "Save the support ZIP locally; share it yourself when ready."
+    ],
+    "kind": "Real app \u00b7 synthetic private markers and compiler failure",
+    "alt": "Folio support bundle preview with compiler status and no raw log or source text"
   }
 ]

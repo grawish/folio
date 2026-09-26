@@ -27,6 +27,7 @@ Every currently implemented feature group below has a plain-language walkthrough
 | Editor and PDF preferences | [Walkthrough](tutorials/settings-and-compiler.md) | [Screenshot](images/editor-settings.png) · Real app · synthetic project |
 | Offline compiler repair | [Walkthrough](tutorials/settings-and-compiler.md) | [Screenshot](images/compiler-repair.png) · Real app · isolated damaged-runtime fixture |
 | Compare compiler versions | [Walkthrough](tutorials/settings-and-compiler.md) | [Screenshot](images/compiler-comparison.png) · Real app · synthetic compiler identity |
+| Reviewable support ZIP | [Walkthrough](tutorials/settings-and-compiler.md#make-a-support-bundle) | [Screenshot](images/support-bundle.png) · Real app · synthetic privacy fixture |
 | Privacy and support | [Walkthrough](tutorials/settings-and-compiler.md) | [Screenshot](images/privacy.png) · Real app · synthetic project |
 
-See [demo reproduction](demos/README.md) for commands and capture provenance. Managed expansion packs, online repair, automatic updates and support bundles remain planned in [the release audit](RELEASE_GAP_AUDIT.md). They have no working-feature demo yet. Wider OS, physical accessibility and live AI acceptance also remain open.
+See [demo reproduction](demos/README.md) for commands and capture provenance. Managed expansion packs, online repair, and automatic updates remain planned in [the release audit](RELEASE_GAP_AUDIT.md). They have no working-feature demo yet. Wider OS, physical accessibility and live AI acceptance also remain open.

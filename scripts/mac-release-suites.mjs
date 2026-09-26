@@ -10,5 +10,6 @@ export const macReleaseSuites = [
   'workspace',
   'diagnostics',
   'fonts',
+  'support',
   'packaged',
 ];

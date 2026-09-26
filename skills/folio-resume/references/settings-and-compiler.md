@@ -22,7 +22,27 @@ Open **Settings → Editor & PDF**. Change **Editor text size** or **Automatic p
 
 [Screenshot: Privacy settings](https://github.com/grawish/folio/blob/main/docs/images/privacy.png)
 
-The header **Help and keyboard shortcuts** button lists shortcuts. Include the version from **Settings → About** in a bug report. There is no automatic support-bundle generator yet: review logs and screenshots yourself and remove personal data.
+The header **Help and keyboard shortcuts** button lists shortcuts. Include the version from **Settings → About** in a bug report.
+
+## Make a support bundle
+
+A support bundle is a small ZIP of facts that can help someone understand a problem. It leaves out your resume, PDF, chats, notes, keys, raw logs, usernames and file paths.
+
+1. Open **Settings → Privacy → Review support bundle**.
+2. Click each section on the left to read its file on the right.
+3. Untick **Include** for any section you want to leave out. The AI connection summary starts unticked. You can include it if the provider type and image-check state would help.
+4. Keep at least one section selected, then click **Save support ZIP** and choose a place on your Mac.
+5. Share the ZIP yourself when you are ready. Folio does not upload or send it.
+
+[Screenshot: The exact compiler summary before saving a support ZIP](https://github.com/grawish/folio/blob/main/docs/images/support-bundle.png)
+
+The preview is a snapshot. To collect newer information after a build or change, close this screen and open it again. If you cancel the save dialog, you can still review and save the same snapshot. If saving fails, choose another location and try again.
+
+This ZIP contains counts and status information, not the full compiler log or the resume that failed. For a harder problem, make a small example with fake details. Do not confuse a support ZIP with **Export LaTeX source…**, which includes your source, chats and history. See [the complete file list and privacy checks](https://github.com/grawish/folio/blob/main/docs/SUPPORT_BUNDLES.md).
+
+[Screenshot: Reviewing a support summary in a small window with the light theme](https://github.com/grawish/folio/blob/main/docs/images/support-bundle-light.png)
+
+`npm run test:support` reproduces this workflow with synthetic private markers and a real compiler failure.
 
 ## Repair a compiler
 

@@ -71,6 +71,8 @@ import { usePaneLayout } from './usePaneLayout';
 import { minimumSidebar, minimumEditor } from './shared/workspace-layout';
 import { buildHelp } from './shared/build-help';
 import { FontSetup } from './components/FontSetup';
+import { SupportBundle } from './components/SupportBundle';
+import { supportSnapshot } from './shared/support';
 
 type Dialog =
   | 'templates'
@@ -83,6 +85,7 @@ type Dialog =
   | 'main-file'
   | 'compiler-migration'
   | 'fonts'
+  | 'support'
   | 'history'
   | 'file-manager'
   | 'removed-files'
@@ -169,7 +172,7 @@ export default function App() {
   const message = useCallback((text: string) => setToast(errorMessage(text)), []);
   const [view, setView] = useState<'chat' | 'code'>('chat');
   const [connections, setConnections] = useState<AISettings>({ connections: [], activeId: null });
-  const [settingsTab, setSettingsTab] = useState<'general' | 'ai' | 'about'>('general');
+  const [settingsTab, setSettingsTab] = useState<'general' | 'ai' | 'about' | 'privacy'>('general');
   const [agentProgress, setAgentProgress] = useState<AgentProgress | null>(null);
   const activeRun = useRef<{ id: string; projectId: string } | null>(null);
   const saving = useRef(false);
@@ -1951,6 +1954,30 @@ export default function App() {
             }}
           />
         )}
+        {dialog === 'support' && (
+          <SupportBundle
+            onPrepare={() =>
+              window.folio!.prepareSupportBundle(
+                supportSnapshot({
+                  project: current.current,
+                  result,
+                  runtime,
+                  workspace: workspaceRef.current,
+                  connections,
+                  appearance,
+                  autoSave,
+                  autoCompile,
+                  dirty,
+                  needsDiskReview,
+                }),
+              )
+            }
+            onClose={() => {
+              setSettingsTab('privacy');
+              setDialog('settings');
+            }}
+          />
+        )}
         {dialog === 'recent' && (
           <Modal title="Recent projects" onClose={() => setDialog(null)}>
             <div className="choice-list">
@@ -2062,6 +2089,7 @@ export default function App() {
             }}
             connections={connections}
             onConnections={setConnections}
+            onSupportBundle={() => setDialog('support')}
             initialTab={settingsTab}
             onClose={() => {
               setDialog(null);

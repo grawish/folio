@@ -107,3 +107,7 @@ The current source adds specific next steps for recognized missing files/package
 ## Guided local fonts
 
 The project menu now offers local OTF/TTF selection, a real PDF preview, and an explicit journaled save of source and font files. Preview/cancel, outside-edit rejection, reload, close during Apply, reopen, History checkpoints, Save As and ZIP asset preservation passed in the native app. All 130 unit tests and 14 compiler integrations passed, including all twelve template/paper variants with chosen fonts and a local TrueType fixture. See [local-font behavior, limits and evidence](LOCAL_FONTS.md). The qualification set now includes an eleventh local-font suite; older nine-suite hosted results remain evidence for their recorded earlier commit only.
+
+## Reviewable support bundles
+
+Settings → Privacy now offers an exact-file preview, section selection and local ZIP export. A fixed native-validated list of diagnostic counts/enums excludes resume/log/account/path/environment text. Five privacy/protocol tests and the whole 135-test unit suite passed. The source-native workflow verifies actual compiler-failure categorization, private-marker exclusion, exact ZIP bytes, cancelled/failed saves, reload and close during atomic export. See [support bundle scope and evidence](SUPPORT_BUNDLES.md). The expanded native qualification set includes a twelfth support suite; earlier package evidence does not qualify this addition.
