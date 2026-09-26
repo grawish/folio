@@ -62,31 +62,53 @@ try {
     },
   });
   await fs.writeFile(path.join(data, 'recovery.json'), startupRecovery);
+  const earlyStarted = Date.now();
   await launch(false);
-  await expect(
-    page.getByRole('heading', { name: 'Preparing your workspace', exact: true }),
-  ).toBeVisible();
-  await expect(page.locator('.app-shell')).toHaveAttribute('inert', '');
-  await app.evaluate(({ BrowserWindow, dialog }) => {
-    globalThis.startupDialogs = 0;
-    dialog.showOpenDialog = async () => {
-      globalThis.startupDialogs++;
-      return { canceled: true, filePaths: [] };
-    };
-    for (const command of ['save', 'new', 'open', 'compile'])
-      BrowserWindow.getAllWindows()[0].webContents.send('menu', command);
+  await expect(page.getByLabel('Message the resume agent')).toBeEnabled({ timeout: 10_000 });
+  const editingReadyMs = Date.now() - earlyStarted;
+  await expect(page.getByLabel('Project name')).toHaveValue('Recovered resume');
+  await expect(page.locator('.compiler-preparation')).toBeVisible();
+  await expect(page.locator('.app-shell')).not.toHaveAttribute('inert', '');
+  const early = await page.evaluate(() => window.folio.bootstrap());
+  expect(early.runtime.ready).toBe(false);
+  expect(early.runtime.preparing).toBe(true);
+  expect(early.runtime.pin.id).toMatch(/^[a-f0-9]{64}$/);
+  const earlyDraft = 'Please keep this draft while the local compiler prepares.';
+  await page.getByLabel('Message the resume agent').fill(earlyDraft);
+  await expect(page.getByRole('button', { name: 'Send', exact: true })).toBeDisabled();
+  await page.getByRole('tab', { name: 'Code', exact: true }).click();
+  await expect(page.locator('.cm-content')).toContainText('Keep my recovered resume.');
+  await page.locator('.cm-content').press('ControlOrMeta+End');
+  await page.keyboard.insertText('\n% Edited while the compiler prepared');
+  await expect(page.getByRole('button', { name: 'Compile', exact: true })).toBeDisabled();
+  await expect(page.getByRole('button', { name: 'Export PDF', exact: true })).toBeDisabled();
+  await app.evaluate(({ BrowserWindow }) => {
+    BrowserWindow.getAllWindows()[0].webContents.send('menu', 'compile');
   });
-  await page.screenshot({ path: path.join(root, 'startup.png') });
-  expect(await app.evaluate(() => globalThis.startupDialogs)).toBe(0);
-  await expect(page.getByRole('dialog')).toHaveCount(0);
+  await choose(folder);
+  await page.getByRole('button', { name: 'Save project', exact: true }).click();
+  await page.getByText('Saved locally', { exact: true }).waitFor();
+  expect(
+    JSON.parse(await fs.readFile(path.join(folder, 'resume.project.json'), 'utf8')).runtime,
+  ).toEqual(early.runtime.pin);
+  await expect(page.locator('.compiler-preparation')).toBeVisible();
+  await expect(
+    fs.access(path.join(data, 'runtimes', early.runtime.pin.id, 'active.json')),
+  ).rejects.toThrow();
+  await page.screenshot({ path: path.join(root, 'startup-editing.png') });
+  await page.getByRole('tab', { name: 'Chat', exact: true }).click();
+  await page.screenshot({ path: path.join(root, 'startup-chat.png') });
   await close();
-  expect(await fs.readFile(path.join(data, 'recovery.json'), 'utf8')).toBe(startupRecovery);
+  const earlyRecovered = JSON.parse(await fs.readFile(path.join(data, 'recovery.json'), 'utf8'));
+  expect(earlyRecovered.project.files[0].content).toContain('Edited while the compiler prepared');
+  expect(earlyRecovered.project.runtime).toEqual(early.runtime.pin);
   console.log(
-    'PASS: closing during first-run preparation preserves the previous recovery file exactly.',
+    `PASS: recovered editing ready in ${editingReadyMs} ms; source, chat draft and exact compiler pin can be saved before preparation finishes.`,
   );
   const started = Date.now();
   await launch();
   await expect(page.getByLabel('Project name')).toHaveValue('Recovered resume');
+  await expect(page.getByLabel('Message the resume agent')).toHaveValue(earlyDraft);
   await page.getByText('Up to date', { exact: true }).waitFor({ timeout: 120_000 });
   const status = await page.evaluate(() => window.folio.inspectRuntime());
   expect(status.ready, status.message).toBe(true);
@@ -226,6 +248,30 @@ try {
   await expect(page.getByLabel('Project name')).toHaveValue('Recovered resume');
   await app.evaluate(({ ipcMain }) => {
     ipcMain.removeHandler('app:bootstrap');
+    ipcMain.handle('app:bootstrap', () => new Promise(() => {}));
+  });
+  await page.reload();
+  await expect(
+    page.getByRole('heading', { name: 'Preparing your workspace', exact: true }),
+  ).toBeVisible();
+  await expect(page.locator('.app-shell')).toHaveAttribute('inert', '');
+  await app.evaluate(({ BrowserWindow, dialog }) => {
+    globalThis.startupDialogs = 0;
+    dialog.showOpenDialog = async () => {
+      globalThis.startupDialogs++;
+      return { canceled: true, filePaths: [] };
+    };
+    for (const command of ['save', 'new', 'open', 'compile'])
+      BrowserWindow.getAllWindows()[0].webContents.send('menu', command);
+  });
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+  expect(await app.evaluate(() => globalThis.startupDialogs)).toBe(0);
+  const beforeLoadingClose = await fs.readFile(path.join(data, 'recovery.json'), 'utf8');
+  await close();
+  expect(await fs.readFile(path.join(data, 'recovery.json'), 'utf8')).toBe(beforeLoadingClose);
+  await launch();
+  await app.evaluate(({ ipcMain }) => {
+    ipcMain.removeHandler('app:bootstrap');
     ipcMain.handle('app:bootstrap', () => {
       throw new Error('Synthetic recovery read failure');
     });
@@ -242,7 +288,18 @@ try {
   expect(errors, errors.join('\n')).toEqual([]);
   await fs.writeFile(
     path.join(root, 'result.json'),
-    JSON.stringify({ passed: true, errors, pin: status.pin }, null, 2),
+    JSON.stringify(
+      {
+        passed: true,
+        errors,
+        pin: status.pin,
+        editingReadyMs,
+        earlySave: true,
+        retainedDraft: true,
+      },
+      null,
+      2,
+    ),
   );
   console.log(
     'PASS: source ZIP, history and restart preserve the exact compiler; an unavailable recorded version never switches to the current one. No renderer errors.',

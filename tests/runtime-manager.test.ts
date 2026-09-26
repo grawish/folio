@@ -57,6 +57,80 @@ const nestedResources = {
   'extras/sibling/c.txt': 'Sibling resource',
 };
 
+test('recovery gets its exact compiler identity while preparation is still blocked, but execution waits for verification', async (t) => {
+  const f = await fixture(t);
+  let release!: () => void, entered!: () => void;
+  const held = new Promise<void>((resolve) => {
+    release = resolve;
+  });
+  const probing = new Promise<void>((resolve) => {
+    entered = resolve;
+  });
+  t.after(() => release());
+  const manager = new RuntimeManager(f.bundle, path.join(f.root, 'fresh-runtime'), {
+    probe: async () => {
+      entered();
+      await held;
+    },
+  });
+  const startup = await manager.startupStatus();
+  assert.equal(startup.ready, false);
+  assert.equal(startup.preparing, true);
+  assert.equal(startup.canRepair, false);
+  assert.deepEqual(startup.pin, f.pin);
+  const store = new ProjectStore(
+    path.join(f.root, 'early-workspace'),
+    undefined,
+    () => manager.defaultPin,
+  );
+  const project = {
+    id: 'early-project',
+    name: 'Recovered draft',
+    revision: 2,
+    mainFile: 'main.tex',
+    files: [{ path: 'main.tex', content: 'Keep my early edits' }],
+  };
+  await store.recover(project);
+  const recovered = await store.loadRecovery();
+  assert.deepEqual(recovered?.files, project.files);
+  assert.deepEqual(recovered?.runtime, f.pin);
+  await probing;
+  let acquired = false;
+  const lease = manager.acquire(f.pin).then((value) => {
+    acquired = true;
+    return value;
+  });
+  const recorded = { ...f.pin, id: 'a'.repeat(64) };
+  assert.deepEqual((await manager.startupStatus(recorded)).pin, recorded);
+  assert.equal(acquired, false);
+  release();
+  const ready = await lease;
+  assert.equal(ready.status.ready, true);
+  await ready.release();
+  assert.equal((await manager.status(f.pin)).ready, true);
+});
+
+test('failed background preparation never reports readiness or replaces a recorded compiler choice', async (t) => {
+  const f = await fixture(t);
+  const manager = new RuntimeManager(f.bundle, path.join(f.root, 'failed-runtime'), {
+    probe: async () => {
+      throw new Error('Offline preparation failed');
+    },
+  });
+  const startup = await manager.startupStatus();
+  assert.deepEqual(startup.pin, f.pin);
+  const status = await manager.status();
+  assert.equal(status.ready, false);
+  assert.equal(status.preparing, undefined);
+  assert.match(status.message, /Offline preparation failed/);
+  await assert.rejects(manager.acquire());
+  await fs.writeFile(path.join(f.bundle, 'manifest.json'), 'Damaged manifest');
+  const invalid = new RuntimeManager(f.bundle, path.join(f.root, 'invalid-runtime'));
+  const recorded = (await invalid.startupStatus(f.pin)).pin;
+  assert.deepEqual(recorded, f.pin);
+  assert.equal((await invalid.status(f.pin)).ready, false);
+});
+
 test('staging flushes every file and nested directory before readiness, with one bottom-up directory pass', async (t) => {
   const f = await fixture(t, nestedResources);
   const events: { name: string; directory: boolean }[] = [];

@@ -1,0 +1,326 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-26T19:24:07.519631+00:00",
+  "sourceBase": "90d582a824c84ba4a014ab655c86d8256f009c54",
+  "scope": "Current compiled source app on the development Apple silicon Mac. This does not qualify preview-4 or a final packaged/signed release.",
+  "host": {
+    "platform": "Darwin",
+    "kernel": "27.0.0",
+    "architecture": "arm64"
+  },
+  "implementation": [
+    {
+      "path": "electron/core/runtime-manager.ts",
+      "bytes": 21030,
+      "sha256": "4d62d81e79b2c001756acc7ad2bd136ca5e91d8de00963cb61b84396624c545e"
+    },
+    {
+      "path": "electron/main.ts",
+      "bytes": 37863,
+      "sha256": "c6b319211a0e0086db8ad5f6832ba7f1f1942fd1f74515e23c356437636c39ca"
+    },
+    {
+      "path": "src/App.tsx",
+      "bytes": 90676,
+      "sha256": "46583208dccdfd31fe3e941ba5c2b874320f55ab0ff10fe3a6429ffa58b55c4f"
+    },
+    {
+      "path": "src/shared/types.ts",
+      "bytes": 8451,
+      "sha256": "fb910b96f761a85f5cde6725767e2dcbc07e1fa44c6ec0b5a9de11710eb729b3"
+    },
+    {
+      "path": "src/components/ChatPanel.tsx",
+      "bytes": 11438,
+      "sha256": "e842da396bf210abb2defc695d25281545fce2b16008d95b85d90c6466e7ed84"
+    },
+    {
+      "path": "src/components/SettingsModal.tsx",
+      "bytes": 15897,
+      "sha256": "09d10e3640e35d494448750d8764407266ca83931bc59636f349ae72784242bf"
+    },
+    {
+      "path": "src/styles.css",
+      "bytes": 36141,
+      "sha256": "3f039f3c618eb750c71ef13528dd037236923962929fd27fb64523b585497392"
+    }
+  ],
+  "checks": [
+    {
+      "path": "tests/runtime-manager.test.ts",
+      "bytes": 20495,
+      "sha256": "2dda039d8e299e6908073ca32018c7827d47caf15f5aef3e117e8b2c1a467a49"
+    },
+    {
+      "path": "scripts/test-runtime.mjs",
+      "bytes": 15632,
+      "sha256": "d9238ba8a20db006241962e283adf2485a21c71fa33ad41bd5f2d9eccb2ed10f"
+    },
+    {
+      "path": "scripts/test-chat.mjs",
+      "bytes": 36762,
+      "sha256": "ecc8c229f5792aefd47b860c7ff318c3bd60962972da2f57be4f9e7a454cd095"
+    },
+    {
+      "path": "scripts/test-save-recovery.mjs",
+      "bytes": 20853,
+      "sha256": "bdf3126f22a6b45b5583a689aa406e2a2ebde1f6db672a182102a44cbc704ee3"
+    },
+    {
+      "path": "scripts/test-pack-catalog.mjs",
+      "bytes": 9029,
+      "sha256": "adcd98e849978c3e5dac8f60001647a666dcb2e908ee308748a84cbcd2695467"
+    }
+  ],
+  "behavior": [
+    "Bootstrap restores the real project after reading its compiler identity, without waiting for executable preparation.",
+    "Source edits, saves and chat drafts work during preparation; Send, Compile and PDF export wait for verified readiness.",
+    "Recovered source and chat drafts survive normal close/reopen during preparation. Closing before recovery loads or after a load failure preserves the previous recovery bytes.",
+    "Execution still acquires a verified exact runtime lease. Missing versions never silently switch."
+  ],
+  "sourceTests": {
+    "passed": 231,
+    "failed": 0,
+    "log": {
+      "path": "test-results/early-workspace-all-unit.log",
+      "bytes": 24116,
+      "sha256": "f2c8475713e81dcce510706d6b69ca3abfc20838dbc992d2002d95a1896d8cd3"
+    }
+  },
+  "compilerIntegrations": {
+    "passed": 15,
+    "failed": 0,
+    "log": {
+      "path": "test-results/early-workspace-integration.log",
+      "bytes": 1990,
+      "sha256": "d71f4ce63c20e258514a7f53d03dd9fe6a8d16bb6846ec4b05d2eb0b9709ea03"
+    }
+  },
+  "build": {
+    "passed": true,
+    "log": {
+      "path": "test-results/early-workspace-build.log",
+      "bytes": 1719,
+      "sha256": "581a9d3d8ce970458b2c389b92fa98ff52797275657a34febbd13b0bd9d82cc0"
+    },
+    "unchangedCompiledFiles": {
+      "dist/assets/index-9SdVBE9n.js": "8c185780d748e0fc41f3a3b5bdc917efe5ab26578a9458c7bd807a378b1be1fd",
+      "dist/assets/index-CG0W0Zm7.css": "0b039e95a06b2095de5c7b8396952feba263f6a618fbfde372d415dc23d1b906",
+      "dist/assets/jetbrains-mono-italic-cyrillic-CY-YXjkl.woff2": "a79035476e5f8408e7f2b2599dfd50b7262862ecb853e028ba7b4a00bed16e73",
+      "dist/assets/jetbrains-mono-italic-greek-CoTSRNcy.woff2": "44ca7e27fef33e684d50e1009d0b886b83d4783e383223e7b13e173a623db0d3",
+      "dist/assets/jetbrains-mono-italic-latin-BW896jpM.woff2": "00ba27973ba2965d3e7e03ee0f2c66491956cda2ecf8cc6066c969696577f47b",
+      "dist/assets/jetbrains-mono-italic-latin-ext-C5V3_1R8.woff2": "31434d4924e83d1c6bf10136077f96d0c541226301ba98a583b14bded0576a75",
+      "dist/assets/jetbrains-mono-italic-vietnamese-DP5VCyMl.woff2": "9c54e21b500492314341e2041e23cf141d43a0c102bca07a7fe281f487eec5f6",
+      "dist/assets/jetbrains-mono-normal-cyrillic-D0W76x1T.woff2": "4188276a58108d04eb0c6f5b8c9e4b5ac2d9e31e81b2b4fa7da263b92f1b35c3",
+      "dist/assets/jetbrains-mono-normal-greek-FADJ2lFV.woff2": "0164d0c055dced93435b1d6c2986db2fb7d068ce21950c85b776695f56238b8a",
+      "dist/assets/jetbrains-mono-normal-latin-RruCX7RW.woff2": "d3dcdccdaba31643defe2317942155d4af3ee03951d058adbe8bc02b13e61b0a",
+      "dist/assets/jetbrains-mono-normal-latin-ext-e2G1hK0J.woff2": "d5f407e28185790518c49ec8738fa89916ddc99f793010d249165d0e2c2452cc",
+      "dist/assets/manrope-normal-cyrillic-DJ9PYDpy.woff2": "95a493061fe0a8d0d027c2892747134ba747141112d3be4d5022e70ab7d3a1a6",
+      "dist/assets/manrope-normal-greek-vbHvg7sP.woff2": "40af11327fe5308166c6cb5787808b042db6da889abf602f0a4876c49675d87e",
+      "dist/assets/manrope-normal-latin-C46ZzDBF.woff2": "e310b55a7fd9677f5e3555e6c6c4d064fa1f1d24393f0ddbe217cea12a8c432f",
+      "dist/assets/manrope-normal-latin-ext-CDracvZH.woff2": "ce093b341d9c10658ee1eaa85c5f8042ff3307bc6ccfc5f405616eb437f0009e",
+      "dist/assets/manrope-normal-vietnamese-C9-d800b.woff2": "bab757f8a0a1bc04055ee98cb5777f3254aab11f6d222366e1f40a36f390506a",
+      "dist/assets/pdf.worker.min-Dswkl-cV.mjs": "8ab0e5e30031b4a06ecfddd5ae9562f0227f830ee7ec9ed1a968b134243d2386",
+      "dist/index.html": "0b46f25344196dd52a7f86485f8984b4d22bfef3948d877e19bac4ecdc25a422",
+      "dist/licenses/JetBrains-Mono-OFL.txt": "b2fe5e8987594e9ffd1d2ca52a2f5d73eb8335243893c5d6254b5ad69269591d",
+      "dist/licenses/Manrope-OFL.txt": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b",
+      "dist/templates/academic-a4.png": "e149b33dc14f9bb99469b5dc9b39cf0f698de720894af8f9ef2bd74d31f1115d",
+      "dist/templates/academic-letter.png": "1fb69ee0e825acb916781022f7bb5e65576f7911b7fb08d34009aa21b60964e0",
+      "dist/templates/classic-a4.png": "38f95f3b25a51669105de7efdba08fe5b2633e7f7fde5ee15c3057862551fee3",
+      "dist/templates/classic-letter.png": "5e3ef1114cd3c728118e01c4161722b5c2a3a5e27a058f43f6bb5b825023c8ee",
+      "dist/templates/compact-technical-a4.png": "5878085cef410ee1b1463c0b71de8ebb48fc845899aed90d7b52c16ee577fc51",
+      "dist/templates/compact-technical-letter.png": "9fcc6a929547407948a5a23fe9d481bb197f20e195c7bbae2af125fb75e34a3a",
+      "dist/templates/manifest.json": "db231613ba3b1a69e01ffd5a111422874736d51d9b8f6509de7c71511b4a4a86",
+      "dist/templates/minimal-a4.png": "9bb702aae1e721255a0632010a22a82bcb283a49b16b6ce8bfbe74a99ef48353",
+      "dist/templates/minimal-letter.png": "10bfd6c692eac97a9e25bc2361d0113d43584069a05c3af4fbef64ad78cfb368",
+      "dist/templates/modern-a4.png": "bd6a55401f8642fcf375c18fe952d7ff2185635c7fa4ece24c7be3e157515b41",
+      "dist/templates/modern-letter.png": "99062be87eabf30184d937ea0ceef3768387beb81cd850110ce335819d5474a0",
+      "dist/templates/two-column-a4.png": "b7cca2c36d149da1af024d1095801051817084c536724f2f5c7d68f75e3cc348",
+      "dist/templates/two-column-letter.png": "d23fb748c48033f314d40fac502c42953d9003e478ec2360144e55da68c19802",
+      "dist-electron/main.cjs": "7b0826bae7f0275619fbf4ac3c656d59b175deba994ee4d17ce39b929f1aacb2",
+      "dist-electron/main.cjs.map": "bb3152c524531d92ab78f08b4e294599063f08769ab2ea34685c0e733096a436",
+      "dist-electron/preload.cjs": "3ec2324f6364d098d91bbe8f6dc36b3069050f32e87792f1eab4287929b07ac6",
+      "dist-electron/preload.cjs.map": "f1737013d2c5c836b8a41b22542a113b51dc0e3b62c985e627062223afc28f97"
+    }
+  },
+  "nativeRuntime": {
+    "record": {
+      "path": "test-results/runtime-U1dKk8/result.json",
+      "bytes": 342,
+      "sha256": "c4b7abeb72f2561767a12316ead3345c30a29b0068233e5da9218a3a6af622d2"
+    },
+    "result": {
+      "passed": true,
+      "errors": [],
+      "pin": {
+        "engine": "tectonic",
+        "version": "0.17.0",
+        "bundle": "folio-core-v1",
+        "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+        "platform": "darwin-arm64",
+        "biberVersion": "2.17"
+      },
+      "editingReadyMs": 409,
+      "earlySave": true,
+      "retainedDraft": true
+    },
+    "log": {
+      "path": "test-results/early-workspace-native.log",
+      "bytes": 689,
+      "sha256": "8ffb968ef6cbf955199e852abe6e100aaab7306877d7b21b6fab09b160eafeba"
+    },
+    "screenshot": {
+      "path": "docs/images/startup-chat.png",
+      "bytes": 96970,
+      "sha256": "3873060c4e1fcd66b07c1b8d0ccb35e7865685f937e5f19fb012692b06a97600"
+    }
+  },
+  "nativeChat": {
+    "passed": true,
+    "log": {
+      "path": "test-results/early-workspace-chat.log",
+      "bytes": 1518,
+      "sha256": "307c8de86c857c2af9f06f003abc67cd1f43e9ac5fb120fc6b5f6b61ffb210a9"
+    },
+    "lifecycle": {
+      "path": "test-results/chat-SEDKDr/lifecycle.json",
+      "bytes": 3698,
+      "sha256": "80804a9a090d49e057a9ad478ce12a151da42b130a540b4503d739b05ba4334a"
+    },
+    "nativeOutput": {
+      "path": "test-results/chat-SEDKDr/native-output.log",
+      "bytes": 631,
+      "sha256": "b9716b729c28a3c3426eda5b11a8a10e602b2bfec67fe09365ad3b8a21c74868"
+    },
+    "provider": "Synthetic local protocol fixture; actual compiler, renderer, history, review and recovery. No real AI account."
+  },
+  "nativeSaveRecovery": {
+    "record": {
+      "path": "test-results/save-recovery-3Ehckq/result.json",
+      "bytes": 948,
+      "sha256": "7cff45d418c7a8e7ef8bebaa3a9503d2a30b34a610dad698f873336f549e4412"
+    },
+    "result": {
+      "passed": true,
+      "errors": [],
+      "checks": [
+        "failed startup exposes real before/attempted/current copies; default preserves outside edit; compact controls work in both themes; reload releases abandoned review",
+        "stale review changes no files; refreshed choices preserve newer outside edit and editor/conversation drafts; chosen files reopen and compile",
+        "binary/history choices, source deletion and new asset apply exactly; selected source, asset and conversation round-trip in ZIP export",
+        "normal project menu supports damaged backups; native close waits for Apply; reopening uses chosen project; another project\u2019s unsaved source is retained without overwriting its folder",
+        "reload during Apply waits and opens chosen files/history; completed copies remain accessible after the review is closed",
+        "dismissing a failed partial Apply re-enters recovery; an old editor buffer cannot erase the pending choices"
+      ]
+    },
+    "log": {
+      "path": "test-results/early-workspace-save-recovery-retry.log",
+      "bytes": 960,
+      "sha256": "13a981e167e64b0606447e8e213834e22120285c61011e185a6f96995e9ca3a1"
+    },
+    "retainedInitialFailure": {
+      "record": {
+        "path": "test-results/save-recovery-QYy2jr/result.json",
+        "bytes": 435,
+        "sha256": "e08db75b71a2ac9b9617596734d3b3b20b99b1785f656e18a14ba89d165d9027"
+      },
+      "log": {
+        "path": "test-results/early-workspace-save-recovery.log",
+        "bytes": 755,
+        "sha256": "a885937c1ff1a7ca257a5fb76cbf4b5647cbba2a0c6d349b1d189d72cc5f86e0"
+      },
+      "screenshot": {
+        "path": "test-results/save-recovery-QYy2jr/failure.png",
+        "bytes": 70922,
+        "sha256": "ea6ccb6fdfd8217f15e80dd417a6c7b1a007a18fabbeb2ad834b4592f28fe35a"
+      },
+      "testScriptSha256": "b9f6842ce5c452b07ff3ff10902acdf6ca613638970e8ec0b6ee95b74649b991",
+      "cause": "The test read the prior reveal (an archived transaction path) before the asynchronous native Show recovery copies handler resolved its completed backup. Source and retained copies were intact.",
+      "repair": "Wait for the native reveal count to advance, require the completed-backup parent, then perform the unchanged exact draft/source/history/binary checks. The other reveal assertions also await their actual callback."
+    }
+  },
+  "nativePublicPack": {
+    "record": {
+      "path": "test-results/pack-catalog-12xRTJ/result.json",
+      "bytes": 1026,
+      "sha256": "11cff788f1014afdf28ed3d2700dbb24dc7d15924d5957173eb0afb7915189c4"
+    },
+    "result": {
+      "passed": true,
+      "errors": [],
+      "artifact": {
+        "url": "https://github.com/grawish/folio/releases/download/resource-packs-v1/Folio-multirow-2.9-v1.foliopack",
+        "bytes": 2259484,
+        "sha256": "b11d22b915fba8f7a4efaa82d900912341cc2af1a05cd2dcee298ca48a4bbbfe"
+      },
+      "before": {
+        "engine": "tectonic",
+        "version": "0.17.0",
+        "bundle": "folio-core-v1",
+        "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+        "platform": "darwin-arm64",
+        "biberVersion": "2.17"
+      },
+      "target": {
+        "engine": "tectonic",
+        "version": "0.17.0",
+        "bundle": "folio-multirow-2.9-v1",
+        "id": "f08d496354bb88e604ca8c2394935f8bf2e842a021d1b54b02ff210344a1d670",
+        "platform": "darwin-arm64",
+        "biberVersion": "2.17"
+      },
+      "publicCatalog": true,
+      "testPublisher": false,
+      "packaged": false,
+      "scope": "Normal compiled trust, actual public HTTPS catalog/archive, native install/checks, import notices, PDF preview, explicit Apply, backup, save and restart. No provider account used."
+    },
+    "log": {
+      "path": "test-results/early-workspace-pack.log",
+      "bytes": 301,
+      "sha256": "083b33d254d7962e2060e38c47bd01fb6753c5b3b3fecff2bf3f01d2f6417418"
+    }
+  },
+  "website": {
+    "checks": [
+      {
+        "width": 1440,
+        "route": "/",
+        "images": 10,
+        "overflow": false,
+        "themePersistence": true
+      },
+      {
+        "width": 1440,
+        "route": "/demos.html",
+        "images": 30,
+        "overflow": false,
+        "themePersistence": true
+      },
+      {
+        "width": 390,
+        "route": "/",
+        "images": 10,
+        "overflow": false,
+        "themePersistence": true
+      },
+      {
+        "width": 390,
+        "route": "/demos.html",
+        "images": 30,
+        "overflow": false,
+        "themePersistence": true
+      }
+    ],
+    "errors": [],
+    "demoCount": 30,
+    "log": {
+      "path": "test-results/early-workspace-website.log",
+      "bytes": 821,
+      "sha256": "17af3919e8392443fbe765b8d3337b4b47dcdffeeab1787babf8dd82b59e9bba"
+    }
+  },
+  "limits": [
+    "The 409 ms early-editing result is one development-host observation with synthetic recovery, not p95, cold physical storage, a controlled speedup ratio or supported-device acceptance.",
+    "Native checks above use the compiled source app, not a new packaged installer. Full hosted package acceptance remains required.",
+    "All other open release audit requirements, including signing/notarization, binary licensing, updater and broader platform/accessibility acceptance remain open."
+  ]
+}

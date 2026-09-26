@@ -6,7 +6,7 @@ This walkthrough uses a built-in template and works without an AI account. Folio
 
 ## Choose a starting point
 
-1. Open Folio and wait for workspace preparation to finish. The Mac app includes its PDF builder and template fonts.
+1. Open Folio. Your saved work opens first; the included PDF builder prepares in the background.
 2. Click **Templates** in the left sidebar, or choose **… → Explore templates**.
 3. Choose **A4** or **US Letter** in **Paper size**.
 4. Choose **The Classic**. Its sample resume opens beside the Chat pane.
@@ -14,6 +14,19 @@ This walkthrough uses a built-in template and works without an AI account. Folio
 ![Six template choices and paper size](../images/templates.png)
 
 The sample person and achievements are examples. Replace them with your own facts before sharing your resume. The template picker also includes Minimal, Modern, Compact Technical, Academic and Two Column designs.
+
+## Work while the PDF builder gets ready
+
+This faster opening flow is in the current development source. The published preview-4 installer still waits for compiler preparation before opening the workspace.
+
+1. Wait for your saved resume to appear. Folio protects it while it loads.
+2. If the top bar says **Preparing your local compiler**, you can already change the source in **Code**, write a draft in **Chat**, choose a template, or **Save**.
+3. **Send**, **Compile**, and **Export PDF** become available after the compiler passes its checks. You do not need to send a request again: your message stays in the box until you choose **Send**.
+4. You can close Folio during preparation. Your loaded edits and message draft are recovered when you reopen it.
+
+![Recovered work and a message draft while the compiler prepares](../images/startup-chat.png)
+
+This is a real app capture with a made-up resume. No AI account is connected. If loading saved work fails, Folio keeps its recovery files and shows **Try again** or **Review interrupted saves**.
 
 ## Change the sample name
 

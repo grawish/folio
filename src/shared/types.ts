@@ -39,6 +39,7 @@ export type BuildResult = {
 };
 export type RuntimeStatus = {
   ready: boolean;
+  preparing?: boolean;
   engine: string;
   bundle: string;
   platform: string;

@@ -60,6 +60,7 @@ try {
     if (e.type() === 'error') errors.push(e.text());
   });
   await expect(page.getByLabel('Message the resume agent')).toBeEnabled({ timeout: 120_000 });
+  await expect(page.locator('.compiler-preparation')).toHaveCount(0, { timeout: 120_000 });
   await page.getByText('Up to date', { exact: true }).waitFor({ timeout: 60_000 });
   await app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0].setSize(1480, 960));
   await page
@@ -159,6 +160,7 @@ try {
 
   await page.reload();
   await expect(page.getByLabel('Message the resume agent')).toBeEnabled({ timeout: 120_000 });
+  await expect(page.locator('.compiler-preparation')).toHaveCount(0, { timeout: 120_000 });
   await support();
   const finalReview = await files();
   // A failed filesystem write must not claim success or replace the previous ZIP.

@@ -22,6 +22,7 @@ export function ChatPanel({
   connections,
   onConnections,
   ready,
+  canSend,
   onSend,
   onStop,
   onSettings,
@@ -37,6 +38,7 @@ export function ChatPanel({
   connections: AISettings;
   onConnections(settings: AISettings): void;
   ready: boolean;
+  canSend: boolean;
   onSend(): void;
   onStop(): void;
   onSettings(): void;
@@ -247,7 +249,7 @@ export function ChatPanel({
         className="chat-composer"
         onSubmit={(event) => {
           event.preventDefault();
-          if (!busy && !selectingModel && ready && connected) onSend();
+          if (!busy && !selectingModel && ready && canSend && connected) onSend();
         }}
       >
         <textarea
@@ -263,6 +265,7 @@ export function ChatPanel({
                 !busy &&
                 !selectingModel &&
                 ready &&
+                canSend &&
                 connected &&
                 (workspace.draft.trim() || attached.length)
               )
@@ -298,6 +301,7 @@ export function ChatPanel({
               disabled={
                 selectingModel ||
                 !ready ||
+                !canSend ||
                 !connected ||
                 (!workspace.draft.trim() && !attached.length)
               }

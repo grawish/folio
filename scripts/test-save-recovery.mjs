@@ -187,9 +187,9 @@ try {
     await expect(page.locator('.save-recovery-code')).toContainText(text);
   }
   await page.getByRole('button', { name: 'Show copies', exact: true }).click();
-  expect(await app.evaluate(() => globalThis.recoveryReveals)).toEqual([
-    path.join(data, 'save-transactions', first.id),
-  ]);
+  await expect
+    .poll(() => app.evaluate(() => globalThis.recoveryReveals))
+    .toEqual([path.join(data, 'save-transactions', first.id)]);
   const blocked = await page.evaluate(
     async (project) =>
       window.folio.autosaveProject(project).then(
@@ -264,8 +264,16 @@ try {
   }
   await apply();
   await expect(page.getByText('Ready to reopen your project', { exact: true })).toBeVisible();
+  const revealsBefore = await app.evaluate(() => globalThis.recoveryReveals.length);
   await page.getByRole('button', { name: 'Show recovery copies', exact: true }).click();
+  // The native handler validates and resolves the completed backup on disk
+  // before revealing it. A completed click alone can still leave the earlier
+  // (now archived) transaction folder as the last observed reveal.
+  await expect
+    .poll(() => app.evaluate(() => globalThis.recoveryReveals.length))
+    .toBe(revealsBefore + 1);
   const copies = (await app.evaluate(() => globalThis.recoveryReveals)).at(-1);
+  expect(path.dirname(copies)).toBe(path.join(data, 'save-recovery-copies'));
   const draftDirectory = (await fs.readdir(copies)).find((name) =>
     /^draft-[a-f0-9]{24}$/.test(name),
   );
@@ -394,9 +402,9 @@ try {
   await page.getByRole('menuitem', { name: 'Interrupted saves…', exact: true }).click();
   await expect(page.getByText('No interrupted saves to review.', { exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Show all recovery copies', exact: true }).click();
-  expect((await app.evaluate(() => globalThis.recoveryReveals)).at(-1)).toBe(
-    path.join(data, 'save-recovery-copies'),
-  );
+  await expect
+    .poll(() => app.evaluate(() => globalThis.recoveryReveals.at(-1)))
+    .toBe(path.join(data, 'save-recovery-copies'));
   await page.getByRole('button', { name: 'Close', exact: true }).click();
   checks.push(
     'reload during Apply waits and opens chosen files/history; completed copies remain accessible after the review is closed',

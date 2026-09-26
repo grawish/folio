@@ -28,6 +28,7 @@ const launch = async () => {
     if (item.type() === 'error') errors.push(item.text());
   });
   await expect(page.getByLabel('Message the resume agent')).toBeEnabled({ timeout: 120_000 });
+  await expect(page.locator('.compiler-preparation')).toHaveCount(0, { timeout: 120_000 });
   if (await page.evaluate(() => localStorage.getItem('folio:auto') === 'false')) {
     await page.getByRole('tab', { name: 'Code', exact: true }).click();
     await expect(page.getByRole('button', { name: 'Compile', exact: true })).toBeEnabled();

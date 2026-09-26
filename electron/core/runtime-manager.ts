@@ -60,6 +60,7 @@ async function durableWrite(
 
 export class RuntimeManager implements RuntimeSource {
   defaultPin?: RuntimePin;
+  private identified?: Promise<void>;
   private initialized?: Promise<void>;
   private initializationError = '';
   private queue: Promise<unknown> = Promise.resolve();
@@ -81,11 +82,44 @@ export class RuntimeManager implements RuntimeSource {
     return operation;
   }
 
+  // Reading the small identity manifest does not verify or prepare an executable.
+  // Recovery and source saves need this pin, but need not wait for the copy/probe.
+  identify() {
+    this.identified ??= (async () => {
+      try {
+        this.defaultPin = runtimePin(await readRuntimeManifest(this.bundledRoot));
+      } catch (error) {
+        this.initializationError = (error as Error).message;
+      }
+    })();
+    return this.identified;
+  }
+
+  async startupStatus(value?: RuntimePin): Promise<RuntimeStatus> {
+    await this.identify();
+    void this.initialize();
+    const pin = adoptRuntime(validateRuntimePin(value), this.defaultPin);
+    return {
+      ready: false,
+      preparing: true,
+      engine: `Tectonic ${pin?.version ?? 'unavailable'}`,
+      bundle: pin?.bundle ?? 'Unavailable',
+      platform: `${process.platform}-${process.arch}`,
+      isolation: process.platform === 'darwin' ? 'macos-seatbelt' : 'unavailable',
+      pin,
+      defaultPin: this.defaultPin,
+      canRepair: false,
+      message:
+        'Preparing and checking your local compiler. You can edit, save, or draft a message while the PDF builder gets ready.',
+    };
+  }
+
   initialize() {
     this.initialized ??= this.serial(async () => {
       try {
         await directory(this.root);
-        this.defaultPin = runtimePin(await readRuntimeManifest(this.bundledRoot));
+        await this.identify();
+        if (!this.defaultPin) throw new Error(this.initializationError);
         const base = await this.base(this.defaultPin);
         try {
           await fs.lstat(path.join(base, 'active.json'));

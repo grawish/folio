@@ -3,6 +3,7 @@ import {
   AlertTriangle,
   FileText,
   Info,
+  LoaderCircle,
   Network,
   Settings2,
   ShieldCheck,
@@ -284,10 +285,12 @@ export function SettingsModal({
                 <h3>About Folio</h3>
                 <p>Version {version} · Development preview</p>
                 <div
-                  className={`runtime-details${runtime && !runtime.ready ? ' runtime-unavailable' : ''}`}
+                  className={`runtime-details${runtime && !runtime.ready && !runtime.preparing ? ' runtime-unavailable' : ''}`}
                 >
                   <div>
-                    {runtime && !runtime.ready ? (
+                    {runtime?.preparing ? (
+                      <LoaderCircle className="spin" size={20} />
+                    ) : runtime && !runtime.ready ? (
                       <AlertTriangle size={20} />
                     ) : (
                       <ShieldCheck size={20} />
@@ -295,9 +298,11 @@ export function SettingsModal({
                     <strong>
                       {runtime?.ready
                         ? 'Your LaTeX compiler is ready.'
-                        : runtime
-                          ? 'Your compiler needs attention.'
-                          : 'Runtime information'}
+                        : runtime?.preparing
+                          ? 'Preparing your local compiler…'
+                          : runtime
+                            ? 'Your compiler needs attention.'
+                            : 'Runtime information'}
                     </strong>
                   </div>
                   <p>

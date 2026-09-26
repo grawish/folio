@@ -34,6 +34,7 @@ const launch = async () => {
     if (item.type() === 'error') errors.push(item.text());
   });
   await expect(page.getByLabel('Message the resume agent')).toBeEnabled({ timeout: 120_000 });
+  await expect(page.locator('.compiler-preparation')).toHaveCount(0, { timeout: 120_000 });
 };
 const close = async () => {
   const closed = page.waitForEvent('close');
@@ -147,7 +148,11 @@ try {
   const restored = await page.evaluate(() => window.folio.bootstrap());
   expect(restored.recovered.runtime).toEqual(row.target);
   expect(restored.recovered.files.find((file) => file.path === 'main.tex').content).toBe(source);
-  expect(restored.runtime.ready).toBe(true);
+  const verified = await page.evaluate(
+    (pin) => window.folio.inspectRuntime(pin),
+    restored.recovered.runtime,
+  );
+  expect(verified.ready, verified.message).toBe(true);
   await settings();
   await expect(card()).toContainText('Used by this project');
   expect(errors).toEqual([]);

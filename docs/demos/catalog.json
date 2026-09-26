@@ -14,6 +14,20 @@
     "alt": "Your first resume in the real Folio app"
   },
   {
+    "id": "early-workspace",
+    "image": "startup-chat.png",
+    "alt": "Recovered synthetic resume and a retained message draft while Folio prepares its local compiler.",
+    "kind": "Development source \u00b7 synthetic resume \u00b7 no AI account",
+    "title": "Start before the PDF builder is ready",
+    "description": "Current source opens recovered work while the compiler prepares. The preview-4 installer predates this improvement.",
+    "steps": [
+      "Open Folio and wait for your saved resume to appear.",
+      "Edit in Code, draft a message in Chat, or save while the preparation bar is visible.",
+      "Wait for compiler checks before sending, building or exporting; your draft stays in the composer."
+    ],
+    "guide": "tutorials/first-resume.md#work-while-the-pdf-builder-gets-ready"
+  },
+  {
     "id": "templates",
     "title": "Templates and paper size",
     "image": "templates.png",

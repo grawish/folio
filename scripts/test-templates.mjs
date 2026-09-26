@@ -27,6 +27,7 @@ const launch = async () => {
     if (item.type() === 'error') errors.push(item.text());
   });
   await expect(page.getByLabel('Message the resume agent')).toBeEnabled({ timeout: 120_000 });
+  await expect(page.locator('.compiler-preparation')).toHaveCount(0, { timeout: 120_000 });
 };
 const openPicker = () =>
   page.getByRole('button', { name: 'Explore templates', exact: true }).click();

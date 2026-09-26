@@ -418,13 +418,13 @@ function registerHandlers() {
     await fonts.cancel();
     await migrations.cancel();
     await recoveryQueue.catch(() => {});
-    await runtimes.initialize();
+    await runtimes.identify();
     const recovered = await store.loadRecovery();
     if (recovered && store.resolvedSaveCopies) {
       await loadResolvedWorkspace(recovered, path.basename(store.resolvedSaveCopies));
     }
     return {
-      runtime: await runtimes.status(recovered?.runtime),
+      runtime: await runtimes.startupStatus(recovered?.runtime),
       recovered,
       recent: await store.recent(),
       interruptedImportCount: await importer.recovery.count(),

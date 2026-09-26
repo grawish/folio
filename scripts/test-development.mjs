@@ -14,6 +14,7 @@ try {
   const errors = [];
   page.on('pageerror', (error) => errors.push(error.message));
   await expect(page.getByLabel('Message the resume agent')).toBeEnabled({ timeout: 120_000 });
+  await expect(page.locator('.compiler-preparation')).toHaveCount(0, { timeout: 120_000 });
   await page.getByText('Up to date', { exact: true }).waitFor({ timeout: 30_000 });
   await expect(page.locator('.preview-pane .textLayer')).toContainText('Alex Morgan', {
     timeout: 10_000,

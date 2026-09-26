@@ -221,9 +221,11 @@ export default function App() {
     ? null
     : !window.folio
       ? 'Desktop app required'
-      : !runtime?.ready
-        ? 'Compiler needs attention'
-        : null;
+      : runtime?.preparing || !runtime
+        ? null
+        : !runtime.ready
+          ? 'Compiler needs attention'
+          : null;
 
   useEffect(() => {
     tabs.current
@@ -387,7 +389,6 @@ export default function App() {
       .then((data) => {
         if (!alive) return;
         defaultRuntime.current = data.runtime.defaultPin;
-        setRuntime(data.runtime);
         setRecent(data.recent);
         setInterruptedImportCount(data.interruptedImportCount);
         if (data.recovered) {
@@ -399,6 +400,7 @@ export default function App() {
             ...project,
             runtime: project.runtime ?? defaultRuntime.current,
           }));
+        setRuntime(data.runtime);
         setInitialized(true);
       })
       .catch((e) => {
@@ -431,6 +433,7 @@ export default function App() {
   }, [initialized, project.id, editorSession, runtimeKey, message]);
 
   const compile = useCallback(async (): Promise<BuildResult | null> => {
+    if (!runtime?.ready) return null;
     const desktop = api();
     if (!desktop || migrationId.current || fontImport.current || packBusyRef.current) return null;
     if (requireDiskReview()) return null;
@@ -462,7 +465,7 @@ export default function App() {
     } finally {
       if (token === buildToken.current) setBuilding(false);
     }
-  }, [api, message, refreshVersions]);
+  }, [api, message, refreshVersions, runtime?.ready]);
   useEffect(() => {
     if (
       !initialized ||
@@ -813,7 +816,7 @@ export default function App() {
     }
   };
   const exportPdf = async () => {
-    if (exporting) return;
+    if (exporting || !runtime?.ready) return;
     if (requireDiskReview()) return;
     const desktop = api();
     if (!desktop) return;
@@ -1017,7 +1020,7 @@ export default function App() {
 
   const sendToAgent = async () => {
     const desktop = api();
-    if (!desktop || !workspaceReady || activeRun.current) return;
+    if (!desktop || !workspaceReady || !runtime?.ready || activeRun.current) return;
     if (requireDiskReview()) return;
     if (saving.current) {
       message('Wait for the current save to finish before sending a new request.');
@@ -1501,6 +1504,15 @@ export default function App() {
             </button>
           </div>
         </header>
+        {initialized && window.folio && (runtime?.preparing || !runtime) && (
+          <div className="compiler-preparation" role="status">
+            <LoaderCircle className="spin" size={16} aria-hidden="true" />
+            <span>
+              Preparing your local compiler. You can edit, save, or draft a message while the PDF
+              builder gets ready.
+            </span>
+          </div>
+        )}
         {diskChanges && (
           <div
             className="external-change-notice"
@@ -1660,6 +1672,7 @@ export default function App() {
                 workspace={workspace}
                 update={updateWorkspace}
                 ready={workspaceReady}
+                canSend={!!runtime?.ready}
                 progress={agentProgress}
                 connected={!!connections.activeId}
                 connections={connections}
@@ -2462,7 +2475,7 @@ export default function App() {
           </h1>
           <p>
             {bootstrapError ||
-              'Checking your saved work and local compiler. First launch may take a moment.'}
+              'Opening your saved work. Your existing recovery files are kept until this finishes.'}
           </p>
           {bootstrapError && (
             <>

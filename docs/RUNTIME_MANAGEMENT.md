@@ -52,6 +52,16 @@ Retained older versions can be repaired from another verified copy of the same i
 
 The five-sample [preparation comparison](PERFORMANCE_IMPROVEMENT_PLAN.md#faster-runtime-preparation-directory-flushes) measures a 36.1% lower median copy/verification time and 28.3% lower median full preparation time on the development Mac. File flushes, exact integrity checks, offline probes and pointer publication remain required.
 
+## Open saved work before compiler preparation finishes
+
+The current development source separates reading the included compiler identity from preparing and verifying its executable files. Bootstrap reads the small identity manifest, loads the actual recovery project and returns a non-ready preparation status. The renderer then awaits the full native runtime inspection independently. It never treats identity metadata as verified execution permission.
+
+Users can edit source, save, choose templates and draft a chat message during preparation. Send, Compile and Export PDF remain unavailable; their action handlers also refuse keyboard/menu attempts until ready. A normal document build still acquires a verified compiler lease. Opening another project discards an outdated readiness response and checks the newly selected pin. An unavailable recorded compiler retains its choice and allows source editing; it cannot silently switch to the included compiler.
+
+Before recovery finishes, the workspace remains inactive and early close preserves the existing recovery file. After recovery finishes, normal source/chat recovery saves the user's actual work. The native runtime suite exercises both cases, failed recovery with Retry, first-run editing/save before any active compiler pointer exists, retained chat/source on restart, damaged-runtime repair and unavailable old pins. Backend controls hold the offline probe open and prove that identity/recovery are available while execution still waits.
+
+The first native source run opened recovered editing in 409 ms on the development M4 Pro. Compiler preparation and first PDF still took substantially longer. This is one end-to-end observation, not a five-sample comparison or supported-device startup acceptance. The published preview-4 installer predates this flow. See the [walkthrough](tutorials/first-resume.md#work-while-the-pdf-builder-gets-ready).
+
 ## First-run bibliography regression
 
 Repeated fresh-profile desktop testing exposed a real first-build failure: the full embedded-bibliography fixture sometimes exceeded the 30-second document limit after copying a new Biber executable. The captured failure is in `test-results/packaged-rR7Ig3/failed-build.log`. A warmed rerun succeeded, so merely increasing the UI test wait would not have fixed it.

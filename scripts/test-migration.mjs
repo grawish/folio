@@ -67,6 +67,7 @@ const launch = async () => {
     if (message.type() === 'error') errors.push(message.text());
   });
   await expect(page.getByLabel('Message the resume agent')).toBeEnabled({ timeout: 120_000 });
+  await expect(page.locator('.compiler-preparation')).toHaveCount(0, { timeout: 120_000 });
   await app.evaluate(({ shell }) => {
     shell.showItemInFolder = (filename) => {
       globalThis.shownBackup = filename;
@@ -134,6 +135,7 @@ try {
   await compare();
   await page.reload();
   await expect(page.getByLabel('Message the resume agent')).toBeEnabled({ timeout: 120_000 });
+  await expect(page.locator('.compiler-preparation')).toHaveCount(0, { timeout: 120_000 });
   await page.getByText('Up to date', { exact: true }).waitFor({ timeout: 60_000 });
   await settings();
   console.log(

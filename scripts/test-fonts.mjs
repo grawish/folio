@@ -74,6 +74,7 @@ const launch = async () => {
     if (e.type() === 'error') errors.push(e.text());
   });
   await expect(page.getByLabel('Message the resume agent')).toBeEnabled({ timeout: 120_000 });
+  await expect(page.locator('.compiler-preparation')).toHaveCount(0, { timeout: 120_000 });
   await page.getByText('Up to date', { exact: true }).waitFor({ timeout: 60_000 });
 };
 const close = async () => {
@@ -162,6 +163,7 @@ try {
   await preview();
   await page.reload();
   await expect(page.getByLabel('Message the resume agent')).toBeEnabled({ timeout: 120_000 });
+  await expect(page.locator('.compiler-preparation')).toHaveCount(0, { timeout: 120_000 });
   await page.getByText('Up to date', { exact: true }).waitFor({ timeout: 60_000 });
   expect(await source()).toBe(original);
   expect(await selectedFiles()).toEqual([]);

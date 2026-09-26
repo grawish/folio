@@ -17,6 +17,7 @@ try {
     if (m.type() === 'error') errors.push(m.text());
   });
   await expect(page.getByLabel('Message the resume agent')).toBeEnabled({ timeout: 120_000 });
+  await expect(page.locator('.compiler-preparation')).toHaveCount(0, { timeout: 120_000 });
   await page.getByText('Up to date', { exact: true }).waitFor({ timeout: 60_000 });
   await expect(page.locator('.preview-pane .textLayer')).toContainText('Alex Morgan', {
     timeout: 20_000,

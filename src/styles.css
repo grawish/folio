@@ -80,6 +80,20 @@ a {
   -webkit-app-region: drag;
 }
 
+.compiler-preparation {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  background: var(--surface);
+}
+
+.compiler-preparation svg {
+  flex-shrink: 0;
+}
+
 .brand {
   display: flex;
   align-items: baseline;

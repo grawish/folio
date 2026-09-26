@@ -32,6 +32,7 @@ try {
   const errors = [];
   page.on('pageerror', (error) => errors.push(error.message));
   await expect(page.getByLabel('Message the resume agent')).toBeEnabled({ timeout: 120_000 });
+  await expect(page.locator('.compiler-preparation')).toHaveCount(0, { timeout: 120_000 });
   const editor = page.locator('.cm-content');
   const ready = () => page.getByText('Up to date', { exact: true }).waitFor({ timeout: 60_000 });
   const menu = async (name) => {

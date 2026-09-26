@@ -67,6 +67,14 @@ Two new controls reject the old implementation and pass after the change: all fi
 
 ## Actual packaged app startup
 
+### Current source: editing before compiler readiness
+
+The next source change removes compiler preparation from workspace bootstrap. Bootstrap reads the compiler identity and restores the actual project; full preparation and inspection continue separately. The workspace can accept source edits, saves and chat drafts while Send, Compile and Export PDF remain blocked. All execution still obtains the ordinary verified runtime lease.
+
+The first native source observation reaches recovered editing in **409 ms** with no active compiler pointer yet. The test edits source, drafts a message and saves the exact compiler pin before preparation finishes, then closes, reopens and verifies the saved draft/source and eventual PDF. It also retains the early-close-before-recovery and failed-recovery protections. This sample has a synthetic recovered project and an early interruption, unlike the complete fresh/prepared package pairs below; it does not establish a speedup percentage, p95 or supported-device budget. A repeated final-package comparison remains required. The [walkthrough and screenshot](tutorials/first-resume.md#work-while-the-pdf-builder-gets-ready) identify this as development-source behavior, not the published preview-4 flow.
+
+### Earlier package baseline
+
 A second profile measures the verified `import-recovery` app itself, identified by app.asar SHA-256 `d50fb514cc45ab7653c88a50365e128481ddd4f57d0794eacc89c6cca5b0aaa8`. The source/license/documentation publication changes do not alter that earlier measured artifact. Run:
 
 ```sh
@@ -164,7 +172,7 @@ Targets below are acceptance targets for experiments, not achieved results.
 | Priority | Change to investigate | Why | Experiment target | Required protection |
 | --- | --- | --- | --- | --- |
 | 1 | Batch directory durability work within the unpublished runtime generation; first implementation achieves 36.1%, so the target remains open | About 31 s in verify/copy; nearly 4,000 directory syncs | At least 40% lower median preparation/copy time across five fresh profiles | Sync every required file and directory before publishing readiness; force-kill at every publication boundary; failed install preserves the previous compiler |
-| 1 | Let recovery and editing become usable while first-time compiler preparation continues | Main bootstrap currently waits for preparation; an included compiler should not keep all project controls inert for tens of seconds | Usable recovered project within the original plan's startup budget; progress remains visible until builds are ready | Load the real recovery project first; early close must preserve it; no compilation, export or AI apply may assume an unverified compiler |
+| 1 | Recovery, editing, saves and chat drafting now open before compiler preparation in development source; finish repeated packaged/device measurements | The previous bootstrap waited for preparation; first source-native observation is 409 ms to recovered editing | Usable recovered project within the original plan's startup budget; progress remains visible until builds are ready | Load the real recovery project first; early close must preserve it; no compilation, export or AI apply may assume an unverified compiler |
 | 2 | Eliminate duplicate verification within one tightly scoped operation/verified lease, and assess safe reuse between requests | About 0.70–0.85 s of each small warm build precedes native execution | Median changed-source warm build below 0.5 s for this fixture, with runtime-acquire work below 0.2 s | No global forever-valid cache; changed/corrupt files, replacement paths and compiler pins must still fail before execution; mutation/replacement tests must defeat stale reuse |
 | 2 | Profile the self-test's TeX/Biber subprocess stages and first-execution behavior | Probe varies from 8.7 to 24.9 s | Attribute the variance first; target stable fresh preparation without first-user bibliography timeouts | Keep an actual offline bibliography self-test, immutable runtime files, restricted native execution and bounded timeouts |
 | 3 | Evaluate APFS clone/copy strategies and per-generation directory creation | Hundreds of megabytes and thousands of small files | Reduce I/O/metadata overhead without exceeding memory/disk budgets | Verify the resulting bytes and modes; retain independent versions through app replacement; handle non-APFS destinations explicitly |

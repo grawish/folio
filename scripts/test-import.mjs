@@ -42,6 +42,7 @@ try {
     if (item.type() === 'error') errors.push(item.text());
   });
   await expect(page.getByLabel('Message the resume agent')).toBeEnabled({ timeout: 120_000 });
+  await expect(page.locator('.compiler-preparation')).toHaveCount(0, { timeout: 120_000 });
   await page.getByText('Up to date', { exact: true }).waitFor({ timeout: 60_000 });
   const action = async (label) => {
     await page.getByRole('button', { name: 'More project actions' }).click();

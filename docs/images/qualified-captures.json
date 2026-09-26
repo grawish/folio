@@ -192,5 +192,14 @@
     "sha256": "c6479b0c4dcbead1eafc70a0ff08fa773068f9da0802e7c0c398958a1265b059",
     "synthetic": true,
     "liveAI": false
+  },
+  {
+    "file": "docs/images/startup-chat.png",
+    "sourceSuite": "runtime",
+    "sourceCapture": "startup-chat.png",
+    "sha256": "3873060c4e1fcd66b07c1b8d0ccb35e7865685f937e5f19fb012692b06a97600",
+    "synthetic": true,
+    "liveAI": false,
+    "scope": "Current development source, early editing/save with a real preparing compiler; preview-4 predates this flow."
   }
 ]

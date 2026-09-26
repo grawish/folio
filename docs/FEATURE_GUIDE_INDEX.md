@@ -5,6 +5,7 @@ Every currently implemented feature group below has a plain-language walkthrough
 | Feature | Tutorial | Screenshot demo |
 | --- | --- | --- |
 | Your first resume | [Walkthrough](tutorials/first-resume.md) | [Screenshot](images/workspace.png) · Real app · synthetic project |
+| Work during compiler preparation | [Walkthrough](tutorials/first-resume.md#work-while-the-pdf-builder-gets-ready) | [Screenshot](images/startup-chat.png) · Current development source · recovered synthetic project |
 | Templates and paper size | [Walkthrough](tutorials/first-resume.md) | [Screenshot](images/templates.png) · Real app · synthetic project |
 | Chat and agent progress | [Walkthrough](tutorials/chat-and-feedback.md) | [Screenshot](images/chat-workspace.png) · Real app · scripted local AI fixture |
 | Codex subscription | [Walkthrough](tutorials/ai-connections.md) | [Screenshot](images/connection-codex.png) · Real form · no connected account |
