@@ -6,7 +6,9 @@ Folio is a local LaTeX resume studio for **Apple silicon Macs**. Chat is the mai
 
 [Website](https://grawish.github.io/folio/) · [Screenshot demos](https://grawish.github.io/folio/demos.html) · [Getting started](docs/tutorials/first-resume.md) · [User guide](docs/APP_GUIDE.md) · [Feature guides](docs/FEATURE_GUIDE_INDEX.md) · [Release status](docs/RELEASE_GAP_AUDIT.md)
 
-![Folio Chat beside a real sample PDF](docs/images/workspace.png)
+[![Watch the Folio demo: point to a part of your PDF and let your AI edit it](brag-output/brag.jpg)](brag-output/brag.mp4)
+
+[Watch the 22-second Folio demo](brag-output/brag.mp4).
 
 Download the **[Apple silicon DMG preview](https://github.com/grawish/folio/releases/tag/v0.1.0-preview.4)**. This development build is unsigned and not notarized. Open the disk image and drag Folio to Applications. The release includes checksums, build provenance and collected third-party source/license materials. Explore the live [product website](https://grawish.com/folio/) and [screenshot demo gallery](https://grawish.com/folio/demos.html).
 
