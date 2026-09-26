@@ -20,6 +20,7 @@ Every currently implemented feature group below has a plain-language walkthrough
 | Files and retained copies | [Walkthrough](tutorials/files-and-import.md) | [Screenshot](images/restore-file.png) · Real app · synthetic project |
 | Open, import and export source | [Walkthrough](tutorials/files-and-import.md) | [Screenshot](images/import.png) · Real app · synthetic project |
 | Recover an import | [Walkthrough](tutorials/recover-an-import.md) | [Screenshot](images/import-recovery.png) · Real app · controlled interruption fixture |
+| Recover an interrupted save | [Walkthrough](tutorials/save-and-recover.md#recover-an-interrupted-save) | [Screenshot](images/save-recovery.png) · Real app · controlled interruption fixture |
 | Save and autosave | [Walkthrough](tutorials/save-and-recover.md) | [Screenshot](images/general-light.png) · Real app · synthetic project |
 | Review outside changes | [Walkthrough](tutorials/save-and-recover.md) | [Screenshot](images/external-changes.png) · Real app · synthetic project |
 | Read and export the PDF | [Walkthrough](tutorials/editor-and-pdf.md) | [Screenshot](images/pdf-navigation.png) · Real app · synthetic project |

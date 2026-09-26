@@ -23,6 +23,7 @@ AI setup and the active connection live only in Settings. The renderer receives 
 | Local compiler and isolation | `electron/core/compiler.ts`, `runtime.ts` |
 | Managed compiler copies | `electron/core/runtime-manager.ts`, `compiler-migration.ts` |
 | Projects, assets and recovery | `electron/core/project.ts`, `workspace.ts`, `save-transactions.ts` |
+| Guided save recovery | `electron/core/save-recovery.ts`, `save-io.ts`, `project.ts`, `src/components/SaveRecovery.tsx` |
 | Support snapshot and ZIP export | `src/shared/support.ts`, `electron/core/support-bundle.ts`, `src/components/SupportBundle.tsx` |
 | Guided font selection and preview | `electron/core/local-fonts.ts`, `font-import.ts`, `src/components/FontSetup.tsx` |
 | ZIP validation and recovery | `safe-zip.ts`, `project-import.ts`, `import-transactions.ts` |
@@ -36,7 +37,7 @@ A saved project uses ordinary TeX files and assets plus `resume.project.json` fo
 
 App storage holds preferences, connection settings, protected keys, recovery data, and managed compiler generations. `FOLIO_USER_DATA` selects a separate data directory for development and tests. Never point destructive test fixtures at a real user's data.
 
-Save transactions journal changes before modifying a project. Import transactions stage and hash archive contents before creating the destination copy. Recovery checks ownership and outside edits before finishing or removing files. The detailed protocols and limitations are in [save reliability](https://github.com/grawish/folio/blob/main/docs/SAVE_RELIABILITY.md) and [ZIP import](https://github.com/grawish/folio/blob/main/docs/ZIP_IMPORT.md).
+Save transactions journal changes before modifying a project. Import transactions stage and hash archive contents before creating the destination copy. Recovery checks ownership and outside edits before finishing or removing files. Guided save recovery retains drafts and file versions, publishes durable choices, and blocks old recovery buffers until the selected files/history are reopened. See [guided recovery](https://github.com/grawish/folio/blob/main/docs/SAVE_RECOVERY_IMPLEMENTATION.md). The detailed protocols and limitations are in [save reliability](https://github.com/grawish/folio/blob/main/docs/SAVE_RELIABILITY.md) and [ZIP import](https://github.com/grawish/folio/blob/main/docs/ZIP_IMPORT.md).
 
 The runtime manifest pins all managed compiler bytes. A project keeps its compiler identity. Repair prepares and checks a replacement before activation. Comparison shows real PDFs and preserves a backup before a compiler change. See [runtime management](https://github.com/grawish/folio/blob/main/docs/RUNTIME_MANAGEMENT.md) and [migration](https://github.com/grawish/folio/blob/main/docs/COMPILER_MIGRATION.md).
 

@@ -1943,3 +1943,161 @@ kbd {
     transition-duration: 0.001ms !important;
   }
 }
+
+.save-recovery-modal[open] {
+  display: flex;
+  flex-direction: column;
+  width: min(1060px, calc(100vw - 48px));
+  max-height: calc(100vh - 52px);
+}
+.save-recovery-body {
+  padding: 0 26px 18px;
+  overflow: auto;
+  min-height: 0;
+}
+.save-recovery-path {
+  color: var(--muted);
+  overflow-wrap: anywhere;
+  font-size: 12px;
+}
+.save-recovery-list article {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+.save-recovery-list article > div {
+  flex: 1;
+  min-width: 0;
+}
+.save-recovery-list h3 {
+  margin: 0;
+}
+.save-recovery-layout {
+  display: grid;
+  grid-template-columns: 235px minmax(0, 1fr);
+  height: min(470px, calc(100vh - 300px));
+  min-height: 230px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.save-recovery-layout nav {
+  overflow: auto;
+  border-right: 1px solid var(--line);
+  padding: 8px;
+}
+.save-recovery-layout nav button {
+  display: block;
+  width: 100%;
+  padding: 12px 10px;
+  border-radius: 8px;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+.save-recovery-layout nav button.selected {
+  background: var(--accent-surface);
+}
+.save-recovery-layout nav strong,
+.save-recovery-layout nav small,
+.save-recovery-layout nav span {
+  display: block;
+}
+.save-recovery-layout nav small {
+  font-size: 11px;
+  color: var(--muted);
+  margin: 6px 0;
+}
+.save-recovery-layout nav span {
+  font-size: 11px;
+}
+.save-recovery-preview {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  padding: 16px;
+}
+.save-recovery-preview h3 {
+  margin: 0 0 12px;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.save-recovery-versions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+}
+.save-recovery-versions > div {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 9px;
+  font-size: 11px;
+}
+.save-recovery-versions > div.selected {
+  border-color: var(--accent);
+}
+.save-recovery-versions button {
+  display: block;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: left;
+}
+.save-recovery-versions small {
+  display: block;
+  margin: 6px 0 10px;
+  color: var(--muted);
+}
+.save-recovery-versions label {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.save-recovery-code {
+  overflow: auto;
+  flex: 1;
+  min-height: 0;
+  margin-top: 12px;
+  background: var(--surface-inset);
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 12px;
+}
+.save-recovery-code pre {
+  font: 12px/1.65 var(--font-mono);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  margin: 0;
+}
+.save-recovery-confirm ul {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+  max-height: 300px;
+  overflow: auto;
+}
+.save-recovery-confirm li {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 12px;
+}
+.save-recovery-confirm li strong {
+  overflow-wrap: anywhere;
+}
+.save-recovery-confirm li span {
+  flex-shrink: 0;
+}
+.save-recovery-finished {
+  padding: 24px 8px;
+}
+.save-recovery-modal > .modal-heading,
+.save-recovery-modal > .modal-actions {
+  flex-shrink: 0;
+}
+.save-recovery-modal .modal-actions {
+  flex-wrap: wrap;
+}

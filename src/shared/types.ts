@@ -100,6 +100,31 @@ export type ProjectDiskChanges = {
 };
 
 export interface DesktopAPI {
+  beginSaveRecovery(id: string, project?: Project): Promise<void>;
+  endSaveRecovery(id?: string): Promise<void>;
+  interruptedSaves(id: string): Promise<import('./save-recovery').InterruptedSave[]>;
+  reviewSave(
+    id: string,
+    record: string,
+  ): Promise<import('./save-recovery').SaveRecoveryReview | null>;
+  reviewSaveText(
+    id: string,
+    record: string,
+    token: string,
+    filename: string,
+    version: import('./save-recovery').RecoveryVersion,
+  ): Promise<import('./save-recovery').SaveRecoveryText>;
+  resolveSave(
+    id: string,
+    record: string,
+    token: string,
+    choices: import('./save-recovery').SaveRecoveryChoice[],
+  ): Promise<import('./save-recovery').SaveRecoveryResult>;
+  showSaveRecoveryFolder(
+    id: string,
+    record: string,
+    kind: 'record' | 'project' | 'copies' | 'all-copies',
+  ): Promise<void>;
   prepareSupportBundle(
     context: import('./support').SupportContext,
   ): Promise<import('./support').SupportPreview>;

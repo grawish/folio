@@ -3,6 +3,12 @@ import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { atomicWrite, safeRelative, readWithin } from './file-io';
 import { SaveTransactions, fileDigest, readTarget, type SaveEntry } from './save-transactions';
+import { replaceDurable, parentPath } from './save-io';
+import type {
+  RecoveryVersion,
+  SaveRecoveryChoice,
+  SaveRecoveryResult,
+} from '../../src/shared/save-recovery';
 import { validateRemovedFiles } from '../../src/shared/project-files';
 import { ProjectScanner, compareDisk, diskKind } from './project-scan';
 import { templateCatalog } from '../../src/shared/template-catalog';
@@ -140,6 +146,7 @@ export class ProjectStore {
   private scanner = new ProjectScanner();
 
   private saves: Promise<unknown> = Promise.resolve();
+  resolvedSaveCopies: string | null = null;
   constructor(
     readonly dataRoot: string,
     private transactions = new SaveTransactions(dataRoot),
@@ -154,8 +161,20 @@ export class ProjectStore {
     return this.registered.get(id)?.directory;
   }
 
-  async open(directory: string, selectedMain?: string): Promise<Project> {
-    await this.saves;
+  private serial<T>(action: () => Promise<T>): Promise<T> {
+    const operation = this.saves.then(action);
+    this.saves = operation.catch(() => {});
+    return operation;
+  }
+
+  open(directory: string, selectedMain?: string): Promise<Project> {
+    return this.serial(async () => {
+      await this.requireNoPendingResolution();
+      return this.openSnapshot(directory, selectedMain);
+    });
+  }
+
+  private async openSnapshot(directory: string, selectedMain?: string): Promise<Project> {
     const root = await fs.realpath(directory);
     await this.transactions.recover(root);
     const tree = await readProjectTree(root);
@@ -220,6 +239,7 @@ export class ProjectStore {
 
   async assets(project: Project) {
     await this.saves;
+    await this.requireNoPendingResolution();
     const directory = this.directory(project.id);
     if (!directory) return new Map<string, Buffer>();
     await this.transactions.recover(directory);
@@ -355,6 +375,7 @@ export class ProjectStore {
     requireCleanDisk = false,
     additions = new Map<string, Buffer>(),
   ) {
+    await this.requireNoPendingResolution();
     const registration = this.registered.get(project.id);
     if (requireCleanDisk && (!registration || selectedDirectory || overwrite))
       throw new Error('Save this project once before using autosave.');
@@ -545,13 +566,25 @@ export class ProjectStore {
     };
   }
 
-  async recover(project: Project) {
-    await this.saves;
-    const registration = this.registered.get(project.id);
-    await this.writeRecovery(project, registration);
+  recover(project: Project) {
+    return this.serial(() => this.writeRecovery(project, this.registered.get(project.id)));
   }
 
-  private async writeRecovery(project: Project, registration?: Registration) {
+  private async requireNoPendingResolution() {
+    let saved;
+    try {
+      saved = JSON.parse((await readTarget(this.dataRoot, 'recovery.json'))?.toString() ?? 'null');
+    } catch {
+      return;
+    }
+    if (saved?.pendingSaveResolution)
+      throw new Error(
+        'Reopen save recovery before changing the workspace. Your file choices and draft copies have been kept.',
+      );
+  }
+
+  private async writeRecovery(project: Project, registration?: Registration, resolved = false) {
+    if (!resolved) await this.requireNoPendingResolution();
     await atomicWrite(
       path.join(this.dataRoot, 'recovery.json'),
       JSON.stringify({
@@ -562,14 +595,48 @@ export class ProjectStore {
     );
   }
 
-  async loadRecovery(): Promise<Project | null> {
-    await this.saves;
+  loadRecovery(): Promise<Project | null> {
+    return this.serial(() => this.loadRecoverySnapshot());
+  }
+
+  private async loadRecoverySnapshot(): Promise<Project | null> {
+    this.resolvedSaveCopies = null;
+    let saved: any;
+    try {
+      saved = JSON.parse((await readTarget(this.dataRoot, 'recovery.json'))?.toString() ?? 'null');
+    } catch {
+      return null;
+    }
+    // This marker is durable before the user's choices can touch project files.
+    // It survives a kill after completion/archive movement and prevents an old
+    // autosaved editor buffer from replacing the selected disk result on launch.
+    if (saved?.pendingSaveResolution) {
+      const { root, nonce } = saved.pendingSaveResolution;
+      if (typeof root !== 'string' || !path.isAbsolute(root) || typeof nonce !== 'string')
+        throw new Error('The pending save recovery marker is invalid. All copies were kept.');
+      if ((await fs.realpath(root)) !== root)
+        throw new Error(
+          'The recovery project folder now points somewhere else. All copies were kept.',
+        );
+      await this.transactions.recover(root);
+      const copies = await this.transactions.completedCopies(nonce, root);
+      if (copies) {
+        const project = await this.openSnapshot(root);
+        this.resolvedSaveCopies = copies;
+        return project;
+      }
+      // No guided decision was published, and ordinary recovery completed.
+      // Resume the original draft instead of leaving an orphaned marker.
+      delete saved.pendingSaveResolution;
+      await replaceDurable(
+        path.join(this.dataRoot, 'recovery.json'),
+        JSON.stringify(saved),
+        randomUUID(),
+      );
+    }
     let project: Project;
     let registration: Registration | undefined;
     try {
-      const saved = JSON.parse(
-        await fs.readFile(path.join(this.dataRoot, 'recovery.json'), 'utf8'),
-      );
       project = validateProject(saved.project);
       project.runtime = adoptRuntime(project.runtime, this.defaultRuntime?.());
       if (typeof saved.directory === 'string') {
@@ -588,7 +655,174 @@ export class ProjectStore {
     return project;
   }
 
+  interruptedSaves() {
+    return this.serial(async () => {
+      const items = await this.transactions.interrupted();
+      let pending;
+      try {
+        pending = JSON.parse(
+          (await readTarget(this.dataRoot, 'recovery.json'))?.toString() ?? 'null',
+        )?.pendingSaveResolution;
+      } catch {
+        return items;
+      }
+      if (
+        typeof pending?.root === 'string' &&
+        typeof pending?.nonce === 'string' &&
+        !items.some((item) => item.id === fileDigest(pending.root))
+      ) {
+        const copies = await this.transactions.completedCopies(pending.nonce, pending.root);
+        if (copies)
+          items.push({
+            id: fileDigest(pending.root),
+            name: path.basename(pending.root),
+            directory: pending.root,
+            copyId: pending.nonce,
+            issue:
+              'Your file choices were saved. Repair the project files and try opening it again. Earlier copies are in the backup folder.',
+          });
+      }
+      return items;
+    });
+  }
+  reviewSave(id: string) {
+    return this.serial(async () =>
+      this.transactions.review((await this.transactions.record(id)).root),
+    );
+  }
+  reviewSaveText(id: string, token: string, filename: string, version: RecoveryVersion) {
+    return this.serial(async () =>
+      this.transactions.reviewText(
+        (await this.transactions.record(id)).root,
+        token,
+        filename,
+        version,
+      ),
+    );
+  }
+  resolveSave(
+    id: string,
+    token: string,
+    choices: SaveRecoveryChoice[],
+    workspace?: (id: string) => Promise<Uint8Array>,
+  ): Promise<SaveRecoveryResult> {
+    return this.serial(async () => {
+      const record = await this.transactions.record(id);
+      const review = await this.transactions.review(record.root);
+      if (!review || review.token !== token)
+        throw new Error('The recovery files changed. Refresh the review before choosing.');
+      const recovery = await readTarget(this.dataRoot, 'recovery.json');
+      let saved: any = {};
+      try {
+        saved = recovery ? JSON.parse(recovery.toString()) : {};
+      } catch {
+        /* Raw bytes are retained below. */
+      }
+      if (!saved || typeof saved !== 'object' || Array.isArray(saved)) saved = {};
+      const retained = new Map<string, Uint8Array>();
+      if (recovery) retained.set(`draft-${fileDigest(recovery)}.json`, recovery);
+      let draft: Project | undefined;
+      try {
+        draft = validateProject(saved.project);
+      } catch {
+        /* A damaged profile is still retained byte for byte. */
+      }
+      if (draft) {
+        const history = workspace ? await workspace(draft.id) : undefined;
+        const prefix = `draft-${fileDigest(JSON.stringify([draft, history && fileDigest(history)])).slice(0, 24)}`;
+        for (const file of draft.files)
+          retained.set(`${prefix}/${file.path}`, Buffer.from(file.content));
+        if (history) retained.set(`${prefix}/resume.folio`, history);
+        retained.set(`${prefix}/draft.json`, Buffer.from(JSON.stringify(draft, null, 2)));
+      }
+      retained.set(
+        'DRAFT-COPIES.txt',
+        Buffer.from(
+          'Draft folders keep the editor source before recovery. The draft JSON keeps its project details. A resume.folio file, when present, keeps the local conversation and PDF history. These copies are private and are not uploaded. Keep the entire folder until you no longer need any version.\n',
+        ),
+      );
+      await this.transactions.preserveDraft(record.root, retained);
+      await replaceDurable(
+        path.join(this.dataRoot, 'recovery.json'),
+        JSON.stringify({
+          ...saved,
+          pendingSaveResolution: { root: record.root, nonce: record.nonce },
+        }),
+        randomUUID(),
+      );
+      await this.transactions.resolve(record.root, token, choices);
+      try {
+        const project = await this.openSnapshot(record.root);
+        return { project, copyId: record.nonce };
+      } catch (error) {
+        return {
+          project: null,
+          copyId: record.nonce,
+          warning: `Your choices were saved, but the project could not be opened: ${(error as Error).message}`,
+        };
+      }
+    });
+  }
+  recoveryFolder(id: string, kind: 'record' | 'project' | 'copies' | 'all-copies') {
+    return this.serial(async () => {
+      if (kind === 'all-copies') {
+        const directory = path.join(this.dataRoot, 'save-recovery-copies');
+        await fs.mkdir(directory, { recursive: true, mode: 0o700 });
+        const stat = await fs.lstat(directory);
+        if (!stat.isDirectory() || stat.isSymbolicLink())
+          throw new Error('Invalid recovery copies folder.');
+        return directory;
+      }
+      if (kind === 'copies') {
+        const directory = await this.transactions.completedCopies(id);
+        if (!directory) throw new Error('These recovery copies could not be found.');
+        return directory;
+      }
+      if (kind === 'record') {
+        if (!/^[a-f0-9]{64}$/.test(id)) throw new Error('Unknown interrupted save.');
+        // Even an unreadable journal can be revealed for manual repair.
+        const directory = path.join(this.dataRoot, 'save-transactions', id);
+        await parentPath(this.dataRoot, `save-transactions/${id}/journal.json`);
+        const stat = await fs.lstat(directory);
+        if (!stat.isDirectory() || stat.isSymbolicLink()) throw new Error('Invalid save folder.');
+        return directory;
+      }
+      if (kind !== 'project') throw new Error('Unknown recovery folder.');
+      return (await this.transactions.record(id)).root;
+    });
+  }
+  preserveResolvedWorkspace(copyId: string, projectId: string, bytes: Uint8Array) {
+    return this.serial(async () => {
+      if (!/^[\w-]{1,80}$/.test(projectId) || bytes.byteLength > 100 * 1024 * 1024)
+        throw new Error('Invalid conversation recovery copy.');
+      const directory = await this.transactions.completedCopies(copyId);
+      if (!directory) throw new Error('The recovery copies could not be found.');
+      const filename = `workspace-${projectId}-${fileDigest(bytes)}.folio`;
+      const prior = await readTarget(directory, filename);
+      if (prior && !prior.equals(bytes))
+        throw new Error('A conversation recovery copy differs. All copies were kept.');
+      if (!prior) await replaceDurable(path.join(directory, filename), bytes, randomUUID());
+    });
+  }
+  finishResolvedRecovery(project: Project) {
+    return this.serial(async () => {
+      const saved = JSON.parse(
+        (await readTarget(this.dataRoot, 'recovery.json'))?.toString() ?? 'null',
+      );
+      const pending = saved?.pendingSaveResolution;
+      const registration = this.registered.get(project.id);
+      if (
+        !pending ||
+        registration?.directory !== pending.root ||
+        !(await this.transactions.completedCopies(pending.nonce, pending.root))
+      )
+        throw new Error('The recovered workspace could not be matched to its saved choices.');
+      await this.writeRecovery(project, registration, true);
+    });
+  }
+
   async clearRecovery() {
+    await this.requireNoPendingResolution();
     await fs.rm(path.join(this.dataRoot, 'recovery.json'), { force: true });
   }
 

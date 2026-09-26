@@ -46,7 +46,7 @@ Windows, Linux, Intel Mac and cross-platform runtime equivalence are outside the
 6. Complete accessibility, VoiceOver, native high-DPI and Mac keyboard acceptance.
 7. Better unsupported-package/engine guidance and broader bibliography workflow coverage.
 8. Hard compiler/OS memory and disk limits, application-wide resource measurements and deeper hostile-document testing. The viewer now has page/byte/geometry limits, virtualized pages, canvas budgets and bounded worker shutdown; see [viewer limits](PDF_VIEWER_LIMITS.md).
-9. macOS save durability, supported network-filesystem and power-loss validation, plus guided resolution when an interrupted save conflicts with a newer external edit.
+9. macOS save durability, supported network-filesystem and power-loss validation, including schema-migration interruption coverage. Guided interrupted-save resolution now has separate source-native evidence below.
 
 
 Structured forms, source-to-preview navigation, and cloud sync remain deferred. AI writing is implemented under the newer [chat-first plan](CHAT_FIRST_IMPLEMENTATION.md); its validation and model/provider limits are recorded there and in the README.
@@ -111,3 +111,7 @@ The project menu now offers local OTF/TTF selection, a real PDF preview, and an 
 ## Reviewable support bundles
 
 Settings → Privacy now offers an exact-file preview, section selection and local ZIP export. A fixed native-validated list of diagnostic counts/enums excludes resume/log/account/path/environment text. Five privacy/protocol tests and the whole 135-test unit suite passed. The source-native workflow verifies actual compiler-failure categorization, private-marker exclusion, exact ZIP bytes, cancelled/failed saves, reload and close during atomic export. See [support bundle scope and evidence](SUPPORT_BUNDLES.md). The expanded native qualification set includes a twelfth support suite; earlier package evidence does not qualify this addition.
+
+## Guided interrupted-save recovery
+
+The startup/project-menu review compares current, before-save and attempted files; validates fresh choices; preserves file versions, editor drafts and conversation copies; and resumes decisions across process interruption, native close or renderer reload. A durable profile marker prevents old unsaved source from replacing the chosen result. Source-native and targeted packaged UI coverage includes binary/history/deletion recovery and ZIP export, plus a failed-Apply retry. All 158 unit tests pass. See [recovery protocol and evidence](SAVE_RECOVERY_IMPLEMENTATION.md) and the [tutorial](tutorials/save-and-recover.md#recover-an-interrupted-save). The future full native qualification set now has thirteen suites; earlier eleven-suite results retain their exact prior-commit scope.

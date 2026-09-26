@@ -24,10 +24,31 @@ Close Folio normally and reopen it to check recovery. If a dialog asks about uns
 
 Builds, exports and AI application wait while source or assets need review. Saving can ask before replacing outside edits. Read that choice carefully; don't keep retrying a save to dismiss a conflict.
 
-## Interrupted saves and imports
+## Recover an interrupted save
 
-Folio journals multi-file saves so it can roll back an interrupted write. If outside files changed during recovery, it preserves them rather than guessing which version you wanted. Guided resolution for every interrupted-save conflict is still in progress. Keep both copies and consult [save reliability](https://github.com/grawish/folio/blob/main/docs/SAVE_RELIABILITY.md) when a conflict cannot be resolved in the interface.
+Folio usually fixes a stopped save by putting the earlier files back. If another app changed a file after the save stopped, Folio asks you to choose which version to keep.
 
-ZIP imports have their own [review and recovery tutorial](recover-an-import.md). These local crash tests do not prove power-loss or network-filesystem durability.
+1. If Folio cannot open your workspace, click **Review interrupted saves**. If the app is already open, choose **More project actions → Interrupted saves…**.
+2. Click **Review files** beside the project.
+3. Choose a file from the list. You can look at **Current disk copy**, **Before the save**, and **Attempted save**. The attempted save is the version Folio was trying to write.
+4. Select **Keep this version** under the copy you want. Folio starts by keeping outside edits. For other files, it suggests the version from before the save. Check every file.
+5. Click **Review choices**, read the list, then click **Apply and keep backups**.
+6. Click **Show recovery copies** to find the backups, or **Done** to reopen the project. Build the PDF and check the result.
 
-**Demos:** `npm run test:workspace` covers autosave, pause/retry and normal restart. `npm run test:watch` covers outside-file review and preserved copies. `npm test` includes real child-process interruption tests using disposable files.
+[Screenshot: Choosing files after an interrupted save](https://github.com/grawish/folio/blob/main/docs/images/save-recovery.png)
+
+A version marked **File is absent** means that file will not be in the recovered project. A missing or damaged backup cannot be selected. Fonts, images and history files are kept exactly as they are, even when they cannot be shown as text.
+
+If a file changes while you are reviewing, Folio stops. Click **Refresh**, check the new copies and choose again. Refresh resets the suggested choices.
+
+Before changing files, Folio keeps the available versions, your editor source, and conversation copies in a local backup folder. This includes an unfinished draft from another project that was open when you began. It does not send the copies to AI. **More project actions → Interrupted saves… → Show all recovery copies** lets you find the backups later. Draft folders contain source and conversation copies; they may need assets from the original project to compile.
+
+[Screenshot: Recovery in a small light-theme window](https://github.com/grawish/folio/blob/main/docs/images/save-recovery-light.png)
+
+You can close a review before pressing Apply. Once Apply starts, closing or reloading waits for it or resumes it later; it does not undo your file choices. If a write stops halfway, Folio keeps the choices and backups. Closing that failed review checks recovery again instead of replacing the files with an older editor draft.
+
+A combination of files can still contain broken TeX, an invalid project file, or damaged history. If the files were saved but the project cannot open, Folio says so and keeps its backups. Use **Show copies**, repair the affected files, and try opening again. Unreadable save records may need manual repair. Do not delete recovery records just to hide an error. See [save recovery details](https://github.com/grawish/folio/blob/main/docs/SAVE_RECOVERY_IMPLEMENTATION.md) for limits.
+
+ZIP imports have their own [review and recovery tutorial](recover-an-import.md). Process-interruption tests do not prove power-loss or network-filesystem durability.
+
+**Demos:** `npm run test:save-recovery` creates disposable interrupted saves and checks this review flow, newer edits, binary files, history, backups, reload and close during Apply. `npm run test:workspace` covers autosave and normal restart. `npm run test:watch` covers outside-file review. `npm test` includes real process-kill recovery checks. These tests use synthetic files; do not force a crash on your only copy of a real resume.

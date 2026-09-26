@@ -26,6 +26,7 @@ import { CompilerMigration } from './core/compiler-migration';
 import { FontImport } from './core/font-import';
 import { SupportBundles } from './core/support-bundle';
 import type { FontStyle, FontTarget } from '../src/shared/fonts';
+import type { RecoveryVersion, SaveRecoveryChoice } from '../src/shared/save-recovery';
 import { adoptRuntime, validateRuntimePin } from '../src/shared/runtime';
 import { WorkspaceStore, safeId } from './core/workspace';
 import { ConnectionStore } from './core/connections';
@@ -91,6 +92,33 @@ const renders = new Map<
 >();
 let recoveryQueue = Promise.resolve();
 let requestGeneration = 0;
+let saveReviewId: string | undefined;
+let saveReviewStart: Promise<void> = Promise.resolve();
+let saveReviewApply: Promise<unknown> = Promise.resolve();
+let applyingSaveReview = false;
+async function endSaveReview(id?: string) {
+  if (id !== undefined && id !== saveReviewId) return;
+  const currentId = saveReviewId;
+  await saveReviewStart.catch(() => {});
+  await saveReviewApply.catch(() => {});
+  if (saveReviewId === currentId) saveReviewId = undefined;
+}
+async function requireSaveReview(id: string) {
+  await saveReviewStart;
+  if (!saveReviewId || id !== saveReviewId) throw new Error('Open a fresh save recovery review.');
+}
+async function loadResolvedWorkspace(
+  project: import('../src/shared/types').Project,
+  copyId: string,
+) {
+  // The selected manifest may identify a different cached conversation than the
+  // editor that opened the review. Preserve that conversation before replacing it.
+  await store.preserveResolvedWorkspace(copyId, project.id, await workspaces.archive(project.id));
+  await workspaces.importFrom(project.id, project.directory!, true);
+  const workspace = await workspaces.load(project.id);
+  await store.finishResolvedRecovery(project);
+  return workspace;
+}
 nativeTheme.themeSource = 'dark';
 const windowBackground = () => (nativeTheme.shouldUseDarkColors ? '#101c2b' : '#eef3f7');
 nativeTheme.on('updated', () => window?.setBackgroundColor(windowBackground()));
@@ -150,6 +178,7 @@ async function openProject(directory: string, main?: string) {
 }
 
 function requireProjectIdle() {
+  if (saveReviewId) throw new Error('Close save recovery before changing the workspace.');
   migrations.requireIdle();
   fonts.requireIdle();
 }
@@ -178,6 +207,80 @@ function registerHandlers() {
     const project = validateProject(value);
     return { ...project, runtime: adoptRuntime(project.runtime, runtimes.defaultPin) };
   };
+  handle('save-recovery:begin', (id: string, value?: unknown) => {
+    requireProjectIdle();
+    const project = value === undefined ? undefined : checkedProject(value);
+    saveReviewId = safeId(id);
+    saveReviewStart = (async () => {
+      requestGeneration++;
+      await agent.cancel();
+      await compiler.cancel();
+      await recoveryQueue.catch(() => {});
+      await workspaces.flush();
+      if (project) await store.recover(project);
+    })();
+    return saveReviewStart.catch((error) => {
+      if (saveReviewId === id) saveReviewId = undefined;
+      throw error;
+    });
+  });
+  handle('save-recovery:end', (id?: string) => endSaveReview(id));
+  handle('save-recovery:list', async (id: string) => {
+    await requireSaveReview(id);
+    return store.interruptedSaves();
+  });
+  handle('save-recovery:review', async (id: string, record: string) => {
+    await requireSaveReview(id);
+    return store.reviewSave(record);
+  });
+  handle(
+    'save-recovery:text',
+    async (
+      id: string,
+      record: string,
+      token: string,
+      filename: string,
+      version: RecoveryVersion,
+    ) => {
+      await requireSaveReview(id);
+      return store.reviewSaveText(record, token, filename, version);
+    },
+  );
+  handle(
+    'save-recovery:show',
+    async (id: string, record: string, kind: 'record' | 'project' | 'copies' | 'all-copies') => {
+      await requireSaveReview(id);
+      shell.showItemInFolder(await store.recoveryFolder(record, kind));
+    },
+  );
+  handle(
+    'save-recovery:apply',
+    async (id: string, record: string, token: string, choices: SaveRecoveryChoice[]) => {
+      await requireSaveReview(id);
+      if (applyingSaveReview) throw new Error('Recovery is already applying.');
+      applyingSaveReview = true;
+      const operation = (async () => {
+        const result = await store.resolveSave(record, token, choices, (projectId) =>
+          workspaces.archive(projectId),
+        );
+        if (result.project) {
+          try {
+            result.workspace = await loadResolvedWorkspace(result.project, result.copyId);
+          } catch (error) {
+            result.project = null;
+            result.warning = `Your file choices were saved, but the workspace could not be reopened: ${(error as Error).message}`;
+          }
+        }
+        return result;
+      })();
+      saveReviewApply = operation;
+      try {
+        return await operation;
+      } finally {
+        applyingSaveReview = false;
+      }
+    },
+  );
   handle('runtime:inspect', (pin: unknown) => runtimes.status(validateRuntimePin(pin)));
   handle('runtime:repair', (pin: unknown) => runtimes.repair(validateRuntimePin(pin)));
   handle('runtime:compare', (id: string, value: unknown) => {
@@ -185,7 +288,7 @@ function registerHandlers() {
     return migrations.prepare(id, checkedProject(value));
   });
   handle('fonts:begin', (id: string, value: unknown) => {
-    migrations.requireIdle();
+    requireProjectIdle();
     return fonts.begin(id, checkedProject(value));
   });
   handle('fonts:choose', (id: string, style: FontStyle) => fonts.choose(id, style));
@@ -209,7 +312,10 @@ function registerHandlers() {
     if (directory) await workspaces.importFrom(id, directory);
     return workspaces.load(id);
   });
-  handle('workspace:save', (state: unknown) => workspaces.save(state));
+  handle('workspace:save', (state: unknown) => {
+    if (saveReviewId) throw new Error('Close save recovery before editing the conversation.');
+    return workspaces.save(state);
+  });
   handle('workspace:version', (projectId: string, versionId: string) =>
     workspaces.version(safeId(projectId), safeId(versionId)),
   );
@@ -252,6 +358,7 @@ function registerHandlers() {
     window?.setBackgroundColor(windowBackground());
   });
   handle('app:bootstrap', async () => {
+    await endSaveReview();
     await support.cancel();
     // A renderer reload loses its comparison token. Release the abandoned
     // comparison (or wait for Apply) before restoring the recovered draft.
@@ -260,6 +367,9 @@ function registerHandlers() {
     await recoveryQueue.catch(() => {});
     await runtimes.initialize();
     const recovered = await store.loadRecovery();
+    if (recovered && store.resolvedSaveCopies) {
+      await loadResolvedWorkspace(recovered, path.basename(store.resolvedSaveCopies));
+    }
     return {
       runtime: await runtimes.status(recovered?.runtime),
       recovered,
@@ -268,6 +378,7 @@ function registerHandlers() {
     };
   });
   handle('project:open', async () => {
+    requireProjectIdle();
     const result = await dialog.showOpenDialog(window!, {
       title: 'Open a LaTeX resume',
       properties: ['openFile'],
@@ -277,6 +388,7 @@ function registerHandlers() {
     return openProject(path.dirname(result.filePaths[0]), path.basename(result.filePaths[0]));
   });
   handle('project:open-folder', async () => {
+    requireProjectIdle();
     const result = await dialog.showOpenDialog(window!, {
       title: 'Open a resume project folder',
       properties: ['openDirectory'],
@@ -285,15 +397,18 @@ function registerHandlers() {
     return openProject(result.filePaths[0]);
   });
   handle('project:prepare-import', async () => {
+    requireProjectIdle();
     const result = await dialog.showOpenDialog(window!, {
       title: 'Import a LaTeX project ZIP',
       properties: ['openFile'],
       filters: [{ name: 'ZIP project', extensions: ['zip'] }],
     });
     if (result.canceled) return null;
+    requireProjectIdle();
     return importer.prepare(result.filePaths[0]);
   });
   handle('project:finish-import', async (token: string, mainFile: string) => {
+    requireProjectIdle();
     safeId(token);
     const result = await dialog.showOpenDialog(window!, {
       title: 'Choose where to keep the imported project',
@@ -301,6 +416,7 @@ function registerHandlers() {
       properties: ['openDirectory', 'createDirectory'],
     });
     if (result.canceled) return null;
+    requireProjectIdle();
     const directory = await importer.finish(token, mainFile, result.filePaths[0]);
     try {
       return await openProject(directory, mainFile);
@@ -313,12 +429,14 @@ function registerHandlers() {
   handle('project:cancel-import', (token: string) => importer.cancel(safeId(token)));
   handle('project:interrupted-imports', () => importer.interrupted());
   handle('project:resume-import', async (id: string) => {
+    requireProjectIdle();
     const recovered = await importer.resume(safeId(id));
     return openProject(recovered.directory, recovered.mainFile);
   });
   handle('project:acknowledge-import', (id: string) => importer.recovery.acknowledge(safeId(id)));
-  handle('project:discard-import', (id: string) =>
-    importer.discard(
+  handle('project:discard-import', (id: string) => {
+    requireProjectIdle();
+    return importer.discard(
       safeId(id),
       (directory) => shell.trashItem(directory),
       (directory) => {
@@ -327,8 +445,8 @@ function registerHandlers() {
             'This imported project is open. Open another project before moving it to Trash.',
           );
       },
-    ),
-  );
+    );
+  });
   handle('project:forget-import', (id: string) => importer.forget(safeId(id)));
   handle('project:show-import', async (id: string) => {
     shell.showItemInFolder(await importer.recovery.reveal(safeId(id)));
@@ -368,6 +486,7 @@ function registerHandlers() {
       directory = choice.filePaths[0];
     }
     const history = (id: string) => workspaces.archive(project.id, id);
+    requireProjectIdle();
     let result = await store.save(
       project,
       automatic ? undefined : directory,
@@ -427,6 +546,7 @@ function registerHandlers() {
     return recoveryQueue;
   });
   handle('project:clear-recovery', async () => {
+    requireProjectIdle();
     await recoveryQueue;
     await store.clearRecovery();
   });
@@ -518,6 +638,7 @@ function registerHandlers() {
     await shell.openExternal(url.href);
   });
   handle('app:close', async () => {
+    await endSaveReview();
     await support.cancel();
     await fonts.cancel();
     await migrations.cancel();

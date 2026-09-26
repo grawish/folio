@@ -33,6 +33,7 @@
     "test:diagnostics": "npm run build && node scripts/test-diagnostics.mjs",
     "test:fonts": "npm run build && node scripts/test-fonts.mjs",
     "test:support": "npm run build && node scripts/test-support.mjs",
+    "test:save-recovery": "npm run build && node --import tsx scripts/test-save-recovery.mjs",
     "test:pdf-lifecycle": "npm run build && node scripts/test-pdf-lifecycle.mjs",
     "test:pdf-viewer": "npm run build && node scripts/test-pdf-viewer.mjs",
     "test:runtime": "npm run build && node scripts/test-runtime.mjs",

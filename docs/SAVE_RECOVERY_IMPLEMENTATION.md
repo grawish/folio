@@ -1,6 +1,6 @@
-# Guided save recovery: implementation progress
+# Guided save recovery
 
-The recovery engine is implemented and tested. **The desktop review screen and its IPC/store integration are not connected yet.** Users still see the existing recovery error when outside edits prevent automatic rollback. This document records the engine contract and remaining integration work; it is not a user tutorial or a completed-feature claim.
+The desktop review is available from a failed startup or **More project actions → Interrupted saves…**. Users compare current, before-save and attempted-save copies, choose a version for each file, review the choices, and apply them while retaining backups. The [plain-language tutorial](tutorials/save-and-recover.md#recover-an-interrupted-save) includes real screenshots.
 
 ## What the engine can do
 
@@ -16,7 +16,7 @@ After completion, the entire original journal, original old/new files, retained 
 
 ## Current verification
 
-The current suite passes **150 unit/protocol tests** (`test-results/save-recovery-all-unit.log`). Fifteen new tests in `tests/save-recovery.test.ts` cover:
+The engine milestone passed **150 unit/protocol tests** (`test-results/save-recovery-all-unit.log`). Fifteen engine tests in `tests/save-recovery.test.ts` cover:
 
 - review without writes, outside edits, additions, deletions and binary files;
 - mixed, all-before and all-attempted selections with byte-for-byte retained copies;
@@ -29,14 +29,21 @@ The current suite passes **150 unit/protocol tests** (`test-results/save-recover
 
 The fifteen existing save-transaction tests pass as well, covering automatic rollback, committed saves, deletion, Save As, metadata/history conflicts and history integrity. TypeScript and production build pass. The source-native chat/save regression suite passed with no renderer errors (`test-results/chat-74dHLx/`, log `test-results/save-recovery-chat.log`); it exercises the existing desktop save, Save As, history and recovery flows, not the unconnected guided review UI. The crash fixture is `tests/fixtures/save-recovery-crash.ts`; it waits at a precise boundary until its parent sends SIGKILL.
 
-## Remaining integration and acceptance
+## Desktop, draft and history integration
 
-1. Add a serialized store service that discovers only app-owned save journals and accepts opaque record IDs. Renderer input must not grant arbitrary filesystem paths or bypass the existing project save queue.
-2. Preserve the unsaved workspace before a guided resolution. Make startup and normal project opening load the selected disk result after resolution, including a kill between completion and reopening. An older autosaved draft must not immediately overwrite the selected result; retain it as a separately recoverable copy.
-3. Provide review access from a failed startup and from the project menu. Show current/before/attempted bytes, missing/damaged choices, deletions, and a clear confirmation of the selected result. Keep current outside edits as the initial suggestion. Allow refreshing a stale review and opening the retained-copy folder.
-4. Coordinate Apply with builds, agents, autosave, native close and renderer reload. Wait for in-progress resolution on close; do not allow a competing save to erase its record.
-5. Exercise actual native UI flows in both themes at 1040 × 680 and a larger window, including damaged backups, stale reviews, close/reload during Apply, startup recovery, existing draft preservation, source/asset/history round trips and render errors. Qualify the exact packaged app with this suite.
-6. Capture synthetic screenshots and add the feature tutorial, gallery entry and skill guidance once the UI is implemented and verified. Until then, keep the release audit open.
+The serialized project store discovers app-owned journal folders and accepts opaque record IDs. The renderer cannot supply arbitrary filesystem roots or replacement bytes. Native review sessions prevent competing source saves, agent work and compiler/font changes. Background source/chat recovery and autosave pause while the review is open. Closing or reloading waits for active Apply; an abandoned read-only review releases its session.
+
+Before applying choices, the store preserves the profile recovery bytes, editor source and a validated local conversation/history archive. A durable `pendingSaveResolution` marker is written into profile recovery before the engine can modify project files. Startup uses this marker and the completed archive to reopen the selected disk files, including after a kill between archive movement and reopening. Ordinary save/recovery writes cannot erase a pending marker. Dismissing a failed partial Apply re-enters recovery.
+
+The selected manifest can refer to a different cached conversation from the editor that opened the review. That cached conversation is separately archived before the selected `resume.folio` is imported. Only this explicit, backed-up path replaces newer local history with the chosen on-disk version; normal opens preserve the newer local cache. The marker is cleared after source and history have been reopened successfully. Failure to reopen is reported as **choices saved, workspace needs attention**, with retained-copy access. It is not reported as a rollback or a successful workspace load.
+
+`tests/save-review-store.test.ts` adds eight store/history checks, including process kills at all four engine boundaries, profile/source/history preservation, stale or invalid records, explicit history replacement, and rejection of ordinary save/recovery/clear attempts while a decision is pending. The complete suite passes **158 tests** (`test-results/save-review-final-unit.log`).
+
+The native suite `scripts/test-save-recovery.mjs` passes in `test-results/save-recovery-olVWdQ/` with no renderer errors. It covers failed startup; all three file versions; dark/light 1040 × 680 controls; read-only reload; stale review rejection/refresh; missing and damaged copies; binary assets, history and deletions; source/asset/conversation ZIP round trips; preservation of another project's editor draft; native close and renderer reload during a held Apply; and dismissal/retry after an injected partial write failure. The earlier native runs are retained as narrower checks. The latest captures use synthetic resumes and controlled interruptions, not real user files or an AI account.
+
+The same workflow passed against the unsigned Apple silicon app in `release/save-recovery/mac-arm64/Folio.app` (`test-results/save-recovery-1mmuTT/`), including native IPC guards that reject competing save/open/import requests. Its app.asar SHA-256 is `dd9b1edd74789abe7b5f2da19fb6a1c8139f036304170f5685840ec01bb2ccf5`. All 37 packaged build outputs and the runtime manifest match. The local proof is `release/save-recovery/feature-verification.json`. This is targeted feature verification, not a disk-image or full thirteen-suite qualification. The broader packaged chat/save suite also passed (`test-results/chat-h4kir4/`), covering actual PDF review, history undo/restore, stale AI results, outside edits, damaged-history save rejection, Save As, autosave and close during Save As. The app archive remained unchanged. The qualification pipeline includes a thirteenth native suite for this feature. Earlier eleven-suite hosted results predate this code and remain evidence for their own recorded commit.
+
+Broader macOS-version, physical accessibility, network-filesystem and power-loss acceptance remain in the release audit. No signed installer or complete production-release claim follows from these feature checks.
 
 ## Limits
 

@@ -134,5 +134,21 @@
     "sha256": "6f2236714d7e422c0079dfc9fda3951137002a00840eb378e5b94264fd72ba01",
     "synthetic": true,
     "liveAI": false
+  },
+  {
+    "file": "docs/images/save-recovery.png",
+    "sourceSuite": "save-recovery",
+    "sourceCapture": "review-dark.png",
+    "sha256": "07d5340c4b9f0f5511ff9bfcedab98afb9911bea62154914919f140eb9851fa9",
+    "synthetic": true,
+    "liveAI": false
+  },
+  {
+    "file": "docs/images/save-recovery-light.png",
+    "sourceSuite": "save-recovery",
+    "sourceCapture": "review-light-small.png",
+    "sha256": "4cd8813cd21eb3a8c7ced9669ace7ddc863c1819eebccaf3c9b8a633dcb116e8",
+    "synthetic": true,
+    "liveAI": false
   }
 ]

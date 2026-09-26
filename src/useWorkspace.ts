@@ -5,6 +5,7 @@ export function useWorkspace(
   projectId: string,
   initialized: boolean,
   report: (message: string) => void,
+  paused = false,
 ) {
   const [state, setState] = useState(() => emptyWorkspace(projectId));
   const [loadedId, setLoadedId] = useState('');
@@ -70,12 +71,12 @@ export function useWorkspace(
       await window.folio?.saveWorkspace(current.current);
   }, []);
   useEffect(() => {
-    if (loadedId !== state.projectId) return;
+    if (paused || loadedId !== state.projectId) return;
     const timer = setTimeout(() => {
       void flush().catch((error) => report(`Chat recovery could not be saved: ${error.message}`));
     }, 350);
     return () => clearTimeout(timer);
-  }, [state, loadedId, flush, report]);
+  }, [state, loadedId, flush, report, paused]);
   const refreshVersions = useCallback(async () => {
     const id = current.current.projectId;
     const saved = await window.folio?.loadWorkspace(id);

@@ -30,7 +30,7 @@ The local compiler can work without AI. Sending a chat shares relevant source, c
 
 Review the actual PDF after changing TeX. A last-good PDF can remain visible while current source fails. Use the current build/render state before recommending export. Viewer bounds are 100 pages/25 MiB; AI review has a separate 20-page bound. A model's visual review does not verify resume facts.
 
-Protect the current draft and outside edits during recovery. A stopped ZIP import can be finished, reopened, moved to Trash when verified, or dismissed while keeping files. Do not bypass a blocked ownership/outside-edit check. Prefer the documented recovery UI over manually deleting recovery data. Guided resolution for all interrupted-save conflicts remains unfinished.
+Protect the current draft and outside edits during recovery. A stopped ZIP import can be finished, reopened, moved to Trash when verified, or dismissed while keeping files. Do not bypass a blocked ownership/outside-edit check. Prefer the documented recovery UI over manually deleting recovery data. For interrupted saves, use the project menu or failed-startup review to compare current/before/attempted files. Review every choice, including deletions, and apply with backups. A stale review needs Refresh and new choices. Keep the retained source/conversation copies; ordinary recovery must not erase a pending decision. Unreadable records or damaged retained storage can still require manual repair.
 
 ## Helping with changes or diagnosis
 

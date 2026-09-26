@@ -16,3 +16,16 @@ export type SaveRecoveryReview = {
 };
 export type SaveRecoveryChoice = { path: string; version: RecoveryVersion };
 export type SaveRecoveryText = { text: string | null; truncated: boolean };
+export type InterruptedSave = {
+  id: string;
+  name: string;
+  directory: string | null;
+  issue?: string;
+  copyId?: string;
+};
+export type SaveRecoveryResult = {
+  project: import('./types').Project | null;
+  copyId: string;
+  warning?: string;
+  workspace?: import('./ai').WorkspaceState;
+};

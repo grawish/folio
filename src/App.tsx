@@ -73,6 +73,8 @@ import { buildHelp } from './shared/build-help';
 import { FontSetup } from './components/FontSetup';
 import { SupportBundle } from './components/SupportBundle';
 import { supportSnapshot } from './shared/support';
+import { SaveRecovery } from './components/SaveRecovery';
+import type { SaveRecoveryResult } from './shared/save-recovery';
 
 type Dialog =
   | 'templates'
@@ -91,6 +93,7 @@ type Dialog =
   | 'removed-files'
   | 'external-changes'
   | 'interrupted-imports'
+  | 'save-recovery'
   | null;
 const keyOf = (p: Project) =>
   JSON.stringify([p.name, p.mainFile, p.files, p.removedFiles ?? [], p.runtime]);
@@ -139,6 +142,7 @@ export default function App() {
   );
   const [fontSize, setFontSize] = useState(() => Number(localStorage.getItem('folio:font')) || 14);
   const [dialog, setDialog] = useState<Dialog>(null);
+  const saveReview = useRef<{ id: string; preparation?: Promise<void> } | null>(null);
   const [pendingImport, setPendingImport] = useState<ProjectImportPreview | null>(null);
   const [interruptedImportCount, setInterruptedImportCount] = useState(0);
   const [resolvingImport, setResolvingImport] = useState(false);
@@ -190,7 +194,7 @@ export default function App() {
     updateWorkspace,
     flushWorkspace,
     refreshVersions,
-  } = useWorkspace(project.id, initialized, message);
+  } = useWorkspace(project.id, initialized, message, dialog === 'save-recovery');
   const agentBusy =
     !!agentProgress && !['complete', 'error', 'cancelled'].includes(agentProgress.phase);
   const projectKey = useMemo(() => keyOf(project), [project]);
@@ -457,6 +461,7 @@ export default function App() {
       !autoCompile ||
       dialog === 'compiler-migration' ||
       dialog === 'fonts' ||
+      dialog === 'save-recovery' ||
       agentBusy ||
       needsDiskReview ||
       reloadingDisk
@@ -487,7 +492,8 @@ export default function App() {
       !window.folio ||
       saveActive ||
       dialog === 'compiler-migration' ||
-      dialog === 'fonts'
+      dialog === 'fonts' ||
+      dialog === 'save-recovery'
     )
       return;
     const timer = setTimeout(() => {
@@ -839,6 +845,19 @@ export default function App() {
   };
   const menuAction = useRef<(action: string) => void>(() => {});
   menuAction.current = (action) => {
+    if (saveReview.current) {
+      if (action === 'close')
+        void (async () => {
+          try {
+            await saveReview.current?.preparation;
+            await window.folio?.endSaveRecovery(saveReview.current?.id);
+            await window.folio?.closeWindow();
+          } catch (error) {
+            message((error as Error).message);
+          }
+        })();
+      return;
+    }
     if (!initialized) {
       // Recovery has not been loaded yet. Never flush the temporary starter
       // project over it when the user closes during preparation or a load error.
@@ -887,6 +906,62 @@ export default function App() {
       })();
   };
   useEffect(() => window.folio?.onMenu((action) => menuAction.current(action)), []);
+
+  const openSaveRecovery = () => {
+    if (!window.folio) return;
+    if (initialized && (saving.current || activeRun.current || !workspaceReady)) {
+      message('Finish saving or stop the AI request before reviewing interrupted saves.');
+      return;
+    }
+    saveReview.current = { id: crypto.randomUUID() };
+    setDialog('save-recovery');
+  };
+  const prepareSaveRecovery = () => {
+    const session = saveReview.current!;
+    session.preparation ??= (async () => {
+      await savingFinished.current;
+      if (initialized) await flushWorkspace();
+      buildToken.current++;
+      setBuilding(false);
+      await window.folio!.beginSaveRecovery(session.id, initialized ? current.current : undefined);
+    })();
+    return session.preparation;
+  };
+  const finishSaveRecovery = async (reply?: SaveRecoveryResult, attempted = false) => {
+    await saveReview.current?.preparation?.catch(() => {});
+    await window.folio!.endSaveRecovery(saveReview.current?.id);
+    saveReview.current = null;
+    flushSync(() => {
+      if (reply?.project) {
+        loadProject(reply.project);
+        setSavedKey(keyOf(reply.project));
+        if (reply.workspace) {
+          updateWorkspace(reply.workspace);
+          setSavedWorkspace(reply.workspace);
+        }
+        setInitialized(true);
+        setBootstrapError('');
+      } else if (reply) {
+        setInitialized(false);
+        setBootstrapError(
+          reply.warning ?? 'The saved project needs attention. Its recovery copies were kept.',
+        );
+      } else if (attempted) {
+        setInitialized(false);
+        setBootstrapAttempt((attempt) => attempt + 1);
+      }
+      setDialog(null);
+    });
+    if (reply?.project) {
+      message(
+        'Recovered your selected files. Earlier copies and your draft were kept in the backup folder.',
+      );
+      void window
+        .folio!.recentProjects()
+        .then(setRecent)
+        .catch((error) => message(error.message));
+    }
+  };
 
   const updateSource = (content: string) =>
     setProject((p) => ({
@@ -1287,6 +1362,7 @@ export default function App() {
                   }),
               },
               { label: 'Recent projects', action: () => setDialog('recent') },
+              { label: 'Interrupted saves…', action: openSaveRecovery },
               {
                 label: 'Interrupted imports…',
                 action: () => {
@@ -2097,6 +2173,13 @@ export default function App() {
             }}
           />
         )}
+        {dialog === 'save-recovery' && saveReview.current && (
+          <SaveRecovery
+            id={saveReview.current.id}
+            onPrepare={prepareSaveRecovery}
+            onDone={finishSaveRecovery}
+          />
+        )}
         {dialog === 'interrupted-imports' && (
           <InterruptedImports
             busy={resolvingImport}
@@ -2341,6 +2424,9 @@ export default function App() {
           {bootstrapError && (
             <>
               <p>Your existing recovery files have been kept.</p>
+              <button className="button secondary" onClick={openSaveRecovery}>
+                Review interrupted saves
+              </button>
               <button
                 className="button primary"
                 onClick={() => setBootstrapAttempt((attempt) => attempt + 1)}

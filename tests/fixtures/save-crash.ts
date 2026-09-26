@@ -8,7 +8,7 @@ const waitToBeKilled = async () => {
     setInterval(() => {}, 60_000);
   });
 };
-const changes: Array<{ path: string; content: string | null }> = JSON.parse(
+const changes: Array<{ path: string; content?: string | null; base64?: string }> = JSON.parse(
   await fs.readFile(inputFile, 'utf8'),
 );
 const transaction = new SaveTransactions(dataRoot, {
@@ -27,7 +27,12 @@ await transaction.commit(
   await Promise.all(
     changes.map(async (entry) => ({
       path: entry.path,
-      data: entry.content === null ? null : Buffer.from(entry.content),
+      data:
+        entry.content === null
+          ? null
+          : entry.base64
+            ? Buffer.from(entry.base64, 'base64')
+            : Buffer.from(entry.content!),
       before: await readTarget(root, entry.path),
     })),
   ),

@@ -337,11 +337,15 @@ export class WorkspaceStore {
   async exportTo(projectId: string, directory: string) {
     await atomicWrite(path.join(directory, 'resume.folio'), await this.archive(projectId));
   }
-  async importFrom(projectId: string, directory: string) {
-    // Never replace newer local recovery with an older on-disk archive.
+  async importFrom(projectId: string, directory: string, replaceLocal = false) {
+    await this.flush();
+    // Normal opens keep newer local recovery. Guided save recovery passes
+    // replaceLocal only after preserving the existing conversation separately.
     try {
-      await fs.access(path.join(this.root(projectId), 'state.json'));
-      return;
+      if (!replaceLocal) {
+        await fs.access(path.join(this.root(projectId), 'state.json'));
+        return;
+      }
     } catch {
       /* first open */
     }
@@ -353,7 +357,14 @@ export class WorkspaceStore {
         throw new Error('Invalid conversation archive.');
       archive = await fs.readFile(file);
     } catch (error) {
-      if ((error as NodeJS.ErrnoException).code === 'ENOENT') return;
+      if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+        if (replaceLocal)
+          await atomicWrite(
+            path.join(this.root(projectId), 'state.json'),
+            JSON.stringify(emptyWorkspace(projectId)),
+          );
+        return;
+      }
       throw error;
     }
     // Validate every header, actual expanded size and snapshot before writing.

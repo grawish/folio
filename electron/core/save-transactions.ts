@@ -19,7 +19,11 @@ import {
   resolveSaveRecovery,
   finishSaveRecovery,
 } from './save-recovery';
-import type { RecoveryVersion, SaveRecoveryChoice } from '../../src/shared/save-recovery';
+import type {
+  InterruptedSave,
+  RecoveryVersion,
+  SaveRecoveryChoice,
+} from '../../src/shared/save-recovery';
 export type SaveJournalEntry = {
   path: string;
   before: string | null;
@@ -51,6 +55,98 @@ export class SaveTransactions {
   ) {}
   private location(root: string) {
     return path.join(this.dataRoot, 'save-transactions', fileDigest(root));
+  }
+  async record(id: string) {
+    if (typeof id !== 'string' || !/^[a-f0-9]{64}$/.test(id))
+      throw new Error('Unknown interrupted save.');
+    const directory = path.join(this.dataRoot, 'save-transactions', id);
+    await parentPath(this.dataRoot, `save-transactions/${id}/journal.json`);
+    const stat = await fs.lstat(directory);
+    if (!stat.isDirectory() || stat.isSymbolicLink())
+      throw new Error('Invalid save journal directory.');
+    const bytes = await readTarget(directory, 'journal.json');
+    if (!bytes || bytes.length > 200_000)
+      throw new Error('The save record could not be read. Its copies were kept.');
+    const raw = JSON.parse(bytes.toString());
+    if (typeof raw?.root !== 'string' || !path.isAbsolute(raw.root) || fileDigest(raw.root) !== id)
+      throw new Error('The save record does not match its folder. Its copies were kept.');
+    const journal = await this.readJournal(raw.root);
+    if (!journal) throw new Error('This save no longer needs recovery.');
+    return { directory, root: journal.root, nonce: journal.nonce, phase: journal.phase };
+  }
+  async interrupted(): Promise<InterruptedSave[]> {
+    const parent = path.join(this.dataRoot, 'save-transactions');
+    let entries;
+    try {
+      entries = await fs.readdir(parent, { withFileTypes: true });
+    } catch (error) {
+      if (missing(error)) return [];
+      throw error;
+    }
+    const items: InterruptedSave[] = [];
+    for (const entry of entries) {
+      if (!/^[a-f0-9]{64}$/.test(entry.name)) continue;
+      try {
+        const record = await this.record(entry.name);
+        items.push({ id: entry.name, name: path.basename(record.root), directory: record.root });
+      } catch {
+        items.push({
+          id: entry.name,
+          name: 'Unreadable save record',
+          directory: null,
+          issue: 'This record needs manual repair. Your copies have been kept.',
+        });
+      }
+    }
+    return items;
+  }
+  async preserveDraft(root: string, files: Map<string, Uint8Array>) {
+    const journal = await this.readJournal(root);
+    if (!journal || journal.phase !== 'prepared')
+      throw new Error('This save no longer needs a review.');
+    const directory = this.location(root);
+    for (const [name, data] of files) {
+      // Draft names are made by the store, never by renderer input.
+      const parts = name.split('/');
+      const prefix = parts.length > 1 ? safeRelative(parts.shift()!) : '';
+      const relative = safeRelative(parts.join('/'));
+      if (prefix) await parentPath(directory, `${prefix}/draft.json`, true);
+      const base = prefix ? path.join(directory, prefix) : directory;
+      await parentPath(base, relative, true);
+      const old = await readTarget(base, relative);
+      if (old && !old.equals(data))
+        throw new Error('A saved draft copy differs. Existing copies were kept.');
+      if (!old) await replaceDurable(path.join(directory, name), data, randomUUID());
+    }
+    return journal.nonce;
+  }
+  async completedCopies(nonce: string, root?: string) {
+    if (typeof nonce !== 'string' || !/^[\w-]{1,80}$/.test(nonce))
+      throw new Error('Unknown recovery copies.');
+    const directory = path.join(this.dataRoot, 'save-recovery-copies', nonce);
+    try {
+      await parentPath(this.dataRoot, `save-recovery-copies/${nonce}/journal.json`);
+      const stat = await fs.lstat(directory);
+      if (!stat.isDirectory() || stat.isSymbolicLink())
+        throw new Error('Invalid recovery copies folder.');
+      const bytes = await readTarget(directory, 'journal.json');
+      const resolution = await readTarget(directory, 'resolution.json');
+      if (!bytes || !resolution || bytes.length > 200_000 || resolution.length > 200_000)
+        throw new Error('Recovery copies could not be checked.');
+      const journal = JSON.parse(bytes.toString()),
+        plan = JSON.parse(resolution.toString());
+      if (
+        journal.nonce !== nonce ||
+        (root !== undefined && journal.root !== root) ||
+        plan.nonce !== nonce ||
+        plan.phase !== 'completed'
+      )
+        throw new Error('Recovery copies do not match this save.');
+      return directory;
+    } catch (error) {
+      if (missing(error)) return null;
+      throw error;
+    }
   }
   private async readJournal(root: string): Promise<SaveJournal | null> {
     const directory = this.location(root);

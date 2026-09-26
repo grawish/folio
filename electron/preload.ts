@@ -2,6 +2,16 @@ import { contextBridge, ipcRenderer } from 'electron';
 import type { DesktopAPI } from '../src/shared/types';
 
 const api: DesktopAPI = {
+  beginSaveRecovery: (id, project) => ipcRenderer.invoke('save-recovery:begin', id, project),
+  endSaveRecovery: (id) => ipcRenderer.invoke('save-recovery:end', id),
+  interruptedSaves: (id) => ipcRenderer.invoke('save-recovery:list', id),
+  reviewSave: (id, record) => ipcRenderer.invoke('save-recovery:review', id, record),
+  reviewSaveText: (id, record, token, filename, version) =>
+    ipcRenderer.invoke('save-recovery:text', id, record, token, filename, version),
+  resolveSave: (id, record, token, choices) =>
+    ipcRenderer.invoke('save-recovery:apply', id, record, token, choices),
+  showSaveRecoveryFolder: (id, record, kind) =>
+    ipcRenderer.invoke('save-recovery:show', id, record, kind),
   prepareSupportBundle: (context) => ipcRenderer.invoke('support:prepare', context),
   exportSupportBundle: (id, selected) => ipcRenderer.invoke('support:export', id, selected),
   cancelSupportBundle: (id) => ipcRenderer.invoke('support:cancel', id),

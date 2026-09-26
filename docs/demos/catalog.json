@@ -348,5 +348,19 @@
     ],
     "kind": "Real app \u00b7 synthetic private markers and compiler failure",
     "alt": "Folio support bundle preview with compiler status and no raw log or source text"
+  },
+  {
+    "id": "save-recovery",
+    "title": "Recover an interrupted save",
+    "image": "save-recovery.png",
+    "guide": "tutorials/save-and-recover.md#recover-an-interrupted-save",
+    "description": "Compare file versions and keep your outside edits and unfinished drafts.",
+    "steps": [
+      "Open Interrupted saves from the project menu or failed startup.",
+      "Choose the current, before-save or attempted version of each file.",
+      "Review your choices, apply with backups, then check the rebuilt PDF."
+    ],
+    "kind": "Real app \u00b7 controlled interruption and outside-edit fixture",
+    "alt": "Folio interrupted-save review showing current, before-save and attempted copies of a synthetic resume"
   }
 ]
