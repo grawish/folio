@@ -20,6 +20,8 @@ Try removing a closing brace in a disposable sample. The new build should fail a
 
 The previous PDF may look fine while the current source is broken. Check **Up to date** before using it. Export recompiles changed source and waits for a current rendered preview; it does not silently export a stale success.
 
+If Build output says the build took too long, check for a repeating command and try a smaller document. Current development builds also stop a compiler file from growing beyond 128 MiB. Reduce large pictures if you see that message, then build again. Your source and last good PDF remain available. See [compiler limits](https://github.com/grawish/folio/blob/main/docs/COMPILER_RESOURCE_LIMITS.md); the new file and CPU limits are not included in preview 4.
+
 ## Fix a missing file, font or package
 
 When Folio recognizes the problem, **Build output → Diagnostics** shows a short explanation above the original errors. Select an error with a filename and line number to jump there. Switch to **Raw log** for the full compiler output. At a small window size, scroll inside Build output to read the rest.

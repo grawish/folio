@@ -2,6 +2,8 @@
 
 Build output explains recognized missing package/class, project file, font and engine requirements. It also gives a first step for common syntax errors and compiler timeouts. The exact compiler messages, source links and Raw log remain available. Successful, cancelled and runtime-unavailable results never get document-repair advice.
 
+Current source recognizes both elapsed-time and CPU-time limit messages as “This build took too long.” Oversized-file signals include the 128 MiB ceiling and suggest reducing the document or its images. See [compiler resource limits](COMPILER_RESOURCE_LIMITS.md) for scope and native enforcement checks.
+
 `src/shared/build-help.ts` derives advice without changing `BuildResult` or the diagnostics parser. Package, file and font patterns use error messages only; warnings cannot trigger repair advice. The `iftex` engine requirement is read from its explicit raw-output banner because Tectonic does not attach it to an `error:` line. A generic XeTeX crash or a source excerpt containing an engine name does not establish an incompatible-engine diagnosis. Unknown messages remain unchanged. Display names are bounded; React renders their text without HTML interpretation.
 
 `src/App.tsx` renders the explanation in the existing scrollable Diagnostics panel. It does not change project contents, select an AI connection, download resources, or change compiler settings. Runtime damage retains its existing separate repair flow. The last good PDF and stale indicator retain their existing behavior. See the [plain-language walkthrough](tutorials/editor-and-pdf.md#fix-a-missing-file-font-or-package).

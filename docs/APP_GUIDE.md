@@ -41,6 +41,8 @@ The requested release is **macOS Apple silicon only**. Windows, Linux and Intel 
 
 macOS compiler isolation currently uses `sandbox-exec`/Seatbelt. It must be reviewed against supported OS versions and the eventual signed-helper distribution design. There is no unsandboxed fallback.
 
+Current development source also limits individual compiler files to 128 MiB and open descriptors to 256, disables core dumps and sets a CPU-time limit. The existing elapsed-time stop remains essential because CPU signals can be caught. See [compiler resource limits](COMPILER_RESOURCE_LIMITS.md); these additions are not in preview 4.
+
 ## Run from source
 
 Developer prerequisite: Node.js 24 with npm. End users of a packaged build do not need Node.js or a separate LaTeX installation.

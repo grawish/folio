@@ -57,7 +57,13 @@ export function buildHelp(result: BuildResult | null): BuildHelp | undefined {
         'Use a XeLaTeX-compatible version of the template, or adapt its engine-specific commands. Removing the engine check alone may not fix it.',
       ],
     };
-  if (messages.some((message) => /Compilation exceeded the \d+-second time limit\./.test(message)))
+  if (
+    messages.some((message) =>
+      /Compilation (?:exceeded the \d+-second time limit|reached the \d+-second CPU-time limit)\./.test(
+        message,
+      ),
+    )
+  )
     return {
       kind: 'limit',
       title: 'This build took too long',

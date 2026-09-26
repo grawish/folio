@@ -67,4 +67,6 @@ History export validates immutable source/PDF records before passing bytes to a 
 
 Treat imported files, TeX, provider output, PDFs, and external edits as untrusted input. Keep native operations behind validated IPC. Model output must not silently replace newer source. Compilation disables shell-escape workflows and network access through the current macOS isolation design.
 
+The current compiler launch sets inherited CPU-time, 128 MiB per-file, 256-descriptor and zero-core-dump limits before entering the sandbox. CPU signals are catchable, so the separate elapsed-time process-group stop remains required. These are not whole-app memory, disk or CPU quotas. See [compiler limits and native controls](https://github.com/grawish/folio/blob/main/docs/COMPILER_RESOURCE_LIMITS.md).
+
 PDF viewing is bounded to 100 pages and 25 MiB; AI visual review has a separate 20-page limit. Canvas/worker bounds are not operating-system resource quotas. Same-user filesystem races, power loss, network filesystems, signing-aware manifests, authenticated updates, and physical accessibility acceptance need further work. Keep these limits visible in [the audit](RELEASE_GAP_AUDIT.md).

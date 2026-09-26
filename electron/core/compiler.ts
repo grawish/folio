@@ -7,6 +7,7 @@ import { fingerprint, safeRelative } from './project';
 import { inspectRuntime, macSandboxProfile } from './runtime';
 import { parseDiagnostics } from './diagnostics';
 import { buildFingerprint } from './build-provenance';
+import { compilerLimits, limitedCompilerLaunch } from './compiler-limits';
 import type { RuntimeLease, RuntimeSource } from './runtime-manager';
 
 export class Compiler {
@@ -193,7 +194,8 @@ export class Compiler {
     log: string;
   }> {
     return new Promise((resolve, reject) => {
-      const child = spawn(command, args, {
+      const launch = limitedCompilerLaunch(command, args, this.timeoutMs);
+      const child = spawn(launch.command, launch.args, {
         cwd,
         detached: true,
         stdio: ['ignore', 'pipe', 'pipe'],
@@ -247,10 +249,20 @@ export class Compiler {
         cleanup();
         reject(error);
       });
+      // A kernel resource signal can stop the compiler before its children.
+      // Reap the whole group promptly instead of leaving a helper holding pipes.
+      child.once('exit', (code, exitSignal) => {
+        if (exitSignal || code !== 0) stop();
+      });
       child.once('close', (code, exitSignal) => {
         cleanup();
-        if (!failure && exitSignal)
-          failure = `The LaTeX compiler stopped unexpectedly (${exitSignal}).`;
+        if (!failure && exitSignal) {
+          if (exitSignal === 'SIGXCPU')
+            failure = `Compilation reached the ${Math.ceil(this.timeoutMs / 1000)}-second CPU-time limit. Simplify the document and try again.`;
+          else if (exitSignal === 'SIGXFSZ')
+            failure = `The compiler tried to create a file larger than ${compilerLimits.fileBytes / 1024 / 1024} MiB. Reduce the document or its images and try again.`;
+          else failure = `The LaTeX compiler stopped unexpectedly (${exitSignal}).`;
+        }
         resolve({
           code: failure ? 1 : (code ?? 1),
           log: failure ? `${log}\nerror: ${failure}` : log,

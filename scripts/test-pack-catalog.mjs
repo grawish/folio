@@ -18,6 +18,7 @@ const env = { ...process.env, FOLIO_USER_DATA: data };
 delete env.ELECTRON_RUN_AS_NODE;
 delete env.FOLIO_TEST_RUNTIME_SEED;
 const errors = [];
+const settingsReadyMs = [];
 let app, page;
 const launch = async () => {
   app = await electron.launch({
@@ -50,7 +51,18 @@ const choose = (filename) =>
 const settings = async () => {
   await page.getByRole('button', { name: 'Settings', exact: true }).click();
   await page.getByRole('button', { name: 'LaTeX resources', exact: true }).click();
-  await expect(page.getByRole('button', { name: 'Reload saved packs', exact: true })).toBeEnabled();
+  // Opening this tab verifies retained archives and installed runtime files,
+  // including after restart. Match the integrity-check window used below.
+  const started = performance.now();
+  // Unlike Reload, this also requires the library response to have arrived;
+  // Reload can briefly be enabled before the mount effect starts checking.
+  await expect(page.getByRole('button', { name: 'Check for packs', exact: true })).toBeEnabled({
+    timeout: 120_000,
+  });
+  await expect(page.getByRole('button', { name: 'Reload saved packs', exact: true })).toBeEnabled({
+    timeout: 120_000,
+  });
+  settingsReadyMs.push(Math.round(performance.now() - started));
 };
 const card = () => page.getByRole('article', { name: row.title, exact: true });
 const savedProject = async () =>
@@ -170,6 +182,7 @@ try {
         publicCatalog: true,
         testPublisher: false,
         packaged: Boolean(process.argv[2]),
+        settingsReadyMs,
         scope:
           'Normal compiled trust, actual public HTTPS catalog/archive, native install/checks, import notices, PDF preview, explicit Apply, backup, save and restart. No provider account used.',
       },

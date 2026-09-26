@@ -82,6 +82,14 @@ test('syntax and bounded build timeouts give different next steps', () => {
     )?.kind,
     'limit',
   );
+  assert.equal(
+    buildHelp(
+      failure(
+        'error: Compilation reached the 30-second CPU-time limit. Simplify the document and try again.',
+      ),
+    )?.kind,
+    'limit',
+  );
 });
 
 test('long filenames are bounded in advice while the full diagnostic stays intact', () => {

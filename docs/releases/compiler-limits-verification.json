@@ -1,0 +1,257 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-26T23:03:05.988564+00:00",
+  "baseCommit": "26deebeda0d5baac7e2f0eca3b8fddafca52fad4",
+  "scope": "Current local development package only. Native macOS limits plus four targeted packaged workflows; no new installer release or complete hosted qualification is claimed.",
+  "environment": {
+    "platform": "darwin-arm64",
+    "macOS": "27.0",
+    "build": "26A428",
+    "node": "24.21.0",
+    "cpu": "Apple M4 Pro",
+    "logicalCpus": 14,
+    "memoryBytes": 51539607552
+  },
+  "sourceFiles": [
+    {
+      "path": "electron/core/compiler-limits.ts",
+      "bytes": 1241,
+      "sha256": "03b6e2b15e075f773b9622a3b8cca9a93bcb1318262399e7974548339de99a3e"
+    },
+    {
+      "path": "electron/core/compiler.ts",
+      "bytes": 10348,
+      "sha256": "e40fe4a3d6ce2e5825df010ca6a06cb485881477a40eafd36c131998667efb55"
+    },
+    {
+      "path": "src/shared/build-help.ts",
+      "bytes": 4286,
+      "sha256": "32b39cefc2cd573020fb96eca3707b23b03eece64715f3170bcb4b5cfe7a0d7f"
+    },
+    {
+      "path": "tests/compiler-limits.test.ts",
+      "bytes": 8314,
+      "sha256": "ecfc53a20d4e06b1e918f3654b64870393508b64f06e2f5eae57b650151b6c1d"
+    },
+    {
+      "path": "tests/build-help.test.ts",
+      "bytes": 3940,
+      "sha256": "fea5998b7930e1ccf9f491df660fb00613165a5bcbb60e5638f007846b98cf41"
+    },
+    {
+      "path": "scripts/test-pack-catalog.mjs",
+      "bytes": 9812,
+      "sha256": "28ffacb1a54c91d321d9117385f4ee8a938595b7e6772d5f4fd645caad063b90"
+    }
+  ],
+  "limits": {
+    "normalWallSeconds": 30,
+    "selfTestWallSeconds": 60,
+    "cpuSeconds": "ceil(wall milliseconds / 1000), per process; SIGXCPU is catchable",
+    "fileBytes": 134217728,
+    "openDescriptors": 256,
+    "coreBytes": 0,
+    "softAndHard": true,
+    "applyFailure": "No compiler launch; exit 125",
+    "wholeAppMemoryLimit": false,
+    "wholeAppCpuQuota": false,
+    "aggregateDiskLimit": false
+  },
+  "controls": {
+    "nativeTests": 8,
+    "allSourceTestsPassed": 252,
+    "integrationTestsPassed": 15,
+    "skipped": 0,
+    "unitLog": {
+      "path": "test-results/compiler-limits-all-unit.log",
+      "bytes": 26168,
+      "sha256": "8f1fc53e5b57873ad0196f029d3ccd0929b649daff32cacd711e3768cb69342b"
+    },
+    "integrationLog": {
+      "path": "test-results/compiler-limits-integration.log",
+      "bytes": 1991,
+      "sha256": "e2ac5f2d0cee31a35cdc64d32ad8225a7d7a0f8f288088b513bb259564d0954c"
+    },
+    "buildLog": {
+      "path": "test-results/compiler-limits-build.log",
+      "bytes": 1719,
+      "sha256": "e0810dce760b6f5bfed2d7687eeed75c8e9c71cf09a1e10fecb4fd9138a7ba59"
+    },
+    "formatLog": {
+      "path": "test-results/compiler-limits-format.log",
+      "bytes": 183,
+      "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+    },
+    "coverage": [
+      "inherited soft/hard values and hard-limit raising refused",
+      "literal shell metacharacters in arguments",
+      "launch refusal under a stricter inherited hard limit",
+      "actual 128 MiB file ceiling",
+      "actual descriptor exhaustion",
+      "kernel CPU signal independent of the application timer",
+      "caught CPU signal stopped by the production wall timer",
+      "remaining process-group child killed after CPU-signal exit"
+    ]
+  },
+  "package": {
+    "executable": "/Users/grawish/resume-maker/release/compiler-limits/mac-arm64/Folio.app/Contents/MacOS/Folio",
+    "asarSha256": "690e78289d9b79d5c05084fc809d7da2497652943523307deb733e1c690e721d",
+    "comparedOutputs": 39,
+    "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+    "runtimeManifestMatchesSource": true,
+    "runtimeIdentityChanged": false,
+    "identityRecord": {
+      "path": "test-results/compiler-limits-package-identity.json",
+      "bytes": 4875,
+      "sha256": "2ccba45a96344349f35f48690864734f33e0392851975760a2abc2c00207003f"
+    },
+    "method": "Independently extract all 39 local build files from ASAR and compare bytes; verify runtime manifest; hash app and native scripts before and after each suite. Unsigned app directory; no DMG created."
+  },
+  "native": {
+    "startedAt": "2026-09-26T22:55:28.457Z",
+    "asarSha256": "690e78289d9b79d5c05084fc809d7da2497652943523307deb733e1c690e721d",
+    "suites": [
+      {
+        "suite": "pack-catalog",
+        "script": "scripts/test-pack-catalog.mjs",
+        "scriptSha256": "28ffacb1a54c91d321d9117385f4ee8a938595b7e6772d5f4fd645caad063b90",
+        "log": "test-results/compiler-limits-library-pack-catalog-final.log",
+        "evidence": "/Users/grawish/resume-maker/test-results/pack-catalog-ecVjXs",
+        "code": 0,
+        "signal": null,
+        "unchanged": true,
+        "passed": true,
+        "logRecord": {
+          "path": "test-results/compiler-limits-library-pack-catalog-final.log",
+          "bytes": 301,
+          "sha256": "160d5de50a791d15440613f55a71762e36307c104dec61d62dff276196180ce1"
+        },
+        "resultRecord": {
+          "path": "/Users/grawish/resume-maker/test-results/pack-catalog-ecVjXs/result.json",
+          "bytes": 1070,
+          "sha256": "f6d8017061b457ef0deb653540c52316d0fdf763d6fb7f022b8e35760c1ad62f"
+        },
+        "settingsReadyMs": [
+          28,
+          2339
+        ]
+      },
+      {
+        "suite": "runtime",
+        "script": "scripts/test-runtime.mjs",
+        "scriptSha256": "0134a2bbad027e18fc2f448d39cb3dfb2c78ac3f40fc3c177010c22e8bee5b1b",
+        "log": "test-results/compiler-limits-runtime-final.log",
+        "evidence": "/Users/grawish/resume-maker/test-results/runtime-zziFn4",
+        "code": 0,
+        "signal": null,
+        "unchanged": true,
+        "passed": true,
+        "logRecord": {
+          "path": "test-results/compiler-limits-runtime-final.log",
+          "bytes": 689,
+          "sha256": "d88d172e4e4bd6a463af022472989197a70ecbb5029326e3a91ea35b903d2f80"
+        },
+        "resultRecord": {
+          "path": "/Users/grawish/resume-maker/test-results/runtime-zziFn4/result.json",
+          "bytes": 342,
+          "sha256": "0264498519b3b283bfb7a6f85477118f92a10877aba4840518592db29ca8652b"
+        }
+      },
+      {
+        "suite": "diagnostics",
+        "script": "scripts/test-diagnostics.mjs",
+        "scriptSha256": "fabc3516d0f4bb634243b03639cad2d399bcb63ef607e689cf5a2846d3f4cf20",
+        "log": "test-results/compiler-limits-diagnostics-final.log",
+        "evidence": "/Users/grawish/resume-maker/test-results/diagnostics-NhzQur",
+        "code": 0,
+        "signal": null,
+        "unchanged": true,
+        "passed": true,
+        "logRecord": {
+          "path": "test-results/compiler-limits-diagnostics-final.log",
+          "bytes": 307,
+          "sha256": "c3f7426d728faa6e5d1081c80460d4ccb5dc87f128cc2839c957da30bdcfa4e2"
+        },
+        "resultRecord": {
+          "path": "/Users/grawish/resume-maker/test-results/diagnostics-NhzQur/result.json",
+          "bytes": 511,
+          "sha256": "955cc4d00615a2d0a668d9fdf9cbd902cbe107c867d16c06818df72a93904612"
+        }
+      },
+      {
+        "suite": "packaged",
+        "script": "scripts/test-packaged.mjs",
+        "scriptSha256": "be7b559a2cf786c3c1b5fa2ee04fc9381410f41a6fe8766ec0af2dc37d2cd5a3",
+        "log": "test-results/compiler-limits-packaged-final.log",
+        "evidence": "/Users/grawish/resume-maker/test-results/packaged-B3fQik",
+        "code": 0,
+        "signal": null,
+        "unchanged": true,
+        "passed": true,
+        "logRecord": {
+          "path": "test-results/compiler-limits-packaged-final.log",
+          "bytes": 220,
+          "sha256": "3d46d7ef374214007ddd1f389fd5f4c3bd6d536aeea0787f47d468448c170da9"
+        }
+      }
+    ],
+    "passed": true,
+    "finishedAt": "2026-09-26T23:02:25.092Z",
+    "note": "Four targeted workflows against one unchanged app. The pack workflow was repeated after requiring its library response in the test readiness assertion; the earlier four-pass record is retained separately.",
+    "earlierRun": "test-results/compiler-limits-native-initial.json"
+  },
+  "settingsTimingScope": "Wait after the tab-click action until both library-dependent Check for packs and Reload are enabled. This is not the complete integrity-check duration or a performance benchmark.",
+  "priorHostedFailure": {
+    "commit": "0ad984feaabd205cb34605e69d5a4fd795da9fe7",
+    "runId": 36275373908,
+    "url": "https://github.com/grawish/folio/actions/runs/36275373908",
+    "conclusion": "failure",
+    "artifactId": 10917637634,
+    "artifact": {
+      "path": "artifacts/mac-0ad984f.zip",
+      "bytes": 4494631,
+      "sha256": "e02c02d61a4b5055f999b16a40bdd58ee266e3d4cae50af20e337056fec78b36"
+    },
+    "passingNativeSuites": [
+      "import-recovery",
+      "import",
+      "pdf-viewer",
+      "pdf-lifecycle",
+      "migration",
+      "chat",
+      "runtime",
+      "workspace",
+      "diagnostics",
+      "fonts",
+      "support",
+      "save-recovery"
+    ],
+    "failedSuite": "pack-catalog",
+    "notReached": [
+      "packaged",
+      "verify-mac-package"
+    ],
+    "failureLog": {
+      "path": "artifacts/mac-0ad984f/test-results/release-pack-catalog-final.log",
+      "bytes": 2567,
+      "sha256": "45bfbd891d3e03347a2c8fb327fb3fff869cda99162a7c80248692d8fa7e49cf"
+    },
+    "screenshot": {
+      "path": "artifacts/mac-0ad984f/test-results/pack-catalog-lBmzfB/failure.png",
+      "bytes": 80758,
+      "sha256": "0d4186ad1026d74bc6d225f017a81adcfb8f113249559f1c1b333db11e74e3b7"
+    },
+    "observed": "Final Settings reopen was still checking local resources when the Reload saved packs assertion hit its default 5-second timeout. Download, install, comparison, Apply, save and runtime inspection had already completed.",
+    "repair": "Require the pack-library response and use the existing 120-second integrity-check assertion window; record the wait after opening the tab. No resource verification is skipped. The new local run uses the newer compiler-limit app, not the original hosted artifact."
+  },
+  "retainedFailure": {
+    "path": "test-results/compiler-limits-controls.log",
+    "description": "First resource test run passed 7 of 8 controls. The descriptor-exhaustion fixture tried to initialize Node stdout before releasing descriptors and hit EMFILE. It now releases descriptors before printing the measured result; production limits were unchanged."
+  },
+  "remaining": [
+    "Complete hosted qualification of this changed app",
+    "Supported macOS/device acceptance",
+    "Whole-app memory/CPU and aggregate storage budgets",
+    "Signed/notarized distribution, updater and complete binary redistribution review"
+  ]
+}

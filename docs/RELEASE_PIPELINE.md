@@ -20,6 +20,8 @@ The website is live at [grawish.com/folio](https://grawish.com/folio/) with its 
 
 An initial branch-based deployment also passed before workflow access was granted. Pages now uses the custom workflow; the old gh-pages branch is retained.
 
+The newer history-worker candidate `0ad984f` reached twelve passing native suites in [run 36275373908](https://github.com/grawish/folio/actions/runs/36275373908), then failed on a five-second Settings readiness assertion during local pack verification after restart. The test now uses the existing 120-second integrity-check window. The remaining imported-resume suite and final package verification were not reached. This failure does not qualify the newer app; see [compiler-limit and rerun evidence](releases/compiler-limits-verification.json).
+
 ## Workflows
 
 
