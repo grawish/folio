@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "scope": "Reconstruct Cargo build units with the upstream release toolchain; not proof of linked bytes or a completed binary redistribution audit.",
+  "target": "aarch64-apple-darwin",
+  "toolchainVersion": "1.97.1",
+  "rustcCommit": "8bab26f4f68e0e26f0bb7960be334d5b520ea452",
+  "manifest": {
+    "url": "https://static.rust-lang.org/dist/channel-rust-1.97.1.toml",
+    "sha256": "03569b1886ceb5c05276b50c8431ab111de944cd6140fe1fa7d821dd8e0f29cf"
+  },
+  "components": [
+    {
+      "component": "cargo",
+      "url": "https://static.rust-lang.org/dist/2026-07-16/cargo-1.97.1-aarch64-apple-darwin.tar.xz",
+      "bytes": 8876992,
+      "sha256": "2d84a74e9558192a7de674aca6aa3ab7464bed2df97e0377156ddb7e09a0fd7a",
+      "archive": "cargo-1.97.1-aarch64-apple-darwin.tar.xz",
+      "archiveRoot": "cargo-1.97.1-aarch64-apple-darwin",
+      "componentRoot": "cargo"
+    },
+    {
+      "component": "rustc",
+      "url": "https://static.rust-lang.org/dist/2026-07-16/rustc-1.97.1-aarch64-apple-darwin.tar.xz",
+      "bytes": 68127952,
+      "sha256": "6076cad38ccabaa24325f26a74080a363a2633a9cd34c473a8977255d8a593cb",
+      "archive": "rustc-1.97.1-aarch64-apple-darwin.tar.xz",
+      "archiveRoot": "rustc-1.97.1-aarch64-apple-darwin",
+      "componentRoot": "rustc"
+    },
+    {
+      "component": "rust-std",
+      "url": "https://static.rust-lang.org/dist/2026-07-16/rust-std-1.97.1-aarch64-apple-darwin.tar.xz",
+      "bytes": 29286636,
+      "sha256": "a4895f5c6995e83cab8687e46b14324592398049def71ce75ca308c981cf200d",
+      "archive": "rust-std-1.97.1-aarch64-apple-darwin.tar.xz",
+      "archiveRoot": "rust-std-1.97.1-aarch64-apple-darwin",
+      "componentRoot": "rust-std-aarch64-apple-darwin"
+    }
+  ],
+  "upstreamBuildArgs": [
+    "build",
+    "--workspace",
+    "--target",
+    "aarch64-apple-darwin",
+    "--release",
+    "--features",
+    ""
+  ],
+  "diagnosticArgs": ["--frozen", "--unit-graph", "-Z", "unstable-options"],
+  "diagnosticEnvironment": {
+    "RUSTC_BOOTSTRAP": "1"
+  },
+  "buildEnvironment": {
+    "TECTONIC_DEP_BACKEND": "vcpkg",
+    "CARGO_PROFILE_RELEASE_BUILD_OVERRIDE_DEBUG": "true"
+  },
+  "cargoGateSource": "https://github.com/rust-lang/cargo/blob/c980f4866141969fab6254a680546a277789d6f0/src/cargo/core/features.rs#L1467-L1488",
+  "unitGraphDocumentation": "https://doc.rust-lang.org/cargo/reference/unstable.html#unit-graph",
+  "cargoCommit": "c980f4866141969fab6254a680546a277789d6f0"
+}

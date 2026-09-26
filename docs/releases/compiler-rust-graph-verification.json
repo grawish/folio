@@ -1,0 +1,163 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-26T19:56:02.006164+00:00",
+  "sourceBase": "2275fa3fdd8b734b0446b7f85e7e9f6ed7b5a834",
+  "scope": "Exact-toolchain diagnostic reconstruction of the upstream Apple silicon release Cargo build; package names/versions corroborated by the original build log. Not proof of linked bytes or a complete app SBOM.",
+  "releaseAuditComplete": false,
+  "inputs": [
+    {
+      "path": "resources/compiler-rust-graph.lock.json",
+      "bytes": 2454,
+      "sha256": "ba6ff0428d339f181ec332d7964fc4ccc40d511d923bb747074348e3a6304957"
+    },
+    {
+      "path": "resources/compiler-build-provenance.lock.json",
+      "bytes": 3858,
+      "sha256": "e5993d9995414dd85d65f472509cb73acd8742d73fb473c71a9d21fd11e7ebe7"
+    },
+    {
+      "path": "resources/runtime-license-sources.lock.json",
+      "bytes": 3571,
+      "sha256": "2337891d37e5cbbcd28372273d3222e9af4cc814c246ec724cda9cc5ebf686d6"
+    },
+    {
+      "path": "resources/rust-license-notices.lock.json",
+      "bytes": 10242,
+      "sha256": "89cc2271ba95b54af9588c9d2108a05cda351570435b01cb1ed93856967d8c6b"
+    },
+    {
+      "path": "scripts/resolve-compiler-rust-graph.py",
+      "bytes": 20243,
+      "sha256": "e7cb04c5f4fc49d85842c9c35d9074e4e6ffa3c019bb5b682aa2552b2e0cb443"
+    },
+    {
+      "path": "tests/compiler-rust-graph.py",
+      "bytes": 7700,
+      "sha256": "b77c48cbcd8bffaacb24d1883d221f2bf8e206d35979ecde5547d6eace1f7f1a"
+    }
+  ],
+  "upstream": {
+    "source": "8c0126a9653239a2e6e0a5274af9b8510f643030",
+    "target": "aarch64-apple-darwin",
+    "buildArgs": [
+      "build",
+      "--workspace",
+      "--target",
+      "aarch64-apple-darwin",
+      "--release",
+      "--features",
+      ""
+    ],
+    "buildEnvironment": {
+      "TECTONIC_DEP_BACKEND": "vcpkg",
+      "CARGO_PROFILE_RELEASE_BUILD_OVERRIDE_DEBUG": "true"
+    },
+    "logSha256": "314c36a7e1f56bb47c8e869353d58e98ac3ae33f3c8ba0c3eee72ac034f7bb71",
+    "cargoLockSha256": "4a6e5c44fdb10188005cba9ae6a253fe60d79676b1cef999da669ec71c3850e9",
+    "toolchain": {
+      "cargo": "cargo 1.97.1 (c980f4866 2026-06-30)\nrelease: 1.97.1\ncommit-hash: c980f4866141969fab6254a680546a277789d6f0\ncommit-date: 2026-06-30\nhost: aarch64-apple-darwin\nlibgit2: 1.9.2 (sys:0.20.4 vendored)\nlibcurl: 8.7.1 (sys:0.4.88+curl-8.20.0 system ssl:(SecureTransport) LibreSSL/3.3.6)\nssl: OpenSSL 3.6.2 7 Apr 2026\nos: Mac OS 27.0.0 [64-bit]\n",
+      "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)\nbinary: rustc\ncommit-hash: 8bab26f4f68e0e26f0bb7960be334d5b520ea452\ncommit-date: 2026-07-14\nhost: aarch64-apple-darwin\nrelease: 1.97.1\nLLVM version: 22.1.6\n"
+    }
+  },
+  "diagnostic": {
+    "args": [
+      "--frozen",
+      "--unit-graph",
+      "-Z",
+      "unstable-options"
+    ],
+    "environment": {
+      "RUSTC_BOOTSTRAP": "1"
+    },
+    "dependencyCodeCompiled": false,
+    "stableAndDiagnosticTreesEqual": true,
+    "upstreamBuildPackageSetEqual": true,
+    "offlineReplayNormalizedEvidenceIdentical": [
+      "unit-graph.json",
+      "metadata.json",
+      "cargo-tree.txt",
+      "diagnostics.txt",
+      "selected-notices.json"
+    ]
+  },
+  "result": {
+    "workspaceBuildUnits": 445,
+    "workspaceBuildPackages": 330,
+    "workspaceRegistryPackages": 304,
+    "workspaceLocalPackages": 26,
+    "tectonicBuildUnits": 436,
+    "tectonicBuildPackages": 327,
+    "tectonicRegistryPackages": 303,
+    "unselectedLockfileRegistryPackages": 133,
+    "retainedNoticeFiles": 534,
+    "workspaceOnlyPackages": [
+      {
+        "name": "nom",
+        "version": "8.0.0"
+      },
+      {
+        "name": "tectonic_bridge_fontconfig",
+        "version": "0.1.3"
+      },
+      {
+        "name": "tectonic_xetex_format",
+        "version": "0.4.0"
+      }
+    ],
+    "missingSupersetNoticesOutsideBuild": [
+      "rustls-platform-verifier-android@0.1.1",
+      "seahash@4.1.0"
+    ]
+  },
+  "evidence": [
+    {
+      "path": "artifacts/license-materials/compiler-rust-graph/inventory.json",
+      "bytes": 320815,
+      "sha256": "835840c6371507e0087ef5fe419482566ef91107292d47a41c1ba1c7877bd32c"
+    },
+    {
+      "path": "artifacts/license-materials/compiler-rust-graph/unit-graph.json",
+      "bytes": 392109,
+      "sha256": "d859edca58f3637f2f7e425abb79d985b1d1053c329c01b60529b00af9b6635a"
+    },
+    {
+      "path": "artifacts/license-materials/compiler-rust-graph/metadata.json",
+      "bytes": 1594539,
+      "sha256": "b56af0928809e0c5829f468dacf32ce0f15240d020bad2498fb9c824dc101b61"
+    },
+    {
+      "path": "artifacts/license-materials/compiler-rust-graph/cargo-tree.txt",
+      "bytes": 40946,
+      "sha256": "4e21d7ceba9f6e0d98b8da73c949641804854cb4766c8738050843825a42d94b"
+    },
+    {
+      "path": "artifacts/license-materials/compiler-rust-graph/diagnostics.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/license-materials/compiler-rust-graph/selected-notices.json",
+      "bytes": 188983,
+      "sha256": "73e6d16e2ab1c208ee12363015474322b50ee3eef7922b9b5f962605a1a0fa15"
+    }
+  ],
+  "controls": {
+    "passed": 8,
+    "log": {
+      "path": "test-results/compiler-rust-graph-controls.log",
+      "bytes": 106,
+      "sha256": "133449d6f429f0588126e0403937f271f33f90517460d5c4b39d69c2eeda0f25"
+    },
+    "existingSourceAndNativeControlsPassed": 25,
+    "replayLog": {
+      "path": "test-results/compiler-rust-graph-replay.log",
+      "bytes": 133,
+      "sha256": "7e200ab76a12920b4c657f8267a78c2bfd489d1f11664b94ad88849c303af30c"
+    }
+  },
+  "remaining": [
+    "Review linked workspace/native code and corresponding source, including Rust standard-library materials.",
+    "Complete Biber/Perl and TeX/font inventories and final exact-app notices/SBOM.",
+    "Qualify signed/notarized installer and remaining release requirements."
+  ]
+}

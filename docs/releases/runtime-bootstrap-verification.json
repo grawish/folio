@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-26T19:56:02.006164+00:00",
+  "sourceBase": "2275fa3fdd8b734b0446b7f85e7e9f6ed7b5a834",
+  "scope": "Runtime test fixture lifetime repair only. Application code and all 37 compiled outputs remain unchanged from f376c0e.",
+  "hostedFailure": {
+    "run": "https://github.com/grawish/folio/actions/runs/36266043536",
+    "source": "f376c0e5c48229ef4ea8406862160ef3bbae57e1",
+    "nativeSuitesPassed": 6,
+    "failedSuite": "runtime",
+    "artifactId": 10914018897,
+    "artifact": {
+      "path": "artifacts/mac-f376c0e.zip",
+      "bytes": 4433403,
+      "sha256": "722d5da2a22d01e7d3e3f863b9190ca11acd533f753a37788a2ba340b3461b20"
+    },
+    "githubReportedArtifactDigest": "sha256:722d5da2a22d01e7d3e3f863b9190ca11acd533f753a37788a2ba340b3461b20",
+    "exactSourceScriptDigestsVerified": 7,
+    "packagedAsarSha256": "b66fb622daf5b69b47a1d5341688baa6c7ba965688e4feef0eb9fdcdcefeda5f",
+    "evidence": [
+      {
+        "path": "artifacts/mac-f376c0e/release/native-tests.json",
+        "bytes": 3339,
+        "sha256": "fae4d439ffa59bbea50c7290910733cd011be2d291cb243bc2fbad2f5d913941"
+      },
+      {
+        "path": "artifacts/mac-f376c0e/test-results/release-runtime-final.log",
+        "bytes": 5261,
+        "sha256": "7a13bfc65fd368d8444658dd104f7523281c3a47de496b8b25cc7fc474a4b165"
+      },
+      {
+        "path": "artifacts/mac-f376c0e/test-results/runtime-o7YHUB/failure.png",
+        "bytes": 27072,
+        "sha256": "d1c659b410ff887d1beffd7b3a6dd2b39fd0b5c161d56755acdc6ec045fb4be5"
+      }
+    ],
+    "observation": "Source/compiler/image gates, packaging and six native suites passed. Runtime early editing (528 ms single observation), first prepare/save and offline repair passed. The synthetic indefinitely pending bootstrap then became an IPC error: reply was never sent. Later native suites and artifact verification were not reached."
+  },
+  "repair": {
+    "script": {
+      "path": "scripts/test-runtime.mjs",
+      "bytes": 16155,
+      "sha256": "0134a2bbad027e18fc2f448d39cb3dfb2c78ac3f40fc3c177010c22e8bee5b1b"
+    },
+    "description": "Keep the synthetic pending bootstrap resolver reachable, force main-process garbage collection, and require the protected loading screen before exercising menu guards and closing. Production code and timeout bounds are unchanged."
+  },
+  "pairedControl": {
+    "result": {
+      "passed": true,
+      "unretainedReplyErrorAfterGC": true,
+      "retainedLoadingAfterGC": true
+    },
+    "evidence": [
+      {
+        "path": "test-results/check-bootstrap-gc.mjs",
+        "bytes": 2158,
+        "sha256": "5217c145c65e2ebe583f4665ec5d3806c1d452bbc6f706335df7e78b8e478346"
+      },
+      {
+        "path": "test-results/bootstrap-gc-retry.log",
+        "bytes": 111,
+        "sha256": "dda1d08a4d96b0d475353f3c3811aa7779467b79480facfdb966dbd0000aa69c"
+      },
+      {
+        "path": "test-results/bootstrap-gc-G6O2L2/result.json",
+        "bytes": 80,
+        "sha256": "929d62d7e430141cd0ebf6291bb1867cbcbbc43a5c2b544b3e9f9ccf5b8becaf"
+      },
+      {
+        "path": "test-results/bootstrap-gc-G6O2L2/unretained-failure.png",
+        "bytes": 31126,
+        "sha256": "139f75b206c2aea22d2e9621bb3f98a14bb9474a523ec828ac6960dc91d97893"
+      },
+      {
+        "path": "test-results/bootstrap-gc-G6O2L2/retained-loading.png",
+        "bytes": 26399,
+        "sha256": "f9b1d121988679b6bb263011b669174c0fed34542ff5c6db8275baf23bd56902"
+      }
+    ]
+  },
+  "localVerification": {
+    "packaged": false,
+    "result": {
+      "passed": true,
+      "errors": [],
+      "pin": {
+        "engine": "tectonic",
+        "version": "0.17.0",
+        "bundle": "folio-core-v1",
+        "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+        "platform": "darwin-arm64",
+        "biberVersion": "2.17"
+      },
+      "editingReadyMs": 410,
+      "earlySave": true,
+      "retainedDraft": true
+    },
+    "evidence": [
+      {
+        "path": "test-results/runtime-bootstrap-retention-final.log",
+        "bytes": 689,
+        "sha256": "5eed9c6ecb892566753de3e1f983b786ce83fb53a62e022f3fc3fad373fd404a"
+      },
+      {
+        "path": "test-results/runtime-HwFyQI/result.json",
+        "bytes": 342,
+        "sha256": "0264498519b3b283bfb7a6f85477118f92a10877aba4840518592db29ca8652b"
+      },
+      {
+        "path": "test-results/early-workspace-build-hashes.json",
+        "bytes": 4199,
+        "sha256": "632cfef1151a78b92526b26f2345a0154b28941777493fc5c1a72e05fcc441d5"
+      }
+    ],
+    "unchangedCompiledFileCount": 37
+  },
+  "remaining": "A complete hosted qualification with this fixture repair and the earlier public-pack recheck wait is still required. This does not establish production installer acceptance."
+}

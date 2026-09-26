@@ -26,6 +26,7 @@ jobs:
       - run: python tests/rust-license-materials.py
       - run: python tests/compiler-build-evidence.py
       - run: python tests/native-license-materials.py
+      - run: python tests/compiler-rust-graph.py
       - run: npm run format:check
       - run: npm test
       - run: npm run build

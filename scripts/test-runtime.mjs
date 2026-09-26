@@ -248,9 +248,22 @@ try {
   await expect(page.getByLabel('Project name')).toHaveValue('Recovered resume');
   await app.evaluate(({ ipcMain }) => {
     ipcMain.removeHandler('app:bootstrap');
-    ipcMain.handle('app:bootstrap', () => new Promise(() => {}));
+    // Retain the pending operation. An unreachable promise lets Electron's
+    // reply channel be collected and turns this loading fixture into an error.
+    ipcMain.handle(
+      'app:bootstrap',
+      () =>
+        new Promise((resolve) => {
+          globalThis.releaseBootstrap = resolve;
+        }),
+    );
   });
   await page.reload();
+  await expect.poll(() => app.evaluate(() => typeof globalThis.releaseBootstrap)).toBe('function');
+  await app.evaluate(() => {
+    process.getBuiltinModule('node:v8').setFlagsFromString('--expose-gc');
+    process.getBuiltinModule('node:vm').runInNewContext('gc')();
+  });
   await expect(
     page.getByRole('heading', { name: 'Preparing your workspace', exact: true }),
   ).toBeVisible();
