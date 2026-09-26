@@ -6,6 +6,10 @@ Folio is a local LaTeX resume studio for **Apple silicon Macs**. Chat is the mai
 
 [Website](https://grawish.github.io/folio/) · [Screenshot demos](https://grawish.github.io/folio/demos.html) · [Getting started](docs/tutorials/first-resume.md) · [User guide](docs/APP_GUIDE.md) · [Feature guides](docs/FEATURE_GUIDE_INDEX.md) · [Release status](docs/RELEASE_GAP_AUDIT.md)
 
+
+https://github.com/user-attachments/assets/7608504c-d77d-4bdb-aa9a-6e52cd03797a
+
+
 [![Watch the Folio demo: point to a part of your PDF and let your AI edit it](docs/images/folio-demo.jpg)](docs/videos/folio-demo.mp4)
 
 [Watch the 22-second Folio demo](docs/videos/folio-demo.mp4).
