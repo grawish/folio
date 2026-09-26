@@ -1,0 +1,8 @@
+{
+  "id": "folio-multirow-2.9-v1",
+  "title": "Tables: Multirow 2.9",
+  "description": "Add multirow, bigstrut and bigdelim for table cells, row spacing and braces. These resources keep their upstream LPPL license.",
+  "bundle": "folio-multirow-2.9-v1",
+  "packages": ["multirow.sty", "bigstrut.sty", "bigdelim.sty"],
+  "keyId": "folio-packs-2026-09"
+}

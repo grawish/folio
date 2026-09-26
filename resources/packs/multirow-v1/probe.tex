@@ -1,0 +1,23 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=25mm]{geometry}
+\usepackage{multirow,bigstrut,bigdelim}
+\pagestyle{empty}
+\begin{document}
+\section*{Table resources check}
+This sample uses all three resources in the Multirow pack.
+
+\bigskip
+\begin{tabular}{|l|l|}
+\hline
+\multirow{2}{*}{Experience} & Project planning\bigstrut\\
+\cline{2-2}
+ & Team communication\bigstrut\\
+\hline
+\end{tabular}
+
+\bigskip
+\begin{tabular}{cl}
+\ldelim\{{2}{*} & Writing\\
+ & Research\\
+\end{tabular}
+\end{document}

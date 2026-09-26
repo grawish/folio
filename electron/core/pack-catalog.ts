@@ -113,15 +113,20 @@ export function packUrl(value: unknown, hosts: ReadonlySet<string>) {
 
 export class CatalogVerifier {
   private readonly keys = new Map<string, KeyObject>();
+  private readonly retired: ReadonlySet<string>;
   private readonly hosts: ReadonlySet<string>;
   constructor(
     keys: Readonly<Record<string, string>>,
     hosts: readonly string[],
     private readonly minimumSequence = 1,
+    retiredKeys: readonly string[] = [],
   ) {
     if (!Number.isSafeInteger(minimumSequence) || minimumSequence < 1)
       throw new Error('The bundled catalog version floor is invalid.');
     this.hosts = new Set(hosts);
+    this.retired = new Set(retiredKeys);
+    if (retiredKeys.some((id) => !Object.hasOwn(keys, id)))
+      throw new Error('Retired catalog keys must retain their public verification key.');
     for (const [id, pem] of Object.entries(keys)) {
       if (!/^[a-z0-9][a-z0-9-]{0,63}$/.test(id)) throw new Error('Invalid catalog signing key ID.');
       const key = createPublicKey(pem);
@@ -130,7 +135,7 @@ export class CatalogVerifier {
     }
   }
 
-  authenticate(input: Uint8Array, context: string) {
+  authenticate(input: Uint8Array, context: string, historical = false) {
     if (input.length > MAX_CATALOG_BYTES * 2) throw new Error('The signed catalog is too large.');
     const envelope = object(JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(input)), [
       'keyId',
@@ -140,6 +145,8 @@ export class CatalogVerifier {
     const keyId = text(envelope.keyId, 64),
       key = this.keys.get(keyId);
     if (!key) throw new Error('This catalog was not signed by a trusted Folio publisher.');
+    if (!historical && this.retired.has(keyId))
+      throw new Error('This publisher key has been retired. Get a current signed pack or catalog.');
     const payload = base64(envelope.payload, MAX_CATALOG_BYTES),
       signature = base64(envelope.signature, 64);
     if (
@@ -152,7 +159,7 @@ export class CatalogVerifier {
 
   verify(input: Uint8Array, now = Date.now(), historical = false): VerifiedCatalog {
     if (!Number.isFinite(now)) throw new Error('The catalog verification time is invalid.');
-    const { keyId, payload } = this.authenticate(input, CATALOG_SIGNATURE_CONTEXT);
+    const { keyId, payload } = this.authenticate(input, CATALOG_SIGNATURE_CONTEXT, historical);
     const catalog = object(JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(payload)), [
       'schemaVersion',
       'sequence',

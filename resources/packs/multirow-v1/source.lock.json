@@ -1,0 +1,689 @@
+{
+  "schemaVersion": 1,
+  "package": "multirow",
+  "version": "2.9",
+  "license": "LPPL-1.3c",
+  "source": {
+    "url": "https://codeload.github.com/pietvo/multirow/tar.gz/ffd9f3f0238449be9239a05904e72ab3475139e6",
+    "filename": "multirow-ffd9f3f0238449be9239a05904e72ab3475139e6.tar.gz",
+    "bytes": 25900,
+    "sha256": "331743d8f319fe688d8ed83704d4d49a20746368a1c7be68f5ecc7a767e6eee4",
+    "prefix": "multirow-ffd9f3f0238449be9239a05904e72ab3475139e6",
+    "mirrors": [
+      "https://github.com/grawish/folio/releases/download/resource-packs-v1/multirow-ffd9f3f0238449be9239a05904e72ab3475139e6.tar.gz"
+    ]
+  },
+  "licenseText": {
+    "url": "https://www.latex-project.org/lppl/lppl-1-3c.txt",
+    "filename": "lppl-1.3c.txt",
+    "bytes": 19102,
+    "sha256": "3d262cdf34dafa6955f703c634a8c238ec44109bc8dd6ef34fb7aa54809f7e66",
+    "mirrors": [
+      "https://github.com/grawish/folio/releases/download/resource-packs-v1/LPPL-1.3c.txt"
+    ]
+  },
+  "files": {
+    "multirow.sty": "1ad428e46dc0b736132d2c6e87eccbf0947091ca7581733165cfee765cd0992c",
+    "bigstrut.sty": "3d54fcea53e563b37a2856e0ffe14a17fa7d0e8f5a396fa9d0b80c0855eff4ae",
+    "bigdelim.sty": "59653c7c2a6284035e9a12d6c032f038f233bc92328eb07f33b599e7b1725512"
+  },
+  "releaseTag": "resource-packs-v1",
+  "assetName": "Folio-multirow-2.9-v1.foliopack",
+  "extraSources": [
+    {
+      "id": "cm",
+      "license": "Knuth",
+      "archive": {
+        "url": "https://mirrors.ctan.org/systems/texlive/tlnet/archive/cm.tar.xz",
+        "filename": "cm-57963.tar.xz",
+        "bytes": 238064,
+        "sha256": "ebedd3dc7ece433d366d848ea8bd9cd2642a0f49c000c46a2ed1dde5b1cebc1c",
+        "mirrors": [
+          "https://github.com/grawish/folio/releases/download/resource-packs-v1/cm-57963.tar.xz"
+        ]
+      },
+      "files": {
+        "cmb10.tfm": {
+          "member": "fonts/tfm/public/cm/cmb10.tfm",
+          "sha256": "55cbc994b903a1c77150b9e8be4c12d745758aff76ac4f9dd7db5c5e00bc8aca"
+        },
+        "cmbsy10.tfm": {
+          "member": "fonts/tfm/public/cm/cmbsy10.tfm",
+          "sha256": "b5a0bf8a30db124f56f4e48237b510be6b1a78886da1540f2394ddfaf3186c25"
+        },
+        "cmbx10.tfm": {
+          "member": "fonts/tfm/public/cm/cmbx10.tfm",
+          "sha256": "ae296e8e41b2b0f73e9a17fdc42c743b9ddcc58d23c30acaa3411206f7824780"
+        },
+        "cmbx12.tfm": {
+          "member": "fonts/tfm/public/cm/cmbx12.tfm",
+          "sha256": "0eb2f13840155007c2d3c59b074322a3aa7358b9643aa314f3146468ae7f0806"
+        },
+        "cmbx5.tfm": {
+          "member": "fonts/tfm/public/cm/cmbx5.tfm",
+          "sha256": "a746151d8e3a521965bbfae2666e1528374a514375daa7d620e9b89ebbbfb0ae"
+        },
+        "cmbx6.tfm": {
+          "member": "fonts/tfm/public/cm/cmbx6.tfm",
+          "sha256": "38ded79d7cce07fa28921f37f6b88e67bd86951a3e5af709c219d63454786ce1"
+        },
+        "cmbx7.tfm": {
+          "member": "fonts/tfm/public/cm/cmbx7.tfm",
+          "sha256": "e7b284f0ee98b7773be9b57ca652b4bb14391370509a424b5b62b06b5cae86e4"
+        },
+        "cmbx8.tfm": {
+          "member": "fonts/tfm/public/cm/cmbx8.tfm",
+          "sha256": "6dab44c885b7cbf567771d9cfa565f3df34d0e8124132b9b6f9fdc496a1c2eda"
+        },
+        "cmbx9.tfm": {
+          "member": "fonts/tfm/public/cm/cmbx9.tfm",
+          "sha256": "9fb9cbe254c828bc6bdcc0ca66f81b6cb9b713edf0ef1b7fa67e231920112499"
+        },
+        "cmbxsl10.tfm": {
+          "member": "fonts/tfm/public/cm/cmbxsl10.tfm",
+          "sha256": "4a2dbf075487bcdb3b081926f8e5a03520b16a2e1af643e1e0fc36d7f344fb1e"
+        },
+        "cmbxti10.tfm": {
+          "member": "fonts/tfm/public/cm/cmbxti10.tfm",
+          "sha256": "2ba218c04e402c9d013cf5e36ffffe6ae420c1f2192291606405ef9f3f86df70"
+        },
+        "cmcsc10.tfm": {
+          "member": "fonts/tfm/public/cm/cmcsc10.tfm",
+          "sha256": "0d691f70f365e55b83096764fe0c65338842d704bd5b979ed0c6882f9e17ce0d"
+        },
+        "cmdunh10.tfm": {
+          "member": "fonts/tfm/public/cm/cmdunh10.tfm",
+          "sha256": "a94093bba5082a6e63fc95dd9bf4d10a8152a2a5f9e3913ab04dd6f60974d843"
+        },
+        "cmff10.tfm": {
+          "member": "fonts/tfm/public/cm/cmff10.tfm",
+          "sha256": "d7c17659aa5ddd781518ea67ba3e569be634fd2c156e76899d5c196bbf3e0e5f"
+        },
+        "cmfi10.tfm": {
+          "member": "fonts/tfm/public/cm/cmfi10.tfm",
+          "sha256": "ffd5979983f29ec2c5d5bdcdb3d2cc2f956f7e2cd891a4a3b36269c2c52ab063"
+        },
+        "cmfib8.tfm": {
+          "member": "fonts/tfm/public/cm/cmfib8.tfm",
+          "sha256": "49253478733658d6926b0d755ef24c1c66f382fe95862c9466fc249c014896ed"
+        },
+        "cminch.tfm": {
+          "member": "fonts/tfm/public/cm/cminch.tfm",
+          "sha256": "5d7afb37cd4737e2a88a5c50ed820fa3949df058087cd07e5bf4812011d07f7d"
+        },
+        "cmitt10.tfm": {
+          "member": "fonts/tfm/public/cm/cmitt10.tfm",
+          "sha256": "bef521b29b7f2cd162767471db15078e30fd2df5a4bb1e1293a1a4c081ed3f6a"
+        },
+        "cmmib10.tfm": {
+          "member": "fonts/tfm/public/cm/cmmib10.tfm",
+          "sha256": "4465d20955917959c68d0254647e5caba1f38c4516a1fd212eab2da9b8645874"
+        },
+        "cmr12.tfm": {
+          "member": "fonts/tfm/public/cm/cmr12.tfm",
+          "sha256": "1ce8af37ed38e93940829d3540e494eaaddc5201758d036b9074467e70a738dc"
+        },
+        "cmr17.tfm": {
+          "member": "fonts/tfm/public/cm/cmr17.tfm",
+          "sha256": "86b6e8a52aae6ad1655e32099e12bd2904b158aba4c8afb74143266d2d9cd18f"
+        },
+        "cmr6.tfm": {
+          "member": "fonts/tfm/public/cm/cmr6.tfm",
+          "sha256": "106afa9172f0c00e58b9f5cbc72b302a18aaeeaddf50caca145af9cc0b81afd2"
+        },
+        "cmr8.tfm": {
+          "member": "fonts/tfm/public/cm/cmr8.tfm",
+          "sha256": "4c5ae243ac0aa254e7ec7f0602cc2a4351e5011ff0cb6dc150a5f6de19585de6"
+        },
+        "cmr9.tfm": {
+          "member": "fonts/tfm/public/cm/cmr9.tfm",
+          "sha256": "2ffa73e8446c1d46c3509a0f65ff97d4d09de46f48e1ce578a1004498b67dba9"
+        },
+        "cmsl10.tfm": {
+          "member": "fonts/tfm/public/cm/cmsl10.tfm",
+          "sha256": "dcbfc25c5aac16dc2b820e089a00aedef20a1af6d8d3c2efa54f6f17a985d33f"
+        },
+        "cmsl12.tfm": {
+          "member": "fonts/tfm/public/cm/cmsl12.tfm",
+          "sha256": "0bfef4919b1be6619d3e6892ea75066f4aa372b82d6164ebd06ef6c5b6281278"
+        },
+        "cmsl8.tfm": {
+          "member": "fonts/tfm/public/cm/cmsl8.tfm",
+          "sha256": "581080f4ebd96f58b4b6f774ea2882f5e83fef7c932647a7c957f7e8db1f7823"
+        },
+        "cmsl9.tfm": {
+          "member": "fonts/tfm/public/cm/cmsl9.tfm",
+          "sha256": "bb0f9deb6852caed902cb04bfc8e8333345a37946bd0b6bd56d11848e729d3ca"
+        },
+        "cmsltt10.tfm": {
+          "member": "fonts/tfm/public/cm/cmsltt10.tfm",
+          "sha256": "c093023e8958e30678808a843f4f4248f5ab609f8994182fded845590fe19cc3"
+        },
+        "cmss10.tfm": {
+          "member": "fonts/tfm/public/cm/cmss10.tfm",
+          "sha256": "431472f34665b6243a32936215f2e17d1f124cdf8513e86e2bedc4c3de3f980b"
+        },
+        "cmss12.tfm": {
+          "member": "fonts/tfm/public/cm/cmss12.tfm",
+          "sha256": "38ba636afc0e32d07c340b9ad747c33c6d4a4256ccb9e42ae9f7d3df11b3fe1a"
+        },
+        "cmss17.tfm": {
+          "member": "fonts/tfm/public/cm/cmss17.tfm",
+          "sha256": "a88f81798171b3582557826302ad7233e676949e17182d3dc84ea65bdf58e631"
+        },
+        "cmss8.tfm": {
+          "member": "fonts/tfm/public/cm/cmss8.tfm",
+          "sha256": "25650d37e11bee41e03dc4757a1b6f1a64f27a53c664aa618d1a8ded54d96ed5"
+        },
+        "cmss9.tfm": {
+          "member": "fonts/tfm/public/cm/cmss9.tfm",
+          "sha256": "904af036b1e2e1d1375cf763959ef9517a2fc3e24ac94dbb6290574cfafc0b50"
+        },
+        "cmssbx10.tfm": {
+          "member": "fonts/tfm/public/cm/cmssbx10.tfm",
+          "sha256": "59fcefaa9436cb00b1579a549b4a16b38606bb1b6138743d05ea35a74f168f54"
+        },
+        "cmssdc10.tfm": {
+          "member": "fonts/tfm/public/cm/cmssdc10.tfm",
+          "sha256": "1a0a6b7410c4c9fcc683cedcb9282428c98bd6aa54902e84ef6e71913f8aaaa2"
+        },
+        "cmssi10.tfm": {
+          "member": "fonts/tfm/public/cm/cmssi10.tfm",
+          "sha256": "9faee1d46e86de1eb7a8f7a53522d15fa8f06e75d292d8e6989dfcd252b322c7"
+        },
+        "cmssi12.tfm": {
+          "member": "fonts/tfm/public/cm/cmssi12.tfm",
+          "sha256": "e8ea523bf347a1e932fa15a7d67af8bbc3720f4f59566ef9bf4270b9c26518da"
+        },
+        "cmssi17.tfm": {
+          "member": "fonts/tfm/public/cm/cmssi17.tfm",
+          "sha256": "469b3e0bba8808729745f6221efb2bd1057814d24ecccc79ba67fdfad4ec2cd7"
+        },
+        "cmssi8.tfm": {
+          "member": "fonts/tfm/public/cm/cmssi8.tfm",
+          "sha256": "79ce614e9edf079e9656dd8103402fc2dc745c77846a6c0a921342b8ad6c33e3"
+        },
+        "cmssi9.tfm": {
+          "member": "fonts/tfm/public/cm/cmssi9.tfm",
+          "sha256": "c7e5764b1d1f637e733efdff121f7c88957a71844a3c4f5d4563f2b8c5d6bab2"
+        },
+        "cmssq8.tfm": {
+          "member": "fonts/tfm/public/cm/cmssq8.tfm",
+          "sha256": "a813de9f318949969010f4a363b2c3076e5cefa4436e779404453b2c34435504"
+        },
+        "cmssqi8.tfm": {
+          "member": "fonts/tfm/public/cm/cmssqi8.tfm",
+          "sha256": "78673efe5657b8a293e160c0ac88834778cf9a5ed1922a0bfcca3f5562c17f88"
+        },
+        "cmsy6.tfm": {
+          "member": "fonts/tfm/public/cm/cmsy6.tfm",
+          "sha256": "137eb9f38f661c66309614066a7b5d63d8969d33aba0c9efee9f844a4ce65b50"
+        },
+        "cmsy8.tfm": {
+          "member": "fonts/tfm/public/cm/cmsy8.tfm",
+          "sha256": "84c37f07ca360c41ad0a0fba7387d279d72457c69bdae03653208c683d8de6bc"
+        },
+        "cmsy9.tfm": {
+          "member": "fonts/tfm/public/cm/cmsy9.tfm",
+          "sha256": "b57c5c42a7991a004ee1b40b340d7bd12cc75ab0a6f7daf7a207827504f91712"
+        },
+        "cmtcsc10.tfm": {
+          "member": "fonts/tfm/public/cm/cmtcsc10.tfm",
+          "sha256": "15d384d3e1b9edbe61fa59f7778fa52328507cfed3b84ef1133971eb23534a8f"
+        },
+        "cmtex10.tfm": {
+          "member": "fonts/tfm/public/cm/cmtex10.tfm",
+          "sha256": "b3cf3073fc0365ed335305b04579068059b8de860875bee514509764243f28d9"
+        },
+        "cmtex8.tfm": {
+          "member": "fonts/tfm/public/cm/cmtex8.tfm",
+          "sha256": "fe5347dbbdc0e43b6f6a4b746abbda5f40e504916f14cd98d5572df9c8dd9f3c"
+        },
+        "cmtex9.tfm": {
+          "member": "fonts/tfm/public/cm/cmtex9.tfm",
+          "sha256": "c7cd0eee8b1087c3afae677d6f9ce5483bdfa26ec571b706e999fdde0677ac3b"
+        },
+        "cmti10.tfm": {
+          "member": "fonts/tfm/public/cm/cmti10.tfm",
+          "sha256": "46a66e937f809c4fbe317947b583a14b408aca41ecb835eca3be46391190432a"
+        },
+        "cmti12.tfm": {
+          "member": "fonts/tfm/public/cm/cmti12.tfm",
+          "sha256": "92d92985d932893a426546c1e59b69107423785857f6f29aa866be0aa8970883"
+        },
+        "cmti7.tfm": {
+          "member": "fonts/tfm/public/cm/cmti7.tfm",
+          "sha256": "78921699d46fd39b25e2e3ea08b96d9c3ad9c858a6ad2cc1aa60204a36ce88f0"
+        },
+        "cmti8.tfm": {
+          "member": "fonts/tfm/public/cm/cmti8.tfm",
+          "sha256": "7a212edaa5bbb6898b6196e32a5753811dc3295a18b9bcd9c727c23ce0c21a4e"
+        },
+        "cmti9.tfm": {
+          "member": "fonts/tfm/public/cm/cmti9.tfm",
+          "sha256": "bae91797b96e40fbeb97e2ea3184070e7cf707b72422c7c107edf1d1d5a10abb"
+        },
+        "cmtt10.tfm": {
+          "member": "fonts/tfm/public/cm/cmtt10.tfm",
+          "sha256": "11f3331c958b696fd484fe45c28285622617a2593d7a34511a1d6b279e1578a2"
+        },
+        "cmtt12.tfm": {
+          "member": "fonts/tfm/public/cm/cmtt12.tfm",
+          "sha256": "156417e26b9a51c7e052d5fdb3db7b25f10d4fa0d094180ae7834894189a0a0b"
+        },
+        "cmtt8.tfm": {
+          "member": "fonts/tfm/public/cm/cmtt8.tfm",
+          "sha256": "62f6142387fe8d4be3ba2d46034e76fd6c3fc1d22ab44663a4eaa3f42b97039e"
+        },
+        "cmtt9.tfm": {
+          "member": "fonts/tfm/public/cm/cmtt9.tfm",
+          "sha256": "2989dbdeed1533cdeba5dcd0edee59c4509b5c934b3db8847de78d8c94a9966d"
+        },
+        "cmu10.tfm": {
+          "member": "fonts/tfm/public/cm/cmu10.tfm",
+          "sha256": "7896645187499d599c330a8cbebc4ba1e21fa88b4ad46a86ef3db53cfa39b6f7"
+        },
+        "cmvtt10.tfm": {
+          "member": "fonts/tfm/public/cm/cmvtt10.tfm",
+          "sha256": "1ef141c7fcac180ec4293f4f43c34089bb09f4d794663bf122f8f9a089fd23b1"
+        }
+      },
+      "notices": [
+        "fonts/source/public/cm/cmr8.mf"
+      ]
+    },
+    {
+      "id": "cm.doc",
+      "license": "Knuth",
+      "archive": {
+        "url": "https://mirrors.ctan.org/systems/texlive/tlnet/archive/cm.doc.tar.xz",
+        "filename": "cm.doc-57963.tar.xz",
+        "bytes": 2500,
+        "sha256": "ada5920f0d16ea3fb6b523decb0447564c4537b2b770a9bdbb837b3ec68a3992",
+        "mirrors": [
+          "https://github.com/grawish/folio/releases/download/resource-packs-v1/cm.doc-57963.tar.xz"
+        ]
+      },
+      "files": {},
+      "notices": [
+        "doc/fonts/cm/README",
+        "doc/fonts/cm/README-cmps.txt"
+      ]
+    },
+    {
+      "id": "amsfonts",
+      "license": "OFL-1.1 AND LPPL-1.3c",
+      "archive": {
+        "url": "https://mirrors.ctan.org/systems/texlive/tlnet/archive/amsfonts.tar.xz",
+        "filename": "amsfonts-77682.tar.xz",
+        "bytes": 3626284,
+        "sha256": "8fa7a956504020982f0eeace49c2dc65ba7d19f178403030474d85c5709582b1",
+        "mirrors": [
+          "https://github.com/grawish/folio/releases/download/resource-packs-v1/amsfonts-77682.tar.xz"
+        ]
+      },
+      "files": {
+        "cmb10.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmb10.pfb",
+          "sha256": "c0e21c2df152dd0cf922626f4fced88fdb8cf3dddf856f4464e447af98b5b902"
+        },
+        "cmbsy10.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmbsy10.pfb",
+          "sha256": "dd42853a466c1c38ca940375ce49bb18ea336299344a80dab4fa0faf145d19db"
+        },
+        "cmbx10.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmbx10.pfb",
+          "sha256": "ca41102968b817bf6e8b22fd6de205ca23bf5088218511cce0c8129e1577cb70"
+        },
+        "cmbx12.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmbx12.pfb",
+          "sha256": "c838238f31d86a9f198873dfaf501601a4fc966845b9c59e7dc251c4e85d1f1f"
+        },
+        "cmbx5.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmbx5.pfb",
+          "sha256": "4e99bb2f3ebe368073de2685562f5adf7f43358de406f0d2b4b601ef5f7a566c"
+        },
+        "cmbx6.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmbx6.pfb",
+          "sha256": "1ceb3ea37367394e911a94e4d4b7d5ab3dcefcf19c0c607568951c57385ee394"
+        },
+        "cmbx7.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmbx7.pfb",
+          "sha256": "5e6cd2a9ac9933dd764c41fcfc5097bf1cb3bf1f697438eb4c344b9510630974"
+        },
+        "cmbx8.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmbx8.pfb",
+          "sha256": "fe99cd3dcadd182a24b86e593e56d2e900c992311218c43779f858ed6e1c3b31"
+        },
+        "cmbx9.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmbx9.pfb",
+          "sha256": "2636ee910f5f5e18a4aa40eee33d1097d91b2d9ac296e8b817b07c8ea2f0e99b"
+        },
+        "cmbxsl10.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmbxsl10.pfb",
+          "sha256": "cee22864c667c9e06b2b0155a5bd792bbdbaf26d2fd777013caa9afb84f65196"
+        },
+        "cmbxti10.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmbxti10.pfb",
+          "sha256": "ee8b854bae6ffd48b5d935ca5f19804faf7b78ac5f83cd4a6efd7da7c4f6c757"
+        },
+        "cmcsc10.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmcsc10.pfb",
+          "sha256": "06c64598f2ff53539677835e26630083d32abd5258d7e4fa029d742ba213d2f5"
+        },
+        "cmdunh10.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmdunh10.pfb",
+          "sha256": "b0061b33db8ec21e8b9c720343faf876cce080555cfcc69551a4cb3e8dd1ea37"
+        },
+        "cmex10.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmex10.pfb",
+          "sha256": "791b31aa1db8608d0144b3a40fc0fe53383a60f6b00d0e8fd9f06ac4a11df8cb"
+        },
+        "cmff10.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmff10.pfb",
+          "sha256": "715d8b9fda1550b368583bb25cd1593d611ec95a67c53020a117b612cbb1a1e9"
+        },
+        "cmfi10.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmfi10.pfb",
+          "sha256": "401a372cff0b354afadc5674b8b6836da7c42ec6e8b5f875cba1bfa51676c2c4"
+        },
+        "cmfib8.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmfib8.pfb",
+          "sha256": "584b0ea7ae22fdd9a2ffc524ec7cac08ac83d3fa6c49bec27db76bfbbcda72b3"
+        },
+        "cminch.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cminch.pfb",
+          "sha256": "a56a8e5af93dada659d80eef4a06a170e0617f9016f86fa709e94e07484fc11c"
+        },
+        "cmitt10.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmitt10.pfb",
+          "sha256": "3f2478a72dd208e15491869d806694854d4f700de103363f398a32043b761087"
+        },
+        "cmmi10.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmmi10.pfb",
+          "sha256": "e3661061e8aa474d6de5ffa916edceb0e3d8b998862018c147f0357fce00bcd7"
+        },
+        "cmmi12.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmmi12.pfb",
+          "sha256": "80fa6aa5f49d52e1f7e5120d053b32d463cd0392a68588ef17c0d1523fba7786"
+        },
+        "cmmi5.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmmi5.pfb",
+          "sha256": "35048e58e53f4aa53025069c1d0de33a16d8d4c111bfa329669e6456ec0a967b"
+        },
+        "cmmi6.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmmi6.pfb",
+          "sha256": "c31dbaffb861162eadf3a7210bdf271b0dda577841aed4c0572069b0d52662b6"
+        },
+        "cmmi7.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmmi7.pfb",
+          "sha256": "5b293a581ddb937b02559c3ce1a60184cc434295533204a2cd3864a6ad8a1f53"
+        },
+        "cmmi8.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmmi8.pfb",
+          "sha256": "f396f52d9ed3498c15aa7e694baef74c0a11119624fcd6db66dad4ac76972cb0"
+        },
+        "cmmi9.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmmi9.pfb",
+          "sha256": "c7d9ebe6b8313e0eeee8f9ed4d4e7069c74cfa9d9b64295f0f487e4662281a62"
+        },
+        "cmmib10.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmmib10.pfb",
+          "sha256": "6cecc91b2c53569dc3c8ce12211e2252e80eb5d8709f1f1ddae67cb31c96f6a4"
+        },
+        "cmr10.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmr10.pfb",
+          "sha256": "fdcede8794018df5f2b58f0905fb20a2b418ed8f67b73ee12445855dfbe5b1be"
+        },
+        "cmr12.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmr12.pfb",
+          "sha256": "9b58bfa828b9553b7c8331cf26c45443b836f8aab62e820b40a5b65c8531dd42"
+        },
+        "cmr17.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmr17.pfb",
+          "sha256": "465827b4702e12f7deea159c8084753ffc27998963de516e490bd7bd5bed41dd"
+        },
+        "cmr5.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmr5.pfb",
+          "sha256": "84d38aac226b5274baca7a292e2039f5284a35d8a2ae31074a475fad87da310b"
+        },
+        "cmr6.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmr6.pfb",
+          "sha256": "9fe20cb9ef24a0f4c74d38a65d4eee5cff3165f3b8600407ceba396aeb2b7617"
+        },
+        "cmr7.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmr7.pfb",
+          "sha256": "b37e8671820b0753c6e233eaa3230c6ab9cff04e6c4baee312d60ae261e5aba1"
+        },
+        "cmr8.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmr8.pfb",
+          "sha256": "8150cbfac5cfe53040327df171c3059f10730b32cabf2504b01713d639a11feb"
+        },
+        "cmr9.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmr9.pfb",
+          "sha256": "ba5207eea69eaa9b598de2bd3d9aef27c4ff9831524400f70ff6a0dd3e36059b"
+        },
+        "cmsl10.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmsl10.pfb",
+          "sha256": "2f7889c542b515c31c533f278b20aeee3cc963d1dff8bf6f83d5710c91890823"
+        },
+        "cmsl12.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmsl12.pfb",
+          "sha256": "bc7215c2cf8cc530352cb7b9d4b81230fc8ec462606d032e4af443ea5f8aa106"
+        },
+        "cmsl8.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmsl8.pfb",
+          "sha256": "09d1f8ba4a43177ccddcbb8eba8ac8974eabfd4b861837e761d07ac3f62d93b1"
+        },
+        "cmsl9.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmsl9.pfb",
+          "sha256": "8b72fc7d1cb67471c1d739077d08ea94674bf0a9875b9b2b1cac39e3082e8c44"
+        },
+        "cmsltt10.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmsltt10.pfb",
+          "sha256": "e2fb64ccb390ca467c6b42c43d79eab19083bbf67e15a0810ff282f7bcd31859"
+        },
+        "cmss10.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmss10.pfb",
+          "sha256": "c9071fd676395df32520c3d906f2829898ea735f66c40a40578dec3c0ac51738"
+        },
+        "cmss12.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmss12.pfb",
+          "sha256": "f64255358fe4e6cd89066d08371a60efc33ae0c475854e87b8d0a49a47c29d41"
+        },
+        "cmss17.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmss17.pfb",
+          "sha256": "dfb6edd9d0cbbc24d19df1878ed00cbd756b65df683cb6274025eed96f73053d"
+        },
+        "cmss8.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmss8.pfb",
+          "sha256": "7f5744c7caf27c407888cadae84be6cd7c05f34cf2c5df385b8f69fa349a3feb"
+        },
+        "cmss9.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmss9.pfb",
+          "sha256": "abf756f5c0c4fd2edf9b3811e3a4182f5d2ba7723b6ffaeb98237e026661a2fc"
+        },
+        "cmssbx10.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmssbx10.pfb",
+          "sha256": "9648958f2a77e1d3b5aa003852d1f38fec099d662bb06afba297fda3d4eba8ad"
+        },
+        "cmssdc10.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmssdc10.pfb",
+          "sha256": "54430f90a8d0e9dc4dec411c7d8422ef6e71e6ae657511879a7c4bdb6b0f2a2c"
+        },
+        "cmssi10.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmssi10.pfb",
+          "sha256": "331ae5d760afd4ea9cd08b8b2529ac4c1bce761a532211f9336030941be02b8d"
+        },
+        "cmssi12.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmssi12.pfb",
+          "sha256": "6f090883e30a15d688165e8481ea7fc0a4c1663ae89ce505226aed19af6f649a"
+        },
+        "cmssi17.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmssi17.pfb",
+          "sha256": "9920404d1a60689fb498b15739adc0a423cf4486ac06ac70c4d47202f7e82dda"
+        },
+        "cmssi8.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmssi8.pfb",
+          "sha256": "be3b4c8a485e5dbc1aa7287ff6d575ba578526c80e7e4be2f5f36ad9d7cb5a84"
+        },
+        "cmssi9.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmssi9.pfb",
+          "sha256": "0fc2eaf7e91014eaea0c69f3ca623183953eab674792876e1c7f4abc976ba0b0"
+        },
+        "cmssq8.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmssq8.pfb",
+          "sha256": "33ef7002f714deb02973e736bf036e390641a5f01c428c0872ef58cb0aed7773"
+        },
+        "cmssqi8.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmssqi8.pfb",
+          "sha256": "c52415b041cd9f34b620a8bccf25651dd3a91190e454c9ec84c85cdd8fe7a459"
+        },
+        "cmsy10.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmsy10.pfb",
+          "sha256": "62ee8cef552017551cd3e026a483e700730103eceaad959c87b7730017f59cff"
+        },
+        "cmsy5.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmsy5.pfb",
+          "sha256": "46da57e5a06866efa9a20f3dd350811b5d3279a5ae789af63e530f1f570e3c7f"
+        },
+        "cmsy6.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmsy6.pfb",
+          "sha256": "73eed8a83a07d8ef04d240da22bce1fd3646074f46179e3677f4f42a542f20b6"
+        },
+        "cmsy7.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmsy7.pfb",
+          "sha256": "583b65bd1857bffc2ab184fcb4aad4e70e12eb05c9ca9f1c58c9a00a86c8bccf"
+        },
+        "cmsy8.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmsy8.pfb",
+          "sha256": "2313392f0f4cd974d9da5fb54a52feae126059759edc04a4e47e33ea6027418b"
+        },
+        "cmsy9.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmsy9.pfb",
+          "sha256": "8049871d56d74fe3f8f2375afbb1e59b149bf6835027b4a101051cfca1c1a779"
+        },
+        "cmtcsc10.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmtcsc10.pfb",
+          "sha256": "f1835964507385f4cb9b3234d4a73e4c696077e81d17f701fbeffb2ac4039f68"
+        },
+        "cmtex10.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmtex10.pfb",
+          "sha256": "0bd2d03c2659882706817b0110d7afbb02928b7a65b799ff48831be0173eeffb"
+        },
+        "cmtex8.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmtex8.pfb",
+          "sha256": "bd1d1cd8121b70c5780caf61694cbf206635cdecd5a16c2890ce2a64808f764f"
+        },
+        "cmtex9.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmtex9.pfb",
+          "sha256": "2c216bb0a7f7141dd3a91c51cc68d01158d8febdff39adaaab9778040a92d04c"
+        },
+        "cmti10.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmti10.pfb",
+          "sha256": "b6f162e1549a649c7e9b2edfb77306f60e1b0da74547f33cba39ff6ba0bdd473"
+        },
+        "cmti12.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmti12.pfb",
+          "sha256": "4f343bda5844ca1782bbad5e6d4052519c2f4e6f1e3bfb1a3a514a280e2608c9"
+        },
+        "cmti7.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmti7.pfb",
+          "sha256": "b95ecd4cecaba5f0466633ab32e57c26b10eee0466dbcd8f00f2e2275f948f3d"
+        },
+        "cmti8.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmti8.pfb",
+          "sha256": "3f4a293229674c404e223566b807d0e6198762016e731fb286488e30019e21c0"
+        },
+        "cmti9.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmti9.pfb",
+          "sha256": "8eba22ca33c0bb7c77d634c3c017ce458580959bd865a2439638f2898ed3b95a"
+        },
+        "cmtt10.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmtt10.pfb",
+          "sha256": "d6bdecc0378f3cd16683d1ac348bdbc4ccde9a552e87b53fe9e2de5cfc7aa61d"
+        },
+        "cmtt12.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmtt12.pfb",
+          "sha256": "cc6ac592f4045f6726b0cd5cbb1f623a44fe5af2559b967d5ad32470e49cb1c6"
+        },
+        "cmtt8.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmtt8.pfb",
+          "sha256": "b0230533515d47ce911c053be37ffb37aa29b114105c5fbb985ea95e8c221143"
+        },
+        "cmtt9.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmtt9.pfb",
+          "sha256": "b16a3e758b3da3aca15e1748fb89ad3552acd648666015628c90d06f32ba3f8d"
+        },
+        "cmu10.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmu10.pfb",
+          "sha256": "d060c704dcf359b57d03bad8684169c41922a1f674eaa23f4589d59061a42dda"
+        },
+        "cmvtt10.pfb": {
+          "member": "fonts/type1/public/amsfonts/cm/cmvtt10.pfb",
+          "sha256": "1752f4b13e4e38da7c5f8aa497c92a102cc883cb80a6655989bffed5366773e2"
+        }
+      },
+      "notices": []
+    },
+    {
+      "id": "amsfonts.doc",
+      "license": "OFL-1.1 AND LPPL-1.3c",
+      "archive": {
+        "url": "https://mirrors.ctan.org/systems/texlive/tlnet/archive/amsfonts.doc.tar.xz",
+        "filename": "amsfonts.doc-77682.tar.xz",
+        "bytes": 1162540,
+        "sha256": "951d028c383fc255043727ff2571410959642dbefbc3fa4a61c42bd2af604cea",
+        "mirrors": [
+          "https://github.com/grawish/folio/releases/download/resource-packs-v1/amsfonts.doc-77682.tar.xz"
+        ]
+      },
+      "files": {},
+      "notices": [
+        "doc/fonts/amsfonts/OFL.txt",
+        "doc/fonts/amsfonts/README"
+      ]
+    },
+    {
+      "id": "amsfonts.source",
+      "license": "OFL-1.1 AND LPPL-1.3c",
+      "archive": {
+        "url": "https://mirrors.ctan.org/systems/texlive/tlnet/archive/amsfonts.source.tar.xz",
+        "filename": "amsfonts.source-77682.tar.xz",
+        "bytes": 49152,
+        "sha256": "119ef22dd62c6441452d9da7748cb512a11eceb48f52b2bc1a64b9d516734c81",
+        "mirrors": [
+          "https://github.com/grawish/folio/releases/download/resource-packs-v1/amsfonts.source-77682.tar.xz"
+        ]
+      },
+      "files": {},
+      "notices": []
+    },
+    {
+      "id": "latex-base-2021-11-15",
+      "license": "LPPL-1.3c",
+      "archive": {
+        "url": "https://codeload.github.com/latex3/latex2e/tar.gz/5a1cf0001da9ec7bd051b5a8787e40000abc551f",
+        "filename": "latex2e-5a1cf0001da9ec7bd051b5a8787e40000abc551f.tar.gz",
+        "bytes": 5498121,
+        "sha256": "ce1939b7e0eceb32fee14641a24f4be108978b1237831187df4c0773411479e2",
+        "mirrors": [
+          "https://github.com/grawish/folio/releases/download/resource-packs-v1/latex2e-5a1cf0001da9ec7bd051b5a8787e40000abc551f.tar.gz"
+        ]
+      },
+      "files": {},
+      "notices": [
+        "latex2e-5a1cf0001da9ec7bd051b5a8787e40000abc551f/LICENSE",
+        "latex2e-5a1cf0001da9ec7bd051b5a8787e40000abc551f/base/legal.txt"
+      ]
+    }
+  ],
+  "supplementalFiles": {
+    "size12.clo": {
+      "sha256": "750c804ea549929991e6d010d56871ae9dd039ad02007b7d47c3159f49e2199d",
+      "origin": "Tectonic default_bundle_v33.tar; bundle digest 6ffe055852f8faf66c0acbe1a7fb27f87b869a90bad1204f3bf4d9683f597c7c",
+      "sourceComponent": "latex-base-2021-11-15",
+      "modified": false
+    }
+  }
+}

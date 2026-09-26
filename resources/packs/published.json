@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "packs": [
+    {
+      "id": "folio-multirow-2.9-v1",
+      "title": "Tables: Multirow 2.9",
+      "description": "Add multirow, bigstrut and bigdelim for table cells, row spacing and braces. These resources keep their upstream LPPL license.",
+      "base": {
+        "engine": "tectonic",
+        "version": "0.17.0",
+        "bundle": "folio-core-v1",
+        "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+        "platform": "darwin-arm64",
+        "biberVersion": "2.17"
+      },
+      "target": {
+        "engine": "tectonic",
+        "version": "0.17.0",
+        "bundle": "folio-multirow-2.9-v1",
+        "id": "f08d496354bb88e604ca8c2394935f8bf2e842a021d1b54b02ff210344a1d670",
+        "platform": "darwin-arm64",
+        "biberVersion": "2.17"
+      },
+      "packages": [
+        "multirow.sty",
+        "bigstrut.sty",
+        "bigdelim.sty"
+      ],
+      "artifact": {
+        "url": "https://github.com/grawish/folio/releases/download/resource-packs-v1/Folio-multirow-2.9-v1.foliopack",
+        "bytes": 2259484,
+        "sha256": "b11d22b915fba8f7a4efaa82d900912341cc2af1a05cd2dcee298ca48a4bbbfe"
+      }
+    }
+  ],
+  "materials": [
+    {
+      "url": "https://github.com/grawish/folio/releases/download/resource-packs-v1/multirow-ffd9f3f0238449be9239a05904e72ab3475139e6.tar.gz",
+      "bytes": 25900,
+      "sha256": "331743d8f319fe688d8ed83704d4d49a20746368a1c7be68f5ecc7a767e6eee4"
+    },
+    {
+      "url": "https://github.com/grawish/folio/releases/download/resource-packs-v1/LPPL-1.3c.txt",
+      "bytes": 19102,
+      "sha256": "3d262cdf34dafa6955f703c634a8c238ec44109bc8dd6ef34fb7aa54809f7e66"
+    },
+    {
+      "url": "https://github.com/grawish/folio/releases/download/resource-packs-v1/NOTICES.txt",
+      "bytes": 82877,
+      "sha256": "0909526ef5b44917716090a2da19eb09f24cd6d93e4d388010c535493a5f4668"
+    },
+    {
+      "url": "https://github.com/grawish/folio/releases/download/resource-packs-v1/cm-57963.tar.xz",
+      "bytes": 238064,
+      "sha256": "ebedd3dc7ece433d366d848ea8bd9cd2642a0f49c000c46a2ed1dde5b1cebc1c"
+    },
+    {
+      "url": "https://github.com/grawish/folio/releases/download/resource-packs-v1/cm.doc-57963.tar.xz",
+      "bytes": 2500,
+      "sha256": "ada5920f0d16ea3fb6b523decb0447564c4537b2b770a9bdbb837b3ec68a3992"
+    },
+    {
+      "url": "https://github.com/grawish/folio/releases/download/resource-packs-v1/amsfonts-77682.tar.xz",
+      "bytes": 3626284,
+      "sha256": "8fa7a956504020982f0eeace49c2dc65ba7d19f178403030474d85c5709582b1"
+    },
+    {
+      "url": "https://github.com/grawish/folio/releases/download/resource-packs-v1/amsfonts.doc-77682.tar.xz",
+      "bytes": 1162540,
+      "sha256": "951d028c383fc255043727ff2571410959642dbefbc3fa4a61c42bd2af604cea"
+    },
+    {
+      "url": "https://github.com/grawish/folio/releases/download/resource-packs-v1/amsfonts.source-77682.tar.xz",
+      "bytes": 49152,
+      "sha256": "119ef22dd62c6441452d9da7748cb512a11eceb48f52b2bc1a64b9d516734c81"
+    },
+    {
+      "url": "https://github.com/grawish/folio/releases/download/resource-packs-v1/latex2e-5a1cf0001da9ec7bd051b5a8787e40000abc551f.tar.gz",
+      "bytes": 5498121,
+      "sha256": "ce1939b7e0eceb32fee14641a24f4be108978b1237831187df4c0773411479e2"
+    },
+    {
+      "url": "https://github.com/grawish/folio/releases/download/resource-packs-v1/SOURCE.json",
+      "bytes": 30550,
+      "sha256": "b6e1368e014cde6816327ef4fb12e4063103b54c4c98c13b476c910b89c550c0"
+    }
+  ]
+}

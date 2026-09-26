@@ -1,0 +1,41 @@
+name: Refresh signed pack catalog
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 5 1,15 * *'
+permissions:
+  contents: write
+concurrency:
+  group: pack-catalog
+  cancel-in-progress: false
+jobs:
+  refresh:
+    if: github.repository == 'grawish/folio' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Verify published bytes and renew catalog
+        env:
+          PACK_SIGNING_KEY: ${{ secrets.FOLIO_PACK_SIGNING_KEY }}
+        run: |
+          test -n "$PACK_SIGNING_KEY"
+          umask 077
+          key_file="$(mktemp)"
+          trap 'rm -f "$key_file"' EXIT
+          printf '%s' "$PACK_SIGNING_KEY" > "$key_file"
+          unset PACK_SIGNING_KEY
+          node --import tsx scripts/refresh-pack-catalog.ts "$key_file"
+      - name: Publish verified catalog only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- resources/packs/catalog.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'Renew signed resource-pack catalog'
+          git push origin HEAD:main

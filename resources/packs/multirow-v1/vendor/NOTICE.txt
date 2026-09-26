@@ -1,0 +1,19 @@
+size12.clo is an unmodified generated file from the LaTeX base system.
+Copyright (C) 1993-2021 The LaTeX Project and the individual authors
+identified in the original source. It retains LPPL 1.3c or later terms;
+the original Folio noncommercial license does not replace them.
+
+The file was retrieved by Tectonic from default_bundle_v33.tar, digest
+6ffe055852f8faf66c0acbe1a7fb27f87b869a90bad1204f3bf4d9683f597c7c.
+It identifies itself as 2021/10/04 v1.4n. Its source is classes.dtx,
+processed with the 12pt option through the original classes.ins script.
+
+Complete matching upstream source, including classes.dtx, classes.ins,
+manifest.txt, legal.txt, and the LPPL license:
+https://github.com/latex3/latex2e/tree/5a1cf0001da9ec7bd051b5a8787e40000abc551f
+https://codeload.github.com/latex3/latex2e/tar.gz/5a1cf0001da9ec7bd051b5a8787e40000abc551f
+
+The pack publisher also distributes that complete, unmodified source
+archive alongside the pack. Its exact digest is in ../source.lock.json.
+See LICENSE.txt for the unmodified LPPL 1.3c text. No upstream endorsement
+of the Folio integration is implied.

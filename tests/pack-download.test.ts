@@ -89,6 +89,47 @@ const fullResponse = (bytes: Buffer) =>
     headers: { 'Content-Length': String(bytes.length), ETag: '"same-content"' },
   });
 
+test('retired keys preserve the saved rollback floor but cannot authorize fresh catalogs or downloads', async (t) => {
+  const f = await fixture(t);
+  const folder = path.join(f.root, 'rotation');
+  const before = envelope(payload(f.bytes, 4));
+  await new PackCatalogStore(folder, verifier(), () => now).accept(before);
+  const replacement = generateKeyPairSync('ed25519');
+  const trust = new CatalogVerifier(
+    {
+      'test-publisher': publicPem,
+      replacement: replacement.publicKey.export({ type: 'spki', format: 'pem' }).toString(),
+    },
+    ['packs.test'],
+    1,
+    ['test-publisher'],
+  );
+  const store = new PackCatalogStore(folder, trust, () => now);
+  assert.throws(() => trust.verify(before, now), /retired/);
+  const historical = await store.load(true);
+  assert.equal(historical?.sequence, 4);
+  assert.throws(() => requireVerifiedPack(historical!.packs[0]), /verified catalog/);
+  const next = (sequence: number) => {
+    const raw = Buffer.from(JSON.stringify(payload(f.bytes, sequence)));
+    return Buffer.from(
+      JSON.stringify({
+        keyId: 'replacement',
+        payload: raw.toString('base64'),
+        signature: sign(
+          null,
+          Buffer.concat([Buffer.from(CATALOG_SIGNATURE_CONTEXT), raw]),
+          replacement.privateKey,
+        ).toString('base64'),
+      }),
+    );
+  };
+  await assert.rejects(store.accept(next(3)), /older/);
+  await store.accept(next(5));
+  requireVerifiedPack((await store.load())!.packs[0], now);
+  await assert.rejects(store.accept(envelope(payload(f.bytes, 6))), /retired/);
+  assert.equal((await store.load())?.sequence, 5);
+});
+
 test('signed catalogs require the pinned Ed25519 publisher and freeze each download capability', () => {
   const body = payload(Buffer.from('example')),
     signed = envelope(body),

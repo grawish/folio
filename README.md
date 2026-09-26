@@ -12,7 +12,7 @@ The [source preview release](https://github.com/grawish/folio/releases/tag/sourc
 
 ## Development preview
 
-The source is available now. Folio is under active development; a signed, notarized installer and automatic updates are not available yet. The current source passes 192 unit/protocol tests. The hosted guided-recovery candidate passed all 13 native workflow suites, including compiler help, local fonts and support export; see the [release audit](docs/RELEASE_GAP_AUDIT.md). These results do not establish compatibility with every macOS version.
+The source is available now. Folio is under active development; a signed, notarized installer and automatic updates are not available yet. The current source passes 198 unit/protocol tests. The hosted guided-recovery candidate passed all 13 native workflow suites, including compiler help, local fonts and support export; see the [release audit](docs/RELEASE_GAP_AUDIT.md). These results do not establish compatibility with every macOS version.
 
 Windows, Linux and Intel Macs are outside this release's scope. Read the [remaining release requirements](docs/RELEASE_GAP_AUDIT.md) before relying on the preview for important documents.
 

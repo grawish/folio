@@ -145,8 +145,8 @@ const zip = (files: Map<string, Buffer>) =>
 
 export class ResourcePackVerifier {
   private trust: CatalogVerifier;
-  constructor(keys: Readonly<Record<string, string>>) {
-    this.trust = new CatalogVerifier(keys, []);
+  constructor(keys: Readonly<Record<string, string>>, retiredKeys: readonly string[] = []) {
+    this.trust = new CatalogVerifier(keys, [], 1, retiredKeys);
   }
   read(input: Uint8Array, expected?: CatalogPack): ResourcePack {
     if (input.length > MAX_PACK_BYTES) throw new Error('The resource pack exceeds 128 MiB.');

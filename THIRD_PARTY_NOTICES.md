@@ -32,6 +32,14 @@ runtime.
 The six resume templates are original sample content for this project. All names, organizations, achievements, and
 contact details in them are illustrative.
 
+The optional table pack is tracked separately in `resources/packs/multirow-v1/source.lock.json`.
+It adds unchanged Multirow 2.9 package files (LPPL), Computer Modern font metrics (Knuth terms),
+AMS Type 1 fonts (OFL), and the matching LaTeX `size12.clo` (LPPL). The one vendored size file
+has its unmodified license and source provenance in `resources/packs/multirow-v1/vendor/`.
+The pack release carries the complete locked upstream source/material archives and notices.
+See [pack publication and key management](docs/PACK_PUBLISHING.md). This scoped pack inventory
+does not replace the complete application-binary audit below.
+
 Before distributing a compiler-bundled application binary, complete a per-component redistribution audit, ship all required license texts and
 source-related materials, and generate an SBOM. This development notice is an inventory and does not replace those
 release requirements.

@@ -33,6 +33,7 @@ export type PackTrust = {
   hosts: string[];
   catalogUrl?: string;
   minimumSequence: number;
+  retiredKeys?: string[];
 };
 type Dependencies = {
   runtime: Pick<RuntimeManager, 'status' | 'installPack'>;
@@ -61,11 +62,11 @@ export class PackService {
     private trust: PackTrust,
     private deps: Dependencies,
   ) {
-    this.verifier = new ResourcePackVerifier(trust.keys);
+    this.verifier = new ResourcePackVerifier(trust.keys, trust.retiredKeys);
     this.archives = new ResourcePackStore(path.join(root, 'archives'), this.verifier);
     this.catalogStore = new PackCatalogStore(
       path.join(root, 'catalog'),
-      new CatalogVerifier(trust.keys, trust.hosts, trust.minimumSequence),
+      new CatalogVerifier(trust.keys, trust.hosts, trust.minimumSequence, trust.retiredKeys),
     );
     this.downloads = new PackDownloads(path.join(root, 'downloads'), trust.hosts, {
       fetch: deps.fetch,
@@ -73,6 +74,9 @@ export class PackService {
   }
   get active() {
     return !!this.operation;
+  }
+  private get configured() {
+    return Object.keys(this.trust.keys).some((id) => !this.trust.retiredKeys?.includes(id));
   }
   requireIdle() {
     if (this.operation) throw new Error('Finish or cancel the resource pack operation first.');
@@ -164,8 +168,8 @@ export class PackService {
     }
     this.choices = choices;
     return {
-      configured: !!Object.keys(this.trust.keys).length,
-      catalogAvailable: !!this.trust.catalogUrl && !!Object.keys(this.trust.keys).length,
+      configured: this.configured,
+      catalogAvailable: !!this.trust.catalogUrl && this.configured,
       catalogDate: this.catalog?.issuedAt,
       catalogError: this.catalogError || undefined,
       choices: [...choices.values()],
@@ -178,7 +182,7 @@ export class PackService {
 
   refresh(id: string) {
     return this.run(id, async (signal) => {
-      if (!this.trust.catalogUrl || !Object.keys(this.trust.keys).length)
+      if (!this.trust.catalogUrl || !this.configured)
         throw new Error('The pack publisher has not configured a catalog for this build yet.');
       this.deps.progress({ id, phase: 'catalog' });
       const requestSignal = AbortSignal.any([signal, AbortSignal.timeout(30_000)]);

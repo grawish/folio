@@ -1,0 +1,8 @@
+{
+  "keys": {
+    "folio-packs-2026-09": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEA9jkiGWa4DLQ8ZyQNqQ0exx65kxjDabbaIoO0ppsuroQ=\n-----END PUBLIC KEY-----\n"
+  },
+  "hosts": ["raw.githubusercontent.com", "github.com", "release-assets.githubusercontent.com"],
+  "catalogUrl": "https://raw.githubusercontent.com/grawish/folio/main/resources/packs/catalog.json",
+  "minimumSequence": 1
+}

@@ -27,6 +27,22 @@ async function fixture(t: TestContext) {
   return packFixture(root);
 }
 type Fixture = Awaited<ReturnType<typeof fixture>>;
+
+test('retired publisher keys cannot import or repair retained archives', async (t) => {
+  const f = await fixture(t);
+  const store = new ResourcePackStore(
+    path.join(f.root, 'retired'),
+    new ResourcePackVerifier({ fixture: f.pem }),
+  );
+  await store.retain(f.built.archive);
+  const retired = new ResourcePackVerifier({ fixture: f.pem }, ['fixture']);
+  assert.throws(() => retired.read(f.built.archive), /retired/);
+  const reopened = new ResourcePackStore(store.root, retired);
+  await assert.rejects(reopened.get(f.pack.target), /retired/);
+  const list = await reopened.list();
+  assert.equal(list.packs.length, 0);
+  assert.equal(list.warnings.length, 1);
+});
 function envelope(f: Fixture, value: unknown, context = PACK_SIGNATURE_CONTEXT) {
   const payload = Buffer.from(JSON.stringify(value));
   return Buffer.from(
