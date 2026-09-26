@@ -56,6 +56,24 @@ Output stays in ignored `artifacts/license-materials/compiler-rust-graph/`: the 
 
 This narrows the license review to the actual release build and separates the executable's build dependencies from other workspace targets. It does **not** prove which functions survive linking, inventory Rust standard-library code, or complete workspace/native/Biber/TeX/font obligations and the final app SBOM. Host tools and procedural macros stay in the build closure; they are not mislabeled as linked runtime libraries. Original full source archives remain available in the separate inventories. No installer or published release asset is changed by this developer audit.
 
+## Collect Rust standard-library materials
+
+Tectonic's Cargo lockfile does not list the code supplied by Rust itself. `python3 scripts/collect-rust-standard-library.py` collects the official Rust 1.97.1 source component and its prebuilt Apple silicon standard-library component. Use `--offline` to require the existing cache. The collector checks the official release manifest, pinned archive sizes/digests, embedded version/commit files and the previously verified Tectonic build/toolchain records. The actual compiler binary also contains the matching `/rustc/8bab26f4f68e0e26f0bb7960be334d5b520ea452/` source identifier.
+
+The two original archives total 34,947,020 bytes. Collection preserves 79 notice files, including Rust's root notices, the compiler-builtins and libm license texts, the included LLVM libunwind notice and vendored crate notices. It also retains source manifests, lockfiles and checksum manifests: 258 selected material files in total. All 1,161 declared files in the 30 vendored source packages match their embedded checksums, and their package checksums agree with the standard-library lockfile.
+
+The prebuilt component contains 27 `.rlib` archives. Each has a matching locked source package and retained source manifest; its bytes and SHA-256 are recorded. Twelve are registry packages, and each has collected notice text. The wider source archive also contains other targets and tests: three source-only packages (`fortanix-sgx-abi`, `vex-sdk`, `wasip1`) lack separate notice files and are not among these 27 prebuilt libraries. This collection does not silently approve them for another target.
+
+```sh
+python3 scripts/collect-rust-standard-library.py
+python3 scripts/collect-rust-standard-library.py --offline
+python3 tests/rust-standard-library.py
+```
+
+Inputs are pinned in `resources/rust-standard-library.lock.json` and cached in `.cache/compiler-audit/toolchain-archives/`. Output is ignored `artifacts/license-materials/rust-standard-library/`, including both complete original archives, the official manifest, unmodified selected materials and an inventory. The tool reads bounded archive entries in memory; it never extracts archive paths or executes upstream code. Six offline controls check source identity, notices, vendored checksums, binary-to-source mapping, unsafe archives and unreviewed downloads. See [verification](releases/rust-standard-library-verification.json).
+
+This supplies the standard-library source and notice materials missing from the Tectonic crate inventory. The 27 prebuilt libraries are a toolchain inventory, not a claim that all of them are linked into Tectonic. They include compiler/test support. Final linked-component mapping and the wider native/workspace, Biber/Perl, TeX/font and exact-app SBOM review remain required. Generated files are not automatically added to existing releases or installers.
+
 ## Collect native build-port sources and notices
 
 Run `python3 scripts/collect-native-license-materials.py` after retaining the [verified vcpkg build inputs](COMPILER_PROVENANCE.md#reproduce-the-check). The Python 3.11+ collector checks `resources/native-license-sources.lock.json` against the compiler-build evidence lock and original vcpkg archive. Every selected port must match its installed version/features, recipe and manifest. Its source archive must match the recipe’s SHA-512 plus the reviewed byte count and SHA-256. Downloads use approved HTTPS hosts and bounded redirects, sizes and time; cached corruption fails instead of fetching a replacement.

@@ -1,0 +1,337 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-26T20:10:28.729870+00:00",
+  "sourceBase": "59d28bdeb0637319b41d4709ec141b230284f79d",
+  "scope": "Original Rust standard-library source distribution and prebuilt Apple silicon component used by the Tectonic build toolchain; a superset of code linked into Tectonic.",
+  "releaseAuditComplete": false,
+  "inputs": [
+    {
+      "path": "resources/rust-standard-library.lock.json",
+      "bytes": 1256,
+      "sha256": "bc0057579856a8a2197061d972c15314e8ef411f8d2b05efd5f245f32d79cee5"
+    },
+    {
+      "path": "resources/compiler-build-provenance.lock.json",
+      "bytes": 3858,
+      "sha256": "e5993d9995414dd85d65f472509cb73acd8742d73fb473c71a9d21fd11e7ebe7"
+    },
+    {
+      "path": "resources/compiler-rust-graph.lock.json",
+      "bytes": 2454,
+      "sha256": "ba6ff0428d339f181ec332d7964fc4ccc40d511d923bb747074348e3a6304957"
+    },
+    {
+      "path": "scripts/collect-rust-standard-library.py",
+      "bytes": 12024,
+      "sha256": "5df68ce08e69049eb2dcec695b80a814ea93c4326904f3c22a512c5d6779624c"
+    },
+    {
+      "path": "tests/rust-standard-library.py",
+      "bytes": 5789,
+      "sha256": "236584d29964a852cc85bfae5150ca8efbee58da22500d3d146340da7108e3a4"
+    }
+  ],
+  "sourceArchives": [
+    {
+      "id": "rust-src",
+      "url": "https://static.rust-lang.org/dist/2026-07-16/rust-src-1.97.1.tar.xz",
+      "bytes": 5660384,
+      "sha256": "e9a1e616d04c6845895c827a178b9227f7c7199f3f4a80af81ab3aff7b80156b"
+    },
+    {
+      "id": "rust-std",
+      "url": "https://static.rust-lang.org/dist/2026-07-16/rust-std-1.97.1-aarch64-apple-darwin.tar.xz",
+      "bytes": 29286636,
+      "sha256": "a4895f5c6995e83cab8687e46b14324592398049def71ce75ca308c981cf200d"
+    }
+  ],
+  "sourceCommit": "8bab26f4f68e0e26f0bb7960be334d5b520ea452",
+  "summary": {
+    "archives": 2,
+    "archiveBytes": 34947020,
+    "noticeFiles": 79,
+    "vendorPackages": 30,
+    "verifiedVendorFiles": 1161,
+    "prebuiltLibraries": 27,
+    "prebuiltRegistryPackages": 12,
+    "retainedMaterialFiles": 258
+  },
+  "prebuiltLibraries": [
+    {
+      "name": "addr2line",
+      "version": "0.25.1",
+      "registry": true,
+      "sha256": "6ee7fc0c007a5451b55e3a581d5e09491d281ff166b1c4a5e1f7debf67b61e5b"
+    },
+    {
+      "name": "adler2",
+      "version": "2.0.1",
+      "registry": true,
+      "sha256": "5415f4b09b4389e267814536491740568a9539603117ff2f52f122b57b50f473"
+    },
+    {
+      "name": "alloc",
+      "version": "0.0.0",
+      "registry": false,
+      "sha256": "963cee6d507fb27b513b4f0b4bd6346a59df297d668fa1437af036d5bfe09bea"
+    },
+    {
+      "name": "cfg-if",
+      "version": "1.0.4",
+      "registry": true,
+      "sha256": "5447b700fa06f0f7a3986bc6c9445b5ffa145e96a397960b7cd5af4e4c179b02"
+    },
+    {
+      "name": "compiler_builtins",
+      "version": "0.1.160",
+      "registry": false,
+      "sha256": "c4f34f1c81e85ba0bdb9277edec53f6d7b7f296e6ca638fafa5e75e572647c31"
+    },
+    {
+      "name": "core",
+      "version": "0.0.0",
+      "registry": false,
+      "sha256": "cafd6a4392187f286668b6390052d284b00431484ae761d3e1a47105548d076e"
+    },
+    {
+      "name": "getopts",
+      "version": "0.2.24",
+      "registry": true,
+      "sha256": "fb0dfd0659e0ed181350a54aad52161589ff13ae0c9fb2dbaca0fff5a18310d8"
+    },
+    {
+      "name": "gimli",
+      "version": "0.32.3",
+      "registry": true,
+      "sha256": "c673e5723284b9d28c08793a04f8d5da1191a7a999fdabfc1a8354d90d186c4f"
+    },
+    {
+      "name": "hashbrown",
+      "version": "0.17.1",
+      "registry": true,
+      "sha256": "361cb47ae070a1955fc8e9ad17986e15df582a529a650004c47a1445f61b0885"
+    },
+    {
+      "name": "libc",
+      "version": "0.2.185",
+      "registry": true,
+      "sha256": "8f20dbb0f56bf92469f985f987524520e0338419df5bd29a585dffc640677c10"
+    },
+    {
+      "name": "memchr",
+      "version": "2.7.6",
+      "registry": true,
+      "sha256": "204964dbfbb6d8642027d197e9f4e11738b2daf90ddd4c50e794356ceb3a8baa"
+    },
+    {
+      "name": "miniz_oxide",
+      "version": "0.8.9",
+      "registry": true,
+      "sha256": "27819ef8e38f30d8c4ed28e400b5f35fc9e79ea223d80ef23b1eb158d55b6a30"
+    },
+    {
+      "name": "object",
+      "version": "0.37.3",
+      "registry": true,
+      "sha256": "34df276048719802b737113329fd66291757a94011a33a87e09711b3d1f84697"
+    },
+    {
+      "name": "panic_abort",
+      "version": "0.0.0",
+      "registry": false,
+      "sha256": "fc73dc4ac7fc76c6bae335b2faf0d0709606f24cda7533d4a81197e05840e4d6"
+    },
+    {
+      "name": "panic_unwind",
+      "version": "0.0.0",
+      "registry": false,
+      "sha256": "6ec75d27bb81056e88b804ac93904074dc9f244985aef71ebcb4161b0323b863"
+    },
+    {
+      "name": "proc_macro",
+      "version": "0.0.0",
+      "registry": false,
+      "sha256": "c82453cd7578eb8c793e14ffee04b1c4a8c769fb6ee662c241f447a89c128f04"
+    },
+    {
+      "name": "profiler_builtins",
+      "version": "0.0.0",
+      "registry": false,
+      "sha256": "2b0227365be1299d5a0baf25bb5cfba7fb3f0001e4eacb24e457ab4ceebe25bd"
+    },
+    {
+      "name": "rustc-demangle",
+      "version": "0.1.27",
+      "registry": true,
+      "sha256": "3b9550adbf6d899e20235ab6c837d513b3b3c676aa07c906e41ad0216178556f"
+    },
+    {
+      "name": "rustc-literal-escaper",
+      "version": "0.0.7",
+      "registry": true,
+      "sha256": "c37a5c5e0e0d3e536ece8a6a1c5f472390ab81b35e886401f37907eb4bd4d020"
+    },
+    {
+      "name": "rustc-std-workspace-alloc",
+      "version": "1.99.0",
+      "registry": false,
+      "sha256": "877618b54a7a562057133d774268685c0d9d78f0d2e7d6b273c989042bd9f256"
+    },
+    {
+      "name": "rustc-std-workspace-core",
+      "version": "1.99.0",
+      "registry": false,
+      "sha256": "5172ec6886b155485bacab91ee63a70f3a3293282c62a14b4ec3f9b446fb1d98"
+    },
+    {
+      "name": "rustc-std-workspace-std",
+      "version": "1.99.0",
+      "registry": false,
+      "sha256": "275e8fbb2eb4738e91c073bac872ef7333ab329264d88dac942139963874353e"
+    },
+    {
+      "name": "std",
+      "version": "0.0.0",
+      "registry": false,
+      "sha256": "72a7109a61061be9678f8cd64abf4cde56f9a5959347148c1f42af6e5c82375f"
+    },
+    {
+      "name": "std_detect",
+      "version": "0.1.5",
+      "registry": false,
+      "sha256": "c0a3e71129338e41ca228990596abec784624ea350ceb70fb0c2196c6509e81b"
+    },
+    {
+      "name": "sysroot",
+      "version": "0.0.0",
+      "registry": false,
+      "sha256": "e7285d1977f647918dd3b115459c0f56c40c3aabf06d7cb95759f7012b905b10"
+    },
+    {
+      "name": "test",
+      "version": "0.0.0",
+      "registry": false,
+      "sha256": "e1d4f72ec0f1de5bd7718e3f033bf5837f825d515149bceb3f1db59d3bf50a8e"
+    },
+    {
+      "name": "unwind",
+      "version": "0.0.0",
+      "registry": false,
+      "sha256": "e90bc121438db0a0d00dc2cdf122b7918673b75cd8ba128fd84bdd103040cbd6"
+    }
+  ],
+  "noticeGapsOutsidePrebuiltComponent": [
+    {
+      "name": "fortanix-sgx-abi",
+      "version": "0.6.1"
+    },
+    {
+      "name": "vex-sdk",
+      "version": "0.27.1"
+    },
+    {
+      "name": "wasip1",
+      "version": "1.0.0"
+    }
+  ],
+  "checks": {
+    "offlineControls": 6,
+    "offlineReplayAllOutputFilesIdentical": 262,
+    "controls": {
+      "path": "test-results/rust-standard-library-controls-final.log",
+      "bytes": 104,
+      "sha256": "62cfbeb2911bb226088bfb0918eb4b05008ea70b20bce854ee2ca8a564bd37a5"
+    },
+    "replay": {
+      "path": "test-results/rust-standard-library-replay.log",
+      "bytes": 185,
+      "sha256": "a89a8f2844ba48e8990cfeba96aff7b53e62470d2db5787a160dccfc21a81ce2"
+    },
+    "inventory": {
+      "path": "artifacts/license-materials/rust-standard-library/inventory.json",
+      "bytes": 105939,
+      "sha256": "f549ad4d4ba2062e82dd357c215dd8ee3577ef95060810f7fe3987d349b242ab"
+    }
+  },
+  "compilerObservations": {
+    "binary": {
+      "path": "resources/runtime/mac-arm64/tectonic",
+      "bytes": 53998928,
+      "sha256": "b52b5a730e2b0b33087304f7720f649603953f270a6b1c88bb031e1ae01f7f9c"
+    },
+    "embeddedRustSourceCommit": [
+      "8bab26f4f68e0e26f0bb7960be334d5b520ea452"
+    ],
+    "commands": [
+      "nm -U resources/runtime/mac-arm64/tectonic",
+      "otool -L resources/runtime/mac-arm64/tectonic"
+    ],
+    "definedCodeSamples": [
+      {
+        "family": "brotli",
+        "symbol": "_BrotliDecoderDecompress",
+        "address": "0000000100a1e7c4",
+        "nmType": "T"
+      },
+      {
+        "family": "bzip2",
+        "symbol": "_BZ2_bzDecompress",
+        "address": "0000000100a1d95c",
+        "nmType": "T"
+      },
+      {
+        "family": "freetype",
+        "symbol": "_FT_Init_FreeType",
+        "address": "000000010099c0ec",
+        "nmType": "T"
+      },
+      {
+        "family": "graphite2",
+        "symbol": "_gr_make_seg",
+        "address": "0000000100a27d24",
+        "nmType": "t"
+      },
+      {
+        "family": "harfbuzz",
+        "symbol": "_hb_buffer_create",
+        "address": "0000000100a4b168",
+        "nmType": "T"
+      },
+      {
+        "family": "icu",
+        "symbol": "_u_strToUTF8_74",
+        "address": "0000000100980390",
+        "nmType": "T"
+      },
+      {
+        "family": "libpng",
+        "symbol": "_png_create_read_struct",
+        "address": "0000000100a0af70",
+        "nmType": "T"
+      },
+      {
+        "family": "zlib",
+        "symbol": "_inflate",
+        "address": "0000000100a01368",
+        "nmType": "T"
+      }
+    ],
+    "evidence": [
+      {
+        "path": "test-results/tectonic-all-defined-symbols.txt",
+        "bytes": 4973768,
+        "sha256": "9294b4a25c60c046075aa2327703bada41e6ba882ac78f6ee60ae4cbfed2bfb9"
+      },
+      {
+        "path": "test-results/tectonic-dynamic-libraries.txt",
+        "bytes": 1332,
+        "sha256": "46363467e31d3bfe49e6c952c56c8e19c4de1ba10fd8ec33e253cf567baf8efe"
+      }
+    ],
+    "limits": "Positive symbols show code families present. They do not establish library versions, exclude other components or choose between matching static library providers. The dynamic list contains system dependencies, not an inventory of static linkage."
+  },
+  "remaining": [
+    "These prebuilt libraries include test/compiler support that may not be linked into Tectonic; complete final binary component mapping.",
+    "Complete native/workspace, Biber/Perl and TeX/font review and final app SBOM/notices."
+  ]
+}
