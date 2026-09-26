@@ -3,6 +3,7 @@ import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { strFromU8, strToU8, zipSync } from 'fflate';
 import { readSafeZip } from './safe-zip';
+import { historyArchiver } from './history-archive';
 import {
   emptyWorkspace,
   type PdfAnnotation,
@@ -215,6 +216,7 @@ export function copyWorkspaceArchive(archive: Uint8Array, projectId: string): Ui
 
 export class WorkspaceStore {
   private queues = new Map<string, Promise<unknown>>();
+  private archives = new Set<Promise<Uint8Array>>();
   constructor(readonly dataRoot: string) {}
   private root(id: string) {
     return path.join(this.dataRoot, 'workspaces', safeId(id));
@@ -225,7 +227,7 @@ export class WorkspaceStore {
     return next;
   }
   async flush() {
-    await Promise.all([...this.queues.values()]);
+    await Promise.all([...this.queues.values(), ...this.archives]);
   }
   private async read(id: string): Promise<WorkspaceState> {
     try {
@@ -342,7 +344,14 @@ export class WorkspaceStore {
     state.projectId = safeId(to);
     await atomicWrite(path.join(this.root(to), 'state.json'), JSON.stringify(state));
   }
-  async archive(projectId: string, exportId = projectId): Promise<Uint8Array> {
+  archive(projectId: string, exportId = projectId): Promise<Uint8Array> {
+    const operation = historyArchiver.run(() => this.archiveEntries(projectId, exportId));
+    this.archives.add(operation);
+    const done = () => this.archives.delete(operation);
+    void operation.then(done, done);
+    return operation;
+  }
+  private async archiveEntries(projectId: string, exportId: string) {
     const state = await this.load(projectId);
     if (state.versions.length > 1000)
       throw new Error(
@@ -372,12 +381,7 @@ export class WorkspaceStore {
         entries[`versions/${v.id}/${name}`] = data;
       }
     }
-    const archive = zipSync(entries);
-    if (archive.byteLength > 100 * 1024 * 1024)
-      throw new Error(
-        'Compressed history exceeds the 100 MB archive limit. Your project files have not been changed.',
-      );
-    return archive;
+    return entries;
   }
   async exportTo(projectId: string, directory: string) {
     await atomicWrite(path.join(directory, 'resume.folio'), await this.archive(projectId));

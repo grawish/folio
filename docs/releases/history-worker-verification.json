@@ -1,0 +1,379 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-26T22:09:16.970458+00:00",
+  "baseCommit": "39c5973fd4de29b793a2404003a0e604cce7b873",
+  "scope": "Local Apple silicon development change atop baseCommit, identified by source/output hashes. Unsigned .app only; no new DMG or release asset. Four affected native suites passed on this exact package. Fresh full hosted qualification is still required; the earlier 2e720b7 fourteen-suite milestone does not qualify this changed app.",
+  "sourceHashes": {
+    "electron/core/history-archive-limits.json": "27df2707d84ae5bd848bac5bf328cccea1ce8743c69f555fa22fcce677c7e309",
+    "electron/core/history-archive.ts": "57036e1a470f3c902f1f3770926555429a010a698a046f00a84d7b76884b1285",
+    "electron/core/history-zip-worker.cjs": "bde36e4a81d37a287bef0f1a4ffc656be04e227df692a6c6ce0049f07d538471",
+    "electron/core/workspace.ts": "7016a88383c559e2ea653a99ccbec81a9a2edd2f5e122fcc9ebe831af20cfd23",
+    "scripts/build-electron.mjs": "0adc677c1e791c539cf427b40da30ba3e68ee7545e6b13bf3e4d034a23ec2929",
+    "tests/fixtures/history-worker.cjs": "75ec16527e2d45963d56ec93c428332f57378a863712112780aabaa8302f072f",
+    "tests/history-archive.test.ts": "0c53506242e66e4b58500969537f5006576e36e280e5675fae4425aaa554a1d5",
+    "tests/save-transactions.test.ts": "ecc58d4227f6c7ae5dac259ff02bcaaa908453104b95f7331262390ea0eab67b",
+    "package.json": "aedfac84294156328209986fefc6bf2bb7d1aa36304ebc4f77078f5fef9a780f",
+    "package-lock.json": "9dc96265d268f7ac0ca1112a58c125d220aa047a2abdb131d6bd4a0a985c9161"
+  },
+  "unitTests": {
+    "passed": 244,
+    "failed": 0,
+    "newHistoryWorkerControls": 12,
+    "newSaveWorkerCrashControls": 1,
+    "log": {
+      "path": "test-results/history-worker-all-unit-final.log",
+      "bytes": 25369,
+      "sha256": "95524f1d6df9815139b18af915da0ca7270bf060172705f5719031ad1307314e"
+    },
+    "focusedControls": 28,
+    "focusedLog": {
+      "path": "test-results/history-worker-final-bound-controls.log",
+      "bytes": 2816,
+      "sha256": "0911f29004c9c0faf676195e646bf8aa86e95b33233fd8a0fb4d0ee67131f2c4"
+    }
+  },
+  "build": {
+    "typecheckAndBuildPassed": true,
+    "formatPassed": true,
+    "buildLog": {
+      "path": "test-results/history-worker-build-final.log",
+      "bytes": 1719,
+      "sha256": "13b3dd7621c091ca50ec1772da0f99ae1b68652406e104e6588675e863cc1bb9"
+    },
+    "formatLog": {
+      "path": "test-results/history-worker-format-final.log",
+      "bytes": 183,
+      "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+    },
+    "packageLog": {
+      "path": "test-results/history-worker-package-final-2.log",
+      "bytes": 1622,
+      "sha256": "403171a348d98c2677c5376e2813fc17f5152c5fcc5706396b5c08a7e6c6c6da"
+    }
+  },
+  "package": {
+    "appAsar": {
+      "path": "release/history-worker/mac-arm64/Folio.app/Contents/Resources/app.asar",
+      "bytes": 5634666,
+      "sha256": "d15091a0fa95c5259a621b569262ce846ff4087450a63674fe44c8ffe1d09ca3"
+    },
+    "comparedOutputFiles": 39,
+    "allOutputsEqualLocalBuild": true,
+    "outputHashes": {
+      "dist/assets/index-9SdVBE9n.js": "8c185780d748e0fc41f3a3b5bdc917efe5ab26578a9458c7bd807a378b1be1fd",
+      "dist/assets/index-CG0W0Zm7.css": "0b039e95a06b2095de5c7b8396952feba263f6a618fbfde372d415dc23d1b906",
+      "dist/assets/jetbrains-mono-italic-cyrillic-CY-YXjkl.woff2": "a79035476e5f8408e7f2b2599dfd50b7262862ecb853e028ba7b4a00bed16e73",
+      "dist/assets/jetbrains-mono-italic-greek-CoTSRNcy.woff2": "44ca7e27fef33e684d50e1009d0b886b83d4783e383223e7b13e173a623db0d3",
+      "dist/assets/jetbrains-mono-italic-latin-BW896jpM.woff2": "00ba27973ba2965d3e7e03ee0f2c66491956cda2ecf8cc6066c969696577f47b",
+      "dist/assets/jetbrains-mono-italic-latin-ext-C5V3_1R8.woff2": "31434d4924e83d1c6bf10136077f96d0c541226301ba98a583b14bded0576a75",
+      "dist/assets/jetbrains-mono-italic-vietnamese-DP5VCyMl.woff2": "9c54e21b500492314341e2041e23cf141d43a0c102bca07a7fe281f487eec5f6",
+      "dist/assets/jetbrains-mono-normal-cyrillic-D0W76x1T.woff2": "4188276a58108d04eb0c6f5b8c9e4b5ac2d9e31e81b2b4fa7da263b92f1b35c3",
+      "dist/assets/jetbrains-mono-normal-greek-FADJ2lFV.woff2": "0164d0c055dced93435b1d6c2986db2fb7d068ce21950c85b776695f56238b8a",
+      "dist/assets/jetbrains-mono-normal-latin-RruCX7RW.woff2": "d3dcdccdaba31643defe2317942155d4af3ee03951d058adbe8bc02b13e61b0a",
+      "dist/assets/jetbrains-mono-normal-latin-ext-e2G1hK0J.woff2": "d5f407e28185790518c49ec8738fa89916ddc99f793010d249165d0e2c2452cc",
+      "dist/assets/manrope-normal-cyrillic-DJ9PYDpy.woff2": "95a493061fe0a8d0d027c2892747134ba747141112d3be4d5022e70ab7d3a1a6",
+      "dist/assets/manrope-normal-greek-vbHvg7sP.woff2": "40af11327fe5308166c6cb5787808b042db6da889abf602f0a4876c49675d87e",
+      "dist/assets/manrope-normal-latin-C46ZzDBF.woff2": "e310b55a7fd9677f5e3555e6c6c4d064fa1f1d24393f0ddbe217cea12a8c432f",
+      "dist/assets/manrope-normal-latin-ext-CDracvZH.woff2": "ce093b341d9c10658ee1eaa85c5f8042ff3307bc6ccfc5f405616eb437f0009e",
+      "dist/assets/manrope-normal-vietnamese-C9-d800b.woff2": "bab757f8a0a1bc04055ee98cb5777f3254aab11f6d222366e1f40a36f390506a",
+      "dist/assets/pdf.worker.min-Dswkl-cV.mjs": "8ab0e5e30031b4a06ecfddd5ae9562f0227f830ee7ec9ed1a968b134243d2386",
+      "dist/index.html": "0b46f25344196dd52a7f86485f8984b4d22bfef3948d877e19bac4ecdc25a422",
+      "dist/licenses/JetBrains-Mono-OFL.txt": "b2fe5e8987594e9ffd1d2ca52a2f5d73eb8335243893c5d6254b5ad69269591d",
+      "dist/licenses/Manrope-OFL.txt": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b",
+      "dist/templates/academic-a4.png": "e149b33dc14f9bb99469b5dc9b39cf0f698de720894af8f9ef2bd74d31f1115d",
+      "dist/templates/academic-letter.png": "1fb69ee0e825acb916781022f7bb5e65576f7911b7fb08d34009aa21b60964e0",
+      "dist/templates/classic-a4.png": "38f95f3b25a51669105de7efdba08fe5b2633e7f7fde5ee15c3057862551fee3",
+      "dist/templates/classic-letter.png": "5e3ef1114cd3c728118e01c4161722b5c2a3a5e27a058f43f6bb5b825023c8ee",
+      "dist/templates/compact-technical-a4.png": "5878085cef410ee1b1463c0b71de8ebb48fc845899aed90d7b52c16ee577fc51",
+      "dist/templates/compact-technical-letter.png": "9fcc6a929547407948a5a23fe9d481bb197f20e195c7bbae2af125fb75e34a3a",
+      "dist/templates/manifest.json": "db231613ba3b1a69e01ffd5a111422874736d51d9b8f6509de7c71511b4a4a86",
+      "dist/templates/minimal-a4.png": "9bb702aae1e721255a0632010a22a82bcb283a49b16b6ce8bfbe74a99ef48353",
+      "dist/templates/minimal-letter.png": "10bfd6c692eac97a9e25bc2361d0113d43584069a05c3af4fbef64ad78cfb368",
+      "dist/templates/modern-a4.png": "bd6a55401f8642fcf375c18fe952d7ff2185635c7fa4ece24c7be3e157515b41",
+      "dist/templates/modern-letter.png": "99062be87eabf30184d937ea0ceef3768387beb81cd850110ce335819d5474a0",
+      "dist/templates/two-column-a4.png": "b7cca2c36d149da1af024d1095801051817084c536724f2f5c7d68f75e3cc348",
+      "dist/templates/two-column-letter.png": "d23fb748c48033f314d40fac502c42953d9003e478ec2360144e55da68c19802",
+      "dist-electron/history-zip-worker.cjs": "55ff7d812d2eafe2e725dd48f45cbd815ed610bec2168bd449627c76359f7694",
+      "dist-electron/history-zip-worker.cjs.map": "57f93bf7d08246dc3dd4d5adb013da67ed95acb53aca46f127f5e913cc965bee",
+      "dist-electron/main.cjs": "7a525cb3eb9fb6e8709c8e4022679c31b710e7f6b49570dcc19c5fe4ab65aa57",
+      "dist-electron/main.cjs.map": "7d9bd9a49d5fa5656b00c63296e3c13d97e37b49fca3b1fd3f9d3c6b988272ae",
+      "dist-electron/preload.cjs": "3ec2324f6364d098d91bbe8f6dc36b3069050f32e87792f1eab4287929b07ac6",
+      "dist-electron/preload.cjs.map": "f1737013d2c5c836b8a41b22542a113b51dc0e3b62c985e627062223afc28f97"
+    },
+    "runtimeManifest": {
+      "path": "release/history-worker/mac-arm64/Folio.app/Contents/Resources/runtime/manifest.json",
+      "bytes": 490036,
+      "sha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0"
+    },
+    "runtimeManifestMatchesSource": true,
+    "runtimeIdentityChanged": false,
+    "method": "All 39 local build files were independently extracted from app.asar with @electron/asar and compared byte for byte by SHA-256. ASAR and native-script hashes were checked before and after each suite."
+  },
+  "native": {
+    "startedAt": "2026-09-26T22:01:15.036959+00:00",
+    "finishedAt": "2026-09-26T22:05:52.661274+00:00",
+    "passed": true,
+    "suites": [
+      {
+        "suite": "chat",
+        "script": {
+          "path": "scripts/test-chat.mjs",
+          "bytes": 36762,
+          "sha256": "ecc8c229f5792aefd47b860c7ff318c3bd60962972da2f57be4f9e7a454cd095"
+        },
+        "passed": true,
+        "asarUnchanged": true,
+        "log": {
+          "path": "test-results/history-worker-chat-final-native.log",
+          "bytes": 1518,
+          "sha256": "f053ad00fa7e419b483491c062605fca705b8364338f96acab8016a788af530e"
+        },
+        "evidenceDirectory": "test-results/chat-UuJGkF",
+        "checks": [
+          "Chat exposes Auto, connection default and discovered models; connection setup remains in Settings.",
+          "all annotation tools, zoom alignment, selected image crops, every-page review, and checked edits applied to a real PDF.",
+          "Undo and restoring a saved version restore the corresponding source and rebuild the PDF.",
+          "version comparison, old-note navigation and missing-fact questions without source changes.",
+          "cancellation keeps the original; a completed AI draft cannot overwrite newer manual edits.",
+          "outside file changes invalidate an in-flight AI result without replacing editor text.",
+          "the final disk check protects outside edits even without a watcher event.",
+          "damaged history rejects Save before source, metadata or the prior history archive changes.",
+          "Save As forks chat/history independently; source export includes matching history without AI credentials.",
+          "autosave waits during AI work and resumes with retained manual edits after cancellation.",
+          "clean PDF export excludes annotations; closing during a request restores an actionable conversation without changing source.",
+          "a real PDF text edit uses one Fast model call, no input images, and compile-only History status.",
+          "closing during Save As waits for the transaction and recovers the newly saved project identity.",
+          "actionable AI errors, retry draft, persistent chat/notes/history, recovery, compact controls and no renderer errors."
+        ]
+      },
+      {
+        "suite": "workspace",
+        "script": {
+          "path": "scripts/test-workspace.mjs",
+          "bytes": 18025,
+          "sha256": "73d73aadd8a7f42c4d8287bf791b004e7571bf93acb06bf9c1658eb6ca1b7043"
+        },
+        "passed": true,
+        "asarUnchanged": true,
+        "log": {
+          "path": "test-results/history-worker-workspace-final-native.log",
+          "bytes": 691,
+          "sha256": "8c22cd4afb7e7d8f4accefd00a519c5ef992e233be8a6b65bf360548c055bde8"
+        },
+        "evidenceDirectory": "test-results/workspace-wieK3K",
+        "checks": [
+          "autosave defaults off, untitled projects keep recovery without folder prompts.",
+          "drag/keyboard/reset, minimum sizes, usable controls, sidebar toggle and editor undo.",
+          "source and chat autosave, typing during a save remains dirty and saves next.",
+          "external edits pause autosave; background IPC refuses conflicts without an overwrite dialog.",
+          "failed writes roll back and pause; explicit Save resumes autosave.",
+          "choosing another project suspends autosave through the native file dialog.",
+          "close waits for autosave; source, disabled recovery and preferences survive restart. No renderer errors."
+        ],
+        "result": {
+          "path": "test-results/workspace-wieK3K/result.json",
+          "bytes": 36,
+          "sha256": "ffa3b4d8faab382fd294f7bfae419468db4b226f8892f3926caaaa563c9a381f"
+        }
+      },
+      {
+        "suite": "save-recovery",
+        "script": {
+          "path": "scripts/test-save-recovery.mjs",
+          "bytes": 20853,
+          "sha256": "bdf3126f22a6b45b5583a689aa406e2a2ebde1f6db672a182102a44cbc704ee3"
+        },
+        "passed": true,
+        "asarUnchanged": true,
+        "log": {
+          "path": "test-results/history-worker-save-recovery-final-native.log",
+          "bytes": 960,
+          "sha256": "781fd027df4f3b35c3c8a34d2b2c53db114f441fa1d513338e8d7d1ab5cc220c"
+        },
+        "evidenceDirectory": "test-results/save-recovery-oPyNkj",
+        "checks": [
+          "failed startup exposes real before/attempted/current copies; default preserves outside edit; compact controls work in both themes; reload releases abandoned review",
+          "stale review changes no files; refreshed choices preserve newer outside edit and editor/conversation drafts; chosen files reopen and compile",
+          "binary/history choices, source deletion and new asset apply exactly; selected source, asset and conversation round-trip in ZIP export",
+          "normal project menu supports damaged backups; native close waits for Apply; reopening uses chosen project; another project\u2019s unsaved source is retained without overwriting its folder",
+          "reload during Apply waits and opens chosen files/history; completed copies remain accessible after the review is closed",
+          "dismissing a failed partial Apply re-enters recovery; an old editor buffer cannot erase the pending choices"
+        ],
+        "result": {
+          "path": "test-results/save-recovery-oPyNkj/result.json",
+          "bytes": 948,
+          "sha256": "7cff45d418c7a8e7ef8bebaa3a9503d2a30b34a610dad698f873336f549e4412"
+        }
+      },
+      {
+        "suite": "import",
+        "script": {
+          "path": "scripts/test-import.mjs",
+          "bytes": 12888,
+          "sha256": "270b9fc55851f29cbc5c88346e2ba4efd6c0f46892ebfcda4ae649df4ade1233"
+        },
+        "passed": true,
+        "asarUnchanged": true,
+        "log": {
+          "path": "test-results/history-worker-import-final-native.log",
+          "bytes": 720,
+          "sha256": "296bb075a588de3658e43793ef2dbf172e1899a885d8816fc0207c4259358057"
+        },
+        "evidenceDirectory": "test-results/import-z82AHR",
+        "checks": [
+          "a newer project format is rejected visibly; both folders and the current PDF remain unchanged.",
+          "malformed ZIP reports a useful error and leaves the current project unchanged.",
+          "destination cancellation retains the selection; Cancel leaves no extracted files.",
+          "selected entry compiles real relative inputs; assets survive and original files remain unchanged.",
+          "source ZIP round-trip retains draft and immutable PDF history with a fresh identity.",
+          "folder open retains the selected entry and offers main-file choice. No renderer errors.",
+          "busy import stays visible on Escape; closing waits and recovers the imported project."
+        ]
+      }
+    ]
+  },
+  "performance": {
+    "before": {
+      "path": "docs/performance/history-worker-before.json",
+      "bytes": 34304,
+      "sha256": "4f165a69249c54552393c23732868c8037eb7f1eda83769ad9988b373a36b8b2"
+    },
+    "after": {
+      "path": "docs/performance/history-worker-after.json",
+      "bytes": 34587,
+      "sha256": "972a0d63e476034ba434c4e0577b89375574c6d8ceeb213193d21423ebd11a55"
+    },
+    "host": {
+      "platform": "darwin",
+      "arch": "arm64",
+      "osRelease": "27.0.0",
+      "cpu": "Apple M4 Pro",
+      "logicalCpus": 14,
+      "totalMemoryBytes": 51539607552,
+      "node": "v24.21.0"
+    },
+    "fixture": {
+      "name": "classic-a4",
+      "sourceBytes": 2832,
+      "pdfBytes": 23366,
+      "sourceSha256": "1f0b21921a6ca62d39a3424719885c56e5dd6c0d332ad615043671f3e6a4dcd0",
+      "pdfSha256": "ac19f18b89e3ae77da8acbe46ad8f407ac16ad52b23bec4664ff9d8c917b2838",
+      "verificationSha256": "8c60ab3d17c97cdf591ab8ab86a81250c73297ec60362343edefaa4a3fcda3c9",
+      "historyLengths": [
+        1,
+        25,
+        100
+      ],
+      "samples": 3
+    },
+    "allEighteenSaveReopenCasesPassed": true,
+    "sourceHashesMatch": true,
+    "profilingScriptUnchanged": true,
+    "metrics100Versions": {
+      "archive-history": {
+        "beforeMs": [
+          57.07795799999997,
+          47.43670799999995,
+          50.254999999999654
+        ],
+        "afterMs": [
+          27.414666999999895,
+          26.10349999999994,
+          30.88899999999967
+        ],
+        "medianBeforeMs": 50.254999999999654,
+        "medianAfterMs": 27.414666999999895,
+        "medianReductionPercent": 45.44887672868355,
+        "maxTimerLatenessBeforeMs": [
+          37.36404199999993,
+          28.339083999999957,
+          30.89083299999993
+        ],
+        "maxTimerLatenessAfterMs": [
+          1.7139580000000478,
+          2.1695830000001024,
+          2.023457999999664
+        ]
+      },
+      "save-project-with-history": {
+        "beforeMs": [
+          138.95516700000007,
+          139.9129170000001,
+          148.8280420000001
+        ],
+        "afterMs": [
+          114.24512499999992,
+          116.98758399999997,
+          118.36529199999995
+        ],
+        "medianBeforeMs": 139.9129170000001,
+        "medianAfterMs": 116.98758399999997,
+        "medianReductionPercent": 16.385429945685516,
+        "maxTimerLatenessBeforeMs": [
+          30.080375000000004,
+          28.839499999999816,
+          29.31987500000014
+        ],
+        "maxTimerLatenessAfterMs": [
+          1.6835839999999962,
+          2.4059169999998176,
+          1.3872499999997672
+        ]
+      }
+    },
+    "archiveBytesBefore": [
+      2457887,
+      2457864,
+      2457908
+    ],
+    "archiveBytesAfter": [
+      2535275,
+      2535260,
+      2535298
+    ],
+    "peakSampledNodeRssBytesBefore": 197754880,
+    "peakSampledNodeRssBytesAfter": 143949824,
+    "scope": "Real ProjectStore and WorkspaceStore operations with synthetic one-file resumes and new isolated profiles; no renderer, compiler, network or AI requests.",
+    "limits": [
+      "Each version adds a distinct TeX comment and reuses the same previously compiled PDF. These are unverified storage fixtures, not new compiler or AI acceptance.",
+      "OS caches are not purged. Ordered stages reuse files; memory can remain allocated between cases in this Node process.",
+      "Save includes regenerating the history archive. Separate archive and save stages overlap in work and must not be added or subtracted as independent components.",
+      "10 ms timer lateness measures observed Node event-loop stalls, not renderer frame rate. RSS sampling can miss synchronous peaks; values exclude Electron and child processes.",
+      "Small sample sets are descriptive observations, not population p95, worst-case limits or a supported-device memory budget."
+    ],
+    "scheduling": "No local native tests, packaging or other Folio benchmark ran concurrently with these measurements. Normal desktop work continued. OS caches were not purged."
+  },
+  "failureObservations": [
+    {
+      "observation": "The first full source-test attempt aborted in the existing pack-download test process with a Node InternalCallbackScope execution_async_id assertion. Its cause has not been established. The isolated 16 pack-download tests and subsequent complete 244-test suite pass.",
+      "log": {
+        "path": "test-results/history-worker-all-unit.log",
+        "bytes": 26609,
+        "sha256": "f562de14838046ebd65b7fd7240ffe81484882bdcb0a85886532c2a72e05c6c6"
+      },
+      "recheck": {
+        "path": "test-results/history-worker-pack-download-recheck.log",
+        "bytes": 1812,
+        "sha256": "503d9291c087009d37d8a6ce239da55f740011d05fcd59660685bc78af6ec614"
+      }
+    },
+    {
+      "observation": "The first package attempt could not resolve github.com under restricted networking. The final permitted network run completed. This is not an application crash.",
+      "log": {
+        "path": "test-results/history-worker-package.log",
+        "bytes": 3844,
+        "sha256": "be40d2e63fd2c55e8400fe349ee8a880035e738d1ee2a601b6eb1f285682b6f3"
+      }
+    },
+    {
+      "observation": "Exploratory all-deflated and level-1 worker benchmarks reduced timer lateness but did not improve complete save time. Final paired results use stored PDF bytes, compressed JSON and the near-limit fully-deflated fallback; earlier benchmark/package runs are not substituted for the final data."
+    }
+  ],
+  "remaining": [
+    "Full hosted source/compiler/image/fourteen-native-suite and final package qualification of this changed app.",
+    "Large-history and whole-Electron reference-device performance and memory acceptance; three small-fixture samples are not p95.",
+    "OS CPU/memory quotas and bounded history/cache/runtime retention. Worker JS heap bounds do not cover external ArrayBuffers.",
+    "Import inflation, copyWorkspaceArchive and outer source-ZIP compression remain synchronous.",
+    "Developer ID signing/notarization, updater, complete redistribution/SBOM review and broader platform/accessibility/provider acceptance."
+  ]
+}

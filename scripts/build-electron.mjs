@@ -1,8 +1,7 @@
 import { build } from 'esbuild';
 
 export async function buildElectron({ packTestTrust } = {}) {
-  await build({
-    entryPoints: ['electron/main.ts', 'electron/preload.ts'],
+  const common = {
     bundle: true,
     platform: 'node',
     target: 'node22',
@@ -27,6 +26,23 @@ export async function buildElectron({ packTestTrust } = {}) {
           },
         ]
       : [],
+  };
+  await build({
+    ...common,
+    entryPoints: ['electron/main.ts'],
+    // Source ESM and packaged CommonJS resolve the same sibling worker. Keep
+    // this Node-only banner out of the sandboxed preload entry.
+    define: { 'import.meta.url': 'folioImportMetaUrl' },
+    banner: {
+      js: 'const folioImportMetaUrl = require("node:url").pathToFileURL(__filename).href;',
+    },
+  });
+  await build({
+    ...common,
+    entryPoints: {
+      preload: 'electron/preload.ts',
+      'history-zip-worker': 'electron/core/history-zip-worker.cjs',
+    },
   });
 }
 

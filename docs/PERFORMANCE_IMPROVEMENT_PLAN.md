@@ -165,6 +165,26 @@ The 100-version archive stage observes 28.0–30.3 ms maximum timer lateness, an
 
 Peak sampled Node RSS across the run is 184.7 MiB. This includes allocations retained from prior cases, can miss short synchronous peaks, and excludes Electron and compiler children. OS caches were not purged. These observations establish neither a leak nor an application memory budget, and three samples do not establish p95. No optimization or storage-retention change was made for this measurement.
 
+## Background history compression
+
+The development implementation now validates history on the native side, compresses it in one bounded background worker, stores PDF bytes directly in the ZIP and compresses source/conversation JSON. It keeps every source/PDF check and the existing journaled save. Archives over the 100 MiB output bound retry the original full compression before rejection; the timing fixture is below that threshold. The [implementation notes](SAVE_RELIABILITY.md#background-history-compression) describe queue, worker, byte and deadline bounds.
+
+The unchanged storage profiler ran three samples at each of 1, 25 and 100 versions on the same M4 Pro/48 GiB Mac. The [before record](performance/history-worker-before.json) is at `39c5973`; the [after record](performance/history-worker-after.json) retains all changed/new implementation hashes atop that source. Both use the exact same script and Classic A4 source/PDF fixture. No local native workflow, packaging or other Folio benchmark ran concurrently. OS caches were not purged; normal desktop work continued. Every save/reopen preserves exact source/PDF bytes and the complete version count.
+
+| 100-version measurement, three samples per implementation | Before | After |
+| --- | ---: | ---: |
+| Median validation/archive time | 50.25 ms | 27.42 ms (45.4% lower) |
+| Median complete project save, including history | 139.91 ms | 116.99 ms (16.4% lower) |
+| Observed maximum timer lateness during archive, range | 28.34–37.36 ms | 1.71–2.17 ms |
+| Observed maximum timer lateness during save, range | 28.84–30.08 ms | 1.39–2.41 ms |
+| History ZIP bytes, range | 2,457,864–2,457,908 | 2,535,260–2,535,298 (about 3.1% larger) |
+
+The first one-version archive takes 18.22 ms after the change versus 3.81 ms before, including cold worker startup. Later one-version archives take 0.81–0.93 ms versus 1.55–1.61 ms. This worker startup cost remains visible; it is not removed from the results. The initial all-deflated worker experiment reduced stalls but increased overall save time. Storing PDFs directly produced the final tradeoff above; raw exploratory runs remain in local test evidence.
+
+Peak sampled Node RSS was 188.6 MiB before and 137.3 MiB after across each complete run. These are descriptive samples, not proof of lower worst-case memory, a leak fix or a full Electron budget. Node worker buffers and the foreground process share a process-level RSS reading. The fixture is about 2.7 MB of history, far below the 200 MiB input limit. Import inflation, history validation and outer source-ZIP compression still perform synchronous work; these results do not establish responsiveness of every workflow or archive size. Three samples are not a p95 or supported-device acceptance.
+
+The below-10-ms timer-lateness target passes for this fixture, and median save time improves. Broader physical-device/UI, large-history and memory/retention targets remain open. See [the verification record](releases/history-worker-verification.json) for failure controls, package identities and native scope.
+
 ## Prioritized changes
 
 Targets below are acceptance targets for experiments, not achieved results.
@@ -177,7 +197,7 @@ Targets below are acceptance targets for experiments, not achieved results.
 | 2 | Profile the self-test's TeX/Biber subprocess stages and first-execution behavior | Probe varies from 8.7 to 24.9 s | Attribute the variance first; target stable fresh preparation without first-user bibliography timeouts | Keep an actual offline bibliography self-test, immutable runtime files, restricted native execution and bounded timeouts |
 | 3 | Evaluate APFS clone/copy strategies and per-generation directory creation | Hundreds of megabytes and thousands of small files | Reduce I/O/metadata overhead without exceeding memory/disk budgets | Verify the resulting bytes and modes; retain independent versions through app replacement; handle non-APFS destinations explicitly |
 | 3 | Consider packaging the bibliography helper's cache differently | It is 3,979 files and about 236 MiB | Smaller installation work and measurable startup/storage benefit | Preserve Biber compatibility, offline operation, read-only dependencies, complete licenses and exact runtime identity |
-| 3 | Move history compression off the main process and measure larger histories before selecting a retention policy | With 100 small versions, history compression takes 46.8–50.1 ms and observed Node timer lateness reaches 30.3 ms; save rearchives history | Below 10 ms observed main-process timer lateness during a repeat of this fixture, with no material save-time regression | Retain exact version/source/PDF validation, immutable export snapshots, complete history round-trip and journaled save recovery; establish worker memory/cancellation limits |
+| 3 | Background compression passes the small-history timer target; measure larger histories and select a retention policy | With 100 small versions, history compression takes 46.8–50.1 ms and observed Node timer lateness reaches 30.3 ms; save rearchives history | Below 10 ms observed main-process timer lateness during a repeat of this fixture, with no material save-time regression | Retain exact version/source/PDF validation, immutable export snapshots, complete history round-trip and journaled save recovery; establish worker memory/cancellation limits |
 
 Avoid treating the 700 ms source-edit debounce as compiler execution time. Measure user-perceived edit-to-PDF latency separately from the build phases. Removing that debounce may increase unnecessary builds and cancellation work.
 

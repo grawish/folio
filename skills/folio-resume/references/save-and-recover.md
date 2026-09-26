@@ -8,6 +8,8 @@ Click **Save** or press Command + S. The first save asks for a folder. Wait for 
 
 To turn on autosave, open **Settings → General → Autosave project**. Save once to choose a folder. After that, Folio saves source, chat and notes after a two-second pause. Autosave waits during AI work and other saves, and pauses for outside changes or errors.
 
+In development builds, Folio packs your PDF history in the background while saving. Keep waiting for **Saved locally** before treating the folder as saved. If saving reports an error, your earlier files stay available; fix the problem and try Save again. This improvement is not in the older preview-4 download.
+
 [Screenshot: General settings with autosave](https://github.com/grawish/folio/blob/main/docs/images/general-light.png)
 
 Close Folio normally and reopen it to check recovery. If a dialog asks about unsaved changes, choose the action that fits: save, keep the current project open, or discard only when you intend to lose those changes. Do not test forced crashes with your only copy of a real resume.

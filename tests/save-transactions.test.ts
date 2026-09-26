@@ -4,11 +4,13 @@ import { promises as fs } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { spawn } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 import { unzipSync, zipSync, strToU8, strFromU8 } from 'fflate';
 import { ProjectStore } from '../electron/core/project';
 import { SaveTransactions, fileDigest, readTarget } from '../electron/core/save-transactions';
 import { WorkspaceStore } from '../electron/core/workspace';
 import { emptyWorkspace } from '../src/shared/ai';
+import { HistoryArchiver } from '../electron/core/history-archive';
 
 async function fixture(t: { after(fn: () => Promise<void>): void }) {
   const root = await fs.realpath(await fs.mkdtemp(path.join(os.tmpdir(), 'folio-save-')));
@@ -97,6 +99,27 @@ test('history preparation failure changes no source, manifest, history or Save A
   );
   assert.deepEqual(await fs.readdir(copy), []);
   assert.equal(f.store.directory(f.project.id), f.folder);
+});
+
+test('a real history-worker crash preserves the project and a normal save can retry', async (t) => {
+  const f = await fixture(t);
+  const archiver = new HistoryArchiver({
+    workerFile: fileURLToPath(new URL('./fixtures/history-worker.cjs', import.meta.url)),
+  });
+  t.after(() => archiver.close());
+  const names = ['main.tex', 'second.tex', 'resume.project.json', 'resume.folio'];
+  const before = await Promise.all(names.map(f.read));
+  await assert.rejects(
+    f.store.save(edit(f.project), undefined, false, () =>
+      archiver.run(async () => ({ 'state.json': Buffer.from('crash') })),
+    ),
+    /History compression failed/,
+  );
+  assert.deepEqual(await Promise.all(names.map(f.read)), before);
+  assert.equal(f.store.directory(f.project.id), f.folder);
+  const workspace = new WorkspaceStore(f.data);
+  await f.store.save(edit(f.project), undefined, false, (id) => workspace.archive(id));
+  assert.equal(await f.read('main.tex'), 'Original source updated');
 });
 
 test('a write failure rolls back every changed source and keeps the original conflict baseline', async (t) => {

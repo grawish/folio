@@ -21,6 +21,7 @@ AI setup and the active connection live in Settings. The chat composer exposes A
 | Local compiler and isolation | `electron/core/compiler.ts`, `runtime.ts` |
 | Managed compiler copies | `electron/core/runtime-manager.ts`, `compiler-migration.ts` |
 | Signed resource packs and Settings | `electron/core/pack-service.ts`, `pack-catalog.ts`, `pack-download.ts`, `resource-pack.ts`, `src/components/ResourcePacks.tsx` |
+| Background history ZIPs | `electron/core/history-archive.ts`, `history-zip-worker.cjs`, `history-archive-limits.json` |
 | Projects, assets and recovery | `electron/core/project.ts`, `workspace.ts`, `save-transactions.ts` |
 | Guided save recovery | `electron/core/save-recovery.ts`, `save-io.ts`, `project.ts`, `src/components/SaveRecovery.tsx` |
 | Support snapshot and ZIP export | `src/shared/support.ts`, `electron/core/support-bundle.ts`, `src/components/SupportBundle.tsx` |
@@ -57,6 +58,8 @@ Resource-pack operations have a native session lock and cancellation path. Only 
 Startup reads the included compiler identity separately from preparing executable files. Bootstrap restores the actual project and returns a non-ready preparation status; a separate runtime inspection resolves after full verification and offline preparation. Source edits, saves and chat drafts can proceed in the meantime. Compiler-dependent buttons and menu handlers wait for readiness, and native execution still acquires a verified lease. A project switch discards the previous inspection response. Recovery remains protected until the real project has loaded. See [runtime startup](RUNTIME_MANAGEMENT.md#open-saved-work-before-compiler-preparation-finishes).
 
 Local font selection keeps bytes in a native session until the user accepts a real PDF preview. Apply verifies the source and existing assets, then journals source/setup/font additions together. A post-commit History/recovery problem reports a warning without claiming rollback. See [local fonts](LOCAL_FONTS.md).
+
+History export validates immutable source/PDF records before passing bytes to a single background compressor. The queue, archive sizes, deadline and worker lifetime are bounded. Normal save/recovery completion waits for the archive; PDFs are stored verbatim while JSON stays compressed. This developer-source optimization changes no renderer layout or history format. See [background history compression](SAVE_RELIABILITY.md#background-history-compression).
 
 ## Trust boundaries and limits
 

@@ -21,6 +21,20 @@ The source/manifest/history transaction determines save success. Failure to upda
 
 Save As writes a new identity into both the manifest and history archive. Source ZIP exports use the same identity in those two files. History export and import share the limits of 1,000 versions, 200 MB expanded, 100 MB compressed, and 25 MB per entry. Export verifies snapshot hashes before writing an archive. Import rejects duplicate or excessive version records before creating files.
 
+## Background history compression
+
+Development builds prepare history ZIPs in one reusable Node worker. `WorkspaceStore.archive()` queues a small loading callback before reading the history, so several requests cannot each load a full history at the same time. It admits one active request and at most three waiting requests. A full queue reports a retryable save error. Source and PDF fingerprints are still checked before compression; the project transaction still waits for a complete archive before replacing any file.
+
+The worker stores each PDF verbatim and compresses the source/conversation JSON. All decoded bytes, version records and archive limits remain unchanged: 1,000 versions, 2,001 entries, 25 MiB per entry, 200 MiB input and 100 MiB output. This ZIP layout is readable by the existing importer. It increases the measured 100-version archive size by about 3.1% while avoiding repeated compression of PDF data. If that layout exceeds 100 MiB, the same worker retries the original fully compressed representation before rejecting it. Previously savable near-limit histories therefore retain that path. The same deadline covers both attempts. It does not remove older history or change retention policy.
+
+The controller copies Node buffers into dedicated transferable arrays, yielding between batches, then transfers ownership to the worker. Compression has a 30-second deadline. Errors, wrong responses, early exits and timeouts retire the worker before a subsequent request creates another. An idle worker exits after five seconds; queue bookkeeping retains no completed ZIP result. `WorkspaceStore.flush()` also waits for outstanding archives, so the app’s existing close/recovery paths continue to wait for them.
+
+The worker has 64 MiB old-generation and 16 MiB young-generation JavaScript heap limits, plus a 4 MiB stack. These are **not total process-memory limits**: Node documents that external `ArrayBuffer` data is outside these heap limits. Input/output/count bounds limit the admitted data, but copying, validation, filesystem reads and other app work still need broader memory and upper-bound acceptance. See [Node worker limits and buffer transfer](https://nodejs.org/download/release/latest-v22.x/docs/api/worker_threads.html).
+
+`history-zip-worker.cjs` is bundled as a sibling of `main.cjs` inside the app archive. The main build supplies a CommonJS module URL so the same worker path works in source execution and the packaged app, without enabling Node in the renderer or changing the preload boundary. The worker receives bytes, not filesystem paths or executable instructions. It is an app-owned computation thread, not a sandbox for untrusted code.
+
+See [matched before/after measurements](PERFORMANCE_IMPROVEMENT_PLAN.md#background-history-compression) and [qualification evidence](releases/history-worker-verification.json). The unit controls cover exact bytes, queue limits, worker crash/exit/hang, incorrect replies, near-limit compression fallback, oversized input/output, idle cleanup and a real worker failure before a project save. Older published preview installers do not include this change.
+
 ## Project format upgrades
 
 Folder and ZIP opening share a strict manifest reader: a present `resume.project.json` must be a UTF-8 JSON object, at most 64 KiB, with numeric `schemaVersion` 1 or 2. Unknown versions are rejected before the project is registered for editing. A folder without a manifest is still a normal supported TeX project. A malformed manifest is not treated as a missing one.

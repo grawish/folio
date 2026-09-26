@@ -1,0 +1,1051 @@
+{
+  "startedAt": "2026-09-26T21:35:22.751Z",
+  "sourceCommit": "39c5973fd4de29b793a2404003a0e604cce7b873",
+  "sources": {
+    "electron/core/agent.ts": "56f77257383219d209e42a6fcc7c3e2a8af3b9c18dec6f382ded8fe06dcbad88",
+    "electron/core/ai-edits.ts": "dfca533978bbc48b275010b3d5d19563ef422bd1aefaba2e4984e238ae48b446",
+    "electron/core/ai-process.ts": "19e58f2377bb55506d8f28e6b14fe75f979c4f1be312235f919ff8b04f47f8fb",
+    "electron/core/ai-provider.ts": "5de8ae90597807f948f0573bd8553d0461d91ac04e00a520af6864df47891116",
+    "electron/core/ai-routing.ts": "f1d80bd039fd0e08b94486838f3b9196f6cc52a41098eadfb9a7d748dd6ae0ec",
+    "electron/core/build-provenance.ts": "1276c1e27d81f6fba8ea4861d4f3a07b1ff44e81367673c1cd88712376751767",
+    "electron/core/compiler-migration.ts": "95e8c765e2d4d81e25199fdebf53abf236d2d4c2e3f1fa4eb9e214fbe7136f83",
+    "electron/core/compiler.ts": "15086fd20d370197e1dbdc0dd04de5a7401a2b57d7fb46c691202f30f1656a63",
+    "electron/core/connections.ts": "4eafe07f82278305657330ba68c1a7cdd3c2926c64b1e97197cdc6772aa66d24",
+    "electron/core/diagnostics.ts": "6e90c7709330917473ef8df1647a0cb6953ff7fc8760ba3a1e34bfd4c4bf054d",
+    "electron/core/file-io.ts": "4ff9bd00e81e69b717915bdbcb23418baed1ed9d84b43c5546ea1bad58896096",
+    "electron/core/font-import.ts": "f8624b87ae2f97bc36f496e1ad1427a05de41d3ea5917a180917ed9fe6c4ce81",
+    "electron/core/import-transactions.ts": "d28f7257887521728712dabde3230611e81448a91e0493bce783ae1008523509",
+    "electron/core/local-fonts.ts": "574f6928d7022fc9e53fa6b53f4a61f5688374248690226463a33cf2dbf831f6",
+    "electron/core/pack-catalog.ts": "5210702ab0cfed546a06d2385341e310564c06e63dfcc2f1a1a5373fedcd6739",
+    "electron/core/pack-download.ts": "bddf4ec3d755e21b21089edb673c54270f0ec738ca0b3f4bc9e2177117552d86",
+    "electron/core/pack-io.ts": "8f80c73ab4a8a4818e588f95cdb50c65debacea7e3429e7a4d2210a56e6a621b",
+    "electron/core/pack-resource-name.ts": "470be5b2aced11d5bc886289de815b3b23998aef2a170ac234c9e9f137769b58",
+    "electron/core/pack-service.ts": "b0830e0195eae3f1922a1922844e0324ec0c64cd5d18562f83d2f29d1fb7e89d",
+    "electron/core/pack-trust.ts": "750ee77fd56d2084d1a472441ee05a32ff1a4a2b63517ebd3f758b1f8006949c",
+    "electron/core/project-import.ts": "92ca3e3b4eb5604055b2230e48ac9f2d12e1a5aa2146947316f645ce5f295094",
+    "electron/core/project-manifest.ts": "3a8018cf7332512473222abae43e838d44bfa8e1bcdc7152e4a8b9d8b2e661b7",
+    "electron/core/project-scan.ts": "708ab880748fd5e351c6188eb9774f5a5cf8ff7661b3cd7ccff8e1d5a262af20",
+    "electron/core/project.ts": "64aacdf7e6bb64767d5043154b15c47e2169cc61a0a5f8fa92dd60134e017c4a",
+    "electron/core/resource-pack.ts": "4f370849f078b4952c60815b71153ac9470649f1c87343f71a3a1c924a90a85b",
+    "electron/core/runtime-manager.ts": "4d62d81e79b2c001756acc7ad2bd136ca5e91d8de00963cb61b84396624c545e",
+    "electron/core/runtime.ts": "da0bc73d9042a08af5f7623a252e5f95be36a33313bc6372faed5def6944be1a",
+    "electron/core/safe-zip.ts": "15be17ea21e871d79cc95ac390dea6a5b897d89021ea24378ac48c20abcafb18",
+    "electron/core/save-io.ts": "03357fef0d222d9a06b26a911901b7bdee76b71741d8b120df08f90bdab6d91c",
+    "electron/core/save-recovery.ts": "9614d9bdbede3e030afd6929dd048597438c43f893b2792d04b2649786fe9592",
+    "electron/core/save-transactions.ts": "a36d4890865755efce7f4f0ca9bef47e22a07f64794f2e6d1fec98500534a18d",
+    "electron/core/support-bundle.ts": "0c4e3521c5eabbb6b6bafbfff8808efa49dcda16a275fa616cf4bfafbc65b658",
+    "electron/core/workspace.ts": "5a954230f8071db026ec204178c0b80085e62e3f705982d23305964489939d2a",
+    "package-lock.json": "9dc96265d268f7ac0ca1112a58c125d220aa047a2abdb131d6bd4a0a985c9161",
+    "src/shared/ai.ts": "df171b25f5425b75fd5a6829b5944bcd006b950b0cead286541167be4ac8fcaf",
+    "src/shared/build-help.ts": "89b65dfc50a0611877b544eb018aceeb56ff5537c61718dd064f49eb3763fb3b",
+    "src/shared/fonts.ts": "689e27e52e290497da6966da0636b8574cf6e7301430523778ee28f9902dc0b1",
+    "src/shared/migration.ts": "3fab39ffb5e57f6046e2f3ea46dd08a9bca0b0a14d09ecb992c3cda41ab1e1ae",
+    "src/shared/packs.ts": "a7a6c2c9113a781c2bc394462a3ded31a0a269c9cf915dc8f9098f7410721c64",
+    "src/shared/project-files.ts": "ae1caf793abd012cb0e939743774ff08b8900ae5099388b1dfe27a448810a37a",
+    "src/shared/runtime.ts": "ad69f2161a5de41985a52cffc1598eaef4a0e9b959d72322e1ab5a849ffd5bfe",
+    "src/shared/save-recovery.ts": "eab7a5c511421aec71c07484389b7f72f4c630bfd92e0b84eb91de619dc719a6",
+    "src/shared/support.ts": "9ae972940a47fe89bb6a15fe7a43749ed843fda97644c4c35c90799cab092803",
+    "src/shared/template-catalog.ts": "de72a3abe762b637c09d50724daa3ce91b47025029ea04d8fdc2f1c74aa648e4",
+    "src/shared/templates.ts": "5cfdf2faf37f33e0d96ac9a233329859d48b8f8cb4af6de95bdfc312844ffcbf",
+    "src/shared/types.ts": "fb910b96f761a85f5cde6725767e2dcbc07e1fa44c6ec0b5a9de11710eb729b3",
+    "src/shared/workspace-layout.ts": "9eb2af8f94f62036cd16cc604a3928c62277a06a569908e9498925bb06625351",
+    "scripts/profile-storage.mjs": "95ac08fddedb602df47202da4066b7e36012cfaec6381379a1f25cee254fc5a5"
+  },
+  "host": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "osRelease": "27.0.0",
+    "cpu": "Apple M4 Pro",
+    "logicalCpus": 14,
+    "totalMemoryBytes": 51539607552,
+    "node": "v24.21.0"
+  },
+  "fixture": {
+    "name": "classic-a4",
+    "sourceBytes": 2832,
+    "pdfBytes": 23366,
+    "sourceSha256": "1f0b21921a6ca62d39a3424719885c56e5dd6c0d332ad615043671f3e6a4dcd0",
+    "pdfSha256": "ac19f18b89e3ae77da8acbe46ad8f407ac16ad52b23bec4664ff9d8c917b2838",
+    "verificationSha256": "8c60ab3d17c97cdf591ab8ab86a81250c73297ec60362343edefaa4a3fcda3c9",
+    "historyLengths": [
+      1,
+      25,
+      100
+    ],
+    "samples": 3
+  },
+  "scope": "Real ProjectStore and WorkspaceStore operations with synthetic one-file resumes and new isolated profiles; no renderer, compiler, network or AI requests.",
+  "limits": [
+    "Each version adds a distinct TeX comment and reuses the same previously compiled PDF. These are unverified storage fixtures, not new compiler or AI acceptance.",
+    "OS caches are not purged. Ordered stages reuse files; memory can remain allocated between cases in this Node process.",
+    "Save includes regenerating the history archive. Separate archive and save stages overlap in work and must not be added or subtracted as independent components.",
+    "10 ms timer lateness measures observed Node event-loop stalls, not renderer frame rate. RSS sampling can miss synchronous peaks; values exclude Electron and child processes.",
+    "Small sample sets are descriptive observations, not population p95, worst-case limits or a supported-device memory budget."
+  ],
+  "runs": [
+    {
+      "sample": 1,
+      "versions": 1,
+      "stages": [
+        {
+          "name": "create-prior-history",
+          "passed": true,
+          "maxTimerLatenessMs": 2.182541999999998,
+          "peakSampledRssBytes": 72564736,
+          "rssBeforeBytes": 72564736,
+          "wallMs": 0.021667000000007874,
+          "cpuMicroseconds": {
+            "user": 19,
+            "system": 3
+          },
+          "rssAfterBytes": 72564736
+        },
+        {
+          "name": "checkpoint-one",
+          "passed": true,
+          "maxTimerLatenessMs": 0.9962919999999968,
+          "peakSampledRssBytes": 72712192,
+          "rssBeforeBytes": 72564736,
+          "wallMs": 2.125208999999998,
+          "cpuMicroseconds": {
+            "user": 1214,
+            "system": 1026
+          },
+          "rssAfterBytes": 72712192
+        },
+        {
+          "name": "archive-history",
+          "passed": true,
+          "maxTimerLatenessMs": 1.4260419999999954,
+          "peakSampledRssBytes": 73613312,
+          "rssBeforeBytes": 72712192,
+          "wallMs": 3.8140840000000082,
+          "cpuMicroseconds": {
+            "user": 7385,
+            "system": 434
+          },
+          "rssAfterBytes": 73613312
+        },
+        {
+          "name": "save-project-with-history",
+          "passed": true,
+          "maxTimerLatenessMs": 1.5074170000000038,
+          "peakSampledRssBytes": 76120064,
+          "rssBeforeBytes": 73613312,
+          "wallMs": 85.65541699999999,
+          "cpuMicroseconds": {
+            "user": 14716,
+            "system": 5428
+          },
+          "rssAfterBytes": 76120064
+        },
+        {
+          "name": "open-saved-project",
+          "passed": true,
+          "maxTimerLatenessMs": 1.7744590000000073,
+          "peakSampledRssBytes": 76300288,
+          "rssBeforeBytes": 76136448,
+          "wallMs": 1.7160000000000082,
+          "cpuMicroseconds": {
+            "user": 1124,
+            "system": 827
+          },
+          "rssAfterBytes": 76300288
+        },
+        {
+          "name": "import-saved-history",
+          "passed": true,
+          "maxTimerLatenessMs": 1.4521250000000236,
+          "peakSampledRssBytes": 78790656,
+          "rssBeforeBytes": 76398592,
+          "wallMs": 5.1544999999999845,
+          "cpuMicroseconds": {
+            "user": 9546,
+            "system": 1828
+          },
+          "rssAfterBytes": 78790656
+        },
+        {
+          "name": "read-latest-version",
+          "passed": true,
+          "maxTimerLatenessMs": 1.4237919999999917,
+          "peakSampledRssBytes": 78807040,
+          "rssBeforeBytes": 78790656,
+          "wallMs": 0.5382910000000152,
+          "cpuMicroseconds": {
+            "user": 374,
+            "system": 173
+          },
+          "rssAfterBytes": 78807040
+        }
+      ],
+      "passed": true,
+      "archiveBytes": 24910,
+      "workspaceStorage": {
+        "bytes": 27017,
+        "fileCount": 3
+      },
+      "projectStorage": {
+        "bytes": 27991,
+        "fileCount": 4
+      }
+    },
+    {
+      "sample": 1,
+      "versions": 25,
+      "stages": [
+        {
+          "name": "create-prior-history",
+          "passed": true,
+          "maxTimerLatenessMs": 0.8245839999999589,
+          "peakSampledRssBytes": 79085568,
+          "rssBeforeBytes": 78839808,
+          "wallMs": 21.01483300000001,
+          "cpuMicroseconds": {
+            "user": 5982,
+            "system": 17633
+          },
+          "rssAfterBytes": 79085568
+        },
+        {
+          "name": "checkpoint-one",
+          "passed": true,
+          "maxTimerLatenessMs": 2.465332999999987,
+          "peakSampledRssBytes": 79134720,
+          "rssBeforeBytes": 79085568,
+          "wallMs": 1.1374170000000277,
+          "cpuMicroseconds": {
+            "user": 471,
+            "system": 849
+          },
+          "rssAfterBytes": 79134720
+        },
+        {
+          "name": "archive-history",
+          "passed": true,
+          "maxTimerLatenessMs": 8.664874999999995,
+          "peakSampledRssBytes": 90980352,
+          "rssBeforeBytes": 79134720,
+          "wallMs": 18.50849999999997,
+          "cpuMicroseconds": {
+            "user": 28000,
+            "system": 3672
+          },
+          "rssAfterBytes": 90832896
+        },
+        {
+          "name": "save-project-with-history",
+          "passed": true,
+          "maxTimerLatenessMs": 5.37170900000001,
+          "peakSampledRssBytes": 94912512,
+          "rssBeforeBytes": 90980352,
+          "wallMs": 99.16120799999999,
+          "cpuMicroseconds": {
+            "user": 25513,
+            "system": 8558
+          },
+          "rssAfterBytes": 94912512
+        },
+        {
+          "name": "open-saved-project",
+          "passed": true,
+          "maxTimerLatenessMs": 0.8902919999999881,
+          "peakSampledRssBytes": 94912512,
+          "rssBeforeBytes": 94912512,
+          "wallMs": 2.0640000000000214,
+          "cpuMicroseconds": {
+            "user": 1364,
+            "system": 1091
+          },
+          "rssAfterBytes": 94912512
+        },
+        {
+          "name": "import-saved-history",
+          "passed": true,
+          "maxTimerLatenessMs": 2.1064999999999827,
+          "peakSampledRssBytes": 96714752,
+          "rssBeforeBytes": 94912512,
+          "wallMs": 22.51233400000001,
+          "cpuMicroseconds": {
+            "user": 13935,
+            "system": 12777
+          },
+          "rssAfterBytes": 96714752
+        },
+        {
+          "name": "read-latest-version",
+          "passed": true,
+          "maxTimerLatenessMs": 1.57487500000002,
+          "peakSampledRssBytes": 96714752,
+          "rssBeforeBytes": 96714752,
+          "wallMs": 0.47033299999998235,
+          "cpuMicroseconds": {
+            "user": 273,
+            "system": 199
+          },
+          "rssAfterBytes": 96714752
+        }
+      ],
+      "passed": true,
+      "archiveBytes": 614619,
+      "workspaceStorage": {
+        "bytes": 672419,
+        "fileCount": 51
+      },
+      "projectStorage": {
+        "bytes": 617703,
+        "fileCount": 4
+      }
+    },
+    {
+      "sample": 1,
+      "versions": 100,
+      "stages": [
+        {
+          "name": "create-prior-history",
+          "passed": true,
+          "maxTimerLatenessMs": 2.037249999999972,
+          "peakSampledRssBytes": 97599488,
+          "rssBeforeBytes": 96731136,
+          "wallMs": 82.44229199999995,
+          "cpuMicroseconds": {
+            "user": 23530,
+            "system": 67418
+          },
+          "rssAfterBytes": 97599488
+        },
+        {
+          "name": "checkpoint-one",
+          "passed": true,
+          "maxTimerLatenessMs": 1.179124999999999,
+          "peakSampledRssBytes": 97632256,
+          "rssBeforeBytes": 97599488,
+          "wallMs": 1.1113750000000664,
+          "cpuMicroseconds": {
+            "user": 286,
+            "system": 672
+          },
+          "rssAfterBytes": 97632256
+        },
+        {
+          "name": "archive-history",
+          "passed": true,
+          "maxTimerLatenessMs": 37.36404199999993,
+          "peakSampledRssBytes": 133611520,
+          "rssBeforeBytes": 97632256,
+          "wallMs": 57.07795799999997,
+          "cpuMicroseconds": {
+            "user": 59021,
+            "system": 11390
+          },
+          "rssAfterBytes": 133513216
+        },
+        {
+          "name": "save-project-with-history",
+          "passed": true,
+          "maxTimerLatenessMs": 30.080375000000004,
+          "peakSampledRssBytes": 156598272,
+          "rssBeforeBytes": 133611520,
+          "wallMs": 138.95516700000007,
+          "cpuMicroseconds": {
+            "user": 59485,
+            "system": 16568
+          },
+          "rssAfterBytes": 156286976
+        },
+        {
+          "name": "open-saved-project",
+          "passed": true,
+          "maxTimerLatenessMs": 1.4540829999999687,
+          "peakSampledRssBytes": 156303360,
+          "rssBeforeBytes": 156303360,
+          "wallMs": 3.124416999999994,
+          "cpuMicroseconds": {
+            "user": 1989,
+            "system": 1318
+          },
+          "rssAfterBytes": 156303360
+        },
+        {
+          "name": "import-saved-history",
+          "passed": true,
+          "maxTimerLatenessMs": 11.118959000000018,
+          "peakSampledRssBytes": 161366016,
+          "rssBeforeBytes": 156303360,
+          "wallMs": 65.68762500000003,
+          "cpuMicroseconds": {
+            "user": 34366,
+            "system": 40393
+          },
+          "rssAfterBytes": 161366016
+        },
+        {
+          "name": "read-latest-version",
+          "passed": true,
+          "maxTimerLatenessMs": 0.7004170000000158,
+          "peakSampledRssBytes": 161513472,
+          "rssBeforeBytes": 161366016,
+          "wallMs": 0.55925000000002,
+          "cpuMicroseconds": {
+            "user": 354,
+            "system": 221
+          },
+          "rssAfterBytes": 161513472
+        }
+      ],
+      "passed": true,
+      "archiveBytes": 2457887,
+      "workspaceStorage": {
+        "bytes": 2689499,
+        "fileCount": 201
+      },
+      "projectStorage": {
+        "bytes": 2460974,
+        "fileCount": 4
+      }
+    },
+    {
+      "sample": 2,
+      "versions": 1,
+      "stages": [
+        {
+          "name": "create-prior-history",
+          "passed": true,
+          "maxTimerLatenessMs": 2.068667000000005,
+          "peakSampledRssBytes": 162988032,
+          "rssBeforeBytes": 162988032,
+          "wallMs": 0.008625000000165528,
+          "cpuMicroseconds": {
+            "user": 5,
+            "system": 4
+          },
+          "rssAfterBytes": 162988032
+        },
+        {
+          "name": "checkpoint-one",
+          "passed": true,
+          "maxTimerLatenessMs": 0.37150000000019645,
+          "peakSampledRssBytes": 163119104,
+          "rssBeforeBytes": 162988032,
+          "wallMs": 1.5267499999999927,
+          "cpuMicroseconds": {
+            "user": 494,
+            "system": 1122
+          },
+          "rssAfterBytes": 163119104
+        },
+        {
+          "name": "archive-history",
+          "passed": true,
+          "maxTimerLatenessMs": 1.7224999999998545,
+          "peakSampledRssBytes": 163446784,
+          "rssBeforeBytes": 163119104,
+          "wallMs": 1.6095829999999296,
+          "cpuMicroseconds": {
+            "user": 2000,
+            "system": 311
+          },
+          "rssAfterBytes": 163446784
+        },
+        {
+          "name": "save-project-with-history",
+          "passed": true,
+          "maxTimerLatenessMs": 1.6517079999998714,
+          "peakSampledRssBytes": 163872768,
+          "rssBeforeBytes": 163446784,
+          "wallMs": 86.3465839999999,
+          "cpuMicroseconds": {
+            "user": 4923,
+            "system": 6154
+          },
+          "rssAfterBytes": 163872768
+        },
+        {
+          "name": "open-saved-project",
+          "passed": true,
+          "maxTimerLatenessMs": 1.811040999999932,
+          "peakSampledRssBytes": 163872768,
+          "rssBeforeBytes": 163872768,
+          "wallMs": 1.7310419999998885,
+          "cpuMicroseconds": {
+            "user": 722,
+            "system": 1076
+          },
+          "rssAfterBytes": 163872768
+        },
+        {
+          "name": "import-saved-history",
+          "passed": true,
+          "maxTimerLatenessMs": 1.1703750000001492,
+          "peakSampledRssBytes": 163872768,
+          "rssBeforeBytes": 163872768,
+          "wallMs": 1.8724580000000515,
+          "cpuMicroseconds": {
+            "user": 1108,
+            "system": 1105
+          },
+          "rssAfterBytes": 163872768
+        },
+        {
+          "name": "read-latest-version",
+          "passed": true,
+          "maxTimerLatenessMs": 1.8448330000001079,
+          "peakSampledRssBytes": 163872768,
+          "rssBeforeBytes": 163872768,
+          "wallMs": 0.4692919999999958,
+          "cpuMicroseconds": {
+            "user": 291,
+            "system": 201
+          },
+          "rssAfterBytes": 163872768
+        }
+      ],
+      "passed": true,
+      "archiveBytes": 24908,
+      "workspaceStorage": {
+        "bytes": 27017,
+        "fileCount": 3
+      },
+      "projectStorage": {
+        "bytes": 27989,
+        "fileCount": 4
+      }
+    },
+    {
+      "sample": 2,
+      "versions": 25,
+      "stages": [
+        {
+          "name": "create-prior-history",
+          "passed": true,
+          "maxTimerLatenessMs": 0.8090420000000904,
+          "peakSampledRssBytes": 164020224,
+          "rssBeforeBytes": 163872768,
+          "wallMs": 18.111249999999927,
+          "cpuMicroseconds": {
+            "user": 4242,
+            "system": 14927
+          },
+          "rssAfterBytes": 164020224
+        },
+        {
+          "name": "checkpoint-one",
+          "passed": true,
+          "maxTimerLatenessMs": 0.5016249999998763,
+          "peakSampledRssBytes": 164020224,
+          "rssBeforeBytes": 164020224,
+          "wallMs": 1.1102500000001783,
+          "cpuMicroseconds": {
+            "user": 355,
+            "system": 791
+          },
+          "rssAfterBytes": 164020224
+        },
+        {
+          "name": "archive-history",
+          "passed": true,
+          "maxTimerLatenessMs": 2.8527500000000146,
+          "peakSampledRssBytes": 165150720,
+          "rssBeforeBytes": 164020224,
+          "wallMs": 12.713709000000108,
+          "cpuMicroseconds": {
+            "user": 10552,
+            "system": 3192
+          },
+          "rssAfterBytes": 165150720
+        },
+        {
+          "name": "save-project-with-history",
+          "passed": true,
+          "maxTimerLatenessMs": 2.4789590000000317,
+          "peakSampledRssBytes": 165347328,
+          "rssBeforeBytes": 165150720,
+          "wallMs": 101.3672919999999,
+          "cpuMicroseconds": {
+            "user": 20467,
+            "system": 7992
+          },
+          "rssAfterBytes": 165347328
+        },
+        {
+          "name": "open-saved-project",
+          "passed": true,
+          "maxTimerLatenessMs": 0.9548750000001291,
+          "peakSampledRssBytes": 165347328,
+          "rssBeforeBytes": 165347328,
+          "wallMs": 2.2044579999999314,
+          "cpuMicroseconds": {
+            "user": 1117,
+            "system": 1159
+          },
+          "rssAfterBytes": 165347328
+        },
+        {
+          "name": "import-saved-history",
+          "passed": true,
+          "maxTimerLatenessMs": 1.8645839999999225,
+          "peakSampledRssBytes": 165429248,
+          "rssBeforeBytes": 165347328,
+          "wallMs": 19.52774999999997,
+          "cpuMicroseconds": {
+            "user": 8993,
+            "system": 11450
+          },
+          "rssAfterBytes": 165429248
+        },
+        {
+          "name": "read-latest-version",
+          "passed": true,
+          "maxTimerLatenessMs": 0.4447090000001026,
+          "peakSampledRssBytes": 165429248,
+          "rssBeforeBytes": 165429248,
+          "wallMs": 0.3887079999999514,
+          "cpuMicroseconds": {
+            "user": 238,
+            "system": 161
+          },
+          "rssAfterBytes": 165429248
+        }
+      ],
+      "passed": true,
+      "archiveBytes": 614624,
+      "workspaceStorage": {
+        "bytes": 672419,
+        "fileCount": 51
+      },
+      "projectStorage": {
+        "bytes": 617708,
+        "fileCount": 4
+      }
+    },
+    {
+      "sample": 2,
+      "versions": 100,
+      "stages": [
+        {
+          "name": "create-prior-history",
+          "passed": true,
+          "maxTimerLatenessMs": 1.5334590000002208,
+          "peakSampledRssBytes": 165658624,
+          "rssBeforeBytes": 165429248,
+          "wallMs": 78.69849999999997,
+          "cpuMicroseconds": {
+            "user": 21527,
+            "system": 64255
+          },
+          "rssAfterBytes": 165658624
+        },
+        {
+          "name": "checkpoint-one",
+          "passed": true,
+          "maxTimerLatenessMs": 1.9729999999999563,
+          "peakSampledRssBytes": 165658624,
+          "rssBeforeBytes": 165658624,
+          "wallMs": 0.9226659999999356,
+          "cpuMicroseconds": {
+            "user": 293,
+            "system": 686
+          },
+          "rssAfterBytes": 165658624
+        },
+        {
+          "name": "archive-history",
+          "passed": true,
+          "maxTimerLatenessMs": 28.339083999999957,
+          "peakSampledRssBytes": 175472640,
+          "rssBeforeBytes": 165658624,
+          "wallMs": 47.43670799999995,
+          "cpuMicroseconds": {
+            "user": 44149,
+            "system": 9618
+          },
+          "rssAfterBytes": 175456256
+        },
+        {
+          "name": "save-project-with-history",
+          "passed": true,
+          "maxTimerLatenessMs": 28.839499999999816,
+          "peakSampledRssBytes": 182829056,
+          "rssBeforeBytes": 175472640,
+          "wallMs": 139.9129170000001,
+          "cpuMicroseconds": {
+            "user": 55573,
+            "system": 15584
+          },
+          "rssAfterBytes": 182829056
+        },
+        {
+          "name": "open-saved-project",
+          "passed": true,
+          "maxTimerLatenessMs": 0.43079199999988305,
+          "peakSampledRssBytes": 182829056,
+          "rssBeforeBytes": 182829056,
+          "wallMs": 2.8580830000000788,
+          "cpuMicroseconds": {
+            "user": 1676,
+            "system": 1251
+          },
+          "rssAfterBytes": 182829056
+        },
+        {
+          "name": "import-saved-history",
+          "passed": true,
+          "maxTimerLatenessMs": 15.092916999999943,
+          "peakSampledRssBytes": 185892864,
+          "rssBeforeBytes": 182829056,
+          "wallMs": 69.90741600000001,
+          "cpuMicroseconds": {
+            "user": 42149,
+            "system": 40611
+          },
+          "rssAfterBytes": 185892864
+        },
+        {
+          "name": "read-latest-version",
+          "passed": true,
+          "maxTimerLatenessMs": 1.9034580000000005,
+          "peakSampledRssBytes": 185892864,
+          "rssBeforeBytes": 185892864,
+          "wallMs": 0.5891670000000886,
+          "cpuMicroseconds": {
+            "user": 325,
+            "system": 213
+          },
+          "rssAfterBytes": 185892864
+        }
+      ],
+      "passed": true,
+      "archiveBytes": 2457864,
+      "workspaceStorage": {
+        "bytes": 2689499,
+        "fileCount": 201
+      },
+      "projectStorage": {
+        "bytes": 2460951,
+        "fileCount": 4
+      }
+    },
+    {
+      "sample": 3,
+      "versions": 1,
+      "stages": [
+        {
+          "name": "create-prior-history",
+          "passed": true,
+          "maxTimerLatenessMs": 2.0744999999999436,
+          "peakSampledRssBytes": 185909248,
+          "rssBeforeBytes": 185909248,
+          "wallMs": 0.00437499999998181,
+          "cpuMicroseconds": {
+            "user": 3,
+            "system": 2
+          },
+          "rssAfterBytes": 185909248
+        },
+        {
+          "name": "checkpoint-one",
+          "passed": true,
+          "maxTimerLatenessMs": 0.4449170000000322,
+          "peakSampledRssBytes": 185909248,
+          "rssBeforeBytes": 185909248,
+          "wallMs": 1.5593329999999241,
+          "cpuMicroseconds": {
+            "user": 426,
+            "system": 1022
+          },
+          "rssAfterBytes": 185909248
+        },
+        {
+          "name": "archive-history",
+          "passed": true,
+          "maxTimerLatenessMs": 1.639791999999943,
+          "peakSampledRssBytes": 185925632,
+          "rssBeforeBytes": 185909248,
+          "wallMs": 1.5510830000000624,
+          "cpuMicroseconds": {
+            "user": 1907,
+            "system": 218
+          },
+          "rssAfterBytes": 185925632
+        },
+        {
+          "name": "save-project-with-history",
+          "passed": true,
+          "maxTimerLatenessMs": 1.903124999999818,
+          "peakSampledRssBytes": 185991168,
+          "rssBeforeBytes": 185925632,
+          "wallMs": 94.43333399999983,
+          "cpuMicroseconds": {
+            "user": 3820,
+            "system": 6219
+          },
+          "rssAfterBytes": 185925632
+        },
+        {
+          "name": "open-saved-project",
+          "passed": true,
+          "maxTimerLatenessMs": 1.2127919999998085,
+          "peakSampledRssBytes": 186007552,
+          "rssBeforeBytes": 185991168,
+          "wallMs": 2.365375000000313,
+          "cpuMicroseconds": {
+            "user": 1191,
+            "system": 1415
+          },
+          "rssAfterBytes": 186007552
+        },
+        {
+          "name": "import-saved-history",
+          "passed": true,
+          "maxTimerLatenessMs": 1.1260000000002037,
+          "peakSampledRssBytes": 186040320,
+          "rssBeforeBytes": 186007552,
+          "wallMs": 3.5414999999998145,
+          "cpuMicroseconds": {
+            "user": 2303,
+            "system": 2103
+          },
+          "rssAfterBytes": 186040320
+        },
+        {
+          "name": "read-latest-version",
+          "passed": true,
+          "maxTimerLatenessMs": 0.7741249999999127,
+          "peakSampledRssBytes": 186040320,
+          "rssBeforeBytes": 186040320,
+          "wallMs": 0.8200830000000678,
+          "cpuMicroseconds": {
+            "user": 719,
+            "system": 324
+          },
+          "rssAfterBytes": 186040320
+        }
+      ],
+      "passed": true,
+      "archiveBytes": 24909,
+      "workspaceStorage": {
+        "bytes": 27017,
+        "fileCount": 3
+      },
+      "projectStorage": {
+        "bytes": 27990,
+        "fileCount": 4
+      }
+    },
+    {
+      "sample": 3,
+      "versions": 25,
+      "stages": [
+        {
+          "name": "create-prior-history",
+          "passed": true,
+          "maxTimerLatenessMs": 0.9269580000000133,
+          "peakSampledRssBytes": 186155008,
+          "rssBeforeBytes": 186040320,
+          "wallMs": 25.12154099999998,
+          "cpuMicroseconds": {
+            "user": 5649,
+            "system": 21404
+          },
+          "rssAfterBytes": 186155008
+        },
+        {
+          "name": "checkpoint-one",
+          "passed": true,
+          "maxTimerLatenessMs": 2.195582999999715,
+          "peakSampledRssBytes": 186155008,
+          "rssBeforeBytes": 186155008,
+          "wallMs": 1.1523329999999987,
+          "cpuMicroseconds": {
+            "user": 321,
+            "system": 873
+          },
+          "rssAfterBytes": 186155008
+        },
+        {
+          "name": "archive-history",
+          "passed": true,
+          "maxTimerLatenessMs": 6.827582999999777,
+          "peakSampledRssBytes": 186499072,
+          "rssBeforeBytes": 186155008,
+          "wallMs": 16.789166000000023,
+          "cpuMicroseconds": {
+            "user": 14490,
+            "system": 3267
+          },
+          "rssAfterBytes": 186499072
+        },
+        {
+          "name": "save-project-with-history",
+          "passed": true,
+          "maxTimerLatenessMs": 7.380875000000287,
+          "peakSampledRssBytes": 186630144,
+          "rssBeforeBytes": 186499072,
+          "wallMs": 109.01770899999974,
+          "cpuMicroseconds": {
+            "user": 31676,
+            "system": 9299
+          },
+          "rssAfterBytes": 186630144
+        },
+        {
+          "name": "open-saved-project",
+          "passed": true,
+          "maxTimerLatenessMs": 2.3782920000003287,
+          "peakSampledRssBytes": 186630144,
+          "rssBeforeBytes": 186630144,
+          "wallMs": 2.3200839999999516,
+          "cpuMicroseconds": {
+            "user": 1140,
+            "system": 1275
+          },
+          "rssAfterBytes": 186630144
+        },
+        {
+          "name": "import-saved-history",
+          "passed": true,
+          "maxTimerLatenessMs": 1.1585000000000036,
+          "peakSampledRssBytes": 186630144,
+          "rssBeforeBytes": 186630144,
+          "wallMs": 22.894415999999637,
+          "cpuMicroseconds": {
+            "user": 10750,
+            "system": 14047
+          },
+          "rssAfterBytes": 186630144
+        },
+        {
+          "name": "read-latest-version",
+          "passed": true,
+          "maxTimerLatenessMs": 2.8407499999998436,
+          "peakSampledRssBytes": 186630144,
+          "rssBeforeBytes": 186630144,
+          "wallMs": 0.5123329999996713,
+          "cpuMicroseconds": {
+            "user": 297,
+            "system": 230
+          },
+          "rssAfterBytes": 186630144
+        }
+      ],
+      "passed": true,
+      "archiveBytes": 614626,
+      "workspaceStorage": {
+        "bytes": 672419,
+        "fileCount": 51
+      },
+      "projectStorage": {
+        "bytes": 617710,
+        "fileCount": 4
+      }
+    },
+    {
+      "sample": 3,
+      "versions": 100,
+      "stages": [
+        {
+          "name": "create-prior-history",
+          "passed": true,
+          "maxTimerLatenessMs": 2.061374999999771,
+          "peakSampledRssBytes": 186793984,
+          "rssBeforeBytes": 186646528,
+          "wallMs": 85.7567909999998,
+          "cpuMicroseconds": {
+            "user": 20787,
+            "system": 69991
+          },
+          "rssAfterBytes": 186793984
+        },
+        {
+          "name": "checkpoint-one",
+          "passed": true,
+          "maxTimerLatenessMs": 1.2620420000002923,
+          "peakSampledRssBytes": 186793984,
+          "rssBeforeBytes": 186793984,
+          "wallMs": 1.1944170000001577,
+          "cpuMicroseconds": {
+            "user": 408,
+            "system": 830
+          },
+          "rssAfterBytes": 186793984
+        },
+        {
+          "name": "archive-history",
+          "passed": true,
+          "maxTimerLatenessMs": 30.89083299999993,
+          "peakSampledRssBytes": 194609152,
+          "rssBeforeBytes": 186793984,
+          "wallMs": 50.254999999999654,
+          "cpuMicroseconds": {
+            "user": 46916,
+            "system": 11011
+          },
+          "rssAfterBytes": 194609152
+        },
+        {
+          "name": "save-project-with-history",
+          "passed": true,
+          "maxTimerLatenessMs": 29.31987500000014,
+          "peakSampledRssBytes": 197705728,
+          "rssBeforeBytes": 194609152,
+          "wallMs": 148.8280420000001,
+          "cpuMicroseconds": {
+            "user": 58812,
+            "system": 16611
+          },
+          "rssAfterBytes": 197705728
+        },
+        {
+          "name": "open-saved-project",
+          "passed": true,
+          "maxTimerLatenessMs": 0.12154099999997925,
+          "peakSampledRssBytes": 197722112,
+          "rssBeforeBytes": 197705728,
+          "wallMs": 2.479417000000012,
+          "cpuMicroseconds": {
+            "user": 1660,
+            "system": 1146
+          },
+          "rssAfterBytes": 197722112
+        },
+        {
+          "name": "import-saved-history",
+          "passed": true,
+          "maxTimerLatenessMs": 8.822458000000097,
+          "peakSampledRssBytes": 197754880,
+          "rssBeforeBytes": 197722112,
+          "wallMs": 64.59275000000025,
+          "cpuMicroseconds": {
+            "user": 31621,
+            "system": 41830
+          },
+          "rssAfterBytes": 197754880
+        },
+        {
+          "name": "read-latest-version",
+          "passed": true,
+          "maxTimerLatenessMs": 2.5392079999996895,
+          "peakSampledRssBytes": 197754880,
+          "rssBeforeBytes": 197754880,
+          "wallMs": 0.49633300000004965,
+          "cpuMicroseconds": {
+            "user": 337,
+            "system": 168
+          },
+          "rssAfterBytes": 197754880
+        }
+      ],
+      "passed": true,
+      "archiveBytes": 2457908,
+      "workspaceStorage": {
+        "bytes": 2689499,
+        "fileCount": 201
+      },
+      "projectStorage": {
+        "bytes": 2460995,
+        "fileCount": 4
+      }
+    }
+  ],
+  "completedAt": "2026-09-26T21:35:25.650Z"
+}
