@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-26T23:28:39.610561+00:00",
+  "applicationSourceCommit": "349d6cec3d09e35b88424c8b42a7f44c7bd47129",
+  "applicationInputsChanged": false,
+  "appAsarSha256": "690e78289d9b79d5c05084fc809d7da2497652943523307deb733e1c690e721d",
+  "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+  "scope": "Developer instrumentation and three repeated small-text 1/100-page cycles on one unchanged local Apple silicon app. This is separate from the in-progress full hosted qualification. No whole-app quotas or worst-case acceptance claimed.",
+  "scripts": [
+    {
+      "path": "scripts/profile-process-resources.mjs",
+      "bytes": 11349,
+      "sha256": "7ae0cf91d657a04dbcec65a05bacefbaef51b410efbccf1cfe08f65c04240897"
+    },
+    {
+      "path": "scripts/mac-process-sampler.mjs",
+      "bytes": 3543,
+      "sha256": "9d25c0620ac495dce59f14cab8f98779d67c5e38a730b589569afb80029924d7"
+    },
+    {
+      "path": "scripts/sample-mac-processes.c",
+      "bytes": 3581,
+      "sha256": "696294d13261a728ccae0b15d6e5446d49781571997f9e3ef1b254e0992ca67b"
+    }
+  ],
+  "calibrationTest": {
+    "path": "tests/mac-process-sampler.test.ts",
+    "bytes": 4263,
+    "sha256": "35094839296f4f2fa23e286b0ca286549df5a2832e910b2737aedc128df04399"
+  },
+  "nativeControlLog": {
+    "path": "test-results/process-sampler-control-verified.log",
+    "bytes": 325,
+    "sha256": "048da9b6c74f7f3b51f99d151ddbf2a5ea461e2afe3ab5e140697d1e7733dd0a"
+  },
+  "allUnitLog": {
+    "path": "test-results/process-profile-all-unit.log",
+    "bytes": 26355,
+    "sha256": "0b58f14c9f91ab86811a4bb6784771eb6c5c5e9240954986220c81a39a754304"
+  },
+  "allUnitTestsPassed": 253,
+  "formatLog": {
+    "path": "test-results/process-profile-format.log",
+    "bytes": 183,
+    "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+  },
+  "recordedRunLog": {
+    "path": "test-results/process-profile-recorded.log",
+    "bytes": 281,
+    "sha256": "1d59bf8ea1c9257f74343d2f570ae3f100d2386a7c27ba92dabde2c6003e447d"
+  },
+  "summary": {
+    "path": "docs/performance/process-tree-summary.json",
+    "bytes": 24755,
+    "sha256": "636ce4d697fb6ceba147e957c90fc8d3668ff4abe52c757f33cc2e734d0d43e9"
+  },
+  "raw": {
+    "path": "docs/performance/process-tree-baseline.json.gz",
+    "compressedBytes": 47110,
+    "compressedSha256": "9eefb37951c7548e0bc4eb3ad55db50ad4e722620e0902223957b8560864f3c2",
+    "uncompressedBytes": 711489,
+    "uncompressedSha256": "e40b845458c6ab038d54da407e625340943b70446007b3b2d28674103c8bb17c",
+    "original": "test-results/process-profile-VSFmTe/measurements.json"
+  },
+  "smoke": {
+    "record": {
+      "path": "test-results/process-profile-PqryM6/measurements.json",
+      "bytes": 565926,
+      "sha256": "42ddf5c5383306fca40544d694f2cef9a9e0a61d7bf5c68d5caba7d00d318450"
+    },
+    "log": {
+      "path": "test-results/process-profile-smoke.log",
+      "bytes": 143,
+      "sha256": "f91e28d8a9df3caf3bdf6b2afa85826d5c4ae09cca20441f37b727968e7f35de"
+    },
+    "scope": "One-cycle precursor without the final 500 ms navigation dwell; correct Mach time conversion already applied. Not pooled with the recorded run."
+  },
+  "verification": {
+    "allProcessCpuCounters": true,
+    "allMemorySums": true,
+    "allPhaseBoundariesAndPeaks": true,
+    "allExportedPdfHashes": true,
+    "rawRoundTrip": true
+  },
+  "results": {
+    "samples": 421,
+    "phaseCount": 32,
+    "observedCpuSeconds": 37.997190165,
+    "sampledSpanSeconds": 82.03819087500001,
+    "peakSummedRssBytes": 965541888,
+    "peakSummedFootprintBytes": 728405632,
+    "maxProcessCount": 6
+  },
+  "endProfileDisk": {
+    "record": {
+      "path": "test-results/process-profile-disk.json",
+      "bytes": 2608,
+      "sha256": "908a94d2b7bee2a515f26a86bf42f77cc22fabe1a2463a5efa54cdeca2effe97"
+    },
+    "regularFileBytes": 429256311,
+    "regularFiles": 4062
+  },
+  "retainedFailures": [
+    {
+      "record": {
+        "path": "test-results/process-sampler-control.log",
+        "bytes": 979,
+        "sha256": "964602691fc1a9384a1ca551ffffad5461740c8b8178579622ff3c9ffc996559"
+      },
+      "reason": "Calibration rejected CPU counters incorrectly treated as nanoseconds before any app measurement."
+    },
+    {
+      "record": {
+        "path": "test-results/process-sampler-control-diagnostic.log",
+        "bytes": 1136,
+        "sha256": "cc1210b67a5d79dd08b6abb70d2babac8b920ce5f21c346566fbb03805ff6634"
+      },
+      "reason": "Diagnostic replay measured 0.019523274 seconds from raw ticks versus approximately 0.805 CPU-seconds reported by the child; fixed using mach_timebase_info 125/3 conversion."
+    }
+  ],
+  "remaining": [
+    "Long-session and upper-bound image/history/storage workloads",
+    "Minimum/current supported Mac and OS acceptance",
+    "Application-wide resource enforcement and retention policy",
+    "Production signing/notarization, updater and binary license/SBOM audit"
+  ],
+  "cleanupVerification": {
+    "profiledAppExited": true,
+    "idleSnapshots": 128,
+    "compilerChildrenInIdle": 0,
+    "method": "Match root PID plus birth time after app exit; inspect every recorded idle snapshot for Tectonic or Biber."
+  }
+}

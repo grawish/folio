@@ -217,6 +217,12 @@ Peak sampled Node RSS was 188.6 MiB before and 137.3 MiB after across each compl
 
 The below-10-ms timer-lateness target passes for this fixture, and median save time improves. Broader physical-device/UI, large-history and memory/retention targets remain open. See [the verification record](releases/history-worker-verification.json) for failure controls, package identities and native scope.
 
+## Process-tree resource baseline
+
+The unchanged `349d6ce` package now has a native process-tree measurement across fresh preparation and three one-page/100-page build, navigation and export cycles. All nine PDFs verify. Across 421 snapshots, summed RSS peaks at 920.8 MiB and summed per-process footprint at 694.7 MiB at different times; neither is unique physical memory. CPU counters are calibrated against a real nested child workload and converted with the Mac's Mach timebase. The recorded workload contains 37.997 observed CPU-seconds over 82.038 seconds, with short-lived work potentially missed. Main/renderer memory and other Electron helpers need investigation alongside compiler use.
+
+A fresh synthetic profile ends at 409.4 MiB of regular-file sizes, mostly its 378.5 MiB retained runtime. Memory decreases during the third repeated cycle, but this is not a long-session leak or retention guarantee. Provisional investigation thresholds and the next upper-bound/device experiments are in [the process resource report](PROCESS_RESOURCE_PROFILE.md), with [raw snapshots and independent verification](releases/process-profile-verification.json). The observer does not alter application code or impose whole-app quotas.
+
 ## Prioritized changes
 
 Targets below are acceptance targets for experiments, not achieved results.
@@ -239,7 +245,7 @@ Avoid treating the 700 ms source-edit debounce as compiler execution time. Measu
 2. The sixty warm edit-to-preview samples above now separate the visible debounce, compiler duration, other native handling and completed rendering. Break down the native self-test/build interval further into snapshot creation, runtime verification, TeX, Biber and PDF reading. Extend worker loading, first visible page and export readiness measurements to multi-file, bibliography and 100-page fixtures and cold caches.
 3. Measure AI edit requests, input-page rendering, candidate compilation, candidate-page rendering/review, retry and apply separately. Keep local protocol fixtures distinct from real-provider network latency.
 4. Extend the nine backend save/history cases above to autosave, Save As, source ZIP import/export, recovery and supported upper bounds, including larger PDFs/assets/chat images. Record actual UI responsiveness while checksums/inflation/history work runs.
-5. Measure peak memory and CPU for the entire Electron/compiler process tree and on-disk cache/history growth. Extend the compiler-group cancellation/timeout observations above to end-to-end user actions, supported devices and more samples. The existing canvas budget is only one part of application memory.
+5. Extend the calibrated process-tree baseline above to upper-bound PDFs/images/history, longer sessions and additional devices. Measure on-disk cache/history growth and validate the provisional investigation thresholds before setting release-wide budgets. Extend the compiler-group cancellation/timeout observations above to end-to-end user actions, supported devices and more samples. The existing canvas budget is only one part of application memory.
 6. Repeat on the chosen minimum/current macOS versions and reference Apple silicon machines, including physical high-DPI and clean offline installation. Report sample counts and spreads; do not present three runs as a reliable p95 estimate.
 
 ## Verification after an optimization

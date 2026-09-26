@@ -1,0 +1,851 @@
+{
+  "startedAt": "2026-09-26T23:20:45.732Z",
+  "sourceCommit": "349d6cec3d09e35b88424c8b42a7f44c7bd47129",
+  "appAsarSha256": "690e78289d9b79d5c05084fc809d7da2497652943523307deb733e1c690e721d",
+  "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+  "scripts": {
+    "scripts/profile-process-resources.mjs": "7ae0cf91d657a04dbcec65a05bacefbaef51b410efbccf1cfe08f65c04240897",
+    "scripts/mac-process-sampler.mjs": "9d25c0620ac495dce59f14cab8f98779d67c5e38a730b589569afb80029924d7",
+    "scripts/sample-mac-processes.c": "696294d13261a728ccae0b15d6e5446d49781571997f9e3ef1b254e0992ca67b"
+  },
+  "host": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "os": "27.0.0",
+    "cpu": "Apple M4 Pro",
+    "logicalCpus": 14,
+    "ramBytes": 51539607552,
+    "node": "v24.21.0"
+  },
+  "observer": {
+    "api": "proc_listchildpids and proc_pid_rusage RUSAGE_INFO_V0",
+    "intervalMs": 200,
+    "sha256": "8addb95700ef208fce5a0125f77864baca37f9e57db8b3292c2b93ad502ed4bd",
+    "pdfInspector": "6.10.0",
+    "samples": 421,
+    "totalCpuSeconds": 1.2111449999999995,
+    "maxCollectionMs": 54.78645800000004,
+    "maxSampleGapMs": 257.024666,
+    "vanishedDuringReads": 0
+  },
+  "cycles": 3,
+  "phases": [
+    {
+      "name": "startup",
+      "startMs": 0.047416999999995824,
+      "cpuAtStart": 0,
+      "endMs": 34190.324457999996,
+      "observedCpuSeconds": 19.385668292,
+      "samples": 166,
+      "peakSummedRssBytes": 904364032,
+      "peakSummedFootprintBytes": 539941632
+    },
+    {
+      "name": "ready-idle",
+      "startMs": 34190.324457999996,
+      "cpuAtStart": 19.385668292,
+      "endMs": 36767.24,
+      "observedCpuSeconds": 0.07477416600000097,
+      "samples": 13,
+      "peakSummedRssBytes": 575356928,
+      "peakSummedFootprintBytes": 466965832
+    },
+    {
+      "name": "Cycle 1 small-build",
+      "startMs": 36767.24,
+      "cpuAtStart": 19.460442458,
+      "endMs": 38709.861082999996,
+      "observedCpuSeconds": 1.9170015830000011,
+      "samples": 10,
+      "peakSummedRssBytes": 776060928,
+      "peakSummedFootprintBytes": 571397568
+    },
+    {
+      "name": "Cycle 1 small-export",
+      "startMs": 38709.861082999996,
+      "cpuAtStart": 21.377444041,
+      "endMs": 38733.052749999995,
+      "observedCpuSeconds": 0.01008925000000005,
+      "samples": 1,
+      "peakSummedRssBytes": 620838912,
+      "peakSummedFootprintBytes": 525374936
+    },
+    {
+      "name": "cycle-1-small-idle",
+      "startMs": 38733.052749999995,
+      "cpuAtStart": 21.387533291,
+      "endMs": 41237.616333,
+      "observedCpuSeconds": 0.043031041999999076,
+      "samples": 13,
+      "peakSummedRssBytes": 622329856,
+      "peakSummedFootprintBytes": 526865880
+    },
+    {
+      "name": "Cycle 1 long-build",
+      "startMs": 41237.616333,
+      "cpuAtStart": 21.430564333,
+      "endMs": 43316.769457999995,
+      "observedCpuSeconds": 2.1436010430000003,
+      "samples": 11,
+      "peakSummedRssBytes": 863649792,
+      "peakSummedFootprintBytes": 725997736
+    },
+    {
+      "name": "Cycle 1 long-export",
+      "startMs": 43316.769457999995,
+      "cpuAtStart": 23.574165376,
+      "endMs": 43352.841625,
+      "observedCpuSeconds": 0.010317665999998837,
+      "samples": 1,
+      "peakSummedRssBytes": 676921344,
+      "peakSummedFootprintBytes": 601265672
+    },
+    {
+      "name": "cycle-1-navigation",
+      "startMs": 43352.841625,
+      "cpuAtStart": 23.584483042,
+      "endMs": 44912.489167,
+      "observedCpuSeconds": 0.1653263750000029,
+      "samples": 8,
+      "peakSummedRssBytes": 682147840,
+      "peakSummedFootprintBytes": 620238344
+    },
+    {
+      "name": "cycle-1-long-idle",
+      "startMs": 44912.489167,
+      "cpuAtStart": 23.749809417,
+      "endMs": 47418.51275,
+      "observedCpuSeconds": 0.023469957999999735,
+      "samples": 12,
+      "peakSummedRssBytes": 678608896,
+      "peakSummedFootprintBytes": 616666632
+    },
+    {
+      "name": "Cycle 1 return-build",
+      "startMs": 47418.51275,
+      "cpuAtStart": 23.773279375,
+      "endMs": 49331.236458,
+      "observedCpuSeconds": 1.8710149989999998,
+      "samples": 10,
+      "peakSummedRssBytes": 881065984,
+      "peakSummedFootprintBytes": 728405632
+    },
+    {
+      "name": "Cycle 1 return-export",
+      "startMs": 49331.236458,
+      "cpuAtStart": 25.644294374,
+      "endMs": 49354.225667,
+      "observedCpuSeconds": 0.008074042000000503,
+      "samples": 1,
+      "peakSummedRssBytes": 680902656,
+      "peakSummedFootprintBytes": 596268600
+    },
+    {
+      "name": "cycle-1-return-idle",
+      "startMs": 49354.225667,
+      "cpuAtStart": 25.652368416,
+      "endMs": 51858.582041999995,
+      "observedCpuSeconds": 0.054448416999999694,
+      "samples": 12,
+      "peakSummedRssBytes": 680919040,
+      "peakSummedFootprintBytes": 596268600
+    },
+    {
+      "name": "Cycle 2 small-build",
+      "startMs": 51858.582041999995,
+      "cpuAtStart": 25.706816833,
+      "endMs": 53763.225999999995,
+      "observedCpuSeconds": 1.8437828329999988,
+      "samples": 10,
+      "peakSummedRssBytes": 932282368,
+      "peakSummedFootprintBytes": 640816720
+    },
+    {
+      "name": "Cycle 2 small-export",
+      "startMs": 53763.225999999995,
+      "cpuAtStart": 27.550599666,
+      "endMs": 53790.86225,
+      "observedCpuSeconds": 0.01069970800000064,
+      "samples": 1,
+      "peakSummedRssBytes": 744144896,
+      "peakSummedFootprintBytes": 636081744
+    },
+    {
+      "name": "cycle-2-small-idle",
+      "startMs": 53790.86225,
+      "cpuAtStart": 27.561299374,
+      "endMs": 56293.625499999995,
+      "observedCpuSeconds": 0.09154808399999936,
+      "samples": 13,
+      "peakSummedRssBytes": 744243200,
+      "peakSummedFootprintBytes": 636442192
+    },
+    {
+      "name": "Cycle 2 long-build",
+      "startMs": 56293.625499999995,
+      "cpuAtStart": 27.652847458,
+      "endMs": 58401.027624999995,
+      "observedCpuSeconds": 2.170210748999999,
+      "samples": 11,
+      "peakSummedRssBytes": 939016192,
+      "peakSummedFootprintBytes": 684693120
+    },
+    {
+      "name": "Cycle 2 long-export",
+      "startMs": 58401.027624999995,
+      "cpuAtStart": 29.823058207,
+      "endMs": 58442.360792,
+      "observedCpuSeconds": 0.010716334000001382,
+      "samples": 1,
+      "peakSummedRssBytes": 772734976,
+      "peakSummedFootprintBytes": 684906112
+    },
+    {
+      "name": "cycle-2-navigation",
+      "startMs": 58442.360792,
+      "cpuAtStart": 29.833774541,
+      "endMs": 60046.5965,
+      "observedCpuSeconds": 0.14908670799999868,
+      "samples": 8,
+      "peakSummedRssBytes": 775766016,
+      "peakSummedFootprintBytes": 698078848
+    },
+    {
+      "name": "cycle-2-long-idle",
+      "startMs": 60046.5965,
+      "cpuAtStart": 29.982861249,
+      "endMs": 62554.420833,
+      "observedCpuSeconds": 0.009417833000000542,
+      "samples": 13,
+      "peakSummedRssBytes": 772554752,
+      "peakSummedFootprintBytes": 687117952
+    },
+    {
+      "name": "Cycle 2 return-build",
+      "startMs": 62554.420833,
+      "cpuAtStart": 29.992279082,
+      "endMs": 64464.006792,
+      "observedCpuSeconds": 1.8664332080000001,
+      "samples": 10,
+      "peakSummedRssBytes": 961282048,
+      "peakSummedFootprintBytes": 651957888
+    },
+    {
+      "name": "Cycle 2 return-export",
+      "startMs": 64464.006792,
+      "cpuAtStart": 31.85871229,
+      "endMs": 64477.260167,
+      "observedCpuSeconds": 0.007019207999999111,
+      "samples": 1,
+      "peakSummedRssBytes": 770424832,
+      "peakSummedFootprintBytes": 647992960
+    },
+    {
+      "name": "cycle-2-return-idle",
+      "startMs": 64477.260167,
+      "cpuAtStart": 31.865731498,
+      "endMs": 66980.91437500001,
+      "observedCpuSeconds": 0.032335917000001047,
+      "samples": 13,
+      "peakSummedRssBytes": 770424832,
+      "peakSummedFootprintBytes": 647992960
+    },
+    {
+      "name": "Cycle 3 small-build",
+      "startMs": 66980.91437500001,
+      "cpuAtStart": 31.898067415,
+      "endMs": 68860.36579200001,
+      "observedCpuSeconds": 1.7917609169999977,
+      "samples": 10,
+      "peakSummedRssBytes": 965541888,
+      "peakSummedFootprintBytes": 646698576
+    },
+    {
+      "name": "Cycle 3 small-export",
+      "startMs": 68860.36579200001,
+      "cpuAtStart": 33.689828332,
+      "endMs": 68879.057375,
+      "observedCpuSeconds": 0.009643833000005486,
+      "samples": 1,
+      "peakSummedRssBytes": 766722048,
+      "peakSummedFootprintBytes": 646387280
+    },
+    {
+      "name": "cycle-3-small-idle",
+      "startMs": 68879.057375,
+      "cpuAtStart": 33.699472165,
+      "endMs": 71380.906292,
+      "observedCpuSeconds": 0.039507624999998825,
+      "samples": 13,
+      "peakSummedRssBytes": 766951424,
+      "peakSummedFootprintBytes": 647009872
+    },
+    {
+      "name": "Cycle 3 long-build",
+      "startMs": 71380.906292,
+      "cpuAtStart": 33.73897979,
+      "endMs": 73457.19450000001,
+      "observedCpuSeconds": 2.1340395,
+      "samples": 11,
+      "peakSummedRssBytes": 911097856,
+      "peakSummedFootprintBytes": 663754320
+    },
+    {
+      "name": "Cycle 3 long-export",
+      "startMs": 73457.19450000001,
+      "cpuAtStart": 35.87301929,
+      "endMs": 73497.173333,
+      "observedCpuSeconds": 0.008417125000001136,
+      "samples": 1,
+      "peakSummedRssBytes": 721698816,
+      "peakSummedFootprintBytes": 625694264
+    },
+    {
+      "name": "cycle-3-navigation",
+      "startMs": 73497.173333,
+      "cpuAtStart": 35.881436415,
+      "endMs": 75099.33604200001,
+      "observedCpuSeconds": 0.16497058299999878,
+      "samples": 8,
+      "peakSummedRssBytes": 725516288,
+      "peakSummedFootprintBytes": 632428088
+    },
+    {
+      "name": "cycle-3-long-idle",
+      "startMs": 75099.33604200001,
+      "cpuAtStart": 36.046406998,
+      "endMs": 77606.738958,
+      "observedCpuSeconds": 0.028169415999997227,
+      "samples": 13,
+      "peakSummedRssBytes": 721846272,
+      "peakSummedFootprintBytes": 624154168
+    },
+    {
+      "name": "Cycle 3 return-build",
+      "startMs": 77606.738958,
+      "cpuAtStart": 36.074576414,
+      "endMs": 79512.043625,
+      "observedCpuSeconds": 1.8589624590000042,
+      "samples": 10,
+      "peakSummedRssBytes": 918208512,
+      "peakSummedFootprintBytes": 675583616
+    },
+    {
+      "name": "Cycle 3 return-export",
+      "startMs": 79512.043625,
+      "cpuAtStart": 37.933538873,
+      "endMs": 79534.51337500001,
+      "observedCpuSeconds": 0.00865929099999363,
+      "samples": 1,
+      "peakSummedRssBytes": 713375744,
+      "peakSummedFootprintBytes": 601429584
+    },
+    {
+      "name": "cycle-3-return-idle",
+      "startMs": 79534.51337500001,
+      "cpuAtStart": 37.942198164,
+      "endMs": 82038.23829200001,
+      "observedCpuSeconds": 0.05499200100000223,
+      "samples": 13,
+      "peakSummedRssBytes": 713375744,
+      "peakSummedFootprintBytes": 593090128
+    }
+  ],
+  "canvases": [
+    {
+      "label": "Cycle 1 small",
+      "pages": 1,
+      "renderedPages": 1,
+      "canvasPixels": 904230
+    },
+    {
+      "label": "Cycle 1 long",
+      "pages": 100,
+      "renderedPages": 3,
+      "canvasPixels": 2712690
+    },
+    {
+      "label": "cycle-1-page-100",
+      "pages": 100,
+      "renderedPages": 3,
+      "canvasPixels": 2712690
+    },
+    {
+      "label": "cycle-1-page-50",
+      "pages": 100,
+      "renderedPages": 4,
+      "canvasPixels": 3616920
+    },
+    {
+      "label": "cycle-1-page-1",
+      "pages": 100,
+      "renderedPages": 3,
+      "canvasPixels": 2712690
+    },
+    {
+      "label": "Cycle 1 return",
+      "pages": 1,
+      "renderedPages": 1,
+      "canvasPixels": 904230
+    },
+    {
+      "label": "Cycle 2 small",
+      "pages": 1,
+      "renderedPages": 1,
+      "canvasPixels": 904230
+    },
+    {
+      "label": "Cycle 2 long",
+      "pages": 100,
+      "renderedPages": 3,
+      "canvasPixels": 2712690
+    },
+    {
+      "label": "cycle-2-page-100",
+      "pages": 100,
+      "renderedPages": 3,
+      "canvasPixels": 2712690
+    },
+    {
+      "label": "cycle-2-page-50",
+      "pages": 100,
+      "renderedPages": 4,
+      "canvasPixels": 3616920
+    },
+    {
+      "label": "cycle-2-page-1",
+      "pages": 100,
+      "renderedPages": 3,
+      "canvasPixels": 2712690
+    },
+    {
+      "label": "Cycle 2 return",
+      "pages": 1,
+      "renderedPages": 1,
+      "canvasPixels": 904230
+    },
+    {
+      "label": "Cycle 3 small",
+      "pages": 1,
+      "renderedPages": 1,
+      "canvasPixels": 904230
+    },
+    {
+      "label": "Cycle 3 long",
+      "pages": 100,
+      "renderedPages": 3,
+      "canvasPixels": 2712690
+    },
+    {
+      "label": "cycle-3-page-100",
+      "pages": 100,
+      "renderedPages": 3,
+      "canvasPixels": 2712690
+    },
+    {
+      "label": "cycle-3-page-50",
+      "pages": 100,
+      "renderedPages": 4,
+      "canvasPixels": 3616920
+    },
+    {
+      "label": "cycle-3-page-1",
+      "pages": 100,
+      "renderedPages": 3,
+      "canvasPixels": 2712690
+    },
+    {
+      "label": "Cycle 3 return",
+      "pages": 1,
+      "renderedPages": 1,
+      "canvasPixels": 904230
+    }
+  ],
+  "errors": [],
+  "passed": true,
+  "limits": [
+    "Sampling starts after Electron automation attaches; earliest process startup can be missed. Runtime preparation uses a fresh app profile; OS caches are not purged.",
+    "Root PID plus discovered descendants only. PDF workers are renderer threads, not separate sampled processes. Observed processes that exit retain their last CPU counters.",
+    "Read-only libproc snapshots are not atomic; short-lived children and peaks between samples can be missed. Reparented helpers may leave the observed tree. PID plus birth time distinguishes reuse.",
+    "Summed RSS and summed per-process physical footprint are accounting metrics, not unique physical memory. Shared pages and surfaces can be counted more than once.",
+    "CPU is observed per-process user plus system time, scaled from Mach ticks with the reported timebase. Initial counters of processes born before sampling are excluded. Child CPU fields are not added. Missing terminal samples undercount CPU.",
+    "The sampling helper and Playwright harness are outside the app tree but add host load. Their CPU cost and snapshot duration are reported separately; the desktop is not otherwise isolated.",
+    "Three repeated small-text 1/100-page workflows on one development Mac do not establish a leak, population percentiles, worst-case images, or supported-device memory/CPU budgets."
+  ],
+  "viewport": {
+    "width": 1480,
+    "height": 960,
+    "devicePixelRatio": 1
+  },
+  "harnessCpuSeconds": 1.279742,
+  "finishedAt": "2026-09-26T23:22:08.754Z",
+  "pdfs": [
+    {
+      "path": "Cycle 1 small.pdf",
+      "pages": 1,
+      "label": "Cycle 1 small",
+      "sourceSha256": "5a02d92f9e9f3a7655b1b7b7c3b60c3b70da5794aa1be401b7223e472a6de5df",
+      "sha256": "c3c1b75232730710c1be29d760e08a4e2e2ce796c9b6b4ad412fe2a40128b317",
+      "bytes": 7244,
+      "verified": true
+    },
+    {
+      "path": "Cycle 1 long.pdf",
+      "pages": 100,
+      "label": "Cycle 1 long",
+      "sourceSha256": "2a67398082b7b9350b57cbfdf289200a270462b12756b4d04e1ee51f3f2060d5",
+      "sha256": "fbf991d6cc5bcd6af15d0ee7d82eddf29295b1e4e0a4900211180bc96a5e52dd",
+      "bytes": 54506,
+      "verified": true
+    },
+    {
+      "path": "Cycle 1 return.pdf",
+      "pages": 1,
+      "label": "Cycle 1 return",
+      "sourceSha256": "2610f89ee3763fc372bb7077e12365b67894a5398ac320d829fc42efe737e838",
+      "sha256": "4c4e365657a2ba07b5c66035bacb7ded4af5fc75b5268399f9f4dece4a9a58b9",
+      "bytes": 7299,
+      "verified": true
+    },
+    {
+      "path": "Cycle 2 small.pdf",
+      "pages": 1,
+      "label": "Cycle 2 small",
+      "sourceSha256": "be75c236703b6f66e72403f3123b0ba5045e3b4cb3f1eb482db2e7b4388f476a",
+      "sha256": "af9b5c5cea80dfa58149b0cdac520c2d034f4b711612e3f47e2ba929ae14ee19",
+      "bytes": 7358,
+      "verified": true
+    },
+    {
+      "path": "Cycle 2 long.pdf",
+      "pages": 100,
+      "label": "Cycle 2 long",
+      "sourceSha256": "05f1d1a2c35b41db163dfff6e76d86b2a77936a6d18e99ff0c6d6f29cbd1216f",
+      "sha256": "24bee1ca45deefbf190837836527a8302b221d2d0399dd2487388c800f94bca4",
+      "bytes": 54534,
+      "verified": true
+    },
+    {
+      "path": "Cycle 2 return.pdf",
+      "pages": 1,
+      "label": "Cycle 2 return",
+      "sourceSha256": "8d02aff0c475f609fa499dfb65da881a8b8756d28db05193dd6c81a9721763e4",
+      "sha256": "c76394bb5af94d5b5ecfd9a82209ca30809815492433758d7b4a239cb7c15f8f",
+      "bytes": 7406,
+      "verified": true
+    },
+    {
+      "path": "Cycle 3 small.pdf",
+      "pages": 1,
+      "label": "Cycle 3 small",
+      "sourceSha256": "eb4391eecbf4819736c56d86e6ab847b6bfe5e59ca33f0d94ecb7da9d56b1131",
+      "sha256": "9a1a498e97e7ab9c3dbfe9d66ff645dbed85bc5112cc3aea565655db8490f8ed",
+      "bytes": 7413,
+      "verified": true
+    },
+    {
+      "path": "Cycle 3 long.pdf",
+      "pages": 100,
+      "label": "Cycle 3 long",
+      "sourceSha256": "91325f2b492e33cba682b9b55f4e15b54de71ad1922ffbf3cc5f0663e5d1bb72",
+      "sha256": "831f6c2ac133176a6b37a212779437f37c5c41dda605438b0e49d430aedfd22d",
+      "bytes": 54628,
+      "verified": true
+    },
+    {
+      "path": "Cycle 3 return.pdf",
+      "pages": 1,
+      "label": "Cycle 3 return",
+      "sourceSha256": "7970e2e85f8d76abc00bf0680fe199c83ad955f8daa61efcfa1d1d38d8552bd0",
+      "sha256": "96d67755b2b05d03815b0fe1df857642a4172dc08747ed0a4b9fe5e577ca12e5",
+      "bytes": 7461,
+      "verified": true
+    }
+  ],
+  "raw": {
+    "path": "docs/performance/process-tree-baseline.json.gz",
+    "compressedBytes": 47110,
+    "compressedSha256": "9eefb37951c7548e0bc4eb3ad55db50ad4e722620e0902223957b8560864f3c2",
+    "uncompressedBytes": 711489,
+    "uncompressedSha256": "e40b845458c6ab038d54da407e625340943b70446007b3b2d28674103c8bb17c",
+    "original": "test-results/process-profile-VSFmTe/measurements.json"
+  },
+  "independentlyVerified": {
+    "allProcessCpuCounters": true,
+    "allMemorySums": true,
+    "allPhaseBoundariesAndPeaks": true,
+    "allExportedPdfHashes": true,
+    "rawRoundTrip": true
+  },
+  "overall": {
+    "samples": 421,
+    "phaseCount": 32,
+    "observedCpuSeconds": 37.997190165,
+    "sampledSpanSeconds": 82.03819087500001,
+    "peakSummedRssBytes": 965541888,
+    "peakSummedFootprintBytes": 728405632,
+    "maxProcessCount": 6
+  },
+  "peakSamples": {
+    "summedRssBytes": {
+      "atMs": 68414.227792,
+      "phase": "Cycle 3 small-build",
+      "collectionMs": 2.453458000003593,
+      "atAbstime": "20588934105331",
+      "timebase": {
+        "numer": 125,
+        "denom": 3
+      },
+      "processes": [
+        {
+          "pid": 48952,
+          "parent": 48931,
+          "name": "Folio",
+          "birthAbstime": "20587285822426",
+          "userTicks": "242294584",
+          "systemTicks": "353165845",
+          "rssBytes": 317079552,
+          "footprintBytes": 145721216
+        },
+        {
+          "pid": 49650,
+          "parent": 48952,
+          "name": "tectonic",
+          "birthAbstime": "20588929562473",
+          "userTicks": "3860400",
+          "systemTicks": "521661",
+          "rssBytes": 198148096,
+          "footprintBytes": 189088488
+        },
+        {
+          "pid": 48955,
+          "parent": 48952,
+          "name": "Folio Helper (Renderer)",
+          "birthAbstime": "20587289621100",
+          "userTicks": "61720763",
+          "systemTicks": "7319422",
+          "rssBytes": 296484864,
+          "footprintBytes": 163956416
+        },
+        {
+          "pid": 48954,
+          "parent": 48952,
+          "name": "Folio Helper",
+          "birthAbstime": "20587288625162",
+          "userTicks": "991727",
+          "systemTicks": "395225",
+          "rssBytes": 49414144,
+          "footprintBytes": 7898072
+        },
+        {
+          "pid": 48953,
+          "parent": 48952,
+          "name": "Folio Helper",
+          "birthAbstime": "20587288583555",
+          "userTicks": "29407648",
+          "systemTicks": "12557877",
+          "rssBytes": 104415232,
+          "footprintBytes": 87458872
+        }
+      ],
+      "vanished": 0,
+      "samplerCpuSeconds": 0.001529,
+      "observedCpuSeconds": 33.586608748,
+      "summedRssBytes": 965541888,
+      "summedFootprintBytes": 594123064
+    },
+    "summedFootprintBytes": {
+      "atMs": 48650.742417,
+      "phase": "Cycle 1 return-build",
+      "collectionMs": 2.3897909999941476,
+      "atAbstime": "20588459780699",
+      "timebase": {
+        "numer": 125,
+        "denom": 3
+      },
+      "processes": [
+        {
+          "pid": 48952,
+          "parent": 48931,
+          "name": "Folio",
+          "birthAbstime": "20587285822426",
+          "userTicks": "177397457",
+          "systemTicks": "271914561",
+          "rssBytes": 372441088,
+          "footprintBytes": 212207584
+        },
+        {
+          "pid": 48955,
+          "parent": 48952,
+          "name": "Folio Helper (Renderer)",
+          "birthAbstime": "20587289621100",
+          "userTicks": "39126460",
+          "systemTicks": "5131287",
+          "rssBytes": 280231936,
+          "footprintBytes": 164939408
+        },
+        {
+          "pid": 48954,
+          "parent": 48952,
+          "name": "Folio Helper",
+          "birthAbstime": "20587288625162",
+          "userTicks": "954229",
+          "systemTicks": "382949",
+          "rssBytes": 49315840,
+          "footprintBytes": 7996376
+        },
+        {
+          "pid": 48953,
+          "parent": 48952,
+          "name": "Folio Helper",
+          "birthAbstime": "20587288583555",
+          "userTicks": "23952712",
+          "systemTicks": "8825233",
+          "rssBytes": 103153664,
+          "footprintBytes": 343262264
+        }
+      ],
+      "vanished": 0,
+      "samplerCpuSeconds": 0.001482,
+      "observedCpuSeconds": 25.312103458,
+      "summedRssBytes": 805142528,
+      "summedFootprintBytes": 728405632
+    }
+  },
+  "endProfileDisk": {
+    "scope": "End-of-run synthetic application profile only; logical regular-file sizes, excluding symlink targets, directory metadata, filesystem allocation and the app installation. Read after app exit. No growth-rate or retention guarantee.",
+    "root": "test-results/process-profile-VSFmTe/app-data",
+    "entries": {
+      "blob_storage": {
+        "files": 0,
+        "bytes": 0,
+        "links": 0
+      },
+      "DawnGraphiteCache": {
+        "files": 5,
+        "bytes": 557424,
+        "links": 0
+      },
+      "Session Storage": {
+        "files": 5,
+        "bytes": 415,
+        "links": 0
+      },
+      "GPUCache": {
+        "files": 5,
+        "bytes": 557424,
+        "links": 0
+      },
+      "Preferences": {
+        "files": 1,
+        "bytes": 41,
+        "links": 0
+      },
+      "DIPS": {
+        "files": 1,
+        "bytes": 36864,
+        "links": 0
+      },
+      "Cache": {
+        "files": 0,
+        "bytes": 0,
+        "links": 0
+      },
+      "declarative_performance_observer.db": {
+        "files": 1,
+        "bytes": 32768,
+        "links": 0
+      },
+      "declarative_performance_observer.db-journal": {
+        "files": 1,
+        "bytes": 0,
+        "links": 0
+      },
+      "runtimes": {
+        "files": 3988,
+        "bytes": 396845472,
+        "links": 0
+      },
+      "workspaces": {
+        "files": 21,
+        "bytes": 284764,
+        "links": 0
+      },
+      "builds": {
+        "files": 1,
+        "bytes": 24451466,
+        "links": 0
+      },
+      "Shared Dictionary": {
+        "files": 4,
+        "bytes": 45128,
+        "links": 0
+      },
+      "Network Persistent State": {
+        "files": 1,
+        "bytes": 111,
+        "links": 0
+      },
+      "Local State": {
+        "files": 1,
+        "bytes": 57,
+        "links": 0
+      },
+      "DevToolsActivePort": {
+        "files": 1,
+        "bytes": 60,
+        "links": 0
+      },
+      "import-transactions": {
+        "files": 0,
+        "bytes": 0,
+        "links": 0
+      },
+      "GraphiteDawnCache": {
+        "files": 5,
+        "bytes": 5837168,
+        "links": 0
+      },
+      "GPUPersistentCache": {
+        "files": 3,
+        "bytes": 0,
+        "links": 0
+      },
+      "Trust Tokens-journal": {
+        "files": 1,
+        "bytes": 0,
+        "links": 0
+      },
+      "Trust Tokens": {
+        "files": 1,
+        "bytes": 36864,
+        "links": 0
+      },
+      "DawnWebGPUCache": {
+        "files": 5,
+        "bytes": 557424,
+        "links": 0
+      },
+      "Code Cache": {
+        "files": 5,
+        "bytes": 11436,
+        "links": 0
+      },
+      "recovery.json": {
+        "files": 1,
+        "bytes": 633,
+        "links": 0
+      },
+      "Local Storage": {
+        "files": 5,
+        "bytes": 792,
+        "links": 0
+      }
+    },
+    "totals": {
+      "files": 4062,
+      "bytes": 429256311,
+      "links": 0
+    }
+  }
+}
