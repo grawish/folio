@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-26T21:26:57.160834+00:00",
+  "sourceBase": "a94314acd2d0789d14ff24c51e2b181ab276b5fe",
+  "scope": "Byte reproduction of selected Unicode files, not full Perl/native-build or redistribution acceptance.",
+  "releaseAuditComplete": false,
+  "summary": {
+    "unicodePayloadFiles": 546,
+    "matchingFiles": 545,
+    "unchangedSourceFiles": 5,
+    "reproducedGeneratedFiles": 540,
+    "matchingBytesAtDifferentPaths": 17,
+    "unmatchedFiles": 1
+  },
+  "replay": {
+    "passed": true,
+    "comparedFiles": 609,
+    "byteIdentical": true
+  },
+  "sourceArchive": {
+    "id": "perl-5.32.1",
+    "archive": "perl-5.32.1.tar.gz",
+    "root": "perl-5.32.1",
+    "url": "https://cpan.metacpan.org/authors/id/S/SH/SHAY/perl-5.32.1.tar.gz",
+    "bytes": 18038522,
+    "sha256": "03b693901cd8ae807231b1787798cf1f2e0b8a56218d07b7da44f784a7caeb2c",
+    "version": "5.032001",
+    "licenseDeclaration": ["perl_5"]
+  },
+  "inputFiles": 60,
+  "inputBytes": 11643085,
+  "generatorSha256": "ee0dd174fd5b158d82dfea95d7d822ca0bfcd490182669353dca3ab39a8ee807",
+  "command": ["/usr/bin/perl", "lib/unicore/mktables", "-C", "lib/unicore", "-q", "-w"],
+  "hostPerl": {
+    "path": "/usr/bin/perl",
+    "sha256": "85e5621137742a37be052f58800372b2005f91f609ad55019832214b5d9e61bc",
+    "version": "v5.34.1"
+  },
+  "sandbox": {
+    "controls": {
+      "insideWrite": true,
+      "outsideWriteDenied": true,
+      "networkConnectDenied": true
+    },
+    "networkDenied": true,
+    "writeScope": "unique temporary run directory and /dev/null",
+    "readIsolation": false,
+    "deadlineSeconds": 180,
+    "environment": {
+      "PATH": "/usr/bin:/bin",
+      "LC_ALL": "C",
+      "LANG": "C",
+      "PERL_HASH_SEED": "0",
+      "PERL_PERTURB_KEYS": "0"
+    }
+  },
+  "unchangedApplicationOutputs": 37,
+  "combinedSourceCoverage": {
+    "previousMatchedPayloadFiles": 3056,
+    "additionalGeneratedFileMatches": 540,
+    "matchedPayloadFiles": 3596,
+    "totalPayloadFiles": 3932,
+    "unmatchedPayloadFiles": 336,
+    "baselineEvidence": {
+      "path": "artifacts/license-materials/biber-cpan/source-matches.json",
+      "bytes": 1550893,
+      "sha256": "29da41cbd73591dd393e250040e252d779479f32bf4bac96a524d3d3ed695edf"
+    }
+  },
+  "unmatchedUnicodeFiles": [
+    {
+      "path": "par/lib/unicore/UCD.pl",
+      "bytes": 280118,
+      "sha256": "031a88d6b32a2d7c90ba7c00f50a3a48ae4132b73199c257622bce33e030d6e7"
+    }
+  ],
+  "checks": {
+    "newOfflineControls": 8,
+    "allSourceCollectorControls": 63,
+    "sourceGeneratorAndArchiveDigestsVerified": true,
+    "fullByteComparisons": true,
+    "applicationRuntimeModified": false
+  },
+  "evidence": [
+    {
+      "path": "scripts/collect-biber-unicode-evidence.py",
+      "bytes": 10667,
+      "sha256": "6d3b47769bc85bdbc0a0523096f1910d509364c9d02ab0f312dcf57723cbbdba"
+    },
+    {
+      "path": "tests/biber-unicode-evidence.py",
+      "bytes": 4922,
+      "sha256": "c29a5e4fb9b8caa8b8009ccfd1e920e7ddd5915b426ea681c0931360e579b0ae"
+    },
+    {
+      "path": "artifacts/license-materials/biber-unicode/inventory.json",
+      "bytes": 105523,
+      "sha256": "514b51ceb88f19c5bf8bb82e3f3bc9450163f66bcbd709ab0a65443f4bd1e228"
+    },
+    {
+      "path": "artifacts/license-materials/biber-unicode/source-matches.json",
+      "bytes": 151804,
+      "sha256": "0b7fcbbf52704eee18e9440f3561766c19b745ba998ef5bd3664e51c56758d68"
+    },
+    {
+      "path": "test-results/biber-unicode-all-controls.log",
+      "bytes": 1027,
+      "sha256": "9d6b38e7cf2096358e8c3befbfa3b86060f5b3612e9a7695ea0289e7a9b0990d"
+    },
+    {
+      "path": "test-results/biber-unicode-final.log",
+      "bytes": 272,
+      "sha256": "82b5adac77e9b744050b3dc72f303d8cb672dd0b45f145389a28484fd6260544"
+    },
+    {
+      "path": "test-results/biber-unicode-replay.log",
+      "bytes": 272,
+      "sha256": "4fe5a4af55a99e288ce94dfa1fe7e5df066d456d32b1f2aff19aef8a38593142"
+    },
+    {
+      "path": "test-results/biber-unicode-output-hashes.json",
+      "bytes": 66961,
+      "sha256": "7cc125d577b4d1a7262b83c21ce12da5f8de4fdac12f1406b9b71d419deb620b"
+    },
+    {
+      "path": "test-results/biber-unicode-replay-result.json",
+      "bytes": 70,
+      "sha256": "0cd65828562c925adc533def251f7ed2082c9226acdab01e98b19790caabcb35"
+    }
+  ],
+  "observations": [
+    "The first flattened invocation changed the generated header because mktables records its invocation path. Invoking the unchanged script as lib/unicore/mktables with -C lib/unicore reproduces the original header; no output rewriting is used.",
+    "Seventeen Scx payload files exactly match generated Sc files. Their path mappings are recorded rather than silently renamed.",
+    "UCD.pl has different ordering and references. It remains unmatched; semantic equivalence and its exact original generation environment are not established.",
+    "The source is Perl 5.32.1 with Unicode 13.0.0 data; the developer interpreter is system Perl v5.34.1. This is successful byte reproduction for the matched subset, not a reproduction of the full original Biber build.",
+    "Initial default-deny read-scoped profiles aborted during macOS dyld startup before Perl ran. The final developer-only profile permits reads and system operations, denies networking and limits file writes. Controls require real EPERM for outside writes and a loopback connection."
+  ],
+  "remaining": [
+    "Resolve the generated UCD index, other Perl/packager/autosplit output and native module/library build provenance.",
+    "Review all embedded notice grants, Unicode terms, conflicting source license metadata, corresponding-source requirements and the exact-app SBOM."
+  ]
+}

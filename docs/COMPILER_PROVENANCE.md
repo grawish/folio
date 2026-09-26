@@ -9,7 +9,7 @@ The upstream [release tag](https://github.com/tectonic-typesetting/tectonic/rele
 Its retained `binary-aarch64-apple-darwin` artifact, ID `8639168690`, has the SHA-256 reported by GitHub. The artifact contains one release archive; that archive is byte-identical to Folio's pinned download. Its single executable is byte-identical to `resources/runtime/mac-arm64/tectonic`:
 
 | Object | Bytes | SHA-256 |
-| --- | ---: | --- |
+| ------------------- | ---------: | ------------------------------------------------------------------ |
 | Release archive | 21,704,674 | `a3f1cac7c5678f01661a92212f58480ae3b0634115d880dbc59e2953ded45667` |
 | Compiler executable | 53,998,928 | `b52b5a730e2b0b33087304f7720f649603953f270a6b1c88bb031e1ae01f7f9c` |
 
@@ -46,5 +46,7 @@ Inspection of the exact Tectonic executable finds defined code symbols for Brotl
 The [Biber collector](LICENSING.md#collect-biber-payload-and-foundation-sources) verifies the prepared executable against the exact official universal archive's arm64 slice and maps every one of its 3,979 prepared files to embedded bytes or documented packaging transformations. All 36 embedded Biber application/data files match release source. It also retains original Perl 5.32.1, PAR 1.017 and PAR::Packer 1.055 sources and 25 selected notice/metadata/build files. Eight offline controls and all 35 retained outputs match on a cached replay; see [verification](releases/biber-build-verification.json). This establishes payload provenance and initial source matches, not a complete Biber dependency or native build audit.
 
 The [CPAN source collector](LICENSING.md#collect-biber-cpan-source-and-notice-materials) adds 123 original archives and 727 selected source/notice materials. Its complete-file comparisons account for 2,756 CPAN payload files. Combining those with the original Perl/PAR/Biber sources covers 3,056 of 3,932 ZIP/loader files, including four exact packager compatibility transformations. The 876 unmatched files remain explicit, and Biber's full Artistic 2.0 text and original copyright declaration are retained. Eight controls and a byte-identical 856-file replay pass; see [verification](releases/biber-cpan-verification.json).
+
+The [Unicode generator audit](LICENSING.md#reproduce-biber-unicode-tables) reproduces 540 generated files from the original Perl 5.32.1 generator and Unicode inputs. Five other files already match unchanged source. Seventeen generated files have different paths but identical bytes; the `UCD.pl` index remains unmatched. The developer uses system Perl 5.34.1 under a network/write sandbox, so this is byte reproduction of a subset rather than a complete original build. Eight controls and all 609 retained outputs match on replay. Combined source/generator evidence now covers 3,596 of 3,932 payload files; 336 remain unresolved. See [verification](releases/biber-unicode-verification.json).
 
 Complete linked native/workspace and standard-library mapping, Biber's generated/native code and TeX/font requirements next. The collected recipes are build evidence, not the native dependency payloads themselves. Do not describe this record as permission to publish an installer or as a completed signed-app audit.

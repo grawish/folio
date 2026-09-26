@@ -116,6 +116,24 @@ python3 tests/biber-cpan-materials.py
 
 Downloads are limited to the reviewed CPAN archives and pinned SPDX text. Sizes, digests and original MetaCPAN release metadata URLs are recorded in the lock. A module/version lookup is only a discovery hint: the audit rejected a mismatching MIME::Charset candidate and retained the exact 1.012.2 source after byte comparison. Output goes to ignored `artifacts/license-materials/biber-cpan/`, including the full archives, selected original materials, the packager patch source and detailed match/unmatched inventories. Eight offline controls pass, and all 856 retained output files are byte-identical on a cached replay. See [verification](releases/biber-cpan-verification.json). Generated artifacts are not automatically published or bundled into Folio; final license obligations and the exact-app SBOM still require completion.
 
+## Reproduce Biber Unicode tables
+
+`python3 scripts/collect-biber-unicode-evidence.py` uses the cached, checksum-verified Perl 5.32.1 source archive and its 60 original Unicode input files (11,643,085 bytes). It runs the unchanged `lib/unicore/mktables` generator with `-C lib/unicore -q -w`. Keeping the original invocation path reproduces its header; output text is never edited to make a match.
+
+This developer-only macOS check executes reviewed upstream code. It uses `/usr/bin/perl` in a sandbox that denies networking and limits writes to a unique temporary run directory and `/dev/null`. It permits reads and other system operations; it is not a read-isolation audit and does not change Folio’s application sandbox. Each run first proves that an inside write succeeds while an outside write and actual loopback connection fail with `EPERM`. The generator has a 180-second deadline that kills and reaps its process group. Inputs and output sizes are bounded, but this does not establish OS memory/CPU quotas.
+
+The observed system Perl is 5.34.1, while the original source is Perl 5.32.1 with Unicode 13.0.0 data. Of 546 embedded Unicode files, five match unchanged source and **540 generated files reproduce byte for byte**. Seventeen generated `Sc/` files match payload `Scx/` files under different names; every mapping is recorded. The remaining `UCD.pl` index differs in ordering and references. It remains unmatched; neither normalization nor an assumed semantic match closes that gap. This is a verified subset, not a reconstruction of Biber’s full original build environment.
+
+```sh
+# Requires the previously collected Perl archive and prepared Biber runtime.
+python3 scripts/collect-biber-unicode-evidence.py
+python3 tests/biber-unicode-evidence.py
+```
+
+The collector is offline and retains its original archive, all 60 inputs, exact generated candidates and a hashed inventory under ignored `artifacts/license-materials/biber-unicode/`. Unique run folders and logs remain under `test-results/`. A second run reproduces all 609 retained output files identically. Eight new offline controls pass, bringing source-collector controls to 63; CI runs the controls without generating Unicode data. The [verification record](releases/biber-unicode-verification.json) preserves the interpreter identity, exact command and sandbox scope.
+
+All 540 new generated matches were previously unmatched in the CPAN inventory. Combined evidence now covers **3,596 of 3,932 payload files**, leaving 336 explicit gaps. Other generated Perl/autosplit files, native modules/libraries, original Unicode terms, embedded license grants and full redistribution/SBOM review remain required. These developer artifacts do not modify existing app or runtime bytes and are not automatically published. A failed run exits unsuccessfully and writes `incomplete-inventory.json`; an existing `inventory.json` remains evidence of the preceding successful run.
+
 ## Collect native build-port sources and notices
 
 Run `python3 scripts/collect-native-license-materials.py` after retaining the [verified vcpkg build inputs](COMPILER_PROVENANCE.md#reproduce-the-check). The Python 3.11+ collector checks `resources/native-license-sources.lock.json` against the compiler-build evidence lock and original vcpkg archive. Every selected port must match its installed version/features, recipe and manifest. Its source archive must match the recipe’s SHA-512 plus the reviewed byte count and SHA-256. Downloads use approved HTTPS hosts and bounded redirects, sizes and time; cached corruption fails instead of fetching a replacement.

@@ -1,0 +1,325 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-26T21:21:10.151678+00:00",
+  "runId": 36270540984,
+  "url": "https://github.com/grawish/folio/actions/runs/36270540984",
+  "sourceCommit": "2e720b73c436b3c047aea671a129e6b03459af87",
+  "conclusion": "success",
+  "finishedAt": "2026-09-26T21:08:35Z",
+  "scope": "Unsigned hosted qualification of early workspace editing, runtime-copy optimization and normal public-resource-pack acceptance. No app/DMG asset was uploaded or published by this run. Package digests below are runner reports; the evidence archive was independently downloaded and hashed.",
+  "downloadedEvidence": {
+    "artifactId": 10916226101,
+    "archive": {
+      "path": "artifacts/mac-2e720b7.zip",
+      "bytes": 4417976,
+      "sha256": "3b8e5680c6bb40d2ce832e799380fe0153fcff06fa5e96611a45e0d1e208a346"
+    },
+    "githubReportedDigest": "sha256:3b8e5680c6bb40d2ce832e799380fe0153fcff06fa5e96611a45e0d1e208a346",
+    "digestMatches": true
+  },
+  "sourceTests": 231,
+  "compilerIntegrations": 15,
+  "templateVariants": 12,
+  "templateChangedPixels": 0,
+  "artifactVerification": {
+    "checkedAt": "2026-09-26T21:08:29.904Z",
+    "architecture": "arm64",
+    "comparedOutputFiles": 37,
+    "runtimeManifestMatches": true,
+    "appBytes": 679025534,
+    "hashes": [
+      {
+        "path": "Folio-0.1.0-preview.4-mac-arm64.dmg",
+        "bytes": 302771560,
+        "sha256": "80d2a0a508fa5c306e5681fd3f9832618676c9c10a25de8770b50e94e0d87e62"
+      },
+      {
+        "path": "mac-arm64/Folio.app/Contents/Resources/app.asar",
+        "bytes": 5378945,
+        "sha256": "e04e7ba10517b37dfaf6d5fa010df85b48cf1b5b07539ecb4b51e35b81226e41"
+      }
+    ],
+    "nativeTestsPassed": true
+  },
+  "nativeSuites": [
+    {
+      "suite": "import-recovery",
+      "script": "scripts/test-import-recovery.mjs",
+      "scriptSha256": "81967721e2258427a438e89a2b9a7d0fee3800136c2823f69c7c2575c8781366",
+      "passed": true,
+      "sourceScriptDigestMatches": true,
+      "log": {
+        "path": "artifacts/mac-2e720b7/test-results/release-import-recovery-final.log",
+        "bytes": 653,
+        "sha256": "c721ccfd416409542ac51aa396b84cf16741833fc6b7af58aed4ca2a5f1b1667"
+      }
+    },
+    {
+      "suite": "import",
+      "script": "scripts/test-import.mjs",
+      "scriptSha256": "270b9fc55851f29cbc5c88346e2ba4efd6c0f46892ebfcda4ae649df4ade1233",
+      "passed": true,
+      "sourceScriptDigestMatches": true,
+      "log": {
+        "path": "artifacts/mac-2e720b7/test-results/release-import-final.log",
+        "bytes": 723,
+        "sha256": "180b6960ac716bc7149a684c18ad5b8b220c196dddcb2117f2bd6831e5ca0330"
+      }
+    },
+    {
+      "suite": "pdf-viewer",
+      "script": "scripts/test-pdf-viewer.mjs",
+      "scriptSha256": "359ac20b7e751cf7bfd62fbf114ed9146868f9606645cb1415b8b8089daa22a8",
+      "passed": true,
+      "sourceScriptDigestMatches": true,
+      "log": {
+        "path": "artifacts/mac-2e720b7/test-results/release-pdf-viewer-final.log",
+        "bytes": 956,
+        "sha256": "264fd5a7a4380ff5246cf6d64ac983b6e936d2c0f5722a2f239538236d0593b7"
+      }
+    },
+    {
+      "suite": "pdf-lifecycle",
+      "script": "scripts/test-pdf-lifecycle.mjs",
+      "scriptSha256": "050ebba2f302310289760eeefdf7055ae62b3a680c278ae5b26fc6ed6d56a913",
+      "passed": true,
+      "sourceScriptDigestMatches": true,
+      "log": {
+        "path": "artifacts/mac-2e720b7/test-results/release-pdf-lifecycle-final.log",
+        "bytes": 243,
+        "sha256": "b33f8477cb6896c783e58ab768c1f3d5fd3ccd11369e4b7038278730589fe8c4"
+      }
+    },
+    {
+      "suite": "migration",
+      "script": "scripts/test-migration.mjs",
+      "scriptSha256": "5f4a33db8cbe3afc37578caec954421a15567b37e24db7098c42db3136b52f53",
+      "passed": true,
+      "sourceScriptDigestMatches": true,
+      "log": {
+        "path": "artifacts/mac-2e720b7/test-results/release-migration-final.log",
+        "bytes": 702,
+        "sha256": "a8049da0a3b5e128b53e124186f5e8f0161127b30b8cb3d24bfeae3cba7f4e40"
+      }
+    },
+    {
+      "suite": "chat",
+      "script": "scripts/test-chat.mjs",
+      "scriptSha256": "ecc8c229f5792aefd47b860c7ff318c3bd60962972da2f57be4f9e7a454cd095",
+      "passed": true,
+      "sourceScriptDigestMatches": true,
+      "log": {
+        "path": "artifacts/mac-2e720b7/test-results/release-chat-final.log",
+        "bytes": 1521,
+        "sha256": "9ccde34450b45c0edad99bb0c1ec6357553f62dc7fe42dfa6c61fbdce9f051a4"
+      }
+    },
+    {
+      "suite": "runtime",
+      "script": "scripts/test-runtime.mjs",
+      "scriptSha256": "0134a2bbad027e18fc2f448d39cb3dfb2c78ac3f40fc3c177010c22e8bee5b1b",
+      "passed": true,
+      "sourceScriptDigestMatches": true,
+      "log": {
+        "path": "artifacts/mac-2e720b7/test-results/release-runtime-final.log",
+        "bytes": 692,
+        "sha256": "f90df7c8995665f310ea60bcd7a14f78d50e2cb6a47d7a52021a9619061610d6"
+      }
+    },
+    {
+      "suite": "workspace",
+      "script": "scripts/test-workspace.mjs",
+      "scriptSha256": "73d73aadd8a7f42c4d8287bf791b004e7571bf93acb06bf9c1658eb6ca1b7043",
+      "passed": true,
+      "sourceScriptDigestMatches": true,
+      "log": {
+        "path": "artifacts/mac-2e720b7/test-results/release-workspace-final.log",
+        "bytes": 694,
+        "sha256": "b3ec62174e0883879c62e4fe6a5f0b6e5a1c550a3f2b099372f0b1b62abf44e5"
+      }
+    },
+    {
+      "suite": "diagnostics",
+      "script": "scripts/test-diagnostics.mjs",
+      "scriptSha256": "fabc3516d0f4bb634243b03639cad2d399bcb63ef607e689cf5a2846d3f4cf20",
+      "passed": true,
+      "sourceScriptDigestMatches": true,
+      "log": {
+        "path": "artifacts/mac-2e720b7/test-results/release-diagnostics-final.log",
+        "bytes": 310,
+        "sha256": "a2c5751195c9682430df77ce4b04438c3ca478a48882841c4453693ec5a03dec"
+      }
+    },
+    {
+      "suite": "fonts",
+      "script": "scripts/test-fonts.mjs",
+      "scriptSha256": "ea22d1c8498963eb07ada2f996ac306a99b83b45a017dac20a02abd1c5259682",
+      "passed": true,
+      "sourceScriptDigestMatches": true,
+      "log": {
+        "path": "artifacts/mac-2e720b7/test-results/release-fonts-final.log",
+        "bytes": 584,
+        "sha256": "29d4d175a91c29ed47bd3aa8222fbf1577b27ce125885b664177a8e18c62f0cb"
+      }
+    },
+    {
+      "suite": "support",
+      "script": "scripts/test-support.mjs",
+      "scriptSha256": "f6fe2f4ca8072aba6b21c054e63a7158896900c1dc7dcf533e9b74b2035dfd72",
+      "passed": true,
+      "sourceScriptDigestMatches": true,
+      "log": {
+        "path": "artifacts/mac-2e720b7/test-results/release-support-final.log",
+        "bytes": 505,
+        "sha256": "a29f1ea9f7e61d5f44a8e0b57971529ecd0b1b1d0b4ee859f817faea9d1101cc"
+      }
+    },
+    {
+      "suite": "save-recovery",
+      "script": "scripts/test-save-recovery.mjs",
+      "scriptSha256": "bdf3126f22a6b45b5583a689aa406e2a2ebde1f6db672a182102a44cbc704ee3",
+      "passed": true,
+      "sourceScriptDigestMatches": true,
+      "log": {
+        "path": "artifacts/mac-2e720b7/test-results/release-save-recovery-final.log",
+        "bytes": 963,
+        "sha256": "ff33d0d881827ec8a754a1622d81250c9cc8102fcd0cc36cb15f00482d917ed8"
+      }
+    },
+    {
+      "suite": "pack-catalog",
+      "script": "scripts/test-pack-catalog.mjs",
+      "scriptSha256": "368ec3fbf4e522cb914902231557b0943bd87017ed1837d9aa0d61c2f16ece61",
+      "passed": true,
+      "sourceScriptDigestMatches": true,
+      "log": {
+        "path": "artifacts/mac-2e720b7/test-results/release-pack-catalog-final.log",
+        "bytes": 304,
+        "sha256": "05599bdc66ae71bc9bc15cf6a880da669a32d64842023019103e6119f51d989b"
+      }
+    },
+    {
+      "suite": "packaged",
+      "script": "scripts/test-packaged.mjs",
+      "scriptSha256": "be7b559a2cf786c3c1b5fa2ee04fc9381410f41a6fe8766ec0af2dc37d2cd5a3",
+      "passed": true,
+      "sourceScriptDigestMatches": true,
+      "log": {
+        "path": "artifacts/mac-2e720b7/test-results/release-packaged-final.log",
+        "bytes": 223,
+        "sha256": "ff969897798b47820135d956a8d077aebe5b83c32acb16cc7250b52c9a04b29e"
+      }
+    }
+  ],
+  "runtimeObservation": {
+    "editingReadyMs": 748,
+    "earlySave": true,
+    "retainedDraft": true,
+    "scope": "One hosted observation, not a cold/warm/p95 device benchmark."
+  },
+  "currentSourceComparison": {
+    "comparedCommit": "a94314acd2d0789d14ff24c51e2b181ab276b5fe",
+    "applicationAndPackagingInputsUnchanged": true,
+    "changedPaths": [
+      ".github/workflows/ci.yml",
+      "docs/COMPILER_PROVENANCE.md",
+      "docs/LICENSING.md",
+      "docs/RELEASE_GAP_AUDIT.md",
+      "docs/releases/biber-cpan-verification.json",
+      "resources/biber-cpan-sources.lock.json",
+      "scripts/collect-biber-cpan-materials.py",
+      "skills/folio-resume/references/RELEASE_GAP_AUDIT.md",
+      "tests/biber-cpan-materials.py"
+    ],
+    "compiledOutputFilesUnchanged": 37,
+    "scope": "Current app source and package inputs match the qualified source; later developer audit files are not a separately qualified build."
+  },
+  "evidence": [
+    {
+      "path": "artifacts/mac-2e720b7/release/native-tests.json",
+      "bytes": 6369,
+      "sha256": "ce595058db5947a3e4f53ee8413699b8d041265c4eab0efb851f0b4466f55b85"
+    },
+    {
+      "path": "artifacts/mac-2e720b7/release/verification.json",
+      "bytes": 568,
+      "sha256": "25035f37c19f7466def21cc84c282180c278bbd7f71be14dcbe635c7414a2041"
+    },
+    {
+      "path": "artifacts/mac-2e720b7/release/SHA256SUMS",
+      "bytes": 216,
+      "sha256": "7efef0a4356023997ef090fea27da5200b8a11c38e0fd4bf989ba8c15a087be0"
+    },
+    {
+      "path": "artifacts/mac-2e720b7/release/disk-image-verification.log",
+      "bytes": 934,
+      "sha256": "31d72d3f08e62b0fe4bf2069a2730672c3257dcbb7dbf57404c8ebcbd0ca344a"
+    },
+    {
+      "path": "artifacts/mac-2e720b7/test-results/diagnostics-th6YXe/result.json",
+      "bytes": 511,
+      "sha256": "955cc4d00615a2d0a668d9fdf9cbd902cbe107c867d16c06818df72a93904612"
+    },
+    {
+      "path": "artifacts/mac-2e720b7/test-results/fonts-aTYfLH/result.json",
+      "bytes": 1142,
+      "sha256": "cd096ecb804635eeba03041a2cee5da1e507018e101f57c1235d9bd0adc96239"
+    },
+    {
+      "path": "artifacts/mac-2e720b7/test-results/pack-catalog-rsbXGK/result.json",
+      "bytes": 1025,
+      "sha256": "c2967be4462e91c5026c75128ca473ccc6cc22b565b0d347ed5c8b7f1c6b60b6"
+    },
+    {
+      "path": "artifacts/mac-2e720b7/test-results/runtime-lLzVkQ/result.json",
+      "bytes": 342,
+      "sha256": "f1a1163bcf687afa2ce686e582e6f6c7c33b1c8db2c9f2ee6def790e1b661680"
+    },
+    {
+      "path": "artifacts/mac-2e720b7/test-results/save-recovery-UNukXr/result.json",
+      "bytes": 948,
+      "sha256": "7cff45d418c7a8e7ef8bebaa3a9503d2a30b34a610dad698f873336f549e4412"
+    },
+    {
+      "path": "artifacts/mac-2e720b7/test-results/support-xMgHPo/result.json",
+      "bytes": 493,
+      "sha256": "9a96b32beae6adf897650607e76b549b82f2b9e448c9a94b53bdf0a65c3dce6a"
+    },
+    {
+      "path": "artifacts/mac-2e720b7/test-results/workspace-hFvtWg/result.json",
+      "bytes": 36,
+      "sha256": "ffa3b4d8faab382fd294f7bfae419468db4b226f8892f3926caaaa563c9a381f"
+    },
+    {
+      "path": "artifacts/mac-2e720b7/test-results/template-regression-AroTu0/verification.json",
+      "bytes": 16159,
+      "sha256": "8c60ab3d17c97cdf591ab8ab86a81250c73297ec60362343edefaa4a3fcda3c9"
+    },
+    {
+      "path": "artifacts/mac-2e720b7/test-results/published-pack-base.json",
+      "bytes": 982,
+      "sha256": "3319bcf2c6793bdebef412c0fcf930d8855599dbba78dec3e96e0379d8f0ce90"
+    },
+    {
+      "path": "test-results/mac-2e720b7-run.json",
+      "bytes": 3538,
+      "sha256": "573aaa929413168214895acc9a7a456ad80ce5c116ffb3e9c6ebebf4f08d4428"
+    },
+    {
+      "path": "test-results/mac-2e720b7-hosted.log",
+      "bytes": 127385,
+      "sha256": "0ac98dacefd256be17f64157c6c79d0e6ca210009f6d0824d43784fd999c0e6e"
+    },
+    {
+      "path": "test-results/early-workspace-build-hashes.json",
+      "bytes": 4199,
+      "sha256": "632cfef1151a78b92526b26f2345a0154b28941777493fc5c1a72e05fcc441d5"
+    }
+  ],
+  "remaining": [
+    "Signing, notarization and signing-aware runtime identities.",
+    "Authenticated updater, upgrade/relocation/uninstall, retention and OS resource limits.",
+    "Complete redistribution/SBOM review, broader supported-macOS/clean-machine and accessibility acceptance.",
+    "Real Claude and BYOK account acceptance; repeated reference-device performance budgets."
+  ]
+}
