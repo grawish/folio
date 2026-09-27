@@ -45,6 +45,8 @@ See [harness measurements](https://github.com/grawish/folio/blob/main/docs/HARNE
 
 Editor builds now keep one active request and one newest waiting request across disk review, asset reads, compilation and history. Each compiler instance has the same active/pending bound. Superseded waiting requests resolve as cancelled immediately, while active cleanup retains its ordering. Stop and operations that must stop editor builds wait for disk/history work as well as the native compiler. This request-count bound does not establish a whole-app resource budget. See [build request scheduling](https://github.com/grawish/folio/blob/main/docs/BUILD_REQUESTS.md).
 
+Compiler helper caches now keep two recent runtime identities and bounded retained bytes/entries per work root. A root lease protects active work; periodic checks stop an oversized native writer, and final cleanup restores retention limits. See [engine-cache policy](https://github.com/grawish/folio/blob/main/docs/ENGINE_CACHE.md) for the sampled-guard and whole-app limits.
+
 ## Stored data
 
 A saved project uses ordinary TeX files and assets plus `resume.project.json` for identity/compiler metadata and `resume.folio` for conversations and history. Save As creates an independent project. Source ZIPs include project metadata and conversation/history; API credentials and build caches are excluded.

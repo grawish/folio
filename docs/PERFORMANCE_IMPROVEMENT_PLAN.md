@@ -482,3 +482,12 @@ The controlled build-queue fixture holds runtime acquisition and issues 5,000 ne
 The sixteen focused controls include 10,000-request bursts at each asynchronous stage, cancellation while cleanup is held, and progress after an active failure. A native compiler integration additionally requires only the newest of 1,000 waiting requests to produce a PDF and checkpoint. See [implementation and reproduction](BUILD_REQUESTS.md), [before](performance/build-request-backlog-before.json), [after](performance/build-request-backlog-after.json) and [verification](releases/build-requests-verification.json).
 
 These are request-count and correctness observations. The raw diagnostic includes one enqueue interval and Node heap readings, which do not isolate retained memory or establish an app speedup. Next measure longer real editing sessions and the whole Electron/compiler process tree on supported Macs. Recovery queues, engine caches and aggregate profile retention remain separate work; this change does not satisfy the complete resource-budget requirement.
+
+
+### Bound retained compiler caches
+
+The former Compiler made one persistent `engine-cache/<runtime-id>` folder for each selected runtime, without eviction. Existing native fixture profiles contain a 24,451,466-byte LaTeX format in each warmed editor, agent or runtime self-test context. These are observed file sizes, not a complete app disk budget.
+
+A controlled before/after Compiler lifecycle diagnostic uses five synthetic runtime identities and a substituted 256-byte cache writer. The old implementation retains five directories (1,280 bytes); the new implementation retains two (512 bytes). Actual format reuse and the native growth guard are checked separately. No speedup is inferred from these tiny synthetic files.
+
+The [cache policy](ENGINE_CACHE.md) retains two runtimes, 128 MiB and 4,096 descendant entries per context, with a depth limit and non-overlapping 500 ms active-cache checks. The retained-byte ceiling leaves room above the observed 24 MB format while preventing accumulation across runtime changes. It is an initial engineering bound, not a measured whole-app resource budget. Next measure scan overhead, warm/cold latency after eviction and process-tree resources with the supported corpus and larger imported documents on supported Macs. Keep original source, current PDF protection and offline rebuilding intact.

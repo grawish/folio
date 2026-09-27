@@ -1,0 +1,189 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T23:31:03.290500+00:00",
+  "implementationCommit": "4b6b16f0f67152cbd2f31baa342912d279060b12",
+  "status": "Final source, focused and packaged cache checks pass. Full integration rerun and hosted qualification pending.",
+  "sourceTestsPassed": 437,
+  "focusedTestsPassed": 10,
+  "finalFullIntegrationStatus": "in progress in retained engine-cache-complete-integration.log",
+  "earlierIntegrationTestsPassed": 19,
+  "earlierIntegrationScope": "Initial candidate before empty-directory admission/depth corrections; not qualification of the final exact source.",
+  "nativeCache": {
+    "sourceCommit": "9c162c3c442d9d08e2926a75354b5ae89da93256",
+    "sourceHashes": {
+      "electron/core/compiler.ts": "1f0ba009f75054f9b42db09026a55c23fca8ec0ab44af991bfa613eaed09cf08",
+      "electron/core/engine-cache.ts": "753ca7c8a4e88b706998bd223ae902c46612109a2d251510a7148a918cc4b0b6"
+    },
+    "scriptSha256": "75aae207df73c8bd4971867263413d0c1c18470cdb3427133870268272894e65",
+    "appAsarSha256": "bfd1da8c6a458dc2f05723592afa06e6aed61cb725451dbf4e93943295e02230",
+    "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+    "scope": "Actual packaged UI, compiler and cache in an isolated synthetic profile. Extra old caches contain inert bytes; oversized-cache UI is triggered by a scoped lstat size override. No real disk is filled. Native writer termination is separately tested with actual files and processes.",
+    "checks": [
+      "Warm builds reuse exact format bytes and mtime. Five runtime caches are reduced to the current cache and newest idle cache, preserving unmarked data.",
+      "A scoped oversized-file reading reaches the real build-error UI. Source and the last successful PDF remain available; the oversized cache is reclaimed and a normal retry rebuilds the current PDF.",
+      "Normal close/reopen retains the exact source and warm rebuilt format cache."
+    ],
+    "errors": [],
+    "passed": true,
+    "retention": {
+      "before": 5,
+      "after": 2,
+      "warmFormat": {
+        "sha256": "a86ffcac335474fb9fae47cd9986b929719dc3ddf29bfb31123ecc1790ef6bbb",
+        "bytes": 24451466,
+        "mtimeMs": 1790551710032.3247
+      }
+    }
+  },
+  "nativeEvidence": {
+    "file": "test-results/engine-cache-native-Od19tY/result.json",
+    "bytes": 1578,
+    "sha256": "7327070bc6ff58ed67fb87366b166558ddd5a70e9a0c2e1d5a25b16edf89d10d"
+  },
+  "sourceBaseNote": "The packaged fixture ran with uncommitted changes above its recorded base commit. Every recorded source hash and reproduced Folio source/input matches implementationCommit.",
+  "baselineControl": {
+    "appAsarSha256": "fe66b721212c7fa761564ed6fb0b852414b0d699aa8e59fdc5119b2a335d4877",
+    "sameScript": true,
+    "evidence": {
+      "file": "test-results/engine-cache-native-KOCAte/result.json",
+      "bytes": 2477,
+      "sha256": "9b1d38a612578be4e49b61fe695cba0add304878a619ef60e0414e52e08f1ab9"
+    },
+    "expectedFailure": "The previous qualified app retained all five runtime directories instead of the expected two.",
+    "errors": []
+  },
+  "diagnostic": {
+    "before": "../performance/engine-cache-retention-before.json",
+    "after": "../performance/engine-cache-retention-after.json",
+    "syntheticNativeWriter": true,
+    "speedupClaim": false
+  },
+  "javascript": {
+    "summary": {
+      "schemaVersion": 1,
+      "appAsarSha256": "bfd1da8c6a458dc2f05723592afa06e6aed61cb725451dbf4e93943295e02230",
+      "inventorySha256": "4cf39c054bc5803fb768aae330dc6daa5612eadfe3d6bb839f619c0c6d93e991",
+      "bomSha256": "b1a355ade835c0cca2d6d5f2dc7a7b992e57b5d527cf871ecae7f92b734aaa00",
+      "packagedJavaScriptAndMaps": 8,
+      "reproducedOutputs": 24,
+      "sourceModules": 410,
+      "runtimePackages": 35,
+      "generators": 3,
+      "completeBinarySbom": false
+    },
+    "allFolioSourcesAndInputsMatchImplementationCommit": true,
+    "reproducedOutputsMatchLocalBuild": true,
+    "publisherSources": {
+      "schemaVersion": 1,
+      "passed": true,
+      "inventorySha256": "4cf39c054bc5803fb768aae330dc6daa5612eadfe3d6bb839f619c0c6d93e991",
+      "sourceIndexSha256": "ec21f5ef6a8761f6a5c97f13526ffda69580f48170a80a3c0720cf397fd1009d",
+      "npmInputFilesMatched": 249,
+      "embeddedOriginalSourcesMatched": 45,
+      "packageJsonFilesMatched": 38,
+      "originalArchivesChecked": 38,
+      "completeBinarySbom": false,
+      "scope": "Exact npm source bytes and published source-map contents from checksum-verified locked archives. Generated helpers are associated with their build tools, not assigned byte-level authorship. Nested vendored terms, native components and complete redistribution remain separate."
+    }
+  },
+  "retainedAttempts": [
+    {
+      "evidence": "test-results/engine-cache-native-BHsHkG",
+      "outcome": "Warm reuse/eviction passed; the fixture hid an already-open build log before looking for the error.",
+      "correction": "Respect the real aria-expanded state. The unchanged initial package then passed the complete workflow in engine-cache-native-EVrmK6."
+    },
+    {
+      "evidence": "test-results/engine-cache-native-EVrmK6",
+      "outcome": "Initial package passed; superseded by the admission/depth correction."
+    },
+    {
+      "evidence": "test-results/engine-cache-native-YUBCK5",
+      "outcome": "Admission-corrected package passed; superseded by the empty-directory depth correction."
+    },
+    {
+      "log": "test-results/engine-cache-admission-before.log",
+      "outcome": "New control reproduces ten empty directories left by rejected admission; final ordering creates the directory only after inspection succeeds."
+    }
+  ],
+  "publishedInstallerChanged": false,
+  "scope": "Per-context cache retention, sampled active growth and correctness on one development Apple silicon Mac. No full-volume stress, OS disk quota, whole-app memory/CPU budget, real AI call, signed distribution or supported-device claim.",
+  "retainedLogs": [
+    {
+      "file": "test-results/engine-cache-focused-depth.log",
+      "bytes": 1064,
+      "sha256": "079cab4d600cf649c8bd2efc6a6406f7714177a09edc56c8a32d1929a4ee15c7"
+    },
+    {
+      "file": "test-results/engine-cache-complete-source.log",
+      "bytes": 43903,
+      "sha256": "1bd2234cf7745b9de264d9f444af3b0388f38227e61ae578586eb5477a3633b3"
+    },
+    {
+      "file": "test-results/engine-cache-complete-format.log",
+      "bytes": 183,
+      "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+    },
+    {
+      "file": "test-results/engine-cache-depth-build.log",
+      "bytes": 1719,
+      "sha256": "690a6f779bd7efc42d7bff0c3fcdd4b361b3fec7b5d192db74b0a03562169cc6"
+    },
+    {
+      "file": "test-results/engine-cache-depth-package.log",
+      "bytes": 1355,
+      "sha256": "fbcb9754234dec298a5771484898555e1940320e378941c5aa5635fc82179f65"
+    },
+    {
+      "file": "test-results/engine-cache-native-complete.log",
+      "bytes": 216,
+      "sha256": "4c91f8adfc40ca255d7626e5109842a7b875e8cafa94703e82f495faa036054f"
+    },
+    {
+      "file": "test-results/engine-cache-native-baseline.log",
+      "bytes": 2452,
+      "sha256": "3648b26cd46f96004292bb88873a5f904dd9cf41f7b37e7dc1e3a35c12fad93e"
+    },
+    {
+      "file": "test-results/engine-cache-retention-before.log",
+      "bytes": 2158,
+      "sha256": "89da40d4fb500d025dcee7987f9a34dc764a4cce5be8226574989e38ed0ca1ce"
+    },
+    {
+      "file": "test-results/engine-cache-retention-after-final.log",
+      "bytes": 1700,
+      "sha256": "0a0c1e44072a71b6818c84cdc7e4a2df1431203000c467c1a2038136ead78963"
+    },
+    {
+      "file": "test-results/engine-cache-native-writer.log",
+      "bytes": 212,
+      "sha256": "70ae09d1096a11d1b98d42458fd3b239550d06f56bdce98a3ab0fae5931c57d2"
+    },
+    {
+      "file": "test-results/engine-cache-admission-before.log",
+      "bytes": 2526,
+      "sha256": "35ef0f3e3ab7bb8a2e52405c3e1927afb35296634cf771631df77ea71de511c4"
+    },
+    {
+      "file": "test-results/engine-cache-javascript.log",
+      "bytes": 7091,
+      "sha256": "be926d8f8c4db05e9ccb81ebcecf2ec779a4332bd293ab02016094de65a0ab8c"
+    },
+    {
+      "file": "test-results/engine-cache-publisher-sources.log",
+      "bytes": 681,
+      "sha256": "1bc58ba5cf33746c55be6e92bc2de27101e1fc0734d9042aab4f52389e0f480f"
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "docs/images/cache-limit.png",
+      "bytes": 69484,
+      "sha256": "38e6797f285a1421ec9c54a0b544a384ecb0951ab4b89d1087b3d4bfff7c4a69"
+    },
+    {
+      "file": "docs/images/cache-rebuilt.png",
+      "bytes": 58217,
+      "sha256": "c64c561d6b9c4676b7e77b327e6d031d1c160de549eb169cd91aab9f74059d7c"
+    }
+  ]
+}

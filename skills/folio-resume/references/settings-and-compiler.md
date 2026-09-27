@@ -139,3 +139,14 @@ Developers can also check how the three generated TeX setup files were made. The
 In current development builds, right-click **Folio.app** in Finder and choose **Show Package Contents**. Open **Contents → Resources → electron-notices**. **LICENSE** contains Electron's license; **LICENSES.chromium.html** opens the complete Chromium notices in a browser. **README.md** explains where they came from. The older preview-4 download does not include this new folder.
 
 These tools keep their own terms. Folio's noncommercial license does not replace them. See the [licensing guide](https://github.com/grawish/folio/blob/main/docs/LICENSING.md#include-electron-and-chromium-notices) for source details and remaining release work.
+
+
+## If compiler helper files reach their limit
+
+Folio keeps temporary helper files to make later PDF builds faster. Current development builds automatically remove older compiler caches and keep the recent ones within a limit.
+
+If a build says the **compiler cache exceeded its storage limit**, your current source stays open and the previous successful PDF stays visible. Read the message, simplify the document if needed, and click **Compile** again. Folio clears an oversized cache after the writer stops. Its next build may take longer while it makes fresh helper files.
+
+[Screenshot: Cache-limit message with the previous successful PDF still visible](https://github.com/grawish/folio/blob/main/docs/images/cache-limit.png)
+
+This demo uses a sample document and a deliberately oversized file-size reading. It does not fill a disk. The change is newer than preview 4. See [compiler cache limits](https://github.com/grawish/folio/blob/main/docs/ENGINE_CACHE.md) for the exact retention policy and verification scope.
