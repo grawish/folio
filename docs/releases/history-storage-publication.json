@@ -1,0 +1,41 @@
+{
+  "checkedAt": "2026-09-27T01:59:56.579420+00:00",
+  "sourceCommit": "d805a9144f75c557efb7b0a28c4cd64ca7a0e4af",
+  "demoCount": 31,
+  "exactPublishedCapture": true,
+  "normalTlsVerification": true,
+  "checks": [
+    {
+      "url": "https://grawish.com/folio/demos.html?build=d805a9144f75c557efb7b0a28c4cd64ca7a0e4af",
+      "status": 200,
+      "bytes": 30004,
+      "sha256": "e37af04725e9e94e40d5ccd2c6d1198538cf9c557c80d54b1c588c686b70523c"
+    },
+    {
+      "url": "https://grawish.com/folio/images/history-removal-dark.png",
+      "status": 200,
+      "bytes": 96910,
+      "sha256": "16ab5a404fd7d8cd0903051b0ec9eb139bda5c9cab490372d1000e70f838a1fe"
+    }
+  ],
+  "sourceChecks": {
+    "runId": 36287075294,
+    "url": "https://github.com/grawish/folio/actions/runs/36287075294",
+    "conclusion": "success",
+    "headSha": "d805a9144f75c557efb7b0a28c4cd64ca7a0e4af"
+  },
+  "websiteDeployment": {
+    "runId": 36287075140,
+    "url": "https://github.com/grawish/folio/actions/runs/36287075140",
+    "conclusion": "success",
+    "headSha": "d805a9144f75c557efb7b0a28c4cd64ca7a0e4af"
+  },
+  "macQualification": {
+    "runId": 36287207027,
+    "url": "https://github.com/grawish/folio/actions/runs/36287207027",
+    "statusAtPublication": "in_progress",
+    "headSha": "d805a9144f75c557efb7b0a28c4cd64ca7a0e4af",
+    "scope": "Dispatched and confirmed on the exact application commit; no completion claim."
+  },
+  "scope": "Point-in-time source/website publication and normal HTTPS checks. Complete hosted Mac qualification and production release requirements remain open. No installer was replaced."
+}
