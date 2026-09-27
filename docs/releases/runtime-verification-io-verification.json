@@ -356,7 +356,9 @@
     "runId": 36339879953,
     "url": "https://github.com/grawish/folio/actions/runs/36339879953",
     "commit": "f252b0d219ac02d3f4b34a1e538881400e870ad0",
-    "statusAtPublication": "in_progress"
+    "statusAtPublication": "success",
+    "verification": "docs/releases/mac-runtime-verification-hosted.json",
+    "retainedArtifactFilesVerified": 146
   },
   "limits": [
     "Five default alternating pairs on one development Mac; not a supported-device or population p95 claim.",
