@@ -26,6 +26,8 @@ This audit uses the current implementation, actual native tests, package artifac
 
 ## Latest concrete artifacts
 
+- App-update metadata now binds unpacked app size. Pending-download inspection rejects foreign entries/links before the updater reads metadata or clears files, removes recognized obsolete/partial downloads, and preserves a matching ZIP across signed feed renewal. Conservative free-space checks run before transfer and staging. Unit and isolated Electron controls include simulated low space and mid-download disk exhaustion; real signed full-volume and native-cache acceptance remain open. See [storage verification](releases/update-storage-verification.json).
+
 - Hosted `10f8060` passes 309 source tests, 16 compiler integrations, twelve unchanged template images, the actual Electron updater transfer fixture, all sixteen native suites and final ZIP/DMG app comparisons. The downloaded evidence ZIP, all 134 retained files, native-script hashes and transfer input hashes match the exact commit. This includes the corrected Settings evidence output. The app remains unsigned; this milestone does not qualify later DMG finalization or staging-timeout changes. See [hosted verification](releases/mac-update-download-hosted-verification.json).
 
 - Native update staging now has a two-minute deadline, explicit return-to-work guidance and a one-attempt-per-process guard against delayed events. Source timer/service tests, the actual Electron adapter with an intercepted native failure and a simulated renderer rejection exercise recovery and retry restrictions. Actual signed macOS staging and replacement remain open. See [scope and evidence](releases/update-staging-verification.json).

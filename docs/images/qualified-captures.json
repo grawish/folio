@@ -228,5 +228,16 @@
     "liveAI": false,
     "nativeStagingSimulated": true,
     "scope": "Actual Settings screen with a controlled restart IPC rejection. Subsequent project/chat edits survive normal close and reopen. No signed native replacement claimed."
+  },
+  {
+    "file": "docs/images/app-updates-disk-space.png",
+    "sourceSuite": "updates",
+    "sourceCapture": "updates-disk-space.png",
+    "sourceEvidence": "test-results/app-updates-AfSaCZ/result.json",
+    "sha256": "e8787821cacc9c6c110f12d784439e76807c4f41110892d3969a7021055d9bce",
+    "synthetic": true,
+    "liveAI": false,
+    "diskSpaceFailureSimulated": true,
+    "scope": "Actual Settings screen with a controlled low-space status. No real disk was filled and no signed replacement was attempted."
   }
 ]

@@ -145,6 +145,12 @@ export class AppUpdates {
     try {
       await task;
     } catch (error) {
+      const failure = ['ENOSPC', 'EDQUOT'].includes((error as NodeJS.ErrnoException)?.code ?? '')
+        ? new Error(
+            'There is not enough disk space for this app update. Free some space and check again. Your documents are kept.',
+            { cause: error },
+          )
+        : error;
       this.change({
         phase: 'error',
         ...(error instanceof UpdateRestartRequired
@@ -152,9 +158,9 @@ export class AppUpdates {
           : {}),
         message: controller.signal.aborted
           ? 'Update download cancelled. Check for updates to try again.'
-          : (error as Error).message,
+          : (failure as Error).message,
       });
-      throw error;
+      throw failure;
     } finally {
       this.pending = undefined;
       this.activity = undefined;

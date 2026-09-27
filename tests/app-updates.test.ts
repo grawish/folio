@@ -17,6 +17,11 @@ import {
 import { fetchUpdateFeed } from '../electron/core/update-feed';
 import { AppUpdates, type AppUpdateInstaller } from '../electron/core/update-service';
 import { UpdateRestartRequired } from '../electron/core/update-staging';
+import {
+  prepareUpdateCache,
+  checkUpdateSpace,
+  UPDATE_SPACE_MARGIN,
+} from '../electron/core/update-storage';
 import { signedUpdateProvider } from '../electron/core/update-provider';
 import { verifyUpdateArchive, discardUpdateArchive } from '../electron/core/update-archive';
 import { downloadAppUpdate as transferAppUpdate } from '../electron/core/update-download';
@@ -40,6 +45,7 @@ const release = (version = '0.2.0') => ({
   notes: 'New resume tools.\nYour projects are kept.',
   rollout: 100,
   minimumSystemVersion: '24.0.0',
+  unpackedBytes: 128,
   dataEpoch: { minimum: 1, maximum: 1 },
   zip: {
     url: `https://github.com/grawish/folio/releases/download/v${version}/Folio-${version}-mac-arm64.zip`,
@@ -165,6 +171,10 @@ test('release payload restricts exact archive, version, checksum, schema and not
     { releasePage: 'https://github.com/another/project' },
     { dataEpoch: { minimum: 3, maximum: 2 } },
     { minimumSystemVersion: '>=24' },
+    { unpackedBytes: undefined },
+    { unpackedBytes: 0 },
+    { unpackedBytes: 4 * 1024 ** 3 + 1 },
+    { unpackedBytes: 1.5 },
     { rollout: 100.1 },
     { notes: 'bad\u0000notes' },
   ])
@@ -567,6 +577,160 @@ function freshFeed() {
     'stable',
   );
 }
+
+test('update cache retains only the selected archive and removes recognized obsolete and partial downloads', async (t) => {
+  const root = await temporary(t),
+    feed = freshFeed();
+  const archive = 'Folio-0.2.0-mac-arm64.zip';
+  await fs.writeFile(path.join(root, archive), 'zip fixture');
+  const metadata = JSON.stringify({
+    fileName: archive,
+    sha512: feed.release!.zip.sha512,
+    isAdminRightsRequired: false,
+  });
+  await fs.writeFile(path.join(root, 'update-info.json'), metadata);
+  const stale = [
+    'Folio-0.1.0-mac-arm64.zip',
+    'temp-Folio-0.2.0-mac-arm64.zip',
+    '2-temp-Folio-0.1.0-beta.2-mac-arm64.zip',
+  ];
+  for (const name of stale) await fs.writeFile(path.join(root, name), 'stopped transfer');
+  const result = await prepareUpdateCache(root, feed, new AbortController().signal);
+  assert.equal(result.cached, true);
+  assert.equal(result.removed, 3);
+  assert.equal(result.retainedBytes, 11 + Buffer.byteLength(metadata));
+  assert.deepEqual((await fs.readdir(root)).sort(), [archive, 'update-info.json']);
+  await verifyUpdateArchive(path.join(root, archive), root, feed);
+  assert.equal((await prepareUpdateCache(root, feed, new AbortController().signal)).removed, 0);
+});
+
+test('invalid cache metadata cannot direct the updater outside the owned folder', async (t) => {
+  const outside = await temporary(t),
+    target = path.join(outside, 'private.txt');
+  await fs.writeFile(target, 'private bytes');
+  for (const contents of [
+    'invalid',
+    'null',
+    JSON.stringify({
+      fileName: target,
+      sha512: freshFeed().release!.zip.sha512,
+      isAdminRightsRequired: false,
+    }),
+    JSON.stringify({ fileName: '../private.txt', sha512: 'bad', isAdminRightsRequired: false }),
+    'x'.repeat(4097),
+  ]) {
+    const root = await temporary(t),
+      feed = freshFeed();
+    await fs.writeFile(path.join(root, 'update-info.json'), contents);
+    await fs.writeFile(path.join(root, 'Folio-0.2.0-mac-arm64.zip'), 'zip fixture');
+    const result = await prepareUpdateCache(root, feed, new AbortController().signal);
+    assert.equal(result.cached, false);
+    assert.deepEqual(await fs.readdir(root), []);
+    assert.equal(await fs.readFile(target, 'utf8'), 'private bytes');
+  }
+});
+
+test('unexpected entries, links and oversized directories prevent all cache cleanup', async (t) => {
+  for (const kind of ['unknown', 'directory', 'symlink', 'hardlink', 'count']) {
+    const root = await temporary(t),
+      outside = await temporary(t),
+      feed = freshFeed();
+    const known = path.join(root, 'temp-Folio-0.1.0-mac-arm64.zip');
+    await fs.writeFile(known, 'keep this until the whole folder is checked');
+    const suspect = path.join(root, kind === 'unknown' ? 'notes.txt' : 'Folio-0.2.0-mac-arm64.zip');
+    const target = path.join(outside, 'private.txt');
+    await fs.writeFile(target, 'private bytes');
+    if (kind === 'directory') await fs.mkdir(suspect);
+    if (kind === 'symlink') await fs.symlink(target, suspect);
+    if (kind === 'hardlink') await fs.link(target, suspect);
+    if (kind === 'unknown') await fs.writeFile(suspect, 'user note');
+    if (kind === 'count')
+      for (let i = 0; i < 65; i++)
+        await fs.writeFile(path.join(root, `Folio-0.1.${i}-mac-arm64.zip`), 'old');
+    await assert.rejects(prepareUpdateCache(root, feed, new AbortController().signal), /cache/);
+    assert.equal(await fs.readFile(known, 'utf8'), 'keep this until the whole folder is checked');
+    assert.equal(await fs.readFile(target, 'utf8'), 'private bytes');
+  }
+  const root = await temporary(t),
+    outside = await temporary(t),
+    linked = path.join(root, 'linked');
+  await fs.symlink(outside, linked);
+  await assert.rejects(
+    prepareUpdateCache(path.join(linked, 'pending'), freshFeed(), new AbortController().signal),
+    /linked/,
+  );
+  assert.deepEqual(await fs.readdir(outside), []);
+  const missing = path.join(root, 'not-created');
+  await assert.rejects(prepareUpdateCache(missing, freshFeed(), AbortSignal.abort()));
+  await assert.rejects(fs.stat(missing), { code: 'ENOENT' });
+});
+
+test('update disk headroom uses the signed unpacked size on every involved filesystem', async () => {
+  const feed = freshFeed(),
+    locations = { cache: '/cache', application: '/Applications', temporary: '/tmp' };
+  const needed =
+    2 * feed.release!.zip.bytes + 3 * feed.release!.unpackedBytes + UPDATE_SPACE_MARGIN;
+  const checked: string[] = [];
+  assert.equal(
+    (
+      await checkUpdateSpace(feed, locations, true, async (p) => {
+        checked.push(p);
+        return BigInt(needed);
+      })
+    ).requiredBytes,
+    needed,
+  );
+  assert.deepEqual(checked, Object.values(locations));
+  assert.equal(
+    (await checkUpdateSpace(feed, locations, false, async () => BigInt(needed))).requiredBytes,
+    needed - feed.release!.zip.bytes,
+  );
+  for (const full of Object.values(locations))
+    await assert.rejects(
+      checkUpdateSpace(feed, locations, true, async (p) =>
+        BigInt(p === full ? needed - 1 : needed),
+      ),
+      /Free some space/,
+    );
+  await assert.rejects(
+    checkUpdateSpace(feed, locations, true, async () => {
+      throw new Error('unavailable');
+    }),
+    /could not check/,
+  );
+  await assert.rejects(
+    checkUpdateSpace({ ...feed }, locations, true, async () => BigInt(needed)),
+    /Authenticate/,
+  );
+});
+
+test('disk exhaustion during download releases the operation and preserves recovery for retry', async (t) => {
+  const root = await temporary(t),
+    native = installer(),
+    recovery = path.join(root, 'resume.txt');
+  await fs.writeFile(recovery, 'saved document');
+  const successfulDownload = native.api.download;
+  native.api.download = async () => {
+    throw Object.assign(new Error('ENOSPC: private filesystem path'), { code: 'ENOSPC' });
+  };
+  const updates = new AppUpdates(root, trust, {
+    version: installed.version,
+    system: installed.system,
+    now: () => now,
+    installer: native.api,
+    request: async () => new Response(envelope()),
+  });
+  await updates.check();
+  await assert.rejects(updates.download(), /not enough disk space/);
+  assert.equal((await updates.status()).phase, 'error');
+  assert.ok(!(await updates.status()).message.includes('private filesystem path'));
+  assert.equal(await fs.readFile(recovery, 'utf8'), 'saved document');
+  assert.ok(!native.calls.includes('install'));
+  native.api.download = successfulDownload;
+  await updates.check();
+  await updates.download();
+  assert.equal((await updates.status()).phase, 'downloaded');
+});
 
 // Adapt compact unit response fixtures to the same Node stream consumed by
 // production. The separate Electron fixture exercises the real request adapter.
