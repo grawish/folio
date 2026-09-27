@@ -1,0 +1,495 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-27T15:40:12.060808+00:00",
+  "baseCommit": "fc3fc5790d8b808e97076ccbacfe8029fc63df9b",
+  "passed": true,
+  "applicationCodeChanged": false,
+  "compiledOutputsUnchanged": true,
+  "packagedNoticesChanged": true,
+  "sourceInputs": [
+    {
+      "file": "scripts/collect-pdfjs-license-materials.py",
+      "bytes": 9303,
+      "sha256": "e9adf43857efd1d423a870c035bed8b9f5b36b505c6e397510a9e2b84e56fefa"
+    },
+    {
+      "file": "scripts/verify-pdfjs-notices.ts",
+      "bytes": 2945,
+      "sha256": "ec2ff4bc855e04743a3394c19d18d8459e811bf490b710f317a92f4a401f208b"
+    },
+    {
+      "file": "scripts/verify-mac-package.mjs",
+      "bytes": 7212,
+      "sha256": "d7c09a6d98360338c2228a218092263ec2c6eb5d62e12c56374a46bf94b181d5"
+    },
+    {
+      "file": "tests/pdfjs-license-materials.py",
+      "bytes": 8571,
+      "sha256": "e08058106c6de6c81ec2d72ec14fb81660c9b4ff53cf64294196514ecf13f570"
+    },
+    {
+      "file": "tests/pdfjs-notices.test.ts",
+      "bytes": 2640,
+      "sha256": "421c193f5aa7a6bdfe88111dea70a8cdd86ba70743c4affb302caca89acbb9b8"
+    },
+    {
+      "file": "package.json",
+      "bytes": 6053,
+      "sha256": "3df4fe40561794b293b0642bbe0cb7ef056edfbd392fe1e665aeb957ce0aad05"
+    },
+    {
+      "file": "package-lock.json",
+      "bytes": 206387,
+      "sha256": "f49e1352767126ce8d3c894ac5bfdc4d39fc951fbe1efe7283ca4ee4d991ae00"
+    },
+    {
+      "file": "resources/pdfjs-notices/SOURCES.json",
+      "bytes": 12720,
+      "sha256": "6f0154cdb82715eb862d27e8616981c855e85209b16204b741cbf48d3707f78c"
+    },
+    {
+      "file": "resources/pdfjs-notices/README.md",
+      "bytes": 1909,
+      "sha256": "fcb6a09994a74f52e0d886da5484d24c3a06c4737189fbce4a96555dba88e3ea"
+    },
+    {
+      "file": "THIRD_PARTY_NOTICES.md",
+      "bytes": 11884,
+      "sha256": "8267e86cd38ff264a01b1a78ee885701d625a3c3cc820cac94cdbd0bd04711ff"
+    },
+    {
+      "file": ".github/workflows/ci.yml",
+      "bytes": 1756,
+      "sha256": "c4c7f6e35ffde3e56fe746bd8113aab46a92699b487686896eae7e8152f72279"
+    },
+    {
+      "file": ".github/workflows/mac-candidate.yml",
+      "bytes": 4889,
+      "sha256": "b6331aa4c285d20c397d54d34f7ad76ef18300b0bc572e9d2ec5e78391c2fe62"
+    }
+  ],
+  "originalMaterials": {
+    "package": "pdfjs-dist",
+    "version": "6.3.289",
+    "upstreamCommit": "1c8020a7d4e43668ac287a3ecf9a8dbea17e4c56",
+    "upstreamFiles": 20,
+    "originalSourceFiles": 7,
+    "sourceMapBindings": 8,
+    "completeOriginalLicenseFiles": 7,
+    "unchangedSourceCommentPrefixes": 4,
+    "copiedTextBytes": 22445,
+    "noticeFilesAlsoMatchingNestedPublisherArchive": [
+      "wasm/LICENSE_QCMS",
+      "wasm/LICENSE_PDFJS_QCMS",
+      "wasm/LICENSE_OPENJPEG",
+      "wasm/LICENSE_PDFJS_OPENJPEG",
+      "wasm/LICENSE_JBIG2",
+      "wasm/LICENSE_PDFJS_JBIG2"
+    ],
+    "sourceIndexSha256": "6f0154cdb82715eb862d27e8616981c855e85209b16204b741cbf48d3707f78c",
+    "retainedFiles": 38,
+    "onlineCollectionLog": {
+      "file": "test-results/pdfjs-online-collection.log",
+      "bytes": 757,
+      "sha256": "6ba7757dd1e359fd4d28f1ccb6d06021dad38511f1106903b0902a6059448e28"
+    },
+    "offlineReplay": {
+      "passed": true,
+      "filesCompared": 40,
+      "bytesCompared": 20708580,
+      "inventorySha256": "ad49c58e74b2e436fd23b16d47b3695cd8102375906fe260acabe78e03cf7422"
+    }
+  },
+  "actualPackage": {
+    "pdfjsNotices": {
+      "originalNoticeFiles": 7,
+      "originalSourceHeaders": 4,
+      "sourceIndexSha256": "6f0154cdb82715eb862d27e8616981c855e85209b16204b741cbf48d3707f78c",
+      "upstreamCommit": "1c8020a7d4e43668ac287a3ecf9a8dbea17e4c56",
+      "records": [
+        {
+          "path": "README.md",
+          "bytes": 1909,
+          "sha256": "fcb6a09994a74f52e0d886da5484d24c3a06c4737189fbce4a96555dba88e3ea"
+        },
+        {
+          "path": "SOURCES.json",
+          "bytes": 12720,
+          "sha256": "6f0154cdb82715eb862d27e8616981c855e85209b16204b741cbf48d3707f78c"
+        },
+        {
+          "path": "brotli--LICENSE_BROTLI.txt",
+          "bytes": 1083,
+          "sha256": "2a57418d6b10947fe0dfbec3a600269e2745136c125cbf15b256e5ae18af23cb"
+        },
+        {
+          "path": "decode.js--original-header.txt",
+          "bytes": 249,
+          "sha256": "48ba497fcc28dd47be703671ecadb64350484e3f20b2ffee7dc5ea3c0468c567"
+        },
+        {
+          "path": "flate_stream.js--original-header.txt",
+          "bytes": 815,
+          "sha256": "413fd938147bc133606ec9b9f3d0f92314a3b25780c90760e3a7b248f2be29b3"
+        },
+        {
+          "path": "jbig2--LICENSE_JBIG2.txt",
+          "bytes": 12862,
+          "sha256": "9e66b7f1b934a28b37f3bc4dac97915de1674271e79a0a88182a18ed9731b4d1"
+        },
+        {
+          "path": "jbig2--LICENSE_PDFJS_JBIG2.txt",
+          "bytes": 555,
+          "sha256": "aad3cce09842e00e9e11ad5e8fef8cc02fbc3a3768fe2f007443b9cee37aaee5"
+        },
+        {
+          "path": "murmurhash3.js--original-header.txt",
+          "bytes": 727,
+          "sha256": "c0271c760a6590b471ea70e22cdc6f9129582940e53c1a1f322b77aafb0417b5"
+        },
+        {
+          "path": "openjpeg--LICENSE_OPENJPEG.txt",
+          "bytes": 2112,
+          "sha256": "a6af136f3e15038a666b61f376612a07d9a4e48cb7c01adbf3e33b3f14ab49b6"
+        },
+        {
+          "path": "openjpeg--LICENSE_PDFJS_OPENJPEG.txt",
+          "bytes": 1285,
+          "sha256": "717fc62da03292dbb4dd0c8280bd4ce7bb8550dcf31d772bc93455fb50313425"
+        },
+        {
+          "path": "qcms--LICENSE_PDFJS_QCMS.txt",
+          "bytes": 1036,
+          "sha256": "508a77d2e7b51d98adeed32648ad124b7b30241a8e70b2e72c99f92d8e5874d1"
+        },
+        {
+          "path": "qcms--LICENSE_QCMS.txt",
+          "bytes": 1121,
+          "sha256": "36d847ae882f6574ebc72f56a4f354e4f104fde4a584373496482e97d52d31bc"
+        },
+        {
+          "path": "qcms_utils.js--original-header.txt",
+          "bytes": 600,
+          "sha256": "c6937610aa14a6e812267cd98617ae1dd41ff069f7d4e5b039e9b5a2eb69cbc7"
+        }
+      ]
+    },
+    "passed": true,
+    "checkedAt": "2026-09-27T15:37:31.710Z",
+    "app": "release/pdfjs-notices/mac-arm64/Folio.app",
+    "appAsarSha256": "b3101633e1a7c78fe37789efe98a94ed442e0f927da03709959a17eff9cfbe3a",
+    "compiledFilesMatched": 39,
+    "compiledOutputsUnchanged": true,
+    "originalLicenseAndNoticeTextsMatch": true,
+    "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+    "runtimeFilesVerified": 3982,
+    "npmNotices": {
+      "originalNoticeFiles": 42,
+      "indexedPackages": 43,
+      "missingOriginalText": ["@napi-rs/canvas-darwin-arm64", "lazy-val"],
+      "sourceIndexSha256": "ec21f5ef6a8761f6a5c97f13526ffda69580f48170a80a3c0720cf397fd1009d",
+      "records": [
+        {
+          "path": "README.md",
+          "bytes": 2130,
+          "sha256": "90e4ff2352efd3fcc47e3cca357081ee8603fe32f720dadc31b167e241d57793"
+        },
+        {
+          "path": "SOURCES.json",
+          "bytes": 35544,
+          "sha256": "ec21f5ef6a8761f6a5c97f13526ffda69580f48170a80a3c0720cf397fd1009d"
+        },
+        {
+          "path": "argparse--LICENSE",
+          "bytes": 12775,
+          "sha256": "de4d1f2d2ad5ad0cfd1657a106476b31cb5db5ef9d1ff842b237c0c81f0c8a23"
+        },
+        {
+          "path": "builder-util-runtime--LICENSE",
+          "bytes": 1084,
+          "sha256": "bed8d0ab3e6031817f775a641ff37313b0f5591bc8ba0ed79b978dafbd4231ce"
+        },
+        {
+          "path": "codemirror--autocomplete--LICENSE",
+          "bytes": 1118,
+          "sha256": "05c6130cda97e7600ca91427a41e8a065efcf82365fc0293e7de80faec494c07"
+        },
+        {
+          "path": "codemirror--commands--LICENSE",
+          "bytes": 1118,
+          "sha256": "05c6130cda97e7600ca91427a41e8a065efcf82365fc0293e7de80faec494c07"
+        },
+        {
+          "path": "codemirror--language--LICENSE",
+          "bytes": 1118,
+          "sha256": "05c6130cda97e7600ca91427a41e8a065efcf82365fc0293e7de80faec494c07"
+        },
+        {
+          "path": "codemirror--legacy-modes--LICENSE",
+          "bytes": 1118,
+          "sha256": "05c6130cda97e7600ca91427a41e8a065efcf82365fc0293e7de80faec494c07"
+        },
+        {
+          "path": "codemirror--search--LICENSE",
+          "bytes": 1118,
+          "sha256": "05c6130cda97e7600ca91427a41e8a065efcf82365fc0293e7de80faec494c07"
+        },
+        {
+          "path": "codemirror--state--LICENSE",
+          "bytes": 1118,
+          "sha256": "05c6130cda97e7600ca91427a41e8a065efcf82365fc0293e7de80faec494c07"
+        },
+        {
+          "path": "codemirror--view--LICENSE",
+          "bytes": 1118,
+          "sha256": "05c6130cda97e7600ca91427a41e8a065efcf82365fc0293e7de80faec494c07"
+        },
+        {
+          "path": "crelt--LICENSE",
+          "bytes": 1089,
+          "sha256": "23852ebf6aef7fadffc92514b3c5df163a8651f2c3ed0dbb494cb49d93bd5de5"
+        },
+        {
+          "path": "debug--LICENSE",
+          "bytes": 1139,
+          "sha256": "3a61c6c96caf5c1d9b623fb9b04c822b783dfcb78aa7e49c76a3f643e6ed7f95"
+        },
+        {
+          "path": "electron-updater--LICENSE",
+          "bytes": 1084,
+          "sha256": "bed8d0ab3e6031817f775a641ff37313b0f5591bc8ba0ed79b978dafbd4231ce"
+        },
+        {
+          "path": "esbuild--LICENSE.md",
+          "bytes": 1069,
+          "sha256": "b40ec5baec7bb34fa5b1c09521fa3cd52d5fad7adafed74932a2010d3612a681"
+        },
+        {
+          "path": "fflate--LICENSE",
+          "bytes": 1069,
+          "sha256": "0a1df3a083d0c010560aa342e87959c8c1070e6fd54545741f083f22d0c8b551"
+        },
+        {
+          "path": "fs-extra--LICENSE",
+          "bytes": 1084,
+          "sha256": "1e76029602ae9b21cc4e612db2496d92febed882ba13ba745f8b3309e85f9d39"
+        },
+        {
+          "path": "graceful-fs--LICENSE",
+          "bytes": 791,
+          "sha256": "f65c5d9f22a317b2a10803bd1868461ce6499c2ed7217bc80c0cc772a748789c"
+        },
+        {
+          "path": "has-flag--license",
+          "bytes": 1109,
+          "sha256": "48da2f39e100d4085767e94966b43f4fa95ff6a0698fba57ed460914e35f94a0"
+        },
+        {
+          "path": "js-yaml--LICENSE",
+          "bytes": 1084,
+          "sha256": "a07bc24468b9654ce76a547d47a2db282d07733b715db4c73a98bd63961f9550"
+        },
+        {
+          "path": "jsonfile--LICENSE",
+          "bytes": 1110,
+          "sha256": "a9801fb52ba22ef808682a094da8a7a480584b7ed0dfd0d888ab543616335031"
+        },
+        {
+          "path": "lezer--common--LICENSE",
+          "bytes": 1113,
+          "sha256": "568902fb66eaf1f11750e966b33fd7b5d7c618e65af09f35ef843635bcf5f1ba"
+        },
+        {
+          "path": "lezer--highlight--LICENSE",
+          "bytes": 1113,
+          "sha256": "568902fb66eaf1f11750e966b33fd7b5d7c618e65af09f35ef843635bcf5f1ba"
+        },
+        {
+          "path": "lezer--lr--LICENSE",
+          "bytes": 1113,
+          "sha256": "568902fb66eaf1f11750e966b33fd7b5d7c618e65af09f35ef843635bcf5f1ba"
+        },
+        {
+          "path": "lodash.escaperegexp--LICENSE",
+          "bytes": 1951,
+          "sha256": "ffd8b33b354585f4ce119f19c53728281e48a97b074491eb6bf6d5c5ff305272"
+        },
+        {
+          "path": "lodash.isequal--LICENSE",
+          "bytes": 1950,
+          "sha256": "e159c6d48c989185448658f276375bfb2300362ec6d4ae5525a2d49c4bcb947d"
+        },
+        {
+          "path": "lucide-react--LICENSE",
+          "bytes": 3208,
+          "sha256": "b495047bd93a9b06913511076f504daba17d5bbeb3e0650f3bb53a4220329c57"
+        },
+        {
+          "path": "marijn--find-cluster-break--LICENSE",
+          "bytes": 1102,
+          "sha256": "9360b00fdd091f05c783b568bdd46c679c41b72415599252de98949462ea1acb"
+        },
+        {
+          "path": "ms--license.md",
+          "bytes": 1079,
+          "sha256": "1662fae9b5314d11cf51284e2dcd1f006a354f7343f08712a730fcff9a359801"
+        },
+        {
+          "path": "napi-rs--canvas--LICENSE",
+          "bytes": 1075,
+          "sha256": "8802fecf9da4367bc23bcf20b21cc143785fc6c92b152f3fa7fbe6ce08d344d6"
+        },
+        {
+          "path": "pdfjs-dist--LICENSE",
+          "bytes": 10174,
+          "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+        },
+        {
+          "path": "react--LICENSE",
+          "bytes": 1088,
+          "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+        },
+        {
+          "path": "react-dom--LICENSE",
+          "bytes": 1088,
+          "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+        },
+        {
+          "path": "rolldown--LICENSE",
+          "bytes": 1302,
+          "sha256": "23ecfff35a5a2e80d92142f75228912c3b1abc4b5a8337a821ff4397e2f9f734"
+        },
+        {
+          "path": "rolldown--THIRD-PARTY-LICENSE",
+          "bytes": 2209,
+          "sha256": "a877291d800ed43692f3f9ae09d8e01cc6f7293ad39d43896059c188ffbb8b7c"
+        },
+        {
+          "path": "sax--LICENSE.md",
+          "bytes": 1552,
+          "sha256": "8a1af140fdfbf5afd3df27f7e662f989c5b963a300020dfafce42033cae9e004"
+        },
+        {
+          "path": "scheduler--LICENSE",
+          "bytes": 1088,
+          "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+        },
+        {
+          "path": "semver--LICENSE",
+          "bytes": 765,
+          "sha256": "4ec3d4c66cd87f5c8d8ad911b10f99bf27cb00cdfcff82621956e379186b016b"
+        },
+        {
+          "path": "style-mod--LICENSE",
+          "bytes": 1100,
+          "sha256": "cb4474e26547397169061d3586c00022cda5330a1b64fa13e872319f3b63aff1"
+        },
+        {
+          "path": "supports-color--license",
+          "bytes": 1109,
+          "sha256": "48da2f39e100d4085767e94966b43f4fa95ff6a0698fba57ed460914e35f94a0"
+        },
+        {
+          "path": "tiny-typed-emitter--LICENSE",
+          "bytes": 1104,
+          "sha256": "4b3faf884ee71eec3df920b66c98fc6618af28e824cf3a32ef3d8774048cc76d"
+        },
+        {
+          "path": "universalify--LICENSE",
+          "bytes": 1100,
+          "sha256": "3fda5977c0904e226190b4e21d64340c1731e2142d6fe5f3dee0090a216b8b63"
+        },
+        {
+          "path": "vite--LICENSE.md",
+          "bytes": 112425,
+          "sha256": "387dd7baa307083401a27c58c362c30832f5ba1dba84f10cc22c33401523f45c"
+        },
+        {
+          "path": "w3c-keyname--LICENSE",
+          "bytes": 1100,
+          "sha256": "869c30f368eb08735e779027b9f4bc9fea2f39624351856aebe42741f0bc0884"
+        }
+      ]
+    },
+    "existingFontNoticeFiles": 16,
+    "existingTexResourceNoticeFiles": 104,
+    "productionSigningVerified": false,
+    "fullNativeQualification": false
+  },
+  "javascriptReplay": {
+    "schemaVersion": 1,
+    "appAsarSha256": "b3101633e1a7c78fe37789efe98a94ed442e0f927da03709959a17eff9cfbe3a",
+    "inventorySha256": "66a4cd2ad4ce97799af84ff84ca25a81a8550c52055c4a008539730e9017e0ab",
+    "bomSha256": "0477209750456cfd90bd6f962ec367d170a1b7695248961e546a5f47ab42a38b",
+    "packagedJavaScriptAndMaps": 8,
+    "reproducedOutputs": 24,
+    "sourceModules": 402,
+    "runtimePackages": 35,
+    "generators": 3,
+    "completeBinarySbom": false
+  },
+  "publisherSourceChecks": {
+    "schemaVersion": 1,
+    "passed": true,
+    "inventorySha256": "66a4cd2ad4ce97799af84ff84ca25a81a8550c52055c4a008539730e9017e0ab",
+    "sourceIndexSha256": "ec21f5ef6a8761f6a5c97f13526ffda69580f48170a80a3c0720cf397fd1009d",
+    "npmInputFilesMatched": 249,
+    "embeddedOriginalSourcesMatched": 45,
+    "packageJsonFilesMatched": 38,
+    "originalArchivesChecked": 38,
+    "completeBinarySbom": false
+  },
+  "codecPackageScope": {
+    "passed": true,
+    "copiedWorker": "dist/assets/pdf.worker.min-Dswkl-cV.mjs",
+    "workerSha256": "8ab0e5e30031b4a06ecfddd5ae9562f0227f830ee7ec9ed1a968b134243d2386",
+    "codecWasmOrFallbackFiles": [],
+    "scope": "App ASAR paths; no claim about native system or Electron internals."
+  },
+  "validation": {
+    "sourceTestsPassed": 347,
+    "sourceTestLog": {
+      "file": "test-results/pdfjs-all-tests.log",
+      "bytes": 35857,
+      "sha256": "2aa9757affff4f464713850db3dcdd932b467b9c02c5f97948fe48437a700c15"
+    },
+    "collectorControlsPassed": 7,
+    "collectorControlsLog": {
+      "file": "test-results/pdfjs-collector-controls.log",
+      "bytes": 105,
+      "sha256": "e34bbc677c14b125f9ccb68304940462c5bde90a1c7d9cc7b491e6f2b8053238"
+    },
+    "noticeGateControlsPassed": 2,
+    "noticeGateLog": {
+      "file": "test-results/pdfjs-notice-controls.log",
+      "bytes": 306,
+      "sha256": "3f23281a1ddf66d92d50c12c9b1cf5e0bf6929bc2f863645043ecb9990245434"
+    },
+    "format": {
+      "file": "test-results/pdfjs-format-check.log",
+      "bytes": 183,
+      "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+    },
+    "typecheck": {
+      "file": "test-results/pdfjs-typecheck.log",
+      "bytes": 64,
+      "sha256": "5e0497e27df921e099efd62066b397df0bfe0eb796edd626db840b92aaa1ccec"
+    },
+    "build": {
+      "file": "test-results/pdfjs-build.log",
+      "bytes": 1719,
+      "sha256": "4cfb413911c102a959f8fdda7402668039bc6da618abbeae3dff4fb077a42903"
+    }
+  },
+  "publishedInventory": {
+    "file": "docs/releases/pdfjs-materials-inventory.json.gz",
+    "bytes": 2356,
+    "sha256": "455cdf0da5c924024f38a5ec381120db00390f3894a236e5421745a0aad39169",
+    "uncompressedBytes": 7235,
+    "uncompressedSha256": "ad49c58e74b2e436fd23b16d47b3695cd8102375906fe260acabe78e03cf7422"
+  },
+  "completeBinarySbom": false,
+  "fullHostedQualification": false,
+  "productionReleaseQualified": false,
+  "scope": "Exact original PDF.js component notice copies and original source-map associations; a new unsigned Mac package preserves all 39 compiled output files and all 3,982 compiler files. The same npm archive supplies the API input and copied worker. This is not an independent minifier/codec rebuild, per-byte authorship map or complete app redistribution/SBOM audit. The seven sources retain Google, Mozilla, Glyph & Cog and Opera attribution. The public preview-4 installer is unchanged."
+}

@@ -96,6 +96,10 @@
       {
         "from": "resources/npm-notices",
         "to": "npm-notices"
+      },
+      {
+        "from": "resources/pdfjs-notices",
+        "to": "pdfjs-notices"
       }
     ],
     "mac": {
