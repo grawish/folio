@@ -2,12 +2,12 @@
   "schemaVersion": 1,
   "status": "Local source, compiler integrations, packaged build-request/workspace/chat checks and JavaScript reproduction passed; full hosted qualification pending",
   "focusedTestsPassed": 16,
-  "sourceTestsPassed": 423,
+  "sourceTestsPassed": 427,
   "typecheckPassed": true,
   "baselineUnsettledRequests": 5001,
   "boundedUnsettledRequests": 2,
   "scope": "Request-count bound and cancellation correctness. Whole-app performance/resource acceptance and hosted package qualification remain open. The preview-4 installer is unchanged.",
-  "verifiedAt": "2026-09-27T22:10:11.215524+00:00",
+  "verifiedAt": "2026-09-27T22:21:59.792803+00:00",
   "compilerIntegrationTestsPassed": 18,
   "nativeBuildRequestCheck": {
     "sourceCommit": "754b8785713346dbf8182873de713b6b94d9f7ef",
@@ -79,6 +79,21 @@
       "file": "test-results/bounded-build-package.log",
       "bytes": 1341,
       "sha256": "4f80d506280a0a3d53ebfd590b607de33d2b50de5bfe1c7bc922ecc4d5612dc2"
+    },
+    {
+      "file": "test-results/bounded-build-merged-source.log",
+      "bytes": 42907,
+      "sha256": "c184efb15de2765aa33db1277730d20ec0e6ccc4800ce3bbf674c6f1aa069b23"
+    },
+    {
+      "file": "test-results/bounded-build-merged-typecheck.log",
+      "bytes": 64,
+      "sha256": "5e0497e27df921e099efd62066b397df0bfe0eb796edd626db840b92aaa1ccec"
+    },
+    {
+      "file": "test-results/bounded-build-merged-format.log",
+      "bytes": 183,
+      "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
     }
   ],
   "fixtureCorrections": [
@@ -109,7 +124,7 @@
   "qualificationGate": {
     "nativeSuites": 19,
     "newSuite": "build-requests",
-    "hostedRunStatus": "not dispatched"
+    "hostedRunStatus": "pending; see the draft pull request for the current run"
   },
   "implementationCommit": "321d96994e7e93c830893005c0f904077dc8a6cd",
   "nativeSourceHashesMatchImplementationCommit": true,
@@ -131,5 +146,8 @@
       "scope": "Production app workflows with synthetic source; chat uses the local provider protocol fixture, not a live AI subscription."
     }
   ],
-  "packageNote": "This local package predates the separately reviewed Electron-notice packaging change in PR 30. It is retained for behavioral regression evidence, not published as a new installer. Integrate current packaging before final hosted qualification."
+  "packageNote": "The retained local behavioral package predates the Electron-notice packaging fix. The branch now includes the independently qualified packaging merge 907c70d; full hosted qualification will build these changes together. No new installer is published.",
+  "sourceTestsBeforePackagingMerge": 423,
+  "packagingIntegratedFromMain": "907c70d6e771c33b7e943bed58a6c4bbd1862d80",
+  "appSourcesUnchangedByPackagingMerge": true
 }
