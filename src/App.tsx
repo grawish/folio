@@ -81,6 +81,7 @@ import { SupportBundle } from './components/SupportBundle';
 import { supportSnapshot } from './shared/support';
 import { SaveRecovery } from './components/SaveRecovery';
 import type { SaveRecoveryResult } from './shared/save-recovery';
+import { RecoveryWrites } from './shared/recovery-writes';
 
 type Dialog =
   | 'templates'
@@ -128,6 +129,15 @@ const snippets = [
 
 export default function App() {
   const preferenceError = usePreferenceError();
+  const [recoveryError, setRecoveryError] = useState('');
+  const [retryingRecovery, setRetryingRecovery] = useState(false);
+  const [recoveryWrites] = useState(
+    () =>
+      new RecoveryWrites(
+        (project) => window.folio?.recover(project) ?? Promise.resolve(),
+        setRecoveryError,
+      ),
+  );
   const { appearance, setAppearance, theme } = useAppearance();
   const [project, setProject] = useState<Project>(() => createProject());
   const current = useRef(project);
@@ -297,6 +307,7 @@ export default function App() {
       buildToken.current++;
       void window.folio?.cancelBuild();
       current.current = next;
+      recoveryWrites.replacePending(next);
       setEditorSession(crypto.randomUUID());
       setProject(next);
       setActiveFile(next.mainFile);
@@ -306,7 +317,7 @@ export default function App() {
       setLogsOpen(false);
       setSavedKey(next.directory ? keyOf(next) : '');
     },
-    [message, updateWorkspace, workspaceRef],
+    [message, updateWorkspace, workspaceRef, recoveryWrites],
   );
 
   const receiveDiskChanges = useCallback((report: ProjectDiskChanges | null) => {
@@ -518,13 +529,11 @@ export default function App() {
     )
       return;
     const timer = setTimeout(() => {
-      if (saving.current || closing.current) return;
-      void window.folio
-        ?.recover(project)
-        .catch((e) => message(`Recovery could not be saved: ${e.message}`));
+      if (saving.current || closing.current || switchingProject.current) return;
+      recoveryWrites.set(project);
     }, 500);
     return () => clearTimeout(timer);
-  }, [project, initialized, message, saveActive, dialog, packBusy]);
+  }, [project, initialized, recoveryWrites, saveActive, dialog, packBusy]);
   useEffect(() => {
     if (!toast) return;
     const timer = setTimeout(() => setToast(''), 6500);
@@ -571,6 +580,7 @@ export default function App() {
       finishSave = resolve;
     });
     try {
+      await recoveryWrites.flush().catch(() => {});
       await flushWorkspace();
       const saved = automatic
         ? await desktop.autosaveProject(snapshot)
@@ -596,6 +606,7 @@ export default function App() {
             ],
           }));
         });
+        recoveryWrites.replacePending(current.current);
         if (!automatic || saved.warning)
           message(saved.warning ?? 'Project saved. Your LaTeX files are ready to take anywhere.');
       } else if (automatic && snapshot.id === current.current.id) {
@@ -676,6 +687,7 @@ export default function App() {
       finish = resolve;
     });
     try {
+      await recoveryWrites.flush(snapshot);
       const next = await window.folio.useDiskSource(snapshot, token, mainFile);
       flushSync(() => {
         current.current = next;
@@ -717,7 +729,7 @@ export default function App() {
           : await desktop.openProject();
       if (next) {
         loadProject(next);
-        await desktop.recover(next);
+        await recoveryWrites.flush(next);
         setRecent(await desktop.recentProjects());
         if (folder && next.files.filter((file) => file.path.endsWith('.tex')).length > 1)
           setDialog('main-file');
@@ -755,7 +767,7 @@ export default function App() {
       let warning = '';
       let recovered = false;
       try {
-        await window.folio.recover(next);
+        await recoveryWrites.flush(next);
         setRecent(await window.folio.recentProjects());
         recovered = true;
       } catch {
@@ -796,7 +808,7 @@ export default function App() {
     try {
       if (action === 'resume') {
         const next = await window.folio.resumeImport(id);
-        await window.folio.recover(next);
+        await recoveryWrites.flush(next);
         setRecent(await window.folio.recentProjects());
         flushSync(() => {
           loadProject(next);
@@ -924,7 +936,7 @@ export default function App() {
           await window.folio?.cancelPackOperation();
           if (migrationId.current) await window.folio?.cancelCompilerMigration(migrationId.current);
           if (fontImport.current) await window.folio?.cancelFontImport(fontImport.current.id);
-          await window.folio?.recover(current.current);
+          await recoveryWrites.flush(current.current);
           await flushWorkspace();
           await flushPreferences();
           await window.folio?.closeWindow();
@@ -949,7 +961,10 @@ export default function App() {
     const session = saveReview.current!;
     session.preparation ??= (async () => {
       await savingFinished.current;
-      if (initialized) await flushWorkspace();
+      if (initialized) {
+        await recoveryWrites.flush().catch(() => {});
+        await flushWorkspace();
+      }
       buildToken.current++;
       setBuilding(false);
       await window.folio!.beginSaveRecovery(session.id, initialized ? current.current : undefined);
@@ -1189,7 +1204,7 @@ export default function App() {
       finish = resolve;
     });
     try {
-      await window.folio.recover(current.current);
+      await recoveryWrites.flush(current.current);
       await flushWorkspace();
       const next = await window.folio.removeHistoryVersion(id, versionId, lastGood?.versionId);
       if (current.current.id === id) {
@@ -1359,7 +1374,7 @@ export default function App() {
       setBuilding(false);
       await flushWorkspace();
       if (fontImport.current !== session) throw new Error('Font setup was closed.');
-      await window.folio!.recover(current.current);
+      await recoveryWrites.flush(current.current);
       if (fontImport.current !== session) throw new Error('Font setup was closed.');
       await window.folio!.beginFontImport(session.id, current.current);
       if (fontImport.current !== session) {
@@ -2040,18 +2055,6 @@ export default function App() {
             )}
           </span>
         </footer>
-        {toast && !savingCopy && (
-          <div className="toast" role="status">
-            <span>{toast}</span>
-            <button
-              className="icon-button"
-              aria-label="Dismiss notification"
-              onClick={() => setToast('')}
-            >
-              <X size={15} />
-            </button>
-          </div>
-        )}
         {pendingImport && (
           <ImportProjectDialog
             preview={pendingImport}
@@ -2300,7 +2303,7 @@ export default function App() {
               buildToken.current++;
               setBuilding(false);
               await flushWorkspace();
-              await window.folio?.recover(current.current);
+              await recoveryWrites.flush(current.current);
               if (closing.current) throw new Error('Resource operation cancelled while closing.');
             }}
             onCompareCompiler={(target) => {
@@ -2350,6 +2353,7 @@ export default function App() {
                 );
               closing.current = true;
               try {
+                await recoveryWrites.flush(current.current);
                 await flushPreferences();
                 await window.folio.restartForAppUpdate(current.current, workspaceRef.current);
               } catch (error) {
@@ -2402,7 +2406,7 @@ export default function App() {
               buildToken.current++;
               setBuilding(false);
               await flushWorkspace();
-              await desktop.recover(current.current);
+              await recoveryWrites.flush(current.current);
               return desktop.prepareCompilerMigration(
                 migrationId.current!,
                 current.current,
@@ -2613,22 +2617,6 @@ export default function App() {
           </Modal>
         )}
       </div>
-      {preferenceError && (
-        <div className="toast preference-error" role="alert">
-          <span>
-            Settings could not be saved. Your previous saved settings are kept. Check free space and
-            folder access, then retry.
-          </span>
-          <button
-            className="button secondary"
-            onClick={() => {
-              void flushPreferences().catch(() => {});
-            }}
-          >
-            Retry settings save
-          </button>
-        </div>
-      )}
       {!initialized && (
         <div className="startup-screen" role={bootstrapError ? 'alert' : 'status'}>
           <h1>
@@ -2654,9 +2642,70 @@ export default function App() {
           )}
         </div>
       )}
-      {savingCopy && (
-        <div className="toast" role="status">
-          Saving a copy…
+      {(toast || savingCopy || preferenceError || recoveryError) && (
+        <div className="notifications">
+          {recoveryError && (
+            <div className="toast recovery-error" role="alert">
+              <span>
+                Recovery could not be saved. Your edits are still open. Retry to save a recovery
+                copy.
+              </span>
+              <button
+                className="button secondary"
+                disabled={
+                  retryingRecovery ||
+                  !initialized ||
+                  saveActive ||
+                  packBusy ||
+                  dialog === 'save-recovery' ||
+                  dialog === 'fonts' ||
+                  dialog === 'compiler-migration'
+                }
+                onClick={() => {
+                  setRetryingRecovery(true);
+                  void recoveryWrites
+                    .flush(current.current)
+                    .catch(() => {})
+                    .finally(() => setRetryingRecovery(false));
+                }}
+              >
+                {retryingRecovery ? 'Saving recovery…' : 'Retry recovery'}
+              </button>
+            </div>
+          )}
+          {preferenceError && (
+            <div className="toast preference-error" role="alert">
+              <span>
+                Settings could not be saved. Your previous saved settings are kept. Check free space
+                and folder access, then retry.
+              </span>
+              <button
+                className="button secondary"
+                onClick={() => {
+                  void flushPreferences().catch(() => {});
+                }}
+              >
+                Retry settings save
+              </button>
+            </div>
+          )}
+          {toast && !savingCopy && (
+            <div className="toast" role="status">
+              <span>{toast}</span>
+              <button
+                className="icon-button"
+                aria-label="Dismiss notification"
+                onClick={() => setToast('')}
+              >
+                <X size={15} />
+              </button>
+            </div>
+          )}
+          {savingCopy && (
+            <div className="toast" role="status">
+              Saving a copy…
+            </div>
+          )}
         </div>
       )}
     </>
