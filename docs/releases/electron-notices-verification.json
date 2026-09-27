@@ -234,7 +234,7 @@
   "completeBinarySbom": false,
   "productionReleaseQualified": false,
   "publicPreviewInstallerChanged": false,
-  "scope": "Adds both complete original Electron/Chromium notices to the development Mac package. Official release and locked npm archive checksums agree; lossless notice copies, the framework, the actual packaging hook and all added package records were verified. The package gate rejects the older missing-notice app. All previous app inventory entries and all compiled outputs remain byte-identical to the qualified native-preference app. Full hosted qualification of the expanded package remains pending. This does not independently rebuild Electron/Chromium or finish source obligations, the native/compiler license inventory, production signing or the full binary SBOM. The final hook also rejects an actual builder-version override before runtime extraction.",
+  "scope": "Adds both complete original Electron/Chromium notices to the development Mac package. Official release and locked npm archive checksums agree; lossless notice copies, the framework, the actual packaging hook and all added package records were verified. The package gate rejects the older missing-notice app. All previous app inventory entries and all compiled outputs remain byte-identical to the qualified native-preference app. Full hosted qualification of the expanded package passes at 99cbb97; all 158 retained evidence files and original publisher archives were independently checked. This does not independently rebuild Electron/Chromium or finish source obligations, the native/compiler license inventory, production signing or the full binary SBOM. The final hook also rejects an actual builder-version override before runtime extraction.",
   "documentationValidation": [
     {
       "path": "test-results/electron-notices-format-final.log",
@@ -256,5 +256,17 @@
       "bytes": 16,
       "sha256": "db349825903d66adffea3ecf1bd8e1803043e8a71cf1a051235dabc5371f5bb0"
     }
-  ]
+  ],
+  "hostedQualification": {
+    "commit": "99cbb978fb444572b4cdaa5ebe71ce09c71e4405",
+    "runId": 36352563606,
+    "url": "https://github.com/grawish/folio/actions/runs/36352563606",
+    "conclusion": "success",
+    "record": "docs/releases/mac-electron-notices-hosted.json",
+    "sourceTestsPassed": 411,
+    "compilerIntegrationTestsPassed": 17,
+    "nativeSuitesPassed": 18,
+    "templateImagesPassed": 12,
+    "artifactFilesVerified": 158
+  }
 }

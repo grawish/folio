@@ -74,7 +74,7 @@ python3 scripts/verify-electron-upstream.py /absolute/path/to/retained-archives
 
 The offline verifier checks the locked npm SHA-512, both publisher checksum entries, complete release members, the framework hash and the lossless notice copies. It reads named regular files without extracting or executing archive entries. Full original archives remain in ignored `artifacts/license-materials/electron-upstream/`; only necessary notices, the source index, tooling and verification are committed.
 
-This repairs a specific notice omission. It does not independently rebuild Electron/Chromium, finish corresponding-source obligations, resolve the remaining compiler/native materials or complete the binary SBOM. Full hosted qualification of the expanded package and production signing remain separate release gates.
+This repairs a specific notice omission. It does not independently rebuild Electron/Chromium, finish corresponding-source obligations, resolve the remaining compiler/native materials or complete the binary SBOM. Full hosted qualification of the expanded package now passes at `99cbb97`: 411 source tests, 17 compiler integrations, twelve unchanged template images and all eighteen native suites. The [independent hosted verification](releases/mac-electron-notices-hosted.json) checks every retained artifact file and original archive against exact source/package identities. Production signing and the complete redistribution audit remain separate release gates.
 
 ## Collect and bundle compiler-font notices
 
