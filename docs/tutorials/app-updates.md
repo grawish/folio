@@ -27,3 +27,5 @@ After downloading, **Save recovery & restart** saves your source draft, chat, PD
 The next launch will tell you whether the update finished. If it did not, your recovery copy remains available. Check again or use the GitHub download instructions. Do not delete your project or recovery folder to fix an update.
 
 **Demo:** `npm run test:updates` checks the real preview Settings and close/reopen behavior using a made-up project and chat draft. It does not demonstrate a signed app installation. See [developer details and remaining tests](../APP_UPDATES.md).
+
+When downloads are enabled, **Cancel download** stops the transfer and closes its temporary file. Check again to retry. A failed checksum or a download larger than its signed size is rejected; Folio does not restart from those bytes. These safeguards have automated Electron tests, while a real signed upgrade remains on the release checklist.

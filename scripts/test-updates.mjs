@@ -147,7 +147,8 @@ try {
       2,
     ),
   );
-  console.log(`PASS: app update Settings, preview gate and recovery. Evidence: ${root}`);
+  console.log('PASS: app update Settings, preview gate and recovery.');
+  console.log(`Evidence: ${root}`);
 } catch (error) {
   await page?.screenshot({ path: path.join(root, 'failure.png') }).catch(() => {});
   throw error;

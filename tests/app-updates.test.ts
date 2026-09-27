@@ -18,6 +18,11 @@ import { fetchUpdateFeed } from '../electron/core/update-feed';
 import { AppUpdates, type AppUpdateInstaller } from '../electron/core/update-service';
 import { signedUpdateProvider } from '../electron/core/update-provider';
 import { verifyUpdateArchive, discardUpdateArchive } from '../electron/core/update-archive';
+import { downloadAppUpdate as transferAppUpdate } from '../electron/core/update-download';
+import { CancellationToken } from 'builder-util-runtime';
+import { Readable } from 'node:stream';
+import type { ReadableStream as NodeReadableStream } from 'node:stream/web';
+import type { UpdateFetch } from '../electron/core/update-feed';
 
 const keys = generateKeyPairSync('ed25519');
 const now = Date.parse('2026-09-27T08:00:00.000Z');
@@ -507,4 +512,192 @@ test('cached ZIPs are fully rehashed, and damaged cache cleanup permits retry wi
     /linked/,
   );
   assert.equal(await fs.readFile(outsideFile, 'utf8'), 'private bytes');
+});
+
+function freshFeed() {
+  return verifier.verify(
+    envelope({
+      ...payload(),
+      issuedAt: new Date(Date.now() - 1000).toISOString(),
+      expiresAt: new Date(Date.now() + 3600_000).toISOString(),
+    }),
+    'stable',
+  );
+}
+
+// Adapt compact unit response fixtures to the same Node stream consumed by
+// production. The separate Electron fixture exercises the real request adapter.
+function downloadAppUpdate(
+  feed: Parameters<typeof transferAppUpdate>[0],
+  url: URL,
+  file: string,
+  root: string,
+  options: Parameters<typeof transferAppUpdate>[4],
+  request: UpdateFetch,
+) {
+  return transferAppUpdate(feed, url, file, root, options, async (address, signal) => {
+    const response = await request(address, { signal });
+    const body = response.body
+      ? Readable.fromWeb(response.body as NodeReadableStream<Uint8Array>)
+      : Readable.from([]);
+    body.on('error', () => {});
+    const abort = () => body.destroy(signal.reason);
+    signal.addEventListener('abort', abort, { once: true });
+    body.once('close', () => signal.removeEventListener('abort', abort));
+    return { status: response.status, headers: response.headers, body };
+  });
+}
+
+test('signed transfer bounds each chunk before disk writes, including missing and false lengths', async (t) => {
+  const root = await temporary(t),
+    file = path.join(root, 'download.part'),
+    feed = freshFeed();
+  const token = new CancellationToken();
+  const options = { cancellationToken: token, sha512: feed.release!.zip.sha512 };
+  await downloadAppUpdate(
+    feed,
+    new URL(feed.release!.zip.url),
+    file,
+    root,
+    options,
+    async () => new Response('zip fixture'),
+  );
+  assert.equal(await fs.readFile(file, 'utf8'), 'zip fixture');
+  const badStream = () =>
+    new ReadableStream<Uint8Array>({
+      start(controller) {
+        controller.enqueue(Buffer.from('zip f'));
+        controller.enqueue(Buffer.alloc(10000));
+        controller.close();
+      },
+    });
+  for (const headers of [new Headers(), new Headers({ 'Content-Length': '11' })]) {
+    await assert.rejects(
+      downloadAppUpdate(
+        feed,
+        new URL(feed.release!.zip.url),
+        file,
+        root,
+        options,
+        async () => new Response(badStream(), { headers }),
+      ),
+      /exceeds its signed size/,
+    );
+    assert.ok((await fs.stat(file)).size <= 5, 'Excess chunk must never reach the file.');
+  }
+  const previousSize = (await fs.stat(file)).size;
+  await assert.rejects(
+    downloadAppUpdate(
+      feed,
+      new URL(feed.release!.zip.url),
+      file,
+      root,
+      options,
+      async () => new Response('zip fixture', { headers: { 'Content-Length': '10000' } }),
+    ),
+    /different size/,
+  );
+  assert.equal(
+    (await fs.stat(file)).size,
+    previousSize,
+    'Invalid headers must not truncate the previous file.',
+  );
+  await assert.rejects(
+    downloadAppUpdate(
+      feed,
+      new URL(feed.release!.zip.url),
+      file,
+      root,
+      options,
+      async () => new Response('wrong hash!'),
+    ),
+    /checksum/,
+  );
+  assert.equal(token.listenerCount('cancel'), 0);
+});
+
+test('cancelled transfers abort the request, close the file and have no later writes', async (t) => {
+  const root = await temporary(t),
+    file = path.join(root, 'download.part'),
+    feed = freshFeed(),
+    token = new CancellationToken();
+  let signal: AbortSignal | null | undefined,
+    cancelled = false;
+  let streamController!: ReadableStreamDefaultController<Uint8Array>;
+  const operation = downloadAppUpdate(
+    feed,
+    new URL(feed.release!.zip.url),
+    file,
+    root,
+    {
+      cancellationToken: token,
+      sha512: feed.release!.zip.sha512,
+      onProgress: () => token.cancel(),
+    },
+    async (_url, init) => {
+      signal = init.signal;
+      return new Response(
+        new ReadableStream<Uint8Array>({
+          start(controller) {
+            streamController = controller;
+            controller.enqueue(Buffer.from('zip f'));
+          },
+          cancel() {
+            cancelled = true;
+          },
+        }),
+      );
+    },
+  );
+  await assert.rejects(operation, /cancelled/);
+  assert.equal(signal?.aborted, true);
+  assert.equal(cancelled, true);
+  assert.equal((await fs.stat(file)).size, 5);
+  assert.throws(() => streamController.enqueue(Buffer.from('more')));
+  await fs.rename(file, file + '.closed');
+  assert.equal(token.listenerCount('cancel'), 0);
+});
+
+test('transfer refuses linked output without changing its target and rejects redirects before requesting them', async (t) => {
+  const root = await temporary(t),
+    outside = path.join(root, 'private.txt'),
+    file = path.join(root, 'download.part'),
+    feed = freshFeed();
+  const options = { cancellationToken: new CancellationToken(), sha512: feed.release!.zip.sha512 };
+  await fs.writeFile(outside, 'keep me');
+  await fs.symlink(outside, file);
+  await assert.rejects(
+    downloadAppUpdate(
+      feed,
+      new URL(feed.release!.zip.url),
+      file,
+      root,
+      options,
+      async () => new Response('zip fixture'),
+    ),
+  );
+  assert.equal(await fs.readFile(outside, 'utf8'), 'keep me');
+  await fs.unlink(file);
+  await fs.link(outside, file);
+  await assert.rejects(
+    downloadAppUpdate(
+      feed,
+      new URL(feed.release!.zip.url),
+      file,
+      root,
+      options,
+      async () => new Response('zip fixture'),
+    ),
+    /without links/,
+  );
+  assert.equal(await fs.readFile(outside, 'utf8'), 'keep me');
+  let count = 0;
+  await assert.rejects(
+    downloadAppUpdate(feed, new URL(feed.release!.zip.url), file, root, options, async () => {
+      count++;
+      return new Response(null, { status: 302, headers: { Location: 'http://localhost/private' } });
+    }),
+    /approved/,
+  );
+  assert.equal(count, 1);
 });

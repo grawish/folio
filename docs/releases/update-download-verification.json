@@ -1,0 +1,598 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T08:48:52.636423+00:00",
+  "baseCommit": "9bfd2bca6d016a87da49360d29f18ee43b80782e",
+  "change": "Bound authenticated ZIP downloads before writes; use Electron net.request Node streams to avoid the reproduced fetch abort crash; exercise actual MacUpdater cache and proxy; fix native Settings evidence output.",
+  "inputs": [
+    {
+      "path": "electron/core/update-download.ts",
+      "bytes": 5805,
+      "sha256": "e796e2308906770315bdeb6b942cf76703860f2f22ebd976fbeca6a8c6a91d69"
+    },
+    {
+      "path": "electron/core/update-request.ts",
+      "bytes": 2526,
+      "sha256": "61461ec2962f55e5657ace5abc96120e9574619171e78368153761248ab16c2e"
+    },
+    {
+      "path": "electron/core/update-installer.ts",
+      "bytes": 6862,
+      "sha256": "eddd1624e975366d658a7f0477fd3f9cc515d4fd7e131ce8d5e1d4be7a64bc7c"
+    },
+    {
+      "path": "electron/core/update-provider.ts",
+      "bytes": 1918,
+      "sha256": "02a914e55a42b3de2a0de648bdcca52b3ec90bccd854869a1bc7141da39e49d2"
+    },
+    {
+      "path": "scripts/fixtures/update-download.ts",
+      "bytes": 13724,
+      "sha256": "b5baade38c4703b574f4eea507bfdf653734da8c572e356a0d22b0ffd9de3a5e"
+    },
+    {
+      "path": "scripts/test-update-download.mjs",
+      "bytes": 2528,
+      "sha256": "147de14f6a2da85ed673c3ce20af773831c3f18f4afdb30fd8d29d8469a524b5"
+    },
+    {
+      "path": "scripts/test-updates.mjs",
+      "bytes": 6818,
+      "sha256": "2edd546c9169b4b435d41036b8a5692677e91bc6f69cfc8ffb6126af7098baad"
+    },
+    {
+      "path": "tests/app-updates.test.ts",
+      "bytes": 25183,
+      "sha256": "1e89bb9fe6c86b0e4e8b621211c71377039ad92620d06423dc0b8915de801dbb"
+    },
+    {
+      "path": ".github/workflows/mac-candidate.yml",
+      "bytes": 4269,
+      "sha256": "d7ff4aa84fb9f97dc2e78dc6dfff70e577b788336aa6cba4fd4796aeaa17bc3d"
+    },
+    {
+      "path": "package.json",
+      "bytes": 5600,
+      "sha256": "0f1b39d61e4c430040c101327337a3e7e66ddcf756916b3862e83ad7c8272711"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 206387,
+      "sha256": "f49e1352767126ce8d3c894ac5bfdc4d39fc951fbe1efe7283ca4ee4d991ae00"
+    }
+  ],
+  "electronControls": {
+    "passed": true,
+    "consecutiveFinalRuns": 20,
+    "representativeResult": {
+      "passed": true,
+      "checks": [
+        "Real MacUpdater bounded HTTPS-protocol transfer, SHA-512, exact cache bytes and authenticated loopback ZIP proxy pass.",
+        "Valid cached download is reusable offline; same-size cache tampering is rejected and a fresh retry succeeds.",
+        "Actual downloaded checksum mismatch is rejected before native staging.",
+        "Actual Electron request policy blocks an unapproved HTTPS redirect.",
+        "Approved GitHub asset redirect succeeds without session cookies or authorization.",
+        "An actual Electron request failure rejects without staging an update.",
+        "Actual transfer cancellation settles, keeps the app running, and permits a verified retry.",
+        "An oversized chunked response cannot become a verified native update."
+      ],
+      "requests": [
+        "https://github.com/grawish/folio/releases/download/v0.2.0/Folio-0.2.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.2.0/Folio-0.2.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.3.0/Folio-0.3.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.4.0/Folio-0.4.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.4.1/Folio-0.4.1-mac-arm64.zip",
+        "https://release-assets.githubusercontent.com/fixture.zip",
+        "https://github.com/grawish/folio/releases/download/v0.4.2/Folio-0.4.2-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.5.0/Folio-0.5.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.5.0/Folio-0.5.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.6.0/Folio-0.6.0-mac-arm64.zip"
+      ],
+      "elapsedMs": 207,
+      "electron": "44.4.5",
+      "updater": "6.8.10",
+      "sha512": "YbtFAMMdMfwt5rNTq/v0vo+JELUKXlEZVCc/dmUd3oTzQ1uZYEXNHkZHwonutPKqWVYeNu4H8L/Xaj6fZISobg==",
+      "zipBytes": 262399,
+      "transport": "Electron HTTPS protocol handler supplies deterministic responses; real MacUpdater, bounded net.request transfer, cache and proxy code.",
+      "syntheticTrust": true,
+      "isolatedCache": true,
+      "nativeInstallationAttempted": false,
+      "scope": "No runnable app ZIP, Developer ID, notarization, public network, or native replacement is claimed."
+    },
+    "runs": [
+      {
+        "result": {
+          "path": "test-results/update-download-vSRixp/result.json",
+          "bytes": 2227,
+          "sha256": "effb7d3ff96eea21aeef3b315b712690369c424398cbd7d9db3e4a8788f0d9a5"
+        },
+        "inputs": {
+          "path": "test-results/update-download-vSRixp/inputs.json",
+          "bytes": 1061,
+          "sha256": "74413db83b76eeb7b0cad514a536250ff88f458a6602ff92670bd47528cb64d2"
+        },
+        "nativeOutput": {
+          "path": "test-results/update-download-vSRixp/native-output.log",
+          "bytes": 130,
+          "sha256": "cbba4dbd1223291348cceee64cf59eb10831b5c6e409410150c512505a83f150"
+        },
+        "elapsedMs": 183
+      },
+      {
+        "result": {
+          "path": "test-results/update-download-BF4v0C/result.json",
+          "bytes": 2227,
+          "sha256": "cf3961bfe56e15dea60a9b72d0eb035a5dd5e60f14b54f0f978d187bb98ae613"
+        },
+        "inputs": {
+          "path": "test-results/update-download-BF4v0C/inputs.json",
+          "bytes": 1061,
+          "sha256": "74413db83b76eeb7b0cad514a536250ff88f458a6602ff92670bd47528cb64d2"
+        },
+        "nativeOutput": {
+          "path": "test-results/update-download-BF4v0C/native-output.log",
+          "bytes": 130,
+          "sha256": "a796305e3a4d36efa7b20ac9a57fe47cbba38104235147e905adc85bd4ec103e"
+        },
+        "elapsedMs": 175
+      },
+      {
+        "result": {
+          "path": "test-results/update-download-ptZQhZ/result.json",
+          "bytes": 2227,
+          "sha256": "dbd3a9f73df35149e4eac1e60c0242a3027a1e7d729dd8cffb3d318ba39fa019"
+        },
+        "inputs": {
+          "path": "test-results/update-download-ptZQhZ/inputs.json",
+          "bytes": 1061,
+          "sha256": "74413db83b76eeb7b0cad514a536250ff88f458a6602ff92670bd47528cb64d2"
+        },
+        "nativeOutput": {
+          "path": "test-results/update-download-ptZQhZ/native-output.log",
+          "bytes": 130,
+          "sha256": "30d4af475f18077d37f792984f6dbaf6dd3b1573148be0d0e3bd90db67ba62a1"
+        },
+        "elapsedMs": 196
+      },
+      {
+        "result": {
+          "path": "test-results/update-download-n8Rzbu/result.json",
+          "bytes": 2227,
+          "sha256": "8e2dd332543fa6bc15465b2f4c7fae4e2af10c21ed2a0b7d72a4b410e32ddf5e"
+        },
+        "inputs": {
+          "path": "test-results/update-download-n8Rzbu/inputs.json",
+          "bytes": 1061,
+          "sha256": "74413db83b76eeb7b0cad514a536250ff88f458a6602ff92670bd47528cb64d2"
+        },
+        "nativeOutput": {
+          "path": "test-results/update-download-n8Rzbu/native-output.log",
+          "bytes": 130,
+          "sha256": "e3e8c63a9c471ee29c9198534752f55cd7c86296248888d21d514a0506f60a11"
+        },
+        "elapsedMs": 174
+      },
+      {
+        "result": {
+          "path": "test-results/update-download-ZFkiQG/result.json",
+          "bytes": 2227,
+          "sha256": "00787317dc2163fccf42f67036c362a02e208c73cc875a981f6506e42c2e05bd"
+        },
+        "inputs": {
+          "path": "test-results/update-download-ZFkiQG/inputs.json",
+          "bytes": 1061,
+          "sha256": "74413db83b76eeb7b0cad514a536250ff88f458a6602ff92670bd47528cb64d2"
+        },
+        "nativeOutput": {
+          "path": "test-results/update-download-ZFkiQG/native-output.log",
+          "bytes": 130,
+          "sha256": "44f2e69932bbd3d8da828dd154147c773a970a98bb5fe722eb53d33b1614a021"
+        },
+        "elapsedMs": 177
+      },
+      {
+        "result": {
+          "path": "test-results/update-download-BiEkzY/result.json",
+          "bytes": 2227,
+          "sha256": "eb935b62842c828ff6eab16e6b431b6a9028fe68b23b28969b84dc8a075cefe9"
+        },
+        "inputs": {
+          "path": "test-results/update-download-BiEkzY/inputs.json",
+          "bytes": 1061,
+          "sha256": "74413db83b76eeb7b0cad514a536250ff88f458a6602ff92670bd47528cb64d2"
+        },
+        "nativeOutput": {
+          "path": "test-results/update-download-BiEkzY/native-output.log",
+          "bytes": 130,
+          "sha256": "0c93970010217cdfa885b0e52279d9de368ca85d43541bc90d8700a16613fb9a"
+        },
+        "elapsedMs": 178
+      },
+      {
+        "result": {
+          "path": "test-results/update-download-W6EcsU/result.json",
+          "bytes": 2227,
+          "sha256": "1f9e825cfbc38451d8fa0f713d6edc828baef1bd4b714b454356b0b8ee9e8b6b"
+        },
+        "inputs": {
+          "path": "test-results/update-download-W6EcsU/inputs.json",
+          "bytes": 1061,
+          "sha256": "74413db83b76eeb7b0cad514a536250ff88f458a6602ff92670bd47528cb64d2"
+        },
+        "nativeOutput": {
+          "path": "test-results/update-download-W6EcsU/native-output.log",
+          "bytes": 130,
+          "sha256": "86838eccd2376f9f0d97f03db757304196c7568f8241cdb31d58e8bca1c15190"
+        },
+        "elapsedMs": 169
+      },
+      {
+        "result": {
+          "path": "test-results/update-download-S0y8c4/result.json",
+          "bytes": 2227,
+          "sha256": "9efbbd7647f1fd4cdf2ab802e6518178d166dd0386b81bbd10a0f4f5e366219b"
+        },
+        "inputs": {
+          "path": "test-results/update-download-S0y8c4/inputs.json",
+          "bytes": 1061,
+          "sha256": "74413db83b76eeb7b0cad514a536250ff88f458a6602ff92670bd47528cb64d2"
+        },
+        "nativeOutput": {
+          "path": "test-results/update-download-S0y8c4/native-output.log",
+          "bytes": 130,
+          "sha256": "d054b448bf99e7cb8b643c40ef5990d214d3cf30a6635358c83d270cf20b346a"
+        },
+        "elapsedMs": 176
+      },
+      {
+        "result": {
+          "path": "test-results/update-download-u7njl2/result.json",
+          "bytes": 2227,
+          "sha256": "bba3db82f501b0eb4941a0ce760f029058b7b0e2adf9994407f0368323fcb280"
+        },
+        "inputs": {
+          "path": "test-results/update-download-u7njl2/inputs.json",
+          "bytes": 1061,
+          "sha256": "74413db83b76eeb7b0cad514a536250ff88f458a6602ff92670bd47528cb64d2"
+        },
+        "nativeOutput": {
+          "path": "test-results/update-download-u7njl2/native-output.log",
+          "bytes": 130,
+          "sha256": "ccd9f9041d10d7f25c9807d0c748505d3fee1baf7e39e1b8dcadca6030efb78d"
+        },
+        "elapsedMs": 170
+      },
+      {
+        "result": {
+          "path": "test-results/update-download-7rPVW5/result.json",
+          "bytes": 2227,
+          "sha256": "e3e6abf7305e28fd7ed0f89f667c0defbe56a1a37f169b3a1f392b2d9a203186"
+        },
+        "inputs": {
+          "path": "test-results/update-download-7rPVW5/inputs.json",
+          "bytes": 1061,
+          "sha256": "74413db83b76eeb7b0cad514a536250ff88f458a6602ff92670bd47528cb64d2"
+        },
+        "nativeOutput": {
+          "path": "test-results/update-download-7rPVW5/native-output.log",
+          "bytes": 130,
+          "sha256": "7e9708594f5a8fd0859329d1114227b3d5077aa9e5091fd410a8c36fa3c4efcf"
+        },
+        "elapsedMs": 183
+      },
+      {
+        "result": {
+          "path": "test-results/update-download-ajwsOB/result.json",
+          "bytes": 2227,
+          "sha256": "48ab6ee32c1b01777f927d90947eeaa8bc478b218c2a10e03be3221469e8d2a6"
+        },
+        "inputs": {
+          "path": "test-results/update-download-ajwsOB/inputs.json",
+          "bytes": 1061,
+          "sha256": "74413db83b76eeb7b0cad514a536250ff88f458a6602ff92670bd47528cb64d2"
+        },
+        "nativeOutput": {
+          "path": "test-results/update-download-ajwsOB/native-output.log",
+          "bytes": 130,
+          "sha256": "c4babb23201d5c95d1cbee15b1f9180332b630d108d909353c081892b1cb8ad0"
+        },
+        "elapsedMs": 186
+      },
+      {
+        "result": {
+          "path": "test-results/update-download-5rTRCb/result.json",
+          "bytes": 2227,
+          "sha256": "61aacd89139cb861bed85de35669e5b3edc1e169ecf71322c9211de2543f658b"
+        },
+        "inputs": {
+          "path": "test-results/update-download-5rTRCb/inputs.json",
+          "bytes": 1061,
+          "sha256": "74413db83b76eeb7b0cad514a536250ff88f458a6602ff92670bd47528cb64d2"
+        },
+        "nativeOutput": {
+          "path": "test-results/update-download-5rTRCb/native-output.log",
+          "bytes": 130,
+          "sha256": "87b5756a7cf0b9347053dfc64367bf4c6cc1ef45bb2aab50e658c98850a0c5bc"
+        },
+        "elapsedMs": 200
+      },
+      {
+        "result": {
+          "path": "test-results/update-download-kAR00c/result.json",
+          "bytes": 2227,
+          "sha256": "1efa47dcceaecd476911e7ed2b91c62f59de7578e059996311c6fd1ca0c36844"
+        },
+        "inputs": {
+          "path": "test-results/update-download-kAR00c/inputs.json",
+          "bytes": 1061,
+          "sha256": "74413db83b76eeb7b0cad514a536250ff88f458a6602ff92670bd47528cb64d2"
+        },
+        "nativeOutput": {
+          "path": "test-results/update-download-kAR00c/native-output.log",
+          "bytes": 130,
+          "sha256": "d0b865453dedede86f18c684328125ba6ea7c77be3b8661bf865384697d6064d"
+        },
+        "elapsedMs": 196
+      },
+      {
+        "result": {
+          "path": "test-results/update-download-rzMAmQ/result.json",
+          "bytes": 2227,
+          "sha256": "3dbd0946d1d7e198340e9482e41cf5e597d397b02ef8d0b74b4c68d6132104d5"
+        },
+        "inputs": {
+          "path": "test-results/update-download-rzMAmQ/inputs.json",
+          "bytes": 1061,
+          "sha256": "74413db83b76eeb7b0cad514a536250ff88f458a6602ff92670bd47528cb64d2"
+        },
+        "nativeOutput": {
+          "path": "test-results/update-download-rzMAmQ/native-output.log",
+          "bytes": 130,
+          "sha256": "8076b20912384e23c3271c3cef5a941043cc6a72474c499c31b067709525f541"
+        },
+        "elapsedMs": 208
+      },
+      {
+        "result": {
+          "path": "test-results/update-download-fhBsTE/result.json",
+          "bytes": 2227,
+          "sha256": "f662653a6e60ebda204cab0f3f27f872198f0c42fa8b845dae4c9d9d547eb09b"
+        },
+        "inputs": {
+          "path": "test-results/update-download-fhBsTE/inputs.json",
+          "bytes": 1061,
+          "sha256": "74413db83b76eeb7b0cad514a536250ff88f458a6602ff92670bd47528cb64d2"
+        },
+        "nativeOutput": {
+          "path": "test-results/update-download-fhBsTE/native-output.log",
+          "bytes": 130,
+          "sha256": "9fb31c8f8c95c971d330cfa596c8564bdb93fe3226cb53347eb8192fa8d4c3ac"
+        },
+        "elapsedMs": 207
+      },
+      {
+        "result": {
+          "path": "test-results/update-download-iI9ht4/result.json",
+          "bytes": 2227,
+          "sha256": "78b0dc0456eae9fcc25c88e2338f45eebe086190a2cb72ae4ee8493d967f8350"
+        },
+        "inputs": {
+          "path": "test-results/update-download-iI9ht4/inputs.json",
+          "bytes": 1061,
+          "sha256": "74413db83b76eeb7b0cad514a536250ff88f458a6602ff92670bd47528cb64d2"
+        },
+        "nativeOutput": {
+          "path": "test-results/update-download-iI9ht4/native-output.log",
+          "bytes": 130,
+          "sha256": "9eddb494d88ceadfb233897fe974eddb336164ad1a86c087d2202e416e23afa0"
+        },
+        "elapsedMs": 202
+      },
+      {
+        "result": {
+          "path": "test-results/update-download-NWbIXa/result.json",
+          "bytes": 2227,
+          "sha256": "f59e27c5f19d5eb6b5bdc860ac63659aa61b63e1e9ca2433dfd2140b6600e508"
+        },
+        "inputs": {
+          "path": "test-results/update-download-NWbIXa/inputs.json",
+          "bytes": 1061,
+          "sha256": "74413db83b76eeb7b0cad514a536250ff88f458a6602ff92670bd47528cb64d2"
+        },
+        "nativeOutput": {
+          "path": "test-results/update-download-NWbIXa/native-output.log",
+          "bytes": 130,
+          "sha256": "c38e528342d4cd8d976e570b7e86f0ae9c2558eda1274619dfa94c17ca65622c"
+        },
+        "elapsedMs": 207
+      },
+      {
+        "result": {
+          "path": "test-results/update-download-29YW1X/result.json",
+          "bytes": 2227,
+          "sha256": "8d8108329bd8bdd716afb363067690f166b9a55e8e9a0ae00b06ef385b639aa7"
+        },
+        "inputs": {
+          "path": "test-results/update-download-29YW1X/inputs.json",
+          "bytes": 1061,
+          "sha256": "74413db83b76eeb7b0cad514a536250ff88f458a6602ff92670bd47528cb64d2"
+        },
+        "nativeOutput": {
+          "path": "test-results/update-download-29YW1X/native-output.log",
+          "bytes": 130,
+          "sha256": "e05747c98ebaff0aad3de1d3b70f2667a63fe757adf1f64f69b188c50fc94f67"
+        },
+        "elapsedMs": 205
+      },
+      {
+        "result": {
+          "path": "test-results/update-download-8DnrzF/result.json",
+          "bytes": 2227,
+          "sha256": "8a9d86becef7f6d84c31f4cfade13c1f203c826380b648b8d352f54234073ba4"
+        },
+        "inputs": {
+          "path": "test-results/update-download-8DnrzF/inputs.json",
+          "bytes": 1061,
+          "sha256": "74413db83b76eeb7b0cad514a536250ff88f458a6602ff92670bd47528cb64d2"
+        },
+        "nativeOutput": {
+          "path": "test-results/update-download-8DnrzF/native-output.log",
+          "bytes": 130,
+          "sha256": "4c9da51323cf0d6d7a98a735d9719c42f960833055a9403ae8c5c5a03d4f1f25"
+        },
+        "elapsedMs": 207
+      },
+      {
+        "result": {
+          "path": "test-results/update-download-vvHg5a/result.json",
+          "bytes": 2227,
+          "sha256": "14c743f8cb6f8e02822b783f784d4a91b4899a6d429115cbfd587a8129589674"
+        },
+        "inputs": {
+          "path": "test-results/update-download-vvHg5a/inputs.json",
+          "bytes": 1061,
+          "sha256": "74413db83b76eeb7b0cad514a536250ff88f458a6602ff92670bd47528cb64d2"
+        },
+        "nativeOutput": {
+          "path": "test-results/update-download-vvHg5a/native-output.log",
+          "bytes": 130,
+          "sha256": "8fb03a4b7bf5f7aab04336196f4c2bc54beae161bdd03c1ca85675c866ba0678"
+        },
+        "elapsedMs": 207
+      }
+    ],
+    "nativeInstallationAttempted": false,
+    "installationGuard": "Native checkForUpdates and quitAndInstall calls are guarded and counted in this inert-ZIP fixture. Any attempt fails the test; all 20 final runs made zero attempts."
+  },
+  "sourceChecks": {
+    "sourceTestsPassed": 309,
+    "updateTestsPassed": 16,
+    "typecheckPassed": true,
+    "buildPassed": true,
+    "formatPassed": true,
+    "logs": [
+      {
+        "path": "test-results/update-download-all-unit-final.log",
+        "bytes": 31891,
+        "sha256": "243cb2977978d3095d3eb4b27c73b77933815005db706c3737256e7cd87f2a5f"
+      },
+      {
+        "path": "test-results/update-download-build-final.log",
+        "bytes": 1719,
+        "sha256": "ea5155cc374b690a6c687075b6223fc8bd42d45c6de6e2c8039f8faeda3f3060"
+      },
+      {
+        "path": "test-results/update-download-format-final.log",
+        "bytes": 183,
+        "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+      }
+    ]
+  },
+  "failuresRetained": {
+    "fetchAbort": {
+      "result": {
+        "path": "test-results/update-download-I9RUFQ/failure.json",
+        "bytes": 1290,
+        "sha256": "25ea862b513154258bde17aa06109d974acb031440cb94aea5147e31d99f09cf"
+      },
+      "nativeOutput": {
+        "path": "test-results/update-download-I9RUFQ/native-output.log",
+        "bytes": 578,
+        "sha256": "a57b8798432e68ebbe68df0eae4ad99e5f1b40ae46f33c72605fc01d218553ba"
+      },
+      "diagnosticRepeats": {
+        "path": "test-results/update-download-repeat-diagnostic.json",
+        "bytes": 2742,
+        "sha256": "b2ac09a0134c7b51b7f2ffa4e1345a54fdc9ba29e37fb85533d20ad38bff1fc9"
+      },
+      "error": "ERR_INVALID_STATE: Controller is already closed, from IncomingMessage.onData in the Node Web-stream adapter. Reproduced on the third diagnostic run. Direct Electron Node stream replaces that bridge."
+    },
+    "stalledOriginal": {
+      "termination": {
+        "path": "test-results/update-download-pC9Rtc/termination.json",
+        "bytes": 351,
+        "sha256": "378b7dcf3bacbc4fed3425bc5a7c51e8c7a52d55fff5ebbd146f2be008bad0ef"
+      },
+      "sample": {
+        "path": "test-results/update-download-pC9Rtc/process-sample.txt",
+        "bytes": 286476,
+        "sha256": "5f82822e3df4c4111163138d5593940796408196291346169a9301d9bc2e8885"
+      },
+      "scope": "The sample shows an NSAlert modal. Only the identified isolated fixture was killed after its SIGTERM deadline failed. The revised runner logs asynchronous failures and uses a 90-second SIGKILL deadline."
+    },
+    "sandboxRestrictedTests": {
+      "log": {
+        "path": "test-results/update-download-unit-sandbox-failure.log",
+        "bytes": 41149,
+        "sha256": "5502384f5ffbc1d727e85ffdc5ef938aaab8b65724983fe8eb7297411bcb04a2"
+      },
+      "scope": "Initial restricted run could not create disk images or bind test network servers. The required-access rerun passes all 309 tests."
+    }
+  },
+  "hostedPreviousCandidate": {
+    "runId": 36294203873,
+    "url": "https://github.com/grawish/folio/actions/runs/36294203873",
+    "commit": "9bfd2bca6d016a87da49360d29f18ee43b80782e",
+    "conclusion": "failure",
+    "artifactId": 10923259847,
+    "artifact": {
+      "path": "artifacts/mac-9bfd2bc.zip",
+      "bytes": 4960259,
+      "sha256": "3df60ec9c466957cebb458a457499cad0cc24c0899da7af456a81adab39e9eee"
+    },
+    "artifactMatchesGitHubDigest": true,
+    "invokedScriptHashesVerified": 13,
+    "acceptedNativeSuites": 12,
+    "updatesProcessExitCode": 0,
+    "updatesAppUnchanged": true,
+    "updatesAssertions": {
+      "path": "artifacts/mac-9bfd2bc/test-results/app-updates-z14A3z/result.json",
+      "bytes": 456,
+      "sha256": "cb9fec9a0e6a417acf8750dd805a9a27c6e4e5781ea7e74d0bd6c2c598bd4cff"
+    },
+    "nativeRun": {
+      "path": "artifacts/mac-9bfd2bc/release/native-tests.json",
+      "bytes": 6181,
+      "sha256": "81f3dad4f7bd6b568d497a73c7fc75bcb607cc79c2f2cf69228a8499d59de13e"
+    },
+    "updatesLog": {
+      "path": "artifacts/mac-9bfd2bc/test-results/release-updates-final.log",
+      "bytes": 127,
+      "sha256": "77eed1db1fa75847b26b28729b787d59222826bde40ae81fd7cf77081b028c62"
+    },
+    "failure": "Settings passed but its inline Evidence text did not match the runner's standalone Evidence line. The test output is corrected; the acceptance rule is unchanged.",
+    "notRun": [
+      "save-recovery",
+      "pack-catalog",
+      "packaged",
+      "final archive verification",
+      "physical inventory"
+    ]
+  },
+  "scope": "Synthetic signed inert ZIPs and deterministic Electron HTTPS protocol responses exercise the actual bounded request/downloader/cache/loopback code. No runnable app is installed, no public TLS download or Developer ID/native replacement is claimed, and no live app feed or installer is published. Full new Mac qualification and production signing/update acceptance remain required.",
+  "nativeSettings": {
+    "passed": true,
+    "result": {
+      "passed": true,
+      "checks": [
+        "Persistent stable/beta preferences, opt-in checks and no install action without an approved download.",
+        "Unconfigured publisher fails closed before network access or installation.",
+        "Dark, light and 1040\u00d7680 Settings controls are reachable.",
+        "Normal quit/relaunch retains update preferences, project draft and chat draft."
+      ],
+      "nativeInstallationTested": false,
+      "productionTrustConfigured": false
+    },
+    "resultFile": {
+      "path": "test-results/app-updates-xqMp2e/result.json",
+      "bytes": 456,
+      "sha256": "cb9fec9a0e6a417acf8750dd805a9a27c6e4e5781ea7e74d0bd6c2c598bd4cff"
+    },
+    "log": {
+      "path": "test-results/update-download-settings-final.log",
+      "bytes": 124,
+      "sha256": "8c7128e8dab12c5a117a405d9d0116a593529fdd6aeded6554c00c41f1b3ccce"
+    },
+    "releaseRunnerEvidencePatternMatches": true,
+    "scope": "Current built app; real Settings, preferences, menu, themes, compact controls, normal close/reopen draft recovery. No signed update installation."
+  }
+}

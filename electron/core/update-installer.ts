@@ -6,6 +6,8 @@ import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import path from 'node:path';
 import { updateNetworkUrl } from './update-feed';
+import { downloadAppUpdate } from './update-download';
+import { updateDownloadRequest } from './update-request';
 import { verifyUpdateArchive, discardUpdateArchive } from './update-archive';
 import { requireVerifiedUpdate, type UpdateFeed } from './update-manifest';
 import { signedUpdateProvider } from './update-provider';
@@ -83,7 +85,19 @@ export class MacAppInstaller implements AppUpdateInstaller {
     signal.throwIfAborted();
     this.downloaded = undefined;
     this.currentFile = undefined;
-    this.updater.setFeedURL({ provider: 'custom', updateProvider: signedUpdateProvider(feed) });
+    this.updater.setFeedURL({
+      provider: 'custom',
+      updateProvider: signedUpdateProvider(feed, Date.now, (url, destination, options) =>
+        downloadAppUpdate(
+          feed,
+          url,
+          destination,
+          this.cacheRoot,
+          options,
+          updateDownloadRequest(this.updater.netSession),
+        ),
+      ),
+    });
     this.updater.allowDowngrade = false;
     const result = await this.updater.checkForUpdates();
     signal.throwIfAborted();

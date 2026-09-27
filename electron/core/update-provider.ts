@@ -1,10 +1,15 @@
 import { Provider } from 'electron-updater/out/providers/Provider';
 import type { ProviderRuntimeOptions } from 'electron-updater/out/providers/Provider';
 import type { UpdateInfo } from 'builder-util-runtime';
+import type { ElectronHttpExecutor } from 'electron-updater/out/electronHttpExecutor';
 import { requireVerifiedUpdate, type UpdateFeed } from './update-manifest';
 
 /** One immutable authenticated snapshot; no unsigned YAML is fetched later. */
-export function signedUpdateProvider(feed: UpdateFeed, now: () => number = Date.now) {
+export function signedUpdateProvider(
+  feed: UpdateFeed,
+  now: () => number = Date.now,
+  download?: ElectronHttpExecutor['download'],
+) {
   requireVerifiedUpdate(feed, now());
   const release = feed.release;
   if (!release) throw new Error('There is no approved update to download.');
@@ -25,6 +30,9 @@ export function signedUpdateProvider(feed: UpdateFeed, now: () => number = Date.
   return class SignedUpdateProvider extends Provider<UpdateInfo> {
     constructor(_options: unknown, _updater: unknown, runtime: ProviderRuntimeOptions) {
       super(runtime);
+      // The custom-provider interface supplies the exact executor used by
+      // MacUpdater. Keep its cache and Squirrel path, but bound the ZIP transfer.
+      if (download) this.executor.download = download;
     }
     async getLatestVersion() {
       requireVerifiedUpdate(feed, now());
