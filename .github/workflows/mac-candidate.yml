@@ -71,6 +71,9 @@ jobs:
             test-results/fonts-*/failure.png
             test-results/support-*/result.json
             test-results/support-*/failure.png
+            test-results/app-updates-*/result.json
+            test-results/app-updates-*/updates-*.png
+            test-results/app-updates-*/failure.png
             test-results/save-recovery-*/result.json
             test-results/save-recovery-*/failure.png
             test-results/pack-catalog-*/result.json

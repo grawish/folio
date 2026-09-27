@@ -68,3 +68,7 @@ Treat imported files, TeX, provider output, PDFs, and external edits as untruste
 The current compiler launch sets inherited CPU-time, 128 MiB per-file, 256-descriptor and zero-core-dump limits before entering the sandbox. CPU signals are catchable, so the separate elapsed-time process-group stop remains required. These are not whole-app memory, disk or CPU quotas. See [compiler limits and native controls](COMPILER_RESOURCE_LIMITS.md).
 
 PDF viewing is bounded to 100 pages and 25 MiB; AI visual review has a separate 20-page limit. Canvas/worker bounds are not operating-system resource quotas. Same-user filesystem races, power loss, network filesystems, [production acceptance of signing-aware manifests](MAC_SIGNING.md), authenticated updates, and physical accessibility acceptance need further work. Keep these limits visible in [the audit](RELEASE_GAP_AUDIT.md).
+
+## App update boundary
+
+Settings talks to a main-process update service through constrained IPC. Separate stable/beta manifests bind the official ZIP, SHA-512, version, rollout and data compatibility with Ed25519 signatures. A custom electron-updater provider consumes the verified snapshot. Explicit restart first saves and flushes project/conversation recovery; competing operations are rejected. App-update publisher trust remains unconfigured until production signing and actual two-version acceptance. See [implementation, protocol and limits](APP_UPDATES.md).

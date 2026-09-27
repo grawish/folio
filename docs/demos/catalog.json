@@ -432,5 +432,19 @@
     ],
     "kind": "Real public pack/compiler \u00b7 synthetic table document",
     "alt": "A real PDF beside an honest unavailable-before message in Folio\u2019s compiler comparison"
+  },
+  {
+    "id": "app-updates",
+    "title": "Choose how Folio checks for updates",
+    "image": "app-updates-dark.png",
+    "guide": "tutorials/app-updates.md",
+    "description": "Choose Stable or Beta and opt into update checks. This source preview clearly reports that production app updates are not configured yet.",
+    "steps": [
+      "Open Settings \u2192 App updates.",
+      "Choose a channel and optional automatic checks.",
+      "Check release status or open Downloads on GitHub."
+    ],
+    "kind": "Real source app \u00b7 unconfigured production publisher",
+    "alt": "Folio app update Settings with Beta selected and an honest preview availability message"
   }
 ]

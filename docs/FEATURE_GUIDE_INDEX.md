@@ -37,3 +37,9 @@ Every currently implemented feature group below has a plain-language walkthrough
 | Privacy and support | [Walkthrough](tutorials/settings-and-compiler.md) | [Screenshot](images/privacy.png) · Real app · synthetic project |
 
 See [demo reproduction](demos/README.md) for commands and capture provenance. Pack workflows are demonstrated with the public catalog and published table resources. See [the release audit](RELEASE_GAP_AUDIT.md) for package qualification and remaining release requirements. Automatic updates have no working-feature demo yet. Wider OS, physical accessibility and live AI acceptance also remain open.
+
+## App update settings
+
+[App updates tutorial](tutorials/app-updates.md) covers Stable/Beta, opt-in checks, preview signing limits and the GitHub fallback. `npm run test:updates` exercises the actual Settings and persisted preferences. The source implementation contains authenticated download/restart orchestration; native signed installation and publisher activation remain unverified.
+
+[Local app-update verification and limits](releases/app-updates-verification.json) records the source, native-preview and website checks.

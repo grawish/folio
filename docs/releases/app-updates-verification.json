@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T04:22:29.783860+00:00",
+  "baseCommit": "cf19e174b470c322901e47cdf971cfca10b1e124",
+  "change": "Signed application update protocol, matching Mac updater adapter, stable/beta Settings, explicit recovery-before-restart orchestration and production-gated metadata publisher.",
+  "inputs": [
+    {
+      "path": "package.json",
+      "bytes": 5531,
+      "sha256": "a1c906f96ca27fa294c54844c105ee6351fefad63a2280e10c5632864d4de26b"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 206387,
+      "sha256": "f49e1352767126ce8d3c894ac5bfdc4d39fc951fbe1efe7283ca4ee4d991ae00"
+    },
+    {
+      "path": "electron/main.ts",
+      "bytes": 42073,
+      "sha256": "508f4c4eb17462c8d36e263a1b63968b91a8746e83df135e1cd1601a0f43b2c7"
+    },
+    {
+      "path": "electron/preload.ts",
+      "bytes": 8056,
+      "sha256": "07c780b4e860140989986e765c286fc7bc11b6cff149cd1550faecf22ed48900"
+    },
+    {
+      "path": "electron/core/update-manifest.ts",
+      "bytes": 10554,
+      "sha256": "bdb05b30bc954260622e1b907b639c0ec631a5081e4365a8ec434d553d7e9ae6"
+    },
+    {
+      "path": "electron/core/update-feed.ts",
+      "bytes": 2487,
+      "sha256": "345bcaf2eecccab926b6ca6fc1ff4b2929ed3d9b3b6ece4945481369c54ea5eb"
+    },
+    {
+      "path": "electron/core/update-service.ts",
+      "bytes": 12415,
+      "sha256": "299ead1bc694848b1839d17a50aaa1d908fa398d110b790463ae03ba0d30c8b8"
+    },
+    {
+      "path": "electron/core/update-provider.ts",
+      "bytes": 1564,
+      "sha256": "cfce25d795555fd9946f293c253883531e999546ff03c0fac9c968b193c5b8c6"
+    },
+    {
+      "path": "electron/core/update-installer.ts",
+      "bytes": 6488,
+      "sha256": "8dd0269e2b77464ca770e2ca97936bd15fb4f75e9a4698eaf98f2002ad923b10"
+    },
+    {
+      "path": "electron/core/update-archive.ts",
+      "bytes": 2606,
+      "sha256": "ba647d27b73d3cd019b5cd1f969e638ca2c9eb9c82e4236db485acded3a90a4d"
+    },
+    {
+      "path": "src/components/AppUpdates.tsx",
+      "bytes": 7212,
+      "sha256": "db65b1cc3ca469aedc459da7ce8b27c9553ab601ba280dfc31272e3a563ba034"
+    },
+    {
+      "path": "src/components/SettingsModal.tsx",
+      "bytes": 16320,
+      "sha256": "9e3842a8cfd5f1f991eda48dfcd4188c30a81d65320366e3ddf541b6084b1eb4"
+    },
+    {
+      "path": "src/shared/updates.ts",
+      "bytes": 903,
+      "sha256": "571d810a83808147b10530528ed6450975573b84f4df980691815a63bcf2a57f"
+    },
+    {
+      "path": "src/shared/types.ts",
+      "bytes": 9264,
+      "sha256": "6a4a3d1cf4c1ea0a322a54b22bf5ee32652314f346aa6bc71a8faef86be0189c"
+    },
+    {
+      "path": "src/App.tsx",
+      "bytes": 93526,
+      "sha256": "81126f333019271c9e8cc409d17318016648f3e7a690aa3413406800b9f2942f"
+    },
+    {
+      "path": "resources/app-update-publisher.json",
+      "bytes": 305,
+      "sha256": "25231f95476563c0053d53033f7bb00d70b606bb18ef70319b84bf828674c1bb"
+    },
+    {
+      "path": "resources/app-update.yml",
+      "bytes": 39,
+      "sha256": "799ed86348a8ba2676768213bc72e39bc5fc280771614fc701b3b41b37845b56"
+    },
+    {
+      "path": "resources/app-update-notices.txt",
+      "bytes": 32133,
+      "sha256": "a4b495defb8485ecbdbb3221a7950afc6b5fecd13d2572d743268dbc39dfe1d8"
+    },
+    {
+      "path": "scripts/sign-app-update.ts",
+      "bytes": 6885,
+      "sha256": "d680970dd5865bff2073530ed9eca5eca987edd404f1f4235df1638b100efbcd"
+    },
+    {
+      "path": "scripts/test-updates.mjs",
+      "bytes": 6800,
+      "sha256": "622e29559f135e3c1c8ef7705aee15f4467c818eae7c9926726b78c77c35c444"
+    },
+    {
+      "path": "scripts/mac-release-suites.mjs",
+      "bytes": 363,
+      "sha256": "d408c5af73eece2ea51ee5b10616559315693eb100a075af84961c292c0759f0"
+    },
+    {
+      "path": "tests/app-updates.test.ts",
+      "bytes": 19070,
+      "sha256": "e3027487b39e8a039dad587bb3b585c10031f43c837012df7e7e5803d64d727e"
+    }
+  ],
+  "localChecks": {
+    "sourceTestsPassed": 306,
+    "newUpdateTestsPassed": 13,
+    "formatPassed": true,
+    "buildPassed": true,
+    "desktopSaveExportAndRecoveryPassed": true,
+    "nativeUpdateSettingsPassed": true,
+    "nativeUpdateScope": "Real preview Settings, persisted preferences, themes/compact controls, native menu, normal quit/reopen draft recovery. Does not exercise an actual signed app update. Screen captures precede the final archive-cache helper refactor; the final bundle passed the separate full desktop workflow.",
+    "nativeResult": {
+      "path": "test-results/app-updates-aBLlB7/result.json",
+      "bytes": 456,
+      "sha256": "cb9fec9a0e6a417acf8750dd805a9a27c6e4e5781ea7e74d0bd6c2c598bd4cff"
+    },
+    "websiteRoutesAndSizesPassed": true
+  },
+  "logs": [
+    {
+      "path": "test-results/app-updates-all-unit-final.log",
+      "bytes": 31555,
+      "sha256": "4107d24afe52123bab120b31e46ef28a4be88f7ce781b8f6468e3dac89189750"
+    },
+    {
+      "path": "test-results/app-updates-protocol-final.log",
+      "bytes": 1379,
+      "sha256": "bf613bc08fa7af81ea0be57e68d2585a199dbf96b4aba3413efd3b22121c5435"
+    },
+    {
+      "path": "test-results/app-updates-format-final.log",
+      "bytes": 183,
+      "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+    },
+    {
+      "path": "test-results/app-updates-build-final.log",
+      "bytes": 1719,
+      "sha256": "5e5c184d43b35f216035f1825427832df501c76f4d60349ab077ed057c769e2a"
+    },
+    {
+      "path": "test-results/app-updates-native-final-pass.log",
+      "bytes": 124,
+      "sha256": "c25cacfe0fa364925182adeb3a5025a9d4dff6900b6606ab183410b78f2ef3a5"
+    },
+    {
+      "path": "test-results/app-updates-desktop-final.log",
+      "bytes": 425,
+      "sha256": "7edbb5b1d95fe7378f9e8dabe3ed204b6e2b11eb1d2a266d23f07155cf81dd6f"
+    },
+    {
+      "path": "test-results/app-updates-website-final.log",
+      "bytes": 821,
+      "sha256": "c59e61313b6aff5b9d90e511b2d45e30986236c0b3798d18ca7b3db77477a885"
+    },
+    {
+      "path": "test-results/app-updates-license-materials.log",
+      "bytes": 239,
+      "sha256": "e3409d5867ab9ef3f4e4b62da8f986f6f3882c16a4e842cb3434e9c432a7a18b"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/images/app-updates-dark.png",
+      "bytes": 137174,
+      "sha256": "de198f428457f88d38d4224f01e16c351d25ca2c441a2e45d02a010a5b3c0538"
+    },
+    {
+      "path": "docs/images/app-updates-light.png",
+      "bytes": 166207,
+      "sha256": "c830d7e95f970138691b18c49ef44cafc6cff12f3526d1a4b1815587aad12e76"
+    }
+  ],
+  "production": {
+    "publisherConfigured": false,
+    "nativeSignedUpgradeVerified": false,
+    "automaticPublicationOrRenewalConfigured": false
+  },
+  "scope": "Installer doubles prove orchestration and failure ordering only. Real signed-to-signed Squirrel.Mac acceptance, publisher enrollment, live channels, final installer qualification, download/cache budgets and complete license/source review remain open. No new installer or live feed was published."
+}

@@ -1,0 +1,316 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T04:20:10.454818+00:00",
+  "commit": "aa40c6b2c96a048ec6c7fa8731e4612371558b6e",
+  "runId": 36292003146,
+  "url": "https://github.com/grawish/folio/actions/runs/36292003146",
+  "conclusion": "success",
+  "runner": {
+    "image": "macos-15-arm64",
+    "version": "20260907.0337.1",
+    "os": "macOS 15.7.9",
+    "build": "24G830"
+  },
+  "sourceTestsPassed": 293,
+  "compilerIntegrationTestsPassed": 16,
+  "templateImagesPassed": 12,
+  "changedPixels": 0,
+  "downloadedArtifact": {
+    "id": 10923520110,
+    "path": "artifacts/mac-aa40c6b.zip",
+    "bytes": 5058563,
+    "sha256": "534829fa5f8503241a77933916668059fac5074205d7ecbdae9e8546b3388f77"
+  },
+  "retainedArtifactFilesVerified": 125,
+  "nativeSuites": [
+    {
+      "suite": "import-recovery",
+      "script": "scripts/test-import-recovery.mjs",
+      "scriptSha256": "81967721e2258427a438e89a2b9a7d0fee3800136c2823f69c7c2575c8781366",
+      "passed": true,
+      "log": {
+        "path": "artifacts/mac-aa40c6b/test-results/release-import-recovery-final.log",
+        "bytes": 653,
+        "sha256": "47a5ca9e0d2fd0f255b14b5a94d168fbccd97a44c2fe7528b5eae16f767e88c8"
+      }
+    },
+    {
+      "suite": "import",
+      "script": "scripts/test-import.mjs",
+      "scriptSha256": "270b9fc55851f29cbc5c88346e2ba4efd6c0f46892ebfcda4ae649df4ade1233",
+      "passed": true,
+      "log": {
+        "path": "artifacts/mac-aa40c6b/test-results/release-import-final.log",
+        "bytes": 723,
+        "sha256": "bad06bc6f952dcd04ef37e013882867e9a13a24ae3280f34e486e055f2cb9d90"
+      }
+    },
+    {
+      "suite": "pdf-viewer",
+      "script": "scripts/test-pdf-viewer.mjs",
+      "scriptSha256": "359ac20b7e751cf7bfd62fbf114ed9146868f9606645cb1415b8b8089daa22a8",
+      "passed": true,
+      "log": {
+        "path": "artifacts/mac-aa40c6b/test-results/release-pdf-viewer-final.log",
+        "bytes": 956,
+        "sha256": "819d0481e24c3bde1393e0a1390b52f60caebf68170d81506abda3510ad88442"
+      }
+    },
+    {
+      "suite": "pdf-lifecycle",
+      "script": "scripts/test-pdf-lifecycle.mjs",
+      "scriptSha256": "050ebba2f302310289760eeefdf7055ae62b3a680c278ae5b26fc6ed6d56a913",
+      "passed": true,
+      "log": {
+        "path": "artifacts/mac-aa40c6b/test-results/release-pdf-lifecycle-final.log",
+        "bytes": 243,
+        "sha256": "615f0c3dafc53b9bb8aab69951f1ae7eeff4f761c244600f1a6c0be4d82fd3f4"
+      }
+    },
+    {
+      "suite": "migration",
+      "script": "scripts/test-migration.mjs",
+      "scriptSha256": "5f4a33db8cbe3afc37578caec954421a15567b37e24db7098c42db3136b52f53",
+      "passed": true,
+      "log": {
+        "path": "artifacts/mac-aa40c6b/test-results/release-migration-final.log",
+        "bytes": 702,
+        "sha256": "598623945acaeb9c51d6259b274abced3f99286adcd4c68d75da1867f8801a2f"
+      }
+    },
+    {
+      "suite": "chat",
+      "script": "scripts/test-chat.mjs",
+      "scriptSha256": "ecc8c229f5792aefd47b860c7ff318c3bd60962972da2f57be4f9e7a454cd095",
+      "passed": true,
+      "log": {
+        "path": "artifacts/mac-aa40c6b/test-results/release-chat-final.log",
+        "bytes": 1521,
+        "sha256": "07e0463cc5ecb46d79ca54df00e54ac0ea82174fcc08b2529760acf8315d49c2"
+      }
+    },
+    {
+      "suite": "runtime",
+      "script": "scripts/test-runtime.mjs",
+      "scriptSha256": "0134a2bbad027e18fc2f448d39cb3dfb2c78ac3f40fc3c177010c22e8bee5b1b",
+      "passed": true,
+      "log": {
+        "path": "artifacts/mac-aa40c6b/test-results/release-runtime-final.log",
+        "bytes": 692,
+        "sha256": "22806cfc4de52120aaf1cf2662eff4e400a3d2e252626024e47ad132e6fbd00d"
+      }
+    },
+    {
+      "suite": "workspace",
+      "script": "scripts/test-workspace.mjs",
+      "scriptSha256": "73d73aadd8a7f42c4d8287bf791b004e7571bf93acb06bf9c1658eb6ca1b7043",
+      "passed": true,
+      "log": {
+        "path": "artifacts/mac-aa40c6b/test-results/release-workspace-final.log",
+        "bytes": 694,
+        "sha256": "ca851117f6984d3c43b3163186bc4f6068860780fbae8c67e8378ca8a66ce266"
+      }
+    },
+    {
+      "suite": "history-storage",
+      "script": "scripts/test-history-storage.mjs",
+      "scriptSha256": "3878352c388634b90551412f547d0a54790cc5deb2a403b2144c3448be741f9b",
+      "passed": true,
+      "log": {
+        "path": "artifacts/mac-aa40c6b/test-results/release-history-storage-final.log",
+        "bytes": 397,
+        "sha256": "818af7f70b45da0a56d47c65820c5b984ef0023b67ac4f1eb836d328e1deb61d"
+      }
+    },
+    {
+      "suite": "diagnostics",
+      "script": "scripts/test-diagnostics.mjs",
+      "scriptSha256": "fabc3516d0f4bb634243b03639cad2d399bcb63ef607e689cf5a2846d3f4cf20",
+      "passed": true,
+      "log": {
+        "path": "artifacts/mac-aa40c6b/test-results/release-diagnostics-final.log",
+        "bytes": 310,
+        "sha256": "9a7641fbce535cc2307ec1cb1743681c34d0b2002c117a33b99aa272debcac47"
+      }
+    },
+    {
+      "suite": "fonts",
+      "script": "scripts/test-fonts.mjs",
+      "scriptSha256": "ea22d1c8498963eb07ada2f996ac306a99b83b45a017dac20a02abd1c5259682",
+      "passed": true,
+      "log": {
+        "path": "artifacts/mac-aa40c6b/test-results/release-fonts-final.log",
+        "bytes": 584,
+        "sha256": "2f3d5d850facb9b20276efbee1e34e83321cf5f38c2820c633004e1c5dbbe34a"
+      }
+    },
+    {
+      "suite": "support",
+      "script": "scripts/test-support.mjs",
+      "scriptSha256": "f6fe2f4ca8072aba6b21c054e63a7158896900c1dc7dcf533e9b74b2035dfd72",
+      "passed": true,
+      "log": {
+        "path": "artifacts/mac-aa40c6b/test-results/release-support-final.log",
+        "bytes": 505,
+        "sha256": "2df77cc12c1075df5fb6839a971e2a47f72266559c387e7776dfd07464181f1a"
+      }
+    },
+    {
+      "suite": "save-recovery",
+      "script": "scripts/test-save-recovery.mjs",
+      "scriptSha256": "bdf3126f22a6b45b5583a689aa406e2a2ebde1f6db672a182102a44cbc704ee3",
+      "passed": true,
+      "log": {
+        "path": "artifacts/mac-aa40c6b/test-results/release-save-recovery-final.log",
+        "bytes": 963,
+        "sha256": "305954108c61c5129331eea1498feb0dfc4e92744bfa75ddd4a84c5abc0c2179"
+      }
+    },
+    {
+      "suite": "pack-catalog",
+      "script": "scripts/test-pack-catalog.mjs",
+      "scriptSha256": "bdaf2bac1235655ff6dcba1f77567021e9b623acc9afdb452e2fbb3b3a0c2ad4",
+      "passed": true,
+      "log": {
+        "path": "artifacts/mac-aa40c6b/test-results/release-pack-catalog-final.log",
+        "bytes": 304,
+        "sha256": "b56c4c71c056df35dc696bccaef7a08a7735a1cdf23fa61c682257d5bda27e66"
+      }
+    },
+    {
+      "suite": "packaged",
+      "script": "scripts/test-packaged.mjs",
+      "scriptSha256": "be7b559a2cf786c3c1b5fa2ee04fc9381410f41a6fe8766ec0af2dc37d2cd5a3",
+      "passed": true,
+      "log": {
+        "path": "artifacts/mac-aa40c6b/test-results/release-packaged-final.log",
+        "bytes": 223,
+        "sha256": "fc39f3a3a6da46b7c176444a35ac382b3884569ec26115ee9c179f050f5ee859"
+      }
+    }
+  ],
+  "allNativeScriptHashesMatchCommit": true,
+  "templateEvidence": {
+    "record": {
+      "path": "artifacts/mac-aa40c6b/test-results/template-regression-INKM18/verification.json",
+      "bytes": 16159,
+      "sha256": "5e797e93ca874ac4379316e38a42789f9895006187d07eab7f9d3431a90418be"
+    },
+    "sourceScriptHashesMatchCommit": true,
+    "sourcePdfAndRenderedHashesMatch": true,
+    "referenceImagesMatchCommit": true
+  },
+  "runnerReportedPackage": {
+    "passed": true,
+    "checkedAt": "2026-09-27T04:07:10.531Z",
+    "architecture": "arm64",
+    "comparedOutputFiles": 39,
+    "runtimeManifestMatches": true,
+    "appBytes": 679309937,
+    "hashes": [
+      {
+        "path": "Folio-0.1.0-preview.4-mac-arm64.dmg",
+        "bytes": 302821826,
+        "sha256": "0bcfa6c691edcd47d26a6e255589d86c728862015b9f2d233135a717b3b5c45c"
+      },
+      {
+        "path": "mac-arm64/Folio.app/Contents/Resources/app.asar",
+        "bytes": 5663348,
+        "sha256": "3da0dad432f609926f2ccf0121ec69e907bbd91e5c27242f49f34fab27442121"
+      },
+      {
+        "path": "Folio-0.1.0-preview.4-mac-arm64.zip",
+        "bytes": 305809926,
+        "sha256": "2e7042eedf2526147d295355b4d75d76f2374dc55366e474cb41aa6555e38530"
+      }
+    ],
+    "archives": {
+      "passed": true,
+      "bundleInventorySha256": "e7980fdf4e6b4a5da9cc1ebe4efdbc9f0ef63f868038f019392f806a80b45e09",
+      "dmg": {
+        "bytes": 302821826,
+        "sha256": "0bcfa6c691edcd47d26a6e255589d86c728862015b9f2d233135a717b3b5c45c",
+        "appMatches": true
+      },
+      "zip": {
+        "bytes": 305809926,
+        "sha256": "2e7042eedf2526147d295355b4d75d76f2374dc55366e474cb41aa6555e38530",
+        "appMatches": true,
+        "matchedEntries": 5017,
+        "metadataEntries": 0,
+        "metadataBytes": 0
+      },
+      "distributionVerified": false,
+      "scope": "Exact app bytes, modes and internal links inside both archives. Apple checks run only in distribution mode; fresh-machine quarantined download/launch and updater acceptance remain separate."
+    },
+    "distributionVerified": false,
+    "nativeTestsPassed": true
+  },
+  "nativeAndPackageAsarHashesAgree": true,
+  "localHistoryStorageAsarMatches": true,
+  "packCatalogReadiness": {
+    "settingsReadyMs": [
+      47,
+      5405
+    ],
+    "packReadyMs": {
+      "catalog": 2885,
+      "importReview": 3957
+    }
+  },
+  "diskImageLog": {
+    "path": "artifacts/mac-aa40c6b/release/disk-image-verification.log",
+    "bytes": 934,
+    "sha256": "23a7a0c1eca89c51f34033cbc8348c02bb49e46f46d60be45ee6372f88891609"
+  },
+  "artifactScope": "Downloaded and independently hashed the evidence ZIP and compared every retained file. App/DMG hashes and disk-image integrity are runner-reported. The ASAR hash also matches the local history-storage app; no complete-app equivalence is claimed. No installer from this run was downloaded or published.",
+  "scope": "Qualifies the unsigned application with full-app native-test binding, plus the separate native signed-runtime integration, on this runner. Includes the extended signed-base pack integration and actual archive content gates. It does not qualify a complete signed app or the later app-updater implementation. Signing, notarization, updater, complete redistribution/SBOM review and supported-OS/physical-device acceptance remain open. The physical inventory is retained separately and does not complete component attribution.",
+  "historyStorageResult": {
+    "passed": true,
+    "errors": [],
+    "checks": [
+      "real PDF/note, current-version protection, compact dark/light confirmation, cancel, removal, unchanged current source/PDF, unsaved draft/source retention and portable save",
+      "held real journal write blocks Escape and native close; close resumes after commit and restart keeps the reduced history and chat draft"
+    ]
+  },
+  "physicalInventory": {
+    "summary": {
+      "path": "artifacts/mac-aa40c6b/artifacts/license-materials/mac-app/e7980fdf4e6b4a5da9cc1ebe4efdbc9f0ef63f868038f019392f806a80b45e09/summary.json",
+      "bytes": 1528,
+      "sha256": "b4f223204d50c9ceb00a7e5a8d3feed767d7fd7e2ef8e38c9222d61c59c6b92a"
+    },
+    "regularFiles": 4242,
+    "runtimeFilesVerified": 3982,
+    "symlinks": 14,
+    "logicalFileBytes": 679309937,
+    "scope": "Runner-reported physical inventory; record digests and ASAR anchor independently checked. Component license/source mapping remains incomplete."
+  },
+  "fullAppQualificationBinding": {
+    "passed": true,
+    "identity": {
+      "schemaVersion": 1,
+      "bundleInventorySha256": "e7980fdf4e6b4a5da9cc1ebe4efdbc9f0ef63f868038f019392f806a80b45e09",
+      "asarSha256": "3da0dad432f609926f2ccf0121ec69e907bbd91e5c27242f49f34fab27442121",
+      "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0"
+    },
+    "matchesDownloadedPhysicalInventory": true,
+    "sourceInputs": [
+      {
+        "path": "scripts/mac-qualification.ts",
+        "sha256": "8d428aae2414531c224bbbd13533bd56ec220483ed7daea2ca1a74c6e6e7e81b"
+      },
+      {
+        "path": "scripts/test-mac-release.mjs",
+        "sha256": "e006bb5b2e7d97fabb05512d56bec338c6d12f8259720a7b48582e4bc27eeb8f"
+      },
+      {
+        "path": "scripts/sign-mac-runtime.ts",
+        "sha256": "8572d5b4857a9e1272f74efffd4c9cf2b3e05c8c12a36d92ab1efb7f1ee00c0a"
+      },
+      {
+        "path": "tests/integration/runtime-signing.test.ts",
+        "sha256": "2ec189ae0b7c3ce0eeb3f1e7ba0042b6970fc5582dd6709d208af14d62d2ae7b"
+      }
+    ]
+  }
+}

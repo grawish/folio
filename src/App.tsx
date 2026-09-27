@@ -177,7 +177,7 @@ export default function App() {
   const [view, setView] = useState<'chat' | 'code'>('chat');
   const [connections, setConnections] = useState<AISettings>({ connections: [], activeId: null });
   const [settingsTab, setSettingsTab] = useState<
-    'general' | 'ai' | 'about' | 'privacy' | 'resources'
+    'general' | 'ai' | 'about' | 'privacy' | 'resources' | 'updates'
   >('general');
   const packBusyRef = useRef(false);
   const [packBusy, setPackBusy] = useState(false);
@@ -513,7 +513,7 @@ export default function App() {
     )
       return;
     const timer = setTimeout(() => {
-      if (saving.current) return;
+      if (saving.current || closing.current) return;
       void window.folio
         ?.recover(project)
         .catch((e) => message(`Recovery could not be saved: ${e.message}`));
@@ -861,6 +861,7 @@ export default function App() {
   };
   const menuAction = useRef<(action: string) => void>(() => {});
   menuAction.current = (action) => {
+    if (closing.current) return;
     if (saveReview.current) {
       if (action === 'close')
         void (async () => {
@@ -890,7 +891,10 @@ export default function App() {
     if (pendingImport && action !== 'close') return;
     if (resolvingImport && action !== 'close') return;
     if (historyBusy && action !== 'close') return;
-    if (action === 'save') void save();
+    if (action === 'updates') {
+      setSettingsTab('updates');
+      setDialog('settings');
+    } else if (action === 'save') void save();
     else if (action === 'save-as') void save(true);
     else if (action === 'open')
       guard(() => {
@@ -2254,6 +2258,36 @@ export default function App() {
             connections={connections}
             onConnections={setConnections}
             onSupportBundle={() => setDialog('support')}
+            onUpdateRestart={async () => {
+              if (
+                !window.folio ||
+                !initialized ||
+                !workspaceReady ||
+                saving.current ||
+                agentBusy ||
+                building ||
+                migrationId.current ||
+                packBusyRef.current ||
+                fontImport.current ||
+                saveReview.current ||
+                reloadingDisk ||
+                pendingImport ||
+                resolvingImport ||
+                historyBusy ||
+                switchingProject.current ||
+                closing.current
+              )
+                throw new Error(
+                  'Finish the current save, build, AI request or project operation before restarting.',
+                );
+              closing.current = true;
+              try {
+                await window.folio.restartForAppUpdate(current.current, workspaceRef.current);
+              } catch (error) {
+                closing.current = false;
+                throw error;
+              }
+            }}
             initialTab={settingsTab}
             onClose={() => {
               setDialog(null);

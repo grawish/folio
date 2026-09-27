@@ -8,6 +8,7 @@ import {
   Settings2,
   ShieldCheck,
   Package,
+  RefreshCw,
 } from 'lucide-react';
 import type { CompilerBackup } from '../shared/migration';
 import type { AISettings } from '../shared/ai';
@@ -16,6 +17,7 @@ import { version } from '../../package.json';
 import { Modal } from './Modal';
 import { AIConnections } from './AIConnections';
 import { ResourcePacks } from './ResourcePacks';
+import { AppUpdates } from './AppUpdates';
 import type { RuntimePin } from '../shared/runtime';
 
 export function SettingsModal({
@@ -36,6 +38,7 @@ export function SettingsModal({
   onPackBegin,
   onPackBusy,
   onSupportBundle,
+  onUpdateRestart,
   connections,
   onConnections,
   initialTab = 'general',
@@ -58,9 +61,10 @@ export function SettingsModal({
   onPackBegin(): Promise<void>;
   onPackBusy(value: boolean): void;
   onSupportBundle(): void;
+  onUpdateRestart(): Promise<void>;
   connections: AISettings;
   onConnections(settings: AISettings): void;
-  initialTab?: 'general' | 'ai' | 'about' | 'privacy' | 'resources';
+  initialTab?: 'general' | 'ai' | 'about' | 'privacy' | 'resources' | 'updates';
   onClose(): void;
 }) {
   const [tab, setTab] = useState<string>(initialTab);
@@ -69,8 +73,9 @@ export function SettingsModal({
   const [backups, setBackups] = useState<CompilerBackup[]>([]);
   const [packBusy, setPackBusy] = useState(false);
   const [closing, setClosing] = useState(false);
+  const [restarting, setRestarting] = useState(false);
   const close = () => {
-    if (closing) return;
+    if (closing || restarting) return;
     setClosing(true);
     void (window.folio?.cancelPackOperation() ?? Promise.resolve())
       .then(onClose)
@@ -92,7 +97,7 @@ export function SettingsModal({
     };
   }, [projectId]);
   return (
-    <Modal wide title="Settings" onClose={close} dismissible={!closing}>
+    <Modal wide title="Settings" onClose={close} dismissible={!closing && !restarting}>
       <div className="settings-layout">
         <nav className="settings-navigation" aria-label="Settings sections">
           {[
@@ -100,13 +105,14 @@ export function SettingsModal({
             ['ai', 'AI connections', Network],
             ['editor', 'Editor & PDF', FileText],
             ['resources', 'LaTeX resources', Package],
+            ['updates', 'App updates', RefreshCw],
             ['privacy', 'Privacy', ShieldCheck],
             ['about', 'About', Info],
           ].map(([id, label, Icon]) => (
             <button
               key={id as string}
               className={tab === id ? 'active' : ''}
-              disabled={packBusy || closing}
+              disabled={packBusy || closing || restarting}
               onClick={() => setTab(id as string)}
             >
               <Icon size={17} />
@@ -118,6 +124,9 @@ export function SettingsModal({
           <AIConnections settings={connections} onChange={onConnections} />
         ) : (
           <div className="settings-content">
+            {tab === 'updates' && (
+              <AppUpdates onRestart={onUpdateRestart} onRestarting={setRestarting} />
+            )}
             {tab === 'resources' && (
               <ResourcePacks
                 current={runtime?.pin}
@@ -403,7 +412,7 @@ export function SettingsModal({
         )}
       </div>
       <div className="modal-actions">
-        <button className="button primary" onClick={close} disabled={closing}>
+        <button className="button primary" onClick={close} disabled={closing || restarting}>
           {closing ? 'Finishing…' : 'Done'}
         </button>
       </div>

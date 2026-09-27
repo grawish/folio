@@ -12,6 +12,7 @@ export const macReleaseSuites = [
   'diagnostics',
   'fonts',
   'support',
+  'updates',
   'save-recovery',
   'pack-catalog',
   'packaged',

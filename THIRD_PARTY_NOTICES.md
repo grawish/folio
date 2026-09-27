@@ -4,6 +4,10 @@ Folio's dependency versions are recorded in `package-lock.json`. Dependency pack
 LaTeX resource inventory and SHA-256 hashes are recorded in `resources/bundle.lock.json` and copied into each prepared
 runtime.
 
+- **electron-updater 6.8.10** and **builder-util-runtime 9.7.0**: MIT, https://github.com/electron-userland/electron-builder. The app update path also includes their locked runtime dependencies, including semver (ISC), js-yaml (MIT), fs-extra (MIT), lazy-val (MIT), lodash helper packages (MIT), and tiny-typed-emitter (MIT). Their individual license texts are collected by `scripts/collect-license-materials.mjs`; this does not close the broader native/compiler license audit.
+
+  The app includes `Contents/Resources/app-update-notices.txt` with the available original texts for all sixteen added runtime packages, including argparse's Python license and sax's Blue Oak license. lazy-val declares MIT but includes no separate license file; its exact license/source review remains open. The standard collector reports that gap explicitly.
+
 - **Tectonic 0.17.0**: https://github.com/tectonic-typesetting/tectonic/tree/tectonic%400.17.0. The compiler and its
   components have multiple license terms; see the upstream `LICENSE`, component license files and retained source copyright headers.
 - **Tectonic / TeX Live resource bundle**: https://relay.fullyjustified.net/default_bundle_v33.tar. The pinned upstream

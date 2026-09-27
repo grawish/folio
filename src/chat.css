@@ -371,6 +371,16 @@
   margin: 0 0 10px;
   font-weight: 650;
 }
+
+.update-release-notes {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.app-updates progress {
+  width: 100%;
+  accent-color: var(--accent);
+}
 .settings-content h4 {
   font-size: 14px;
   margin: 18px 0 8px;

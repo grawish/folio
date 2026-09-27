@@ -102,6 +102,18 @@ export type ProjectDiskChanges = {
 };
 
 export interface DesktopAPI {
+  appUpdateStatus(): Promise<import('./updates').AppUpdateStatus>;
+  configureAppUpdates(
+    value: import('./updates').UpdatePreferences,
+  ): Promise<import('./updates').AppUpdateStatus>;
+  checkAppUpdates(): Promise<import('./updates').AppUpdateStatus>;
+  downloadAppUpdate(): Promise<import('./updates').AppUpdateStatus>;
+  cancelAppUpdate(): Promise<void>;
+  restartForAppUpdate(
+    project: Project,
+    workspace: import('./ai').WorkspaceState,
+  ): Promise<import('./updates').AppUpdateStatus>;
+  onAppUpdate(callback: (status: import('./updates').AppUpdateStatus) => void): () => void;
   beginSaveRecovery(id: string, project?: Project): Promise<void>;
   endSaveRecovery(id?: string): Promise<void>;
   interruptedSaves(id: string): Promise<import('./save-recovery').InterruptedSave[]>;

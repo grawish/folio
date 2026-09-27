@@ -1,0 +1,9 @@
+{
+  "keys": {},
+  "minimumSequence": { "stable": 1, "beta": 1 },
+  "feeds": {
+    "stable": "https://raw.githubusercontent.com/grawish/folio/main/resources/updates/stable.json",
+    "beta": "https://raw.githubusercontent.com/grawish/folio/main/resources/updates/beta.json"
+  },
+  "expectedTeamId": null
+}

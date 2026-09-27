@@ -10,11 +10,13 @@ const names = [
   'editor-and-pdf',
   'settings-and-compiler',
   'resource-packs',
+  'app-updates',
 ];
 const sources = [
   ...names.map((name) => `docs/tutorials/${name}.md`),
   'docs/ARCHITECTURE.md',
   'docs/MAC_SIGNING.md',
+  'docs/APP_UPDATES.md',
   'docs/RELEASE_GAP_AUDIT.md',
 ];
 const targets = new Map(sources.map((source) => [source, path.basename(source)]));

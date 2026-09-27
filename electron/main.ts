@@ -30,7 +30,10 @@ import { SupportBundles } from './core/support-bundle';
 import type { FontStyle, FontTarget } from '../src/shared/fonts';
 import type { RecoveryVersion, SaveRecoveryChoice } from '../src/shared/save-recovery';
 import { adoptRuntime, validateRuntimePin } from '../src/shared/runtime';
-import { WorkspaceStore, safeId } from './core/workspace';
+import { WorkspaceStore, safeId, validateWorkspace } from './core/workspace';
+import { AppUpdates } from './core/update-service';
+import { MacAppInstaller, installedUpdateSupport } from './core/update-installer';
+import updatePublisher from '../resources/app-update-publisher.json';
 import { ConnectionStore } from './core/connections';
 import { ProviderService } from './core/ai-provider';
 import { ResumeAgent, validateRenderedPdf, validatePdfInspection } from './core/agent';
@@ -53,6 +56,9 @@ app.on('second-instance', () => {
   window?.focus();
 });
 let closing = false;
+let updateRestarting = false;
+let activeRequests = 0;
+let updates: AppUpdates;
 let store: ProjectStore;
 let watcher: ProjectWatcher;
 let watchedDirectory: string | undefined;
@@ -197,7 +203,7 @@ function requireProjectIdle() {
 }
 
 function handle(channel: string, callback: (...args: any[]) => unknown) {
-  ipcMain.handle(channel, (event, ...args) => {
+  ipcMain.handle(channel, async (event, ...args) => {
     const url = event.senderFrame?.url ?? '';
     const allowed = devUrl
       ? new URL(url).origin === new URL(devUrl).origin
@@ -208,7 +214,14 @@ function handle(channel: string, callback: (...args: any[]) => unknown) {
       !allowed
     )
       throw new Error('Unauthorized application request.');
-    return callback(...args);
+    if (updateRestarting && channel !== 'updates:status')
+      throw new Error('Folio is saving recovery and preparing to restart.');
+    activeRequests++;
+    try {
+      return await callback(...args);
+    } finally {
+      activeRequests--;
+    }
   });
 }
 
@@ -220,6 +233,42 @@ function registerHandlers() {
     const project = validateProject(value);
     return { ...project, runtime: adoptRuntime(project.runtime, runtimes.defaultPin) };
   };
+  handle('updates:status', () => updates.status());
+  handle('updates:configure', (value: import('../src/shared/updates').UpdatePreferences) =>
+    updates.configure(value),
+  );
+  handle('updates:check', () => updates.check());
+  handle('updates:download', () => updates.download());
+  handle('updates:cancel', () => updates.cancel());
+  handle('updates:restart', async (value: unknown, conversation: unknown) => {
+    requireProjectIdle();
+    if (activeRequests !== 1 || agent.busy)
+      throw new Error('Wait for the current save, build, or AI request before restarting.');
+    const project = checkedProject(value),
+      workspace = validateWorkspace(conversation);
+    if (workspace.projectId !== project.id)
+      throw new Error('Wait for this project’s conversation to finish loading.');
+    updateRestarting = true;
+    try {
+      return await updates.restart(async () => {
+        requestGeneration++;
+        await compiler.cancel();
+        await recoveryQueue;
+        await workspaces.flush();
+        await store.recover(project);
+        await workspaces.save(workspace);
+        await workspaces.flush();
+        await providers.close();
+        // The restart handler now owns a durable recovery copy. Native close
+        // must not ask an about-to-exit renderer to overwrite it with old state.
+        closing = true;
+      });
+    } catch (error) {
+      closing = false;
+      updateRestarting = false;
+      throw error;
+    }
+  });
   handle('save-recovery:begin', (id: string, value?: unknown) => {
     requireProjectIdle();
     const project = value === undefined ? undefined : checkedProject(value);
@@ -714,6 +763,7 @@ function registerHandlers() {
     await shell.openExternal(url.href);
   });
   handle('app:close', async () => {
+    await updates.cancel();
     await packs.cancel();
     await endSaveReview();
     await support.cancel();
@@ -753,6 +803,10 @@ function createWindow() {
   window.webContents.setWindowOpenHandler(() => ({ action: 'deny' }));
   window.webContents.on('will-navigate', (event) => event.preventDefault());
   window.on('close', (event) => {
+    if (updateRestarting && !closing) {
+      event.preventDefault();
+      return;
+    }
     if (!closing) {
       event.preventDefault();
       window?.webContents.send('menu', 'close');
@@ -770,6 +824,20 @@ if (primaryInstance)
   void app.whenReady().then(async () => {
     const dataRoot = app.getPath('userData');
     await fs.mkdir(dataRoot, { recursive: true });
+    const installReason = await installedUpdateSupport(updatePublisher.expectedTeamId);
+    updates = new AppUpdates(
+      path.join(await fs.realpath(dataRoot), 'app-updates'),
+      updatePublisher,
+      {
+        version: app.getVersion(),
+        system: kernelRelease(),
+        installer: installReason ? undefined : new MacAppInstaller(),
+        installReason,
+        onChange: (value) => {
+          if (window && !window.isDestroyed()) window.webContents.send('updates:status', value);
+        },
+      },
+    );
     importer = new ProjectImporter(dataRoot);
     packs = new PackService(path.join(dataRoot, 'resource-packs'), packTrust, {
       runtime: {
@@ -957,6 +1025,7 @@ if (primaryInstance)
                 label: 'Folio',
                 submenu: [
                   { role: 'about' as const },
+                  { label: 'Check for updates…', click: send('updates') },
                   { type: 'separator' as const },
                   { role: 'hide' as const },
                   { role: 'quit' as const },
@@ -990,6 +1059,34 @@ if (primaryInstance)
       ]),
     );
     createWindow();
+    const automaticCheck = async () => {
+      try {
+        const status = await updates.status();
+        if (
+          status.automatic &&
+          !updateRestarting &&
+          ['idle', 'current', 'waiting', 'incompatible', 'error'].includes(status.phase)
+        )
+          await updates.check();
+      } catch {
+        /* Status contains the error; offline checks do not interrupt work. */
+      }
+    };
+    const firstUpdateCheck = setTimeout(() => {
+      void automaticCheck();
+    }, 20_000);
+    const updateInterval = setInterval(
+      () => {
+        void automaticCheck();
+      },
+      6 * 60 * 60_000,
+    );
+    firstUpdateCheck.unref();
+    updateInterval.unref();
+    app.once('before-quit', () => {
+      clearTimeout(firstUpdateCheck);
+      clearInterval(updateInterval);
+    });
   });
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit();

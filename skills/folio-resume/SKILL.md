@@ -20,6 +20,7 @@ Read only what the task needs:
 - TeX edits, local font files, search, diagnostics, page navigation and viewer limits: [editor-and-pdf](references/editor-and-pdf.md).
 - Appearance, panes, privacy, reviewable support ZIPs, help, compiler repair/comparison: [settings-and-compiler](references/settings-and-compiler.md).
 - Pack import, downloads, offline retry and explicit compiler selection: [resource-packs](references/resource-packs.md). The current source build includes the public table-pack publisher and catalog. Keep final signed-installer status separate from source/native pack checks.
+- App update channels, checks and the manual-download fallback: [app-updates](references/app-updates.md). The source has the Settings and authenticated updater implementation; the public unsigned preview cannot update itself, and the production publisher is not configured. For release engineering use [app update implementation](references/APP_UPDATES.md).
 - Implementation questions: [architecture](references/ARCHITECTURE.md), then the relevant source files in a local checkout.
 - Mac packaging, signed compiler fingerprints and private signing tests: [Mac signing](references/MAC_SIGNING.md). Ad-hoc checks do not prove Developer ID, notarization or public-pack compatibility.
 - Release/support claims: [release audit](references/RELEASE_GAP_AUDIT.md). Do not turn an open requirement into an available feature.

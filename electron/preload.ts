@@ -2,6 +2,19 @@ import { contextBridge, ipcRenderer } from 'electron';
 import type { DesktopAPI } from '../src/shared/types';
 
 const api: DesktopAPI = {
+  appUpdateStatus: () => ipcRenderer.invoke('updates:status'),
+  configureAppUpdates: (value) => ipcRenderer.invoke('updates:configure', value),
+  checkAppUpdates: () => ipcRenderer.invoke('updates:check'),
+  downloadAppUpdate: () => ipcRenderer.invoke('updates:download'),
+  cancelAppUpdate: () => ipcRenderer.invoke('updates:cancel'),
+  restartForAppUpdate: (project, workspace) =>
+    ipcRenderer.invoke('updates:restart', project, workspace),
+  onAppUpdate: (callback) => {
+    const handler = (_: unknown, value: import('../src/shared/updates').AppUpdateStatus) =>
+      callback(value);
+    ipcRenderer.on('updates:status', handler);
+    return () => ipcRenderer.removeListener('updates:status', handler);
+  },
   beginSaveRecovery: (id, project) => ipcRenderer.invoke('save-recovery:begin', id, project),
   endSaveRecovery: (id) => ipcRenderer.invoke('save-recovery:end', id),
   interruptedSaves: (id) => ipcRenderer.invoke('save-recovery:list', id),

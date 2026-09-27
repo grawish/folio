@@ -214,6 +214,8 @@
       "sha256": "db4b8e04fa55ea9f547c9526efc2f55e93e309e9fd5cfe5ada033bd035b4aa8f"
     },
     "fullMacQualification": "https://github.com/grawish/folio/actions/runs/36292003146",
-    "fullMacStatusObserved": "in_progress"
+    "fullMacStatusObserved": "completed",
+    "fullMacConclusion": "success",
+    "fullMacEvidence": "docs/releases/mac-archives-hosted-verification.json"
   }
 }
