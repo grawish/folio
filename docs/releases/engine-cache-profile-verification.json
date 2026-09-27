@@ -1,0 +1,268 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T23:56:43.486539+00:00",
+  "profilerCommit": "8b5b0495ce5b773695af55a3b84efcc837bcb13b",
+  "applicationSourceCommit": "05f58fee56a0227e53c959d4073422a5141d8f7c",
+  "raw": {
+    "file": "docs/performance/engine-cache-cost.json",
+    "bytes": 20021,
+    "sha256": "a6d17a7171949df76ada5d34e6c0e1f6a14af69d6b205bbaf227f1dd5addf022"
+  },
+  "retainedRaw": {
+    "file": "test-results/engine-cache-profile-oyMUkb/measurements.json",
+    "bytes": 20181,
+    "sha256": "76235f5e285c3ba75a575764f52cc2a55c31db6aaa442beb8fb871f83fae7008"
+  },
+  "sourceHashChecksPassed": true,
+  "allFixturePayloadsRehashedIndependently": true,
+  "all75OperationsRetainedAndSummarized": true,
+  "sourceCommitNote": "The profiler was not yet committed when measurements began. Its recorded bytes and the unchanged production cache module match profilerCommit exactly. The production cache module also matches applicationSourceCommit.",
+  "summary": [
+    {
+      "fixture": "warm-format",
+      "descendantEntries": 2,
+      "logicalFileBytes": 24451466,
+      "operations": {
+        "acquire": {
+          "count": 5,
+          "elapsedMs": {
+            "min": 0.3376250000001164,
+            "median": 0.3772500000004584,
+            "max": 1.548082999999906
+          },
+          "nodeCpuMs": {
+            "min": 0.353,
+            "median": 0.39,
+            "max": 1.608
+          }
+        },
+        "check": {
+          "count": 5,
+          "elapsedMs": {
+            "min": 0.1578340000000935,
+            "median": 0.17504100000041944,
+            "max": 0.2490419999999176
+          },
+          "nodeCpuMs": {
+            "min": 0.183,
+            "median": 0.20400000000000001,
+            "max": 0.258
+          }
+        },
+        "release": {
+          "count": 5,
+          "elapsedMs": {
+            "min": 0.22158300000000963,
+            "median": 0.24583400000028632,
+            "max": 0.40437500000007276
+          },
+          "nodeCpuMs": {
+            "min": 0.231,
+            "median": 0.261,
+            "max": 0.503
+          }
+        }
+      }
+    },
+    {
+      "fixture": "two-warm-formats",
+      "descendantEntries": 4,
+      "logicalFileBytes": 48902932,
+      "operations": {
+        "acquire": {
+          "count": 5,
+          "elapsedMs": {
+            "min": 0.5039170000000013,
+            "median": 0.5634159999999611,
+            "max": 0.8797910000000684
+          },
+          "nodeCpuMs": {
+            "min": 0.524,
+            "median": 0.584,
+            "max": 1.325
+          }
+        },
+        "check": {
+          "count": 5,
+          "elapsedMs": {
+            "min": 0.1461669999998776,
+            "median": 0.1482080000005226,
+            "max": 0.17562500000008185
+          },
+          "nodeCpuMs": {
+            "min": 0.151,
+            "median": 0.154,
+            "max": 0.182
+          }
+        },
+        "release": {
+          "count": 5,
+          "elapsedMs": {
+            "min": 0.3531670000002123,
+            "median": 0.3735420000002705,
+            "max": 0.41345900000033
+          },
+          "nodeCpuMs": {
+            "min": 0.369,
+            "median": 0.388,
+            "max": 0.42600000000000005
+          }
+        }
+      }
+    },
+    {
+      "fixture": "file-entry-limit",
+      "descendantEntries": 4096,
+      "logicalFileBytes": 4096,
+      "operations": {
+        "acquire": {
+          "count": 5,
+          "elapsedMs": {
+            "min": 42.2204999999999,
+            "median": 44.15441600000031,
+            "max": 47.598624999999856
+          },
+          "nodeCpuMs": {
+            "min": 43.032,
+            "median": 44.58,
+            "max": 53.635999999999996
+          }
+        },
+        "check": {
+          "count": 5,
+          "elapsedMs": {
+            "min": 41.65079100000003,
+            "median": 43.055333000000246,
+            "max": 49.81216699999982
+          },
+          "nodeCpuMs": {
+            "min": 42.400000000000006,
+            "median": 44.06,
+            "max": 51.013999999999996
+          }
+        },
+        "release": {
+          "count": 5,
+          "elapsedMs": {
+            "min": 41.83916700000009,
+            "median": 42.23570900000004,
+            "max": 49.92145800000003
+          },
+          "nodeCpuMs": {
+            "min": 42.459,
+            "median": 42.828,
+            "max": 56.736000000000004
+          }
+        }
+      }
+    },
+    {
+      "fixture": "directory-entry-limit",
+      "descendantEntries": 4096,
+      "logicalFileBytes": 0,
+      "operations": {
+        "acquire": {
+          "count": 5,
+          "elapsedMs": {
+            "min": 246.63666599999988,
+            "median": 252.79041600000028,
+            "max": 258.5406250000001
+          },
+          "nodeCpuMs": {
+            "min": 260.594,
+            "median": 266.385,
+            "max": 287.363
+          }
+        },
+        "check": {
+          "count": 5,
+          "elapsedMs": {
+            "min": 246.4075829999997,
+            "median": 249.6755830000002,
+            "max": 263.7460000000001
+          },
+          "nodeCpuMs": {
+            "min": 263.951,
+            "median": 267.4,
+            "max": 280.64799999999997
+          }
+        },
+        "release": {
+          "count": 5,
+          "elapsedMs": {
+            "min": 246.16912500000035,
+            "median": 251.68975,
+            "max": 268.1257919999998
+          },
+          "nodeCpuMs": {
+            "min": 259.699,
+            "median": 274.629,
+            "max": 287.649
+          }
+        }
+      }
+    },
+    {
+      "fixture": "logical-byte-limit",
+      "descendantEntries": 1,
+      "logicalFileBytes": 134217728,
+      "operations": {
+        "acquire": {
+          "count": 5,
+          "elapsedMs": {
+            "min": 0.39820899999995163,
+            "median": 0.43354200000067067,
+            "max": 0.9446250000000873
+          },
+          "nodeCpuMs": {
+            "min": 0.41100000000000003,
+            "median": 0.511,
+            "max": 1.839
+          }
+        },
+        "check": {
+          "count": 5,
+          "elapsedMs": {
+            "min": 0.08587500000021464,
+            "median": 0.09012500000062573,
+            "max": 0.14637500000026193
+          },
+          "nodeCpuMs": {
+            "min": 0.088,
+            "median": 0.094,
+            "max": 0.264
+          }
+        },
+        "release": {
+          "count": 5,
+          "elapsedMs": {
+            "min": 0.15995799999973315,
+            "median": 0.1755830000001879,
+            "max": 0.1897079999998823
+          },
+          "nodeCpuMs": {
+            "min": 0.16699999999999998,
+            "median": 0.185,
+            "max": 0.198
+          }
+        }
+      }
+    }
+  ],
+  "initialTrial": {
+    "raw": {
+      "file": "test-results/engine-cache-profile-19zAK2/measurements.json",
+      "bytes": 20186,
+      "sha256": "dd7498728877283c483d915145f73be84e968bcba2bc49d1f939343579579487"
+    },
+    "script": {
+      "file": "test-results/profile-engine-cache-initial.mjs",
+      "bytes": 7531,
+      "sha256": "ca51efe3f6b4cf196810f1b724e6050903d60e215d65f1ee3be793e5d092685a"
+    },
+    "scope": "Passed instrumentation trial. Final measurement uses 128 KiB streaming hashes before/after timing instead of allocating each entire input. The initial trial is retained separately and excluded from final summaries."
+  },
+  "scope": "Five rotated repetitions per cache shape on one development Apple silicon Mac, with actual copied format bytes and synthetic near-limit entries. Fixture creation and hash checks are outside timing. No Electron UI, native writer contention, population p95 or OS quota claim.",
+  "publishedObservationsEqualRetainedRaw": true,
+  "publicationNote": "The public raw JSON differs only in whitespace formatting from the retained measurement file; every parsed field was compared."
+}
