@@ -61,3 +61,9 @@ Future Mac qualification runs execute these checks after native and package gate
 ## PDF.js component source and notice associations
 
 The application JavaScript record traces `pdfjs-dist` to the exact publisher archive. The [PDF.js component collector](LICENSING.md#preserve-pdfjs-component-notices) adds original source-map associations for Brotli and the qcms, OpenJPEG and JBIG2 helpers, plus the Flate stream and MurmurHash copyright headers. It retains the original inputs and binds the added packaged notices by SHA-256. These associations do not by themselves subdivide the minified worker into byte-exact component boundaries; the application CycloneDX composition remains incomplete.
+
+## Preserve Electron's original notices
+
+The [Electron notice repair](LICENSING.md#include-electron-and-chromium-notices) adds the complete upstream license and Chromium notices to the actual package. Its first local inventory contains 5,204 entries: all 5,199 prior entries are identical, plus the notice directory and four original/guide/index files. The app ASAR and all 39 compiled outputs remain unchanged. The Mac package gate now binds these notice bytes to the pinned dependency version and source index. These checks preserve attribution; the Electron/Chromium source and full binary component audit remain separate.
+
+Full hosted qualification of the expanded package passes at `99cbb97`. The [downloaded evidence verification](releases/mac-electron-notices-hosted.json) confirms all 5,204 physical inventory entries against the local package except the expected archive-generated updater metadata, and independently checks the original release/archive notices and framework. The complete binary SBOM remains open.

@@ -100,6 +100,10 @@
       {
         "from": "resources/pdfjs-notices",
         "to": "pdfjs-notices"
+      },
+      {
+        "from": "artifacts/electron-notices",
+        "to": "electron-notices"
       }
     ],
     "mac": {
@@ -120,7 +124,8 @@
         }
       ]
     },
-    "artifactName": "Folio-${version}-${os}-${arch}.${ext}"
+    "artifactName": "Folio-${version}-${os}-${arch}.${ext}",
+    "beforePack": "./scripts/prepare-electron-notices.mjs"
   },
   "dependencies": {
     "@codemirror/autocomplete": "6.20.3",
