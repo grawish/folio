@@ -1,0 +1,446 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T12:52:38.709508+00:00",
+  "commit": "662c41181aaedc77a8206f4ba6391cf16fb7e437",
+  "runId": 36318300415,
+  "url": "https://github.com/grawish/folio/actions/runs/36318300415",
+  "conclusion": "success",
+  "downloadedArtifact": {
+    "id": 10931937092,
+    "path": "artifacts/mac-662c411.zip",
+    "bytes": 6137918,
+    "sha256": "c6e7dd9f7a1071d22077d22cb54b9b4aab15eb4c3ccd6589acd87685e2fdc9e6"
+  },
+  "retainedArtifactFilesVerified": 140,
+  "sourceTestsPassed": 335,
+  "compilerIntegrationTestsPassed": 16,
+  "templateImagesPassed": 12,
+  "changedPixels": 0,
+  "nativeSuites": [
+    {
+      "suite": "import-recovery",
+      "script": "scripts/test-import-recovery.mjs",
+      "scriptSha256": "81967721e2258427a438e89a2b9a7d0fee3800136c2823f69c7c2575c8781366",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "import",
+      "script": "scripts/test-import.mjs",
+      "scriptSha256": "270b9fc55851f29cbc5c88346e2ba4efd6c0f46892ebfcda4ae649df4ade1233",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "pdf-viewer",
+      "script": "scripts/test-pdf-viewer.mjs",
+      "scriptSha256": "359ac20b7e751cf7bfd62fbf114ed9146868f9606645cb1415b8b8089daa22a8",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "pdf-lifecycle",
+      "script": "scripts/test-pdf-lifecycle.mjs",
+      "scriptSha256": "050ebba2f302310289760eeefdf7055ae62b3a680c278ae5b26fc6ed6d56a913",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "migration",
+      "script": "scripts/test-migration.mjs",
+      "scriptSha256": "5f4a33db8cbe3afc37578caec954421a15567b37e24db7098c42db3136b52f53",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "chat",
+      "script": "scripts/test-chat.mjs",
+      "scriptSha256": "ecc8c229f5792aefd47b860c7ff318c3bd60962972da2f57be4f9e7a454cd095",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "runtime",
+      "script": "scripts/test-runtime.mjs",
+      "scriptSha256": "55bcc552aa65a15622d5cbe12fac97b4f4fc9ddc9452b802a2aab6b34668252d",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "workspace",
+      "script": "scripts/test-workspace.mjs",
+      "scriptSha256": "835dec1353889a7885c0c223673ccae0fbacbd34dc41153c75c6b30a643ec89a",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "history-storage",
+      "script": "scripts/test-history-storage.mjs",
+      "scriptSha256": "3878352c388634b90551412f547d0a54790cc5deb2a403b2144c3448be741f9b",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "diagnostics",
+      "script": "scripts/test-diagnostics.mjs",
+      "scriptSha256": "fabc3516d0f4bb634243b03639cad2d399bcb63ef607e689cf5a2846d3f4cf20",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "fonts",
+      "script": "scripts/test-fonts.mjs",
+      "scriptSha256": "ea22d1c8498963eb07ada2f996ac306a99b83b45a017dac20a02abd1c5259682",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "support",
+      "script": "scripts/test-support.mjs",
+      "scriptSha256": "f6fe2f4ca8072aba6b21c054e63a7158896900c1dc7dcf533e9b74b2035dfd72",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "updates",
+      "script": "scripts/test-updates.mjs",
+      "scriptSha256": "7649800e49652401aae941ac91e057be2bfce64f048d938027560e4fa5ecd5f4",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "save-recovery",
+      "script": "scripts/test-save-recovery.mjs",
+      "scriptSha256": "bdf3126f22a6b45b5583a689aa406e2a2ebde1f6db672a182102a44cbc704ee3",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "pack-catalog",
+      "script": "scripts/test-pack-catalog.mjs",
+      "scriptSha256": "bdaf2bac1235655ff6dcba1f77567021e9b623acc9afdb452e2fbb3b3a0c2ad4",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "packaged",
+      "script": "scripts/test-packaged.mjs",
+      "scriptSha256": "be7b559a2cf786c3c1b5fa2ee04fc9381410f41a6fe8766ec0af2dc37d2cd5a3",
+      "passed": true,
+      "unchanged": true
+    }
+  ],
+  "allNativeScriptHashesMatchCommit": true,
+  "templateSourcePdfAndImageHashesVerified": true,
+  "electronTransfer": {
+    "result": {
+      "passed": true,
+      "checks": [
+        "Real MacUpdater bounded HTTPS-protocol transfer, SHA-512, exact cache bytes and authenticated loopback ZIP proxy pass.",
+        "Valid cached download is reusable offline; same-size cache tampering is rejected and a fresh retry succeeds.",
+        "Actual downloaded checksum mismatch is rejected before native staging.",
+        "Actual Electron request policy blocks an unapproved HTTPS redirect.",
+        "Approved GitHub asset redirect succeeds without session cookies or authorization.",
+        "An actual Electron request failure rejects without staging an update.",
+        "Actual transfer cancellation settles, keeps the app running, and permits a verified retry.",
+        "Controlled full-disk readings block transfer and staging; freeing space permits retry. Stale partial cache is removed, while unexpected items are preserved and stop the updater.",
+        "An oversized chunked response cannot become a verified native update.",
+        "Guarded native failure releases the adapter, ignores late events and blocks a second download or restart in this process."
+      ],
+      "requests": [
+        "https://github.com/grawish/folio/releases/download/v0.2.0/Folio-0.2.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.2.0/Folio-0.2.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.3.0/Folio-0.3.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.4.0/Folio-0.4.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.4.1/Folio-0.4.1-mac-arm64.zip",
+        "https://release-assets.githubusercontent.com/fixture.zip",
+        "https://github.com/grawish/folio/releases/download/v0.4.2/Folio-0.4.2-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.5.0/Folio-0.5.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.5.0/Folio-0.5.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.5.1/Folio-0.5.1-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.6.0/Folio-0.6.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.7.0/Folio-0.7.0-mac-arm64.zip"
+      ],
+      "elapsedMs": 822,
+      "electron": "44.4.5",
+      "updater": "6.8.10",
+      "sha512": "TsLUOSSeSW86RcoxpvKP621UxxlpknU4NAeU7p1A95OlpCCMxPSJzPtgvlU2jtDdLW8ThyAoSN+x9eeGmH1dOA==",
+      "zipBytes": 262399,
+      "transport": "Electron HTTPS protocol handler supplies deterministic responses; real MacUpdater, bounded net.request transfer, cache and proxy code.",
+      "syntheticTrust": true,
+      "isolatedCache": true,
+      "nativeInstallationAttempted": false,
+      "guardedStagingChecks": 1,
+      "nativeStagingSimulated": true,
+      "diskSpaceReadingsSimulated": true,
+      "scope": "No runnable app ZIP, Developer ID, notarization, public network, or native replacement is claimed."
+    },
+    "inputs": {
+      "inputs": {
+        "scripts/fixtures/update-download.ts": "a0dd45c85e0c3d85bf0e4ccd9ef981b72b3923dc2193d014686539cbe3949532",
+        "electron/core/update-installer.ts": "74084263a6ab899cb9f158f225e7faee54dd45da13872c90eec23855a4b9ce84",
+        "electron/core/update-manifest.ts": "47a9568903b66e40c7066ad2cc260392464b2f070595667641c5e40794294e81",
+        "electron/core/update-provider.ts": "02a914e55a42b3de2a0de648bdcca52b3ec90bccd854869a1bc7141da39e49d2",
+        "electron/core/update-archive.ts": "ba647d27b73d3cd019b5cd1f969e638ca2c9eb9c82e4236db485acded3a90a4d",
+        "electron/core/update-feed.ts": "345bcaf2eecccab926b6ca6fc1ff4b2929ed3d9b3b6ece4945481369c54ea5eb",
+        "electron/core/update-download.ts": "e796e2308906770315bdeb6b942cf76703860f2f22ebd976fbeca6a8c6a91d69",
+        "electron/core/update-request.ts": "61461ec2962f55e5657ace5abc96120e9574619171e78368153761248ab16c2e",
+        "electron/core/update-staging.ts": "2a011ca6f0bd290f4ecdd9f37c10a5ca8fb8300fde7065d4ee55312113dbde93",
+        "electron/core/update-storage.ts": "5f8de9a6260709afa66f84b849a40411a44691014f95acfe2b0e5a9171073e14",
+        "electron/core/pack-io.ts": "8f80c73ab4a8a4818e588f95cdb50c65debacea7e3429e7a4d2210a56e6a621b",
+        "package-lock.json": "f49e1352767126ce8d3c894ac5bfdc4d39fc951fbe1efe7283ca4ee4d991ae00"
+      },
+      "bundleSha256": "4f769aa1464d6b464d27540a6689027b284a7c8eb105bf00e11f0da63cda845b"
+    },
+    "inputHashesMatchCommit": true
+  },
+  "fullAppIdentity": {
+    "schemaVersion": 1,
+    "bundleInventorySha256": "1ba7e18cb97b693f7b57d6f8dc1c980de5d8f92d448450e6205bfa5e4dc7bc69",
+    "asarSha256": "e6f9b89ad39932979d153b9f3ae198508e182f957797305a6d3adaed47f285aa",
+    "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0"
+  },
+  "physicalInventory": {
+    "recordsVerified": [
+      {
+        "path": "bundle-inventory.json",
+        "bytes": 1179641,
+        "sha256": "1ba7e18cb97b693f7b57d6f8dc1c980de5d8f92d448450e6205bfa5e4dc7bc69"
+      },
+      {
+        "path": "bundle.cdx.json",
+        "bytes": 3402611,
+        "sha256": "1a7aecc67266750753230a92365745494118089dab8f20145ef0279f158d4c7e"
+      }
+    ],
+    "regularFiles": 4259,
+    "symlinks": 14,
+    "runtimeFilesVerified": 3982,
+    "logicalFileBytes": 681279522,
+    "componentMappingComplete": false
+  },
+  "runnerReportedPackage": {
+    "passed": true,
+    "checkedAt": "2026-09-27T12:48:42.074Z",
+    "architecture": "arm64",
+    "comparedOutputFiles": 39,
+    "runtimeManifestMatches": true,
+    "texFontNotices": {
+      "originalNoticeFiles": 15,
+      "sourceLockSha256": "79ed91f2d8a1207ed72ba2f8016a47ecde316754c3dd874ba2f35b9683579d45",
+      "records": [
+        {
+          "path": "FontAwesome-publisher-LICENSE.txt",
+          "bytes": 1548,
+          "sha256": "e779748dfe75e84f974df3c7bc07f842011a100159158b0f1f49b2f2a5a515cb"
+        },
+        {
+          "path": "fontawesome5-README.md",
+          "bytes": 990,
+          "sha256": "bfe9f415cd5f2fd6bb8d97cb8baf58e2cb1ceee19c0fd1ce4a2e74b8dd9aee49"
+        },
+        {
+          "path": "lm-GUST-FONT-LICENSE.TXT",
+          "bytes": 1377,
+          "sha256": "49ea6cb9257bbee0a3979c48a774cd221550ac1c20c95549efe45fc99cc18050"
+        },
+        {
+          "path": "lm-MANIFEST-Latin-Modern.TXT",
+          "bytes": 52635,
+          "sha256": "402c79f4ede8548a6fe6f82f42f0288cb0243ba2403dfdeeaadf55d189a46fae"
+        },
+        {
+          "path": "lm-math-GUST-FONT-LICENSE.txt",
+          "bytes": 1456,
+          "sha256": "2bd69affc3da00715116f713f57eab9707e96daf3562ad0215987b15b9c16f73"
+        },
+        {
+          "path": "lm-math-MANIFEST-Latin-Modern-Math.txt",
+          "bytes": 2186,
+          "sha256": "1daa729f7922c42ba5ce8da7dfe4ecdc9e5c878ad86217fd6f32c4671505b007"
+        },
+        {
+          "path": "lm-math-README-Latin-Modern-Math.txt",
+          "bytes": 4588,
+          "sha256": "e6fdd5fb44b656146fa988d191f58901c09a347d3f4fbaa3b45b24a6ad7ec30b"
+        },
+        {
+          "path": "lm-README-Latin-Modern.TXT",
+          "bytes": 33548,
+          "sha256": "7cac4a4a78985ccb1ed429bb2eddf32eeb2e413c94493c7b268385bb7b525250"
+        },
+        {
+          "path": "LPPL-1.3c.txt",
+          "bytes": 19102,
+          "sha256": "3d262cdf34dafa6955f703c634a8c238ec44109bc8dd6ef34fb7aa54809f7e66"
+        },
+        {
+          "path": "OFL-1.1.txt",
+          "bytes": 4016,
+          "sha256": "8eea8287e5876b539670cadb82e99f9a7afddec6f6730811be1daf25d2e9bcfd"
+        },
+        {
+          "path": "README.md",
+          "bytes": 3950,
+          "sha256": "e37c1bc8472ceb1959fbdc64ee811233915bfd4a27a6cc4d8e22bad1a4e3f234"
+        },
+        {
+          "path": "roboto-COPYRIGHT.txt",
+          "bytes": 31,
+          "sha256": "13fa0c04b0315e03825a7aa3833be3aeb15dd0be0ed61dc16c3a25c1974e82e4"
+        },
+        {
+          "path": "roboto-LICENSE.txt",
+          "bytes": 11358,
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+        },
+        {
+          "path": "roboto-README",
+          "bytes": 3641,
+          "sha256": "3b5e2654cf42dbcba79543097d78b3072cd51af1235382a2442edff43285d291"
+        },
+        {
+          "path": "sourcesanspro-LICENSE.txt",
+          "bytes": 4529,
+          "sha256": "4a4a4179a96b5ef6786186d199f0d049b151352f460b8d2f3c00083792f37dd9"
+        },
+        {
+          "path": "sourcesanspro-README.md",
+          "bytes": 1120,
+          "sha256": "fa88e6abbdcde4bf00910f6c7a71aaca3efeb22dc71e895c12916b4fca564767"
+        }
+      ]
+    },
+    "appBytes": 681279522,
+    "hashes": [
+      {
+        "path": "Folio-0.1.0-preview.4-mac-arm64.dmg",
+        "bytes": 303256044,
+        "sha256": "7737864de9ca06ff955014cdae622ee877f280a1d16cc22423178b4818dd7d0f"
+      },
+      {
+        "path": "mac-arm64/Folio.app/Contents/Resources/app.asar",
+        "bytes": 7454725,
+        "sha256": "e6f9b89ad39932979d153b9f3ae198508e182f957797305a6d3adaed47f285aa"
+      },
+      {
+        "path": "Folio-0.1.0-preview.4-mac-arm64.zip",
+        "bytes": 306241909,
+        "sha256": "87258adf8b4a86f499e99669391434d315437baee70782a15c2ebbdb7c48d0d7"
+      }
+    ],
+    "archives": {
+      "passed": true,
+      "bundleInventorySha256": "1ba7e18cb97b693f7b57d6f8dc1c980de5d8f92d448450e6205bfa5e4dc7bc69",
+      "dmg": {
+        "bytes": 303256044,
+        "sha256": "7737864de9ca06ff955014cdae622ee877f280a1d16cc22423178b4818dd7d0f",
+        "appMatches": true
+      },
+      "zip": {
+        "bytes": 306241909,
+        "sha256": "87258adf8b4a86f499e99669391434d315437baee70782a15c2ebbdb7c48d0d7",
+        "appMatches": true,
+        "matchedEntries": 5035,
+        "metadataEntries": 0,
+        "metadataBytes": 0
+      },
+      "distributionVerified": false,
+      "scope": "Exact app bytes, modes and internal links inside both archives. Apple checks run only in distribution mode; fresh-machine quarantined download/launch and updater acceptance remain separate."
+    },
+    "distributionVerified": false,
+    "nativeTestsPassed": true
+  },
+  "scope": "Downloaded and independently hashed the evidence ZIP and every retained file; checked source script and transfer input hashes against the exact commit, and bound native qualification and archive reports to the physical app inventory. The unsigned app, DMG and ZIP themselves were not downloaded or published. This qualifies unsigned source 662c411, including the packaged original font notices and preceding compiler-storage, keyboard and updater-cache changes. It does not qualify the later TeX resource-notice package in 61e4980. No real Apple notarization or signed update staging is claimed. Developer ID, notarization, real signed-to-signed upgrade, complete redistribution attribution and supported-device acceptance remain open.",
+  "keyboardWorkspace": {
+    "passed": true,
+    "errors": [],
+    "keyboardChecks": [
+      "Chat/Code arrows wrap, Home/End select, one tab participates in Tab order, named visible panels agree, and the unsent draft survives.",
+      "Native Settings traps forward/backward Tab, rejects outside focus, identifies its current section, and returns focus to its opener after Escape."
+    ],
+    "accessibilityScope": "Actual Electron keyboard and DOM accessibility semantics; no physical VoiceOver or full accessibility-conformance claim."
+  },
+  "compilerStorageRuntime": {
+    "passed": true,
+    "errors": [],
+    "pin": {
+      "engine": "tectonic",
+      "version": "0.17.0",
+      "bundle": "folio-core-v1",
+      "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+      "platform": "darwin-arm64",
+      "biberVersion": "2.17"
+    },
+    "editingReadyMs": 926,
+    "earlySave": true,
+    "retainedDraft": true,
+    "compilerStorage": {
+      "storageReviewMs": 1325,
+      "before": {
+        "bytes": 758802103,
+        "installationBudgetBytes": 17179869184,
+        "entries": [
+          {
+            "key": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+            "bytes": 734350121,
+            "copies": 2,
+            "token": "b78600d71233ddbbd5473a78e06625daa22487b03e5d89d7fca1ae53b7ab693a",
+            "unfinishedRemoval": false,
+            "pin": {
+              "engine": "tectonic",
+              "version": "0.17.0",
+              "bundle": "folio-core-v1",
+              "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+              "platform": "darwin-arm64",
+              "biberVersion": "2.17"
+            },
+            "protectedReason": "Included with this Folio version."
+          },
+          {
+            "key": "77c405a3bcc5d1c8605b0072c9511f28c231a1419e74e21379139774cc17b4ec",
+            "bytes": 516,
+            "copies": 1,
+            "token": "e8914182c027004ff8c68cdfc77e20a46ae15a718835d1803c878145316bd190",
+            "unfinishedRemoval": false,
+            "pin": {
+              "engine": "tectonic",
+              "version": "0.16.0",
+              "bundle": "storage-demo",
+              "id": "77c405a3bcc5d1c8605b0072c9511f28c231a1419e74e21379139774cc17b4ec",
+              "platform": "darwin-arm64"
+            }
+          }
+        ]
+      },
+      "after": {
+        "bytes": 758801587,
+        "installationBudgetBytes": 17179869184,
+        "entries": [
+          {
+            "key": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+            "bytes": 734350121,
+            "copies": 2,
+            "token": "b78600d71233ddbbd5473a78e06625daa22487b03e5d89d7fca1ae53b7ab693a",
+            "unfinishedRemoval": false,
+            "pin": {
+              "engine": "tectonic",
+              "version": "0.17.0",
+              "bundle": "folio-core-v1",
+              "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+              "platform": "darwin-arm64",
+              "biberVersion": "2.17"
+            },
+            "protectedReason": "Included with this Folio version."
+          }
+        ]
+      },
+      "cancelledRemoval": true,
+      "pendingConfirmationPreventsClose": true,
+      "changedDuringConfirmationRejected": true,
+      "sourceAndPinPreserved": true,
+      "realCompilerStillBuilds": true,
+      "confirmation": "Native dialog call intercepted for deterministic choices"
+    }
+  }
+}
