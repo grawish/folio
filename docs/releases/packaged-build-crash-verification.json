@@ -1,0 +1,224 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T20:08:52.368138+00:00",
+  "testImplementationCommit": "5b5124309c6f51d18caf300a334371553db1b1b6",
+  "applicationImplementationCommit": "3a1ffef4f8554b71953c60740f21cb27329b181d",
+  "candidate": {
+    "startedAt": "2026-09-27T20:05:18.588Z",
+    "sourceCommit": "5b5124309c6f51d18caf300a334371553db1b1b6",
+    "scriptSha256": "6c16f7bd1f435c9afb8c6a903c8d2fc68d3f9ce9433231217f83774702de6b0c",
+    "appAsarSha256": "09d7f516815c03084f0069ed29c709701d19e85139b0bfeeb0e357bc5f636ed8",
+    "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+    "host": {
+      "platform": "darwin",
+      "arch": "arm64",
+      "os": "27.0.0",
+      "cpu": "Apple M4 Pro"
+    },
+    "pdfInspector": {
+      "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+      "pypdf": "6.10.0"
+    },
+    "scope": "SIGKILL of an isolated packaged Electron main process during a real UI compile; fresh profile, production compiler, recovery, workspace and PDF export; no AI calls.",
+    "limits": [
+      "Process interruption does not simulate physical power loss.",
+      "One host observation is not a latency percentile or supported-device acceptance.",
+      "Preference durability across abrupt main-process death is recorded separately and is not an acceptance claim."
+    ],
+    "checks": [
+      "SIGKILL reached the real app main; the observed native group and captured app descendants exited without test cleanup.",
+      "Reopening retained the unsaved editor source, chat draft, project ID, compiler pin and PDF History; saved project files stayed byte-identical; startup removed the abandoned job.",
+      "A fresh UI compile, save and export produced the new one-page PDF; its text was parsed independently; normal temporary-job cleanup completed."
+    ],
+    "events": [
+      {
+        "at": "2026-09-27T20:05:19.123Z",
+        "type": "launch",
+        "pid": 77296
+      },
+      {
+        "at": "2026-09-27T20:06:09.248Z",
+        "type": "exit",
+        "pid": 77296,
+        "code": null,
+        "signal": "SIGKILL"
+      },
+      {
+        "at": "2026-09-27T20:06:09.611Z",
+        "type": "launch",
+        "pid": 77591
+      },
+      {
+        "at": "2026-09-27T20:06:12.030Z",
+        "type": "exit",
+        "pid": 77591,
+        "code": 0,
+        "signal": null
+      }
+    ],
+    "rendererErrors": [],
+    "passed": true,
+    "runtimePin": {
+      "engine": "tectonic",
+      "version": "0.17.0",
+      "bundle": "folio-core-v1",
+      "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+      "platform": "darwin-arm64",
+      "biberVersion": "2.17"
+    },
+    "history": {
+      "versionId": "5d50de93-ebda-4cc0-95b2-62e16578a2cd",
+      "pdfSha256": "f1689bdd7d37272b33d2d668a6cf1b358aea15c87d94a158199e0d6cf37f6820",
+      "pdfBytes": 6511,
+      "versions": 1
+    },
+    "interrupted": {
+      "mainPid": 77296,
+      "native": {
+        "pid": 77582,
+        "parent": 77296,
+        "group": 77582,
+        "started": "Mon Sep 28 01:36:09 2026",
+        "command": "/Users/grawish/.codex/worktrees/compiler-crash-cleanup/resume-maker/test-results/build-crash-h5vfGv/data/runtimes/67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059/copies/46169173-5d82-4b85-b70a-196b598af98a/runtime/tectonic"
+      },
+      "nativeMembers": [
+        {
+          "pid": 77582,
+          "parent": 77296,
+          "group": 77582,
+          "started": "Mon Sep 28 01:36:09 2026",
+          "command": "/Users/grawish/.codex/worktrees/compiler-crash-cleanup/resume-maker/test-results/build-crash-h5vfGv/data/runtimes/67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059/copies/46169173-5d82-4b85-b70a-196b598af98a/runtime/tectonic"
+        },
+        {
+          "pid": 77583,
+          "parent": 77582,
+          "group": 77582,
+          "started": "Mon Sep 28 01:36:09 2026",
+          "command": "/bin/bash"
+        }
+      ],
+      "snapshot": {
+        "directory": "/Users/grawish/.codex/worktrees/compiler-crash-cleanup/resume-maker/test-results/build-crash-h5vfGv/data/builds/.folio-build-jobs-v1/job-e8976d4d-f92a-4b90-815b-3ee3569a7027",
+        "source": "/Users/grawish/.codex/worktrees/compiler-crash-cleanup/resume-maker/test-results/build-crash-h5vfGv/data/builds/.folio-build-jobs-v1/job-e8976d4d-f92a-4b90-815b-3ee3569a7027/files/source/main.tex",
+        "layout": "owned",
+        "owner": {
+          "schema": "folio-build-job-1",
+          "id": "e8976d4d-f92a-4b90-815b-3ee3569a7027",
+          "pid": 77296,
+          "storeDevice": "16777231",
+          "storeInode": "88615495",
+          "jobDevice": "16777231",
+          "jobInode": "88615694"
+        }
+      },
+      "sourceSha256": "ca95b066232d22ea8bdee33a6cb99593f68483837e9d9b9aa9425cd5a43c213c"
+    },
+    "nativeGroupAbsentObservedMs": 53.486707999996725,
+    "savedFileHashes": {
+      "main.tex": "1eeb9312378e1110eac097253fbe63082d553aaacf30c959abbdc921495e35fd",
+      "resume.project.json": "0d15fb6699f21afd77e7945e147d449f1fbc7f25f2e0898e6e4eab54cdaf3df1",
+      "resume.folio": "07f24a410bc9df0af3e6045faa4bf3f045770c080129b5acf64cb0ae764a0096"
+    },
+    "autoCompileEnabledAfterCrash": true,
+    "export": {
+      "file": "recovered.pdf",
+      "sha256": "fbdb1a2e29479d2a923d890e4c50fd51444db231a6e6efbe496ab6ef664b17e5",
+      "pages": 1,
+      "text": "Taylor Example\nRecovered after the crash. This source is saved in the project folder.\n1"
+    },
+    "finishedAt": "2026-09-27T20:06:12.074Z"
+  },
+  "baselineControl": {
+    "sourceCommit": "5b5124309c6f51d18caf300a334371553db1b1b6",
+    "scriptSha256": "6c16f7bd1f435c9afb8c6a903c8d2fc68d3f9ce9433231217f83774702de6b0c",
+    "appAsarSha256": "399877e66f3259d023a91ec2c6153715641a20016b200febbf6f4dcc08886bc3",
+    "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+    "passed": false,
+    "error": "Error: Abandoned snapshot survived app restart.\n\nAbandoned snapshot survived app restart.\n\nexpect(received).toBe(expected) // Object.is equality\n\nExpected: false\nReceived: true\n\nCall Log:\n- Timeout 10000ms exceeded while waiting on the predicate\n    at captureRawStack (/Users/grawish/.codex/worktrees/compiler-crash-cleanup/resume-maker/node_modules/playwright-core/lib/coreBundle.js:8588:17)\n    at callMatcherAsStep (/Users/grawish/.codex/worktrees/compiler-crash-cleanup/resume-maker/node_modules/playwright/lib/matchers/expect.js:13310:57)\n    at Object.toBe (/Users/grawish/.codex/worktrees/compiler-crash-cleanup/resume-maker/node_modules/playwright/lib/matchers/expect.js:13302:23)\n    at /Users/grawish/.codex/worktrees/compiler-crash-cleanup/resume-maker/scripts/test-build-crash.mjs:325:6",
+    "nativeGroupAbsentObservedMs": 58.49995800000033,
+    "checks": [
+      "SIGKILL reached the real app main; the observed native group and captured app descendants exited without test cleanup."
+    ],
+    "history": {
+      "versionId": "ff9083eb-0e7a-42ee-8640-a48afcbe8319",
+      "pdfSha256": "11dceb6db599df64b9c54c25e3bccb0bac3581a9e3acf82fae16ca5d6e4eae13",
+      "pdfBytes": 6511,
+      "versions": 1
+    },
+    "rendererErrors": []
+  },
+  "initialFailure": {
+    "record": {
+      "file": "test-results/build-crash-PFsxAg/result.json",
+      "bytes": 5211,
+      "sha256": "6f4f485a6a9e9ebea32f69ed6f3f81246d04fceade21f749a6dd3f79b4518f1c"
+    },
+    "log": {
+      "file": "test-results/build-crash-first.log",
+      "bytes": 1173,
+      "sha256": "1a9b6844a600a4746633f2eaa2b0615d349651cc731164a1d3a1dda967947acf"
+    },
+    "finding": "Recently changed Auto-compile preference was enabled again after abrupt Electron main-process death. The source/chat/history recovery check now records that preference state, then disables Auto-compile and stops any resumed compile through the UI. Preference crash durability remains an open issue; it was not repaired or silently counted as passing."
+  },
+  "candidateRecord": {
+    "file": "test-results/build-crash-h5vfGv/result.json",
+    "bytes": 5052,
+    "sha256": "49f62fab92180aee36b241f4ac9af32b3da182634ce0474f83502251166bf3dc"
+  },
+  "baselineRecord": {
+    "file": "test-results/build-crash-kKh5e2/result.json",
+    "bytes": 4919,
+    "sha256": "ec5e4025df2da054a36e6674e2db23c83fc694cd9f2b5f2509290af6b38429c8"
+  },
+  "logs": [
+    {
+      "file": "test-results/build-crash-final-candidate.log",
+      "bytes": 110,
+      "sha256": "6132eeb3eca5c46df2565195de3132ff5f82f3af6ffe0134c07b22ba159d4808"
+    },
+    {
+      "file": "test-results/build-crash-final-baseline.log",
+      "bytes": 910,
+      "sha256": "222070bb60a977a105c800ed004ee37f729438452efa893dff716b75fd614c11"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "test-results/build-crash-h5vfGv/during-compile.png",
+      "bytes": 89047,
+      "sha256": "76efdd397166fc24fecf4dc078ec3c2886b1e3a4e5d5a8e60ccaf17b7eafdf00"
+    },
+    {
+      "file": "test-results/build-crash-h5vfGv/recovered-chat.png",
+      "bytes": 78486,
+      "sha256": "d389da318c81b814df17a6603cebad86c80a49fb6e27708a3d5a2d6b57251042"
+    },
+    {
+      "file": "test-results/build-crash-h5vfGv/recovered.pdf",
+      "bytes": 6569,
+      "sha256": "fbdb1a2e29479d2a923d890e4c50fd51444db231a6e6efbe496ab6ef664b17e5"
+    },
+    {
+      "file": "test-results/build-crash-h5vfGv/native-output.log",
+      "bytes": 143,
+      "sha256": "11288b6cb3832d2b1483b35a36a5d55152d68740d7a6d9edc3ee7441fdf672f1"
+    }
+  ],
+  "publishedScreenshot": {
+    "file": "docs/images/build-crash-recovered.png",
+    "bytes": 78486,
+    "sha256": "d389da318c81b814df17a6603cebad86c80a49fb6e27708a3d5a2d6b57251042"
+  },
+  "nativeQualificationSuites": 17,
+  "fullHostedQualification": {
+    "status": "not_dispatched"
+  },
+  "applicationSourceChanged": false,
+  "productionReleaseQualified": false,
+  "publicPreviewInstallerChanged": false,
+  "remaining": [
+    "Chromium preference durability after abrupt main-process death.",
+    "Physical power-loss and supported-Mac acceptance; large-backlog responsiveness and complete profile resource budgets.",
+    "Production signing/notarization, real BYOK and complete binary redistribution/SBOM."
+  ]
+}

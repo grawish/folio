@@ -12,6 +12,18 @@ Unknown or damaged ownership records, unexpected files, and folders from the old
 
 The cleanup starts with the compiler service. Chat drafts, editing and saving do not wait for it. A new PDF build waits until that scan settles. If cleanup cannot remove a recognized folder, it remains available for a later scan; a cleanup problem by itself does not discard your project or change its selected compiler.
 
+## Reopen and check your work
+
+1. Open Folio again after an unexpected quit. The recovered source and unsent chat draft should return.
+2. Open **Code** and review the text. Your last saved project files remain on disk separately from the recovered draft.
+3. If a build restarts and stays busy, click **Stop**, then turn off **Auto-compile** while correcting the source. A recently changed Auto-compile setting can reset after an abrupt crash; preference durability is still an open issue.
+4. Click **Compile** and inspect the new PDF. **History** keeps earlier successful versions for comparison.
+5. Click **Save**, then **Export PDF** when the result is ready.
+
+![Recovered chat draft beside a freshly compiled PDF](images/build-crash-recovered.png)
+
+This screenshot comes from the packaged-app crash check with synthetic source and an unsent chat draft. The check uses no AI connection.
+
 ## How ownership is checked
 
 `electron/core/build-workspaces.ts` manages a private `.folio-build-jobs-v1` folder inside each compiler work root. Each `job-<UUID>` contains an `owner.json` record and a `files` directory. The existing macOS sandbox may write inside `files` and the engine cache; it cannot overwrite the ownership record above `files`. Ownership is recorded before any source or asset is staged.
@@ -31,5 +43,15 @@ The [compiler process watcher](COMPILER_RESOURCE_LIMITS.md#if-the-app-crashes) s
 `tests/integration/build-recovery.test.ts` uses the production Compiler to stage two real source snapshots, kills their owning processes before native execution, then checks startup cleanup and a new offline PDF build. The original project source, unmarked data and an engine-cache guard must survive, and the successful new job must also be removed.
 
 The [verification record](releases/build-workspace-recovery-verification.json) retains the exact source and log hashes, 392 source tests, 21 focused controls, 16 existing compiler integrations, the new recovery integration, and the packaged runtime/chat results. Full [hosted qualification](releases/mac-build-recovery-hosted.json) at `3a1ffef` passes 392 source tests, all 17 compiler integrations, twelve unchanged template images and all sixteen native suites. All 146 retained evidence files, test/build inputs, app inventory, JavaScript replay and original publisher materials were independently checked. This is unsigned source qualification; the public preview installer is unchanged.
+
+`scripts/test-build-crash.mjs` additionally kills the actual packaged Electron main process during a real UI compile. It checks that the observed native group and app descendants exit, the abandoned snapshot remains before restart and disappears after restart, saved files stay byte-identical, and unsaved source, chat draft, compiler pin and PDF History survive. A new UI compile/save/export must produce the expected one-page PDF, verified with an independent PDF parser. The prior watchdog-only app fails specifically because its abandoned snapshot survives reopening. This becomes the seventeenth native qualification suite; its full hosted result is tracked separately from the sixteen-suite recovery qualification above.
+
+Run it on Apple silicon with `FOLIO_PYTHON` pointing to Python with the pinned PDF-test requirements installed:
+
+```sh
+node scripts/test-build-crash.mjs /path/to/Folio.app/Contents/MacOS/Folio
+```
+
+The [packaged crash verification](releases/packaged-build-crash-verification.json) preserves the successful candidate, failing previous-app control and the initial preference-reset finding. It does not claim that Chromium preferences are durable after abrupt main-process death.
 
 These are process-interruption controls. They do not prove physical power-loss durability, acceptance on every supported Mac, large-backlog responsiveness, whole-profile storage quotas, or automatic removal of older unmarked folders. Those remain in [the release audit](RELEASE_GAP_AUDIT.md) and [performance plan](PERFORMANCE_IMPROVEMENT_PLAN.md#compiler-work-after-an-application-crash).
