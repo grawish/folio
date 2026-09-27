@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-27T16:56:28.115022+00:00",
+  "baseCommit": "9f67d58351680f1001f7f321e564a5c757de6628",
+  "changeScope": "Developer-only Tectonic and Biber archive transfer; no application, pinned archive, compiler extraction or TeX resource-lock changes.",
+  "applicationInputsChanged": false,
+  "trigger": {
+    "runId": 36333234164,
+    "attempt": 1,
+    "url": "https://github.com/grawish/folio/actions/runs/36333234164/attempts/1",
+    "sourceCommit": "6ffce75837c9110ad0c6ae775e19f22bc99a55b0",
+    "result": "failure during runtime setup",
+    "cause": "UND_ERR_CONNECT_TIMEOUT at the SourceForge-selected cytranet-dal mirror; connection timeout 10000 ms.",
+    "retainedLog": {
+      "file": "test-results/node24-mac-attempt1-failed.log",
+      "bytes": 2687,
+      "sha256": "eceecaedf81e5a03dcb4f4b39733094c454c52e0fc0c75cd3003456588665a3f"
+    }
+  },
+  "finalPolicy": {
+    "attempts": 3,
+    "attemptDeadlineMs": 300000,
+    "maximumDownloadedBytes": 134217728,
+    "backoffMs": [
+      1000,
+      2000
+    ],
+    "maximumRetryAfterMs": 30000,
+    "retryHttpStatus": [
+      408,
+      429,
+      500,
+      502,
+      503,
+      504
+    ],
+    "checksum": "Existing SHA-256 pin required before returning bytes to cache/extraction.",
+    "noRetry": [
+      "checksum mismatch",
+      "oversized body or declared size",
+      "certificate errors",
+      "other HTTP failures",
+      "Retry-After over 30 seconds"
+    ]
+  },
+  "sourceFiles": [
+    {
+      "file": "scripts/prepare-runtime.mjs",
+      "bytes": 8508,
+      "sha256": "53ba69736635dc76c19652d1f0f19786965d69d179fc16273bd2d7e5964a4fc7"
+    },
+    {
+      "file": "scripts/lib/runtime-download.mjs",
+      "bytes": 3958,
+      "sha256": "43880e517f533b601a2899719e9d43d1a88d7e069bc2e36b8a9b993262476bcb"
+    },
+    {
+      "file": "scripts/lib/runtime-download.d.mts",
+      "bytes": 392,
+      "sha256": "6529c12e1a961b3cd2af3c55c3c76fcb4ba8fe383bfe8f5a5e9e3339b2fe0ada"
+    },
+    {
+      "file": "tests/runtime-download.test.ts",
+      "bytes": 7699,
+      "sha256": "0d4a64d4ca18b3a7c405f14e031c300145ac798ac6d29b9ceb60307b2626c475"
+    }
+  ],
+  "verification": {
+    "node": "v24.21.0",
+    "focusedTestsPassed": 10,
+    "allSourceTestsPassed": 357,
+    "typecheckPassed": true,
+    "formatPassed": true,
+    "focusedLog": {
+      "file": "test-results/runtime-download-focused.log",
+      "bytes": 1129,
+      "sha256": "c14c238de2af1cc3fd534cba3a8e1cd448e000efdf929f40e509d1781f50d457"
+    },
+    "allSourceLog": {
+      "file": "test-results/runtime-download-tests.log",
+      "bytes": 36819,
+      "sha256": "14b21959c69e9822617d979f3801c30e8466858fbffce6bcf4074f6ed6ac173d"
+    },
+    "controls": [
+      "Real local HTTP 503/429 recovery",
+      "Real connection reset and partial response recovery",
+      "Native fetch cancellation while waiting for headers and stalled body",
+      "Three-attempt exhaustion with retained last cause",
+      "Retry-After delay and refusal of longer waits",
+      "Permanent HTTP and checksum rejection without retry",
+      "Declared and streamed oversize rejection without retry",
+      "Observed Undici connect-timeout classification and simulated certificate-error rejection",
+      "Invalid pin, URL protocol and excessive option bounds rejected before connection"
+    ],
+    "liveUpstreamDownloads": {
+      "record": {
+        "file": "test-results/runtime-download-live/verification.json",
+        "bytes": 1191,
+        "sha256": "20985e1b67c88ceabefaf274992e3f880938ddee0b759ea7cd124d87666bc232"
+      },
+      "results": [
+        {
+          "name": "tectonic-0.17.0-aarch64-apple-darwin.tar.gz",
+          "url": "https://github.com/tectonic-typesetting/tectonic/releases/download/tectonic%400.17.0/tectonic-0.17.0-aarch64-apple-darwin.tar.gz",
+          "bytes": 21704674,
+          "sha256": "a3f1cac7c5678f01661a92212f58480ae3b0634115d880dbc59e2953ded45667",
+          "retries": [],
+          "elapsedMs": 2916.728542
+        },
+        {
+          "name": "biber-2.17-darwin-universal.tar.gz",
+          "url": "https://downloads.sourceforge.net/project/biblatex-biber/biblatex-biber/2.17/binaries/MacOS/biber-darwin_universal.tar.gz",
+          "bytes": 89382426,
+          "sha256": "182e1efa074d8a2a23a8893f2a22440d4e463cce55e4ed02076ac4c0ee0614b2",
+          "retries": [
+            {
+              "attempt": 2,
+              "maxAttempts": 3,
+              "delayMs": 1000
+            },
+            {
+              "attempt": 3,
+              "maxAttempts": 3,
+              "delayMs": 2000
+            }
+          ],
+          "elapsedMs": 316875.652458
+        }
+      ],
+      "note": "Live transfers used the initial, stricter 120000 ms attempt deadline and retry logs without failure-reason text. Both full archives independently match their original pins; Biber recovered after two retries. Final code raises the per-attempt deadline to 300000 ms and logs the retry cause; all 357 source tests and ten focused controls then passed again. No full runtime setup or packaged-app qualification is claimed by this downloader check."
+    }
+  },
+  "productionReleaseQualified": false,
+  "limitations": [
+    "Electron installation and Tectonic later resource collection are outside this helper.",
+    "Existing archive cache handling and extraction are unchanged.",
+    "A persistent origin failure can still exhaust all attempts.",
+    "The existing hosted Mac run predates this setup change."
+  ]
+}

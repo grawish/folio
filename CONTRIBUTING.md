@@ -6,6 +6,8 @@ Contributions are welcome under the project's PolyForm Noncommercial terms. Use 
 
 Use an Apple silicon Mac and Node.js 24. Run `npm ci`, `npm run setup`, then `npm run dev`. Setup needs the network; normal document compilation uses the verified local resource bundle. Use `FOLIO_USER_DATA=/absolute/path/to/a/separate/directory npm run dev` when testing recovery without touching your usual app data.
 
+Setup downloads the pinned Tectonic and Biber archives with up to three attempts for temporary connection errors, timeouts, or HTTP 408/429/500/502/503/504 responses. Each attempt has a five-minute deadline and a 128 MiB download limit. Retries normally wait one then two seconds; a server's `Retry-After` can extend either wait to thirty seconds. Longer requested waits, certificate errors, other HTTP failures, oversized downloads and checksum mismatches stop setup. Only a complete archive with the existing pinned SHA-256 is cached or extracted. This applies to the two runtime archives, not Electron installation or Tectonic's later resource collection.
+
 The renderer is in `src/`, the native bridge in `electron/preload.ts`, and privileged operations in `electron/main.ts` and `electron/core/`. Read [architecture](docs/ARCHITECTURE.md) before changing these boundaries.
 
 Before a pull request, run `npm run typecheck`, `npm test`, `npm run format:check`, and the native suite that exercises the changed behavior. Native tests open real windows: run them sequentially. Compiler integration tests require macOS Seatbelt support and must run outside an enclosing sandbox that prevents `sandbox-exec`.
