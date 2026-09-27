@@ -136,6 +136,25 @@ The collector is offline and retains its original archive, all 60 inputs, exact 
 
 All 540 new generated matches were previously unmatched in the CPAN inventory. Combined evidence now covers **3,596 of 3,932 payload files**, leaving 336 explicit gaps. Other generated Perl/autosplit files, native modules/libraries, original Unicode terms, embedded license grants and full redistribution/SBOM review remain required. These developer artifacts do not modify existing app or runtime bytes and are not automatically published. A failed run exits unsuccessfully and writes `incomplete-inventory.json`; an existing `inventory.json` remains evidence of the preceding successful run.
 
+## Reproduce Biber AutoSplit files
+
+`python3 scripts/collect-biber-autosplit-evidence.py` reproduces all **200 embedded AutoSplit files** from thirteen unchanged source modules in Clone 0.45, Data::Uniqid 0.12, Net::SSLeay 1.90 and Tk 804.036. It uses the original `AutoSplit.pm` from the pinned Perl 5.32.1 archive. The existing CPAN/foundation locks identify every archive; collection is offline and requires those cached sources and the prepared Biber runtime.
+
+The command copies each original module to its recorded `blib/lib` build path. Four Tk modules run from subdirectories that reproduce the relative paths recorded in the embedded headers, so headers and line numbers agree without editing the output. The fresh output directory uses `keep=0`; AutoLoader detection and timestamp skipping are disabled (`check=0`, `modtime=0`). This is the recorded reproduction invocation, not a claim to have recovered the original compiler command line. Only the reviewed generator is executed; the source modules are read as text. The two modules changed by PAR's later compatibility patch are checked against their installed copies but remain unmodified as generator inputs.
+
+Generation runs with the development Mac's system Perl 5.34.1 and system support modules. A macOS sandbox denies networking and restricts writes to the unique temporary run directory and `/dev/null`; actual allowed-write, denied-write and denied-network controls must pass first. Reads remain permitted. A shared 180-second generation deadline kills and reaps a timed-out process group. Output is limited to 500 regular files, 1 MiB per file and 20 MiB in total; these are audit bounds, not whole-process memory or CPU quotas.
+
+```sh
+python3 scripts/collect-biber-autosplit-evidence.py
+python3 tests/biber-autosplit-evidence.py
+```
+
+All 200 paths and complete bytes match, including 187 `.al` files and thirteen `autosplit.ix` files. A separate check compares every output with the prepared runtime and its manifest, checks all thirteen inputs directly against their source archives, and verifies the retained generator. The five original archives total 25,616,032 bytes. All 222 retained files, including the inventory, are identical on replay. Six new offline controls and the sixteen existing CPAN/Unicode controls pass. CI runs the new controls without executing upstream generation.
+
+Combined source/generated coverage is now **3,796 of 3,932 payload files**, leaving **136 explicit gaps**. This is source attribution, not complete license acceptance or a reproducible native rebuild. Remaining files include native modules/libraries, other generated configuration and the Unicode index. Original source terms still apply; no third-party file acquires Folio's noncommercial license through this audit.
+
+The collector retains full source archives, unmodified inputs/generator, exact outputs and hashed records under ignored `artifacts/license-materials/biber-autosplit/`. The [compressed match list](releases/biber-autosplit-matches.json.gz) and [verification record](releases/biber-autosplit-verification.json) provide compact public evidence. Failed runs preserve previous successful inventory and write a separate failure marker; a successful rerun clears that marker. No app code, runtime bytes, installer or existing release asset changes.
+
 ## Collect native build-port sources and notices
 
 Run `python3 scripts/collect-native-license-materials.py` after retaining the [verified vcpkg build inputs](COMPILER_PROVENANCE.md#reproduce-the-check). The Python 3.11+ collector checks `resources/native-license-sources.lock.json` against the compiler-build evidence lock and original vcpkg archive. Every selected port must match its installed version/features, recipe and manifest. Its source archive must match the recipe’s SHA-512 plus the reviewed byte count and SHA-256. Downloads use approved HTTPS hosts and bounded redirects, sizes and time; cached corruption fails instead of fetching a replacement.

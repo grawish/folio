@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T00:39:15.223381+00:00",
+  "sourceBaseCommit": "6b672041429de88d33fb0dbd677724c4c778c50d",
+  "summary": {
+    "inputModules": 13,
+    "payloadAutoSplitFiles": 200,
+    "generatedFiles": 200,
+    "matchingFiles": 200,
+    "unmatchedFiles": 0
+  },
+  "combinedSourceCoverage": {
+    "retainedFilesVerified": 221,
+    "rawSourceInputsVerified": 13,
+    "generatorMatchesOriginalArchive": true,
+    "generatedFilesVerifiedAgainstPackagedRuntime": 200,
+    "previousUnmatched": 336,
+    "newMatches": 200,
+    "remainingUnmatched": 136,
+    "totalPayloadFiles": 3932,
+    "combinedMatchedPayloadFiles": 3796,
+    "gzipRoundTrip": true
+  },
+  "byteIdenticalReplay": {
+    "files": 222,
+    "includesInventory": true
+  },
+  "hostPerl": {
+    "path": "/usr/bin/perl",
+    "sha256": "85e5621137742a37be052f58800372b2005f91f609ad55019832214b5d9e61bc",
+    "version": "v5.34.1"
+  },
+  "sandbox": {
+    "controls": {
+      "insideWrite": true,
+      "outsideWriteDenied": true,
+      "networkConnectDenied": true
+    },
+    "networkDenied": true,
+    "readIsolation": false,
+    "writeScope": "unique temporary run directory and /dev/null",
+    "deadlineSeconds": 180
+  },
+  "sourceArchiveCount": 5,
+  "sourceArchiveBytes": 25616032,
+  "inputModuleBytes": 229112,
+  "generatorSha256": "87c24fe374c2d2c0e6c673684dce91a9900a274502f574b935e7f4f89489dcfb",
+  "sources": [
+    {
+      "id": "perl-5.32.1",
+      "url": "https://cpan.metacpan.org/authors/id/S/SH/SHAY/perl-5.32.1.tar.gz",
+      "bytes": 18038522,
+      "sha256": "03b693901cd8ae807231b1787798cf1f2e0b8a56218d07b7da44f784a7caeb2c"
+    },
+    {
+      "id": "Clone-0.45",
+      "url": "https://cpan.metacpan.org/authors/id/A/AT/ATOOMIC/Clone-0.45.tar.gz",
+      "bytes": 16130,
+      "sha256": "cbb6ee348afa95432e4878893b46752549e70dc68fe6d9e430d1d2e99079a9e6"
+    },
+    {
+      "id": "Data-Uniqid-0.12",
+      "url": "https://cpan.metacpan.org/authors/id/M/MW/MWX/Data-Uniqid-0.12.tar.gz",
+      "bytes": 2141,
+      "sha256": "b6919ba49b9fe98bfdf3e8accae7b9b7f78dc9e71ebbd0b7fef7a45d99324ccb"
+    },
+    {
+      "id": "Net-SSLeay-1.90",
+      "url": "https://cpan.metacpan.org/authors/id/C/CH/CHRISN/Net-SSLeay-1.90.tar.gz",
+      "bytes": 534246,
+      "sha256": "f8696cfaca98234679efeedc288a9398fcf77176f1f515dbc589ada7c650dc93"
+    },
+    {
+      "id": "Tk-804.036",
+      "url": "https://cpan.metacpan.org/authors/id/S/SR/SREZIC/Tk-804.036.tar.gz",
+      "bytes": 7024993,
+      "sha256": "32aa7271a6bdfedc3330119b3825daddd0aa4b5c936f84ad74eabb932a200a5e"
+    }
+  ],
+  "tools": [
+    {
+      "path": "scripts/collect-biber-autosplit-evidence.py",
+      "bytes": 11924,
+      "sha256": "94b10a446c16792771205d8bafec01a003ae94cb6a351da5eb048b3e0422a9c3"
+    },
+    {
+      "path": "tests/biber-autosplit-evidence.py",
+      "bytes": 4763,
+      "sha256": "9c53ee98627f935af7085ca9cf54f3cc8f45878813e0ddaecebfbca497126152"
+    }
+  ],
+  "retainedInventory": {
+    "path": "artifacts/license-materials/biber-autosplit/inventory.json",
+    "bytes": 51915,
+    "sha256": "5c99e9cfed1fcefad0d406fb42decf9f798a633d7fc79625342404aedab5e30e"
+  },
+  "publishedMatches": {
+    "path": "docs/releases/biber-autosplit-matches.json.gz",
+    "bytes": 11298,
+    "sha256": "cffaaccc7fc114e7c54f998672881bbbdcee4a2e665a9ba6782f76d6e0cecdc2"
+  },
+  "uncompressedMatches": {
+    "path": "artifacts/license-materials/biber-autosplit/source-matches.json",
+    "bytes": 45683,
+    "sha256": "8a8d72338ffa500f5ebe24936055cbb5931a5dd452e5e4c264d1b061a2a4e849"
+  },
+  "checks": {
+    "newOfflineControls": 6,
+    "relatedCpanControls": 8,
+    "relatedUnicodeControls": 8,
+    "passed": true
+  },
+  "logs": [
+    {
+      "path": "test-results/biber-autosplit-final-tests.log",
+      "bytes": 104,
+      "sha256": "83e93953b1e037842c619327be7ff24cf0760a7e9eda8778a76d653c2a8489e4"
+    },
+    {
+      "path": "test-results/biber-autosplit-cpan-tests.log",
+      "bytes": 106,
+      "sha256": "75ff54e727b57e4bd7b88956ed0c92c4b9a416e6f0976707e8fb54aa385ac0bd"
+    },
+    {
+      "path": "test-results/biber-autosplit-unicode-tests.log",
+      "bytes": 106,
+      "sha256": "c6352adff70a6982c739a1cd77bbb43d2425eefd2dc2112b92b0ceebf2a6ca31"
+    },
+    {
+      "path": "test-results/biber-autosplit-final.log",
+      "bytes": 220,
+      "sha256": "86dbca1492b7734a5b74b24cd0478e5c07e90ad17cc5e710ef4cb3772bedb995"
+    },
+    {
+      "path": "test-results/biber-autosplit-replay.log",
+      "bytes": 220,
+      "sha256": "cc1e1f372c2ee1ad857a22a2a7b03333f74e0c39b9a753c4838399be0b27f720"
+    },
+    {
+      "path": "test-results/biber-autosplit-independent.json",
+      "bytes": 337,
+      "sha256": "787caee3ae619146baa6f594baaf6fb559bc2a6f7ec850e8a0591c27b6ead2aa"
+    }
+  ],
+  "initialAttempt": "The outer execution sandbox prevented the inside-write control; generation did not start. Host-authorized runs passed all three sandbox controls.",
+  "applicationInputsChanged": false,
+  "releaseAuditComplete": false,
+  "limits": [
+    "Source attribution of 200 generated text files only; native and other generated payloads remain unresolved.",
+    "Unchanged original generator with system Perl 5.34.1 and system support modules, not the complete original Perl 5.32.1 build environment.",
+    "Original third-party terms are retained; this does not complete license compatibility, redistribution or the signed-app SBOM.",
+    "No application/runtime/installer bytes or existing release assets changed."
+  ]
+}
