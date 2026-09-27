@@ -335,7 +335,9 @@
     "runId": 36343157418,
     "url": "https://github.com/grawish/folio/actions/runs/36343157418",
     "commit": "909c0eec6285eee064c90fa1449703e61103e625",
-    "statusAtPublication": "in_progress"
+    "statusAtPublication": "success",
+    "verification": "docs/releases/mac-compiler-parent-watch-hosted.json",
+    "retainedArtifactFilesVerified": 146
   },
   "scope": "One idle shell watcher and one private parent connection per production compiler launch; process death and normal completion stop the compiler group. Existing sandbox, resource limits and stale-PDF protections remain. Ordinary finally cleanup is unchanged. The initial string-substitution prototype was not sufficient proof; the committed native controls detect the original missing-watchdog behavior and pass against these exact sources.",
   "remaining": [
