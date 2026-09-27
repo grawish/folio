@@ -1,0 +1,350 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T19:09:23.105746+00:00",
+  "implementationCommit": "909c0eec6285eee064c90fa1449703e61103e625",
+  "sources": [
+    {
+      "file": "electron/core/compiler.ts",
+      "bytes": 10926,
+      "sha256": "5ac090f16dd8bb344f02aea7bcab39db1073f3173ac716640b835c7ae8505973"
+    },
+    {
+      "file": "electron/core/compiler-limits.ts",
+      "bytes": 1903,
+      "sha256": "67abc51c2060920472a7b2e8bb07a6fb41210a82ad7767e8216a7b09f9c63198"
+    },
+    {
+      "file": "tests/compiler-parent-death.test.ts",
+      "bytes": 5905,
+      "sha256": "8791745217f2aa90e842a584894debd9b8d3239c8ef1891d5cd145d4aab276a6"
+    },
+    {
+      "file": "tests/fixtures/compiler-parent-worker.ts",
+      "bytes": 2058,
+      "sha256": "e926fd9fa5c28500d5a1ed3124e57d4de113249a56fa55aeac6e7329a09fd0d8"
+    }
+  ],
+  "validation": {
+    "sourceTestsPassed": 371,
+    "compilerIntegrationTestsPassed": 16,
+    "newNativeControls": 7,
+    "originalParentDeathControlFails": true,
+    "failedControlCleansOwnedProcesses": true,
+    "productionBuildPassed": true,
+    "formatPassed": true,
+    "packagedRuntimePassed": true,
+    "packagedChatPassed": true,
+    "rendererErrors": 0,
+    "logs": [
+      {
+        "file": "test-results/compiler-parent-watch-source-tests.log",
+        "bytes": 38176,
+        "sha256": "9c5611f79fbbf3a895c5075c71cbdcbdc419e0d207834b410f75b52c18d8fd66"
+      },
+      {
+        "file": "test-results/compiler-parent-watch-integrations.log",
+        "bytes": 2309,
+        "sha256": "030e7afa61c40a398d5eee1328b35bf547974f74c72e72f17f39ad3e2e71ffdb"
+      },
+      {
+        "file": "test-results/compiler-parent-watch-baseline.log",
+        "bytes": 1013,
+        "sha256": "2d46d91fee03650ba9fab1f1f7af981d015f3771be601e0e315201d7c3eac727"
+      },
+      {
+        "file": "test-results/compiler-parent-watch-build.log",
+        "bytes": 1719,
+        "sha256": "abc9dedf1cdacd50598e4aec787479a1fe353c6079e9025c3afe8183e86960d5"
+      },
+      {
+        "file": "test-results/compiler-parent-watch-format.log",
+        "bytes": 183,
+        "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+      },
+      {
+        "file": "test-results/compiler-parent-watch-biber.log",
+        "bytes": 293,
+        "sha256": "6428cf0d01997afc68e42794a64e80ffea6f6a5ce658b9127d8f1d1ddd9ddb03"
+      },
+      {
+        "file": "test-results/compiler-parent-watch-package.log",
+        "bytes": 1367,
+        "sha256": "0f7d28059fd55e92d3171401c7dacbe12b293e68674581d67a7b1456f30601ca"
+      },
+      {
+        "file": "test-results/compiler-parent-watch-runtime.log",
+        "bytes": 887,
+        "sha256": "941a3c29e0f9277f6899158c49742dbec6ca08d9e68d3d85755f8a6a019a9929"
+      },
+      {
+        "file": "test-results/compiler-parent-watch-chat.log",
+        "bytes": 1558,
+        "sha256": "e1c4dc8f9bc9d279aed5e68014d22e2432eda867b9b4c6d8dac271c573cea84c"
+      }
+    ]
+  },
+  "realBibliographyCrash": {
+    "original": {
+      "record": {
+        "file": "/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/compiler-parent-death-GekKMY/result.json",
+        "bytes": 1376,
+        "sha256": "36d180f28f3a003bc6c9404b459564687402e80e08464684fefd7e395620a2ed"
+      },
+      "groupAliveAt500ms": true,
+      "diagnosticKilledOwnedGroup": true
+    },
+    "candidate": {
+      "record": {
+        "file": "/Users/grawish/.codex/worktrees/compiler-crash-cleanup/resume-maker/test-results/compiler-parent-death-gTpWov/result.json",
+        "bytes": 1401,
+        "sha256": "d4081f6aada5c37ad8868a132549bc6aba11dffc5eb27d5d2ac45d454a6d28f1"
+      },
+      "groupAliveAt500ms": false,
+      "diagnosticKillRequired": false,
+      "temporaryJobRemains": true
+    },
+    "scope": "One real offline bibliography build per variant; the owning Node process is killed after the Biber marker, and its verified detached compiler group is checked after 500 ms. This is not an upper-bound timing claim, complete Electron crash or physical power-loss test."
+  },
+  "package": {
+    "app": "release/compiler-parent-watch/mac-arm64/Folio.app",
+    "asarSha256": "399877e66f3259d023a91ec2c6153715641a20016b200febbf6f4dcc08886bc3",
+    "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+    "outputs": [
+      {
+        "file": "dist/assets/index-BQANPEwY.js",
+        "bytes": 1207317,
+        "sha256": "4a0c9113d3fc899e662612ecbe71a6408c14332657e1e8b8df0730c0fc2dfe5f"
+      },
+      {
+        "file": "dist/assets/index-Dr0quaB-.css",
+        "bytes": 65441,
+        "sha256": "c472afb89d685671b5e0940202b28b45dcd1e65ab95ac6fa20d695789992e489"
+      },
+      {
+        "file": "dist/assets/jetbrains-mono-italic-cyrillic-CY-YXjkl.woff2",
+        "bytes": 5920,
+        "sha256": "a79035476e5f8408e7f2b2599dfd50b7262862ecb853e028ba7b4a00bed16e73"
+      },
+      {
+        "file": "dist/assets/jetbrains-mono-italic-greek-CoTSRNcy.woff2",
+        "bytes": 4416,
+        "sha256": "44ca7e27fef33e684d50e1009d0b886b83d4783e383223e7b13e173a623db0d3"
+      },
+      {
+        "file": "dist/assets/jetbrains-mono-italic-latin-BW896jpM.woff2",
+        "bytes": 22228,
+        "sha256": "00ba27973ba2965d3e7e03ee0f2c66491956cda2ecf8cc6066c969696577f47b"
+      },
+      {
+        "file": "dist/assets/jetbrains-mono-italic-latin-ext-C5V3_1R8.woff2",
+        "bytes": 8032,
+        "sha256": "31434d4924e83d1c6bf10136077f96d0c541226301ba98a583b14bded0576a75"
+      },
+      {
+        "file": "dist/assets/jetbrains-mono-italic-vietnamese-DP5VCyMl.woff2",
+        "bytes": 4164,
+        "sha256": "9c54e21b500492314341e2041e23cf141d43a0c102bca07a7fe281f487eec5f6"
+      },
+      {
+        "file": "dist/assets/jetbrains-mono-normal-cyrillic-D0W76x1T.woff2",
+        "bytes": 5324,
+        "sha256": "4188276a58108d04eb0c6f5b8c9e4b5ac2d9e31e81b2b4fa7da263b92f1b35c3"
+      },
+      {
+        "file": "dist/assets/jetbrains-mono-normal-greek-FADJ2lFV.woff2",
+        "bytes": 4300,
+        "sha256": "0164d0c055dced93435b1d6c2986db2fb7d068ce21950c85b776695f56238b8a"
+      },
+      {
+        "file": "dist/assets/jetbrains-mono-normal-latin-RruCX7RW.woff2",
+        "bytes": 21212,
+        "sha256": "d3dcdccdaba31643defe2317942155d4af3ee03951d058adbe8bc02b13e61b0a"
+      },
+      {
+        "file": "dist/assets/jetbrains-mono-normal-latin-ext-e2G1hK0J.woff2",
+        "bytes": 7368,
+        "sha256": "d5f407e28185790518c49ec8738fa89916ddc99f793010d249165d0e2c2452cc"
+      },
+      {
+        "file": "dist/assets/manrope-normal-cyrillic-DJ9PYDpy.woff2",
+        "bytes": 14544,
+        "sha256": "95a493061fe0a8d0d027c2892747134ba747141112d3be4d5022e70ab7d3a1a6"
+      },
+      {
+        "file": "dist/assets/manrope-normal-greek-vbHvg7sP.woff2",
+        "bytes": 9360,
+        "sha256": "40af11327fe5308166c6cb5787808b042db6da889abf602f0a4876c49675d87e"
+      },
+      {
+        "file": "dist/assets/manrope-normal-latin-C46ZzDBF.woff2",
+        "bytes": 24576,
+        "sha256": "e310b55a7fd9677f5e3555e6c6c4d064fa1f1d24393f0ddbe217cea12a8c432f"
+      },
+      {
+        "file": "dist/assets/manrope-normal-latin-ext-CDracvZH.woff2",
+        "bytes": 15240,
+        "sha256": "ce093b341d9c10658ee1eaa85c5f8042ff3307bc6ccfc5f405616eb437f0009e"
+      },
+      {
+        "file": "dist/assets/manrope-normal-vietnamese-C9-d800b.woff2",
+        "bytes": 8492,
+        "sha256": "bab757f8a0a1bc04055ee98cb5777f3254aab11f6d222366e1f40a36f390506a"
+      },
+      {
+        "file": "dist/assets/pdf.worker.min-Dswkl-cV.mjs",
+        "bytes": 1265413,
+        "sha256": "8ab0e5e30031b4a06ecfddd5ae9562f0227f830ee7ec9ed1a968b134243d2386"
+      },
+      {
+        "file": "dist/index.html",
+        "bytes": 711,
+        "sha256": "b00611694c1f5d9008d4b814fe26ce7bac4b8fda8ded7f139edf15938714e93e"
+      },
+      {
+        "file": "dist/licenses/JetBrains-Mono-OFL.txt",
+        "bytes": 4399,
+        "sha256": "b2fe5e8987594e9ffd1d2ca52a2f5d73eb8335243893c5d6254b5ad69269591d"
+      },
+      {
+        "file": "dist/licenses/Manrope-OFL.txt",
+        "bytes": 4387,
+        "sha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b"
+      },
+      {
+        "file": "dist/templates/academic-a4.png",
+        "bytes": 119388,
+        "sha256": "e149b33dc14f9bb99469b5dc9b39cf0f698de720894af8f9ef2bd74d31f1115d"
+      },
+      {
+        "file": "dist/templates/academic-letter.png",
+        "bytes": 137223,
+        "sha256": "1fb69ee0e825acb916781022f7bb5e65576f7911b7fb08d34009aa21b60964e0"
+      },
+      {
+        "file": "dist/templates/classic-a4.png",
+        "bytes": 149297,
+        "sha256": "38f95f3b25a51669105de7efdba08fe5b2633e7f7fde5ee15c3057862551fee3"
+      },
+      {
+        "file": "dist/templates/classic-letter.png",
+        "bytes": 160209,
+        "sha256": "5e3ef1114cd3c728118e01c4161722b5c2a3a5e27a058f43f6bb5b825023c8ee"
+      },
+      {
+        "file": "dist/templates/compact-technical-a4.png",
+        "bytes": 142247,
+        "sha256": "5878085cef410ee1b1463c0b71de8ebb48fc845899aed90d7b52c16ee577fc51"
+      },
+      {
+        "file": "dist/templates/compact-technical-letter.png",
+        "bytes": 146627,
+        "sha256": "9fcc6a929547407948a5a23fe9d481bb197f20e195c7bbae2af125fb75e34a3a"
+      },
+      {
+        "file": "dist/templates/manifest.json",
+        "bytes": 9229,
+        "sha256": "db231613ba3b1a69e01ffd5a111422874736d51d9b8f6509de7c71511b4a4a86"
+      },
+      {
+        "file": "dist/templates/minimal-a4.png",
+        "bytes": 107643,
+        "sha256": "9bb702aae1e721255a0632010a22a82bcb283a49b16b6ce8bfbe74a99ef48353"
+      },
+      {
+        "file": "dist/templates/minimal-letter.png",
+        "bytes": 123606,
+        "sha256": "10bfd6c692eac97a9e25bc2361d0113d43584069a05c3af4fbef64ad78cfb368"
+      },
+      {
+        "file": "dist/templates/modern-a4.png",
+        "bytes": 96543,
+        "sha256": "bd6a55401f8642fcf375c18fe952d7ff2185635c7fa4ece24c7be3e157515b41"
+      },
+      {
+        "file": "dist/templates/modern-letter.png",
+        "bytes": 101419,
+        "sha256": "99062be87eabf30184d937ea0ceef3768387beb81cd850110ce335819d5474a0"
+      },
+      {
+        "file": "dist/templates/two-column-a4.png",
+        "bytes": 100386,
+        "sha256": "b7cca2c36d149da1af024d1095801051817084c536724f2f5c7d68f75e3cc348"
+      },
+      {
+        "file": "dist/templates/two-column-letter.png",
+        "bytes": 104351,
+        "sha256": "d23fb748c48033f314d40fac502c42953d9003e478ec2360144e55da68c19802"
+      },
+      {
+        "file": "dist-electron/history-zip-worker.cjs",
+        "bytes": 75678,
+        "sha256": "55ff7d812d2eafe2e725dd48f45cbd815ed610bec2168bd449627c76359f7694"
+      },
+      {
+        "file": "dist-electron/history-zip-worker.cjs.map",
+        "bytes": 161918,
+        "sha256": "57f93bf7d08246dc3dd4d5adb013da67ed95acb53aca46f127f5e913cc965bee"
+      },
+      {
+        "file": "dist-electron/main.cjs",
+        "bytes": 1042576,
+        "sha256": "804bdad0836a2cb3e69fdc2f888ef5827ecdf24ed5adfafa5dcddd4b65547051"
+      },
+      {
+        "file": "dist-electron/main.cjs.map",
+        "bytes": 1930131,
+        "sha256": "b82e074a76f5e8bda626aa82226c3758fa7386a383c1319b6d836f13ad66de0a"
+      },
+      {
+        "file": "dist-electron/preload.cjs",
+        "bytes": 9375,
+        "sha256": "3b7e957f0143c2bf9df760f8614a154f0499fceecbdb9a2d2b52d8c9f27306fa"
+      },
+      {
+        "file": "dist-electron/preload.cjs.map",
+        "bytes": 13695,
+        "sha256": "6a4af797f70656319fdd158c186b8df53fe0f2f7b7812ca9fb27468ae1f02d61"
+      }
+    ],
+    "scripts": [
+      {
+        "file": "scripts/test-chat.mjs",
+        "bytes": 36762,
+        "sha256": "ecc8c229f5792aefd47b860c7ff318c3bd60962972da2f57be4f9e7a454cd095"
+      },
+      {
+        "file": "scripts/test-runtime.mjs",
+        "bytes": 24029,
+        "sha256": "e44b3e00eb4e5b9d67b66f551ff5c3b11509f076d9bffa975e61a78ad1b8fb06"
+      }
+    ]
+  },
+  "nativeEvidence": {
+    "runtime": {
+      "file": "/Users/grawish/.codex/worktrees/compiler-crash-cleanup/resume-maker/test-results/runtime-LRMVSb/result.json",
+      "bytes": 2864,
+      "sha256": "7ce8d10c0e969c5ebf4a0912821803155fadd34f851c32d88b2a8845afc368a9"
+    },
+    "chatLifecycle": {
+      "file": "/Users/grawish/.codex/worktrees/compiler-crash-cleanup/resume-maker/test-results/chat-mEqMUb/lifecycle.json",
+      "bytes": 3698,
+      "sha256": "d3aaeac492d85047d3c2856e67390375b8a5552d098193f9dd4493114317478e"
+    }
+  },
+  "fullHostedQualification": {
+    "runId": 36343157418,
+    "url": "https://github.com/grawish/folio/actions/runs/36343157418",
+    "commit": "909c0eec6285eee064c90fa1449703e61103e625",
+    "statusAtPublication": "success",
+    "verification": "docs/releases/mac-compiler-parent-watch-hosted.json",
+    "retainedArtifactFilesVerified": 146
+  },
+  "scope": "One idle shell watcher and one private parent connection per production compiler launch; process death and normal completion stop the compiler group. Existing sandbox, resource limits and stale-PDF protections remain. Ordinary finally cleanup is unchanged. The initial string-substitution prototype was not sufficient proof; the committed native controls detect the original missing-watchdog behavior and pass against these exact sources.",
+  "remaining": [
+    "Safe ownership-based cleanup of abandoned build folders; active and unrecognized data must be preserved.",
+    "Whole-app memory, CPU, process and disk budgets, cache/history retention and broader supported-Mac acceptance.",
+    "Complete Electron crash and power-loss recovery; production signing/notarization, real BYOK and complete binary redistribution."
+  ],
+  "productionReleaseQualified": false,
+  "publicPreviewInstallerChanged": false
+}
