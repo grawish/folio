@@ -269,11 +269,18 @@ try {
   await oldRow.getByRole('button', { name: 'Remove…', exact: true }).click();
   await expect(page.getByRole('alert')).toContainText('Compiler files changed');
   await fs.access(oldRoot);
-  await app.evaluate(({ dialog }) => {
-    dialog.showMessageBox = async () => ({ response: 1, checkboxChecked: false });
-  });
+  // A user confirmation and the subsequent inventory refresh are asynchronous.
+  // Keep the confirmation open beyond Playwright's default five-second matcher
+  // timeout, then require the real removal and refreshed UI to finish.
+  const storageConfirmationDelayMs = 6000;
+  await app.evaluate(({ dialog }, delayMs) => {
+    dialog.showMessageBox = async () => {
+      await new Promise((resolve) => setTimeout(resolve, delayMs));
+      return { response: 1, checkboxChecked: false };
+    };
+  }, storageConfirmationDelayMs);
   await oldRow.getByRole('button', { name: 'Remove…', exact: true }).click();
-  await expect(oldRow).toHaveCount(0);
+  await expect(oldRow).toHaveCount(0, { timeout: 60_000 });
   await expect(page.getByRole('status')).toContainText('Compiler files removed');
   await expect(fs.access(oldRoot)).rejects.toThrow();
   await expect(includedRow.getByRole('button', { name: 'Remove…', exact: true })).toBeDisabled();
@@ -425,6 +432,7 @@ try {
         retainedDraft: true,
         compilerStorage: {
           storageReviewMs,
+          storageConfirmationDelayMs,
           before: compilerStorageBefore,
           after: compilerStorageAfter,
           cancelledRemoval: true,
