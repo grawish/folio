@@ -38,7 +38,8 @@ def verify(data, entry):
 def source_url(url):
     patterns = [r'https://ftp\.math\.utah\.edu/pub/tex/historic/systems/texlive/2021/tlnet-final/(archive/[a-z0-9.-]+\.tar\.xz|tlpkg/texlive\.tlpdb\.xz)',
                 r'https://codeload\.github\.com/FortAwesome/Font-Awesome/tar\.gz/[a-f0-9]{40}',
-                r'https://raw\.githubusercontent\.com/spdx/license-list-data/[a-f0-9]{40}/text/OFL-1\.1\.txt',
+                r'https://raw\.githubusercontent\.com/spdx/license-list-data/[a-f0-9]{40}/text/(OFL-1\.1|Apache-2\.0|GPL-3\.0-only|LGPL-2\.1-only|MPL-1\.1)\.txt',
+                r'https://codeload\.github\.com/tectonic-typesetting/tectonic-texlive-bundles/tar\.gz/[a-f0-9]{40}',
                 r'https://www\.latex-project\.org/lppl/lppl-1-3c\.txt']
     if not any(re.fullmatch(p, url) for p in patterns): raise ValueError('Unreviewed source URL')
     return url
@@ -100,12 +101,12 @@ def verify_package(data, source, records):
     fields = {}
     for line in block.decode().splitlines():
         key, _, value = line.partition(' ')
-        if key in ['name','revision','catalogue-license','containersize','containerchecksum','doccontainersize','doccontainerchecksum']:
+        if key in ['name','revision','catalogue-license','containersize','containerchecksum','doccontainersize','doccontainerchecksum','srccontainersize','srccontainerchecksum']:
             if key in fields: raise ValueError('Duplicate publisher checksum field')
             fields[key] = value
     prefix = source['containerPrefix']
-    if (prefix not in ['', 'doc'] or fields['name'] != source['package'] or
-        int(fields['revision']) != source['revision'] or fields['catalogue-license'] != source['declaredLicense'] or
+    if (prefix not in ['', 'doc', 'src'] or fields['name'] != source['package'] or
+        int(fields['revision']) != source['revision'] or fields.get('catalogue-license') != source['declaredLicense'] or
         int(fields[prefix + 'containersize']) != len(data) or
         fields[prefix + 'containerchecksum'] != source['publisherSha512'] or
         hashlib.sha512(data).hexdigest() != source['publisherSha512']):

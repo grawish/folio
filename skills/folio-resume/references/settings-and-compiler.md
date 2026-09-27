@@ -109,3 +109,14 @@ Current development builds include the original font licenses inside the app. Th
 4. Read **README.md** to find the notice for each font family.
 
 The notice files keep their original wording. Folio's noncommercial license does not replace the fonts' own licenses. See [licensing](https://github.com/grawish/folio/blob/main/docs/LICENSING.md) for the complete scope and source links.
+
+## Read the included TeX notices
+
+Current development builds also have a **tex-resource-notices** folder beside **tex-font-notices**. The older preview-4 download does not include this new folder.
+
+1. In Finder, right-click **Folio.app** and choose **Show Package Contents**.
+2. Open **Contents → Resources → tex-resource-notices**.
+3. Read **README.md** for the guide. The other notice files keep the authors' original wording.
+4. **SOURCES.json** lists source links and file checksums for people who want to check the included TeX files.
+
+These are the terms for the tools and resources that help make PDFs. Folio's own noncommercial license does not replace them. The [licensing guide](https://github.com/grawish/folio/blob/main/docs/LICENSING.md#collect-and-bundle-tex-resource-notices) explains which parts of the release review are still unfinished.

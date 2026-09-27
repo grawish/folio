@@ -7,10 +7,18 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 const digest = (bytes: Uint8Array) => createHash('sha256').update(bytes).digest('hex');
 
 export async function verifyTexFontNotices(directory: string) {
-  const lockBytes = await fs.readFile(path.join(root, 'resources/tex-font-sources.lock.json'));
+  return verifyTexNotices(directory, 'font');
+}
+
+export async function verifyTexResourceNotices(directory: string) {
+  return verifyTexNotices(directory, 'resource');
+}
+
+async function verifyTexNotices(directory: string, kind: 'font' | 'resource') {
+  const lockBytes = await fs.readFile(path.join(root, `resources/tex-${kind}-sources.lock.json`));
   const lock = JSON.parse(lockBytes.toString());
   if (lock.schemaVersion !== 1 || !Array.isArray(lock.noticeFiles))
-    throw new Error('Invalid font notice lock.');
+    throw new Error(`Invalid ${kind} notice lock.`);
   const expected = new Map<string, { bytes: number; sha256: string }>();
   for (const entry of lock.noticeFiles) {
     if (
@@ -22,24 +30,28 @@ export async function verifyTexFontNotices(directory: string) {
       entry.bytes > 1024 * 1024 ||
       !/^[a-f0-9]{64}$/.test(entry.sha256)
     )
-      throw new Error('Invalid font notice record.');
+      throw new Error(`Invalid ${kind} notice record.`);
     expected.set(entry.file, entry);
   }
-  const readme = await fs.readFile(path.join(root, 'resources/tex-font-notices/README.md'));
-  expected.set('README.md', { bytes: readme.length, sha256: digest(readme) });
+  for (const filename of kind === 'font' ? ['README.md'] : ['README.md', 'SOURCES.json']) {
+    const bytes = await fs.readFile(path.join(root, `resources/tex-${kind}-notices`, filename));
+    expected.set(filename, { bytes: bytes.length, sha256: digest(bytes) });
+  }
   const state = await fs.lstat(directory);
   if (!state.isDirectory() || state.isSymbolicLink())
-    throw new Error('Linked font notice directory.');
+    throw new Error(`Linked ${kind} notice directory.`);
   const entries = await fs.readdir(directory, { withFileTypes: true });
-  if (entries.length !== expected.size) throw new Error('Incomplete or unexpected font notices.');
+  if (entries.length !== expected.size)
+    throw new Error(`Incomplete or unexpected ${kind} notices.`);
   const records = [];
   for (const entry of entries.sort((a, b) => a.name.localeCompare(b.name))) {
     const reference = expected.get(entry.name);
     const stat = await fs.lstat(path.join(directory, entry.name));
     if (!reference || !stat.isFile() || stat.isSymbolicLink() || stat.size !== reference.bytes)
-      throw new Error(`Missing, linked or changed font notice: ${entry.name}`);
+      throw new Error(`Missing, linked or changed ${kind} notice: ${entry.name}`);
     const bytes = await fs.readFile(path.join(directory, entry.name));
-    if (digest(bytes) !== reference.sha256) throw new Error(`Changed font notice: ${entry.name}`);
+    if (digest(bytes) !== reference.sha256)
+      throw new Error(`Changed ${kind} notice: ${entry.name}`);
     records.push({ path: entry.name, bytes: bytes.length, sha256: reference.sha256 });
   }
   return {

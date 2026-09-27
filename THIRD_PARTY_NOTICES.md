@@ -35,6 +35,8 @@ runtime.
 
 Current development packages also include `Contents/Resources/tex-font-notices/`: fifteen unchanged font copyright, license, README and manifest files, plus a source guide. All 63 included compiler font binaries and 48 matching support files map exactly to retained TeX Live distributions. The collector verifies the publisher’s archive checksums; full original archives remain available at the pinned source URLs. See [font materials and verification](docs/LICENSING.md#collect-and-bundle-compiler-font-notices). This does not complete the remaining TeX/native application audit or alter the older preview-4 download.
 
+Current development packages include `Contents/Resources/tex-resource-notices/` with 102 unchanged TeX notice, license, README, author and manifest files, plus source guides. 402 non-font resources match verified original distribution files, including Tectonic's two patched LaTeX files. Together with the font mapping, 513 of 516 resources have exact source matches. Original per-file terms remain in the runtime bundle. Three generated configuration files, full source distribution and the wider release audit remain open; see [TeX resource materials](docs/LICENSING.md#collect-and-bundle-tex-resource-notices).
+
 The six resume templates are original sample content for this project. All names, organizations, achievements, and
 contact details in them are illustrative.
 
