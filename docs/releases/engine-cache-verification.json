@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "verifiedAt": "2026-09-27T23:31:03.290500+00:00",
   "implementationCommit": "4b6b16f0f67152cbd2f31baa342912d279060b12",
-  "status": "Final source, focused and packaged cache checks pass. Full integration rerun and hosted qualification pending.",
+  "status": "Final source, focused controls, all compiler integrations and packaged cache checks pass; full hosted qualification remains pending.",
   "sourceTestsPassed": 437,
   "focusedTestsPassed": 10,
-  "finalFullIntegrationStatus": "in progress in retained engine-cache-complete-integration.log",
+  "finalFullIntegrationStatus": "passed",
   "earlierIntegrationTestsPassed": 19,
   "earlierIntegrationScope": "Initial candidate before empty-directory admission/depth corrections; not qualification of the final exact source.",
   "nativeCache": {
@@ -185,5 +185,11 @@
       "bytes": 58217,
       "sha256": "c64c561d6b9c4676b7e77b327e6d031d1c160de549eb169cd91aab9f74059d7c"
     }
-  ]
+  ],
+  "finalCompilerIntegrationTestsPassed": 19,
+  "finalIntegrationLog": {
+    "file": "test-results/engine-cache-complete-integration.log",
+    "bytes": 2816,
+    "sha256": "ae1cfb1ed9164f802c097d16a86346d9447c2bee67cc3c82a0e10ff0514f6dd2"
+  }
 }
