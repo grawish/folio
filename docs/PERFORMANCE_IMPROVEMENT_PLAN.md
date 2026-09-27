@@ -2,6 +2,26 @@
 
 Measured 26–27 September 2026. The largest measured delays are first-time runtime preparation and repeated runtime verification. This report contains backend and packaged-app measurements with a prioritized plan. It does not claim that every app workflow or the plan's reference-device budgets have passed.
 
+## One live Claude edit with PDF review
+
+The [27 September live verification](releases/claude-live-verification.json) measures a real subscription request in the source-built app at `6bd235f`. A box and note on page two ask to change only “Projects” to “Selected Projects.” The compiler is already prepared, and the initial document has already been built. Claude Code 2.1.282 uses the `sonnet` alias and returns `claude-sonnet-5`.
+
+| Stage reported by the app | Time |
+| --- | ---: |
+| Agent setup | 0.112 s |
+| Provider edit request | 3.981 s |
+| Local compilation | 2.006 s |
+| Candidate PDF rendering | 0.129 s |
+| Provider visual review | 4.043 s |
+| Complete recorded agent execution | 10.361 s |
+| Send through the test's verified result observation | 11.109 s |
+
+The recorded stage sum is 10.273 s; the total also includes about 0.088 s outside those stage timers. The test observation includes UI/IPC work and a one-second polling interval, so its extra time is not an isolated UI-latency measurement. Saving, export, reopening, first-time compiler preparation and the separate Settings image check are outside that chat interval.
+
+The two provider calls account for about 77% of this execution. Measure them separately across repeated requests before changing the routing policy; check that any faster model still preserves exact edits and completes PDF review. Local compilation is the next largest measured stage. Keep the integrity checks and investigate the runtime-verification experiments below. Do not skip visual review for PDF notes to meet a speed target.
+
+This is one successful complete workflow on one development Mac/account, not a median, p95, model comparison or performance guarantee. Two earlier attempts completed the live edit but failed test-harness restart assertions; they are retained separately and excluded from this complete-workflow result. No production code changed for this measurement.
+
 ## Reproduce the baseline
 
 ```sh

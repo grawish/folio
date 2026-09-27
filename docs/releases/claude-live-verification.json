@@ -1,0 +1,197 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-27T13:59:50.902Z",
+  "passed": true,
+  "applicationInputsChanged": false,
+  "nativeWorkflow": {
+    "schemaVersion": 1,
+    "checkedAt": "2026-09-27T13:59:50.902Z",
+    "passed": true,
+    "sourceCommit": "6bd235f19a4e927c5cbc79a06c4cdb8ec003c84f",
+    "scriptSha256": "3412333354a30276ec49a362c31b4f3402c624eaa1e42ce23354ea4446ac3a80",
+    "applicationSources": [
+      {
+        "file": "electron/core/ai-provider.ts",
+        "sha256": "5de8ae90597807f948f0573bd8553d0461d91ac04e00a520af6864df47891116"
+      },
+      {
+        "file": "electron/core/ai-process.ts",
+        "sha256": "19e58f2377bb55506d8f28e6b14fe75f979c4f1be312235f919ff8b04f47f8fb"
+      },
+      {
+        "file": "electron/core/agent.ts",
+        "sha256": "1c2c0d652660a86ee80dce105ae0045e8931e06dc8e422a6bb739da904812729"
+      },
+      {
+        "file": "electron/core/ai-edits.ts",
+        "sha256": "dfca533978bbc48b275010b3d5d19563ef422bd1aefaba2e4984e238ae48b446"
+      },
+      {
+        "file": "electron/core/connections.ts",
+        "sha256": "4eafe07f82278305657330ba68c1a7cdd3c2926c64b1e97197cdc6772aa66d24"
+      }
+    ],
+    "input": "Fresh source build with isolated app data",
+    "liveAI": true,
+    "provider": "claude-code",
+    "configuredModel": "sonnet",
+    "apiKeyUsed": false,
+    "syntheticOnly": true,
+    "sourceSha256": "db3e3e66cc0c52e8f8601c71c8ee0f507f390f99c5a51428a0131b545c310cf3",
+    "expectedSourceSha256": "0e5bce5154a3a9043ee3ac3e4db48ac319c9ba0b2cd4f00448b75fc27efae618",
+    "exportPdfSha256": "bb2200006180ea5ce40b46def6d8d26588104f1c54b3f7bc5d6e53971cd387fc",
+    "execution": {
+      "models": [
+        "claude-sonnet-5"
+      ],
+      "escalated": false,
+      "validation": "visual",
+      "timings": {
+        "setup": 111.90358299999934,
+        "inference": 3981.440125000001,
+        "compile": 2006.3662499999991,
+        "render": 128.91900100000203,
+        "review": 4042.957040999987,
+        "total": 10361.174291999996
+      }
+    },
+    "stages": [
+      {
+        "at": "2026-09-27T13:59:28.483Z",
+        "name": "source-app-ready"
+      },
+      {
+        "at": "2026-09-27T13:59:34.757Z",
+        "name": "settings-subscription-image-check-passed"
+      },
+      {
+        "at": "2026-09-27T13:59:35.574Z",
+        "name": "synthetic-page-two-note-attached"
+      },
+      {
+        "at": "2026-09-27T13:59:46.683Z",
+        "name": "real-edit-compile-visual-review-passed",
+        "elapsedMs": 11108.771834000006,
+        "execution": {
+          "models": [
+            "claude-sonnet-5"
+          ],
+          "escalated": false,
+          "validation": "visual",
+          "timings": {
+            "setup": 111.90358299999934,
+            "inference": 3981.440125000001,
+            "compile": 2006.3662499999991,
+            "render": 128.91900100000203,
+            "review": 4042.957040999987,
+            "total": 10361.174291999996
+          }
+        }
+      },
+      {
+        "at": "2026-09-27T13:59:46.995Z",
+        "name": "source-saved-and-exact-pdf-exported"
+      },
+      {
+        "at": "2026-09-27T13:59:50.902Z",
+        "name": "saved-source-and-conversation-reopened"
+      }
+    ],
+    "screenshots": [
+      {
+        "file": "settings.png",
+        "bytes": 126592,
+        "sha256": "a70a8335f3f5b2223214367e13c85139a57b25a0962243618d1e349d314d638b"
+      },
+      {
+        "file": "annotation.png",
+        "bytes": 109160,
+        "sha256": "18863f4734bdda1baf18e3955c5f4bbbf0300acb4b82f3af082e92699eea4d05"
+      },
+      {
+        "file": "completed-chat.png",
+        "bytes": 103466,
+        "sha256": "e5a584c100144c723af301b5755573ec26ec39a1ee0105d90abfa404c07aba3c"
+      },
+      {
+        "file": "reopened.png",
+        "bytes": 111417,
+        "sha256": "4470c2f0261716ba8e8de7fa5de5d5836ffb6131617edd7427f6547f542f35b5"
+      }
+    ],
+    "errors": [],
+    "scope": "One real subscription workflow: Settings connection and image check, page-two visual note, exact source edit, local compilation, visual review, save, matching PDF export and reopen. Does not establish every model/account or signed-package/platform acceptance."
+  },
+  "installedCommandCheck": {
+    "checkedAt": "2026-09-27T13:48:20.003Z",
+    "passed": true,
+    "version": "2.1.282 (Claude Code)",
+    "subscriptionReady": true,
+    "imageSupportVerified": true,
+    "visionState": "verified",
+    "apiKeyUsed": false,
+    "syntheticImageOnly": true,
+    "elapsedMs": 4269.525167,
+    "retainedReportSha256": "e9ac88a25a00525268a016e3724c76ac9abd2575eb6cffdb408735b990e069b9"
+  },
+  "independentChecks": {
+    "passed": true,
+    "sourceFilesMatchRecordedCommit": true,
+    "testScriptMatchesRecordedHash": true,
+    "allFourScreenshotsMatch": true,
+    "savedSourceMatchesExpectedSource": true,
+    "savedVerifiedHistorySourceMatchesDisk": true,
+    "exportMatchesSavedVerifiedHistoryPdf": true,
+    "savedConversationAndPageTwoNoteMatch": true
+  },
+  "publishedScreenshots": [
+    {
+      "file": "docs/images/claude-live-settings.png",
+      "captureFile": "settings.png",
+      "bytes": 126592,
+      "sha256": "a70a8335f3f5b2223214367e13c85139a57b25a0962243618d1e349d314d638b"
+    },
+    {
+      "file": "docs/images/claude-live-annotation.png",
+      "captureFile": "annotation.png",
+      "bytes": 109160,
+      "sha256": "18863f4734bdda1baf18e3955c5f4bbbf0300acb4b82f3af082e92699eea4d05"
+    },
+    {
+      "file": "docs/images/claude-live-completed.png",
+      "captureFile": "completed-chat.png",
+      "bytes": 103466,
+      "sha256": "e5a584c100144c723af301b5755573ec26ec39a1ee0105d90abfa404c07aba3c"
+    }
+  ],
+  "retainedNativeReportSha256": "683ba8c03f4595194839426dec12b2bd866ad9bd0568bd18b7610740ff0f889d",
+  "buildLogSha256": "a940f4fa8b263479c7356f9cca1a62d8fe10d6ac549b76dd2698b5951a31284c",
+  "earlierHarnessFailures": [
+    {
+      "retainedFile": "test-results/claude-native-ZaXwDc/failure.json",
+      "sha256": "6747de2f15be00330008aedd7bb7b041ff3ec93d11ec3a6294c36cccad5ec99d",
+      "passed": false,
+      "reason": "The harness disabled automatic compilation, then incorrectly waited for an automatic rebuild on restart. It also closed before waiting for the completed save. The live edit, compilation, visual review and PDF export passed; this was not a complete workflow pass."
+    },
+    {
+      "retainedFile": "test-results/claude-native-ImAZ4K/failure.json",
+      "sha256": "ffd09b4b593045348df2ecbdd80cea362fc0fadd3fb8ea76227949bc034a8bf3",
+      "passed": false,
+      "reason": "The harness read CodeMirror textContent, which omits line breaks between editor rows. Exact saved source and the live edit passed; the restart assertion failed. The final harness uses innerText for that UI comparison and retains exact disk/history checks."
+    }
+  ],
+  "scope": {
+    "completedWorkflows": 1,
+    "testCommand": "npm run build && node scripts/test-live-claude.mjs --live",
+    "liveProviderRequests": true,
+    "apiKeyUsed": false,
+    "syntheticResumeOnly": true,
+    "nativeDialogChoicesIntercepted": true,
+    "providerResponsesOrCompilerResultsMocked": false,
+    "ciRunsLiveInference": false,
+    "signedPackageQualification": false,
+    "allAccountsOrModelsQualified": false,
+    "realByokAcceptance": false,
+    "populationP95Claim": false
+  }
+}

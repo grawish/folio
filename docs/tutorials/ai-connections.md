@@ -25,7 +25,25 @@ Follow the same steps, choosing **Claude Code subscription** instead. The instal
 
 ![Claude Code connection form](../images/connection-claude-code.png)
 
-The adapter and local protocol tests exist. Live signed-in Claude acceptance is still on the release checklist; this form screenshot does not establish it.
+This form is an empty setup example. The separate live test below uses a signed-in Claude Code subscription.
+
+### Try a PDF note with Claude Code
+
+1. Select your Claude Code connection in **Settings** and choose **Test image support**. Wait for **Image support verified**.
+2. Close Settings. Open a small sample resume and wait for **Up to date** beside the PDF.
+3. Use **Box an area** to mark a heading. Write a clear note, such as “Change Projects to Selected Projects. Keep everything else unchanged.” Choose **Save note**.
+4. Choose **Attach 1 to chat**, explain the change in Chat, then choose **Send**.
+5. Wait for **Visually checked**. Read the changed PDF yourself, then choose **Save** and wait for **Saved locally**. Use **Export PDF** for a clean copy.
+
+![Claude Code selected in Settings with image support verified](../images/claude-live-settings.png)
+
+![A note around the Projects heading on page two, attached to Chat](../images/claude-live-annotation.png)
+
+![The real Claude response and the changed Selected Projects heading](../images/claude-live-completed.png)
+
+On 27 September 2026, this workflow passed in the source-built Mac app with installed Claude Code 2.1.282, the `sonnet` alias, and the returned model identifier `claude-sonnet-5`. Only a made-up two-page document was sent. The check confirmed the exact heading-only source change, local compilation, visual review, matching PDF export and saved source/conversation after reopening. It used the existing subscription and no API key. See the [verification record](../releases/claude-live-verification.json).
+
+This is one account and one model workflow. It does not verify every account, model, macOS version or signed installer. Image checks and chats use your provider allowance. If automatic compilation is off, choose **Compile** after reopening to rebuild the preview.
 
 ## Bring your own API key
 
@@ -64,4 +82,4 @@ Select a different connection's radio button in Settings. The change applies to 
 
 If a check fails, read its message, confirm the command or endpoint, and check your provider account. Do not repeatedly send paid requests to diagnose a typo. A successful connection check is separate from a successful image-support test.
 
-**Demo:** `npm run demo:capture` captures these real forms with no credentials. `npm run test:chat` exercises a local custom-provider fixture. Neither command proves live account eligibility.
+**Demos:** `npm run demo:capture` captures the empty forms. `npm run test:chat` uses a local provider fixture. To repeat the separate live Claude test after building, run `node scripts/test-live-claude.mjs --live` on a Mac with Claude Code already signed in. This opt-in command sends its synthetic document and PDF images and consumes provider usage; it is not run in CI.

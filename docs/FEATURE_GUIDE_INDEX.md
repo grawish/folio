@@ -1,6 +1,6 @@
 # Feature tutorials and screenshot demos
 
-Every currently implemented feature group below has a plain-language walkthrough and a real-app screenshot demo. Use the linked native suites for reproducible behavior checks. The demos identify scripted AI and synthetic failure states; they do not claim live subscription/API acceptance or completion of planned features.
+Every currently implemented feature group below has a plain-language walkthrough and a real-app screenshot demo. Use the linked native suites for reproducible behavior checks. Each demo identifies whether it uses scripted AI, an empty connection form or a real subscription. The Claude PDF-note demo verifies one live workflow with a synthetic resume; other screenshots do not imply live account acceptance or completion of planned features.
 
 | Feature | Tutorial | Screenshot demo |
 | --- | --- | --- |
@@ -9,7 +9,8 @@ Every currently implemented feature group below has a plain-language walkthrough
 | Templates and paper size | [Walkthrough](tutorials/first-resume.md) | [Screenshot](images/templates.png) · Real app · synthetic project |
 | Chat and agent progress | [Walkthrough](tutorials/chat-and-feedback.md) | [Screenshot](images/chat-workspace.png) · Real app · scripted local AI fixture |
 | Codex subscription | [Walkthrough](tutorials/ai-connections.md) | [Screenshot](images/connection-codex.png) · Real form · no connected account |
-| Claude Code subscription | [Walkthrough](tutorials/ai-connections.md) | [Screenshot](images/connection-claude-code.png) · Real form · no connected account |
+| Claude Code subscription setup | [Walkthrough](tutorials/ai-connections.md) | [Screenshot](images/connection-claude-code.png) · Real form · no connected account |
+| Live Claude PDF feedback | [Walkthrough](tutorials/ai-connections.md#try-a-pdf-note-with-claude-code) | [Screenshot](images/claude-live-completed.png) · Real subscription · synthetic document · source build |
 | OpenAI API key | [Walkthrough](tutorials/ai-connections.md) | [Screenshot](images/connection-openai.png) · Real form · no connected account |
 | Anthropic API key | [Walkthrough](tutorials/ai-connections.md) | [Screenshot](images/connection-anthropic.png) · Real form · no connected account |
 | Custom AI endpoint | [Walkthrough](tutorials/ai-connections.md) | [Screenshot](images/connection-custom.png) · Real form · no connected account |
@@ -41,7 +42,7 @@ Every currently implemented feature group below has a plain-language walkthrough
 | Low space during an app update | [Walkthrough](tutorials/app-updates.md#if-your-disk-needs-more-space) | [Screenshot](images/app-updates-disk-space.png) · Real Settings · simulated low space |
 | Return to work after update preparation fails | [Walkthrough](tutorials/app-updates.md#if-preparing-an-update-takes-too-long) | [Screenshot](images/app-updates-recovery.png) · Real Settings · simulated timeout |
 
-See [demo reproduction](demos/README.md) for commands and capture provenance. Pack workflows are demonstrated with the public catalog and published table resources. See [the release audit](RELEASE_GAP_AUDIT.md) for package qualification and remaining release requirements. Automatic updates have no working-feature demo yet. Wider OS, physical accessibility and live AI acceptance also remain open.
+See [demo reproduction](demos/README.md) for commands and capture provenance. Pack workflows are demonstrated with the public catalog and published table resources. See [the release audit](RELEASE_GAP_AUDIT.md) for package qualification and remaining release requirements. Automatic updates have no working-feature demo yet. Wider OS, physical accessibility, real BYOK and broader live account/model acceptance also remain open.
 
 ## App update settings
 
