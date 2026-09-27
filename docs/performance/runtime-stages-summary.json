@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-27T17:15:41.187328+00:00",
+  "sourceCommit": "91979f3d127e5c2ed41dbbb26fca6dd404c614a1",
+  "node": "v24.21.0",
+  "host": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "osRelease": "27.0.0",
+    "osVersion": "Darwin Kernel Version 27.0.0: Tue Aug 11 21:05:48 PDT 2026; root:xnu-13432.1.9~1/RELEASE_ARM64_T6041",
+    "cpu": "Apple M4 Pro",
+    "logicalCpus": 14,
+    "totalMemoryBytes": 51539607552,
+    "node": "v24.21.0"
+  },
+  "sourceHashes": {
+    "electron/core/runtime-manager.ts": "3262e414795ca1e1001b3c0c6dafbf2289901d16c1bdd64f067a52a6449a5847",
+    "electron/core/runtime.ts": "da0bc73d9042a08af5f7623a252e5f95be36a33313bc6372faed5def6944be1a",
+    "electron/core/compiler.ts": "9106c2d8e753a313ad46b956ea581247a0e2d1854b101247ec14ca79f5dd6171",
+    "scripts/profile-runtime.mjs": "6b1efca3bc286f9fd14ee01aa7a957a03dc0b303bbff823eedf797f192526c37",
+    "scripts/lib/subprocess-timeline.mjs": "24536d555d2fc44027b042658a581c6c42dff6d91b188978c15de60bdd43b757",
+    "electron/core/compiler-limits.ts": "03b6e2b15e075f773b9622a3b8cca9a93bcb1318262399e7974548339de99a3e",
+    "electron/core/compiler-storage.ts": "a892aeda2f2692d25b7362f34f5ad6b7d3c1122bbf7c2b26ddee0537906561fb",
+    "electron/core/save-io.ts": "03357fef0d222d9a06b26a911901b7bdee76b71741d8b120df08f90bdab6d91c",
+    "resources/runtime/mac-arm64/manifest.json": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0"
+  },
+  "rawSha256": "6a27535efcf628a4ceccda1241664d9c36d50fb5521574e14be46b78f6336582",
+  "samples": [
+    {
+      "sample": 1,
+      "freshInitializeMs": 27596.569750000002,
+      "throughStagedCheckpointMs": 18486.773375,
+      "stagedVerificationBeforeProbeMs": 742.4135840000017,
+      "selfTestMs": 8346.628540999998,
+      "selfTestNativeMs": 7651.517458000002,
+      "beforeNativeSelfTestMs": 680.1434999999983,
+      "biberMessageToNextTexMs": 5066.166042000001,
+      "otherSelfTestMs": 3280.4624989999975,
+      "firstArticleMs": 1488.675166000001,
+      "warmAcquireMs": [
+        757.4497090000004,
+        765.3225419999981,
+        701.5456249999988
+      ],
+      "warmNativeMs": [
+        138.2155419999981,
+        140.94687499999782,
+        125.2567089999975
+      ],
+      "events": [
+        {
+          "message": "note: generating format \"latex\"",
+          "atMs": 20463.529959000003
+        },
+        {
+          "message": "note: Running TeX ...",
+          "atMs": 21132.135334000002
+        },
+        {
+          "message": "note: Running external tool biber ...",
+          "atMs": 21445.741167
+        },
+        {
+          "message": "note: Rerunning TeX because biber was run ...",
+          "atMs": 26511.907209
+        },
+        {
+          "message": "note: Rerunning TeX because \"main.run.xml\" changed ...",
+          "atMs": 26843.371292
+        },
+        {
+          "message": "note: Rerunning TeX because \"main.run.xml\" changed ...",
+          "atMs": 27170.199084
+        },
+        {
+          "message": "note: Running xdvipdfmx ...",
+          "atMs": 27493.469459
+        }
+      ]
+    },
+    {
+      "sample": 2,
+      "freshInitializeMs": 27108.439584,
+      "throughStagedCheckpointMs": 18348.620457999998,
+      "stagedVerificationBeforeProbeMs": 738.3491250000006,
+      "selfTestMs": 7999.81725,
+      "selfTestNativeMs": 7291.600833000004,
+      "beforeNativeSelfTestMs": 698.8937919999953,
+      "biberMessageToNextTexMs": 4867.827499999999,
+      "otherSelfTestMs": 3131.9897500000006,
+      "firstArticleMs": 1496.4374580000003,
+      "warmAcquireMs": [
+        725.4611670000013,
+        696.9632090000014,
+        735.6130420000045
+      ],
+      "warmNativeMs": [
+        133.09949999999662,
+        124.61183300000266,
+        132.7231249999968
+      ],
+      "events": [
+        {
+          "message": "note: generating format \"latex\"",
+          "atMs": 20174.076833
+        },
+        {
+          "message": "note: Running TeX ...",
+          "atMs": 20857.664707999997
+        },
+        {
+          "message": "note: Running external tool biber ...",
+          "atMs": 21174.019916999998
+        },
+        {
+          "message": "note: Rerunning TeX because biber was run ...",
+          "atMs": 26041.847416999997
+        },
+        {
+          "message": "note: Rerunning TeX because \"main.run.xml\" changed ...",
+          "atMs": 26357.330124999993
+        },
+        {
+          "message": "note: Rerunning TeX because \"main.run.xml\" changed ...",
+          "atMs": 26680.6875
+        },
+        {
+          "message": "note: Running xdvipdfmx ...",
+          "atMs": 27010.580749999994
+        }
+      ]
+    },
+    {
+      "sample": 3,
+      "freshInitializeMs": 44561.947958000004,
+      "throughStagedCheckpointMs": 18155.232042000003,
+      "stagedVerificationBeforeProbeMs": 707.5624580000003,
+      "selfTestMs": 25673.087792000006,
+      "selfTestNativeMs": 24932.538084,
+      "beforeNativeSelfTestMs": 730.577833000003,
+      "biberMessageToNextTexMs": 22189.098708999998,
+      "otherSelfTestMs": 3483.9890830000077,
+      "firstArticleMs": 1493.5829590000067,
+      "warmAcquireMs": [
+        704.5386660000077,
+        721.6954590000096,
+        716.6201250000013
+      ],
+      "warmNativeMs": [
+        131.19462500000373,
+        127.46104099998774,
+        133.50554199999897
+      ],
+      "events": [
+        {
+          "message": "note: generating format \"latex\"",
+          "atMs": 20288.90612500001
+        },
+        {
+          "message": "note: Running TeX ...",
+          "atMs": 20965.531958000007
+        },
+        {
+          "message": "note: Running external tool biber ...",
+          "atMs": 21295.816708
+        },
+        {
+          "message": "note: Rerunning TeX because biber was run ...",
+          "atMs": 43484.915417
+        },
+        {
+          "message": "note: Rerunning TeX because \"main.run.xml\" changed ...",
+          "atMs": 43811.280083000005
+        },
+        {
+          "message": "note: Rerunning TeX because \"main.run.xml\" changed ...",
+          "atMs": 44129.192333
+        },
+        {
+          "message": "note: Running xdvipdfmx ...",
+          "atMs": 44454.62829200001
+        }
+      ]
+    },
+    {
+      "sample": 4,
+      "freshInitializeMs": 26649.307250000013,
+      "throughStagedCheckpointMs": 17941.346875000003,
+      "stagedVerificationBeforeProbeMs": 720.7120419999992,
+      "selfTestMs": 7963.913082999992,
+      "selfTestNativeMs": 7264.128041999997,
+      "beforeNativeSelfTestMs": 689.9466660000035,
+      "biberMessageToNextTexMs": 4848.785291000007,
+      "otherSelfTestMs": 3115.1277919999848,
+      "firstArticleMs": 1495.3718749999825,
+      "warmAcquireMs": [
+        739.5198329999985,
+        696.5681249999907,
+        734.0268750000105
+      ],
+      "warmNativeMs": [
+        124.98758300000918,
+        123.72533399998792,
+        126.64770900001167
+      ],
+      "events": [
+        {
+          "message": "note: generating format \"latex\"",
+          "atMs": 19754.000707999992
+        },
+        {
+          "message": "note: Running TeX ...",
+          "atMs": 20418.953957999984
+        },
+        {
+          "message": "note: Running external tool biber ...",
+          "atMs": 20734.416291999994
+        },
+        {
+          "message": "note: Rerunning TeX because biber was run ...",
+          "atMs": 25583.201583000002
+        },
+        {
+          "message": "note: Rerunning TeX because \"main.run.xml\" changed ...",
+          "atMs": 25904.184374999997
+        },
+        {
+          "message": "note: Rerunning TeX because \"main.run.xml\" changed ...",
+          "atMs": 26233.700832999995
+        },
+        {
+          "message": "note: Running xdvipdfmx ...",
+          "atMs": 26550.142666999993
+        }
+      ]
+    },
+    {
+      "sample": 5,
+      "freshInitializeMs": 26714.33933399999,
+      "throughStagedCheckpointMs": 18020.690166999993,
+      "stagedVerificationBeforeProbeMs": 703.7134580000129,
+      "selfTestMs": 7968.976082999987,
+      "selfTestNativeMs": 7252.142832999991,
+      "beforeNativeSelfTestMs": 707.6319999999832,
+      "biberMessageToNextTexMs": 4862.901458000008,
+      "otherSelfTestMs": 3106.0746249999793,
+      "firstArticleMs": 1485.5119589999958,
+      "warmAcquireMs": [
+        695.6295420000097,
+        726.2466249999998,
+        694.5390830000106
+      ],
+      "warmNativeMs": [
+        124.40808300001663,
+        130.9280410000065,
+        124.41104100001394
+      ],
+      "events": [
+        {
+          "message": "note: generating format \"latex\"",
+          "atMs": 19808.35945799999
+        },
+        {
+          "message": "note: Running TeX ...",
+          "atMs": 20476.159249999997
+        },
+        {
+          "message": "note: Running external tool biber ...",
+          "atMs": 20792.629667
+        },
+        {
+          "message": "note: Rerunning TeX because biber was run ...",
+          "atMs": 25655.53112500001
+        },
+        {
+          "message": "note: Rerunning TeX because \"main.aux\" changed ...",
+          "atMs": 25978.99645799998
+        },
+        {
+          "message": "note: Rerunning TeX because \"main.run.xml\" changed ...",
+          "atMs": 26298.01775
+        },
+        {
+          "message": "note: Running xdvipdfmx ...",
+          "atMs": 26617.802916999994
+        }
+      ]
+    }
+  ],
+  "managedCopies": [
+    {
+      "sample": 1,
+      "manifestMatches": true,
+      "fileHashesVerified": 3982
+    },
+    {
+      "sample": 2,
+      "manifestMatches": true,
+      "fileHashesVerified": 3982
+    },
+    {
+      "sample": 3,
+      "manifestMatches": true,
+      "fileHashesVerified": 3982
+    },
+    {
+      "sample": 4,
+      "manifestMatches": true,
+      "fileHashesVerified": 3982
+    },
+    {
+      "sample": 5,
+      "manifestMatches": true,
+      "fileHashesVerified": 3982
+    }
+  ],
+  "all25SubprocessTracesMatchCompilerLogs": true,
+  "limits": [
+    "Parent stdout/stderr receipt times; buffered markers do not measure pure native CPU or exact internal function boundaries.",
+    "Fresh managed runtime/TeX cache per sample; operating-system disk/execution caches were not purged.",
+    "Initial observer validation and an abandoned recorder trial ran before this five-sample collection; both are retained.",
+    "No other local Folio native suite or benchmark ran concurrently. Ordinary desktop work, documentation and read-only hosted artifact verification continued.",
+    "Five observations on one M4 Pro development Mac are not a population p95 or supported-device acceptance.",
+    "Application code and packaged app inputs are unchanged; this is diagnosis, not an optimization or speedup claim."
+  ],
+  "freshInitializeMs": {
+    "min": 26649.307250000013,
+    "median": 27108.439584,
+    "max": 44561.947958000004
+  },
+  "throughStagedCheckpointMs": {
+    "min": 17941.346875000003,
+    "median": 18155.232042000003,
+    "max": 18486.773375
+  },
+  "selfTestMs": {
+    "min": 7963.913082999992,
+    "median": 7999.81725,
+    "max": 25673.087792000006
+  },
+  "biberMessageToNextTexMs": {
+    "min": 4848.785291000007,
+    "median": 4867.827499999999,
+    "max": 22189.098708999998
+  },
+  "otherSelfTestMs": {
+    "min": 3106.0746249999793,
+    "median": 3131.9897500000006,
+    "max": 3483.9890830000077
+  }
+}
