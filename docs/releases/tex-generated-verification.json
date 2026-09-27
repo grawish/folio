@@ -1,0 +1,198 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T13:21:12.016958+00:00",
+  "sourceBaseCommit": "61e4980771d8b76cfb721979fcc856ed1f5285eb",
+  "summary": {
+    "bundledResources": 516,
+    "directDistributionMatches": 513,
+    "generatedResourceMatches": 3,
+    "unmappedResources": 0,
+    "sourceInputs": 386,
+    "sourceMapFiles": 374,
+    "sourceMapPackages": 283,
+    "selectedPackages": 3843,
+    "languagePackages": 61
+  },
+  "independentChecks": {
+    "retainedFilesVerified": 400,
+    "pinnedInputsVerified": 395,
+    "runtimeGeneratedMatches": 3,
+    "intermediateMapConfigurationMatched": true,
+    "directAndGeneratedMappingsCoverExactly516Files": true,
+    "byteIdenticalReplayFiles": 401
+  },
+  "downloadChecks": {
+    "passed": true,
+    "checkedInputs": [
+      {
+        "file": "texlive-082081a3/Master/LICENSE.TL",
+        "bytes": 5222,
+        "sha256": "f449c5a0604f9a4dd4d8cddda147f55b25beee1300ea83f3b9efcea8cba7d01e",
+        "expectedHttpStatus": 200
+      },
+      {
+        "file": "GITHASH.tar-member",
+        "bytes": 553,
+        "sha256": "34695896abb64bcd5275d9a11a7b6c8763255dcd6b9561fe9d97683b9af92b6a",
+        "expectedHttpStatus": 206
+      }
+    ]
+  },
+  "upstream": {
+    "url": "https://data1b.fullyjustified.net/tlextras-2022.0r0.tar",
+    "archiveBytes": 2881562112,
+    "identity": "6ffe055852f8faf66c0acbe1a7fb27f87b869a90bad1204f3bf4d9683f597c7c",
+    "texliveGitHash": "082081a375be008c2e049cd7cf1137314f888b18",
+    "texliveSvnRevision": "62885"
+  },
+  "recordedReplayContext": {
+    "installRoot": "/state/installs/tlextras-2022.0r0/texmf-dist",
+    "languageProgram": "./bin/x86_64-linux/tlmgr",
+    "languageLocaltime": "Mon Sep 19 03:27:42 2022",
+    "mapLocaltime": "Mon Sep 19 03:27:39 2022"
+  },
+  "outputs": {
+    "kanjix.map": {
+      "bytes": 11946,
+      "sha256": "a71059fc7213517c40d9d9ee353b107dc5b8dc20e5b4c10fb0c7414879c8a1ed",
+      "matchesRuntime": true
+    },
+    "pdftex.map": {
+      "bytes": 4408061,
+      "sha256": "16bbb011215db3c7b919e0274bf1a95dc478e6b3712b9cb478149551e0820a6d",
+      "matchesRuntime": true
+    },
+    "language.dat": {
+      "bytes": 6593,
+      "sha256": "a8a8e36e120beb9a19ffc2ca7c83445a1308ac9602a50cab1128deac14f5bee9",
+      "matchesRuntime": true
+    }
+  },
+  "configurationReplay": {
+    "bytes": 10020,
+    "sha256": "587c29b8b421e662367db8368bdb30586eef1eefe71292020b52eb2ff88b09ff",
+    "matchesUpstream": true
+  },
+  "checks": {
+    "offlinePythonControlsPassed": 7,
+    "formattingPassed": true,
+    "websitePassed": true,
+    "websiteWidths": [
+      1440,
+      390
+    ],
+    "newNativeQualificationRun": false
+  },
+  "tools": [
+    {
+      "path": "scripts/collect-tex-generated-materials.py",
+      "bytes": 20690,
+      "sha256": "2438abc7227f84cd1aa9ebb3085d11be6c0a0d1cea3ae5d7e379aca7a22002ba"
+    },
+    {
+      "path": "tests/tex-generated-materials.py",
+      "bytes": 9130,
+      "sha256": "1c5225d3fd21e90f4b80385a4e78d855547541ce1c6cd88cabf8edce67994e86"
+    },
+    {
+      "path": "resources/tex-generated-sources.lock.json",
+      "bytes": 204984,
+      "sha256": "a98c972d5eace2050d85843cf5cb9339f60a112d5a00cb9a8685634c31854785"
+    },
+    {
+      "path": "resources/tex-font-sources.lock.json",
+      "bytes": 44531,
+      "sha256": "79ed91f2d8a1207ed72ba2f8016a47ecde316754c3dd874ba2f35b9683579d45"
+    },
+    {
+      "path": "resources/tex-resource-sources.lock.json",
+      "bytes": 460007,
+      "sha256": "7f87f8433f31e528372b5e94f3bf6a9f12fa161a4139894dcd6bca1f111fcc73"
+    },
+    {
+      "path": "resources/bundle.lock.json",
+      "bytes": 47211,
+      "sha256": "269b1b0b2e306329848b385ae4168db124380a612dab316967819f61fc58bf6c"
+    },
+    {
+      "path": "test-results/verify-tex-generated-materials.py",
+      "bytes": 2724,
+      "sha256": "9dc8589a690f9831ac6d5348b17ca042e18f251585e589c9af7d0b8ddc8afbc5"
+    }
+  ],
+  "retainedInventory": {
+    "path": "artifacts/license-materials/tex-generated/inventory.json",
+    "bytes": 157198,
+    "sha256": "77e08b5109e74dda75ad71696c1c4d0e1e1d18fef6cc9eef2310f396e5251ace"
+  },
+  "publishedInventory": {
+    "path": "docs/releases/tex-generated-inventory.json.gz",
+    "bytes": 42803,
+    "sha256": "37f3e28e9608c82c277791adf9108f9d52755e1197ad3e799de1aa99f55f83b1"
+  },
+  "logs": [
+    {
+      "path": "test-results/tex-generated-collection.log",
+      "bytes": 255,
+      "sha256": "807f572be6676d0a59b8d3b5a6cdfa28c42945c08ba33b77775bfa050e9659d0"
+    },
+    {
+      "path": "test-results/tex-generated-independent.log",
+      "bytes": 748,
+      "sha256": "e1a9720df0863bb21445b6490ddaeff35ba9daeae70f13e010a670eac099b034"
+    },
+    {
+      "path": "test-results/tex-generated-independent-checks.json",
+      "bytes": 238,
+      "sha256": "624e745c2f1212bbfbeb8598278ccda16b9184b29d930eb74198d75b36c59159"
+    },
+    {
+      "path": "test-results/tex-generated-download-checks.json",
+      "bytes": 433,
+      "sha256": "554011e4d6f5d5e6e056c52e953943f844ea6a8cd4cb5e06ef3bb8ffb44916b3"
+    },
+    {
+      "path": "test-results/tex-generated-python-tests.log",
+      "bytes": 105,
+      "sha256": "9cc0643aeaf70342ed108acf2a56eea754ecd0f58b95f2628cbd78ee953f49c7"
+    },
+    {
+      "path": "test-results/tex-generated-format.log",
+      "bytes": 183,
+      "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+    },
+    {
+      "path": "test-results/tex-generated-website.log",
+      "bytes": 821,
+      "sha256": "aee8d6d761cab51aa5b6b5bff29250ebb12e431751517c773e7c8b5337ac07d6"
+    },
+    {
+      "path": "test-results/tex-generated-skill.log",
+      "bytes": 122,
+      "sha256": "50338b830dfd8bd541091b249b7158234bed093e1dd29fa1df03ae9437ca00bd"
+    }
+  ],
+  "replayLicense": {
+    "spdx": "GPL-2.0-or-later",
+    "files": [
+      "scripts/collect-tex-generated-materials.py",
+      "tests/tex-generated-materials.py"
+    ],
+    "fullText": {
+      "path": "resources/tex-resource-notices/pgf.doc--gnu-public-license-2.txt",
+      "bytes": 18032,
+      "sha256": "ef50d0e1023053dddae5f87e82aee569d9d2fe8b796142824ba935c885c42642"
+    },
+    "scope": "Standalone developer replay and its tests; upstream attribution is preserved. These files are not packaged in Folio. Original application code keeps its existing PolyForm Noncommercial license; source maps retain their own terms."
+  },
+  "applicationCodeChanged": false,
+  "runtimeInputsChanged": false,
+  "releaseAuditComplete": false,
+  "limits": [
+    "The full 2.8 GB upstream bundle was not rehashed. Its SHA256SUM entry is a Tectonic bundle identity, not the raw tar archive digest; only selected members, headers, index and recorded identity were checked.",
+    "This is a reviewed Python replay of text-generation rules with recorded historical time/path inputs, not execution of the original Linux installation.",
+    "Exact file provenance does not resolve every map/font license or complete corresponding-source publication, compiler/native attribution, production signing or the final app SBOM.",
+    "No new app or installer was qualified by these developer-tool checks. Exact unsigned app qualification at 662c411 is recorded separately in mac-font-notices-hosted-verification.json.",
+    "No selected upstream source archive or map collection was published by this replay. Individual redistribution conditions and full corresponding-source publication remain open."
+  ]
+}

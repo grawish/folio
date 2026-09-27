@@ -120,3 +120,6 @@ Current development builds also have a **tex-resource-notices** folder beside **
 4. **SOURCES.json** lists source links and file checksums for people who want to check the included TeX files.
 
 These are the terms for the tools and resources that help make PDFs. Folio's own noncommercial license does not replace them. The [licensing guide](https://github.com/grawish/folio/blob/main/docs/LICENSING.md#collect-and-bundle-tex-resource-notices) explains which parts of the release review are still unfinished.
+
+
+Developers can also check how the three generated TeX setup files were made. The [source replay guide](https://github.com/grawish/folio/blob/main/docs/LICENSING.md#reproduce-generated-tex-resources) explains the command and its limits. It checks original source files and leaves your app and resume unchanged.
