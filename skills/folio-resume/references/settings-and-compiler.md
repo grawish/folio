@@ -22,7 +22,7 @@ Open **Settings → Editor & PDF**. Change **Editor text size** or **Automatic p
 
 [Screenshot: Privacy settings](https://github.com/grawish/folio/blob/main/docs/images/privacy.png)
 
-Use **Tab** and **Shift + Tab** to reach a Settings section, then press **Enter** to open it. Folio exposes the current section to assistive technology. **Escape** closes Settings when no closing/restart operation is pending and returns focus to its opening control. See [the keyboard walkthrough](first-resume.md#move-around-with-the-keyboard).
+Use **Tab** and **Shift + Tab** to reach a Settings section, then press **Enter** to open it. Folio exposes the current section to assistive technology. **Escape** closes Settings when no closing, restart or compiler-removal review is pending and returns focus to its opening control. See [the keyboard walkthrough](first-resume.md#move-around-with-the-keyboard).
 
 [Screenshot: The AI connections section selected and focused with the keyboard](https://github.com/grawish/folio/blob/main/docs/images/keyboard-settings.png)
 
@@ -72,3 +72,28 @@ If a project records a different compiler from the included one, Settings offers
 The screenshot uses a synthetic previous compiler identity to exercise the flow; it is not evidence that two real production releases produce identical output. See [compiler migration](https://github.com/grawish/folio/blob/main/docs/COMPILER_MIGRATION.md) for exact interruption and backup behavior.
 
 **Demos:** `npm run test:workspace`, `npm run test:runtime`, and `npm run test:migration`. Runtime failure tests alter only their isolated managed copies.
+
+
+## Make room for compiler files
+
+This feature is in the current development source. It is not in the older preview-4 download.
+
+Each resume remembers the compiler that built it. An old compiler may still be useful, even after Folio gets an update.
+
+1. Finish any AI request or PDF build, then open **Settings → Storage**.
+2. Read the total and the compiler list. Folio protects its included compiler, the current resume’s compiler, and a compiler that is building a PDF.
+3. If you no longer need an older compiler, choose **Remove…** on its row.
+4. Read the Mac confirmation carefully. **Cancel** is selected first. Choose **Remove compiler** only when you are ready.
+5. Check the updated total. Your resume files and their saved compiler choices stay as they were.
+
+[Screenshot: The compiler storage review in Settings](https://github.com/grawish/folio/blob/main/docs/images/compiler-storage.png)
+
+**Other saved resumes can still need an old compiler.** Folio cannot know about every resume folder on your Mac or an unplugged drive. After removal, those resumes can still be edited and saved. To build their PDFs again, restore the matching Folio version and any required resource pack. Folio will not secretly choose a newer compiler for them.
+
+If removal stops, click **Refresh storage**. An **Unfinished removal** row shows the remaining files. Review **Finish removal…** to remove them. These files are no longer offered as a usable compiler. Folio keeps unrecognized compiler files for recovery; it does not guess that they are safe to delete.
+
+The total covers compiler copies and their offline checks in Folio’s data folder. It does not cover your installed app, resume folders, History, or separate resource-pack downloads. macOS can share space between copies, so the number may differ from Finder’s physical disk use.
+
+Before preparing another compiler copy, Folio checks a 16 GiB installation budget and free disk space. If preparation stops for lack of room, review old compilers or free disk space, then retry **Repair compiler** or the resource-pack installation. Unrecognized or unfinished installation files are preserved; keep them for troubleshooting if the page cannot safely measure or remove them. Do not delete an unfamiliar folder to bypass the check.
+
+**Demo:** `npm run test:runtime` uses a real current compiler and a tiny, inert old-compiler fixture in a disposable profile. It checks cancellation, changed files during confirmation, removal, unchanged source/compiler choices, and another real PDF build. Its Mac confirmation responses are controlled by the test. It does not remove any of your normal app data.

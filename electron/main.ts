@@ -111,6 +111,7 @@ let saveReviewStart: Promise<void> = Promise.resolve();
 let saveReviewApply: Promise<unknown> = Promise.resolve();
 let applyingSaveReview = false;
 let removingHistory = false;
+let compilerRemoval: Promise<boolean> | undefined;
 async function endSaveReview(id?: string) {
   if (id !== undefined && id !== saveReviewId) return;
   const currentId = saveReviewId;
@@ -195,6 +196,7 @@ async function openProject(directory: string, main?: string) {
 }
 
 function requireProjectIdle() {
+  if (compilerRemoval) throw new Error('Finish reviewing compiler removal first.');
   if (removingHistory) throw new Error('Wait for history removal to finish.');
   if (saveReviewId) throw new Error('Close save recovery before changing the workspace.');
   migrations.requireIdle();
@@ -347,6 +349,44 @@ function registerHandlers() {
   handle('runtime:repair', (pin: unknown) => {
     requireProjectIdle();
     return runtimes.repair(validateRuntimePin(pin));
+  });
+  handle('runtime:storage', async () => {
+    await recoveryQueue;
+    return runtimes.storage((await store.loadRecovery())?.runtime);
+  });
+  handle('runtime:remove-stored', async (key: string, token: string) => {
+    requireProjectIdle();
+    if (agent.busy || compiler.busy)
+      throw new Error('Finish the AI request and PDF build before removing a compiler.');
+    const operation = (async () => {
+      await recoveryQueue;
+      const current = (await store.loadRecovery())?.runtime;
+      const entry = (await runtimes.storage(current)).entries.find((entry) => entry.key === key);
+      if (!entry || entry.token !== token)
+        throw new Error('Refresh storage and review this compiler again.');
+      if (entry.protectedReason) throw new Error(entry.protectedReason);
+      const choice = await dialog.showMessageBox(window!, {
+        type: 'warning',
+        buttons: ['Cancel', 'Remove compiler'],
+        defaultId: 0,
+        cancelId: 0,
+        title: 'Remove stored compiler?',
+        message: entry.unfinishedRemoval
+          ? 'Finish removing these compiler files?'
+          : `Remove Tectonic ${entry.pin!.version} · ${entry.pin!.bundle}?`,
+        detail: `${(entry.bytes / 1024 ** 2).toFixed(1)} MiB of compiler files. Identity: ${entry.pin?.id ?? entry.key}.\n\nYour resume files will stay. Other saved resumes may need this exact compiler. To build them again, restore the matching Folio version and any required resource pack. Their compiler choices will not change.`,
+        noLink: true,
+      });
+      if (choice.response !== 1) return false;
+      await runtimes.removeStoredCompiler(key, token, (await store.loadRecovery())?.runtime);
+      return true;
+    })();
+    compilerRemoval = operation;
+    try {
+      return await operation;
+    } finally {
+      compilerRemoval = undefined;
+    }
   });
   handle('packs:list', () => packs.list());
   handle('packs:refresh', (id: string) => {
@@ -763,6 +803,7 @@ function registerHandlers() {
     await shell.openExternal(url.href);
   });
   handle('app:close', async () => {
+    await compilerRemoval?.catch(() => {});
     await updates.cancel();
     await packs.cancel();
     await endSaveReview();
@@ -803,7 +844,7 @@ function createWindow() {
   window.webContents.setWindowOpenHandler(() => ({ action: 'deny' }));
   window.webContents.on('will-navigate', (event) => event.preventDefault());
   window.on('close', (event) => {
-    if (updateRestarting && !closing) {
+    if ((updateRestarting || compilerRemoval) && !closing) {
       event.preventDefault();
       return;
     }

@@ -1,0 +1,209 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T11:06:51.555906+00:00",
+  "baseCommit": "ecac11b64c8fa12c5d94ff0ae279209e733afd2d",
+  "sourceInputs": [
+    {
+      "path": "electron/core/compiler-storage.ts",
+      "bytes": 7721,
+      "sha256": "a892aeda2f2692d25b7362f34f5ad6b7d3c1122bbf7c2b26ddee0537906561fb"
+    },
+    {
+      "path": "electron/core/runtime-manager.ts",
+      "bytes": 23857,
+      "sha256": "3262e414795ca1e1001b3c0c6dafbf2289901d16c1bdd64f067a52a6449a5847"
+    },
+    {
+      "path": "electron/main.ts",
+      "bytes": 44116,
+      "sha256": "29498289c802c91f3da0bc20dadb29e44d282fe680d41171d6fedee203f435f3"
+    },
+    {
+      "path": "electron/preload.ts",
+      "bytes": 8217,
+      "sha256": "6b8bd355090598e4183c1d9ed4405e3f77962bf2669e9c39e541a6c5b61e110b"
+    },
+    {
+      "path": "src/shared/compiler-storage.ts",
+      "bytes": 353,
+      "sha256": "a12b7a00d561dd13ac79b180916b7ed78687941ba58281d3ade96ba162787dfe"
+    },
+    {
+      "path": "src/shared/types.ts",
+      "bytes": 9410,
+      "sha256": "abe0046ba79eb36cef65f55757e0f597933bfc1815d269e7b61c350b538163e4"
+    },
+    {
+      "path": "src/components/CompilerStorage.tsx",
+      "bytes": 4159,
+      "sha256": "471cbf71284cebb35e85327b154f2204b03f721177fe13bd94b87a70d6d9a0b0"
+    },
+    {
+      "path": "src/components/SettingsModal.tsx",
+      "bytes": 16948,
+      "sha256": "a0efc018e62bf2b62137ecb38368f1a722cfc9f771bc7988efdf1dafe254a32a"
+    },
+    {
+      "path": "src/App.tsx",
+      "bytes": 95754,
+      "sha256": "88fc689ea1fb992b567fc0433359a82e33051f23c6390f99545c1a0d46f8527f"
+    },
+    {
+      "path": "tests/runtime-manager.test.ts",
+      "bytes": 29202,
+      "sha256": "2f99a16e348b46cf942ad89a26d18c4b7b7329c37c6ff94a6956db00a642c12f"
+    },
+    {
+      "path": "tests/fixtures/runtime-storage-crash.ts",
+      "bytes": 612,
+      "sha256": "8711e7ba129403b2ccb5e9b06c611be4c0459bd13f5b093e5e5209b4a213c945"
+    },
+    {
+      "path": "scripts/test-runtime.mjs",
+      "bytes": 22830,
+      "sha256": "55bcc552aa65a15622d5cbe12fac97b4f4fc9ddc9452b802a2aab6b34668252d"
+    },
+    {
+      "path": ".github/workflows/mac-candidate.yml",
+      "bytes": 4378,
+      "sha256": "945f7c8bd337b1ad7118e613cb75fe549df63f19c8c327c822b3ec04081c91fe"
+    }
+  ],
+  "sourceTestsPassed": 333,
+  "compilerIntegrationTestsPassed": 16,
+  "nativeRuntime": {
+    "passed": true,
+    "errors": [],
+    "pin": {
+      "engine": "tectonic",
+      "version": "0.17.0",
+      "bundle": "folio-core-v1",
+      "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+      "platform": "darwin-arm64",
+      "biberVersion": "2.17"
+    },
+    "editingReadyMs": 503,
+    "earlySave": true,
+    "retainedDraft": true,
+    "compilerStorage": {
+      "storageReviewMs": 1300,
+      "before": {
+        "bytes": 758802103,
+        "installationBudgetBytes": 17179869184,
+        "entries": [
+          {
+            "key": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+            "bytes": 734350121,
+            "copies": 2,
+            "token": "3f6cc821699dd683870b858156a7b03ee2f07d795c9e209dce02fa5c65d56d95",
+            "unfinishedRemoval": false,
+            "pin": {
+              "engine": "tectonic",
+              "version": "0.17.0",
+              "bundle": "folio-core-v1",
+              "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+              "platform": "darwin-arm64",
+              "biberVersion": "2.17"
+            },
+            "protectedReason": "Included with this Folio version."
+          },
+          {
+            "key": "77c405a3bcc5d1c8605b0072c9511f28c231a1419e74e21379139774cc17b4ec",
+            "bytes": 516,
+            "copies": 1,
+            "token": "006089f5571d55b9ffaf2236196e38c6f992815eb411c2a43498b909671e7104",
+            "unfinishedRemoval": false,
+            "pin": {
+              "engine": "tectonic",
+              "version": "0.16.0",
+              "bundle": "storage-demo",
+              "id": "77c405a3bcc5d1c8605b0072c9511f28c231a1419e74e21379139774cc17b4ec",
+              "platform": "darwin-arm64"
+            }
+          }
+        ]
+      },
+      "after": {
+        "bytes": 758801587,
+        "installationBudgetBytes": 17179869184,
+        "entries": [
+          {
+            "key": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+            "bytes": 734350121,
+            "copies": 2,
+            "token": "3f6cc821699dd683870b858156a7b03ee2f07d795c9e209dce02fa5c65d56d95",
+            "unfinishedRemoval": false,
+            "pin": {
+              "engine": "tectonic",
+              "version": "0.17.0",
+              "bundle": "folio-core-v1",
+              "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+              "platform": "darwin-arm64",
+              "biberVersion": "2.17"
+            },
+            "protectedReason": "Included with this Folio version."
+          }
+        ]
+      },
+      "cancelledRemoval": true,
+      "pendingConfirmationPreventsClose": true,
+      "changedDuringConfirmationRejected": true,
+      "sourceAndPinPreserved": true,
+      "realCompilerStillBuilds": true,
+      "confirmation": "Native dialog call intercepted for deterministic choices"
+    }
+  },
+  "buildAndFormattingPassed": true,
+  "website": {
+    "demoCards": 36,
+    "widths": [
+      1440,
+      390
+    ],
+    "overflow": false,
+    "errors": []
+  },
+  "screenshot": {
+    "path": "docs/images/compiler-storage.png",
+    "bytes": 118073,
+    "sha256": "04b32ebb7b698b9c332c9ed60cc5b8b50dca18d4429431ab50427e1b62b37e0a"
+  },
+  "localEvidence": [
+    {
+      "path": "test-results/compiler-storage-all-unit-final.log",
+      "bytes": 34513,
+      "sha256": "fa0e70469be2d0845ade6db5b9ac659a8ebb67aaf9441cdad6eb68e4bf28efb6"
+    },
+    {
+      "path": "test-results/compiler-storage-integration.log",
+      "bytes": 2312,
+      "sha256": "5cf31d2e9372d149e3d1c7724a7d2bdec1ea72f92dca80fd568ad965a0f9a61b"
+    },
+    {
+      "path": "test-results/compiler-storage-native-verified.log",
+      "bytes": 882,
+      "sha256": "3a44bcad1398efd345ed036602dbdb36d06da00deaffbf3a7a31081378461f78"
+    },
+    {
+      "path": "test-results/compiler-storage-build-final.log",
+      "bytes": 1719,
+      "sha256": "f56173140303d7e87fe568769657dd6190669173b4feaf41aac402b79c2e41d1"
+    },
+    {
+      "path": "test-results/compiler-storage-format-final.log",
+      "bytes": 183,
+      "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+    },
+    {
+      "path": "test-results/compiler-storage-website.log",
+      "bytes": 821,
+      "sha256": "aee8d6d761cab51aa5b6b5bff29250ebb12e431751517c773e7c8b5337ac07d6"
+    },
+    {
+      "path": "test-results/runtime-vsSF8K/result.json",
+      "bytes": 2749,
+      "sha256": "0636c16af9579670e0e8df61564b601c835582b4510700635f323f1fdc6cd6de"
+    }
+  ],
+  "scope": "Source-built Apple silicon development app with a real included compiler and an inert synthetic old identity. Native dialog calls use controlled answers; no physical click, production signed installer, real disk exhaustion or whole-profile storage quota is claimed. Source tests include a real SIGKILL after an unlink and explicit restart/removal recovery. Initial native test-harness failures (unavailable require and a missing wait for the pending dialog) were corrected; the complete final workflow passes with no renderer errors. Final app build and source hashes above identify the validated implementation; full packaged qualification of this change remains pending."
+}

@@ -488,5 +488,19 @@
     ],
     "kind": "Real app \u00b7 automated keyboard input",
     "alt": "Folio with a visible keyboard focus ring on the selected Code tab and a compiled synthetic resume beside it"
+  },
+  {
+    "id": "compiler-storage",
+    "title": "Review old compiler files",
+    "image": "compiler-storage.png",
+    "guide": "tutorials/settings-and-compiler.md#make-room-for-compiler-files",
+    "description": "See local compiler sizes and review an old version before removal. Other saved resumes may still need that exact version.",
+    "steps": [
+      "Open Settings \u2192 Storage after finishing a PDF build.",
+      "Check the size and protected compiler rows.",
+      "Review Remove\u2026 and the Mac confirmation, or choose Cancel."
+    ],
+    "kind": "Real source Settings \u00b7 inert old-compiler fixture",
+    "alt": "Folio storage Settings showing the protected current compiler and an explicitly removable synthetic old compiler"
   }
 ]

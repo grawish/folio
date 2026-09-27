@@ -29,6 +29,7 @@ Every currently implemented feature group below has a plain-language walkthrough
 | Themes and workspace layout | [Walkthrough](tutorials/settings-and-compiler.md) | [Screenshot](images/general.png) · Real app · synthetic project |
 | Editor and PDF preferences | [Walkthrough](tutorials/settings-and-compiler.md) | [Screenshot](images/editor-settings.png) · Real app · synthetic project |
 | Offline compiler repair | [Walkthrough](tutorials/settings-and-compiler.md) | [Screenshot](images/compiler-repair.png) · Real app · isolated damaged-runtime fixture |
+| Review old compiler storage | [Walkthrough](tutorials/settings-and-compiler.md#make-room-for-compiler-files) | [Screenshot](images/compiler-storage.png) · Development source · inert old-compiler fixture |
 | Compare compiler versions | [Walkthrough](tutorials/settings-and-compiler.md) | [Screenshot](images/compiler-comparison.png) · Real app · synthetic compiler identity |
 | Import a signed resource pack | [Walkthrough](tutorials/resource-packs.md) | [Screenshot](images/pack-import-review.png) · Real source app · published table pack |
 | Install and retry a pack offline | [Walkthrough](tutorials/resource-packs.md) | [Screenshot](images/pack-installed-light.png) · Real source app/compiler · public HTTPS catalog |
