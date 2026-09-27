@@ -7,6 +7,7 @@ export const macReleaseSuites = [
   'migration',
   'chat',
   'runtime',
+  'build-crash',
   'workspace',
   'history-storage',
   'diagnostics',
