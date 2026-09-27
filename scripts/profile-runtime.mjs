@@ -3,6 +3,9 @@ import os from 'node:os';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { performance } from 'node:perf_hooks';
+import childProcess from 'node:child_process';
+import { syncBuiltinESMExports } from 'node:module';
+import { observeSubprocess } from './lib/subprocess-timeline.mjs';
 import { RuntimeManager } from '../electron/core/runtime-manager.ts';
 import { Compiler } from '../electron/core/compiler.ts';
 
@@ -24,9 +27,17 @@ const sourceFiles = [
   'electron/core/runtime.ts',
   'electron/core/compiler.ts',
   'scripts/profile-runtime.mjs',
+  'scripts/lib/subprocess-timeline.mjs',
+  'electron/core/compiler-limits.ts',
+  'electron/core/compiler-storage.ts',
+  'electron/core/save-io.ts',
   'resources/runtime/mac-arm64/manifest.json',
 ];
 const report = {
+  schemaVersion: 2,
+  sourceCommit: childProcess
+    .execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' })
+    .trim(),
   startedAt: new Date().toISOString(),
   host: {
     platform: process.platform,
@@ -47,6 +58,7 @@ const report = {
     'OS disk caches are not purged; fresh profile means new managed runtime and TeX cache, not cold physical storage.',
     'Operation sums overlap because four files copy concurrently; sums are not additive wall-clock shares.',
     'Instrumentation adds timing overhead. Memory/CPU here describe the Node host, not the native compiler process tree.',
+    'Subprocess events time stdout/stderr receipt in the parent. Buffered output can delay a marker; marker gaps are not pure engine CPU time.',
     'Raw samples are retained; three samples do not establish population p95 or supported-device performance.',
   ],
   samples: [],
@@ -113,14 +125,54 @@ const summarizeIo = () =>
       ];
     }),
   );
+let activeSample;
+const originalSpawn = childProcess.spawn;
+const originalRun = Compiler.prototype.run;
+childProcess.spawn = function (...args) {
+  const child = originalSpawn.apply(this, args);
+  if (activeSample) {
+    const { sample, sampleStart } = activeSample;
+    sample.processes.push(
+      Object.assign(
+        observeSubprocess(child, () => performance.now() - sampleStart),
+        { phase, command: args[0] },
+      ),
+    );
+  }
+  return child;
+};
+syncBuiltinESMExports();
+Compiler.prototype.run = async function (...args) {
+  const sample = activeSample?.sample;
+  const index = sample?.processes.length;
+  const result = await originalRun.apply(this, args);
+  if (!sample || sample.processes.length !== index + 1)
+    throw new Error('Expected one observed compiler subprocess.');
+  const trace = sample.processes[index];
+  const log = trace.chunks.map((chunk) => Buffer.from(chunk.base64, 'base64').toString()).join('');
+  if (trace.truncated || trace.error || log !== result.log || trace.exitCode !== result.code)
+    throw new Error('Subprocess trace differs from the compiler result.');
+  trace.compilerLogSha256 = createHash('sha256').update(result.log).digest('hex');
+  trace.matchesCompilerResult = true;
+  return result;
+};
 try {
   for (let index = 0; index < samples; index++) {
     const sampleRoot = path.join(root, String(index + 1));
     await fs.mkdir(sampleRoot);
     io = new Map();
     peakRss = process.memoryUsage().rss;
-    const sample = { index: index + 1, steps: [], checkpoints: [], methods: [] };
+    const sample = {
+      index: index + 1,
+      steps: [],
+      checkpoints: [],
+      methods: [],
+      processes: [],
+      passed: false,
+    };
+    report.samples.push(sample);
     const sampleStart = performance.now();
+    activeSample = { sample, sampleStart };
     const cpuStart = process.cpuUsage();
     const instrument = (object, method) => {
       const original = object[method];
@@ -132,7 +184,12 @@ try {
         try {
           return await original.apply(this, args);
         } finally {
-          sample.methods.push({ method, elapsedMs: performance.now() - start });
+          sample.methods.push({
+            method,
+            phase,
+            startedAtMs: start - sampleStart,
+            elapsedMs: performance.now() - start,
+          });
           if (method === 'probe') phase = previous;
         }
       };
@@ -151,6 +208,7 @@ try {
         const used = process.cpuUsage(cpu);
         sample.steps.push({
           name,
+          startedAtMs: start - sampleStart,
           elapsedMs: performance.now() - start,
           cpuUserMs: used.user / 1000,
           cpuSystemMs: used.system / 1000,
@@ -207,7 +265,7 @@ try {
     sample.cpuSystemMs = cpu.system / 1000;
     sample.peakHostRssBytes = peakRss;
     sample.io = summarizeIo();
-    report.samples.push(sample);
+    sample.passed = true;
     await fs.writeFile(
       path.join(root, 'measurements.json'),
       JSON.stringify(report, null, 2) + '\n',
@@ -220,6 +278,8 @@ try {
     );
   }
   report.finishedAt = new Date().toISOString();
+  if (report.samples.length !== samples || report.samples.some((sample) => !sample.passed))
+    throw new Error('Missing or incomplete profile samples.');
   report.passed = true;
 } catch (error) {
   report.finishedAt = new Date().toISOString();
@@ -228,6 +288,10 @@ try {
   throw error;
 } finally {
   clearInterval(sampler);
+  activeSample = undefined;
+  Compiler.prototype.run = originalRun;
+  childProcess.spawn = originalSpawn;
+  syncBuiltinESMExports();
   fs.open = originalOpen;
   for (const [method, original] of originals) fs[method] = original;
   await fs.writeFile(path.join(root, 'measurements.json'), JSON.stringify(report, null, 2) + '\n');

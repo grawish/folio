@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-27T17:18:51.617036+00:00",
+  "baseCommit": "91979f3d127e5c2ed41dbbb26fca6dd404c614a1",
+  "applicationInputsChanged": false,
+  "scope": "Developer-only subprocess observation and retained compiler performance measurements. No application optimization, signing or supported-device acceptance is claimed.",
+  "sources": [
+    {
+      "file": "scripts/profile-runtime.mjs",
+      "bytes": 11108,
+      "sha256": "6b1efca3bc286f9fd14ee01aa7a957a03dc0b303bbff823eedf797f192526c37"
+    },
+    {
+      "file": "scripts/lib/subprocess-timeline.mjs",
+      "bytes": 1453,
+      "sha256": "24536d555d2fc44027b042658a581c6c42dff6d91b188978c15de60bdd43b757"
+    },
+    {
+      "file": "scripts/lib/subprocess-timeline.d.mts",
+      "bytes": 514,
+      "sha256": "c74287f7812149f35cfaa63f6889a18daa987aefd03c199f4abb80bb3087b076"
+    },
+    {
+      "file": "tests/subprocess-timeline.test.ts",
+      "bytes": 2934,
+      "sha256": "4c9bfe468e23916b754337c7c1c9675ca500c8243a7922e661b37eeb448e3704"
+    }
+  ],
+  "measurements": [
+    {
+      "file": "docs/performance/runtime-stages.json.gz",
+      "bytes": 22851,
+      "sha256": "8e355429e588a0ef3d805e36e7797084961278a8f8a5f821d5c7e4efe074e909"
+    },
+    {
+      "file": "docs/performance/runtime-stages-summary.json",
+      "bytes": 11295,
+      "sha256": "eef4c04ecb85b05c748f1d434ac2d006971d4a0f8fafcb53daa5b09d86641267"
+    },
+    {
+      "file": "docs/performance/runtime-stage-observer-check.json.gz",
+      "bytes": 6563,
+      "sha256": "9122ae2c7a9e3f81a4e37e987a3915ab1443ae74bc5ffa9b1066222d06692d64"
+    }
+  ],
+  "independentChecks": {
+    "completeSamples": 5,
+    "exactCompilerLogsAndExitStatuses": 25,
+    "copiedRuntimeFilesHashed": 19910,
+    "sourceHashesMatchFinalProfilerAndApplicationInputs": true,
+    "timestampOrderingAndBounds": true,
+    "allCompleteTraceBytesRetained": true,
+    "allRuntimeManifestsMatch": true,
+    "gzipRoundTripsMatchRawFiles": true,
+    "metricIntervalsRecomputedFromRawEvents": true
+  },
+  "validation": {
+    "sourceTestsPassed": 359,
+    "observerControlsPassed": 2,
+    "typecheckPassed": true,
+    "formatPassed": true,
+    "sourceTestLog": {
+      "file": "test-results/runtime-stages-source-tests.log",
+      "bytes": 37078,
+      "sha256": "67b4c50baff69ec248785d267016bf0c0599b15d6f179807105ca97fdf3d16ee"
+    },
+    "realObserverValidation": {
+      "file": "test-results/runtime-stage-observer-check.log",
+      "bytes": 322,
+      "sha256": "815d5de3bb2abb36546bbd403704abf0ae5fff0ec9605bcab16f7160a680630d"
+    },
+    "finalMeasurementLog": {
+      "file": "test-results/runtime-stage-five-samples-final.log",
+      "bytes": 1170,
+      "sha256": "32fbf193c2c5180f2f2c0da734d65224bde55dcff6d010bd090ec55f30ba4562"
+    }
+  },
+  "abandonedTrial": {
+    "record": {
+      "file": "test-results/runtime-stage-abandoned-trial.json",
+      "bytes": 271,
+      "sha256": "b2c6de650ec32f86d308c71ee65edcfcc2326da871a325514dd6c581ba119101"
+    },
+    "profilerSnapshot": {
+      "file": "test-results/runtime-stage-incomplete-recorder.mjs",
+      "bytes": 10864,
+      "sha256": "1ca4b7263ea22a669f4a86cf80a9c7d55f726dead01d9ce608a5197edb0e67e8"
+    },
+    "consoleLog": {
+      "file": "test-results/runtime-stage-five-samples.log",
+      "bytes": 424,
+      "sha256": "cc3cceccdc05aeec228a471ff0001f3d77c41360ce3f91f0504f056db608185b"
+    },
+    "reason": "The profiler was stopped after two console summaries when missing sample retention was discovered. Those summaries lack raw stage records and are excluded from the final dataset. The source now retains incomplete samples and rejects a missing or incomplete collection."
+  },
+  "initialValidationScope": "The separately retained one-sample observer validation used the same application and subprocess observer. Its profiler predates the final sample-retention bookkeeping. It is not folded into the five final observations.",
+  "limits": [
+    "Parent stdout/stderr receipt times; buffered markers do not measure pure native CPU or exact internal function boundaries.",
+    "Fresh managed runtime/TeX cache per sample; operating-system disk/execution caches were not purged.",
+    "Initial observer validation and an abandoned recorder trial ran before this five-sample collection; both are retained.",
+    "No other local Folio native suite or benchmark ran concurrently. Ordinary desktop work, documentation and read-only hosted artifact verification continued.",
+    "Five observations on one M4 Pro development Mac are not a population p95 or supported-device acceptance.",
+    "Application code and packaged app inputs are unchanged; this is diagnosis, not an optimization or speedup claim."
+  ],
+  "productionReleaseQualified": false
+}
