@@ -5,10 +5,12 @@ import type { UpdateChannel } from '../../src/shared/updates';
 export const UPDATE_SIGNATURE_CONTEXT = 'Folio application update v1\n';
 export const MAX_UPDATE_METADATA = 64 * 1024;
 export const MAX_APP_UPDATE_BYTES = 2 * 1024 ** 3;
+export const MAX_UNPACKED_APP_BYTES = 4 * 1024 ** 3;
 export type AppRelease = Readonly<{
   version: string;
   notes: string;
   minimumSystemVersion: string;
+  unpackedBytes: number;
   rollout: number;
   dataEpoch: Readonly<{ minimum: number; maximum: number }>;
   zip: Readonly<{ url: string; sha512: string; bytes: number }>;
@@ -89,6 +91,7 @@ function parseRelease(value: unknown, channel: UpdateChannel): AppRelease | null
     'version',
     'notes',
     'minimumSystemVersion',
+    'unpackedBytes',
     'rollout',
     'dataEpoch',
     'zip',
@@ -119,6 +122,7 @@ function parseRelease(value: unknown, channel: UpdateChannel): AppRelease | null
     version,
     notes: text(record.notes, 16000, true),
     minimumSystemVersion: system,
+    unpackedBytes: integer(record.unpackedBytes, 1, MAX_UNPACKED_APP_BYTES),
     rollout: integer(record.rollout, 0, 100),
     dataEpoch: Object.freeze({ minimum, maximum }),
     zip: Object.freeze({

@@ -79,20 +79,21 @@ const zip = Buffer.from(
     { level: 0 },
   ),
 );
-function feed(version: string, bytes = zip.length): UpdateFeed {
+function feed(version: string, bytes = zip.length, renewed = false): UpdateFeed {
   const payload = Buffer.from(
     JSON.stringify({
       schemaVersion: 1,
       applicationId: 'app.folio.resume',
       platform: 'darwin-arm64',
       channel: 'stable',
-      sequence: 1,
-      issuedAt: new Date(Date.now() - 1000).toISOString(),
+      sequence: renewed ? 2 : 1,
+      issuedAt: new Date(Date.now() - (renewed ? 0 : 1000)).toISOString(),
       expiresAt: new Date(Date.now() + 3600_000).toISOString(),
       release: {
         version,
         notes: 'Inert test download; no app installation.',
         minimumSystemVersion: '20.0.0',
+        unpackedBytes: 256 * 1024,
         rollout: 100,
         dataEpoch: { minimum: 1, maximum: 1 },
         zip: {
@@ -140,6 +141,18 @@ void app.whenReady().then(async () => {
     updater.downloadedUpdateHelper = new DownloadedUpdateHelper(cache);
     (installer as any).cacheRoot = path.join(cache, 'pending');
     const partition = updater.netSession;
+    const realStatfs = fs.statfs;
+    const withFullDisk = async (action: () => Promise<unknown>) => {
+      fs.statfs = (async (...args: Parameters<typeof fs.statfs>) => ({
+        ...(await realStatfs(...args)),
+        bavail: 0n,
+      })) as typeof fs.statfs;
+      try {
+        await assert.rejects(action(), /Free some space/);
+      } finally {
+        fs.statfs = realStatfs;
+      }
+    };
     await partition.cookies.set({
       url: 'https://github.com',
       name: 'folio-fixture-cookie',
@@ -219,11 +232,18 @@ void app.whenReady().then(async () => {
     mode = 'offline';
     await installer.download(first, new AbortController().signal, () => {});
     assert.equal(requests.length, count, 'Exact valid cache avoids another network download.');
+    const renewed = feed('0.2.0', zip.length, true);
+    await installer.download(renewed, new AbortController().signal, () => {});
+    assert.equal(
+      requests.length,
+      count,
+      'Renewed metadata for the same ZIP must also reuse cache.',
+    );
     const cached = path.join(cache, 'pending', 'Folio-0.2.0-mac-arm64.zip');
     const changed = Buffer.from(zip);
     changed[60] ^= 1;
     await fs.writeFile(cached, changed);
-    await assert.rejects(installer.verify(first), /checksum/);
+    await assert.rejects(installer.verify(renewed), /checksum/);
     await assert.rejects(fs.stat(cached), { code: 'ENOENT' });
     mode = 'good';
     await installer.download(first, new AbortController().signal, () => {});
@@ -285,6 +305,45 @@ void app.whenReady().then(async () => {
       'Actual transfer cancellation settles, keeps the app running, and permits a verified retry.',
     );
 
+    checkpoint('disk headroom and cache cleanup');
+    const storageFeed = feed('0.5.1');
+    await updater.downloadedUpdateHelper.clear();
+    const beforeFullDisk = requests.length;
+    await withFullDisk(() =>
+      installer.download(storageFeed, new AbortController().signal, () => {}),
+    );
+    assert.equal(requests.length, beforeFullDisk);
+    // A stale partial download is owned cache data. An unrelated file must
+    // instead stop the pinned updater before its broad cleanup can run.
+    await fs.writeFile(
+      path.join(cache, 'pending', 'temp-Folio-0.4.0-mac-arm64.zip'),
+      'stopped transfer',
+    );
+    await fs.writeFile(path.join(cache, 'pending', 'keep.txt'), 'do not remove');
+    await assert.rejects(
+      installer.download(storageFeed, new AbortController().signal, () => {}),
+      /unexpected items/,
+    );
+    assert.equal(
+      await fs.readFile(path.join(cache, 'pending', 'keep.txt'), 'utf8'),
+      'do not remove',
+    );
+    assert.equal(requests.length, beforeFullDisk);
+    await fs.unlink(path.join(cache, 'pending', 'keep.txt'));
+    await installer.download(storageFeed, new AbortController().signal, () => {});
+    assert.deepEqual((await fs.readdir(path.join(cache, 'pending'))).sort(), [
+      'Folio-0.5.1-mac-arm64.zip',
+      'update-info.json',
+    ]);
+    // A full disk detected just before staging must not consume the one native
+    // staging attempt or call Squirrel. A later download can still be checked.
+    await withFullDisk(() => installer.install());
+    assert.equal(nativeInstallationAttempts, 0);
+    await installer.download(storageFeed, new AbortController().signal, () => {});
+    checks.push(
+      'Controlled full-disk readings block transfer and staging; freeing space permits retry. Stale partial cache is removed, while unexpected items are preserved and stop the updater.',
+    );
+
     mode = 'oversized';
     checkpoint('oversized stream');
     await updater.downloadedUpdateHelper.clear();
@@ -342,6 +401,7 @@ void app.whenReady().then(async () => {
           nativeInstallationAttempted: nativeInstallationAttempts > 0,
           guardedStagingChecks,
           nativeStagingSimulated: true,
+          diskSpaceReadingsSimulated: true,
           scope:
             'No runnable app ZIP, Developer ID, notarization, public network, or native replacement is claimed.',
         },

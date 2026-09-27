@@ -1,0 +1,301 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T10:05:12.199903+00:00",
+  "baseCommit": "0c0e712495490e3b877117fd7617da52c8c117df",
+  "change": "Inspect the owned update cache before the upstream updater uses it; reuse unchanged archives after signed feed renewal; preflight space before download and staging; keep Settings usable after storage failures.",
+  "inputs": [
+    {
+      "path": "scripts/fixtures/update-download.ts",
+      "bytes": 17881,
+      "sha256": "a0dd45c85e0c3d85bf0e4ccd9ef981b72b3923dc2193d014686539cbe3949532"
+    },
+    {
+      "path": "electron/core/update-installer.ts",
+      "bytes": 7624,
+      "sha256": "74084263a6ab899cb9f158f225e7faee54dd45da13872c90eec23855a4b9ce84"
+    },
+    {
+      "path": "electron/core/update-manifest.ts",
+      "bytes": 10730,
+      "sha256": "47a9568903b66e40c7066ad2cc260392464b2f070595667641c5e40794294e81"
+    },
+    {
+      "path": "electron/core/update-provider.ts",
+      "bytes": 1918,
+      "sha256": "02a914e55a42b3de2a0de648bdcca52b3ec90bccd854869a1bc7141da39e49d2"
+    },
+    {
+      "path": "electron/core/update-archive.ts",
+      "bytes": 2606,
+      "sha256": "ba647d27b73d3cd019b5cd1f969e638ca2c9eb9c82e4236db485acded3a90a4d"
+    },
+    {
+      "path": "electron/core/update-feed.ts",
+      "bytes": 2487,
+      "sha256": "345bcaf2eecccab926b6ca6fc1ff4b2929ed3d9b3b6ece4945481369c54ea5eb"
+    },
+    {
+      "path": "electron/core/update-download.ts",
+      "bytes": 5805,
+      "sha256": "e796e2308906770315bdeb6b942cf76703860f2f22ebd976fbeca6a8c6a91d69"
+    },
+    {
+      "path": "electron/core/update-request.ts",
+      "bytes": 2526,
+      "sha256": "61461ec2962f55e5657ace5abc96120e9574619171e78368153761248ab16c2e"
+    },
+    {
+      "path": "electron/core/update-staging.ts",
+      "bytes": 3144,
+      "sha256": "2a011ca6f0bd290f4ecdd9f37c10a5ca8fb8300fde7065d4ee55312113dbde93"
+    },
+    {
+      "path": "electron/core/update-storage.ts",
+      "bytes": 5712,
+      "sha256": "5f8de9a6260709afa66f84b849a40411a44691014f95acfe2b0e5a9171073e14"
+    },
+    {
+      "path": "electron/core/pack-io.ts",
+      "bytes": 2831,
+      "sha256": "8f80c73ab4a8a4818e588f95cdb50c65debacea7e3429e7a4d2210a56e6a621b"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 206387,
+      "sha256": "f49e1352767126ce8d3c894ac5bfdc4d39fc951fbe1efe7283ca4ee4d991ae00"
+    },
+    {
+      "path": "electron/core/update-service.ts",
+      "bytes": 13066,
+      "sha256": "2aa9817e6d4a9356812ac954f8d01ca1b029e0f80899668493250d618eb8feb8"
+    },
+    {
+      "path": "scripts/sign-app-update.ts",
+      "bytes": 7003,
+      "sha256": "9916c56782d582e61ec2af88d01eec1de31f229f3aed4b0dc0aed1bbbcf9e839"
+    },
+    {
+      "path": "scripts/test-update-download.mjs",
+      "bytes": 2669,
+      "sha256": "cf4aab0ec8dbabe0d2c20c78127e6b8d77edd64ca9b353aa4cfdaad011177f48"
+    },
+    {
+      "path": "scripts/test-updates.mjs",
+      "bytes": 11632,
+      "sha256": "7649800e49652401aae941ac91e057be2bfce64f048d938027560e4fa5ecd5f4"
+    },
+    {
+      "path": "tests/app-updates.test.ts",
+      "bytes": 33963,
+      "sha256": "7f9ac061c23dfb3bae79062279afcc2ada0f74a768bdc6953ddf7f9b96b8140c"
+    },
+    {
+      "path": "src/components/AppUpdates.tsx",
+      "bytes": 7212,
+      "sha256": "db65b1cc3ca469aedc459da7ce8b27c9553ab601ba280dfc31272e3a563ba034"
+    },
+    {
+      "path": "electron/main.ts",
+      "bytes": 42073,
+      "sha256": "508f4c4eb17462c8d36e263a1b63968b91a8746e83df135e1cd1601a0f43b2c7"
+    },
+    {
+      "path": "package.json",
+      "bytes": 5677,
+      "sha256": "f8d9b4164f27c8a637186fbc65d748ae2a23f55c0ebe9d2c4a100d7bccdc44cd"
+    }
+  ],
+  "sourceTestsPassed": 327,
+  "newTests": 5,
+  "checks": {
+    "typecheckAndBuildPassed": true,
+    "formatPassed": true,
+    "allRecordedElectronInputsMatchCurrentSources": true,
+    "boundedMetadataAndDirectoryInspection": true,
+    "unknownOrLinkedCacheEntriesPreserved": true,
+    "sameSnapshotAndRenewedSnapshotAvoidAdditionalZipRequests": true,
+    "corruptCacheStillRejectedAndRetryVerified": true,
+    "controlledLowSpacePreventsTransferAndNativeStaging": true,
+    "lowSpacePreflightDoesNotConsumeNativeStagingAttempt": true,
+    "simulatedMidDownloadENOSPCReleasesServiceForRetry": true,
+    "nativeSettingsWithSimulatedLowSpacePassed": true,
+    "desktopMobileWebsitePassed": true,
+    "galleryCards": 34
+  },
+  "policy": {
+    "maximumPendingEntries": 64,
+    "maximumMetadataBytes": 4096,
+    "maximumZipBytes": 2147483648,
+    "maximumSignedUnpackedBytes": 4294967296,
+    "headroomBeforeDownload": "2 * signed ZIP bytes + 3 * signed unpacked bytes + 1 GiB",
+    "headroomWithCachedZip": "1 * signed ZIP bytes + 3 * signed unpacked bytes + 1 GiB",
+    "checkedLocations": [
+      "update cache",
+      "application parent",
+      "temporary directory"
+    ],
+    "publisherSizeSource": "Fresh production package verification report appBytes; not release-plan input",
+    "osReservation": false,
+    "measuredSquirrelPeak": false
+  },
+  "reproducedFailure": {
+    "kind": "Unchanged ZIP downloaded again after signed feed publication-time renewal",
+    "control": {
+      "stage": "offline reuse and damaged cache retry",
+      "checks": [
+        "Real MacUpdater bounded HTTPS-protocol transfer, SHA-512, exact cache bytes and authenticated loopback ZIP proxy pass."
+      ],
+      "requests": [
+        "https://github.com/grawish/folio/releases/download/v0.2.0/Folio-0.2.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.2.0/Folio-0.2.0-mac-arm64.zip"
+      ],
+      "error": "Error: net::ERR_FAILED"
+    },
+    "resolution": "Start a fresh pinned DownloadedUpdateHelper using the inspected pending cache, preserving its full on-disk SHA-512 check. The final fixture asserts zero requests added by both same-snapshot and renewed-snapshot cache reuse.",
+    "scope": "Synthetic signing key, inert 262399-byte ZIP and deterministic Electron protocol responses; no public-network timing claim."
+  },
+  "electronFixture": {
+    "result": {
+      "passed": true,
+      "checks": [
+        "Real MacUpdater bounded HTTPS-protocol transfer, SHA-512, exact cache bytes and authenticated loopback ZIP proxy pass.",
+        "Valid cached download is reusable offline; same-size cache tampering is rejected and a fresh retry succeeds.",
+        "Actual downloaded checksum mismatch is rejected before native staging.",
+        "Actual Electron request policy blocks an unapproved HTTPS redirect.",
+        "Approved GitHub asset redirect succeeds without session cookies or authorization.",
+        "An actual Electron request failure rejects without staging an update.",
+        "Actual transfer cancellation settles, keeps the app running, and permits a verified retry.",
+        "Controlled full-disk readings block transfer and staging; freeing space permits retry. Stale partial cache is removed, while unexpected items are preserved and stop the updater.",
+        "An oversized chunked response cannot become a verified native update.",
+        "Guarded native failure releases the adapter, ignores late events and blocks a second download or restart in this process."
+      ],
+      "requests": [
+        "https://github.com/grawish/folio/releases/download/v0.2.0/Folio-0.2.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.2.0/Folio-0.2.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.3.0/Folio-0.3.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.4.0/Folio-0.4.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.4.1/Folio-0.4.1-mac-arm64.zip",
+        "https://release-assets.githubusercontent.com/fixture.zip",
+        "https://github.com/grawish/folio/releases/download/v0.4.2/Folio-0.4.2-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.5.0/Folio-0.5.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.5.0/Folio-0.5.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.5.1/Folio-0.5.1-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.6.0/Folio-0.6.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.7.0/Folio-0.7.0-mac-arm64.zip"
+      ],
+      "elapsedMs": 317,
+      "electron": "44.4.5",
+      "updater": "6.8.10",
+      "sha512": "u8r/x7tkasSyk8bf1l8eu/CkIsSXpcxd2gxBGOG/0S2vN7DrAA6DFyspjQhqPpkGvyYXB8p0vw4+jucXyG8xlg==",
+      "zipBytes": 262399,
+      "transport": "Electron HTTPS protocol handler supplies deterministic responses; real MacUpdater, bounded net.request transfer, cache and proxy code.",
+      "syntheticTrust": true,
+      "isolatedCache": true,
+      "nativeInstallationAttempted": false,
+      "guardedStagingChecks": 1,
+      "nativeStagingSimulated": true,
+      "diskSpaceReadingsSimulated": true,
+      "scope": "No runnable app ZIP, Developer ID, notarization, public network, or native replacement is claimed."
+    },
+    "recordedInputs": {
+      "inputs": {
+        "scripts/fixtures/update-download.ts": "a0dd45c85e0c3d85bf0e4ccd9ef981b72b3923dc2193d014686539cbe3949532",
+        "electron/core/update-installer.ts": "74084263a6ab899cb9f158f225e7faee54dd45da13872c90eec23855a4b9ce84",
+        "electron/core/update-manifest.ts": "47a9568903b66e40c7066ad2cc260392464b2f070595667641c5e40794294e81",
+        "electron/core/update-provider.ts": "02a914e55a42b3de2a0de648bdcca52b3ec90bccd854869a1bc7141da39e49d2",
+        "electron/core/update-archive.ts": "ba647d27b73d3cd019b5cd1f969e638ca2c9eb9c82e4236db485acded3a90a4d",
+        "electron/core/update-feed.ts": "345bcaf2eecccab926b6ca6fc1ff4b2929ed3d9b3b6ece4945481369c54ea5eb",
+        "electron/core/update-download.ts": "e796e2308906770315bdeb6b942cf76703860f2f22ebd976fbeca6a8c6a91d69",
+        "electron/core/update-request.ts": "61461ec2962f55e5657ace5abc96120e9574619171e78368153761248ab16c2e",
+        "electron/core/update-staging.ts": "2a011ca6f0bd290f4ecdd9f37c10a5ca8fb8300fde7065d4ee55312113dbde93",
+        "electron/core/update-storage.ts": "5f8de9a6260709afa66f84b849a40411a44691014f95acfe2b0e5a9171073e14",
+        "electron/core/pack-io.ts": "8f80c73ab4a8a4818e588f95cdb50c65debacea7e3429e7a4d2210a56e6a621b",
+        "package-lock.json": "f49e1352767126ce8d3c894ac5bfdc4d39fc951fbe1efe7283ca4ee4d991ae00"
+      },
+      "bundleSha256": "4f769aa1464d6b464d27540a6689027b284a7c8eb105bf00e11f0da63cda845b"
+    }
+  },
+  "settings": {
+    "passed": true,
+    "checks": [
+      "Persistent stable/beta preferences, opt-in checks and no install action without an approved download.",
+      "Unconfigured publisher fails closed before network access or installation.",
+      "Dark, light and 1040\u00d7680 Settings controls are reachable.",
+      "Normal quit/relaunch retains update preferences, project draft and chat draft.",
+      "A simulated low-disk status shows space/retry guidance and leaves Settings usable.",
+      "A simulated restart IPC failure unlocks Settings and preserves subsequent project/chat edits through normal quit and reopen."
+    ],
+    "nativeInstallationTested": false,
+    "productionTrustConfigured": false,
+    "stagingFailureSimulated": true,
+    "diskSpaceFailureSimulated": true
+  },
+  "screenshot": {
+    "path": "docs/images/app-updates-disk-space.png",
+    "bytes": 173997,
+    "sha256": "e8787821cacc9c6c110f12d784439e76807c4f41110892d3969a7021055d9bce"
+  },
+  "logs": [
+    {
+      "path": "test-results/update-storage-all-unit-final.log",
+      "bytes": 33703,
+      "sha256": "e97f30402763439c24cb10fcdfff911d7c5833c43c864f9a5a4ab7fdfdc39296"
+    },
+    {
+      "path": "test-results/update-storage-format-final.log",
+      "bytes": 183,
+      "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+    },
+    {
+      "path": "test-results/update-storage-build-final.log",
+      "bytes": 1719,
+      "sha256": "be17c6c31fd8179d1059104b068757bf22eaab848052873e7052ac842fce4a06"
+    },
+    {
+      "path": "test-results/update-storage-electron-final.log",
+      "bytes": 266,
+      "sha256": "e8a913f3e21f1c6e16bd48e8154c5ea46608ef99ef548ba2a87f20fc4098c8da"
+    },
+    {
+      "path": "test-results/update-storage-settings.log",
+      "bytes": 160,
+      "sha256": "f0cea7358f4bdb66dc7d73b9bc198f4023d27efb3fff5b77eb6f577324d102a4"
+    },
+    {
+      "path": "test-results/update-storage-website-final.log",
+      "bytes": 821,
+      "sha256": "b6b183dfb352cf78d4e0157dbefbb469c496b978cea52232de4541c12910ae4c"
+    },
+    {
+      "path": "test-results/update-download-ZXbj6A/result.json",
+      "bytes": 2824,
+      "sha256": "41a4c7232c8c0cb06722fa1f708e8e8ce4bf43a3fa01f20eb6269f0b14e17124"
+    },
+    {
+      "path": "test-results/update-download-ZXbj6A/inputs.json",
+      "bytes": 1375,
+      "sha256": "7095920c3ac6d39debdbf52e44481599f1a9a5acc716e8eadade9bb45ddfd852"
+    },
+    {
+      "path": "test-results/app-updates-AfSaCZ/result.json",
+      "bytes": 750,
+      "sha256": "55c34a022325eff8c7f4be469a6467c83f09e49107d83650b325cf61096dd08e"
+    }
+  ],
+  "commands": [
+    "npm test",
+    "npm run format:check",
+    "npm run build",
+    "npm run test:update-download",
+    "npm run test:updates",
+    "npm run website:check"
+  ],
+  "productionAcceptance": {
+    "realFullVolumeTested": false,
+    "signedNativeUpgradeTested": false,
+    "separateOrSharedAPFSVolumesQualified": false,
+    "nativeSquirrelCacheRetentionQualified": false,
+    "productionTrustConfigured": false
+  },
+  "scope": "Unit tests use real temporary files plus injected capacity and service failures. The Electron adapter fixture uses the actual pinned MacUpdater, request, cache and loopback proxy, with deterministic inert downloads, simulated statfs capacity and intercepted native staging. The Settings capture uses a simulated low-space status. No real disk was filled, runnable update installed, Apple ticket accepted, signed upgrade qualified or production feed published. Existing build/test results are source-scoped; final packaged Mac qualification remains required."
+}

@@ -460,5 +460,19 @@
     ],
     "kind": "Real source Settings \u00b7 simulated timeout",
     "alt": "Folio update Settings after a simulated preparation timeout, with recovery guidance and an enabled Done button"
+  },
+  {
+    "id": "app-update-disk-space",
+    "title": "Make room for an app update",
+    "image": "app-updates-disk-space.png",
+    "guide": "tutorials/app-updates.md#if-your-disk-needs-more-space",
+    "description": "A simulated low-space message in the real Settings screen explains how to retry. Your documents stay in place.",
+    "steps": [
+      "Read the amount of free space requested.",
+      "Free some space on that disk.",
+      "Check for updates again, or return to your document."
+    ],
+    "kind": "Real source Settings \u00b7 simulated low space",
+    "alt": "Folio Settings showing free-space guidance and enabled Check for updates and Done buttons"
   }
 ]

@@ -36,6 +36,7 @@ Every currently implemented feature group below has a plain-language walkthrough
 | Reviewable support ZIP | [Walkthrough](tutorials/settings-and-compiler.md#make-a-support-bundle) | [Screenshot](images/support-bundle.png) · Real app · synthetic privacy fixture |
 | Privacy and support | [Walkthrough](tutorials/settings-and-compiler.md) | [Screenshot](images/privacy.png) · Real app · synthetic project |
 | App update preferences | [Walkthrough](tutorials/app-updates.md) | [Screenshot](images/app-updates-dark.png) · Development source · publisher not configured |
+| Low space during an app update | [Walkthrough](tutorials/app-updates.md#if-your-disk-needs-more-space) | [Screenshot](images/app-updates-disk-space.png) · Real Settings · simulated low space |
 | Return to work after update preparation fails | [Walkthrough](tutorials/app-updates.md#if-preparing-an-update-takes-too-long) | [Screenshot](images/app-updates-recovery.png) · Real Settings · simulated timeout |
 
 See [demo reproduction](demos/README.md) for commands and capture provenance. Pack workflows are demonstrated with the public catalog and published table resources. See [the release audit](RELEASE_GAP_AUDIT.md) for package qualification and remaining release requirements. Automatic updates have no working-feature demo yet. Wider OS, physical accessibility and live AI acceptance also remain open.
