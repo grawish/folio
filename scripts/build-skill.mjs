@@ -17,6 +17,7 @@ const sources = [
   'docs/ARCHITECTURE.md',
   'docs/MAC_SIGNING.md',
   'docs/APP_UPDATES.md',
+  'docs/BUILD_RECOVERY.md',
   'docs/RELEASE_GAP_AUDIT.md',
 ];
 const targets = new Map(sources.map((source) => [source, path.basename(source)]));
