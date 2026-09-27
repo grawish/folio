@@ -72,3 +72,8 @@ Use `python3 scripts/collect-biber-build-evidence.py` for byte provenance of Bib
 `scripts/collect-tex-generated-materials.py` and `tests/tex-generated-materials.py` use GPL-2.0-or-later, as stated in their headers. The standalone replay adapts the original TeX Live `updmap.pl`, `TLUtils.pm` and `TLPOBJ.pm` generation rules, preserves upstream attribution, and uses only Python's standard library and curl. The full GPL version 2 text is retained in `resources/tex-resource-notices/pgf.doc--gnu-public-license-2.txt`. These developer files are not included in the application package; Folio's original app keeps its noncommercial license. Original source-map files retain their own terms.
 
 The [generated-resource replay](docs/LICENSING.md#reproduce-generated-tex-resources) reproduces three generated files from the exact TeX Live commit recorded by the upstream bundle. Together with the 513 direct distribution matches, all 516 resource files now have verified provenance. This does not complete individual redistribution conditions, corresponding-source publication or the full binary SBOM.
+
+
+## Biber compiled-module source associations
+
+The offline [compiled-module collector](docs/LICENSING.md#collect-biber-compiled-module-materials) associates all 99 packaged Perl-module files with matching Perl source files and retained upstream archives. Original XS declarations, notices and build materials are preserved; six source-version ambiguities and ten generated-XS cases remain explicit. This evidence does not establish exact native rebuilds, resolve the unbundled X11/MySQL references or complete final redistribution review. Upstream materials retain their original terms.

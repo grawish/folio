@@ -24,10 +24,10 @@ HOSTS = {"github.com", "release-assets.githubusercontent.com", "download.gnome.o
          "ftp.gnu.org", "distfiles.macports.org", "zlib.net"}
 
 
-def macho(data, requested=()):
+def macho(data, requested=(), file_type=6):
     thin = biber.arm64_slice(data) if data[:4] == b"\xca\xfe\xba\xbe" else data
-    if len(thin) < 32 or thin[:8] != b"\xcf\xfa\xed\xfe\x0c\x00\x00\x01" or struct.unpack_from("<I", thin, 12)[0] != 6:
-        raise ValueError("Expected an arm64 Mach-O dynamic library")
+    if len(thin) < 32 or thin[:8] != b"\xcf\xfa\xed\xfe\x0c\x00\x00\x01" or file_type not in (6, 8) or struct.unpack_from("<I", thin, 12)[0] != file_type:
+        raise ValueError("Expected the reviewed arm64 Mach-O file type")
     count, size = struct.unpack_from("<2I", thin, 16)
     if not 1 <= count <= 512 or size > len(thin) - 32:
         raise ValueError("Invalid Mach-O command bounds")
@@ -38,6 +38,7 @@ def macho(data, requested=()):
         return thin[start:stop].decode("utf-8")
     version = lambda v: f"{v >> 16}.{(v >> 8) & 255}.{v & 255}"
     offset, identities, dependencies, segments, tables = 32, [], [], [], []
+    section_count = 0
     for _ in range(count):
         if offset + 8 > 32 + size: raise ValueError("Truncated Mach-O command")
         command, length = struct.unpack_from("<2I", thin, offset)
@@ -56,7 +57,7 @@ def macho(data, requested=()):
             sections = struct.unpack_from("<I", thin, offset + 64)[0]
             if length != 72 + 80 * sections or file_offset + file_size > len(thin) or file_size > virtual_size:
                 raise ValueError("Invalid Mach-O segment extent")
-            segments.append((vm, file_offset, file_size))
+            segments.append((vm, file_offset, file_size)); section_count += sections
         elif command == 2:
             if length != 24: raise ValueError("Invalid Mach-O symbol command")
             symbols, number, strings, string_size = struct.unpack_from("<4I", thin, offset + 8)
@@ -64,11 +65,11 @@ def macho(data, requested=()):
                 raise ValueError("Invalid Mach-O symbol bounds")
             tables.append((symbols, number, strings, string_size))
         offset += length
-    if offset != 32 + size or len(identities) != 1 or len(tables) != 1:
+    if offset != 32 + size or len(identities) != (1 if file_type == 6 else 0) or len(tables) != 1:
         raise ValueError("Incomplete Mach-O identity or symbol table")
     if any(a < b + n and b < a + m for i, (_, a, m) in enumerate(segments) for _, b, n in segments[i+1:] if m and n):
         raise ValueError("Overlapping Mach-O file segments")
-    wanted, found = dict(requested), {}
+    wanted, found, boot_symbols = dict(requested), {}, []
     if any(not isinstance(n, int) or not 1 <= n <= 16 for n in wanted.values()):
         raise ValueError("Invalid requested scalar size")
     table, number, strings, string_size = tables[0]
@@ -77,15 +78,21 @@ def macho(data, requested=()):
         if index >= string_size: raise ValueError("Symbol name escapes Mach-O string table")
         if not index or kind & 0xE0 or kind & 0x0F != 0x0F: continue
         name = cstring(strings + index, strings + string_size)
-        if name not in wanted: continue
+        boot = file_type == 8 and name.startswith("_boot_")
+        if name not in wanted and not boot: continue
         mappings = [(file_offset + address - vm, length - (address - vm)) for vm, file_offset, length in segments if vm <= address < vm + length]
-        if len(mappings) != 1 or name in found or mappings[0][1] < wanted[name] * 4 or not section:
+        width = wanted[name] * 4 if name in wanted else 1
+        if len(mappings) != 1 or name in found or name in boot_symbols or mappings[0][1] < width or not section or (boot and section > section_count):
             raise ValueError("Invalid or ambiguous Mach-O scalar mapping")
+        if boot: boot_symbols.append(name)
+        if name not in wanted: continue
         file_offset = mappings[0][0]
         found[name] = {"arm64FileOffset": file_offset, "values": list(struct.unpack_from("<" + str(wanted[name]) + "I", thin, file_offset))}
     if found.keys() != wanted.keys(): raise ValueError("Missing requested Mach-O scalar")
-    return thin, {"arm64Bytes": len(thin), "arm64Sha256": shared.digest(thin),
-                  "identity": identities[0], "dependencies": dependencies, "scalars": found}
+    result = {"arm64Bytes": len(thin), "arm64Sha256": shared.digest(thin),
+              "identity": identities[0] if identities else None, "dependencies": dependencies, "scalars": found}
+    if file_type == 8: result["bootSymbols"] = sorted(boot_symbols)
+    return thin, result
 
 
 def source_url(url):
