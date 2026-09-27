@@ -201,5 +201,21 @@
     "synthetic": true,
     "liveAI": false,
     "scope": "Current development source, early editing/save with a real preparing compiler; preview-4 predates this flow."
+  },
+  {
+    "file": "docs/images/history-removal-dark.png",
+    "sourceSuite": "history-storage",
+    "sourceCapture": "history-removal-dark.png",
+    "sha256": "16ab5a404fd7d8cd0903051b0ec9eb139bda5c9cab490372d1000e70f838a1fe",
+    "synthetic": true,
+    "liveAI": false
+  },
+  {
+    "file": "docs/images/history-removal-light.png",
+    "sourceSuite": "history-storage",
+    "sourceCapture": "history-removal-light.png",
+    "sha256": "f89f89bafcc68c133837fc3df3807ca5de411590f4ab438baa64e660ba5407d4",
+    "synthetic": true,
+    "liveAI": false
   }
 ]

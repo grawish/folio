@@ -217,6 +217,29 @@ Peak sampled Node RSS was 188.6 MiB before and 137.3 MiB after across each compl
 
 The below-10-ms timer-lateness target passes for this fixture, and median save time improves. Broader physical-device/UI, large-history and memory/retention targets remain open. See [the verification record](releases/history-worker-verification.json) for failure controls, package identities and native scope.
 
+## Cost of recoverable history checkpoints
+
+The newer [history storage policy](HISTORY_STORAGE.md) admits new snapshots only below 1,000 versions and 64 MiB of saved source/PDF bytes. Creation and explicit removal use a recovery journal. The original checkpoint path wrote three files without that journal; this change adds durability work and must not be described as a speed improvement.
+
+Reproduce the matched measurement with a passing template corpus:
+
+```sh
+node --import tsx scripts/profile-history-storage.mjs <template-corpus-directory> 3
+```
+
+The [raw record](performance/history-storage.json) retains every latency, source hash and fixture identity. It compares the exact `e03cdfb` store against the current store on the same M4 Pro/48 GiB Mac. Only the baseline's relative import locations change; common dependencies and its shared runtime helper are checked against that commit. Each sample creates 100 distinct source-comment versions using the same real Classic A4 PDF, in a new isolated profile. Implementation order alternates between samples. Every archive's 100 source/PDF pairs and current storage total are independently checked after timing. No local compiler, native suite or packaging ran concurrently; OS caches were not purged.
+
+| Measurement, three samples per implementation | Before | With quota and journal |
+| --- | ---: | ---: |
+| Median time to create 100 checkpoints | 80.22 ms | 9,690.90 ms |
+| Median individual checkpoint in each sample | 0.74–0.79 ms | 96.07–97.09 ms |
+| Checkpoint 100, range | 0.75–0.96 ms | 85.95–105.94 ms |
+| Maximum observed 10 ms timer lateness, range | 0.72–2.58 ms | 2.14–2.93 ms |
+
+Across each current 100-checkpoint run, journal commits account for 8.71–8.96 seconds and actual-file storage measurement accounts for 0.64–0.66 seconds. These stages are included in total checkpoint time. The approximately 0.10-second checkpoint cost buys recoverable source/PDF/index consistency; this backend measurement does not establish full input-to-PDF latency, power-loss durability or a reference-device budget. It also does not measure the maximum 1,000-version/64 MiB workload.
+
+Keep the file flushes and recovery boundaries. Next investigate directory-flush batching inside unpublished journal preparation, then measure the largest admitted history and complete UI latency. Any optimization must preserve the process-kill controls, exact archive bytes, current-PDF protection and stale-save rejection. Actual-file size checks must not be replaced by unverified cached usage. Whole-profile and runtime/recovery-copy retention remain separate work.
+
 ## Process-tree resource baseline
 
 The unchanged `349d6ce` package now has a native process-tree measurement across fresh preparation and three one-page/100-page build, navigation and export cycles. All nine PDFs verify. Across 421 snapshots, summed RSS peaks at 920.8 MiB and summed per-process footprint at 694.7 MiB at different times; neither is unique physical memory. CPU counters are calibrated against a real nested child workload and converted with the Mac's Mach timebase. The recorded workload contains 37.997 observed CPU-seconds over 82.038 seconds, with short-lived work potentially missed. Main/renderer memory and other Electron helpers need investigation alongside compiler use.
@@ -225,7 +248,7 @@ A fresh synthetic profile ends at 409.4 MiB of regular-file sizes, mostly its 37
 
 ## Prioritized changes
 
-Workspace draft/history writes now admit at most four pending operations per project and eight across the store, including active writes. They release settled queue records rather than retaining a promise for every previously opened project. Excess requests fail visibly before storage work and can be retried; accepted changes retain their order. Regression controls and two packaged workflows verify the behavior in [the queue record](releases/workspace-queue-verification.json). This is an admission bound, not a measured speedup or a whole-app memory/disk budget. Historical retention and the remaining queues/caches still need work.
+Workspace draft/history writes now admit at most four pending operations per project and eight across the store, including active writes. They release settled queue records rather than retaining a promise for every previously opened project. Excess requests fail visibly before storage work and can be retried; accepted changes retain their order. Regression controls and two packaged workflows verify the behavior in [the queue record](releases/workspace-queue-verification.json). This is an admission bound, not a measured speedup or a whole-app memory/disk budget. Active saved snapshots now have the separately measured 64 MiB admission policy and explicit older-version removal above. Whole-profile retention and the remaining queues/caches still need work.
 
 Targets below are acceptance targets for experiments, not achieved results.
 
@@ -237,7 +260,7 @@ Targets below are acceptance targets for experiments, not achieved results.
 | 2 | Profile the self-test's TeX/Biber subprocess stages and first-execution behavior | Probe varies from 8.7 to 24.9 s | Attribute the variance first; target stable fresh preparation without first-user bibliography timeouts | Keep an actual offline bibliography self-test, immutable runtime files, restricted native execution and bounded timeouts |
 | 3 | Evaluate APFS clone/copy strategies and per-generation directory creation | Hundreds of megabytes and thousands of small files | Reduce I/O/metadata overhead without exceeding memory/disk budgets | Verify the resulting bytes and modes; retain independent versions through app replacement; handle non-APFS destinations explicitly |
 | 3 | Consider packaging the bibliography helper's cache differently | It is 3,979 files and about 236 MiB | Smaller installation work and measurable startup/storage benefit | Preserve Biber compatibility, offline operation, read-only dependencies, complete licenses and exact runtime identity |
-| 3 | Background compression passes the small-history timer target; measure larger histories and select a retention policy | With 100 small versions, history compression takes 46.8–50.1 ms and observed Node timer lateness reaches 30.3 ms; save rearchives history | Below 10 ms observed main-process timer lateness during a repeat of this fixture, with no material save-time regression | Retain exact version/source/PDF validation, immutable export snapshots, complete history round-trip and journaled save recovery; establish worker memory/cancellation limits |
+| 3 | Background compression passes the small-history timer target; measure the new quota/journal at maximum admitted history and extend whole-profile retention | With 100 small versions, history compression takes 46.8–50.1 ms and observed Node timer lateness reaches 30.3 ms; save rearchives history | Below 10 ms observed main-process timer lateness during a repeat of this fixture, with no material save-time regression | Retain exact version/source/PDF validation, immutable export snapshots, complete history round-trip and journaled save recovery; establish worker memory/cancellation limits |
 
 Avoid treating the 700 ms source-edit debounce as compiler execution time. Measure user-perceived edit-to-PDF latency separately from the build phases. Removing that debounce may increase unnecessary builds and cancellation work.
 

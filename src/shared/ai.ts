@@ -100,6 +100,14 @@ export type WorkspaceState = {
   draft: string;
   attachedNoteIds: string[];
   versions: VersionInfo[];
+  /** Changes only when history is removed, to reject stale conversation writes. */
+  historyRevision?: number;
+};
+export type HistoryStorage = {
+  bytes: number;
+  limitBytes: number;
+  versionLimit: number;
+  versions: { id: string; bytes: number; missing: boolean }[];
 };
 export const emptyWorkspace = (projectId: string): WorkspaceState => ({
   schemaVersion: 1,

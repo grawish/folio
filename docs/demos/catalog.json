@@ -154,6 +154,20 @@
     "alt": "Compare, undo and restore in the real Folio app"
   },
   {
+    "id": "history-storage",
+    "title": "Make room in History",
+    "image": "history-removal-dark.png",
+    "guide": "tutorials/chat-and-feedback.md#make-room-in-history",
+    "description": "Review and remove an older saved PDF while keeping the current work and chat draft. Available in development source; the preview-4 installer predates this feature.",
+    "steps": [
+      "Open History and check how much saved history the project uses.",
+      "Choose an older version, select Remove selected version, and read the confirmation.",
+      "Remove that version, then Save to update the history inside the project folder."
+    ],
+    "kind": "Development source \u00b7 synthetic resume \u00b7 no AI account",
+    "alt": "Real Folio History dialog comparing two synthetic PDFs and asking before removing an older version."
+  },
+  {
     "id": "editor",
     "title": "Code and build errors",
     "image": "code.png",

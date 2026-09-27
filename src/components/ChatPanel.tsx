@@ -9,7 +9,7 @@ import {
   Undo2,
   X,
 } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import type { AgentProgress, PdfAnnotation, WorkspaceState, AISettings } from '../shared/ai';
 import { NoteThumbnail } from './NoteThumbnail';
 import { ChatModelPicker } from './ChatModelPicker';
@@ -49,6 +49,10 @@ export function ChatPanel({
 }) {
   const scroll = useRef<HTMLDivElement>(null);
   const [selectingModel, setSelectingModel] = useState(false);
+  const savedVersionIds = useMemo(
+    () => new Set(workspace.versions.map((version) => version.id)),
+    [workspace.versions],
+  );
   const busy = !!progress && !['complete', 'error', 'cancelled'].includes(progress.phase);
   const attached = workspace.annotations.filter((note) =>
     workspace.attachedNoteIds.includes(note.id),
@@ -58,8 +62,21 @@ export function ChatPanel({
   }, [workspace.messages.length, progress?.phase]);
   const noteChip = (note: PdfAnnotation, removable = false) => (
     <span className="chat-note" key={note.id}>
-      <button type="button" onClick={() => onNote(note)} title={note.selectedText || note.text}>
-        <NoteThumbnail projectId={workspace.projectId} note={note} />
+      <button
+        type="button"
+        onClick={() => onNote(note)}
+        disabled={!savedVersionIds.has(note.versionId)}
+        title={
+          savedVersionIds.has(note.versionId)
+            ? note.selectedText || note.text
+            : 'Saved PDF removed from History. The note text is kept.'
+        }
+      >
+        {savedVersionIds.has(note.versionId) ? (
+          <NoteThumbnail projectId={workspace.projectId} note={note} />
+        ) : (
+          <Paperclip size={16} />
+        )}
         <span>
           Page {note.page} · {note.text || `${note.kind} note`}
         </span>
@@ -165,7 +182,9 @@ export function ChatPanel({
                             workspace.annotations.filter((note) =>
                               previous.annotationIds.includes(note.id),
                             )
-                          ).map((note) => ({ ...note, id: crypto.randomUUID() }));
+                          )
+                            .filter((note) => savedVersionIds.has(note.versionId))
+                            .map((note) => ({ ...note, id: crypto.randomUUID() }));
                           update({
                             ...workspace,
                             draft: previous.text,

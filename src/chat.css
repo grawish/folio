@@ -753,6 +753,30 @@
   border-right: 1px solid var(--line);
   padding-right: 10px;
 }
+.history-storage {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 0 0 14px;
+}
+.history-removal {
+  margin-top: 14px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-selected);
+}
+.history-removal p {
+  font-size: 12px;
+  line-height: 1.6;
+}
+.history-removal .button.danger {
+  color: var(--error);
+  border: 1px solid var(--error);
+}
+.modal:has(.history-removal) .history-layout {
+  height: min(32vh, 340px);
+}
 .history-layout > nav button {
   display: flex;
   flex-direction: column;

@@ -1,0 +1,326 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T01:55:49.557878+00:00",
+  "baseCommit": "e03cdfbc8430c139a3fa0ad6db129f4b93d74761",
+  "applicationInputs": [
+    {
+      "path": "electron/core/agent.ts",
+      "bytes": 21547,
+      "sha256": "1c2c0d652660a86ee80dce105ae0045e8931e06dc8e422a6bb739da904812729"
+    },
+    {
+      "path": "electron/core/compiler.ts",
+      "bytes": 10559,
+      "sha256": "9106c2d8e753a313ad46b956ea581247a0e2d1854b101247ec14ca79f5dd6171"
+    },
+    {
+      "path": "electron/core/workspace.ts",
+      "bytes": 23843,
+      "sha256": "c7efa96331892bf4e09164e86a6473cef15b9264779dc984af1b49ca82d58fcf"
+    },
+    {
+      "path": "electron/main.ts",
+      "bytes": 38549,
+      "sha256": "30f84d6aa1655b0a4ce8d3e05658a47c505969cb29e0123ef31c0173d44035f6"
+    },
+    {
+      "path": "electron/preload.ts",
+      "bytes": 7339,
+      "sha256": "9e3fc193403a1f92c6d47a6e95556a5f0f08458c2cbd70d450a302d4d2786111"
+    },
+    {
+      "path": "package.json",
+      "bytes": 5060,
+      "sha256": "cec2a1095fcada3540cd2731353856273d0fc02a0af4c7f40f2cf90b414b655b"
+    },
+    {
+      "path": "src/App.tsx",
+      "bytes": 92288,
+      "sha256": "73f11eaea02ff38415a12a38bf41a76d512871a69811e94aee7b18182e1a6246"
+    },
+    {
+      "path": "src/chat.css",
+      "bytes": 19238,
+      "sha256": "223f78e722136a81d5d12033786d52df8f6f00e630444a4a4180ae03601dd66d"
+    },
+    {
+      "path": "src/components/ChatPanel.tsx",
+      "bytes": 12031,
+      "sha256": "95fd8eefac8504f241d8ff75d0555e1754f2b81d57346ac3ff92ca41f684fdb1"
+    },
+    {
+      "path": "src/components/VersionHistory.tsx",
+      "bytes": 7824,
+      "sha256": "dc733a7ca47be68e034738aa95a0c459f94d6cc1f94bcaa78bb92ae661af242f"
+    },
+    {
+      "path": "src/shared/ai.ts",
+      "bytes": 4587,
+      "sha256": "f3901968b097737aa58669102474e9c6deb48469b686c3db5d21cee433dc33a0"
+    },
+    {
+      "path": "src/shared/types.ts",
+      "bytes": 8667,
+      "sha256": "bef3a6b66fdfb90d0b6a836246a0ea167370d1c4527cbb5a06beff8dc78c2eed"
+    }
+  ],
+  "policy": {
+    "maxIndexedSnapshotBytes": 67108864,
+    "maxVersions": 1000,
+    "entryLimitBytes": 26214400,
+    "automaticDeletion": false,
+    "protectedVersions": ["currently displayed PDF", "newest saved version"],
+    "legacyOverBudgetHistory": "Preserved; new checkpoints rejected until enough older history is explicitly removed.",
+    "consistency": "Selected snapshot files and index use the save journal. Stale conversation writes reject mismatched historyRevision. Portable history changes on the next project Save.",
+    "readAdmission": {
+      "perProject": 8,
+      "store": 16
+    },
+    "writeAdmission": {
+      "perProject": 4,
+      "store": 8
+    },
+    "quotaScope": "Active indexed source/PDF bytes, not the whole profile, temporary backups, old copies, or runtime retention."
+  },
+  "tests": {
+    "historyControls": 13,
+    "focusedIncludingQueue": 16,
+    "allSourcePassed": 274,
+    "compilerIntegrationsPassed": 15,
+    "actualProcessKillBoundaries": ["apply-0", "apply-1", "apply-2", "committed"],
+    "files": [
+      {
+        "path": "tests/history-storage.test.ts",
+        "bytes": 11724,
+        "sha256": "b7c6b52e7dcc146227026b620ad2756c80cb41ff3c3ccd6998025067f9c1face"
+      },
+      {
+        "path": "tests/fixtures/history-removal-crash.ts",
+        "bytes": 518,
+        "sha256": "c9384573f68d7668cea5bcac6ab262ac3bab83b593c4859529fc982af1bc4327"
+      }
+    ],
+    "logs": [
+      {
+        "path": "test-results/history-storage-final-targeted.log",
+        "bytes": 1626,
+        "sha256": "aa37ba0d343499cc70d6a361f7b3428307bed827e19579d3983cf61c3ba50dff"
+      },
+      {
+        "path": "test-results/history-storage-all-unit-final.log",
+        "bytes": 28473,
+        "sha256": "9997a70ec76812290ca87bc4f7885dd266f94bc23c071b33e81137209f78169f"
+      },
+      {
+        "path": "test-results/history-storage-integration-final.log",
+        "bytes": 1993,
+        "sha256": "f3cef75c78cf554f34249090f70ae6099ff3103c22341b57c2f83dbec34ebfc9"
+      },
+      {
+        "path": "test-results/history-storage-format-final.log",
+        "bytes": 183,
+        "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+      },
+      {
+        "path": "test-results/history-storage-package-final.log",
+        "bytes": 4574,
+        "sha256": "7473c9513afb9eefcaa1f175579ccba4203afec75d4b95e1ce0a12b2c63098e8"
+      }
+    ]
+  },
+  "native": [
+    {
+      "suite": "history-storage",
+      "kind": "source",
+      "passed": true,
+      "script": {
+        "path": "scripts/test-history-storage.mjs",
+        "bytes": 10639,
+        "sha256": "3878352c388634b90551412f547d0a54790cc5deb2a403b2144c3448be741f9b"
+      },
+      "log": {
+        "path": "test-results/history-storage-native-final.log",
+        "bytes": 394,
+        "sha256": "0047261a302da021feb95da8183f27a93bda366d32518755d94839456d6f3d1e"
+      },
+      "evidence": "test-results/history-storage-Scvf59",
+      "result": {
+        "passed": true,
+        "errors": [],
+        "checks": [
+          "real PDF/note, current-version protection, compact dark/light confirmation, cancel, removal, unchanged current source/PDF, unsaved draft/source retention and portable save",
+          "held real journal write blocks Escape and native close; close resumes after commit and restart keeps the reduced history and chat draft"
+        ]
+      },
+      "captures": [
+        {
+          "path": "test-results/history-storage-Scvf59/history-removal-dark.png",
+          "bytes": 96910,
+          "sha256": "16ab5a404fd7d8cd0903051b0ec9eb139bda5c9cab490372d1000e70f838a1fe"
+        },
+        {
+          "path": "test-results/history-storage-Scvf59/history-removal-light.png",
+          "bytes": 108624,
+          "sha256": "f89f89bafcc68c133837fc3df3807ca5de411590f4ab438baa64e660ba5407d4"
+        }
+      ]
+    },
+    {
+      "suite": "chat",
+      "kind": "source",
+      "passed": true,
+      "script": {
+        "path": "scripts/test-chat.mjs",
+        "bytes": 36762,
+        "sha256": "ecc8c229f5792aefd47b860c7ff318c3bd60962972da2f57be4f9e7a454cd095"
+      },
+      "log": {
+        "path": "test-results/history-storage-chat-regression.log",
+        "bytes": 1518,
+        "sha256": "bdc28a5e0178e2bc50a190268c3303f02e676ec7181404e1998d74c78b6cefb1"
+      },
+      "evidence": "test-results/chat-iEsePH"
+    },
+    {
+      "suite": "history-storage",
+      "kind": "packaged",
+      "passed": true,
+      "script": {
+        "path": "scripts/test-history-storage.mjs",
+        "bytes": 10639,
+        "sha256": "3878352c388634b90551412f547d0a54790cc5deb2a403b2144c3448be741f9b"
+      },
+      "log": {
+        "path": "test-results/history-storage-packaged-history-final.log",
+        "bytes": 394,
+        "sha256": "cb8a6889791d796324468080a2ea7fc8376b3af64dc140566c657695dcfc6b1e"
+      },
+      "evidence": "test-results/history-storage-Er4FKk",
+      "result": {
+        "passed": true,
+        "errors": [],
+        "checks": [
+          "real PDF/note, current-version protection, compact dark/light confirmation, cancel, removal, unchanged current source/PDF, unsaved draft/source retention and portable save",
+          "held real journal write blocks Escape and native close; close resumes after commit and restart keeps the reduced history and chat draft"
+        ]
+      },
+      "captures": [
+        {
+          "path": "test-results/history-storage-Er4FKk/history-removal-dark.png",
+          "bytes": 97186,
+          "sha256": "b2ec25d202fb41dd7239c707877eff7b21d6c302f45839fbcdf7db0f47b3283f"
+        },
+        {
+          "path": "test-results/history-storage-Er4FKk/history-removal-light.png",
+          "bytes": 108896,
+          "sha256": "e79b6d7c8af5bd7e54e804419053e1885e4e61f058b29e99e5e10d354d45dd00"
+        }
+      ]
+    },
+    {
+      "suite": "chat",
+      "kind": "packaged",
+      "passed": true,
+      "script": {
+        "path": "scripts/test-chat.mjs",
+        "bytes": 36762,
+        "sha256": "ecc8c229f5792aefd47b860c7ff318c3bd60962972da2f57be4f9e7a454cd095"
+      },
+      "log": {
+        "path": "test-results/history-storage-packaged-chat-final.log",
+        "bytes": 1518,
+        "sha256": "440dd77fc32e8ecfbf2232e36e1e48b01474d933293fe419fc9b8592508a843c"
+      },
+      "evidence": "test-results/chat-CN1LVm"
+    }
+  ],
+  "package": {
+    "checkedAt": "2026-09-27T01:55:21.015Z",
+    "architecture": "arm64",
+    "comparedOutputFiles": 39,
+    "runtimeManifestMatches": true,
+    "appBytes": 679309937,
+    "hashes": [
+      {
+        "path": "Folio-0.1.0-preview.4-mac-arm64.dmg",
+        "bytes": 302840076,
+        "sha256": "9b3fa6096aecf327b2cdd5523dbbf50b0db43743264524eb6674b0e46b92c7f1"
+      },
+      {
+        "path": "mac-arm64/Folio.app/Contents/Resources/app.asar",
+        "bytes": 5663348,
+        "sha256": "3da0dad432f609926f2ccf0121ec69e907bbd91e5c27242f49f34fab27442121"
+      }
+    ],
+    "nativeTestsPassed": false,
+    "scope": "Output/runtime/disk-image verification and two targeted packaged suites. nativeTestsPassed remains false because the complete fifteen-suite qualification has not run locally. The unsigned app/DMG are local only; no replacement preview-4 installer is published.",
+    "verificationLog": {
+      "path": "test-results/history-storage-package-recheck.log",
+      "bytes": 697,
+      "sha256": "979bf1566e4bc963baec13a32d4cf7d3f19bccdfb530c06f6e74ec79c08e0e44"
+    }
+  },
+  "performance": {
+    "record": {
+      "path": "docs/performance/history-storage.json",
+      "bytes": 17963,
+      "sha256": "fd1a4c17cd8ecc2201d6b80fab8492fa80bae1c11f6e831f94e1067184502eea"
+    },
+    "profiler": {
+      "path": "scripts/profile-history-storage.mjs",
+      "bytes": 8782,
+      "sha256": "c645c2738ccaeabe95d47227a2f9d77a6c180eafc50b1522968b60aaa652f2cc"
+    },
+    "samplesPerImplementation": 3,
+    "versionsPerSample": 100,
+    "byteChecks": "All 600 archived source/PDF pairs checked; current indexed-byte totals equal independently summed decoded bytes.",
+    "observation": "Typical measured checkpoint about 0.10 seconds versus under 1 ms before journaling. Journal commits dominate; maximum observed Node timer lateness below 3 ms. This is a durability cost, not a speedup or whole-UI benchmark."
+  },
+  "website": {
+    "demoCount": 31,
+    "checkLog": {
+      "path": "test-results/history-storage-website-final.log",
+      "bytes": 821,
+      "sha256": "7632ad9721e91baef3d56de29d15d233993b3c2df5e4502f677c1b752b113447"
+    },
+    "captures": [
+      {
+        "path": "docs/images/history-removal-dark.png",
+        "bytes": 96910,
+        "sha256": "16ab5a404fd7d8cd0903051b0ec9eb139bda5c9cab490372d1000e70f838a1fe"
+      },
+      {
+        "path": "docs/images/history-removal-light.png",
+        "bytes": 108624,
+        "sha256": "f89f89bafcc68c133837fc3df3807ca5de411590f4ab438baa64e660ba5407d4"
+      }
+    ]
+  },
+  "retainedAttempts": [
+    {
+      "log": {
+        "path": "test-results/history-storage-native.log",
+        "bytes": 694,
+        "sha256": "c6595b6bba05b51b140e4b407875d9a437a21f5cff8348939a67b3b4a5dac1fb"
+      },
+      "observation": "Test selector incorrectly matched a combined version-button label. Final test matches the exact strong label. Compact confirmation preview was shortened so all controls fit."
+    },
+    {
+      "log": {
+        "path": "test-results/history-storage-native-2.log",
+        "bytes": 572,
+        "sha256": "7d0eb123330167eef60e8c890d207235799c39e1d41cc3ef726abe10275ba07a"
+      },
+      "observation": "Removal passed, but the test incorrectly waited for the macOS application to exit when its window closed. It now waits for window close, explicitly exits the test app, and relaunches the same isolated profile."
+    },
+    {
+      "log": {
+        "path": "test-results/history-storage-all-unit.log",
+        "bytes": 29571,
+        "sha256": "7a51dbd8225757663a4e9fe2ac6d705835fbd9ac440ad64f9142b31bc4f551c7"
+      },
+      "observation": "Restricted-environment full run aborted inside Node during loopback-download tests. The focused host rerun and final complete host run pass. The restriction is not proven as the cause."
+    }
+  ],
+  "remaining": "Fresh full hosted qualification, upper-bound history/UI/device measurements, whole-profile/runtime/recovery retention, power-loss behavior, signing/notarization, updater and full licensing/SBOM acceptance remain open. The earlier qualified cb6792f app does not qualify this application change."
+}

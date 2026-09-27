@@ -61,6 +61,9 @@ jobs:
             test-results/workspace-*/layout-measurements.json
             test-results/workspace-*/failure.png
             test-results/workspace-*/result.json
+            test-results/history-storage-*/result.json
+            test-results/history-storage-*/history-removal-*.png
+            test-results/history-storage-*/failure.png
             test-results/diagnostics-*/result.json
             test-results/diagnostics-*/failure.png
             test-results/fonts-*/result.json

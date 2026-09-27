@@ -191,6 +191,7 @@ export default function App() {
   const fontImport = useRef<{ id: string; started: boolean } | undefined>(undefined);
   const [historyId, setHistoryId] = useState<string>();
   const [historyNote, setHistoryNote] = useState<PdfAnnotation>();
+  const [historyBusy, setHistoryBusy] = useState(false);
   const [focusNoteId, setFocusNoteId] = useState<string>();
   const {
     workspace,
@@ -199,7 +200,7 @@ export default function App() {
     updateWorkspace,
     flushWorkspace,
     refreshVersions,
-  } = useWorkspace(project.id, initialized, message, dialog === 'save-recovery');
+  } = useWorkspace(project.id, initialized, message, dialog === 'save-recovery' || historyBusy);
   const agentBusy =
     !!agentProgress && !['complete', 'error', 'cancelled'].includes(agentProgress.phase);
   const projectKey = useMemo(() => keyOf(project), [project]);
@@ -888,6 +889,7 @@ export default function App() {
     if (reloadingDisk && action !== 'close') return;
     if (pendingImport && action !== 'close') return;
     if (resolvingImport && action !== 'close') return;
+    if (historyBusy && action !== 'close') return;
     if (action === 'save') void save();
     else if (action === 'save-as') void save(true);
     else if (action === 'open')
@@ -1163,6 +1165,39 @@ export default function App() {
       if (activeRun.current?.id === id) activeRun.current = null;
     }
   };
+  const removeHistoryVersion = async (versionId: string) => {
+    if (!window.folio || saving.current || activeRun.current || building || !workspaceReady)
+      throw new Error(
+        'Finish saving or building, and stop the AI request before removing history.',
+      );
+    const id = current.current.id;
+    saving.current = true;
+    setSaveActive(true);
+    setHistoryBusy(true);
+    let finish!: () => void;
+    savingFinished.current = new Promise<void>((resolve) => {
+      finish = resolve;
+    });
+    try {
+      await window.folio.recover(current.current);
+      await flushWorkspace();
+      const next = await window.folio.removeHistoryVersion(id, versionId, lastGood?.versionId);
+      if (current.current.id === id) {
+        flushSync(() => {
+          updateWorkspace(next);
+          setHistoryNote(undefined);
+        });
+        message(
+          'Saved version removed. Your current source and PDF are unchanged. Save the project to update its portable history.',
+        );
+      }
+    } finally {
+      saving.current = false;
+      setSaveActive(false);
+      setHistoryBusy(false);
+      finish();
+    }
+  };
   const restoreVersion = (snapshot: VersionSnapshot) => {
     if (agentBusy) {
       message('Stop the current request before restoring a version.');
@@ -1230,6 +1265,10 @@ export default function App() {
     }
   };
   const showNote = (note: PdfAnnotation) => {
+    if (!workspace.versions.some((version) => version.id === note.versionId)) {
+      message('This note’s saved PDF was removed from History. Its text is still in chat.');
+      return;
+    }
     if (
       note.versionId === lastGood?.versionId &&
       workspace.annotations.some(
@@ -2333,6 +2372,9 @@ export default function App() {
             currentId={lastGood?.versionId}
             initialId={historyId}
             onRestore={restoreVersion}
+            onRemove={removeHistoryVersion}
+            busy={historyBusy}
+            canRemove={!agentBusy && !building && !saveActive && workspaceReady}
             onClose={() => setDialog(null)}
           />
         )}

@@ -224,6 +224,12 @@ export interface DesktopAPI {
   loadWorkspace(projectId: string): Promise<import('./ai').WorkspaceState>;
   saveWorkspace(state: import('./ai').WorkspaceState): Promise<void>;
   readVersion(projectId: string, versionId: string): Promise<import('./ai').VersionSnapshot>;
+  historyStorage(projectId: string): Promise<import('./ai').HistoryStorage>;
+  removeHistoryVersion(
+    projectId: string,
+    versionId: string,
+    currentId?: string,
+  ): Promise<import('./ai').WorkspaceState>;
   getAISettings(): Promise<import('./ai').AISettings>;
   saveAIConnection(connection: import('./ai').ConnectionInput): Promise<import('./ai').AISettings>;
   removeAIConnection(id: string): Promise<import('./ai').AISettings>;

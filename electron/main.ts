@@ -104,6 +104,7 @@ let saveReviewId: string | undefined;
 let saveReviewStart: Promise<void> = Promise.resolve();
 let saveReviewApply: Promise<unknown> = Promise.resolve();
 let applyingSaveReview = false;
+let removingHistory = false;
 async function endSaveReview(id?: string) {
   if (id !== undefined && id !== saveReviewId) return;
   const currentId = saveReviewId;
@@ -188,6 +189,7 @@ async function openProject(directory: string, main?: string) {
 }
 
 function requireProjectIdle() {
+  if (removingHistory) throw new Error('Wait for history removal to finish.');
   if (saveReviewId) throw new Error('Close save recovery before changing the workspace.');
   migrations.requireIdle();
   fonts.requireIdle();
@@ -350,6 +352,21 @@ function registerHandlers() {
   });
   handle('workspace:version', (projectId: string, versionId: string) =>
     workspaces.version(safeId(projectId), safeId(versionId)),
+  );
+  handle('workspace:storage', (projectId: string) => workspaces.storage(safeId(projectId)));
+  handle(
+    'workspace:remove-version',
+    async (projectId: string, versionId: string, currentId?: string) => {
+      requireProjectIdle();
+      if (agent.busy || compiler.busy)
+        throw new Error('Finish building and stop the AI request before removing history.');
+      removingHistory = true;
+      try {
+        return await workspaces.removeVersion(safeId(projectId), safeId(versionId), currentId);
+      } finally {
+        removingHistory = false;
+      }
+    },
   );
   handle('ai:settings', () => connections.list());
   handle('ai:save', async (input) => {

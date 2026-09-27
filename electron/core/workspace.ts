@@ -4,6 +4,8 @@ import path from 'node:path';
 import { strFromU8, strToU8, zipSync } from 'fflate';
 import { readSafeZip } from './safe-zip';
 import { historyArchiver } from './history-archive';
+import { SaveTransactions, readTarget, type SaveHooks } from './save-transactions';
+import { parentPath } from './save-io';
 import {
   emptyWorkspace,
   type PdfAnnotation,
@@ -11,10 +13,15 @@ import {
   type VersionSnapshot,
   type WorkspaceState,
   type RunMetadata,
+  type HistoryStorage,
 } from '../../src/shared/ai';
 import type { Project } from '../../src/shared/types';
 import { atomicWrite, fingerprint, validateProject } from './project';
 const pdfFingerprint = (pdf: Uint8Array) => createHash('sha256').update(pdf).digest('hex');
+// Leave room for conversation JSON and ZIP overhead below the 100 MiB archive
+// ceiling, even when none of the PDF/source bytes compress.
+export const HISTORY_BYTES = 64 * 1024 * 1024;
+export const HISTORY_VERSIONS = 1000;
 
 export function safeId(value: unknown): string {
   if (typeof value !== 'string' || !/^[a-zA-Z0-9_-]{1,100}$/.test(value))
@@ -145,6 +152,11 @@ export function validateWorkspace(value: unknown): WorkspaceState {
     attachedNoteIds: w.attachedNoteIds.slice(0, 100).map(safeId),
     versions: [],
   };
+  if (w.historyRevision !== undefined) {
+    if (!Number.isSafeInteger(w.historyRevision) || w.historyRevision < 0)
+      throw new Error('Invalid history revision.');
+    result.historyRevision = w.historyRevision;
+  }
   if (JSON.stringify(result).length > 8_000_000)
     throw new Error('This conversation exceeds the 8 MB workspace limit.');
   return result;
@@ -218,28 +230,46 @@ export class WorkspaceStore {
   private queues = new Map<string, Promise<unknown>>();
   private pending = new Map<string, number>();
   private pendingTotal = 0;
+  private pendingReads = new Map<string, number>();
+  private pendingReadTotal = 0;
   private archives = new Set<Promise<Uint8Array>>();
-  constructor(readonly dataRoot: string) {}
+  private transactions: SaveTransactions;
+  constructor(
+    readonly dataRoot: string,
+    hooks: SaveHooks = {},
+  ) {
+    this.transactions = new SaveTransactions(path.join(dataRoot, 'workspace-maintenance'), hooks);
+  }
   private root(id: string) {
     return path.join(this.dataRoot, 'workspaces', safeId(id));
   }
-  private enqueue<T>(id: string, operation: () => Promise<T>): Promise<T> {
+  private enqueue<T>(id: string, operation: () => Promise<T>, readOnly = false): Promise<T> {
     // Include the active operation in both limits. Each accepted request can
     // retain source/PDF bytes until its turn; never silently discard a save.
-    const pending = this.pending.get(id) ?? 0;
-    if (pending >= 4 || this.pendingTotal >= 8)
+    const counts = readOnly ? this.pendingReads : this.pending;
+    const pending = counts.get(id) ?? 0;
+    if (
+      pending >= (readOnly ? 8 : 4) ||
+      (readOnly ? this.pendingReadTotal >= 16 : this.pendingTotal >= 8)
+    )
       return Promise.reject(
-        new Error('Folio is finishing other workspace saves. Try again in a moment.'),
+        new Error(
+          readOnly
+            ? 'Folio is loading other history previews. Try again in a moment.'
+            : 'Folio is finishing other workspace saves. Try again in a moment.',
+        ),
       );
-    this.pending.set(id, pending + 1);
-    this.pendingTotal++;
+    counts.set(id, pending + 1);
+    if (readOnly) this.pendingReadTotal++;
+    else this.pendingTotal++;
     const next = (this.queues.get(id) ?? Promise.resolve()).catch(() => {}).then(operation);
     this.queues.set(id, next);
     const settled = () => {
-      this.pendingTotal--;
-      const remaining = this.pending.get(id)! - 1;
-      if (remaining) this.pending.set(id, remaining);
-      else this.pending.delete(id);
+      if (readOnly) this.pendingReadTotal--;
+      else this.pendingTotal--;
+      const remaining = counts.get(id)! - 1;
+      if (remaining) counts.set(id, remaining);
+      else counts.delete(id);
       // A newer request may already be waiting on this promise.
       if (this.queues.get(id) === next) this.queues.delete(id);
     };
@@ -251,6 +281,8 @@ export class WorkspaceStore {
   }
   private async read(id: string): Promise<WorkspaceState> {
     try {
+      await parentPath(this.dataRoot, `workspaces/${safeId(id)}/state.json`);
+      await this.transactions.recover(this.root(id));
       const raw = JSON.parse(await fs.readFile(path.join(this.root(id), 'state.json'), 'utf8'));
       const state = validateWorkspace(raw);
       if (state.projectId !== id) throw new Error('Mismatched workspace identity.');
@@ -261,14 +293,17 @@ export class WorkspaceStore {
       throw new Error('The saved conversation could not be read. Your source files are unchanged.');
     }
   }
-  async load(id: string) {
-    await this.queues.get(id)?.catch(() => {});
-    return this.read(id);
+  load(id: string) {
+    return this.enqueue(safeId(id), () => this.read(id), true);
   }
   save(value: unknown): Promise<void> {
     const state = validateWorkspace(value);
     return this.enqueue(state.projectId, async () => {
       const previous = await this.read(state.projectId);
+      if ((state.historyRevision ?? 0) !== (previous.historyRevision ?? 0))
+        throw new Error(
+          'History changed while this conversation was open. Reload it before saving.',
+        );
       state.versions = previous.versions;
       await atomicWrite(path.join(this.root(state.projectId), 'state.json'), JSON.stringify(state));
     });
@@ -311,43 +346,151 @@ export class WorkspaceStore {
         revision: project.revision,
         verified,
       };
-      const directory = path.join(this.root(project.id), 'versions', info.id);
       // Removed copies belong to the project archive, not every PDF version.
       // Repeating a full trash record here would exhaust history after a few builds.
       const source = validateProject(project);
       delete source.removedFiles;
-      await atomicWrite(path.join(directory, 'source.json'), JSON.stringify(source));
-      await atomicWrite(path.join(directory, 'resume.pdf'), pdf);
+      const sourceBytes = Buffer.from(JSON.stringify(source));
+      if (sourceBytes.length > 25 * 1024 * 1024)
+        throw new Error('This source snapshot exceeds the 25 MB history limit.');
+      const usage = await this.measure(state);
+      if (
+        state.versions.length >= HISTORY_VERSIONS ||
+        usage.bytes + sourceBytes.length + pdf.byteLength > HISTORY_BYTES
+      )
+        throw new Error(
+          'History is full. Open History and remove older versions before building another PDF. Your source and saved versions are unchanged.',
+        );
       state.versions.push(info);
-      await atomicWrite(path.join(this.root(project.id), 'state.json'), JSON.stringify(state));
+      const root = this.root(project.id);
+      await fs.mkdir(root, { recursive: true, mode: 0o700 });
+      await fs.mkdir(this.transactions.dataRoot, { recursive: true, mode: 0o700 });
+      await this.transactions.commit(root, [
+        { path: `versions/${info.id}/source.json`, before: null, data: sourceBytes },
+        { path: `versions/${info.id}/resume.pdf`, before: null, data: pdf },
+        {
+          path: 'state.json',
+          before: await readTarget(root, 'state.json'),
+          data: Buffer.from(JSON.stringify(state)),
+        },
+      ]);
       return info;
     });
   }
-  async version(projectId: string, versionId: string): Promise<VersionSnapshot> {
-    const state = await this.load(projectId);
-    const info = state.versions.find((v) => v.id === safeId(versionId));
-    if (!info) throw new Error('This PDF version is no longer available.');
-    const directory = path.join(this.root(projectId), 'versions', info.id);
-    const source = validateProject(
-      JSON.parse(await fs.readFile(path.join(directory, 'source.json'), 'utf8')),
+  version(projectId: string, versionId: string): Promise<VersionSnapshot> {
+    return this.enqueue(
+      safeId(projectId),
+      async () => {
+        const state = await this.read(projectId);
+        const info = state.versions.find((v) => v.id === safeId(versionId));
+        if (!info) throw new Error('This PDF version is no longer available.');
+        const directory = path.join(this.root(projectId), 'versions', info.id);
+        const source = validateProject(
+          JSON.parse(await fs.readFile(path.join(directory, 'source.json'), 'utf8')),
+        );
+        const pdf = new Uint8Array(await fs.readFile(path.join(directory, 'resume.pdf')));
+        if (
+          fingerprint(source) !== info.fingerprint ||
+          Buffer.from(pdf).subarray(0, 5).toString() !== '%PDF-' ||
+          (info.pdfFingerprint && pdfFingerprint(pdf) !== info.pdfFingerprint)
+        )
+          throw new Error(
+            'This saved version is damaged. Its source and PDF could not be verified.',
+          );
+        return {
+          info,
+          name: source.name,
+          mainFile: source.mainFile,
+          files: source.files,
+          templateId: source.templateId,
+          templateVersion: source.templateVersion,
+          runtime: source.runtime,
+          pdf,
+        };
+      },
+      true,
     );
-    const pdf = new Uint8Array(await fs.readFile(path.join(directory, 'resume.pdf')));
-    if (
-      fingerprint(source) !== info.fingerprint ||
-      Buffer.from(pdf).subarray(0, 5).toString() !== '%PDF-' ||
-      (info.pdfFingerprint && pdfFingerprint(pdf) !== info.pdfFingerprint)
-    )
-      throw new Error('This saved version is damaged. Its source and PDF could not be verified.');
+  }
+  private async measure(state: WorkspaceState): Promise<HistoryStorage> {
+    const versions: HistoryStorage['versions'] = [];
+    for (const version of state.versions) {
+      let bytes = 0,
+        missing = false;
+      for (const file of ['source.json', 'resume.pdf']) {
+        const relative = `versions/${safeId(version.id)}/${file}`;
+        try {
+          await parentPath(this.root(state.projectId), relative);
+          const stat = await fs.lstat(path.join(this.root(state.projectId), relative));
+          if (!stat.isFile() || stat.isSymbolicLink())
+            throw new Error('A history file is not a regular file.');
+          bytes += stat.size;
+        } catch (error) {
+          if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
+          missing = true;
+        }
+      }
+      versions.push({ id: version.id, bytes, missing });
+    }
     return {
-      info,
-      name: source.name,
-      mainFile: source.mainFile,
-      files: source.files,
-      templateId: source.templateId,
-      templateVersion: source.templateVersion,
-      runtime: source.runtime,
-      pdf,
+      bytes: versions.reduce((sum, v) => sum + v.bytes, 0),
+      limitBytes: HISTORY_BYTES,
+      versionLimit: HISTORY_VERSIONS,
+      versions,
     };
+  }
+  storage(projectId: string): Promise<HistoryStorage> {
+    return this.enqueue(
+      safeId(projectId),
+      async () => this.measure(await this.read(projectId)),
+      true,
+    );
+  }
+  removeVersion(projectId: string, versionId: string, currentId?: string): Promise<WorkspaceState> {
+    return this.enqueue(safeId(projectId), async () => {
+      safeId(versionId);
+      if (currentId !== undefined) safeId(currentId);
+      const state = await this.read(projectId);
+      if (!state.versions.some((v) => v.id === versionId))
+        throw new Error('This saved version is no longer available.');
+      if (versionId === currentId || versionId === state.versions.at(-1)?.id)
+        throw new Error(
+          'Keep the current PDF and newest saved version. Select an older version to remove.',
+        );
+      const revision = (state.historyRevision ?? 0) + 1;
+      if (!Number.isSafeInteger(revision)) throw new Error('History revision limit reached.');
+      const noteIds = new Set(
+        state.annotations.filter((n) => n.versionId === versionId).map((n) => n.id),
+      );
+      const next: WorkspaceState = {
+        ...state,
+        historyRevision: revision,
+        versions: state.versions.filter((v) => v.id !== versionId),
+        annotations: state.annotations.filter((n) => n.versionId !== versionId),
+        attachedNoteIds: state.attachedNoteIds.filter((id) => !noteIds.has(id)),
+        // Keep sent note text in chat; its PDF is explicitly no longer available.
+        messages: state.messages.map((m) => ({
+          ...m,
+          versionId: m.versionId === versionId ? undefined : m.versionId,
+        })),
+      };
+      const root = this.root(projectId);
+      const changes = [];
+      for (const name of ['source.json', 'resume.pdf']) {
+        const relative = `versions/${versionId}/${name}`;
+        changes.push({ path: relative, before: await readTarget(root, relative), data: null });
+      }
+      changes.push({
+        path: 'state.json',
+        before: await readTarget(root, 'state.json'),
+        data: Buffer.from(JSON.stringify(next)),
+      });
+      await fs.mkdir(this.transactions.dataRoot, { recursive: true, mode: 0o700 });
+      await this.transactions.commit(root, changes);
+      // The transaction commits bytes and references together. Only the now-empty
+      // directory is removed afterward; interruption here cannot lose a version.
+      await fs.rmdir(path.join(root, 'versions', versionId)).catch(() => {});
+      return next;
+    });
   }
   async clone(from: string, to: string) {
     await this.flush();
@@ -371,37 +514,43 @@ export class WorkspaceStore {
     void operation.then(done, done);
     return operation;
   }
-  private async archiveEntries(projectId: string, exportId: string) {
-    const state = await this.load(projectId);
-    if (state.versions.length > 1000)
-      throw new Error(
-        'History exceeds the 1,000-version archive limit. Your project files have not been changed.',
-      );
-    const entries: Record<string, Uint8Array> = {
-      'state.json': strToU8(JSON.stringify({ ...state, projectId: safeId(exportId) })),
-    };
-    let bytes = entries['state.json'].length;
-    for (const v of state.versions) {
-      for (const name of ['source.json', 'resume.pdf']) {
-        const data = await fs.readFile(path.join(this.root(projectId), 'versions', v.id, name));
-        if (data.byteLength > 25 * 1024 * 1024)
-          throw new Error('A history entry exceeds the 25 MB archive limit.');
-        // Validate exactly the bytes being archived, without repeatedly loading
-        // the entire chat for each snapshot in a long history.
-        if (
-          name === 'source.json'
-            ? fingerprint(validateProject(JSON.parse(data.toString()))) !== v.fingerprint
-            : data.subarray(0, 5).toString() !== '%PDF-' ||
-              (v.pdfFingerprint && pdfFingerprint(data) !== v.pdfFingerprint)
-        )
-          throw new Error('A saved version is damaged. History could not be exported.');
-        bytes += data.byteLength;
-        if (bytes > 200 * 1024 * 1024)
-          throw new Error('History is too large to bundle in this project (200 MB limit).');
-        entries[`versions/${v.id}/${name}`] = data;
-      }
-    }
-    return entries;
+  private archiveEntries(projectId: string, exportId: string) {
+    return this.enqueue(
+      safeId(projectId),
+      async () => {
+        const state = await this.read(projectId);
+        if (state.versions.length > 1000)
+          throw new Error(
+            'History exceeds the 1,000-version archive limit. Your project files have not been changed.',
+          );
+        const entries: Record<string, Uint8Array> = {
+          'state.json': strToU8(JSON.stringify({ ...state, projectId: safeId(exportId) })),
+        };
+        let bytes = entries['state.json'].length;
+        for (const v of state.versions) {
+          for (const name of ['source.json', 'resume.pdf']) {
+            const data = await fs.readFile(path.join(this.root(projectId), 'versions', v.id, name));
+            if (data.byteLength > 25 * 1024 * 1024)
+              throw new Error('A history entry exceeds the 25 MB archive limit.');
+            // Validate exactly the bytes being archived, without repeatedly loading
+            // the entire chat for each snapshot in a long history.
+            if (
+              name === 'source.json'
+                ? fingerprint(validateProject(JSON.parse(data.toString()))) !== v.fingerprint
+                : data.subarray(0, 5).toString() !== '%PDF-' ||
+                  (v.pdfFingerprint && pdfFingerprint(data) !== v.pdfFingerprint)
+            )
+              throw new Error('A saved version is damaged. History could not be exported.');
+            bytes += data.byteLength;
+            if (bytes > 200 * 1024 * 1024)
+              throw new Error('History is too large to bundle in this project (200 MB limit).');
+            entries[`versions/${v.id}/${name}`] = data;
+          }
+        }
+        return entries;
+      },
+      true,
+    );
   }
   async exportTo(projectId: string, directory: string) {
     await atomicWrite(path.join(directory, 'resume.folio'), await this.archive(projectId));

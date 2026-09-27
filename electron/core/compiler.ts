@@ -11,6 +11,9 @@ import { compilerLimits, limitedCompilerLaunch } from './compiler-limits';
 import type { RuntimeLease, RuntimeSource } from './runtime-manager';
 
 export class Compiler {
+  get busy() {
+    return !!this.running;
+  }
   private generation = 0;
   private abort: AbortController | undefined;
   private running: Promise<BuildResult> | undefined;
@@ -177,8 +180,13 @@ export class Compiler {
         if (generation === this.generation) this.abort = undefined;
       }
     };
-    this.running = operation();
-    return this.running;
+    const running = operation();
+    this.running = running;
+    const finished = () => {
+      if (this.running === running) this.running = undefined;
+    };
+    void running.then(finished, finished);
+    return running;
   }
 
   private run(

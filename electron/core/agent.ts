@@ -92,6 +92,9 @@ export class ResumeAgent {
   private renderCache = new Map<string, { rendered: RenderedPdf; bytes: number }>();
   private renderProject = '';
   constructor(readonly dependencies: AgentDependencies) {}
+  get busy() {
+    return !!this.active;
+  }
   async cancel(runId?: string) {
     const active = this.active;
     if (!active || (runId && active.id !== runId)) return;

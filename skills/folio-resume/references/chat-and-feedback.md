@@ -50,4 +50,22 @@ Marks keep their position when you zoom. Notes belong to the PDF version you mar
 
 History keeps source and the matching PDF together. It is different from the Code editor's Command + Z history, which applies to edits in an individual file during the editing session.
 
+## Make room in History
+
+This feature is in current development source; the preview-4 download does not include it yet.
+
+History shows how many versions you have and how much space their source and PDFs use. New versions must fit within 1,000 versions and 64 MiB of these files for each project. Older projects already above that limit are kept. If History is full, your source and earlier PDFs stay safe while you choose what to remove.
+
+1. Finish the current build or AI request, then open **History**.
+2. Select an older version and compare its PDF. The current PDF and newest saved version cannot be removed.
+3. Choose **Remove selected version…** and read the confirmation.
+4. Choose **Keep version** to cancel, or **Remove this version** to remove it and its visual notes. Sent note text stays in chat. Removal cannot be undone here.
+5. **Save** your project to update the history inside its folder. Your current source, current PDF and unfinished chat request are kept. Build again if History had been full.
+
+[Screenshot: History removal confirmation in a small dark window](https://github.com/grawish/folio/blob/main/docs/images/history-removal-dark.png)
+
+This real app capture uses a synthetic Alex Morgan resume and a real compiled PDF. No AI account is connected. Earlier project copies and backups are kept; removing local history does not erase those copies.
+
+**Demo:** `npm run test:history-storage` checks cancel, removal, notes, saved-project updates, dark/light layouts and restart. It also pauses a real storage write to check that closing the window waits safely. [Developer details and limits](https://github.com/grawish/folio/blob/main/docs/HISTORY_STORAGE.md) explain how interrupted removal is recovered.
+
 **Demo:** `npm run test:chat` runs requests, questions, stop/retry, all four mark tools, attachments, compare, undo, restore, stale-draft protection, clean export, and restart using a synthetic local provider. Follow the same steps manually with your account when you want to verify live provider behavior.

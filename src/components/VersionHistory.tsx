@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { PdfAnnotation, VersionInfo, VersionSnapshot } from '../shared/ai';
+import type { HistoryStorage, PdfAnnotation, VersionInfo, VersionSnapshot } from '../shared/ai';
 import { Modal } from './Modal';
 import { PdfPreview } from './PdfPreview';
 
@@ -10,6 +10,9 @@ export function VersionHistory({
   initialId,
   annotations,
   onRestore,
+  onRemove,
+  busy,
+  canRemove,
   onClose,
 }: {
   projectId: string;
@@ -18,12 +21,37 @@ export function VersionHistory({
   initialId?: string;
   annotations: PdfAnnotation[];
   onRestore(version: VersionSnapshot): void;
+  onRemove(versionId: string): Promise<void>;
+  busy: boolean;
+  canRemove: boolean;
   onClose(): void;
 }) {
   const [selected, setSelected] = useState(initialId ?? versions.at(-2)?.id ?? versions.at(-1)?.id);
+  const [storage, setStorage] = useState<HistoryStorage>();
+  const [confirmRemoval, setConfirmRemoval] = useState(false);
+  const [removalError, setRemovalError] = useState('');
   const [older, setOlder] = useState<VersionSnapshot | null>(null),
     [current, setCurrent] = useState<VersionSnapshot | null>(null),
     [error, setError] = useState('');
+  useEffect(() => {
+    if (!versions.some((v) => v.id === selected))
+      setSelected(versions.at(-2)?.id ?? versions.at(-1)?.id);
+  }, [versions, selected]);
+  useEffect(() => {
+    let cancelled = false;
+    setStorage(undefined);
+    void window.folio
+      ?.historyStorage(projectId)
+      .then((value) => {
+        if (!cancelled) setStorage(value);
+      })
+      .catch((error) => {
+        if (!cancelled) setRemovalError(error.message);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [projectId, versions]);
   useEffect(() => {
     let cancelled = false;
     setOlder(null);
@@ -54,7 +82,18 @@ export function VersionHistory({
       title="Version history"
       description="Compare saved PDFs. Restoring keeps every earlier version."
       onClose={onClose}
+      dismissible={!busy}
     >
+      {storage && (
+        <p className="history-storage" role="status">
+          {storage.versions.length.toLocaleString()} / {storage.versionLimit.toLocaleString()}{' '}
+          versions · {(storage.bytes / 1024 / 1024).toFixed(1)} / {storage.limitBytes / 1024 / 1024}{' '}
+          MiB of saved source and PDFs. Older versions are kept until you choose to remove them.
+          {(storage.bytes >= storage.limitBytes ||
+            storage.versions.length >= storage.versionLimit) &&
+            ' History is full. Remove older versions before building another PDF.'}
+        </p>
+      )}
       {!versions.length ? (
         <p>Build a PDF to create your first saved version.</p>
       ) : (
@@ -64,7 +103,12 @@ export function VersionHistory({
               <button
                 key={version.id}
                 className={version.id === selected ? 'selected' : ''}
-                onClick={() => setSelected(version.id)}
+                disabled={busy}
+                onClick={() => {
+                  setSelected(version.id);
+                  setConfirmRemoval(false);
+                  setRemovalError('');
+                }}
               >
                 <strong>
                   Version {versions.length - index}
@@ -114,14 +158,69 @@ export function VersionHistory({
           {error}
         </p>
       )}
+      {confirmRemoval && (
+        <div className="history-removal" role="group" aria-label="Confirm history removal">
+          <strong>Remove “{versions.find((v) => v.id === selected)?.label}”?</strong>
+          <p>
+            This removes this version’s saved source, PDF, and visual notes from local history. Sent
+            note text stays in chat. Your current source and PDF stay unchanged. This cannot be
+            undone here; Save updates the history inside your project folder.
+          </p>
+          <div className="modal-actions">
+            <button
+              className="button secondary"
+              disabled={busy}
+              onClick={() => setConfirmRemoval(false)}
+            >
+              Keep version
+            </button>
+            <button
+              className="button danger"
+              disabled={busy || !canRemove}
+              onClick={() => {
+                if (!selected) return;
+                setRemovalError('');
+                void onRemove(selected)
+                  .then(() => {
+                    setConfirmRemoval(false);
+                  })
+                  .catch((error) => setRemovalError(error.message));
+              }}
+            >
+              {busy ? 'Removing…' : 'Remove this version'}
+            </button>
+          </div>
+        </div>
+      )}
+      {removalError && (
+        <p role="alert" className="error-text">
+          {removalError}
+        </p>
+      )}
       <div className="modal-actions">
         <span className="settings-hint">Source files and the matching PDF are saved together.</span>
-        <button className="button secondary" onClick={onClose}>
+        <button
+          className="button secondary"
+          disabled={
+            busy ||
+            !canRemove ||
+            !selected ||
+            selected === currentId ||
+            selected === versions.at(-1)?.id
+          }
+          onClick={() => {
+            setConfirmRemoval(true);
+            setRemovalError('');
+          }}
+        >
+          Remove selected version…
+        </button>
+        <button className="button secondary" disabled={busy} onClick={onClose}>
           Close
         </button>
         <button
           className="button primary"
-          disabled={!older || older.info.id === currentId}
+          disabled={busy || !older || older.info.id === currentId}
           onClick={() => older && onRestore(older)}
         >
           Restore selected version

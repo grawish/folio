@@ -20,6 +20,8 @@ Inspect screenshots before publishing. Use no real resume, API key, signed-in ac
 
 The early-workspace demo uses `npm run test:runtime` with a fresh isolated profile and synthetic recovery. It edits source, writes a chat draft and saves the exact compiler choice before the real compiler copy is activated, then closes and verifies recovery on restart. `startup-chat.png` shows this flow in current development source; preview-4 predates it. The same suite covers compiler repair, unavailable recorded versions, startup errors and closing before recovery has loaded.
 
+The history-storage demo uses `npm run test:history-storage` with a synthetic resume, real PDFs and real annotation controls. It checks usage, protected versions, cancel/confirm, retained source and drafts, portable Save, and close/restart during a held journal write. `history-removal-dark.png` and `history-removal-light.png` show the confirmation at the minimum window size. This development-source feature is newer than preview-4; no AI account is used.
+
 The local-font demo uses `npm run test:fonts`. It selects bundled Roboto files through scripted native dialog results, builds the real PDF, and verifies cancellation, outside edits, reload, close during Apply, persistence and portable font bytes. It does not use an AI account or install fonts system-wide. The dark preview and compact light capture are `docs/images/local-fonts.png` and `local-fonts-light.png`.
 
 The support-bundle demo uses `npm run test:support` with synthetic private markers and a real compiler error. It verifies field exclusion, exact preview/export text, selected sections, compact dark/light layouts, cancellation, write failures and close during export. No provider is contacted and the ZIP is not uploaded.

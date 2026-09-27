@@ -78,6 +78,9 @@ const api: DesktopAPI = {
   closeWindow: () => ipcRenderer.invoke('app:close'),
   loadWorkspace: (id) => ipcRenderer.invoke('workspace:load', id),
   saveWorkspace: (state) => ipcRenderer.invoke('workspace:save', state),
+  historyStorage: (id) => ipcRenderer.invoke('workspace:storage', id),
+  removeHistoryVersion: (id, versionId, currentId) =>
+    ipcRenderer.invoke('workspace:remove-version', id, versionId, currentId),
   readVersion: (projectId, versionId) =>
     ipcRenderer.invoke('workspace:version', projectId, versionId),
   getAISettings: () => ipcRenderer.invoke('ai:settings'),
