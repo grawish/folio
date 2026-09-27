@@ -9,5 +9,7 @@ export default async function beforePack(context) {
     throw new Error('Folio packages only the pinned Apple silicon Electron notices.');
   const root = context.packager.projectDir;
   const { prepareElectronNotices } = await tsImport('./electron-notices.ts', import.meta.url);
-  await prepareElectronNotices(path.join(root, 'artifacts/electron-notices'), root);
+  const notices = await prepareElectronNotices(path.join(root, 'artifacts/electron-notices'), root);
+  if (context.packager.info.framework.version !== notices.electronVersion)
+    throw new Error('The selected Electron runtime does not match the pinned original notices.');
 }
