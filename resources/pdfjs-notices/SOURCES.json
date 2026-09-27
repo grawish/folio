@@ -1,0 +1,348 @@
+{
+  "schemaVersion": 1,
+  "scope": "Original PDF.js component notices and exact source-map associations from its published commit. The same npm archive supplies Folio\u2019s PDF.js API and copied minified worker. Source-map associations are not a byte-level reconstruction of each minified component or its native codec build. Native WASM codecs and fallback scripts are not included by Folio. Other app/native/TeX redistribution remains separate.",
+  "package": {
+    "name": "pdfjs-dist",
+    "version": "6.3.289",
+    "location": "node_modules/pdfjs-dist",
+    "archive": {
+      "file": "pdfjs-dist-6.3.289.tgz",
+      "url": "https://registry.npmjs.org/pdfjs-dist/-/pdfjs-dist-6.3.289.tgz",
+      "integrity": "sha512-ZHjSVpDa3D6izMq8/04lvkhkATUmL9px6ChPaXc1k6nU2Mrhlg1/7F0bdUqCwUjw3NsPTfPZsMDUU6ZIcRaeQw==",
+      "bytes": 8503425,
+      "sha256": "06f25e887adc6489f04c9fcb14198c77e4e5623a59a0bba5c4cea5838a4f1241"
+    }
+  },
+  "upstream": {
+    "repository": "mozilla/pdf.js",
+    "commit": "1c8020a7d4e43668ac287a3ecf9a8dbea17e4c56",
+    "npmMetadata": {
+      "url": "https://registry.npmjs.org/pdfjs-dist/6.3.289",
+      "file": "npm-metadata.json",
+      "bytes": 2177,
+      "sha256": "2be9f24f7cb1e81cc4442820ba538af032bc91fa9b8e4fd2ce7ad990e58a9c0e"
+    }
+  },
+  "upstreamFiles": [
+    {
+      "path": "external/brotli/LICENSE_BROTLI",
+      "role": "notice",
+      "url": "https://raw.githubusercontent.com/mozilla/pdf.js/1c8020a7d4e43668ac287a3ecf9a8dbea17e4c56/external/brotli/LICENSE_BROTLI",
+      "bytes": 1083,
+      "sha256": "2a57418d6b10947fe0dfbec3a600269e2745136c125cbf15b256e5ae18af23cb"
+    },
+    {
+      "path": "external/qcms/LICENSE_QCMS",
+      "role": "notice",
+      "url": "https://raw.githubusercontent.com/mozilla/pdf.js/1c8020a7d4e43668ac287a3ecf9a8dbea17e4c56/external/qcms/LICENSE_QCMS",
+      "bytes": 1121,
+      "sha256": "36d847ae882f6574ebc72f56a4f354e4f104fde4a584373496482e97d52d31bc"
+    },
+    {
+      "path": "external/qcms/LICENSE_PDFJS_QCMS",
+      "role": "notice",
+      "url": "https://raw.githubusercontent.com/mozilla/pdf.js/1c8020a7d4e43668ac287a3ecf9a8dbea17e4c56/external/qcms/LICENSE_PDFJS_QCMS",
+      "bytes": 1036,
+      "sha256": "508a77d2e7b51d98adeed32648ad124b7b30241a8e70b2e72c99f92d8e5874d1"
+    },
+    {
+      "path": "external/openjpeg/LICENSE_OPENJPEG",
+      "role": "notice",
+      "url": "https://raw.githubusercontent.com/mozilla/pdf.js/1c8020a7d4e43668ac287a3ecf9a8dbea17e4c56/external/openjpeg/LICENSE_OPENJPEG",
+      "bytes": 2112,
+      "sha256": "a6af136f3e15038a666b61f376612a07d9a4e48cb7c01adbf3e33b3f14ab49b6"
+    },
+    {
+      "path": "external/openjpeg/LICENSE_PDFJS_OPENJPEG",
+      "role": "notice",
+      "url": "https://raw.githubusercontent.com/mozilla/pdf.js/1c8020a7d4e43668ac287a3ecf9a8dbea17e4c56/external/openjpeg/LICENSE_PDFJS_OPENJPEG",
+      "bytes": 1285,
+      "sha256": "717fc62da03292dbb4dd0c8280bd4ce7bb8550dcf31d772bc93455fb50313425"
+    },
+    {
+      "path": "external/jbig2/LICENSE_JBIG2",
+      "role": "notice",
+      "url": "https://raw.githubusercontent.com/mozilla/pdf.js/1c8020a7d4e43668ac287a3ecf9a8dbea17e4c56/external/jbig2/LICENSE_JBIG2",
+      "bytes": 12862,
+      "sha256": "9e66b7f1b934a28b37f3bc4dac97915de1674271e79a0a88182a18ed9731b4d1"
+    },
+    {
+      "path": "external/jbig2/LICENSE_PDFJS_JBIG2",
+      "role": "notice",
+      "url": "https://raw.githubusercontent.com/mozilla/pdf.js/1c8020a7d4e43668ac287a3ecf9a8dbea17e4c56/external/jbig2/LICENSE_PDFJS_JBIG2",
+      "bytes": 555,
+      "sha256": "aad3cce09842e00e9e11ad5e8fef8cc02fbc3a3768fe2f007443b9cee37aaee5"
+    },
+    {
+      "path": "external/brotli/decode.js",
+      "role": "source",
+      "url": "https://raw.githubusercontent.com/mozilla/pdf.js/1c8020a7d4e43668ac287a3ecf9a8dbea17e4c56/external/brotli/decode.js",
+      "bytes": 213246,
+      "sha256": "7fd3ecb658c9c7e389eaf0aaf7e0adcc8ba47e043c21bdefb8c3caa83d893d35"
+    },
+    {
+      "path": "external/qcms/qcms.js",
+      "role": "source",
+      "url": "https://raw.githubusercontent.com/mozilla/pdf.js/1c8020a7d4e43668ac287a3ecf9a8dbea17e4c56/external/qcms/qcms.js",
+      "bytes": 7818,
+      "sha256": "080ca04ea084c3362fa56151f99ac7feca00f113449cb62aa1d9972ef1980c66"
+    },
+    {
+      "path": "external/qcms/qcms_utils.js",
+      "role": "source",
+      "url": "https://raw.githubusercontent.com/mozilla/pdf.js/1c8020a7d4e43668ac287a3ecf9a8dbea17e4c56/external/qcms/qcms_utils.js",
+      "bytes": 2955,
+      "sha256": "75e5909894052843cccd40880a804f41e9a99e13dbfdb0720428820728e70f0b"
+    },
+    {
+      "path": "external/openjpeg/openjpeg.js",
+      "role": "source",
+      "url": "https://raw.githubusercontent.com/mozilla/pdf.js/1c8020a7d4e43668ac287a3ecf9a8dbea17e4c56/external/openjpeg/openjpeg.js",
+      "bytes": 14467,
+      "sha256": "e59614b7593c45f6b3a2bcc847295107df233b8bf2833b1fcbbe4068da276a41"
+    },
+    {
+      "path": "external/jbig2/jbig2.js",
+      "role": "source",
+      "url": "https://raw.githubusercontent.com/mozilla/pdf.js/1c8020a7d4e43668ac287a3ecf9a8dbea17e4c56/external/jbig2/jbig2.js",
+      "bytes": 8589,
+      "sha256": "28fc8b6686ba89e5ba4f1fe40dc51dd9fdfccfc2518776fe696ee8a2bdb290cd"
+    },
+    {
+      "path": "src/core/flate_stream.js",
+      "role": "source",
+      "url": "https://raw.githubusercontent.com/mozilla/pdf.js/1c8020a7d4e43668ac287a3ecf9a8dbea17e4c56/src/core/flate_stream.js",
+      "bytes": 15769,
+      "sha256": "dca3885ff98099c68ebe157722c9881276858813fac47e6a5ad6fdf10f983d1b"
+    },
+    {
+      "path": "src/shared/murmurhash3.js",
+      "role": "source",
+      "url": "https://raw.githubusercontent.com/mozilla/pdf.js/1c8020a7d4e43668ac287a3ecf9a8dbea17e4c56/src/shared/murmurhash3.js",
+      "bytes": 3946,
+      "sha256": "dfd5a565324f44fec96d866d2fa24aaeed8f424a043c0a851214ea0495c60edc"
+    },
+    {
+      "path": "external/brotli/README.md",
+      "role": "build-guide",
+      "url": "https://raw.githubusercontent.com/mozilla/pdf.js/1c8020a7d4e43668ac287a3ecf9a8dbea17e4c56/external/brotli/README.md",
+      "bytes": 259,
+      "sha256": "aba0e407fcdb787af2a52c12b60853468c9c1884a7eb3ea33a4873dd4882f35b"
+    },
+    {
+      "path": "external/qcms/README.md",
+      "role": "build-guide",
+      "url": "https://raw.githubusercontent.com/mozilla/pdf.js/1c8020a7d4e43668ac287a3ecf9a8dbea17e4c56/external/qcms/README.md",
+      "bytes": 737,
+      "sha256": "9eed5608da83e2eb2ce6bb1cf70d91e083b01dbbf6c79a39129c81b1cab71e4f"
+    },
+    {
+      "path": "external/openjpeg/README.md",
+      "role": "build-guide",
+      "url": "https://raw.githubusercontent.com/mozilla/pdf.js/1c8020a7d4e43668ac287a3ecf9a8dbea17e4c56/external/openjpeg/README.md",
+      "bytes": 767,
+      "sha256": "bfa14fb932a9bb737b980a407148ac976d82f608f16641484286cc9041a10fa3"
+    },
+    {
+      "path": "external/jbig2/README.md",
+      "role": "build-guide",
+      "url": "https://raw.githubusercontent.com/mozilla/pdf.js/1c8020a7d4e43668ac287a3ecf9a8dbea17e4c56/external/jbig2/README.md",
+      "bytes": 724,
+      "sha256": "04d1a4f42b9812ff49bc414e8912c512ef138ebe76ac67928740486a94da4713"
+    },
+    {
+      "path": "gulpfile.mjs",
+      "role": "build-recipe",
+      "url": "https://raw.githubusercontent.com/mozilla/pdf.js/1c8020a7d4e43668ac287a3ecf9a8dbea17e4c56/gulpfile.mjs",
+      "bytes": 101818,
+      "sha256": "ed7cb571f110ede5cd9801a29621a74f7283a00b532f3b4a37c39546dd090339"
+    },
+    {
+      "path": "package.json",
+      "role": "metadata",
+      "url": "https://raw.githubusercontent.com/mozilla/pdf.js/1c8020a7d4e43668ac287a3ecf9a8dbea17e4c56/package.json",
+      "bytes": 2194,
+      "sha256": "07b26cc7c11aa14e97bf067722b6814bc096ee3fb13db1f255e0138571c3fce2"
+    }
+  ],
+  "publisherFiles": [
+    {
+      "path": "build/pdf.mjs",
+      "bytes": 860384,
+      "sha256": "495588717f62303a839e91a5343deebf1b41f52e2f9f6361e73dee6ea6a4355e"
+    },
+    {
+      "path": "build/pdf.worker.mjs",
+      "bytes": 2228489,
+      "sha256": "f2870db902eaff8397442c912b69459980ac91f6f4b5ed827167b12cf7057930"
+    },
+    {
+      "path": "build/pdf.worker.min.mjs",
+      "bytes": 1265413,
+      "sha256": "8ab0e5e30031b4a06ecfddd5ae9562f0227f830ee7ec9ed1a968b134243d2386"
+    },
+    {
+      "path": "build/pdf.mjs.map",
+      "bytes": 2160218,
+      "sha256": "391a25c5130e3c8d92ed226a326a5054f089dea58dd57d6da23986020eb881fb"
+    },
+    {
+      "path": "build/pdf.worker.mjs.map",
+      "bytes": 5252731,
+      "sha256": "1fbf8783ee4cbf56ce349dae1668c7f21a5e0564c8dac5bd632eda92c6055d84"
+    }
+  ],
+  "sourceMapBindings": [
+    {
+      "source": "external/brotli/decode.js",
+      "bindings": [
+        {
+          "map": "build/pdf.worker.mjs.map",
+          "index": 24
+        }
+      ]
+    },
+    {
+      "source": "external/qcms/qcms.js",
+      "bindings": [
+        {
+          "map": "build/pdf.worker.mjs.map",
+          "index": 7
+        }
+      ]
+    },
+    {
+      "source": "external/qcms/qcms_utils.js",
+      "bindings": [
+        {
+          "map": "build/pdf.worker.mjs.map",
+          "index": 6
+        }
+      ]
+    },
+    {
+      "source": "external/openjpeg/openjpeg.js",
+      "bindings": [
+        {
+          "map": "build/pdf.worker.mjs.map",
+          "index": 32
+        }
+      ]
+    },
+    {
+      "source": "external/jbig2/jbig2.js",
+      "bindings": [
+        {
+          "map": "build/pdf.worker.mjs.map",
+          "index": 26
+        }
+      ]
+    },
+    {
+      "source": "src/core/flate_stream.js",
+      "bindings": [
+        {
+          "map": "build/pdf.worker.mjs.map",
+          "index": 30
+        }
+      ]
+    },
+    {
+      "source": "src/shared/murmurhash3.js",
+      "bindings": [
+        {
+          "map": "build/pdf.mjs.map",
+          "index": 13
+        },
+        {
+          "map": "build/pdf.worker.mjs.map",
+          "index": 74
+        }
+      ]
+    }
+  ],
+  "noticeFiles": [
+    {
+      "file": "brotli--LICENSE_BROTLI.txt",
+      "source": "external/brotli/LICENSE_BROTLI",
+      "bytes": 1083,
+      "sha256": "2a57418d6b10947fe0dfbec3a600269e2745136c125cbf15b256e5ae18af23cb",
+      "copy": "complete-original"
+    },
+    {
+      "file": "qcms--LICENSE_QCMS.txt",
+      "source": "external/qcms/LICENSE_QCMS",
+      "bytes": 1121,
+      "sha256": "36d847ae882f6574ebc72f56a4f354e4f104fde4a584373496482e97d52d31bc",
+      "copy": "complete-original"
+    },
+    {
+      "file": "qcms--LICENSE_PDFJS_QCMS.txt",
+      "source": "external/qcms/LICENSE_PDFJS_QCMS",
+      "bytes": 1036,
+      "sha256": "508a77d2e7b51d98adeed32648ad124b7b30241a8e70b2e72c99f92d8e5874d1",
+      "copy": "complete-original"
+    },
+    {
+      "file": "openjpeg--LICENSE_OPENJPEG.txt",
+      "source": "external/openjpeg/LICENSE_OPENJPEG",
+      "bytes": 2112,
+      "sha256": "a6af136f3e15038a666b61f376612a07d9a4e48cb7c01adbf3e33b3f14ab49b6",
+      "copy": "complete-original"
+    },
+    {
+      "file": "openjpeg--LICENSE_PDFJS_OPENJPEG.txt",
+      "source": "external/openjpeg/LICENSE_PDFJS_OPENJPEG",
+      "bytes": 1285,
+      "sha256": "717fc62da03292dbb4dd0c8280bd4ce7bb8550dcf31d772bc93455fb50313425",
+      "copy": "complete-original"
+    },
+    {
+      "file": "jbig2--LICENSE_JBIG2.txt",
+      "source": "external/jbig2/LICENSE_JBIG2",
+      "bytes": 12862,
+      "sha256": "9e66b7f1b934a28b37f3bc4dac97915de1674271e79a0a88182a18ed9731b4d1",
+      "copy": "complete-original"
+    },
+    {
+      "file": "jbig2--LICENSE_PDFJS_JBIG2.txt",
+      "source": "external/jbig2/LICENSE_PDFJS_JBIG2",
+      "bytes": 555,
+      "sha256": "aad3cce09842e00e9e11ad5e8fef8cc02fbc3a3768fe2f007443b9cee37aaee5",
+      "copy": "complete-original"
+    },
+    {
+      "file": "decode.js--original-header.txt",
+      "source": "external/brotli/decode.js",
+      "offset": 0,
+      "bytes": 249,
+      "sha256": "48ba497fcc28dd47be703671ecadb64350484e3f20b2ffee7dc5ea3c0468c567",
+      "copy": "original-comment-prefix"
+    },
+    {
+      "file": "qcms_utils.js--original-header.txt",
+      "source": "external/qcms/qcms_utils.js",
+      "offset": 0,
+      "bytes": 600,
+      "sha256": "c6937610aa14a6e812267cd98617ae1dd41ff069f7d4e5b039e9b5a2eb69cbc7",
+      "copy": "original-comment-prefix"
+    },
+    {
+      "file": "flate_stream.js--original-header.txt",
+      "source": "src/core/flate_stream.js",
+      "offset": 0,
+      "bytes": 815,
+      "sha256": "413fd938147bc133606ec9b9f3d0f92314a3b25780c90760e3a7b248f2be29b3",
+      "copy": "original-comment-prefix"
+    },
+    {
+      "file": "murmurhash3.js--original-header.txt",
+      "source": "src/shared/murmurhash3.js",
+      "offset": 0,
+      "bytes": 727,
+      "sha256": "c0271c760a6590b471ea70e22cdc6f9129582940e53c1a1f322b77aafb0417b5",
+      "copy": "original-comment-prefix"
+    }
+  ],
+  "completeBinarySbom": false
+}

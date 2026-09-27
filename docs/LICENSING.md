@@ -43,6 +43,19 @@ The replay matches all eight application JavaScript/source-map files in `app.asa
 
 See [commands, evidence and scope](MAC_APP_INVENTORY.md#reproduce-and-attribute-application-javascript) and [verification](releases/javascript-bundle-verification.json). These records cover application JavaScript and distributed source maps. They do not finish attribution of vendored code inside npm packages, dynamic runtime discovery, Electron/Chromium, native/compiler components or all redistribution conditions. The composition remains explicitly incomplete.
 
+## Preserve PDF.js component notices
+
+PDF.js’s top-level Apache 2.0 license does not replace the separate terms of its embedded Brotli decoder and generated codec helpers. The development app now includes `Contents/Resources/pdfjs-notices/`: seven complete original license files and four unchanged initial source-comment blocks. These include Brotli’s MIT license, qcms and its wrapper’s MIT terms, OpenJPEG and its wrapper’s BSD terms, the JBIG2 upstream/wrapper terms, and Google, Mozilla, Glyph & Cog and Opera copyright attribution. Folio’s noncommercial terms do not replace any of these grants.
+
+```sh
+python3 scripts/collect-pdfjs-license-materials.py
+python3 scripts/collect-pdfjs-license-materials.py --offline
+```
+
+The [source index](../resources/pdfjs-notices/SOURCES.json) binds the exact npm archive and its integrity value to PDF.js commit `1c8020a7d4e43668ac287a3ecf9a8dbea17e4c56`, identified in both publisher metadata and build headers. All seven inspected original source files match eight entries in the publisher’s original API/worker source maps. Twenty exact-commit files, the original maps, the complete npm archive and copied notices are retained under ignored `artifacts/license-materials/pdfjs/`; no downloaded code runs. The collector preserves complete license files or complete initial comment blocks, including their original spacing, and rejects changed source/text, wrong paths or indices, mismatched publisher metadata and incomplete downloads. The package gate separately rejects omitted, altered, linked or extra notices.
+
+The PDF.js API input and copied minified worker are bound to the same npm archive by the application JavaScript inventory. Source-map associations identify the inspected upstream components; this does not independently reconstruct every byte of each minified component or its native codec build. Folio disables WASM and worker fetching; the codec WASM payloads and fallback scripts are not packaged. See [verification](releases/pdfjs-notices-verification.json) and the compact [retained-material inventory](releases/pdfjs-materials-inventory.json.gz). The existing `lazy-val` and optional canvas original-text gaps, other nested dependencies, native/compiler/TeX components and complete redistribution review remain separate. The public preview-4 installer predates this collection.
+
 ## Collect and bundle compiler-font notices
 
 Current development packages include fifteen unchanged original notice files and a source guide in `Folio.app/Contents/Resources/tex-font-notices/`. These cover all **63 font binaries** in the included compiler bundle: Latin Modern, Latin Modern Math, Roboto/Condensed/Slab, Source Sans Pro and Font Awesome 5 Free. Their original terms remain separate from Folio's noncommercial license. The older preview-4 download predates this addition.

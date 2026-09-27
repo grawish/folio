@@ -5,3 +5,6 @@ resources/tex-resource-notices/* -text
 # Preserve publisher license bytes, including their original final blank lines.
 resources/npm-notices/* -text
 resources/npm-notices/*LICENSE* -whitespace
+
+# Preserve original PDF.js license and copyright-header bytes.
+resources/pdfjs-notices/* -text -whitespace

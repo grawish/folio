@@ -40,6 +40,7 @@ jobs:
       - run: python tests/biber-module-materials.py
       - run: python tests/npm-license-materials.py
       - run: python tests/javascript-publisher-sources.py
+      - run: python tests/pdfjs-license-materials.py
       - run: npm run format:check
       - run: npm test
       - run: npm run build

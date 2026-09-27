@@ -57,3 +57,7 @@ The local [verification record](releases/javascript-bundle-verification.json) co
 The exact [contribution inventory](releases/javascript-bundle-inventory.json.gz), [CycloneDX record](releases/javascript-bundle.cdx.json.gz) and [publisher-source checks](releases/javascript-publisher-sources.json.gz) are published as small gzip files; their compressed and uncompressed hashes are in the verification record.
 
 Future Mac qualification runs execute these checks after native and package gates and retain the reports with the evidence artifact. These are application-JavaScript records, not a complete binary SBOM: nested vendored components, dynamic discovery, native/compiler/TeX materials, Electron/Chromium and full redistribution remain separate. The generator executes the repository’s trusted build configuration and is not a sandbox for untrusted projects or an atomic filesystem snapshot.
+
+## PDF.js component source and notice associations
+
+The application JavaScript record traces `pdfjs-dist` to the exact publisher archive. The [PDF.js component collector](LICENSING.md#preserve-pdfjs-component-notices) adds original source-map associations for Brotli and the qcms, OpenJPEG and JBIG2 helpers, plus the Flate stream and MurmurHash copyright headers. It retains the original inputs and binds the added packaged notices by SHA-256. These associations do not by themselves subdivide the minified worker into byte-exact component boundaries; the application CycloneDX composition remains incomplete.
