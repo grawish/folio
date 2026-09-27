@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "electronVersion": "44.4.5",
+  "platform": "darwin-arm64",
+  "package": {
+    "location": "node_modules/electron",
+    "version": "44.4.5",
+    "url": "https://registry.npmjs.org/electron/-/electron-44.4.5.tgz",
+    "integrity": "sha512-SjgoaeYsSWZfJzubgQU7juvuXMTvn6/e1gAHdGFA/yuMbpF+I+skYqIJ6DdXBXHeWbkbpNpmwZCTpiivtlWZSw==",
+    "archiveBytes": 198479,
+    "archiveSha256": "712c161f94c755d94b4a1eefa2e97e76fca4f284bf6294b958bb82af3ae3e5e1",
+    "checksumsSha256": "3ef25811611942c996aadb9dccff14a084d9eb54eb32d7a5059e89fc890646b6"
+  },
+  "upstream": {
+    "release": "https://github.com/electron/electron/releases/tag/v44.4.5",
+    "releaseId": 394303164,
+    "archive": {
+      "url": "https://github.com/electron/electron/releases/download/v44.4.5/electron-v44.4.5-darwin-arm64.zip",
+      "name": "electron-v44.4.5-darwin-arm64.zip",
+      "bytes": 130418529,
+      "sha256": "a212eee63ba2f45fd83bd28f77a3e3313a336ad17a4c25adf617942eef5e0e2c",
+      "assetId": 583161027
+    },
+    "checksums": {
+      "url": "https://github.com/electron/electron/releases/download/v44.4.5/SHASUMS256.txt",
+      "bytes": 6740,
+      "sha256": "a0379166a35f9d3e2e1b63a72b90ddfe54a9558c56a3bde82e98f63823591d72"
+    }
+  },
+  "noticeFiles": [
+    {
+      "file": "LICENSE",
+      "bytes": 1096,
+      "sha256": "5154e165bd6c2cc0cfbcd8916498c7abab0497923bafcd5cb07673fe8480087d",
+      "compressedFile": "LICENSE.gz",
+      "compressedBytes": 658,
+      "compressedSha256": "75da76cec39e435c358e8a770a0e98a2096d67933655c40a217c1845622360bf",
+      "copy": "complete-original"
+    },
+    {
+      "file": "LICENSES.chromium.html",
+      "bytes": 20111209,
+      "sha256": "a62dabd1c6ef1327365b2a3fdffb806222684a746dcb8f4afd1c1f690eba5535",
+      "compressedFile": "LICENSES.chromium.html.gz",
+      "compressedBytes": 2074088,
+      "compressedSha256": "10ae352efb954a48303224f80067cf1eeff77c09e682f712976c26570aaf5955",
+      "copy": "complete-original"
+    }
+  ],
+  "framework": {
+    "file": "Electron.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Electron Framework",
+    "bytes": 202847024,
+    "sha256": "e25ea99d8c7aba7f5f90710a27239bd073987e60be0e1bb79860b9eda1c1da10"
+  },
+  "completeBinarySbom": false,
+  "scope": "Complete unchanged notice files from the checksum-verified Electron Apple silicon release. The release ZIP, GitHub asset digest, publisher checksum file and npm package checksum entry agree. This is upstream attribution evidence, not an independent Electron/Chromium source rebuild or a complete Folio binary SBOM."
+}
