@@ -1,0 +1,210 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T15:16:28.176885+00:00",
+  "commit": "8193835cf080450e093ebcc0cdfaf22d7e4120e1",
+  "runId": 36326227563,
+  "url": "https://github.com/grawish/folio/actions/runs/36326227563",
+  "conclusion": "success",
+  "downloadedArtifact": {
+    "id": 10934668293,
+    "file": "test-results/mac-npm-notices-hosted-evidence.zip",
+    "bytes": 6161693,
+    "sha256": "0b3d17805da844e7e16e3b3b2013214a44f81ab3d518da4f23866e1ecf82b3b9"
+  },
+  "retainedArtifactFilesVerified": 140,
+  "sourceTestsPassed": 339,
+  "compilerIntegrationTestsPassed": 16,
+  "templateImagesPassed": 12,
+  "changedPixels": 0,
+  "nativeSuites": [
+    {
+      "suite": "import-recovery",
+      "script": "scripts/test-import-recovery.mjs",
+      "scriptSha256": "81967721e2258427a438e89a2b9a7d0fee3800136c2823f69c7c2575c8781366",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "import",
+      "script": "scripts/test-import.mjs",
+      "scriptSha256": "270b9fc55851f29cbc5c88346e2ba4efd6c0f46892ebfcda4ae649df4ade1233",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "pdf-viewer",
+      "script": "scripts/test-pdf-viewer.mjs",
+      "scriptSha256": "359ac20b7e751cf7bfd62fbf114ed9146868f9606645cb1415b8b8089daa22a8",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "pdf-lifecycle",
+      "script": "scripts/test-pdf-lifecycle.mjs",
+      "scriptSha256": "050ebba2f302310289760eeefdf7055ae62b3a680c278ae5b26fc6ed6d56a913",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "migration",
+      "script": "scripts/test-migration.mjs",
+      "scriptSha256": "5f4a33db8cbe3afc37578caec954421a15567b37e24db7098c42db3136b52f53",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "chat",
+      "script": "scripts/test-chat.mjs",
+      "scriptSha256": "ecc8c229f5792aefd47b860c7ff318c3bd60962972da2f57be4f9e7a454cd095",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "runtime",
+      "script": "scripts/test-runtime.mjs",
+      "scriptSha256": "55bcc552aa65a15622d5cbe12fac97b4f4fc9ddc9452b802a2aab6b34668252d",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "workspace",
+      "script": "scripts/test-workspace.mjs",
+      "scriptSha256": "835dec1353889a7885c0c223673ccae0fbacbd34dc41153c75c6b30a643ec89a",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "history-storage",
+      "script": "scripts/test-history-storage.mjs",
+      "scriptSha256": "3878352c388634b90551412f547d0a54790cc5deb2a403b2144c3448be741f9b",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "diagnostics",
+      "script": "scripts/test-diagnostics.mjs",
+      "scriptSha256": "fabc3516d0f4bb634243b03639cad2d399bcb63ef607e689cf5a2846d3f4cf20",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "fonts",
+      "script": "scripts/test-fonts.mjs",
+      "scriptSha256": "ea22d1c8498963eb07ada2f996ac306a99b83b45a017dac20a02abd1c5259682",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "support",
+      "script": "scripts/test-support.mjs",
+      "scriptSha256": "f6fe2f4ca8072aba6b21c054e63a7158896900c1dc7dcf533e9b74b2035dfd72",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "updates",
+      "script": "scripts/test-updates.mjs",
+      "scriptSha256": "7649800e49652401aae941ac91e057be2bfce64f048d938027560e4fa5ecd5f4",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "save-recovery",
+      "script": "scripts/test-save-recovery.mjs",
+      "scriptSha256": "bdf3126f22a6b45b5583a689aa406e2a2ebde1f6db672a182102a44cbc704ee3",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "pack-catalog",
+      "script": "scripts/test-pack-catalog.mjs",
+      "scriptSha256": "bdaf2bac1235655ff6dcba1f77567021e9b623acc9afdb452e2fbb3b3a0c2ad4",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "packaged",
+      "script": "scripts/test-packaged.mjs",
+      "scriptSha256": "be7b559a2cf786c3c1b5fa2ee04fc9381410f41a6fe8766ec0af2dc37d2cd5a3",
+      "passed": true,
+      "unchanged": true
+    }
+  ],
+  "allNativeScriptHashesMatchCommit": true,
+  "templateSourcePdfAndImageHashesVerified": true,
+  "transferInputHashesMatchCommit": true,
+  "transferPassed": true,
+  "transferScope": "No runnable app ZIP, Developer ID, notarization, public network, or native replacement is claimed.",
+  "fullAppIdentity": {
+    "schemaVersion": 1,
+    "bundleInventorySha256": "96c11a5625b187bab341bc732eb66eb744fefb89397714ebe3f9af6fdbd5dd16",
+    "asarSha256": "867f73ebb8e4b821964a5aa19cd9fd4751aabb88d8c4350bb266c89e9a00e05e",
+    "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0"
+  },
+  "physicalInventory": {
+    "entries": 5179,
+    "regularFiles": 4401,
+    "directories": 764,
+    "symlinks": 14,
+    "logicalFileBytes": 682059044,
+    "runtimeFilesVerified": 3982,
+    "recordsVerified": [
+      {
+        "path": "bundle-inventory.json",
+        "bytes": 1213447,
+        "sha256": "96c11a5625b187bab341bc732eb66eb744fefb89397714ebe3f9af6fdbd5dd16"
+      },
+      {
+        "path": "bundle.cdx.json",
+        "bytes": 3509989,
+        "sha256": "0afc86bafdeab7d1135693ea8373842b69cd596fb034007e647a3720c4ef9ae3"
+      }
+    ],
+    "componentMappingComplete": false
+  },
+  "packagedNoticeFilesMatchCommitAndAppInventory": {
+    "npmNotices": 38,
+    "texFontNotices": 16,
+    "texResourceNotices": 104
+  },
+  "originalNpmNotices": 36,
+  "indexedNpmPackages": 38,
+  "npmSourceIndexSha256": "2ee0ac536ad0a4136bb3c849a3dbb543322aac0a5d2c623a19308b433edfb347",
+  "compiledOutputFilesCompared": 39,
+  "runnerReportedArchives": {
+    "passed": true,
+    "bundleInventorySha256": "96c11a5625b187bab341bc732eb66eb744fefb89397714ebe3f9af6fdbd5dd16",
+    "dmg": {
+      "bytes": 303506118,
+      "sha256": "8b35eb52ace5f1c9bc376c375724cd62a4097bfb2692eeeb48b8c07842e61fc1",
+      "appMatches": true
+    },
+    "zip": {
+      "bytes": 306545973,
+      "sha256": "1638e7c826e961e266f71bd0c1287a04898a9c02c5f0b2941b6344e9be99c6c1",
+      "appMatches": true,
+      "matchedEntries": 5179,
+      "metadataEntries": 0,
+      "metadataBytes": 0
+    },
+    "distributionVerified": false,
+    "scope": "Exact app bytes, modes and internal links inside both archives. Apple checks run only in distribution mode; fresh-machine quarantined download/launch and updater acceptance remain separate."
+  },
+  "retainedNativeRecord": {
+    "file": "test-results/mac-npm-notices-hosted-evidence/release/native-tests.json",
+    "bytes": 7583,
+    "sha256": "9009a18b533bb7d047b0477be051781fd5dffd4d58efa9b81b477fab2f631e1f"
+  },
+  "retainedPackageRecord": {
+    "file": "test-results/mac-npm-notices-hosted-evidence/release/verification.json",
+    "bytes": 28736,
+    "sha256": "9d011f83644e5680f885c1c0d89cf70370747026f035e27def2edceec6d71688"
+  },
+  "retainedRunLog": {
+    "file": "test-results/mac-npm-notices-hosted-full.log",
+    "bytes": 258035,
+    "sha256": "f747fbc60b2ca8d43ec83fe33ce8ba7f45cfb21ff22caf62f7fe98a9a3b94876"
+  },
+  "productionReleaseQualified": false,
+  "scope": "Complete hosted qualification of the unsigned 8193835 package with 36 original npm notices, the TeX resource notices and compiler-font notices. Exact retained artifact, source-script/input, physical app, runtime and notice hashes were checked independently. The artifact contains reports/screenshots, not distributable app archives; archive results are runner-reported gates. This does not qualify the subsequent 42-notice package or new JavaScript inventory checks, signing/notarization, real native update installation, broader supported Macs, real BYOK or complete redistribution. The public preview-4 download is unchanged."
+}
