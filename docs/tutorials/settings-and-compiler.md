@@ -95,3 +95,15 @@ The total covers compiler copies and their offline checks in Folio’s data fold
 Before preparing another compiler copy, Folio checks a 16 GiB installation budget and free disk space. If preparation stops for lack of room, review old compilers or free disk space, then retry **Repair compiler** or the resource-pack installation. Unrecognized or unfinished installation files are preserved; keep them for troubleshooting if the page cannot safely measure or remove them. Do not delete an unfamiliar folder to bypass the check.
 
 **Demo:** `npm run test:runtime` uses a real current compiler and a tiny, inert old-compiler fixture in a disposable profile. It checks cancellation, changed files during confirmation, removal, unchanged source/compiler choices, and another real PDF build. Its Mac confirmation responses are controlled by the test. It does not remove any of your normal app data.
+
+
+## Read the included font licenses
+
+Current development builds include the original font licenses inside the app. This folder is not in the older preview-4 download.
+
+1. In Finder, open **Applications**.
+2. Control-click **Folio**, then choose **Show Package Contents**.
+3. Open **Contents → Resources → tex-font-notices**.
+4. Read **README.md** to find the notice for each font family.
+
+The notice files keep their original wording. Folio's noncommercial license does not replace the fonts' own licenses. See [licensing](../LICENSING.md) for the complete scope and source links.

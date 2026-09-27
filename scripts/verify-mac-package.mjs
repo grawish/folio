@@ -24,6 +24,10 @@ await fs.writeFile(
 );
 const app = path.join(release, 'mac-arm64/Folio.app');
 const asar = path.join(app, 'Contents/Resources/app.asar');
+const { verifyTexFontNotices } = await tsImport('./verify-tex-font-notices.ts', import.meta.url);
+const texFontNotices = await verifyTexFontNotices(
+  path.join(app, 'Contents/Resources/tex-font-notices'),
+);
 const architecture = execFileSync(
   '/usr/bin/lipo',
   ['-archs', path.join(app, 'Contents/MacOS/Folio')],
@@ -139,6 +143,7 @@ const result = {
   architecture,
   comparedOutputFiles: outputs.length,
   runtimeManifestMatches,
+  texFontNotices,
   ...(signing ? { signing } : {}),
   appBytes,
   hashes,

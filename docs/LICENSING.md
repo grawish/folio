@@ -22,6 +22,36 @@ The first local inventory collected 22 installed npm production packages and Ele
 
 The [packaged Mac app inventory](MAC_APP_INVENTORY.md) now records every physical file, directory and internal link in one exact development app, verifies its runtime manifest and emits a schema-validated CycloneDX record with explicitly incomplete component coverage. It provides the artifact inventory to connect with the source evidence below. Embedded archives, linked components, complete license mapping and the final signed-app SBOM remain open. Its vendored CycloneDX schemas retain their original Apache 2.0 license under `resources/sbom-schema/`; the schema validators are developer dependencies.
 
+## Collect and bundle compiler-font notices
+
+Current development packages include fifteen unchanged original notice files and a source guide in `Folio.app/Contents/Resources/tex-font-notices/`. These cover all **63 font binaries** in the included compiler bundle: Latin Modern, Latin Modern Math, Roboto/Condensed/Slab, Source Sans Pro and Font Awesome 5 Free. Their original terms remain separate from Folio's noncommercial license. The older preview-4 download predates this addition.
+
+The audit maps **111 of the 516 resource files** exactly to original TeX Live distribution archives: the 63 fonts and 48 support files. It reads the actual prepared `bundle.zip`, verifies its runtime-manifest hash, checks every resource against `bundle.lock.json`, and separately verifies the bundle's generated identity marker. The ten TeX Live run/documentation archives match the historical publisher database's byte counts and SHA-512 checksums as well as the reviewed SHA-256 lock.
+
+| Distribution | TeX Live revision | Matched resources |
+| --- | --- | --- |
+| Latin Modern | 61719 | 72 |
+| Latin Modern Math | 36915 | 1 |
+| Roboto | 54512 | 19 |
+| Source Sans Pro | 54892 | 13 |
+| Font Awesome 5 | 59462 | 6 |
+
+The full original GUST, Apache and OFL notices, copyright statements, READMEs and manifests are retained without editing their text. Complete LPPL 1.3c and OFL 1.1 texts accompany the original grants. Font Awesome's upstream 5.15.3 source archive supplies a supplemental publisher notice; its font binaries differ from the matching TeX Live copies and are **not** counted as exact upstream matches. The source guide preserves this distinction. Original version differences between font metadata and distribution documentation are also preserved.
+
+```sh
+python3 scripts/collect-tex-font-materials.py
+python3 scripts/collect-tex-font-materials.py --offline
+python3 scripts/collect-tex-font-materials.py --offline --write-notices
+python3 tests/tex-font-materials.py
+node --import tsx --test tests/tex-font-notices.test.ts
+```
+
+The Python 3.11+ collector uses `resources/tex-font-sources.lock.json`. It retains eleven complete archives (43,011,299 bytes), the original compressed TeX Live package database, selected metadata/notices and the matched-file inventory under ignored `artifacts/license-materials/tex-fonts/`. It reads bounded archive members without extracting paths, executing source code or installing fonts. Downloads use reviewed HTTPS endpoints, exact sizes/digests and deadlines; redirects and corrupt cached inputs fail. `--write-notices` copies only the verified original notice bytes to the tracked app-notice folder. The explanatory README is maintained separately.
+
+The Mac package verifier checks the actual app's notice directory against the reviewed originals and source guide. Missing, altered, linked or unexpected files fail verification. Eight offline collection controls and two notice/package controls cover archive paths, links, collisions, publisher metadata, altered fonts and notice failures. See [verification](releases/tex-font-verification.json) and the [compressed inventory](releases/tex-font-inventory.json.gz).
+
+This closes the collection and app-copying gap for these font notices. It does not reproduce fonts from editable design sources, approve every redistribution condition or complete the final signed-app SBOM. The other **405 TeX resource files**, compiler/native dependencies and complete release materials still need their own review. Retaining full distribution sources and license text is evidence for that review, not an assertion that the overall release audit is complete.
+
 ## Collect compiler source materials
 
 `node scripts/collect-runtime-license-materials.mjs` collects four upstream source archives: Tectonic 0.17.0, its pinned reference-source and HarfBuzz submodules, and Biber 2.17. Their exact commits, archive sizes, SHA-256 digests and selected notice/build files are reviewed in `resources/runtime-license-sources.lock.json`. The script refuses changed compiler versions, corrupt cached archives and oversized downloads. It reads named archive members without extracting filesystem paths or executing upstream code.
