@@ -211,23 +211,35 @@ try {
   await settings();
   await page.getByRole('button', { name: 'Storage', exact: true }).click();
   const storageStarted = Date.now();
+  // Each action rechecks native storage and refreshes the inventory. These
+  // operations have their own bounded completion window, independent of the
+  // short default matcher timeout used for immediate UI state.
+  const storageActionWait = { timeout: 60_000 };
   const includedRow = page.locator(`[data-compiler-key="${status.pin.id}"]`);
   const oldRow = page.locator(`[data-compiler-key="${oldPin.id}"]`);
   await expect(includedRow).toContainText('Included with this Folio version', { timeout: 60_000 });
   const storageReviewMs = Date.now() - storageStarted;
   await expect(includedRow.getByRole('button', { name: 'Remove…', exact: true })).toBeDisabled();
-  await expect(oldRow.getByRole('button', { name: 'Remove…', exact: true })).toBeEnabled();
+  await expect(oldRow.getByRole('button', { name: 'Remove…', exact: true })).toBeEnabled(
+    storageActionWait,
+  );
   const compilerStorageBefore = await page.evaluate(() => window.folio.compilerStorage());
   await page.screenshot({ path: path.join(root, 'compiler-storage.png') });
-  await app.evaluate(({ dialog }) => {
+  const storageCancellationDelayMs = 6000;
+  await app.evaluate(({ dialog }, delayMs) => {
     globalThis.folioOriginalMessageBox = dialog.showMessageBox;
     dialog.showMessageBox = async (_window, options) => {
       globalThis.folioStorageConfirmation = options;
+      await new Promise((resolve) => setTimeout(resolve, delayMs));
       return { response: 0, checkboxChecked: false };
     };
-  });
+  }, storageCancellationDelayMs);
+  const storageCancellationStarted = Date.now();
   await oldRow.getByRole('button', { name: 'Remove…', exact: true }).click();
-  await expect(oldRow.getByRole('button', { name: 'Remove…', exact: true })).toBeEnabled();
+  await expect(oldRow.getByRole('button', { name: 'Remove…', exact: true })).toBeEnabled(
+    storageActionWait,
+  );
+  const storageCancellationMs = Date.now() - storageCancellationStarted;
   await fs.access(oldRoot);
   const confirmation = await app.evaluate(() => globalThis.folioStorageConfirmation);
   expect(confirmation.defaultId).toBe(0);
@@ -242,7 +254,10 @@ try {
   });
   await oldRow.getByRole('button', { name: 'Remove…', exact: true }).click();
   await expect
-    .poll(() => app.evaluate(() => typeof globalThis.folioResolveStorageConfirmation))
+    .poll(
+      () => app.evaluate(() => typeof globalThis.folioResolveStorageConfirmation),
+      storageActionWait,
+    )
     .toBe('function');
   await expect(page.getByRole('button', { name: 'Done', exact: true })).toBeDisabled();
   await expect(page.getByRole('button', { name: 'General', exact: true })).toBeDisabled();
@@ -252,7 +267,9 @@ try {
   await app.evaluate(() =>
     globalThis.folioResolveStorageConfirmation({ response: 0, checkboxChecked: false }),
   );
-  await expect(page.getByRole('button', { name: 'Done', exact: true })).toBeEnabled();
+  await expect(page.getByRole('button', { name: 'Done', exact: true })).toBeEnabled(
+    storageActionWait,
+  );
   // Change the reviewed files while confirmation is pending; native IPC must
   // reject the stale token instead of accepting an old renderer decision.
   await app.evaluate(
@@ -267,7 +284,7 @@ try {
     path.join(oldCopy, 'runtime/bundle.zip'),
   );
   await oldRow.getByRole('button', { name: 'Remove…', exact: true }).click();
-  await expect(page.getByRole('alert')).toContainText('Compiler files changed');
+  await expect(page.getByRole('alert')).toContainText('Compiler files changed', storageActionWait);
   await fs.access(oldRoot);
   // A user confirmation and the subsequent inventory refresh are asynchronous.
   // Keep the confirmation open beyond Playwright's default five-second matcher
@@ -280,7 +297,7 @@ try {
     };
   }, storageConfirmationDelayMs);
   await oldRow.getByRole('button', { name: 'Remove…', exact: true }).click();
-  await expect(oldRow).toHaveCount(0, { timeout: 60_000 });
+  await expect(oldRow).toHaveCount(0, storageActionWait);
   await expect(page.getByRole('status')).toContainText('Compiler files removed');
   await expect(fs.access(oldRoot)).rejects.toThrow();
   await expect(includedRow.getByRole('button', { name: 'Remove…', exact: true })).toBeDisabled();
@@ -433,6 +450,8 @@ try {
         compilerStorage: {
           storageReviewMs,
           storageConfirmationDelayMs,
+          storageCancellationDelayMs,
+          storageCancellationMs,
           before: compilerStorageBefore,
           after: compilerStorageAfter,
           cancelledRemoval: true,
