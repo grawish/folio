@@ -34,7 +34,7 @@ Windows, Linux and Intel Macs are outside this release's scope. Read the [remain
 - Use dark, light, or system appearance and resize the writing and PDF panes.
 - Review a support summary, leave out sections, and save a ZIP without resume text or raw logs.
 
-**Choose models in Chat.** Use Auto, the connection default, or a specific model beside Send. Auto stays within your selected connection and uses faster models for small changes, escalating when validation fails. Add and select an installed Codex or Claude Code connection, use your own OpenAI or Anthropic API key, or configure a compatible endpoint. Account access and model image support depend on your provider. API use is billed separately by that provider. Live Claude/BYOK account acceptance remains on the release checklist.
+**Choose models in Chat.** Use Auto, the connection default, or a specific model beside Send. Auto stays within your selected connection and uses faster models for small changes, escalating when validation fails. Add and select an installed Codex or Claude Code connection, use your own OpenAI or Anthropic API key, or configure a compatible endpoint. Account access and model image support depend on your provider. API use is billed separately by that provider. A [real Claude PDF-note workflow](docs/tutorials/ai-connections.md#try-a-pdf-note-with-claude-code) now passes in the source build with a synthetic document. Real BYOK and broader account/model acceptance remain on the release checklist.
 
 The compiler works locally without AI. AI requests send relevant source and PDF images to your selected provider; local compilation does not mean that cloud AI requests stay on your Mac. Keys are kept in protected local storage and excluded from project exports.
 
@@ -63,7 +63,7 @@ The [release pipeline](docs/RELEASE_PIPELINE.md) covers source checks, source pr
 
 ## Learn and contribute
 
-Start with [your first resume](docs/tutorials/first-resume.md). The [feature matrix](docs/FEATURE_GUIDE_INDEX.md) links 36 screenshot walkthroughs and reproducible demos. A [reusable Folio skill](docs/DOCUMENTATION_SKILL.md) packages the guides for your assistant. The [performance investigation](docs/PERFORMANCE_IMPROVEMENT_PLAN.md) includes raw measurements and ranked optimization experiments.
+Start with [your first resume](docs/tutorials/first-resume.md). The [feature matrix](docs/FEATURE_GUIDE_INDEX.md) links 37 screenshot walkthroughs and reproducible demos. A [reusable Folio skill](docs/DOCUMENTATION_SKILL.md) packages the guides for your assistant. The [performance investigation](docs/PERFORMANCE_IMPROVEMENT_PLAN.md) includes raw measurements and ranked optimization experiments.
 
 Bug reports should describe what happened, what you expected, and your macOS/app version. Use a small synthetic example and remove personal details from logs and screenshots. See [security reporting](SECURITY.md) for sensitive issues.
 

@@ -1,6 +1,6 @@
 # Screenshot demos
 
-These walkthroughs use the real Folio interface and synthetic resumes. AI demos use a deterministic local provider fixture; connection forms are empty examples, not live account tests. Compiler/recovery error states are deliberately created in isolated test data. The gallery is a set of screenshot demos, not video recordings.
+These walkthroughs use the real Folio interface and synthetic resumes. Most AI demos use a deterministic local provider fixture; connection forms are empty examples. The separately labeled Claude PDF-note demo uses a real subscription with a synthetic document. Compiler/recovery error states are deliberately created in isolated test data. The gallery is a set of screenshot demos, not video recordings.
 
 The [website gallery](https://grawish.github.io/folio/demos.html) shows each demo with steps and a tutorial link. The same screenshots are kept in `docs/images/` with capture manifests. [Feature coverage](../FEATURE_GUIDE_INDEX.md) maps the supported features.
 
@@ -16,7 +16,7 @@ For an import-recovery demo without a personal home-folder path in the screensho
 FOLIO_TEST_OUTPUT=/private/tmp/folio-demos npm run test:import-recovery
 ```
 
-Inspect screenshots before publishing. Use no real resume, API key, signed-in account or private folder. `capture-manifest.json` and `qualified-captures.json` identify synthetic captures and their hashes. Screenshot evidence is distinct from live provider acceptance and wider macOS certification.
+Inspect screenshots before publishing. Use no personal resume, API key, account identity or private folder in published images. Routine captures use no account; only the opt-in live Claude workflow below uses an existing subscription. `capture-manifest.json` and `qualified-captures.json` identify synthetic captures and their hashes. Screenshot evidence is distinct from live provider acceptance and wider macOS certification.
 
 The early-workspace demo uses `npm run test:runtime` with a fresh isolated profile and synthetic recovery. It edits source, writes a chat draft and saves the exact compiler choice before the real compiler copy is activated, then closes and verifies recovery on restart. `startup-chat.png` shows this flow in current development source; preview-4 predates it. The same suite covers compiler repair, unavailable recorded versions, startup errors and closing before recovery has loaded.
 
@@ -39,3 +39,16 @@ The app-update screenshots use `npm run test:updates` with the ordinary source b
 `keyboard-navigation.png` and `keyboard-settings.png` come from `npm run test:workspace` (`keyboard-tabs.png` and `keyboard-settings.png`). Real keyboard events move focus through the source-built app with a synthetic resume; no UI error state or AI response is injected. These captures do not establish physical VoiceOver or complete accessibility acceptance.
 
 `compiler-storage.png` comes from `npm run test:runtime`. Settings measures the real current compiler and a tiny inert old-compiler fixture in an isolated profile. Confirmation choices are intercepted for repeatability; cancellation, file-change rejection, removal and a subsequent real PDF build are checked. No personal compiler data is used.
+
+## Real Claude subscription demo
+
+Build Folio, then explicitly opt into account usage:
+
+```sh
+npm run build
+node scripts/test-live-claude.mjs --live
+```
+
+Claude Code must already be installed and signed in. This command consumes account usage and sends only its built-in synthetic document, note and PDF images. It creates an isolated Folio profile and save folder; it does not read your existing resumes. It runs the ordinary app/provider/compiler and intercepts only native file-picker choices. It is not part of CI, and without `--live` it exits before opening the app.
+
+`claude-live-settings.png`, `claude-live-annotation.png` and `claude-live-completed.png` are the unchanged Settings, page-two note and completed-response captures from the successful run. The [verification record](../releases/claude-live-verification.json) binds them to source/script hashes, the exact saved source and exported PDF, and includes the limitations of two earlier harness attempts. No account identity or credentials are published. One successful account/model workflow does not qualify every model, a signed installer or other macOS versions.

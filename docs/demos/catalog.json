@@ -84,6 +84,20 @@
     "alt": "Claude Code subscription in the real Folio app"
   },
   {
+    "id": "claude-live-pdf-note",
+    "title": "Change a PDF with a real Claude subscription",
+    "image": "claude-live-completed.png",
+    "guide": "tutorials/ai-connections.md#try-a-pdf-note-with-claude-code",
+    "description": "One live source-build workflow follows a note on page two, changes only the heading, reviews the PDF, and verifies save, export and reopen. It uses a made-up document and no API key.",
+    "steps": [
+      "Select Claude Code in Settings and test image support.",
+      "Box the heading, write a note, attach it to Chat and send.",
+      "Review the changed PDF, save the project, and export a clean PDF."
+    ],
+    "kind": "Real Claude subscription \u00b7 synthetic document \u00b7 source build",
+    "alt": "Folio showing the real Claude reply, Visually checked status and changed Selected Projects heading on page two"
+  },
+  {
     "id": "openai",
     "title": "OpenAI API key",
     "image": "connection-openai.png",
