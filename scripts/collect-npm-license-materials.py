@@ -53,7 +53,7 @@ def archive_notices(archive, package):
         available = {
             name for name, member in entries.items()
             if len(PurePosixPath(name).parts) == 2 and member.isfile()
-            and re.fullmatch(r'(licen[cs]e|copying|copyright|notice)([._-].*)?', PurePosixPath(name).name, re.I)
+            and re.fullmatch(r'(?:third[-_]party[-_])?(?:licen[cs]es?|copying|copyright|notice)(?:[._-].*)?', PurePosixPath(name).name, re.I)
         }
         if available != {n['packagePath'] for n in package['notices']}:
             raise ValueError('Npm original notice inventory differs')
@@ -85,7 +85,7 @@ def collect(output, cache, offline=False):
         location = package['location']
         ref = package_lock['packages'].get(location)
         source = package['archive']
-        if location in locations or not ref or ref.get('dev') or ref['version'] != package['version']:
+        if location in locations or not ref or (ref.get('dev') and package.get('inclusionReason') not in ('bundled-source', 'generated-runtime-support')) or ref['version'] != package['version']:
             raise ValueError('Invalid locked production package')
         locations.add(location)
         if source['url'] != ref['resolved'] or source['integrity'] != ref['integrity']:

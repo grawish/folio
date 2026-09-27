@@ -7,9 +7,9 @@ import { verifyNpmNotices } from '../scripts/verify-npm-notices';
 
 test('npm notices preserve the source index, original texts and both missing-text disclosures', async () => {
   const result = await verifyNpmNotices('resources/npm-notices');
-  assert.equal(result.indexedPackages, 38);
-  assert.equal(result.originalNoticeFiles, 36);
-  assert.equal(result.records.length, 38);
+  assert.equal(result.indexedPackages, 43);
+  assert.equal(result.originalNoticeFiles, 42);
+  assert.equal(result.records.length, 44);
   assert.deepEqual(result.missingOriginalText, ['@napi-rs/canvas-darwin-arm64', 'lazy-val']);
   const pkg = JSON.parse(await fs.readFile('package.json', 'utf8'));
   assert.ok(

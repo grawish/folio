@@ -26,7 +26,8 @@ export async function verifyNpmNotices(directory: string) {
     if (
       locations.has(pkg.location) ||
       !entry ||
-      entry.dev ||
+      (entry.dev &&
+        !['bundled-source', 'generated-runtime-support'].includes(pkg.inclusionReason)) ||
       pkg.version !== entry.version ||
       pkg.archive.url !== entry.resolved ||
       pkg.archive.integrity !== entry.integrity

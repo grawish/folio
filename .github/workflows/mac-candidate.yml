@@ -40,6 +40,11 @@ jobs:
       - run: node scripts/verify-mac-package.mjs release
       - name: Inventory the exact qualified app
         run: node --import tsx scripts/inventory-mac-app.ts release/mac-arm64/Folio.app
+      - name: Reproduce packaged JavaScript and verify publisher sources
+        run: |
+          node scripts/inventory-javascript.mjs release/mac-arm64/Folio.app
+          python3 scripts/collect-npm-license-materials.py
+          python3 scripts/verify-javascript-sources.py
       - name: Preserve qualification evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
@@ -52,6 +57,8 @@ jobs:
             release/disk-image-verification.log
             release/mac-arm64/runtime-signing.json
             artifacts/license-materials/mac-app/
+            artifacts/license-materials/javascript/
+            artifacts/license-materials/npm/inventory.json
             test-results/*-final.log
             test-results/published-pack-base.json
             test-results/chat-*/failure.png

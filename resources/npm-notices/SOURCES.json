@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "scope": "Original notice texts from all installed npm production packages on Apple silicon, verified against package-lock.json and the exact npm publisher archives. This includes optional or potentially unused dependencies; it is not a linked-component or complete app SBOM. Electron/Chromium and native/compiler materials are recorded separately.",
+  "scope": "Original notices from 38 installed npm production packages plus five packages involved in byte-reproduced application JavaScript or its generated support code. Includes optional or potentially unused packages and original tool-level notices; this is not a complete linked-component or app SBOM. Electron/Chromium and native/compiler materials are recorded separately.",
   "packageLockSha256": "f49e1352767126ce8d3c894ac5bfdc4d39fc951fbe1efe7283ca4ee4d991ae00",
   "packages": [
     {
@@ -824,11 +824,129 @@
           "sha256": "869c30f368eb08735e779027b9f4bc9fea2f39624351856aebe42741f0bc0884"
         }
       ]
+    },
+    {
+      "name": "has-flag",
+      "version": "4.0.0",
+      "location": "node_modules/has-flag",
+      "declaredLicense": "MIT",
+      "state": "texts-collected",
+      "inclusionReason": "bundled-source",
+      "archive": {
+        "file": "has-flag-4.0.0.tgz",
+        "url": "https://registry.npmjs.org/has-flag/-/has-flag-4.0.0.tgz",
+        "integrity": "sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==",
+        "bytes": 2206,
+        "sha256": "77a7eb1411d927bb8a5ca7069dbe168886d63c88f446f0b81500a2cf23ddb5b1"
+      },
+      "notices": [
+        {
+          "file": "has-flag--license",
+          "packagePath": "package/license",
+          "bytes": 1109,
+          "sha256": "48da2f39e100d4085767e94966b43f4fa95ff6a0698fba57ed460914e35f94a0"
+        }
+      ]
+    },
+    {
+      "name": "supports-color",
+      "version": "7.2.0",
+      "location": "node_modules/supports-color",
+      "declaredLicense": "MIT",
+      "state": "texts-collected",
+      "inclusionReason": "bundled-source",
+      "archive": {
+        "file": "supports-color-7.2.0.tgz",
+        "url": "https://registry.npmjs.org/supports-color/-/supports-color-7.2.0.tgz",
+        "integrity": "sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==",
+        "bytes": 3210,
+        "sha256": "f16acafd1634624e60c24a5538004c4e168c82607f10dbe28395e9df3e7d5e4a"
+      },
+      "notices": [
+        {
+          "file": "supports-color--license",
+          "packagePath": "package/license",
+          "bytes": 1109,
+          "sha256": "48da2f39e100d4085767e94966b43f4fa95ff6a0698fba57ed460914e35f94a0"
+        }
+      ]
+    },
+    {
+      "name": "esbuild",
+      "version": "0.28.2",
+      "location": "node_modules/esbuild",
+      "declaredLicense": "MIT",
+      "state": "texts-collected",
+      "inclusionReason": "generated-runtime-support",
+      "archive": {
+        "file": "esbuild-0.28.2.tgz",
+        "url": "https://registry.npmjs.org/esbuild/-/esbuild-0.28.2.tgz",
+        "integrity": "sha512-HKVLS8dvII+xoKW9kmqxbRKrnWEXfJJr/FZhhJmiqIB0e053QNYFqOBouTMO/k5sID4MvCiUCvv8b9M4h32wIA==",
+        "bytes": 34207,
+        "sha256": "e045f94c235c7adc50e77ba2a579c7bec41b496b6b47c3a7845f7c1e19959a88"
+      },
+      "notices": [
+        {
+          "file": "esbuild--LICENSE.md",
+          "packagePath": "package/LICENSE.md",
+          "bytes": 1069,
+          "sha256": "b40ec5baec7bb34fa5b1c09521fa3cd52d5fad7adafed74932a2010d3612a681"
+        }
+      ]
+    },
+    {
+      "name": "vite",
+      "version": "8.3.1",
+      "location": "node_modules/vite",
+      "declaredLicense": "MIT",
+      "state": "texts-collected",
+      "inclusionReason": "generated-runtime-support",
+      "archive": {
+        "file": "vite-8.3.1.tgz",
+        "url": "https://registry.npmjs.org/vite/-/vite-8.3.1.tgz",
+        "integrity": "sha512-/bvH9E9tmCXRGp2uXY3WbOldqpTwFkbha/8ANaEQ6VkxhH60KyqLwgZq6lG2y+4uT55x9+9eUHMpQ7uGnOCKjA==",
+        "bytes": 586488,
+        "sha256": "d1e2250c6eb956e84df6b5d4f8127d420efa9142f393652c77a06906e79d69c3"
+      },
+      "notices": [
+        {
+          "file": "vite--LICENSE.md",
+          "packagePath": "package/LICENSE.md",
+          "bytes": 112425,
+          "sha256": "387dd7baa307083401a27c58c362c30832f5ba1dba84f10cc22c33401523f45c"
+        }
+      ]
+    },
+    {
+      "name": "rolldown",
+      "version": "1.2.11",
+      "location": "node_modules/rolldown",
+      "declaredLicense": "MIT",
+      "state": "texts-collected",
+      "inclusionReason": "generated-runtime-support",
+      "archive": {
+        "file": "rolldown-1.2.11.tgz",
+        "url": "https://registry.npmjs.org/rolldown/-/rolldown-1.2.11.tgz",
+        "integrity": "sha512-qpSwIyz0jHQq5qXBTNxFmE6664rJ7O+4TvPFOiOaBSrz8IOHc1koKKSqTM2H6u1UG1+TveuC6vaDHKXFOvb1Kw==",
+        "bytes": 198125,
+        "sha256": "3acd96aab699f4936c223ebe60a52882a22aaa7dba22393f97b30729dd26516b"
+      },
+      "notices": [
+        {
+          "file": "rolldown--LICENSE",
+          "packagePath": "package/LICENSE",
+          "bytes": 1302,
+          "sha256": "23ecfff35a5a2e80d92142f75228912c3b1abc4b5a8337a821ff4397e2f9f734"
+        },
+        {
+          "file": "rolldown--THIRD-PARTY-LICENSE",
+          "packagePath": "package/THIRD-PARTY-LICENSE",
+          "bytes": 2209,
+          "sha256": "a877291d800ed43692f3f9ae09d8e01cc6f7293ad39d43896059c188ffbb8b7c"
+        }
+      ]
     }
   ],
-  "missingOriginalText": [
-    "@napi-rs/canvas-darwin-arm64",
-    "lazy-val"
-  ],
+  "missingOriginalText": ["@napi-rs/canvas-darwin-arm64", "lazy-val"],
   "releaseAuditComplete": false
 }
