@@ -151,9 +151,36 @@ python3 tests/biber-autosplit-evidence.py
 
 All 200 paths and complete bytes match, including 187 `.al` files and thirteen `autosplit.ix` files. A separate check compares every output with the prepared runtime and its manifest, checks all thirteen inputs directly against their source archives, and verifies the retained generator. The five original archives total 25,616,032 bytes. All 222 retained files, including the inventory, are identical on replay. Six new offline controls and the sixteen existing CPAN/Unicode controls pass. CI runs the new controls without executing upstream generation.
 
-Combined source/generated coverage is now **3,796 of 3,932 payload files**, leaving **136 explicit gaps**. This is source attribution, not complete license acceptance or a reproducible native rebuild. Remaining files include native modules/libraries, other generated configuration and the Unicode index. Original source terms still apply; no third-party file acquires Folio's noncommercial license through this audit.
+At this AutoSplit milestone, combined source/generated coverage reached **3,796 of 3,932 payload files**, leaving **136 explicit gaps**. The next audit below adds nine more exact matches. This is source attribution, not complete license acceptance or a reproducible native rebuild. Remaining files include native modules/libraries, other generated configuration and the Unicode index. Original source terms still apply; no third-party file acquires Folio's noncommercial license through this audit.
 
 The collector retains full source archives, unmodified inputs/generator, exact outputs and hashed records under ignored `artifacts/license-materials/biber-autosplit/`. The [compressed match list](releases/biber-autosplit-matches.json.gz) and [verification record](releases/biber-autosplit-verification.json) provide compact public evidence. Failed runs preserve previous successful inventory and write a separate failure marker; a successful rerun clears that marker. No app code, runtime bytes, installer or existing release asset changes.
+
+## Reproduce other Biber generated text
+
+`python3 scripts/collect-biber-generated-evidence.py` reproduces nine more bundled text files using pinned, unchanged upstream generators. It requires Python 3.11+, macOS, the prepared Biber runtime and the existing foundation/CPAN source caches. It runs offline; no source downloads, app changes or native builds occur.
+
+| Original source | Generated output | Exact payload matches |
+| --- | --- | --- |
+| Perl 5.32.1 | `DynaLoader.pm`, `lib.pm`, `Config_git.pl` | Five files, including separate loader copies |
+| Lingua::Translit 0.28 | `Lingua/Translit/Tables.pm` | One file |
+| PAR::Packer 1.055 | Entry script, `MANIFEST`, `META.yml` | Three files |
+
+The Perl and transliteration generators run unchanged with their original inputs. For PAR packaging, a retained harness calls four verbatim upstream methods with reviewed options and an in-memory ZIP substitute. Its member names come from the independently parsed embedded ZIP; the two repeated names must match the existing duplicate lock. It does not copy the generated manifest as an input. This reconstructs matching text, not the complete original packaging process.
+
+The Mac's system Perl is 5.34.1, so its support modules differ from the original 5.32.1 build. The XSLoader generator produces a different loader-call argument, even after the reviewed PAR compatibility patch. Both resulting targets remain unmatched; the collector retains that difference without changing the source or normalizing output. Only complete byte matches count.
+
+```sh
+python3 scripts/collect-biber-generated-evidence.py
+python3 tests/biber-generated-evidence.py
+```
+
+The existing macOS generation sandbox denies networking and permits writes only in a unique temporary run directory and `/dev/null`. Allowed-write, denied-write and denied-network controls must pass first. Reads remain permitted. The cases share a 180-second generation deadline; timeouts kill and reap the process group. Input files are limited to sixteen and 4 MiB per case; each case accepts up to eight specified regular output files of at most 4 MiB each. These are audit bounds, not full memory or CPU quotas.
+
+Independent checks compare all nine matches with prepared runtime files and their manifest hashes, verify the nine selected inputs against the complete original source archives, and compare the three packaging outputs with the embedded ZIP. The three retained source archives total 18,355,927 bytes. All 31 retained files, including the inventory, are identical on replay. Eight new controls and sixteen related CPAN/Unicode controls pass. CI runs those controls without running upstream generators.
+
+Combined source/generated attribution now covers **3,805 of 3,932 payload files**, leaving **127 explicit gaps**. Full source archives, original inputs, the harness, logs and generated candidates are retained under ignored `artifacts/license-materials/biber-generated/`. A failed run writes a separate failure marker; the older successful inventory remains a record of its earlier run. Compact public evidence is in the [match list](releases/biber-generated-matches.json.gz) and [verification record](releases/biber-generated-verification.json).
+
+This is source attribution only. Other generated files, native source/build mapping, original third-party terms, complete redistribution review and the signed-app SBOM remain open. The collector does not change application code, runtime files, installers or previously published assets.
 
 ## Collect Biber native-library materials
 
@@ -190,7 +217,7 @@ Collection reads bounded archive entries without extracting archive paths or exe
 
 An independent comparison checks all fourteen identities/dependency lists with Apple's `otool`, all arm64 slices with `lipo`, eight exported version variables with `nm` and `otool`, and all 58 material files against their original archives. Seven new offline controls and eight related foundation controls pass. Source CI runs the controls without downloading or executing the native libraries. See the [compressed inventory](releases/biber-native-inventory.json.gz) and [verification record](releases/biber-native-verification.json).
 
-This is complementary version/source evidence, not a native binary reproduction. Source/generated byte coverage remains **3,796 of 3,932 payload files**, with **136 gaps**, including these fourteen libraries. Exact vendor builds, the unresolved versions above, native Perl modules, other generated files, complete redistribution review and the final signed-app SBOM remain open. No app, runtime, installer or existing release asset changes.
+This is complementary version/source evidence, not a native binary reproduction. This native-library collection adds no byte matches. Including the separate text-generation audit above, source/generated byte coverage is **3,805 of 3,932 payload files**, with **127 gaps**, including these fourteen libraries. Exact vendor builds, the unresolved versions above, native Perl modules, other generated files, complete redistribution review and the final signed-app SBOM remain open. No app, runtime, installer or existing release asset changes.
 
 ## Collect native build-port sources and notices
 

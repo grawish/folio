@@ -32,6 +32,7 @@ jobs:
       - run: python tests/biber-cpan-materials.py
       - run: python tests/biber-unicode-evidence.py
       - run: python tests/biber-autosplit-evidence.py
+      - run: python tests/biber-generated-evidence.py
       - run: python tests/biber-native-materials.py
       - run: npm run format:check
       - run: npm test
