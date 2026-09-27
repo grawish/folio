@@ -38,6 +38,7 @@ jobs:
       - run: python tests/tex-generated-materials.py
       - run: python tests/biber-native-materials.py
       - run: python tests/biber-module-materials.py
+      - run: python tests/npm-license-materials.py
       - run: npm run format:check
       - run: npm test
       - run: npm run build

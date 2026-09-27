@@ -92,6 +92,10 @@
       {
         "from": "resources/runtime/${os}-${arch}",
         "to": "runtime"
+      },
+      {
+        "from": "resources/npm-notices",
+        "to": "npm-notices"
       }
     ],
     "mac": {
