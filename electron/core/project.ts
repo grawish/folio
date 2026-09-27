@@ -140,6 +140,8 @@ export async function readProjectTree(root: string): Promise<Map<string, Buffer>
   return result;
 }
 
+export const maxPendingRecoveryWrites = 4;
+
 type Registration = { directory: string; baseline: Map<string, string> };
 
 export class ProjectStore {
@@ -147,6 +149,8 @@ export class ProjectStore {
   private scanner = new ProjectScanner();
 
   private saves: Promise<unknown> = Promise.resolve();
+  private pendingRecoveryWrites = 0;
+  private recoveryTail: Promise<void> = Promise.resolve();
   resolvedSaveCopies: string | null = null;
   constructor(
     readonly dataRoot: string,
@@ -562,8 +566,23 @@ export class ProjectStore {
     };
   }
 
-  recover(project: Project) {
-    return this.serial(() => this.writeRecovery(project, this.registered.get(project.id)));
+  recover(project: Project): Promise<void> {
+    if (this.pendingRecoveryWrites >= maxPendingRecoveryWrites)
+      return Promise.reject(new Error('Recovery is busy. Wait for the current write, then retry.'));
+    this.pendingRecoveryWrites++;
+    const operation = this.serial(() =>
+      this.writeRecovery(project, this.registered.get(project.id)),
+    );
+    this.recoveryTail = operation;
+    const finished = () => {
+      this.pendingRecoveryWrites--;
+    };
+    void operation.then(finished, finished);
+    return operation;
+  }
+
+  flushRecovery(): Promise<void> {
+    return this.recoveryTail;
   }
 
   private async requireNoPendingResolution() {
@@ -581,13 +600,15 @@ export class ProjectStore {
 
   private async writeRecovery(project: Project, registration?: Registration, resolved = false) {
     if (!resolved) await this.requireNoPendingResolution();
-    await atomicWrite(
+    await fs.mkdir(this.dataRoot, { recursive: true });
+    await replaceDurable(
       path.join(this.dataRoot, 'recovery.json'),
       JSON.stringify({
         project,
         directory: registration?.directory,
         baseline: registration ? [...registration.baseline] : undefined,
       }),
+      randomUUID(),
     );
   }
 
@@ -817,9 +838,11 @@ export class ProjectStore {
     });
   }
 
-  async clearRecovery() {
-    await this.requireNoPendingResolution();
-    await fs.rm(path.join(this.dataRoot, 'recovery.json'), { force: true });
+  clearRecovery() {
+    return this.serial(async () => {
+      await this.requireNoPendingResolution();
+      await fs.rm(path.join(this.dataRoot, 'recovery.json'), { force: true });
+    });
   }
 
   async recent(): Promise<RecentProject[]> {

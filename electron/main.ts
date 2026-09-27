@@ -108,7 +108,6 @@ const renders = new Map<
     reject(error: Error): void;
   }
 >();
-let recoveryQueue = Promise.resolve();
 let saveReviewId: string | undefined;
 let saveReviewStart: Promise<void> = Promise.resolve();
 let saveReviewApply: Promise<unknown> = Promise.resolve();
@@ -264,7 +263,7 @@ function registerHandlers() {
     try {
       return await updates.restart(async () => {
         await buildRequests.cancel();
-        await recoveryQueue;
+        await store.flushRecovery();
         await workspaces.flush();
         await preferences.flush();
         await store.recover(project);
@@ -287,7 +286,7 @@ function registerHandlers() {
     saveReviewId = safeId(id);
     saveReviewStart = (async () => {
       await stopBuilds();
-      await recoveryQueue.catch(() => {});
+      await store.flushRecovery().catch(() => {});
       await workspaces.flush();
       if (project) await store.recover(project);
     })();
@@ -359,7 +358,7 @@ function registerHandlers() {
     return runtimes.repair(validateRuntimePin(pin));
   });
   handle('runtime:storage', async () => {
-    await recoveryQueue;
+    await store.flushRecovery();
     return runtimes.storage((await store.loadRecovery())?.runtime);
   });
   handle('runtime:remove-stored', async (key: string, token: string) => {
@@ -367,7 +366,7 @@ function registerHandlers() {
     if (agent.busy || buildRequests.busy)
       throw new Error('Finish the AI request and PDF build before removing a compiler.');
     const operation = (async () => {
-      await recoveryQueue;
+      await store.flushRecovery();
       const current = (await store.loadRecovery())?.runtime;
       const entry = (await runtimes.storage(current)).entries.find((entry) => entry.key === key);
       if (!entry || entry.token !== token)
@@ -531,7 +530,7 @@ function registerHandlers() {
     // comparison (or wait for Apply) before restoring the recovered draft.
     await fonts.cancel();
     await migrations.cancel();
-    await recoveryQueue.catch(() => {});
+    await store.flushRecovery().catch(() => {});
     await runtimes.identify();
     const recovered = await store.loadRecovery();
     if (recovered && store.resolvedSaveCopies) {
@@ -632,7 +631,7 @@ function registerHandlers() {
   handle('project:changes', (id: string) => store.inspectChanges(safeId(id)));
   handle('project:use-disk-source', async (value: unknown, token: string, mainFile: string) => {
     requireProjectIdle();
-    await recoveryQueue.catch(() => {});
+    await store.flushRecovery().catch(() => {});
     const next = await store.useDiskSource(value, token, mainFile);
     void watcher.check();
     return next;
@@ -690,9 +689,8 @@ function registerHandlers() {
         );
       }
     }
-    recoveryQueue = recoveryQueue.catch(() => {}).then(() => store.recover(savedProject));
     try {
-      await recoveryQueue;
+      await store.recover(savedProject);
     } catch {
       warnings.push('Project saved, but local recovery could not be updated.');
     }
@@ -709,12 +707,11 @@ function registerHandlers() {
   handle('project:recover', (value: unknown) => {
     requireProjectIdle();
     const project = checkedProject(value);
-    recoveryQueue = recoveryQueue.catch(() => {}).then(() => store.recover(project));
-    return recoveryQueue;
+    return store.recover(project);
   });
   handle('project:clear-recovery', async () => {
     requireProjectIdle();
-    await recoveryQueue;
+    await store.flushRecovery();
     await store.clearRecovery();
   });
   handle('build:compile', (value: unknown) => {
@@ -791,7 +788,7 @@ function registerHandlers() {
     await support.cancel();
     await fonts.cancel();
     await migrations.cancel();
-    await recoveryQueue;
+    await store.flushRecovery();
     await stopBuilds();
     await providers.close();
     await workspaces.flush();
@@ -877,7 +874,7 @@ if (primaryInstance)
       },
       start: async () => {
         await stopBuilds();
-        await recoveryQueue;
+        await store.flushRecovery();
       },
       progress: (value) => {
         if (window && !window.isDestroyed()) window.webContents.send('packs:progress', value);
@@ -927,7 +924,7 @@ if (primaryInstance)
       },
       start: async () => {
         await stopBuilds();
-        await recoveryQueue;
+        await store.flushRecovery();
       },
       assets: (project) => store.assets(project),
       checkDisk: async (project) => {
@@ -940,15 +937,14 @@ if (primaryInstance)
       compile: (project, assets) => migrationCompiler.compile(project, assets),
       cancel: () => migrationCompiler.cancel(),
       recover: (project) => {
-        recoveryQueue = recoveryQueue.catch(() => {}).then(() => store.recover(project));
-        return recoveryQueue;
+        return store.recover(project);
       },
       workspace: workspaces,
     });
     fonts = new FontImport({
       start: async () => {
         await stopBuilds();
-        await recoveryQueue;
+        await store.flushRecovery();
       },
       choose: async (style) => {
         const result = await dialog.showOpenDialog(window!, {
@@ -1000,9 +996,8 @@ if (primaryInstance)
             'Fonts were saved, but the new PDF history could not be saved. Compile and save again.',
           );
         }
-        recoveryQueue = recoveryQueue.catch(() => {}).then(() => store.recover(next));
         try {
-          await recoveryQueue;
+          await store.recover(next);
         } catch {
           warnings.push(
             'Fonts were saved, but draft recovery could not be updated. Reopen the saved project if needed.',
