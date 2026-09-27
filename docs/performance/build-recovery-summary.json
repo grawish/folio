@@ -1,0 +1,199 @@
+{
+  "schemaVersion": 1,
+  "appAsarSha256": "09d7f516815c03084f0069ed29c709701d19e85139b0bfeeb0e357bc5f636ed8",
+  "sourceBase": "5abdf0de4146b4cd9cd46590adca6585187c9687",
+  "applicationInputsChanged": false,
+  "host": {
+    "cpu": "Apple M4 Pro",
+    "logicalCpus": 14,
+    "ramBytes": 51539607552,
+    "os": "27.0.0",
+    "macos": "27.0",
+    "node": "v24.21.0"
+  },
+  "preparationElapsedMs": 31708.027625,
+  "samplesPerFixture": 3,
+  "fixtures": [
+    {
+      "fixture": "empty",
+      "abandonedJobs": 0,
+      "stagedPayloadBytes": 0,
+      "stagedSourceBytes": 0,
+      "metrics": {
+        "chatInputVerifiedMs": {
+          "min": 415.9710829999967,
+          "median": 419.6824170000036,
+          "max": 425.2696250000008
+        },
+        "editorInputVerifiedMs": {
+          "min": 474.3617919999997,
+          "median": 477.7485830000078,
+          "max": 479.7896249999976
+        },
+        "savedSourceVerifiedMs": {
+          "min": 606.2542919999978,
+          "median": 608.6568750000006,
+          "max": 612.9054590000014
+        },
+        "cleanupAbsentObservedMs": {
+          "min": 0.15883400000166148,
+          "median": 0.22208300000056624,
+          "max": 0.3397499999991851
+        },
+        "compileRequestedMs": {
+          "min": 1429.2812910000066,
+          "median": 1442.4702079999988,
+          "max": 1447.5773750000008
+        },
+        "pdfVerifiedMs": {
+          "min": 2246.941832999997,
+          "median": 2741.0920409999962,
+          "max": 2767.1272089999984
+        },
+        "maxObservedMainTimerLatenessMs": {
+          "min": 2.2911670000000868,
+          "median": 2.8004170000000386,
+          "max": 2.8551250000000437
+        }
+      }
+    },
+    {
+      "fixture": "100-small",
+      "abandonedJobs": 100,
+      "stagedPayloadBytes": 6553600,
+      "stagedSourceBytes": 2700,
+      "metrics": {
+        "chatInputVerifiedMs": {
+          "min": 415.28691699999763,
+          "median": 426.6301250000033,
+          "max": 436.8489999999874
+        },
+        "editorInputVerifiedMs": {
+          "min": 468.5643330000021,
+          "median": 485.59870899999805,
+          "max": 495.26374999999825
+        },
+        "savedSourceVerifiedMs": {
+          "min": 602.206124999997,
+          "median": 617.6729170000035,
+          "max": 630.578165999992
+        },
+        "cleanupAbsentObservedMs": {
+          "min": 722.8223749999961,
+          "median": 768.4524999999994,
+          "max": 776.1124579999887
+        },
+        "compileRequestedMs": {
+          "min": 1421.5300419999985,
+          "median": 1433.7070000000022,
+          "max": 1447.0924999999988
+        },
+        "pdfVerifiedMs": {
+          "min": 2260.7440829999978,
+          "median": 2278.9184590000004,
+          "max": 2764.089666
+        },
+        "maxObservedMainTimerLatenessMs": {
+          "min": 2.720833000000084,
+          "median": 2.7485830000000533,
+          "max": 2.9546249999999645
+        }
+      }
+    },
+    {
+      "fixture": "1000-small",
+      "abandonedJobs": 1000,
+      "stagedPayloadBytes": 65536000,
+      "stagedSourceBytes": 27000,
+      "metrics": {
+        "chatInputVerifiedMs": {
+          "min": 396.4777909999975,
+          "median": 410.01550000000134,
+          "max": 431.1412500000006
+        },
+        "editorInputVerifiedMs": {
+          "min": 445.23662499999773,
+          "median": 468.96687499999825,
+          "max": 494.9510829999999
+        },
+        "savedSourceVerifiedMs": {
+          "min": 577.2076659999948,
+          "median": 602.6795829999974,
+          "max": 635.0331250000017
+        },
+        "cleanupAbsentObservedMs": {
+          "min": 2705.736874999995,
+          "median": 2721.5352920000005,
+          "max": 2752.0706659999996
+        },
+        "compileRequestedMs": {
+          "min": 1390.9184999999998,
+          "median": 1416.7667910000018,
+          "max": 1451.3138749999998
+        },
+        "pdfVerifiedMs": {
+          "min": 3205.848874999996,
+          "median": 3231.6014579999974,
+          "max": 3261.7062080000032
+        },
+        "maxObservedMainTimerLatenessMs": {
+          "min": 2.1209579999999733,
+          "median": 2.215125000000171,
+          "max": 2.753124999999727
+        }
+      }
+    },
+    {
+      "fixture": "one-large",
+      "abandonedJobs": 1,
+      "stagedPayloadBytes": 67108864,
+      "stagedSourceBytes": 27,
+      "metrics": {
+        "chatInputVerifiedMs": {
+          "min": 425.36745900000096,
+          "median": 427.4562090000036,
+          "max": 454.80020800000057
+        },
+        "editorInputVerifiedMs": {
+          "min": 474.40787499999715,
+          "median": 475.0994590000046,
+          "max": 499.4985000000015
+        },
+        "savedSourceVerifiedMs": {
+          "min": 606.6677090000012,
+          "median": 608.6595000000016,
+          "max": 633.6219580000034
+        },
+        "cleanupAbsentObservedMs": {
+          "min": 309.5570000000007,
+          "median": 309.94991600000503,
+          "max": 310.9721670000072
+        },
+        "compileRequestedMs": {
+          "min": 1424.1490420000046,
+          "median": 1427.0921249999956,
+          "max": 1471.4182080000028
+        },
+        "pdfVerifiedMs": {
+          "min": 2266.3782090000022,
+          "median": 2740.5812090000036,
+          "max": 2788.8019159999967
+        },
+        "maxObservedMainTimerLatenessMs": {
+          "min": 2.298958000000084,
+          "median": 3.222082999999998,
+          "max": 8.934624999999983
+        }
+      }
+    }
+  ],
+  "limits": [
+    "One isolated profile is prepared once through the real app and then reused after normal closes. Preparation is outside the measured samples; OS caches are not purged.",
+    "Four synthetic fixtures rotate order each repetition: no abandoned jobs, 100 and 1000 small jobs, and one 64 MiB payload job. They use production ownership records but do not reproduce a real document workload or physical power loss.",
+    "An external directory poll every 50 ms records when original job IDs disappear. These are launch-relative observations with polling and automation overhead, not pure cleanup execution timings.",
+    "Main-process 20 ms timer observation begins after automation attaches; early startup and earlier stalls may be missed. Timer gaps include observer overhead and do not measure renderer frame times.",
+    "This does not measure full process-tree memory/CPU, a population percentile, clean-device acceptance, whole-profile storage retention or an optimization speedup.",
+    "Only the isolated staging child is force-killed; packaged apps are closed normally. Unknown job data and an outside guard must remain unchanged. No AI request is sent."
+  ],
+  "maximumObservedPollGapMs": 56.69433299999946
+}

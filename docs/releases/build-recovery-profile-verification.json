@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T21:10:50.206593+00:00",
+  "sourceBase": "5abdf0de4146b4cd9cd46590adca6585187c9687",
+  "applicationInputsChanged": false,
+  "applicationPackageEvidence": "docs/releases/build-workspace-recovery-verification.json",
+  "hostedAppQualification": "docs/releases/mac-packaged-build-crash-hosted.json",
+  "appAsarSha256": "09d7f516815c03084f0069ed29c709701d19e85139b0bfeeb0e357bc5f636ed8",
+  "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+  "script": {
+    "path": "scripts/profile-build-recovery.mjs",
+    "bytes": 17106,
+    "sha256": "bd34bcf6e3f04b1f1b6033f10fc666b85e9ec00cf659f7e6560004368706d794"
+  },
+  "summary": {
+    "path": "docs/performance/build-recovery-summary.json",
+    "bytes": 6735,
+    "sha256": "6b6ad179e199d5e9ae13270f881a0de82d626898cdfe840f26345244969b83f0"
+  },
+  "raw": {
+    "path": "docs/performance/build-recovery.json.gz",
+    "bytes": 93966,
+    "sha256": "cda812887ab83c807575b388e1b64749d23c003883449369afc2b6439d8525b5",
+    "uncompressedBytes": 242679,
+    "uncompressedSha256": "db51d74ac4430ff575ff2a02b22af5ed065f254c61b9a2cb92b1a5bebc30c57f"
+  },
+  "log": {
+    "path": "test-results/build-recovery-profile-final.log",
+    "bytes": 1093,
+    "sha256": "652b868117929da720049808aca4239aefa5f29a3ad1bd71d56bdab16b2e28ef"
+  },
+  "independentChecks": {
+    "samples": 12,
+    "exportedPdfsParsed": 12,
+    "allTimingOrderings": true,
+    "stagedJobIdentityCountsAndActualOwnerKill": true,
+    "cleanupObservationMonotonicity": true,
+    "timerLatenessRecomputed": true,
+    "finalSourceDraftAndEmptyChatHistory": true,
+    "unmarkedAndUnknownGuardsPreserved": true,
+    "gzipRoundTrip": true,
+    "appAndRuntimeHashesUnchanged": true
+  },
+  "pdfs": [
+    {
+      "path": "test-results/build-recovery-profile-hGBIMf/1-empty.pdf",
+      "bytes": 6038,
+      "sha256": "10d62a051c01434a72bb651122cdcbc4017b07fe2750ec3cb4aa07b490fb490c"
+    },
+    {
+      "path": "test-results/build-recovery-profile-hGBIMf/1-100-small.pdf",
+      "bytes": 6118,
+      "sha256": "48090670141caa940616fc53224382f6cd29772e77dfddcf050b57393e032bc8"
+    },
+    {
+      "path": "test-results/build-recovery-profile-hGBIMf/1-1000-small.pdf",
+      "bytes": 6118,
+      "sha256": "bc7b2aedc17f97760eded7fabaa4319316184a95fdd118f6052f176b96ec6201"
+    },
+    {
+      "path": "test-results/build-recovery-profile-hGBIMf/1-one-large.pdf",
+      "bytes": 6248,
+      "sha256": "8510fac63a9c300e001419305c5c068d89581d27d3a8468c96d77bcd80429432"
+    },
+    {
+      "path": "test-results/build-recovery-profile-hGBIMf/2-100-small.pdf",
+      "bytes": 6241,
+      "sha256": "abe477d5441821f8e068cdd63ae126fd3eeea54d26fc31967843ae5ef8dcad15"
+    },
+    {
+      "path": "test-results/build-recovery-profile-hGBIMf/2-1000-small.pdf",
+      "bytes": 6242,
+      "sha256": "cb0d1f0260e268371ff13d9e9e8e10ce9ea064ccbee7599c4316aff8792f4d80"
+    },
+    {
+      "path": "test-results/build-recovery-profile-hGBIMf/2-one-large.pdf",
+      "bytes": 6374,
+      "sha256": "8823fc7a518b6aa36e90f7f317354a09ecc75ac929938ff84c3e2aff8b1835c1"
+    },
+    {
+      "path": "test-results/build-recovery-profile-hGBIMf/2-empty.pdf",
+      "bytes": 6163,
+      "sha256": "bd17854bcfd966543aa4f6ed0bfcf8c7dc31e73f975234a577194131ca339bdc"
+    },
+    {
+      "path": "test-results/build-recovery-profile-hGBIMf/3-1000-small.pdf",
+      "bytes": 6265,
+      "sha256": "d035c2ef65a02b4b7ec0711b0231af81e5d7f92da2bea83783aa880dc9816f8a"
+    },
+    {
+      "path": "test-results/build-recovery-profile-hGBIMf/3-one-large.pdf",
+      "bytes": 6404,
+      "sha256": "32cd49c57e4a26c177e1b33b70d490ba548b6fc21f18d64c8ba8720ddbcf7b4e"
+    },
+    {
+      "path": "test-results/build-recovery-profile-hGBIMf/3-empty.pdf",
+      "bytes": 6183,
+      "sha256": "abd64c9ec96fd8ab3f4fa8db26b9a490b0a528f4065ea67b495092b6a809e348"
+    },
+    {
+      "path": "test-results/build-recovery-profile-hGBIMf/3-100-small.pdf",
+      "bytes": 6264,
+      "sha256": "57135172752ae0925992f67f7b93b6dfd564b1bcaa9f7674b81d0bb602299691"
+    }
+  ],
+  "retainedFinalState": [
+    {
+      "path": "test-results/build-recovery-profile-hGBIMf/data/recovery.json",
+      "bytes": 1015,
+      "sha256": "88736c2dfb51ba4b7d0c0d008eb09e5c0a5e105c058da4f2b7a548d3b1cde2d8"
+    },
+    {
+      "path": "test-results/build-recovery-profile-hGBIMf/data/workspaces/d63f56f2-2956-4a47-b3d9-a0f9d3d210c8/state.json",
+      "bytes": 5299,
+      "sha256": "787e7a89a2fb34dba33b1cdaddc52504cec4f4e0f629e1f53835172691588586"
+    },
+    {
+      "path": "test-results/build-recovery-profile-hGBIMf/project/main.tex",
+      "bytes": 110,
+      "sha256": "ba2725e20bd890aacd94a1352ae4154b1670a28fdb59433c43981db1ac3d81b6"
+    }
+  ],
+  "excludedPilots": [
+    {
+      "record": {
+        "path": "test-results/build-recovery-profile-0qMiEy/measurements.json",
+        "bytes": 3196,
+        "sha256": "595fd3343a3cec6a335868eb5227818e7e5d7078731de386320f39e45d994631"
+      },
+      "log": {
+        "path": "test-results/build-recovery-profile-pilot.log",
+        "bytes": 1574,
+        "sha256": "a12771ce91dcd807f7ae87592b02165bb9c43a926b7c280e738b02aaa87ddefb"
+      },
+      "reason": "Profiler read a saved file before it existed; the polling callback threw instead of retrying. No measured samples completed. The corrected callback retries only ENOENT."
+    },
+    {
+      "record": {
+        "path": "test-results/build-recovery-profile-LAtDhZ/measurements.json",
+        "bytes": 81242,
+        "sha256": "14b58868df3d2c8d1ee806cb94313f44c66de7b220d82b99604b4f77e10ced4a"
+      },
+      "log": {
+        "path": "test-results/build-recovery-profile-pilot-2.log",
+        "bytes": 445,
+        "sha256": "9c2594a9c61b5692d7b03b0573cc64191f7ce1ed1c825436cc121f1456553efc"
+      },
+      "reason": "Four-case successful harness validation, excluded from the final three repetitions. The final profiler additionally records its timer window and checks the last source/chat draft by reopening."
+    }
+  ],
+  "productionReleaseQualified": false,
+  "scope": "Twelve prepared-profile packaged launches on one development Apple M4 Pro. No app code changed. Synthetic production-owned abandoned jobs, real UI chat/edit/save/compile/export, unknown-data preservation and final recovery are verified. No supported-device percentile, pure cleanup duration, process-tree memory/CPU budget, cold-start or optimization speedup claim.",
+  "screenshot": {
+    "path": "docs/images/build-recovery-backlog.png",
+    "bytes": 83503,
+    "sha256": "f9856f7f5bc8ee86ac2b24b2ea0ef80470ba2ff1faa096d1bc9839f5a06d5cf7",
+    "visuallyInspected": true,
+    "scope": "Successful PDF export and retained draft after cleanup; not the measured startup interval."
+  },
+  "documentationValidation": [
+    {
+      "path": "test-results/build-recovery-profile-format.log",
+      "bytes": 183,
+      "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+    },
+    {
+      "path": "test-results/build-recovery-profile-website.log",
+      "bytes": 821,
+      "sha256": "f071f86862805faca63a6a8a30b980e120e7674c9d1598e23a8c13802212a91f"
+    },
+    {
+      "path": "test-results/build-recovery-profile-skill.log",
+      "bytes": 122,
+      "sha256": "16bbf68e1cbc129aae8ce9e352583e63ebbaa00f2bccda0578bf139b2bff76dc"
+    },
+    {
+      "path": "test-results/build-recovery-profile-skill-validation.log",
+      "bytes": 16,
+      "sha256": "db349825903d66adffea3ecf1bd8e1803043e8a71cf1a051235dabc5371f5bb0"
+    }
+  ]
+}

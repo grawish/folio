@@ -55,3 +55,7 @@ node scripts/test-build-crash.mjs /path/to/Folio.app/Contents/MacOS/Folio
 The [packaged crash verification](releases/packaged-build-crash-verification.json) preserves the successful candidate, failing previous-app control and the initial preference-reset finding. It does not claim that Chromium preferences are durable after abrupt main-process death.
 
 These are process-interruption controls. They do not prove physical power-loss durability, acceptance on every supported Mac, large-backlog responsiveness, whole-profile storage quotas, or automatic removal of older unmarked folders. Those remain in [the release audit](RELEASE_GAP_AUDIT.md) and [performance plan](PERFORMANCE_IMPROVEMENT_PLAN.md#compiler-work-after-an-application-crash).
+
+## Startup with a large backlog
+
+In twelve prepared-profile launches on one development Mac, Folio still accepted chat drafts and source saves while clearing 100 or 1,000 recognized abandoned jobs. With 1,000 jobs, chat input was verified after 0.40–0.43 seconds and saving after 0.58–0.64 seconds; cleanup was observed complete after 2.71–2.75 seconds. A new PDF build waits for cleanup. These synthetic measurements are not a guarantee for every Mac or a total disk-space limit. See the [full workload, timings and limits](PERFORMANCE_IMPROVEMENT_PLAN.md#startup-with-many-abandoned-builds).
