@@ -13,7 +13,7 @@ Folio now keeps a verified local copy of each compiler used by a project. Updati
 
 ## Identity and persistence
 
-`RuntimePin` records Tectonic version, resource bundle label, platform, optional Biber version and a SHA-256 identity over the canonical manifest inventory. Reusing a version label with different file hashes produces a different identity. Verification checks every locked file and refuses unexpected files, symlinks and invalid paths.
+`RuntimePin` records Tectonic version, resource bundle label, platform, optional Biber version and a SHA-256 identity over the canonical manifest inventory. Reusing a version label with different file hashes produces a different identity. Verification checks every locked file and refuses unexpected files, symlinks and invalid paths. Each build still rehashes every locked byte. Four concurrent readers use 128 KiB buffers instead of loading whole resources, while preserving individual and aggregate size limits. Verification waits for all readers to close after a failure and never reuses a cached success. See the [matched performance measurements](PERFORMANCE_IMPROVEMENT_PLAN.md#faster-full-runtime-verification).
 
 The project manifest includes `runtime` plus legacy `engine`/`bundle` labels derived from that same choice. A legacy labels-only project adopts the included complete identity only when the labels match; an incompatible recorded choice remains unavailable. Projects with no prior choice adopt the included version. Malformed compiler choices are rejected instead of discarded.
 

@@ -1,0 +1,372 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T18:21:00.058853+00:00",
+  "baseCommit": "6de12747ceb794296990c8dcbb94130239a62555",
+  "implementationCommit": "f252b0d219ac02d3f4b34a1e538881400e870ad0",
+  "scope": "Complete runtime verification with bounded parallel streaming reads. Every build still hashes the full selected inventory. Backend fixture measurements do not claim full-app or supported-device performance.",
+  "sources": [
+    {
+      "file": "electron/core/runtime.ts",
+      "bytes": 9224,
+      "sha256": "e6aa8fbbb5b4cf98f55045a24fad5292e15519367f9f9a94ee38d96008f43e4a"
+    },
+    {
+      "file": "tests/runtime-verification.test.ts",
+      "bytes": 7632,
+      "sha256": "c5826d834e63e29b09ac79706b5e6bee9a8a4aa26361f9fb2bf16779ee07821b"
+    },
+    {
+      "file": "scripts/profile-runtime-verification.mjs",
+      "bytes": 6655,
+      "sha256": "b08e8236946bc9f86f58e98f821e53d67b75075601b5815c8ccae2a21e3719fe"
+    }
+  ],
+  "measurements": [
+    {
+      "file": "docs/performance/runtime-verification-summary.json",
+      "bytes": 26024,
+      "sha256": "1b2cbd04f974c725241a2f9cc9d443560fb1615af5762b631e61eac186b723e8"
+    },
+    {
+      "file": "docs/performance/runtime-verification-pairs.json.gz",
+      "bytes": 3633,
+      "sha256": "a5d713c6fcc20c1455120722355c69cb55acc5f52dd5805d60d88d745aca1b30"
+    }
+  ],
+  "comparison": {
+    "alternatingPairs": 5,
+    "pdfsWithIdenticalTextAndRaster": 12,
+    "runtimeFilesIndependentlyHashed": 3982,
+    "bothProductionBundlesReproducedExactly": true,
+    "medianReductionPercent": {
+      "verification": 45.54116594421349,
+      "compile": 37.80319141974403
+    },
+    "measuredBeforeImplementationCommit": true,
+    "candidateSourceIdentifiedByHash": true
+  },
+  "validation": {
+    "sourceTestsPassed": 364,
+    "focusedIntegrityTestsPassed": 61,
+    "newResourceIntegrityControls": 5,
+    "baselineAllocationControlFailsAsExpected": true,
+    "compilerIntegrationsPassed": 16,
+    "productionBuildPassed": true,
+    "formatPassed": true,
+    "packagedRuntimePassed": true,
+    "packagedChatPassed": true,
+    "rendererErrors": 0,
+    "logs": [
+      {
+        "file": "test-results/runtime-verification-io/source-tests.log",
+        "bytes": 37568,
+        "sha256": "8827c8ef3f2aca17768c6e89889268d699be7864b3774289c45aacbe547fb692"
+      },
+      {
+        "file": "test-results/runtime-verification-io/integrity-tests.log",
+        "bytes": 6721,
+        "sha256": "9e3a8772b66db112ebf6f7ba2f50b966a191362f5773e85be45be73f146bbd55"
+      },
+      {
+        "file": "test-results/runtime-verification-io/baseline-negative-control.log",
+        "bytes": 1116,
+        "sha256": "b1929360c3a9bd0cdc3aa02437e0611d7e9f26d5f758cc03420ec1107f4bbc70"
+      },
+      {
+        "file": "test-results/runtime-verification-io/compiler-integrations.log",
+        "bytes": 2310,
+        "sha256": "4c85a23785708503eed2b9f7757ddfb5a124f9db0d81f57a97ee7d0d83887f23"
+      },
+      {
+        "file": "test-results/runtime-verification-io/build.log",
+        "bytes": 1719,
+        "sha256": "7b7a5ad4e783de78f1090c5383ca1a13e706b5148c1a430e6b111f95e0cbc323"
+      },
+      {
+        "file": "test-results/runtime-verification-io/format.log",
+        "bytes": 183,
+        "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+      },
+      {
+        "file": "test-results/runtime-verification-io/five-pairs.log",
+        "bytes": 646,
+        "sha256": "4624d948daddb5ca1e822acb854497cbc3fc2f8b980c3f9ef9b14aa24c42ca64"
+      },
+      {
+        "file": "test-results/runtime-verification-io/independent-check.log",
+        "bytes": 796,
+        "sha256": "766bcef633b2ad5595d254f8d2aa0e3a521c460cfba43c43931d6c42a34f86ba"
+      },
+      {
+        "file": "test-results/runtime-verification-io/package.log",
+        "bytes": 1359,
+        "sha256": "2d5d5dafae9f2f2af29a21226a773bfebcbf2f4f62d24c5818652e6888252cf9"
+      },
+      {
+        "file": "test-results/runtime-verification-io/package-runtime.log",
+        "bytes": 883,
+        "sha256": "69d9a14cfba4fb4f9bbcb073207cb11bffb8362629289adec1345e6e16eef62a"
+      },
+      {
+        "file": "test-results/runtime-verification-io/package-chat.log",
+        "bytes": 1554,
+        "sha256": "577e93267310a5c535d52769894e7af35b671c45d185d7079018debae9804b50"
+      }
+    ]
+  },
+  "package": {
+    "sourceCommit": "f252b0d219ac02d3f4b34a1e538881400e870ad0",
+    "app": "release/runtime-verification-io/mac-arm64/Folio.app",
+    "architecture": "arm64",
+    "asarSha256": "a7406eb2f121cc8cc66d8e5e09e45e51e9e19a8f54ac4cabeeb82520d7c471fb",
+    "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+    "outputs": [
+      {
+        "file": "dist/assets/index-BQANPEwY.js",
+        "bytes": 1207317,
+        "sha256": "4a0c9113d3fc899e662612ecbe71a6408c14332657e1e8b8df0730c0fc2dfe5f"
+      },
+      {
+        "file": "dist/assets/index-Dr0quaB-.css",
+        "bytes": 65441,
+        "sha256": "c472afb89d685671b5e0940202b28b45dcd1e65ab95ac6fa20d695789992e489"
+      },
+      {
+        "file": "dist/assets/jetbrains-mono-italic-cyrillic-CY-YXjkl.woff2",
+        "bytes": 5920,
+        "sha256": "a79035476e5f8408e7f2b2599dfd50b7262862ecb853e028ba7b4a00bed16e73"
+      },
+      {
+        "file": "dist/assets/jetbrains-mono-italic-greek-CoTSRNcy.woff2",
+        "bytes": 4416,
+        "sha256": "44ca7e27fef33e684d50e1009d0b886b83d4783e383223e7b13e173a623db0d3"
+      },
+      {
+        "file": "dist/assets/jetbrains-mono-italic-latin-BW896jpM.woff2",
+        "bytes": 22228,
+        "sha256": "00ba27973ba2965d3e7e03ee0f2c66491956cda2ecf8cc6066c969696577f47b"
+      },
+      {
+        "file": "dist/assets/jetbrains-mono-italic-latin-ext-C5V3_1R8.woff2",
+        "bytes": 8032,
+        "sha256": "31434d4924e83d1c6bf10136077f96d0c541226301ba98a583b14bded0576a75"
+      },
+      {
+        "file": "dist/assets/jetbrains-mono-italic-vietnamese-DP5VCyMl.woff2",
+        "bytes": 4164,
+        "sha256": "9c54e21b500492314341e2041e23cf141d43a0c102bca07a7fe281f487eec5f6"
+      },
+      {
+        "file": "dist/assets/jetbrains-mono-normal-cyrillic-D0W76x1T.woff2",
+        "bytes": 5324,
+        "sha256": "4188276a58108d04eb0c6f5b8c9e4b5ac2d9e31e81b2b4fa7da263b92f1b35c3"
+      },
+      {
+        "file": "dist/assets/jetbrains-mono-normal-greek-FADJ2lFV.woff2",
+        "bytes": 4300,
+        "sha256": "0164d0c055dced93435b1d6c2986db2fb7d068ce21950c85b776695f56238b8a"
+      },
+      {
+        "file": "dist/assets/jetbrains-mono-normal-latin-RruCX7RW.woff2",
+        "bytes": 21212,
+        "sha256": "d3dcdccdaba31643defe2317942155d4af3ee03951d058adbe8bc02b13e61b0a"
+      },
+      {
+        "file": "dist/assets/jetbrains-mono-normal-latin-ext-e2G1hK0J.woff2",
+        "bytes": 7368,
+        "sha256": "d5f407e28185790518c49ec8738fa89916ddc99f793010d249165d0e2c2452cc"
+      },
+      {
+        "file": "dist/assets/manrope-normal-cyrillic-DJ9PYDpy.woff2",
+        "bytes": 14544,
+        "sha256": "95a493061fe0a8d0d027c2892747134ba747141112d3be4d5022e70ab7d3a1a6"
+      },
+      {
+        "file": "dist/assets/manrope-normal-greek-vbHvg7sP.woff2",
+        "bytes": 9360,
+        "sha256": "40af11327fe5308166c6cb5787808b042db6da889abf602f0a4876c49675d87e"
+      },
+      {
+        "file": "dist/assets/manrope-normal-latin-C46ZzDBF.woff2",
+        "bytes": 24576,
+        "sha256": "e310b55a7fd9677f5e3555e6c6c4d064fa1f1d24393f0ddbe217cea12a8c432f"
+      },
+      {
+        "file": "dist/assets/manrope-normal-latin-ext-CDracvZH.woff2",
+        "bytes": 15240,
+        "sha256": "ce093b341d9c10658ee1eaa85c5f8042ff3307bc6ccfc5f405616eb437f0009e"
+      },
+      {
+        "file": "dist/assets/manrope-normal-vietnamese-C9-d800b.woff2",
+        "bytes": 8492,
+        "sha256": "bab757f8a0a1bc04055ee98cb5777f3254aab11f6d222366e1f40a36f390506a"
+      },
+      {
+        "file": "dist/assets/pdf.worker.min-Dswkl-cV.mjs",
+        "bytes": 1265413,
+        "sha256": "8ab0e5e30031b4a06ecfddd5ae9562f0227f830ee7ec9ed1a968b134243d2386"
+      },
+      {
+        "file": "dist/index.html",
+        "bytes": 711,
+        "sha256": "b00611694c1f5d9008d4b814fe26ce7bac4b8fda8ded7f139edf15938714e93e"
+      },
+      {
+        "file": "dist/licenses/JetBrains-Mono-OFL.txt",
+        "bytes": 4399,
+        "sha256": "b2fe5e8987594e9ffd1d2ca52a2f5d73eb8335243893c5d6254b5ad69269591d"
+      },
+      {
+        "file": "dist/licenses/Manrope-OFL.txt",
+        "bytes": 4387,
+        "sha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b"
+      },
+      {
+        "file": "dist/templates/academic-a4.png",
+        "bytes": 119388,
+        "sha256": "e149b33dc14f9bb99469b5dc9b39cf0f698de720894af8f9ef2bd74d31f1115d"
+      },
+      {
+        "file": "dist/templates/academic-letter.png",
+        "bytes": 137223,
+        "sha256": "1fb69ee0e825acb916781022f7bb5e65576f7911b7fb08d34009aa21b60964e0"
+      },
+      {
+        "file": "dist/templates/classic-a4.png",
+        "bytes": 149297,
+        "sha256": "38f95f3b25a51669105de7efdba08fe5b2633e7f7fde5ee15c3057862551fee3"
+      },
+      {
+        "file": "dist/templates/classic-letter.png",
+        "bytes": 160209,
+        "sha256": "5e3ef1114cd3c728118e01c4161722b5c2a3a5e27a058f43f6bb5b825023c8ee"
+      },
+      {
+        "file": "dist/templates/compact-technical-a4.png",
+        "bytes": 142247,
+        "sha256": "5878085cef410ee1b1463c0b71de8ebb48fc845899aed90d7b52c16ee577fc51"
+      },
+      {
+        "file": "dist/templates/compact-technical-letter.png",
+        "bytes": 146627,
+        "sha256": "9fcc6a929547407948a5a23fe9d481bb197f20e195c7bbae2af125fb75e34a3a"
+      },
+      {
+        "file": "dist/templates/manifest.json",
+        "bytes": 9229,
+        "sha256": "db231613ba3b1a69e01ffd5a111422874736d51d9b8f6509de7c71511b4a4a86"
+      },
+      {
+        "file": "dist/templates/minimal-a4.png",
+        "bytes": 107643,
+        "sha256": "9bb702aae1e721255a0632010a22a82bcb283a49b16b6ce8bfbe74a99ef48353"
+      },
+      {
+        "file": "dist/templates/minimal-letter.png",
+        "bytes": 123606,
+        "sha256": "10bfd6c692eac97a9e25bc2361d0113d43584069a05c3af4fbef64ad78cfb368"
+      },
+      {
+        "file": "dist/templates/modern-a4.png",
+        "bytes": 96543,
+        "sha256": "bd6a55401f8642fcf375c18fe952d7ff2185635c7fa4ece24c7be3e157515b41"
+      },
+      {
+        "file": "dist/templates/modern-letter.png",
+        "bytes": 101419,
+        "sha256": "99062be87eabf30184d937ea0ceef3768387beb81cd850110ce335819d5474a0"
+      },
+      {
+        "file": "dist/templates/two-column-a4.png",
+        "bytes": 100386,
+        "sha256": "b7cca2c36d149da1af024d1095801051817084c536724f2f5c7d68f75e3cc348"
+      },
+      {
+        "file": "dist/templates/two-column-letter.png",
+        "bytes": 104351,
+        "sha256": "d23fb748c48033f314d40fac502c42953d9003e478ec2360144e55da68c19802"
+      },
+      {
+        "file": "dist-electron/history-zip-worker.cjs",
+        "bytes": 75678,
+        "sha256": "55ff7d812d2eafe2e725dd48f45cbd815ed610bec2168bd449627c76359f7694"
+      },
+      {
+        "file": "dist-electron/history-zip-worker.cjs.map",
+        "bytes": 161918,
+        "sha256": "57f93bf7d08246dc3dd4d5adb013da67ed95acb53aca46f127f5e913cc965bee"
+      },
+      {
+        "file": "dist-electron/main.cjs",
+        "bytes": 1042084,
+        "sha256": "778d04f32bb17a19c022262803a676250921046e159171e5b910d534c729cf5f"
+      },
+      {
+        "file": "dist-electron/main.cjs.map",
+        "bytes": 1928824,
+        "sha256": "aca3e779f5ea4ed5f2fec19510f37e889c4ed6341ad8a0dfc551b67b028b444d"
+      },
+      {
+        "file": "dist-electron/preload.cjs",
+        "bytes": 9375,
+        "sha256": "3b7e957f0143c2bf9df760f8614a154f0499fceecbdb9a2d2b52d8c9f27306fa"
+      },
+      {
+        "file": "dist-electron/preload.cjs.map",
+        "bytes": 13695,
+        "sha256": "6a4af797f70656319fdd158c186b8df53fe0f2f7b7812ca9fb27468ae1f02d61"
+      }
+    ],
+    "scripts": [
+      {
+        "file": "scripts/test-runtime.mjs",
+        "bytes": 24029,
+        "sha256": "e44b3e00eb4e5b9d67b66f551ff5c3b11509f076d9bffa975e61a78ad1b8fb06"
+      },
+      {
+        "file": "scripts/test-chat.mjs",
+        "bytes": 36762,
+        "sha256": "ecc8c229f5792aefd47b860c7ff318c3bd60962972da2f57be4f9e7a454cd095"
+      }
+    ]
+  },
+  "nativeEvidence": {
+    "runtime": {
+      "file": "test-results/runtime-lJKQGF/result.json",
+      "bytes": 2864,
+      "sha256": "045f5caf6b914f1d6392de31641662f1af5698e8a051cf6e39653aafc630da0b"
+    },
+    "chatLifecycle": {
+      "file": "test-results/chat-ZWGkjT/lifecycle.json",
+      "bytes": 3698,
+      "sha256": "516c97b35bb1bf4cb876cc677820ac3cda5ea4b35596c7ef899ac49722e73b72"
+    }
+  },
+  "independentMeasurementChecker": {
+    "file": "test-results/runtime-verification-io/check-measurements.py",
+    "bytes": 3685,
+    "sha256": "8c6693e2ac17d33a49d9f7b09e922839f4fbc12f3eace5343f4fb014c6e6482b"
+  },
+  "bundleReplayChecker": {
+    "file": "test-results/runtime-verification-io/replay-bundles.mjs",
+    "bytes": 2080,
+    "sha256": "513b454ed71d0c88cbcbf969027860087216ca8a7fb90fbf9bdccdfb49cab52a"
+  },
+  "fullHostedQualification": {
+    "runId": 36339879953,
+    "url": "https://github.com/grawish/folio/actions/runs/36339879953",
+    "commit": "f252b0d219ac02d3f4b34a1e538881400e870ad0",
+    "statusAtPublication": "success",
+    "verification": "docs/releases/mac-runtime-verification-hosted.json",
+    "retainedArtifactFilesVerified": 146
+  },
+  "limits": [
+    "Five default alternating pairs on one development Mac; not a supported-device or population p95 claim.",
+    "Both implementations run in one Node host. Sampled host RSS is not isolated variant memory or whole-app/native-tree memory.",
+    "One real warmup compile per variant precedes measurement. Separate work folders retain each variant\u2019s TeX cache; OS caches are not purged.",
+    "Each standalone verification rehashes the runtime. Each compile also does its own full verification, so these stage times must not be added as a single build duration.",
+    "Complete production compiler/verifier bundles are supplied explicitly. Retain their source identities and build commands alongside this report.",
+    "No production signing, notarization, clean supported-Mac acceptance or complete binary redistribution claim. Public preview-4 installer is unchanged."
+  ],
+  "productionReleaseQualified": false
+}

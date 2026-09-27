@@ -68,7 +68,7 @@ function runtimeName(name: string) {
     throw new Error('Invalid runtime manifest path.');
 }
 
-export async function runtimeFile(root: string, name: string, limit = 256 * 1024 * 1024) {
+async function openRuntimeFile(root: string, name: string, limit: number) {
   runtimeName(name);
   const parts = name.split('/');
   for (let i = 1; i < parts.length; i++)
@@ -82,6 +82,16 @@ export async function runtimeFile(root: string, name: string, limit = 256 * 1024
     const stat = await handle.stat();
     if (!stat.isFile() || stat.size > limit)
       throw new Error('A compiler resource is not a regular file or exceeds its size limit.');
+    return handle;
+  } catch (error) {
+    await handle.close();
+    throw error;
+  }
+}
+
+export async function runtimeFile(root: string, name: string, limit = 256 * 1024 * 1024) {
+  const handle = await openRuntimeFile(root, name, limit);
+  try {
     return await handle.readFile();
   } finally {
     await handle.close();
@@ -141,13 +151,46 @@ export async function verifyRuntime(root: string, expected?: RuntimePin) {
     }
   };
   await visit();
-  for (const [name, expectedHash] of Object.entries(manifest.files)) {
-    const data = await runtimeFile(root, name);
-    bytes += data.length;
-    if (bytes > 1024 * 1024 * 1024) throw new Error('The compiler resources exceed 1 GB.');
-    if (createHash('sha256').update(data).digest('hex') !== expectedHash)
-      throw new Error(`The bundled ${name} failed its integrity check.`);
-  }
+  // Rehash every byte on every verification. Four readers overlap filesystem
+  // waits without retaining complete resources or caching a prior success.
+  const entries = Object.entries(manifest.files);
+  let next = 0,
+    failed = false,
+    failure: unknown;
+  const readAndHash = async () => {
+    const buffer = Buffer.allocUnsafe(128 * 1024);
+    while (!failed && next < entries.length) {
+      const [name, expectedHash] = entries[next++];
+      try {
+        const limit = 256 * 1024 * 1024;
+        const handle = await openRuntimeFile(root, name, limit);
+        try {
+          const digest = createHash('sha256');
+          let fileBytes = 0;
+          while (!failed) {
+            const { bytesRead } = await handle.read(buffer, 0, buffer.length, null);
+            if (!bytesRead) break;
+            fileBytes += bytesRead;
+            bytes += bytesRead;
+            if (fileBytes > limit) throw new Error('A compiler resource exceeds its size limit.');
+            if (bytes > 1024 * 1024 * 1024) throw new Error('The compiler resources exceed 1 GB.');
+            digest.update(buffer.subarray(0, bytesRead));
+          }
+          if (!failed && digest.digest('hex') !== expectedHash)
+            throw new Error(`The bundled ${name} failed its integrity check.`);
+        } finally {
+          await handle.close();
+        }
+      } catch (error) {
+        if (!failed) failure = error;
+        failed = true;
+      }
+    }
+  };
+  // Settle every reader before returning an error, so a rejected verification
+  // leaves no file handles or background reads behind.
+  await Promise.all(Array.from({ length: Math.min(4, entries.length) }, readAndHash));
+  if (failed) throw failure;
   return { manifest, pin };
 }
 
