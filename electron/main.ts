@@ -21,6 +21,7 @@ import { ProjectStore, atomicWrite, validateProject, removedFileArchive } from '
 import { ProjectImporter } from './core/project-import';
 import { ProjectWatcher } from './core/project-scan';
 import { Compiler } from './core/compiler';
+import { BuildRequests } from './core/build-requests';
 import { PreferenceStore } from './core/preferences';
 import { RuntimeManager } from './core/runtime-manager';
 import { PackService } from './core/pack-service';
@@ -65,6 +66,7 @@ let watcher: ProjectWatcher;
 let watchedDirectory: string | undefined;
 let importer: ProjectImporter;
 let compiler: Compiler;
+let buildRequests: BuildRequests;
 let runtimes: RuntimeManager;
 let packs: PackService;
 let agentCompiler: Compiler;
@@ -107,7 +109,6 @@ const renders = new Map<
   }
 >();
 let recoveryQueue = Promise.resolve();
-let requestGeneration = 0;
 let saveReviewId: string | undefined;
 let saveReviewStart: Promise<void> = Promise.resolve();
 let saveReviewApply: Promise<unknown> = Promise.resolve();
@@ -197,6 +198,11 @@ async function openProject(directory: string, main?: string) {
   return project;
 }
 
+async function stopBuilds() {
+  const results = await Promise.allSettled([buildRequests.cancel(), agent.cancel()]);
+  for (const result of results) if (result.status === 'rejected') throw result.reason;
+}
+
 function requireProjectIdle() {
   if (compilerRemoval) throw new Error('Finish reviewing compiler removal first.');
   if (removingHistory) throw new Error('Wait for history removal to finish.');
@@ -257,8 +263,7 @@ function registerHandlers() {
     updateRestarting = true;
     try {
       return await updates.restart(async () => {
-        requestGeneration++;
-        await compiler.cancel();
+        await buildRequests.cancel();
         await recoveryQueue;
         await workspaces.flush();
         await preferences.flush();
@@ -281,9 +286,7 @@ function registerHandlers() {
     const project = value === undefined ? undefined : checkedProject(value);
     saveReviewId = safeId(id);
     saveReviewStart = (async () => {
-      requestGeneration++;
-      await agent.cancel();
-      await compiler.cancel();
+      await stopBuilds();
       await recoveryQueue.catch(() => {});
       await workspaces.flush();
       if (project) await store.recover(project);
@@ -361,7 +364,7 @@ function registerHandlers() {
   });
   handle('runtime:remove-stored', async (key: string, token: string) => {
     requireProjectIdle();
-    if (agent.busy || compiler.busy)
+    if (agent.busy || buildRequests.busy)
       throw new Error('Finish the AI request and PDF build before removing a compiler.');
     const operation = (async () => {
       await recoveryQueue;
@@ -452,7 +455,7 @@ function registerHandlers() {
     'workspace:remove-version',
     async (projectId: string, versionId: string, currentId?: string) => {
       requireProjectIdle();
-      if (agent.busy || compiler.busy)
+      if (agent.busy || buildRequests.busy)
         throw new Error('Finish building and stop the AI request before removing history.');
       removingHistory = true;
       try {
@@ -714,38 +717,11 @@ function registerHandlers() {
     await recoveryQueue;
     await store.clearRecovery();
   });
-  handle('build:compile', async (value: unknown) => {
+  handle('build:compile', (value: unknown) => {
     requireProjectIdle();
-    const project = checkedProject(value);
-    const generation = ++requestGeneration;
-    await store.requireReviewedDisk(project.id);
-    const assets = await store.assets(project);
-    if (generation !== requestGeneration)
-      return {
-        projectId: project.id,
-        revision: project.revision,
-        status: 'cancelled',
-        durationMs: 0,
-        diagnostics: [],
-        log: '',
-      };
-    const result = await compiler.compile(project, assets);
-    if (result.status === 'success' && result.pdf && generation === requestGeneration) {
-      const version = await workspaces.checkpoint(
-        project,
-        result.pdf,
-        'Built from source',
-        false,
-        result.buildFingerprint,
-      );
-      result.versionId = version.id;
-    }
-    return result;
+    return buildRequests.compile(checkedProject(value));
   });
-  handle('build:cancel', () => {
-    requestGeneration++;
-    return compiler.cancel();
-  });
+  handle('build:cancel', () => buildRequests.cancel());
   handle('project:export-pdf', async (value: unknown) => {
     requireProjectIdle();
     const project = checkedProject(value);
@@ -816,11 +792,10 @@ function registerHandlers() {
     await fonts.cancel();
     await migrations.cancel();
     await recoveryQueue;
-    await agent.cancel();
+    await stopBuilds();
     await providers.close();
     await workspaces.flush();
     await preferences.flush();
-    await compiler.cancel();
     closing = true;
     window?.close();
   });
@@ -901,9 +876,7 @@ if (primaryInstance)
         return chosen.canceled ? undefined : chosen.filePaths[0];
       },
       start: async () => {
-        requestGeneration++;
-        await agent.cancel();
-        await compiler.cancel();
+        await stopBuilds();
         await recoveryQueue;
       },
       progress: (value) => {
@@ -925,6 +898,22 @@ if (primaryInstance)
     compiler = new Compiler(runtimes, path.join(dataRoot, 'builds'));
     agentCompiler = new Compiler(runtimes, path.join(dataRoot, 'agent-builds'));
     workspaces = new WorkspaceStore(dataRoot);
+    buildRequests = new BuildRequests({
+      review: (project) => store.requireReviewedDisk(project.id),
+      assets: (project) => store.assets(project),
+      compile: (project, assets) => compiler.compile(project, assets),
+      cancelCompiler: () => compiler.cancel(),
+      checkpoint: async (project, result) =>
+        (
+          await workspaces.checkpoint(
+            project,
+            result.pdf!,
+            'Built from source',
+            false,
+            result.buildFingerprint,
+          )
+        ).id,
+    });
     migrationCompiler = new Compiler(runtimes, path.join(dataRoot, 'migration-builds'));
     migrations = new CompilerMigration(path.join(dataRoot, 'compiler-backups'), {
       target: () => runtimes.defaultPin,
@@ -937,9 +926,7 @@ if (primaryInstance)
           );
       },
       start: async () => {
-        requestGeneration++;
-        await agent.cancel();
-        await compiler.cancel();
+        await stopBuilds();
         await recoveryQueue;
       },
       assets: (project) => store.assets(project),
@@ -960,9 +947,7 @@ if (primaryInstance)
     });
     fonts = new FontImport({
       start: async () => {
-        requestGeneration++;
-        await agent.cancel();
-        await compiler.cancel();
+        await stopBuilds();
         await recoveryQueue;
       },
       choose: async (style) => {

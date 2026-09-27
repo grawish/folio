@@ -1,0 +1,28 @@
+{
+  "sourceSha256": "5938b73a42f1c06edc7ce293d5ba8ad9b73e545bc100689b2e2616fa70c9190d",
+  "requests": 5001,
+  "settledWhileFirstRuntimeAcquisitionHeld": 0,
+  "unsettledWhileHeld": 5001,
+  "enqueueAndObservationMs": 18.269042,
+  "hostHeapBefore": 7972224,
+  "hostHeapAfter": 20619376,
+  "scope": "Controlled runtime acquisition; no native compiler or AI call. Heap readings are not a whole-app memory measurement.",
+  "acquired": 2,
+  "released": 2,
+  "cancelled": 5000,
+  "finalResult": {
+    "projectId": "synthetic-backlog",
+    "revision": 5000,
+    "status": "error",
+    "durationMs": 0,
+    "diagnostics": [
+      {
+        "severity": "error",
+        "message": "Synthetic runtime hold released."
+      }
+    ],
+    "log": "Synthetic runtime hold released.",
+    "runtimeUnavailable": true
+  },
+  "busyAfterSettling": false
+}

@@ -10,16 +10,17 @@ import { parseDiagnostics } from './diagnostics';
 import { buildFingerprint } from './build-provenance';
 import { compilerLimits, limitedCompilerLaunch } from './compiler-limits';
 import { BuildWorkspaces } from './build-workspaces';
+import { LatestWorkQueue } from './latest-work-queue';
 import type { RuntimeLease, RuntimeSource } from './runtime-manager';
 
 export class Compiler {
   get busy() {
-    return !!this.running;
+    return this.queue.busy;
   }
   private readonly workspaces: BuildWorkspaces;
   private generation = 0;
   private abort: AbortController | undefined;
-  private running: Promise<BuildResult> | undefined;
+  private readonly queue = new LatestWorkQueue<BuildResult>();
   private last: { projectId: string; fingerprint: string; result: BuildResult } | undefined;
 
   constructor(
@@ -33,7 +34,8 @@ export class Compiler {
   async cancel() {
     this.generation++;
     this.abort?.abort();
-    await this.running;
+    this.queue.cancelPending();
+    await this.queue.running;
   }
 
   currentPdf(project: Project): Uint8Array | undefined {
@@ -47,7 +49,6 @@ export class Compiler {
   compile(project: Project, assets = new Map<string, Buffer>()): Promise<BuildResult> {
     const generation = ++this.generation;
     this.abort?.abort();
-    const previous = this.running;
     const cancelled = (): BuildResult => ({
       projectId: project.id,
       revision: project.revision,
@@ -57,7 +58,6 @@ export class Compiler {
       log: '',
     });
     const operation = async () => {
-      await previous;
       if (generation !== this.generation) return cancelled();
       const controller = new AbortController();
       this.abort = controller;
@@ -157,6 +157,7 @@ export class Compiler {
           const pdf = await fs.readFile(pdfPath);
           if (!pdf.subarray(0, 5).equals(Buffer.from('%PDF-')))
             throw new Error('The compiler did not produce a valid PDF.');
+          if (generation !== this.generation) return cancelled();
           result.pdf = new Uint8Array(pdf);
           result.buildFingerprint = buildFingerprint(project, assets, runtime.pin);
           this.last = { projectId: project.id, fingerprint: fingerprint(project), result };
@@ -185,13 +186,10 @@ export class Compiler {
         if (generation === this.generation) this.abort = undefined;
       }
     };
-    const running = operation();
-    this.running = running;
-    const finished = () => {
-      if (this.running === running) this.running = undefined;
-    };
-    void running.then(finished, finished);
-    return running;
+    return this.queue.enqueue(async () => {
+      const result = await operation();
+      return generation === this.generation ? result : cancelled();
+    }, cancelled);
   }
 
   private run(

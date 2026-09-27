@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "status": "Local source, compiler integration and packaged IPC checks passed; broader native and hosted qualification pending",
+  "focusedTestsPassed": 16,
+  "sourceTestsPassed": 423,
+  "typecheckPassed": true,
+  "baselineUnsettledRequests": 5001,
+  "boundedUnsettledRequests": 2,
+  "scope": "Request-count bound and cancellation correctness. Whole-app performance/resource acceptance and hosted package qualification remain open. The preview-4 installer is unchanged.",
+  "verifiedAt": "2026-09-27T22:10:11.215524+00:00",
+  "compilerIntegrationTestsPassed": 18,
+  "nativeBuildRequestCheck": {
+    "sourceCommit": "754b8785713346dbf8182873de713b6b94d9f7ef",
+    "scriptSha256": "ac62fb43615702f875ba8550e583f92b63234fc33468ec4e0cc267ad0151ee2e",
+    "sourceHashes": {
+      "electron/main.ts": "4de1b1e6806bde30d32b0ff1266d0b9b94b0f40f63956403a3d2c5b220f12204",
+      "electron/core/compiler.ts": "2a9e60483890fc18cf91d50950792e30f9438444d90c3cb339488bf39c275c7d",
+      "electron/core/build-requests.ts": "d5eb00cc346ad0da696342d74f48f736e695444fb197eb254a3573cfc9cf43a5",
+      "electron/core/latest-work-queue.ts": "90e4217edd10f6898dfb7583c3c98cd9022a43c4dd7a48125e9e8b03f0c7db5b",
+      "electron/preload.ts": "e8c5d66e0573d536b547ed8895c18ef54007574a0c944c8c5c0878e502d5c994"
+    },
+    "appAsarSha256": "fe66b721212c7fa761564ed6fb0b852414b0d699aa8e59fdc5119b2a335d4877",
+    "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+    "scope": "Isolated packaged app, real preload/IPC/disk review/compiler/history; one synthetic project-directory lstat is held to expose queued requests. No AI call or user profile.",
+    "checks": [
+      "499 superseded IPC requests settle while disk review remains held; only revision 500 produces a PDF and history entry.",
+      "Stop drops pending IPC work and waits for active disk review; history and runtime removal remain blocked while review is held.",
+      "The final real PDF is independently parsed and contains the newest requested text."
+    ],
+    "errors": [],
+    "passed": true,
+    "whileHeld": {
+      "requests": 501,
+      "settled": 499,
+      "cancelled": 499
+    },
+    "pdf": {
+      "pages": 1,
+      "text": "Newest queued resume 500.\n1",
+      "sha256": "8384699d438bb71b974f23c9d3e07362481b95914b9130141177d0a752a19cb2",
+      "versionId": "4198cc93-3446-4da6-aec8-a21bddc9ea6e"
+    }
+  },
+  "nativeEvidence": "test-results/build-requests-5falLR",
+  "publishedInstallerChanged": false,
+  "sourceBaseCommit": "754b8785713346dbf8182873de713b6b94d9f7ef",
+  "retainedLogs": [
+    {
+      "file": "test-results/bounded-build-source.log",
+      "bytes": 42525,
+      "sha256": "9b1fefa3c5b0515a0f82c7e063422836e123e254aa73d0dd3a7168a9bbf2a74e"
+    },
+    {
+      "file": "test-results/bounded-build-integration.log",
+      "bytes": 2720,
+      "sha256": "98329f7ba8f95a123a902c6b83b2a92193f655434275c60518ed46a7238e0d6f"
+    },
+    {
+      "file": "test-results/bounded-build-focused-final.log",
+      "bytes": 1437,
+      "sha256": "f4a0442ab33e814e60c9df978fa050bfc4dae067e98c4a8ff8771a8fb7b5a5ca"
+    },
+    {
+      "file": "test-results/bounded-build-typecheck.log",
+      "bytes": 64,
+      "sha256": "5e0497e27df921e099efd62066b397df0bfe0eb796edd626db840b92aaa1ccec"
+    },
+    {
+      "file": "test-results/bounded-build-native-corrected.log",
+      "bytes": 217,
+      "sha256": "6800910d8c55ef8cfcf948b09d77b2e931186aa92b4f66e4c183594dd5a9b702"
+    },
+    {
+      "file": "test-results/bounded-build-build.log",
+      "bytes": 1719,
+      "sha256": "383d81c760a5269896df784983367ac94b6f2f566ea28946015dfdd2abb8b870"
+    },
+    {
+      "file": "test-results/bounded-build-package.log",
+      "bytes": 1341,
+      "sha256": "4f80d506280a0a3d53ebfd590b607de33d2b50de5bfe1c7bc922ecc4d5612dc2"
+    }
+  ],
+  "fixtureCorrections": [
+    "The first native attempt used the recent-project route before the folder was authorized. The fixture now uses the normal Open Folder dialog route.",
+    "The second native attempt used CommonJS require in Electron evaluation. It now uses process.getBuiltinModule, matching the existing native fixtures. Application code was unchanged by these harness corrections."
+  ],
+  "nativeBaselineControl": {
+    "evidence": "test-results/build-requests-G9sXcD",
+    "expectedFailure": true,
+    "appAsarSha256": "8d527da6957367ea1fbc264fdff842c39a3163ed76c9477cfcdf92a1f9da61d3",
+    "scriptSha256": "ac62fb43615702f875ba8550e583f92b63234fc33468ec4e0cc267ad0151ee2e",
+    "expectedSettledRequests": 499,
+    "actualSettledRequests": 0,
+    "scope": "The identical packaged regression rejects the previously qualified preferences app while the new package passes. Test-instrument source hashes describe the invoking checkout; the baseline executable is identified separately by ASAR."
+  },
+  "packagedJavascriptReplay": {
+    "schemaVersion": 1,
+    "appAsarSha256": "fe66b721212c7fa761564ed6fb0b852414b0d699aa8e59fdc5119b2a335d4877",
+    "inventorySha256": "3efa0ec52c3165504effd6b94dba6a9487e8940c936f8b07fe42adeb6fb92549",
+    "bomSha256": "46667786f3b9dfe7b951ccba13228565d9ed14036447a135591fb2a03bc6026e",
+    "packagedJavaScriptAndMaps": 8,
+    "reproducedOutputs": 24,
+    "sourceModules": 409,
+    "runtimePackages": 35,
+    "generators": 3,
+    "completeBinarySbom": false
+  },
+  "qualificationGate": {
+    "nativeSuites": 19,
+    "newSuite": "build-requests",
+    "hostedRunStatus": "not dispatched"
+  }
+}
