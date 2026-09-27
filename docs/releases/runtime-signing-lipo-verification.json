@@ -52,8 +52,23 @@
   "scope": [
     "Existing real signature, forged record and native compiler tests exercise the corrected command; no mock-only command assertion was added.",
     "The signed-runtime integration signs the complete prepared runtime and renders an offline bibliography PDF in a path containing spaces.",
-    "Fresh hosted source and full Mac qualification remain required.",
+    "Hosted source checks now pass at d054ac5; the full Mac qualification is tracked separately in run 36290271754.",
     "The earlier runtime-signing-verification.json remains historical evidence for its original inputs and private artifact; this record does not claim that artifact was rebuilt.",
     "No authenticated installer, Developer ID, notarization or hardened-runtime acceptance is established by this compatibility fix."
-  ]
+  ],
+  "hostedSource": {
+    "verifiedAt": "2026-09-27T03:08:37.296768+00:00",
+    "commit": "d054ac591310f382de0fba1d55a7a1660177c6f1",
+    "run": "https://github.com/grawish/folio/actions/runs/36290252323",
+    "conclusion": "success",
+    "sourceTestsPassed": 288,
+    "buildPassed": true,
+    "formatPassed": true,
+    "generatedSkillCheckPassed": true,
+    "log": {
+      "path": "test-results/runtime-signing-lipo-hosted-source.log",
+      "bytes": 98269,
+      "sha256": "9c0923e12ad8d3155348cdb680bb73c73d287444d1101005faf03084d878c8da"
+    }
+  }
 }

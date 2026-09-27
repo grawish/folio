@@ -1,0 +1,241 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T03:11:41.195247+00:00",
+  "baseCommit": "d054ac591310f382de0fba1d55a7a1660177c6f1",
+  "change": "Publisher verification accepts an explicit final base-runtime folder and rejects a pack for any different exact base before native compilation.",
+  "inputs": [
+    {
+      "path": "scripts/verify-published-pack.ts",
+      "bytes": 4654,
+      "sha256": "ab16ec1d097a6a1b8d60304c5146fe9c2b90ee933d1e66bd88bf895477172039"
+    },
+    {
+      "path": "tests/integration/runtime-signing.test.ts",
+      "bytes": 6925,
+      "sha256": "2ec189ae0b7c3ce0eeb3f1e7ba0042b6970fc5582dd6709d208af14d62d2ae7b"
+    },
+    {
+      "path": "scripts/sign-mac-runtime.ts",
+      "bytes": 5005,
+      "sha256": "8572d5b4857a9e1272f74efffd4c9cf2b3e05c8c12a36d92ab1efb7f1ee00c0a"
+    }
+  ],
+  "signedIntegration": {
+    "passed": true,
+    "durationMs": 109451.177583,
+    "appleSigning": "ad-hoc-test",
+    "packSigning": "ephemeral Ed25519 key",
+    "checks": [
+      "Actual complete runtime signed in a path containing spaces.",
+      "Original signed Biber startup-override and offline resume/font/bibliography checks retained.",
+      "Packs built against unsigned and signed bases have different exact targets.",
+      "Installation of the unsigned-base pack into a fresh signed-base manager is rejected.",
+      "The matching signed-base pack installs through the normal managed staging and real offline probes.",
+      "A new manager and archive store reopen the installed target from disk.",
+      "All 158 native file bytes match the signed base and all native Apple signatures verify after copying.",
+      "The reopened target builds a real offline resume/font/bibliography PDF with the added resource.",
+      "The base cannot use the added resource, keeps its default identity, and both original base inventories remain unchanged."
+    ],
+    "log": {
+      "path": "test-results/signed-pack-integration-final.log",
+      "bytes": 441,
+      "sha256": "867a1bcc30bd55787c08637648229f9f67e09b21de0874580fd2200c25a745c8"
+    }
+  },
+  "publisherWrongBaseControl": {
+    "passed": true,
+    "candidate": "Existing authenticated public table pack against the actual private signed app.",
+    "rejectedBeforeNativeCompilation": true,
+    "files": [
+      {
+        "path": "test-results/signed-pack-wrong-base.json",
+        "bytes": 440,
+        "sha256": "96e1320d7bd40b37560a40b99eefec34006a083120794a0be58a0a07d5a51eea"
+      },
+      {
+        "path": "test-results/signed-pack-wrong-base.log",
+        "bytes": 1173,
+        "sha256": "ff48e0ea51471e7d2c776aa9ca5546a878e9b49b9a930ae918011007916f7916"
+      }
+    ]
+  },
+  "existingPublicationRegression": {
+    "passed": true,
+    "command": "node --import tsx scripts/verify-published-pack.ts artifacts/resource-packs-v1",
+    "base": {
+      "engine": "tectonic",
+      "version": "0.17.0",
+      "bundle": "folio-core-v1",
+      "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+      "platform": "darwin-arm64",
+      "biberVersion": "2.17"
+    },
+    "packs": [
+      {
+        "id": "folio-multirow-2.9-v1",
+        "artifact": {
+          "url": "https://github.com/grawish/folio/releases/download/resource-packs-v1/Folio-multirow-2.9-v1.foliopack",
+          "bytes": 2259484,
+          "sha256": "b11d22b915fba8f7a4efaa82d900912341cc2af1a05cd2dcee298ca48a4bbbfe"
+        },
+        "base": {
+          "engine": "tectonic",
+          "version": "0.17.0",
+          "bundle": "folio-core-v1",
+          "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+          "platform": "darwin-arm64",
+          "biberVersion": "2.17"
+        },
+        "target": {
+          "engine": "tectonic",
+          "version": "0.17.0",
+          "bundle": "folio-multirow-2.9-v1",
+          "id": "f08d496354bb88e604ca8c2394935f8bf2e842a021d1b54b02ff210344a1d670",
+          "platform": "darwin-arm64",
+          "biberVersion": "2.17"
+        },
+        "offlineCompile": true,
+        "baseUnchanged": true,
+        "corpus": [
+          {
+            "size": 10,
+            "paper": "a4paper",
+            "pdfBytes": 8790,
+            "passed": true
+          },
+          {
+            "size": 10,
+            "paper": "letterpaper",
+            "pdfBytes": 8784,
+            "passed": true
+          },
+          {
+            "size": 11,
+            "paper": "a4paper",
+            "pdfBytes": 8792,
+            "passed": true
+          },
+          {
+            "size": 11,
+            "paper": "letterpaper",
+            "pdfBytes": 8786,
+            "passed": true
+          },
+          {
+            "size": 12,
+            "paper": "a4paper",
+            "pdfBytes": 8832,
+            "passed": true
+          },
+          {
+            "size": 12,
+            "paper": "letterpaper",
+            "pdfBytes": 8828,
+            "passed": true
+          }
+        ]
+      }
+    ],
+    "files": [
+      {
+        "path": "test-results/signed-pack-public-regression.log",
+        "bytes": 175,
+        "sha256": "32a1858b3fbfc0c87b6904510431ec10a4cb6684083e86daabb659de5719ff60"
+      },
+      {
+        "path": "test-results/published-pack-HEdR1F/result.json",
+        "bytes": 2228,
+        "sha256": "ebcd0ed3c7fb798799261df27f6ca49fa2d133bee5656c3dc0002861cf155a4d"
+      },
+      {
+        "path": "test-results/published-pack-HEdR1F/table-10-a4paper.log",
+        "bytes": 581,
+        "sha256": "0248890d8d99aa2a952c0739e775d098d258350de6e22b6df3a94393e7627889"
+      },
+      {
+        "path": "test-results/published-pack-HEdR1F/table-10-a4paper.pdf",
+        "bytes": 8790,
+        "sha256": "78ed302cd01dc3be3f553a0ccdc06e8f521fe2743be1f1ea6fa95b15e8dd758c"
+      },
+      {
+        "path": "test-results/published-pack-HEdR1F/table-10-letterpaper.log",
+        "bytes": 536,
+        "sha256": "5e048df2b4b1298fa0abf1108adeb2269b76f06a917e39d71e02d4c4f9186d81"
+      },
+      {
+        "path": "test-results/published-pack-HEdR1F/table-10-letterpaper.pdf",
+        "bytes": 8784,
+        "sha256": "3d1c7620347d81dda6ee07778077ee47f85697dca8f3bba44e3f8b6604b9d27b"
+      },
+      {
+        "path": "test-results/published-pack-HEdR1F/table-11-a4paper.log",
+        "bytes": 798,
+        "sha256": "9f1eb90c11c599276153847e39510752e22d619427ac09abc3906ed06f5c9db7"
+      },
+      {
+        "path": "test-results/published-pack-HEdR1F/table-11-a4paper.pdf",
+        "bytes": 8792,
+        "sha256": "216b5ddbdd545bc77018aecdd637030585125acff4cc6576f0064fda6b26f9ce"
+      },
+      {
+        "path": "test-results/published-pack-HEdR1F/table-11-letterpaper.log",
+        "bytes": 798,
+        "sha256": "57646ed6abc2c4136480fde13813c7e6dbd121f9e174bcfecff6d53861db1c2f"
+      },
+      {
+        "path": "test-results/published-pack-HEdR1F/table-11-letterpaper.pdf",
+        "bytes": 8786,
+        "sha256": "beac085b584cc4fdf7a8458c2b8fd3f94c423343edb97115371811aca413409e"
+      },
+      {
+        "path": "test-results/published-pack-HEdR1F/table-12-a4paper.log",
+        "bytes": 795,
+        "sha256": "4b1db8624316d72c745b8bfeb653e4a89d5cc3abe3cc9f274c61f265892139d6"
+      },
+      {
+        "path": "test-results/published-pack-HEdR1F/table-12-a4paper.pdf",
+        "bytes": 8832,
+        "sha256": "a6f3fd8afdaeba819b162305c43c9767d8898a0a12fc179f208c49bec5e3dc1a"
+      },
+      {
+        "path": "test-results/published-pack-HEdR1F/table-12-letterpaper.log",
+        "bytes": 800,
+        "sha256": "f14e7e1482f75b64bb4c1ca3d42f7808fdb91a36ff385035defde5ec7ab72705"
+      },
+      {
+        "path": "test-results/published-pack-HEdR1F/table-12-letterpaper.pdf",
+        "bytes": 8828,
+        "sha256": "c8d2c23e7dab57987523158cb21999d22e0d0dbb1fe3fa0852ea920b60671de1"
+      }
+    ]
+  },
+  "buildPassed": true,
+  "formatPassed": true,
+  "checkLogs": [
+    {
+      "path": "test-results/signed-pack-build.log",
+      "bytes": 1719,
+      "sha256": "6f2ba93d7fab5eda62f778be4d59a385dbb4e2c923f8612e2af60f429b0da144"
+    },
+    {
+      "path": "test-results/signed-pack-format.log",
+      "bytes": 183,
+      "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+    }
+  ],
+  "retainedInitialFailure": {
+    "reason": "The test used the macOS temporary-directory alias; app-owned pack storage correctly refused linked ancestry. The fixture now resolves its temporary root to the canonical path, as the other pack integration already does.",
+    "log": {
+      "path": "test-results/signed-pack-integration.log",
+      "bytes": 1033,
+      "sha256": "3e5da373f34ea44ffd6500014ca5f5e17939c3151c367fd753521807401b1edc"
+    }
+  },
+  "scope": [
+    "No application behavior, prepared compiler files, publisher trust keys or published assets changed.",
+    "The signed-base positive check uses a test-authenticated original resource, not a published table pack or native Settings flow.",
+    "The existing six-case published table-pack regression uses the original unsigned base and actual publisher signature.",
+    "Production Developer ID/hardened-runtime/notarization acceptance and a public pack/catalog for that exact final signed base remain open.",
+    "The completed source check at d054ac5 predates this extended integration. Full Mac qualification 36290271754 also tests that earlier source; it is not evidence for this later extension."
+  ]
+}

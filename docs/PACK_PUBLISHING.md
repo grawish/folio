@@ -26,6 +26,16 @@ Omit `--offline` only when retrieving reviewed pinned inputs. A release mirror c
 
 The core runtime must preserve the original notice bytes in `resources/runtime-core-v1-notices.md`, as well as deterministic resource ZIP metadata. Pack v1 incorporates those notices into its signed target. The root-level app notices can evolve separately. Run `node --import tsx scripts/verify-pack-base.ts` after preparation to authenticate the published archive and reproduce its exact target before packaging. See [runtime reproducibility](RUNTIME_MANAGEMENT.md#reproducible-resource-bundles).
 
+For a signed Mac release, pass the final app's `Contents/Resources/runtime` folder to both the builder and verifier. Signing changes native file bytes and therefore the exact base identity. The verifier accepts that folder as its optional second argument, checks the signed pack's base before compilation, and rechecks the selected runtime after the offline corpus:
+
+```sh
+node --import tsx scripts/verify-published-pack.ts \
+  artifacts/reviewed-signed-base-pack \
+  release/mac-arm64/Folio.app/Contents/Resources/runtime
+```
+
+The builder already accepts this exact base as its second argument. Use a separately reviewed recipe, pack ID, release tag and asset name for the new base; retain the previous immutable publication for existing projects. The example folder above is an input to prepare, not a published download. Omitting the base keeps the original prepared-core verification behavior. A pack for the unsigned core must fail against a differently signed core. Public catalog/Settings acceptance and Developer ID/notarization checks remain separate release requirements; see [Mac signing](MAC_SIGNING.md).
+
 The local verifier checks A4 and US Letter at 10, 11 and 12 points. The output includes the signed `.foliopack`, complete upstream source/material archives, unmodified license texts, combined notices, a source inventory, publication metadata and checksums. The pack contains no compiler executable. Multirow retains LPPL terms; Computer Modern metric resources retain Knuth's naming requirements, the AMS Type 1 fonts retain OFL terms, and the unchanged `size12.clo` retains LPPL terms with the complete matching LaTeX source archive. The original Folio integration code remains noncommercial. These scopes are recorded separately in the notices; the complete application binary audit remains a separate requirement.
 
 Review the offline probe and source/material checks before publishing a pack release. Upload only the generated files for that reviewed candidate, never the containing general `artifacts/` directory. Record the exact source commit, pack hash and target compiler identity. Copy the verified `publication.json` to `resources/packs/published.json` only for the assets actually published.

@@ -5,18 +5,22 @@ import { createHash } from 'node:crypto';
 import { ResourcePackVerifier, ResourcePackStore } from '../electron/core/resource-pack';
 import { RuntimeManager } from '../electron/core/runtime-manager';
 import { Compiler } from '../electron/core/compiler';
+import { verifyRuntime } from '../electron/core/runtime';
 
-const folder = path.resolve(process.argv[2] ?? 'artifacts/resource-packs-v1');
+const [folderArg, baseArg, ...extra] = process.argv.slice(2);
+if (extra.length)
+  throw new Error(
+    'Usage: node --import tsx scripts/verify-published-pack.ts [publication-directory] [exact-base-runtime]',
+  );
+const folder = path.resolve(folderArg ?? 'artifacts/resource-packs-v1');
+const baseRoot = await fs.realpath(baseArg ?? 'resources/runtime/mac-arm64');
+const originalBase = await verifyRuntime(baseRoot);
 const publisher = JSON.parse(await fs.readFile('resources/pack-publisher.json', 'utf8'));
 const publication = JSON.parse(await fs.readFile(path.join(folder, 'publication.json'), 'utf8'));
 const root = await fs.mkdtemp(path.resolve('test-results/published-pack-'));
 const verifier = new ResourcePackVerifier(publisher.keys, publisher.retiredKeys);
 const packs = new ResourcePackStore(path.join(root, 'archives'), verifier);
-const manager = new RuntimeManager(
-  path.resolve('resources/runtime/mac-arm64'),
-  path.join(root, 'runtimes'),
-  { packs },
-);
+const manager = new RuntimeManager(baseRoot, path.join(root, 'runtimes'), { packs });
 const compiler = new Compiler(manager, path.join(root, 'builds'));
 const results = [];
 try {
@@ -36,6 +40,11 @@ try {
     const pack = await packs.retain(bytes);
     assert.deepEqual(pack.base, row.base);
     assert.deepEqual(pack.target, row.target);
+    assert.deepEqual(
+      pack.base,
+      originalBase.pin,
+      'The publication must target the selected exact base runtime, including its final signing bytes.',
+    );
     const source = await fs.readFile('resources/packs/multirow-v1/probe.tex', 'utf8');
     const project = {
       id: 'published-table-check',
@@ -81,11 +90,13 @@ try {
       corpus,
     });
   }
+  await verifyRuntime(baseRoot, originalBase.pin);
   await fs.writeFile(
     path.join(root, 'result.json'),
     JSON.stringify(
       {
         passed: true,
+        baseRuntime: { path: baseRoot, pin: originalBase.pin },
         results,
         scope:
           'Actual publisher signature, real native core and sandboxed offline compiler; source artifact, not packaged UI acceptance.',
