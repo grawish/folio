@@ -52,13 +52,26 @@ The source tests include real Apple signatures and changed-file/forged-record co
 
 ## Verify a distribution candidate
 
-Use the owner's Developer ID and notarization credentials through the builder's supported setup. Do not put secrets in source, documents or chat. Leave the production hardened-runtime and timestamp requirements enabled. Then set the independently chosen, ten-character `FOLIO_APPLE_TEAM_ID` when running `scripts/verify-mac-package.mjs`.
+Use the owner's Developer ID and notarization credentials through the builder's supported setup. Do not put secrets in source, documents or chat. Leave the production hardened-runtime and timestamp requirements enabled. Set the independently chosen, ten-character `FOLIO_APPLE_TEAM_ID`, then qualify the final app and use the explicit production check:
+
+```sh
+node scripts/test-mac-release.mjs release
+node scripts/verify-mac-package.mjs release --distribution
+```
 
 The verifier checks the real outer signature and every native runtime signature against the expected identifier, Apple Developer ID certificate requirement and owner-selected Team ID. It also requires hardened runtime and a secure timestamp. It checks the original runtime, final runtime, complete code list, resource bytes and launcher source record independently; `passed: true` in a sidecar is insufficient. Apple's [code-signing requirements note](https://developer.apple.com/documentation/technotes/tn3127-inside-code-signing-requirements) describes certificate and identity requirements.
 
 Native qualification now records the complete app inventory hash, covering regular-file bytes, modes and internal symbolic links, before and after each suite. Resume and final artifact verification require the same inventory. This prevents results for an unsigned compiler from qualifying a different signed compiler with an identical `app.asar`. Extended attributes and ACLs are outside this inventory.
 
-`notarizationVerified: false` remains explicit in this verifier. Before production publication, add and pass actual notarization/stapling/Gatekeeper checks, all native suites against that exact signed artifact, supported-Mac acceptance and the full license/source/SBOM audit. This implementation does not substitute its private test for those gates.
+The package verifier now compares the app inside **both** the DMG and ZIP with that same app inventory. It streams ZIP members before private extraction, checks complete decompression output, and rejects changed/omitted/duplicate entries, unsafe paths, changed links or permissions, and unexpected members. Bounded AppleDouble metadata is allowed only alongside expected app entries. It then uses macOS `ditto` to extract and re-inventories the result. The DMG mounts read-only at a private location and is detached before cleanup; an unsuccessful detach preserves the temporary folder instead of deleting through a mount. Archive hashes are checked before and after, and the checksum file now includes the ZIP.
+
+`--distribution` also requires a complete native qualification record for this exact app and verified Developer ID signatures. Both archived copies must pass `stapler validate` and `syspolicy_check distribution`; the DMG must pass its own Developer ID, staple and `spctl` checks. The expected publisher is checked against the owner's Team ID. There is no ad-hoc override for production mode. The standalone signature subreport retains `notarizationVerified: false` because that subcheck does not assess notarization; successful production acceptance is reported separately under `archives` and `distributionVerified`.
+
+The archive checker uses Python 3's standard library as a developer dependency (`FOLIO_PYTHON` may select the test virtual environment). End users do not need Python. A new verification attempt writes `passed: false` before checking, so a failed rerun cannot leave an old success report as current evidence. Keep the process exit status and current report together; archive previous evidence before rerunning if it must be retained.
+
+These gates are implemented, but successful production acceptance still requires the owner's signing credentials and real notarized artifacts. The pinned builder notarizes/staples the app; its current DMG target does not separately submit or staple the DMG. The production pipeline must finish the DMG's signing/notarization/stapling and produce final checksums/update metadata **after** those changes. Do not pass the gate with a private test signature or change a verified archive afterward.
+
+Command-line checks do not replace installing a quarantined download on a fresh supported Mac and testing offline launch, relocation, upgrades and recovery. Apple's [testing procedure](https://developer.apple.com/forums/thread/130560) and [trusted-execution guide](https://developer.apple.com/forums/thread/706442) explain the difference. Full supported-Mac, updater and license/source/SBOM acceptance remain open. See [archive verification evidence](https://github.com/grawish/folio/blob/main/docs/releases/mac-archives-verification.json) for the tested scope and negative controls.
 
 ## Existing projects and resource packs
 

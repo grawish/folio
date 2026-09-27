@@ -1,0 +1,202 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T03:36:16.910509+00:00",
+  "baseCommit": "2f36cc87c11974de94b2b3490a5b6137e7f56863",
+  "environment": {
+    "architecture": "arm64",
+    "macos": "27.0",
+    "osBuild": "26A428",
+    "python": "3.14.0"
+  },
+  "inputs": [
+    {
+      "path": "scripts/check-mac-zip.py",
+      "bytes": 7429,
+      "sha256": "f868a636d77402f2eb76e0a515f7c3b28b11001704ee3618e23e5a85cc6bed8c"
+    },
+    {
+      "path": "scripts/verify-mac-archives.ts",
+      "bytes": 8505,
+      "sha256": "4330a4b3c95f21c14a08264133dd901cc02d2ce1920259e19b00f03614fe2700"
+    },
+    {
+      "path": "scripts/verify-mac-package.mjs",
+      "bytes": 6403,
+      "sha256": "43af280dba287c06f5a3af86276ef33cfd4d9157d66465a835165b1f157061e7"
+    },
+    {
+      "path": "tests/mac-archives.test.ts",
+      "bytes": 7842,
+      "sha256": "16c400c9816af9d68bcc2b1ade3fe5a956c5bf9054f150bb0f566666e07122b0"
+    }
+  ],
+  "sourceTests": {
+    "passed": 293,
+    "failed": 0,
+    "skipped": 0,
+    "newArchiveTests": 5,
+    "zipNegativeVariants": [
+      "changed bytes",
+      "missing entry",
+      "duplicate entry",
+      "absolute escaping path",
+      "changed symbolic-link target",
+      "changed permissions",
+      "hidden decompression output"
+    ],
+    "buildPassed": true,
+    "formatPassed": true,
+    "logs": [
+      {
+        "path": "test-results/mac-archives-all-unit-final.log",
+        "bytes": 30256,
+        "sha256": "0a3d21405f32f367df33efbce8cd515bd7a689fd43213ba39e070f23ba2e3e50"
+      },
+      {
+        "path": "test-results/mac-archives-format-final.log",
+        "bytes": 183,
+        "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+      },
+      {
+        "path": "test-results/mac-archives-build-final.log",
+        "bytes": 1719,
+        "sha256": "4185c451d488213193e872144dc9acc662df67d044a29e168972890fa7b403be"
+      }
+    ]
+  },
+  "realPrivatePackage": {
+    "mode": "ad-hoc-test",
+    "comparedOutputFiles": 39,
+    "nativeSignaturesVerified": 158,
+    "archives": {
+      "passed": true,
+      "bundleInventorySha256": "d02c20d5b54f7778cd421694807109bedd977463dfda46da9eb9841e6bda8e9e",
+      "dmg": {
+        "bytes": 246772843,
+        "sha256": "00afaeaaeb6ba77792746a0aef7cfd2faacda8e206e94ff59b02130cb7be54d7",
+        "appMatches": true
+      },
+      "zip": {
+        "bytes": 250110668,
+        "sha256": "169a3ea715e1d34966a9ee7b7f8a8f5a55aff40ac58e18b367ae343b61243b7a",
+        "appMatches": true,
+        "matchedEntries": 5035,
+        "metadataEntries": 0,
+        "metadataBytes": 0
+      },
+      "distributionVerified": false,
+      "scope": "Exact app bytes, modes and internal links inside both archives. Apple checks run only in distribution mode; fresh-machine quarantined download/launch and updater acceptance remain separate."
+    },
+    "distributionVerified": false,
+    "nativeTestsPassed": false,
+    "files": [
+      {
+        "path": "test-results/mac-archives-private-package-final.log",
+        "bytes": 2085,
+        "sha256": "fc3ad3c1016e11722e05793738e7fc8dc3e15c8195693416db46546b3b07abd2"
+      },
+      {
+        "path": "test-results/mac-archives-positive-verification.json",
+        "bytes": 1948,
+        "sha256": "0a4fc3c12fd5f5b0926020aec6a3c52a71184f09073b4d0c261782e52121a484"
+      },
+      {
+        "path": "test-results/mac-archives-positive-SHA256SUMS",
+        "bytes": 318,
+        "sha256": "855ee95aa772d3e235f94b1706cee94988da558535339366ac843127a4bc9c60"
+      }
+    ]
+  },
+  "productionRejection": {
+    "passed": true,
+    "privateArtifactRejected": true,
+    "previousSuccessInvalidated": true,
+    "currentReport": {
+      "checkedAt": "2026-09-27T03:34:21.206Z",
+      "passed": false,
+      "distributionVerified": false
+    },
+    "files": [
+      {
+        "path": "test-results/mac-archives-production-rejection.log",
+        "bytes": 407,
+        "sha256": "c6f4f64f6a78025e3376933a4764085f2fa82318ab31bb0be01361ca64c46378"
+      },
+      {
+        "path": "test-results/mac-archives-negative-verification.json",
+        "bytes": 85,
+        "sha256": "bbea4704bac7d918f837a2956d9bdf78b169bf5f8e4793bf0e8967d2c1e2996e"
+      }
+    ]
+  },
+  "falseZipSizeControl": {
+    "result": {
+      "passed": true,
+      "declaredBytes": 18,
+      "actualBytes": 8210,
+      "archiveSha256": "95e92ccfd1e5d88ce389364369ed933d29205dcba5cb0ac79cce1db1671cb236",
+      "checks": [
+        {
+          "variant": "before",
+          "exitCode": 0,
+          "scriptSha256": "68da1bc2de44af105395a44baa4b48491d4a600f98d179c95d7c22e4a3d31e84"
+        },
+        {
+          "variant": "after",
+          "exitCode": 1,
+          "scriptSha256": "f868a636d77402f2eb76e0a515f7c3b28b11001704ee3618e23e5a85cc6bed8c"
+        }
+      ],
+      "scope": "Paired ZIP preflight control only. The malformed archive was never extracted."
+    },
+    "files": [
+      {
+        "path": "test-results/mac-zip-output-control/after.log",
+        "bytes": 714,
+        "sha256": "175d3693d304b83be6e74861ebf4e71a4811c1d3f75acef7f63ee15c7d4d86db"
+      },
+      {
+        "path": "test-results/mac-zip-output-control/before.log",
+        "bytes": 64,
+        "sha256": "a4d293a7c7997fb154a0e936f647d48ee426420141fad3c335d6d41e104f84d9"
+      },
+      {
+        "path": "test-results/mac-zip-output-control/hidden-output.zip",
+        "bytes": 274,
+        "sha256": "95e92ccfd1e5d88ce389364369ed933d29205dcba5cb0ac79cce1db1671cb236"
+      },
+      {
+        "path": "test-results/mac-zip-output-control/inventory.json",
+        "bytes": 203,
+        "sha256": "58d0a29f7d4a82184c9f3b326c064ee1619014c294917d5107b39116ce731522"
+      },
+      {
+        "path": "test-results/mac-zip-output-control/result.json",
+        "bytes": 563,
+        "sha256": "d3a29a33f5b613380f67e929cab0a474b72b7c98b5508b37e557e64c7f4ef8dc"
+      },
+      {
+        "path": "test-results/mac-zip-before-output-bound.py",
+        "bytes": 5694,
+        "sha256": "68da1bc2de44af105395a44baa4b48491d4a600f98d179c95d7c22e4a3d31e84"
+      }
+    ]
+  },
+  "productionChecksImplemented": [
+    "Require complete native qualification for the same full app inventory.",
+    "Require exact Developer ID identity, hardened runtime and secure timestamps for app code.",
+    "Validate stapled tickets and Apple system policy for the app actually extracted from each archive.",
+    "Require the DMG publisher identity, secure timestamp, stapled ticket and notarized Developer ID policy result.",
+    "Reject combining production and ad-hoc verification."
+  ],
+  "scope": [
+    "All positive actual-package evidence uses the existing private ad-hoc artifact. No installer or publisher credential was created or published.",
+    "The full unit fixture includes a real read-only DMG and AppleDouble metadata-preserving ZIP, and rejects a different app in a valid DMG.",
+    "The paired false-size control was accepted by the initial draft ZIP preflight and rejected by the final checker; neither command extracted the malformed archive.",
+    "No successful Developer ID/notarization or hardened-runtime production gate is claimed. Local code-signing identity discovery reports zero valid identities.",
+    "Fresh-machine quarantined download/install/offline launch, updates, complete licensing/SBOM and broader Mac acceptance remain open.",
+    "The pinned builder requires an additional final DMG signing/notarization/stapling operation before production acceptance; final checksums and update metadata must follow those changes.",
+    "App inventories compare file bytes, modes and internal links; they do not claim general xattr/ACL equality or full filesystem allocation measurements.",
+    "Hosted Mac qualification 36290271754 is for the earlier d054ac5 input and does not validate these new archive gates."
+  ]
+}

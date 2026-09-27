@@ -1,12 +1,27 @@
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
-import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { extractFile } from '@electron/asar';
 import { macReleaseSuites } from './mac-release-suites.mjs';
 import { tsImport } from 'tsx/esm/api';
 
-const release = path.resolve(process.argv[2] ?? 'release/import-recovery');
+const [releaseArg, ...flags] = process.argv.slice(2);
+if (
+  flags.some((flag) => !['--allow-ad-hoc-test', '--distribution'].includes(flag)) ||
+  (flags.includes('--distribution') && flags.includes('--allow-ad-hoc-test'))
+)
+  throw new Error('Choose ordinary verification, --allow-ad-hoc-test, or --distribution.');
+const distribution = flags.includes('--distribution');
+const release = path.resolve(releaseArg ?? 'release/import-recovery');
+// A failed rerun must not leave a previous success looking like current evidence.
+await fs.writeFile(
+  path.join(release, 'verification.json'),
+  JSON.stringify({
+    checkedAt: new Date().toISOString(),
+    passed: false,
+    distributionVerified: false,
+  }) + '\n',
+);
 const app = path.join(release, 'mac-arm64/Folio.app');
 const asar = path.join(app, 'Contents/Resources/app.asar');
 const architecture = execFileSync(
@@ -58,14 +73,17 @@ let appBytes = 0;
 for (const name of await files(app)) appBytes += (await fs.stat(name)).size;
 const dmgNames = (await fs.readdir(release)).filter((name) => name.endsWith('-mac-arm64.dmg'));
 if (dmgNames.length !== 1) throw new Error('Expected one Apple silicon disk image.');
+const zipNames = (await fs.readdir(release)).filter((name) => name.endsWith('-mac-arm64.zip'));
+if (zipNames.length !== 1) throw new Error('Expected one Apple silicon application ZIP.');
+const { archiveDigest, verifyMacArchives } = await tsImport(
+  './verify-mac-archives.ts',
+  import.meta.url,
+);
 const hashes = [];
-for (const name of [path.join(release, dmgNames[0]), asar])
+for (const name of [path.join(release, dmgNames[0]), asar, path.join(release, zipNames[0])])
   hashes.push({
     path: path.relative(release, name),
-    bytes: (await fs.stat(name)).size,
-    sha256: createHash('sha256')
-      .update(await fs.readFile(name))
-      .digest('hex'),
+    ...(await archiveDigest(name)),
   });
 const diskCheck = execFileSync('/usr/bin/hdiutil', ['verify', path.join(release, dmgNames[0])], {
   encoding: 'utf8',
@@ -100,7 +118,23 @@ if (nativeTests) {
   )
     throw new Error('Native qualification is incomplete or belongs to a different app.');
 }
+if (
+  distribution &&
+  (!nativeTests?.passed || signing?.mode !== 'distribution' || !signing?.developerIdVerified)
+)
+  throw new Error(
+    'Distribution requires Developer ID signing and complete native qualification of this exact app.',
+  );
+const archives = await verifyMacArchives(
+  app,
+  path.join(release, dmgNames[0]),
+  path.join(release, zipNames[0]),
+  distribution ? { distributionTeamId: process.env.FOLIO_APPLE_TEAM_ID } : {},
+);
+if (archives.dmg.sha256 !== hashes[0].sha256 || archives.zip.sha256 !== hashes[2].sha256)
+  throw new Error('A distribution archive changed during verification.');
 const result = {
+  passed: true,
   checkedAt: new Date().toISOString(),
   architecture,
   comparedOutputFiles: outputs.length,
@@ -108,6 +142,8 @@ const result = {
   ...(signing ? { signing } : {}),
   appBytes,
   hashes,
+  archives,
+  distributionVerified: distribution && archives.distributionVerified,
   nativeTestsPassed: nativeTests?.passed ?? false,
 };
 await fs.writeFile(
