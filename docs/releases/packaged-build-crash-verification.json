@@ -214,7 +214,9 @@
     "runId": 36347027297,
     "url": "https://github.com/grawish/folio/actions/runs/36347027297",
     "commit": "9f642c376fc03757050a1c85ac329e86150ac712",
-    "statusAtPublication": "in_progress"
+    "statusAtPublication": "success",
+    "runAttempt": 1,
+    "independentVerification": "docs/releases/mac-packaged-build-crash-hosted.json"
   },
   "applicationSourceChanged": false,
   "productionReleaseQualified": false,
