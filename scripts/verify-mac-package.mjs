@@ -38,6 +38,10 @@ const { verifyNpmNotices } = await tsImport('./verify-npm-notices.ts', import.me
 const npmNotices = await verifyNpmNotices(path.join(app, 'Contents/Resources/npm-notices'));
 const { verifyPdfjsNotices } = await tsImport('./verify-pdfjs-notices.ts', import.meta.url);
 const pdfjsNotices = await verifyPdfjsNotices(path.join(app, 'Contents/Resources/pdfjs-notices'));
+const { verifyElectronNotices } = await tsImport('./electron-notices.ts', import.meta.url);
+const electronNotices = await verifyElectronNotices(
+  path.join(app, 'Contents/Resources/electron-notices'),
+);
 const architecture = execFileSync(
   '/usr/bin/lipo',
   ['-archs', path.join(app, 'Contents/MacOS/Folio')],
@@ -157,6 +161,7 @@ const result = {
   texResourceNotices,
   npmNotices,
   pdfjsNotices,
+  electronNotices,
   ...(signing ? { signing } : {}),
   appBytes,
   hashes,

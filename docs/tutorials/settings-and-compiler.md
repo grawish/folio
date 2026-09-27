@@ -131,3 +131,9 @@ These are the terms for the tools and resources that help make PDFs. Folio's own
 
 
 Developers can also check how the three generated TeX setup files were made. The [source replay guide](../LICENSING.md#reproduce-generated-tex-resources) explains the command and its limits. It checks original source files and leaves your app and resume unchanged.
+
+## Read Electron and Chromium notices
+
+In current development builds, right-click **Folio.app** in Finder and choose **Show Package Contents**. Open **Contents → Resources → electron-notices**. **LICENSE** contains Electron's license; **LICENSES.chromium.html** opens the complete Chromium notices in a browser. **README.md** explains where they came from. The older preview-4 download does not include this new folder.
+
+These tools keep their own terms. Folio's noncommercial license does not replace them. See the [licensing guide](../LICENSING.md#include-electron-and-chromium-notices) for source details and remaining release work.
