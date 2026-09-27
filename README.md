@@ -16,7 +16,7 @@ Download the **[Apple silicon DMG preview](https://github.com/grawish/folio/rele
 
 ## Development preview
 
-Folio is under active development; a signed, notarized installer and automatic updates are not available yet. The current source passes 225 unit/protocol tests, including model routing, atomic patches, project-format rejection and interrupted-upgrade recovery. See the [preview release notes](docs/releases/v0.1.0-preview.4.md) for the packaged build and the [release audit](docs/RELEASE_GAP_AUDIT.md) for remaining production requirements. These results do not establish compatibility with every macOS version.
+Folio is under active development; a signed, notarized installer and automatic updates are not available yet. The fully qualified unsigned history milestone at `d805a91` passes 274 source tests, 15 compiler integrations and all fifteen native Mac suites; [the verification record](docs/releases/mac-history-storage-verification.json) binds those checks to its exact source and app. See the [preview release notes](docs/releases/v0.1.0-preview.4.md) for the packaged build and the [release audit](docs/RELEASE_GAP_AUDIT.md) for remaining production requirements. These results do not establish compatibility with every macOS version.
 
 Windows, Linux and Intel Macs are outside this release's scope. Read the [remaining release requirements](docs/RELEASE_GAP_AUDIT.md) before relying on the preview for important documents.
 
@@ -59,7 +59,7 @@ npm run build
 npm start
 ```
 
-The [release pipeline](docs/RELEASE_PIPELINE.md) covers source checks, source previews, website deployment and Mac candidate qualification. Hosted source checks and website deployment have passed. The hosted Mac baseline at c861ead passed all nine native suites and artifact verification after correcting a window-size assumption in the test. The later 22829fd milestone passed all eleven hosted suites, including compiler help and local fonts. The guided-recovery milestone at 274ff95 passed all thirteen suites and artifact verification, including support export. The public [table-resource pack](https://github.com/grawish/folio/releases/tag/resource-packs-v1), signed catalog and renewal workflow are available. Its real offline table builds, HTTPS cancel/resume and normal-app preview/save/restart checks pass. Final packaged acceptance of this newer feature remains open; see [managed packs](docs/MANAGED_PACKS.md). See [contributing](CONTRIBUTING.md) for native integration tests and packaging, and [architecture](docs/ARCHITECTURE.md) for the code map.
+The [release pipeline](docs/RELEASE_PIPELINE.md) covers source checks, source previews, website deployment and Mac candidate qualification. The latest completed unsigned Mac run includes the ordinary app’s public [table-resource pack](https://github.com/grawish/folio/releases/tag/resource-packs-v1) download, preview, Apply and restart workflow. Its signed catalog and renewal workflow are available. The [Mac signing implementation](docs/MAC_SIGNING.md) now measures compiler files after signing and checks real bibliography rendering before sealing the app; private ad-hoc evidence is separate from Developer ID/notarization acceptance. See [contributing](CONTRIBUTING.md), [managed packs](docs/MANAGED_PACKS.md), and [architecture](docs/ARCHITECTURE.md).
 
 ## Learn and contribute
 

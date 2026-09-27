@@ -21,6 +21,7 @@ Read only what the task needs:
 - Appearance, panes, privacy, reviewable support ZIPs, help, compiler repair/comparison: [settings-and-compiler](references/settings-and-compiler.md).
 - Pack import, downloads, offline retry and explicit compiler selection: [resource-packs](references/resource-packs.md). The current source build includes the public table-pack publisher and catalog. Keep final signed-installer status separate from source/native pack checks.
 - Implementation questions: [architecture](references/ARCHITECTURE.md), then the relevant source files in a local checkout.
+- Mac packaging, signed compiler fingerprints and private signing tests: [Mac signing](references/MAC_SIGNING.md). Ad-hoc checks do not prove Developer ID, notarization or public-pack compatibility.
 - Release/support claims: [release audit](references/RELEASE_GAP_AUDIT.md). Do not turn an open requirement into an available feature.
 
 ## Product facts that change the answer

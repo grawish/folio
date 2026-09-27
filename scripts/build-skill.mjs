@@ -14,6 +14,7 @@ const names = [
 const sources = [
   ...names.map((name) => `docs/tutorials/${name}.md`),
   'docs/ARCHITECTURE.md',
+  'docs/MAC_SIGNING.md',
   'docs/RELEASE_GAP_AUDIT.md',
 ];
 const targets = new Map(sources.map((source) => [source, path.basename(source)]));

@@ -1,0 +1,300 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T02:52:04.068929+00:00",
+  "baseCommit": "b5e336bfdaa6353c0c00a96537a7ac872ef481f8",
+  "inputs": [
+    {
+      "path": "package.json",
+      "bytes": 5137,
+      "sha256": "16feab4623cacc1ed28eb121cab21c8b9266bfb6df385a5c855e1aa86caae465"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 204949,
+      "sha256": "c7ab38966b3087798378c20d91c28e0092a9df69018a3eb1e98d14804349c287"
+    },
+    {
+      "path": ".github/workflows/mac-candidate.yml",
+      "bytes": 3654,
+      "sha256": "a65f8f93503ee456dd2bc301cd868649e674e5221fd0bb09a4f807b0e64aed06"
+    },
+    {
+      "path": "scripts/biber-launcher.c",
+      "bytes": 2778,
+      "sha256": "941d22323fbb83c7c667f6586ed85a7fde41ec15aefbfcce21cc9c187a7521a9"
+    },
+    {
+      "path": "scripts/prepare-signed-biber.ts",
+      "bytes": 4245,
+      "sha256": "95eab78489e6284c46de756d27d0106cd3dd090d29d6c20c2282782aa07eb4e0"
+    },
+    {
+      "path": "scripts/sign-mac-runtime.ts",
+      "bytes": 4859,
+      "sha256": "1f56f97de4c3d946ca00eb9e9736f213394b85f7890495b1e9f55277e7295792"
+    },
+    {
+      "path": "scripts/check-signed-runtime.ts",
+      "bytes": 2022,
+      "sha256": "31ff2b01bfea385d589562f2531fde5fdb3be710077ba83178e6f55cb85138d9"
+    },
+    {
+      "path": "scripts/sign-mac-app.mjs",
+      "bytes": 3038,
+      "sha256": "860277848177b7d903be28abe7e305829067d77dcff0ae90cc7d0d0411287517"
+    },
+    {
+      "path": "scripts/verify-signed-runtime.ts",
+      "bytes": 5743,
+      "sha256": "7a5a1725210253b7995ea0ca810d9b258dd9d8e1fdabaf308357156f5c1abb68"
+    },
+    {
+      "path": "scripts/verify-mac-package.mjs",
+      "bytes": 4859,
+      "sha256": "9cc0a226428a284682ebaa616ba740eb89a3ee47e7884bb49f13d7b53dfb15be"
+    },
+    {
+      "path": "scripts/mac-qualification.ts",
+      "bytes": 828,
+      "sha256": "8d428aae2414531c224bbbd13533bd56ec220483ed7daea2ca1a74c6e6e7e81b"
+    },
+    {
+      "path": "scripts/test-mac-release.mjs",
+      "bytes": 5086,
+      "sha256": "e006bb5b2e7d97fabb05512d56bec338c6d12f8259720a7b48582e4bc27eeb8f"
+    }
+  ],
+  "tests": {
+    "sourcePassed": 288,
+    "compilerIntegrationsPassed": 16,
+    "signingControls": 13,
+    "fullAppBindingControls": 1,
+    "files": [
+      {
+        "path": "tests/runtime-signing.test.ts",
+        "bytes": 13490,
+        "sha256": "405b5e7b2708079dbfe404c456e92406cb4976c716672a218e8ea907369427c8"
+      },
+      {
+        "path": "tests/mac-qualification.test.ts",
+        "bytes": 2462,
+        "sha256": "07fcb15240f6cd2c2790719849e18e003541c17bc654fd44de53f4e0e4e3e6ec"
+      },
+      {
+        "path": "tests/integration/runtime-signing.test.ts",
+        "bytes": 2292,
+        "sha256": "8f37b9b72f13515ef105a50017785535b5a505f01b34eb7db204c57929ad3476"
+      },
+      {
+        "path": "scripts/test-packaged.mjs",
+        "bytes": 3176,
+        "sha256": "be7b559a2cf786c3c1b5fa2ee04fc9381410f41a6fe8766ec0af2dc37d2cd5a3"
+      }
+    ],
+    "logs": [
+      {
+        "path": "test-results/runtime-signing-all-unit-qualified.log",
+        "bytes": 29827,
+        "sha256": "9965f833617bb3072f65643f996daa0638f201ff47e86d3ec673f3d94c555666"
+      },
+      {
+        "path": "test-results/runtime-signing-all-integration-final.log",
+        "bytes": 2104,
+        "sha256": "2f924f6901be81db718607a42583ee20db1e8c1caa0b92a7e39897e4319a30aa"
+      },
+      {
+        "path": "test-results/runtime-signing-unit-final.log",
+        "bytes": 1383,
+        "sha256": "e8f4dc8659c4b8609fd47ba3eaf670ebefd8df57431dd71c75e3b8e08c2f77a7"
+      },
+      {
+        "path": "test-results/runtime-signing-qualification-binding.log",
+        "bytes": 236,
+        "sha256": "8755818d06a21e43c333d5340b5427f1bef5af868b87a277675e75586ede3c8d"
+      },
+      {
+        "path": "test-results/runtime-signing-format-final.log",
+        "bytes": 183,
+        "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+      },
+      {
+        "path": "test-results/runtime-signing-build-final.log",
+        "bytes": 1719,
+        "sha256": "0cbb28068182e15e938bc2b2339e5b9e5dcaa665510e25f891c242558e104752"
+      },
+      {
+        "path": "test-results/runtime-signing-launcher-package.log",
+        "bytes": 1967,
+        "sha256": "faad7a60e79e410c7e1ed7ad223fa0aa55ead73dc619eeaadabb91f43a1dcb0d"
+      },
+      {
+        "path": "test-results/runtime-signing-launcher-recheck.log",
+        "bytes": 1087,
+        "sha256": "a51e27f05b6d184358541a02f7e39f5656028f39f41f4880cd73a99327b3d582"
+      },
+      {
+        "path": "test-results/runtime-signing-unsigned-regression.log",
+        "bytes": 697,
+        "sha256": "a77b56b913cdffa98c5f8467b54e2c3680b905e1021f633c66def6dff10f01da"
+      },
+      {
+        "path": "test-results/runtime-signing-reject-ad-hoc.log",
+        "bytes": 407,
+        "sha256": "f3b27fcd2eb5dd10cd0d7ba58fc56473d09ff588bc8fb60b498b14146cdb8de5"
+      },
+      {
+        "path": "test-results/runtime-signing-launcher-native.log",
+        "bytes": 220,
+        "sha256": "d9a52f2dc73bfdbcf503741b660a0bb772820483a5d6cba0269a4be08c783e69"
+      }
+    ]
+  },
+  "signedRuntime": {
+    "mode": "ad-hoc-test",
+    "before": {
+      "engine": "tectonic",
+      "version": "0.17.0",
+      "bundle": "folio-core-v1",
+      "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+      "platform": "darwin-arm64",
+      "biberVersion": "2.17"
+    },
+    "after": {
+      "engine": "tectonic",
+      "version": "0.17.0",
+      "bundle": "folio-core-v1",
+      "id": "ab6af75164ab846e978dfb48120498b56de6ac287f5a4900e65f4259df3a8b31",
+      "platform": "darwin-arm64",
+      "biberVersion": "2.17"
+    },
+    "manifestSha256": "ad075b1db0e6021be24cd37666774b52131e2b5671bd8ad22e4f202452dc594a",
+    "fileCount": 3982,
+    "nativeFiles": 158,
+    "relocatedImports": 75,
+    "preparation": {
+      "launcherSourceSha256": "941d22323fbb83c7c667f6586ed85a7fde41ec15aefbfcce21cc9c187a7521a9",
+      "compiler": "Apple clang version 21.0.0 (clang-2100.3.34.2)\nTarget: arm64-apple-darwin27.0.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin",
+      "perlVersion": "5.32.1",
+      "originalPerlSha256": "ef286919bfe500d84c2c21bd988a688edbe0ea5b55453ae15d43ab271fb6fc7d",
+      "unavailableOptionalImports": [
+        {
+          "path": "biber-cache/inc/lib/auto/DBD/mysql/mysql.bundle",
+          "dependency": "/opt/local/lib/mysql57/mysql/libmysqlclient.20.dylib"
+        },
+        {
+          "path": "biber-cache/inc/lib/auto/Tk/Tk.bundle",
+          "dependency": "/opt/local/lib/libX11.6.dylib"
+        }
+      ]
+    },
+    "offlineCheck": {
+      "passed": true,
+      "pin": {
+        "engine": "tectonic",
+        "version": "0.17.0",
+        "bundle": "folio-core-v1",
+        "id": "ab6af75164ab846e978dfb48120498b56de6ac287f5a4900e65f4259df3a8b31",
+        "platform": "darwin-arm64",
+        "biberVersion": "2.17"
+      },
+      "pdfBytes": 32989,
+      "pdfSha256": "c09a81564633355feadb3bf09e38ab533181d4bd1e8db8417eac348295e87e66",
+      "logSha256": "d08f27313a2540c78e219ddece8fabc4134d9a474bae9f74cc34cc48315c02e7",
+      "durationMs": 13350,
+      "scope": "App-owned resume/font/bibliography fixture in the normal offline macOS sandbox."
+    },
+    "record": {
+      "path": "release/runtime-signing-launcher/mac-arm64/runtime-signing.json",
+      "bytes": 54242,
+      "sha256": "1d069d1297cd8a7a5964c3b9860f8643471623e7e337572cfa2122f5ae1db8c8"
+    },
+    "inventoryPolicy": "All file keys and non-code resource bytes preserved; native code transformed and signed, then measured exactly. Prepared source runtime remains unchanged."
+  },
+  "package": {
+    "checkedAt": "2026-09-27T02:44:30.012Z",
+    "architecture": "arm64",
+    "comparedOutputFiles": 39,
+    "runtimeManifestMatches": false,
+    "signing": {
+      "mode": "ad-hoc-test",
+      "nativeSignaturesVerified": 158,
+      "runtimeManifestVerified": true,
+      "appSignatureVerified": true,
+      "developerIdVerified": false,
+      "notarizationVerified": false,
+      "scope": "Actual code signatures, exact transformed inventory and unchanged resources. Notarization and native workflow acceptance are separate gates."
+    },
+    "appBytes": 618910787,
+    "hashes": [
+      {
+        "path": "Folio-0.1.0-preview.4-mac-arm64.dmg",
+        "bytes": 246772843,
+        "sha256": "00afaeaaeb6ba77792746a0aef7cfd2faacda8e206e94ff59b02130cb7be54d7"
+      },
+      {
+        "path": "mac-arm64/Folio.app/Contents/Resources/app.asar",
+        "bytes": 5663348,
+        "sha256": "3da0dad432f609926f2ccf0121ec69e907bbd91e5c27242f49f34fab27442121"
+      }
+    ],
+    "nativeTestsPassed": false
+  },
+  "nativeSmoke": {
+    "passed": true,
+    "profile": "test-results/packaged-N8E7D5",
+    "checks": [
+      "fresh managed compiler preparation",
+      "default resume PDF",
+      "Chat remains default",
+      "Settings compiler readiness",
+      "imported resume/font/Biber PDF",
+      "no renderer errors"
+    ],
+    "completeNativeSuiteRun": false
+  },
+  "qualificationBinding": {
+    "passed": true,
+    "original": {
+      "schemaVersion": 1,
+      "bundleInventorySha256": "e7980fdf4e6b4a5da9cc1ebe4efdbc9f0ef63f868038f019392f806a80b45e09",
+      "asarSha256": "3da0dad432f609926f2ccf0121ec69e907bbd91e5c27242f49f34fab27442121",
+      "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0"
+    },
+    "signed": {
+      "schemaVersion": 1,
+      "bundleInventorySha256": "d02c20d5b54f7778cd421694807109bedd977463dfda46da9eb9841e6bda8e9e",
+      "asarSha256": "3da0dad432f609926f2ccf0121ec69e907bbd91e5c27242f49f34fab27442121",
+      "runtimeManifestSha256": "ad075b1db0e6021be24cd37666774b52131e2b5671bd8ad22e4f202452dc594a"
+    },
+    "sameAsar": true,
+    "staleNativeRunRejected": true
+  },
+  "artifactSizeObservation": {
+    "previousUnsignedAppRegularFileBytes": 679309937,
+    "privateAdHocAppRegularFileBytes": 618910787,
+    "difference": 60399150,
+    "sameApplicationAsar": true,
+    "scope": "Regular-file totals for these artifacts. No startup-speed, unique disk allocation, reproducible-signed-build or production-installer claim."
+  },
+  "retainedFailure": {
+    "log": {
+      "path": "test-results/runtime-signing-packaged-native.log",
+      "bytes": 476,
+      "sha256": "39d917dbd03400841de81c3f2ea03a857575683d4b88bf32427ee961d9bc1ae6"
+    },
+    "compilerDiagnosis": {
+      "path": "test-results/runtime-signing-compiler-diagnosis.log",
+      "bytes": 1164,
+      "sha256": "3652d7b6eae0c0acf9e6ddc6291d475a812f5ef8e08c85be08bd87da9723e964"
+    },
+    "observation": "Signing the original PAR cache interpreter changes its size. The original launcher re-extracts a helper into the job cache and the unchanged sandbox rejects executing it. The fixed-entry launcher passes the subsequent real offline and packaged checks."
+  },
+  "remaining": [
+    "Owner-selected Developer ID and notarization credentials; no valid local signing identities were found.",
+    "Actual secure timestamps, hardened-runtime, notarization/stapling/Gatekeeper acceptance with the distribution artifact.",
+    "Resource pack and authenticated catalog built for the final signed compiler identity; current public pack remains tied to the original unsigned base.",
+    "Complete native qualification with new full-app binding on the final signed artifact.",
+    "Supported-Mac/OS and real provider acceptance, updater, full component license/source/SBOM mapping, remaining performance/retention requirements."
+  ],
+  "publication": "Source/docs only. Private ad-hoc app, DMG and ZIP are not published and do not replace v0.1.0-preview.4."
+}

@@ -4,6 +4,7 @@ import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { extractFile } from '@electron/asar';
 import { macReleaseSuites } from './mac-release-suites.mjs';
+import { tsImport } from 'tsx/esm/api';
 
 const release = path.resolve(process.argv[2] ?? 'release/import-recovery');
 const app = path.join(release, 'mac-arm64/Folio.app');
@@ -29,8 +30,29 @@ for (const name of outputs)
   if (!Buffer.from(extractFile(asar, name)).equals(await fs.readFile(name)))
     throw new Error(`Packaged output differs: ${name}`);
 const manifest = await fs.readFile(path.join(app, 'Contents/Resources/runtime/manifest.json'));
-if (!manifest.equals(await fs.readFile('resources/runtime/mac-arm64/manifest.json')))
-  throw new Error('The packaged runtime manifest differs.');
+const runtimeManifestMatches = manifest.equals(
+  await fs.readFile('resources/runtime/mac-arm64/manifest.json'),
+);
+let signing;
+try {
+  const record = JSON.parse(
+    await fs.readFile(path.join(release, 'mac-arm64/runtime-signing.json'), 'utf8'),
+  );
+  const { verifySignedRuntime } = await tsImport('./verify-signed-runtime.ts', import.meta.url);
+  signing = await verifySignedRuntime(app, path.resolve('resources/runtime/mac-arm64'), record, {
+    allowAdHocTest: process.argv.includes('--allow-ad-hoc-test'),
+    expectedTeamId: process.env.FOLIO_APPLE_TEAM_ID,
+  });
+} catch (error) {
+  // Only absence of the sidecar allows the original unsigned verification path.
+  // Missing files/errors within signature verification must still fail closed.
+  if (
+    error.code !== 'ENOENT' ||
+    error.path !== path.join(release, 'mac-arm64/runtime-signing.json')
+  )
+    throw error;
+}
+if (!signing && !runtimeManifestMatches) throw new Error('The packaged runtime manifest differs.');
 if (JSON.parse(manifest).platform !== 'darwin-arm64') throw new Error('Wrong runtime platform.');
 let appBytes = 0;
 for (const name of await files(app)) appBytes += (await fs.stat(name)).size;
@@ -56,6 +78,12 @@ try {
   if (error.code !== 'ENOENT') throw error;
 }
 if (nativeTests) {
+  const { qualificationIdentity } = await tsImport('./mac-qualification.ts', import.meta.url);
+  const actualIdentity = await qualificationIdentity(app);
+  if (JSON.stringify(nativeTests.bundleIdentity) !== JSON.stringify(actualIdentity))
+    throw new Error(
+      'Native qualification belongs to a different app inventory or predates full-app binding.',
+    );
   const expected = macReleaseSuites;
   if (
     nativeTests.passed !== true ||
@@ -76,7 +104,8 @@ const result = {
   checkedAt: new Date().toISOString(),
   architecture,
   comparedOutputFiles: outputs.length,
-  runtimeManifestMatches: true,
+  runtimeManifestMatches,
+  ...(signing ? { signing } : {}),
   appBytes,
   hashes,
   nativeTestsPassed: nativeTests?.passed ?? false,

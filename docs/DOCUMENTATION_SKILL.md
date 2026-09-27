@@ -11,7 +11,7 @@ Example prompts:
 - “Use $folio-resume to help me keep my outside edits after an interrupted import.”
 - “Use $folio-resume to find why my PDF is out of date.”
 
-The entrypoint loads only the reference needed for the task. It preserves Settings-only AI selection, local/cloud privacy distinctions, draft protection and release limitations.
+The entrypoint loads only the reference needed for the task. The Mac signing reference explains developer packaging, exact compiler fingerprints, and why private ad-hoc tests do not prove production release readiness. It preserves Settings-only AI selection, local/cloud privacy distinctions, draft protection and release limitations.
 
 ## Maintain it
 

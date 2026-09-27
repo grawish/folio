@@ -278,3 +278,9 @@ Avoid treating the 700 ms source-edit debounce as compiler execution time. Measu
 Keep before/after raw records tied to source and artifact hashes. Run the relevant process-kill, corruption, stale-result and native workflow tests before interpreting a speedup as a successful improvement. Compare the same fixtures, profile/cache states and runtime inputs. An optimization that shortens a check by weakening it does not satisfy the product's integrity requirements.
 
 The full documentation/public-release goal remains open; this baseline is the first measured part of the requested performance investigation.
+
+## Signing and the duplicate Biber archive
+
+The private ad-hoc signing candidate replaces Biber’s self-extracting launcher with a small native entrypoint that uses the already expanded, verified Perl files. Its measured app regular-file total is 618,910,787 bytes, compared with 679,309,937 bytes in the preceding history package, a difference of 60,399,150 bytes. Both packages contain the same 39 application build outputs and the same ASAR hash. This is an artifact-size observation, not a startup-speed, unique disk-allocation or production-installer claim. Signing also changes library bytes and app metadata. See [Mac signing](MAC_SIGNING.md) for the verified build/render checks and [exact artifact evidence](releases/runtime-signing-verification.json).
+
+Before setting a startup target for the production signed build, measure repeated cold preparation and warm startup on the supported Macs using the final Developer ID artifact. Keep existing runtime-copy, journal and whole-profile measurements separate; this size reduction does not establish those performance budgets.

@@ -48,6 +48,7 @@ jobs:
             release/verification.json
             release/SHA256SUMS
             release/disk-image-verification.log
+            release/mac-arm64/runtime-signing.json
             artifacts/license-materials/mac-app/
             test-results/*-final.log
             test-results/published-pack-base.json
@@ -78,4 +79,4 @@ jobs:
           if-no-files-found: warn
           retention-days: 14
       # Do not upload the runtime/DMG yet: redistribution materials, signing,
-      # notarization and signing-aware manifests remain release requirements.
+      # notarization and signed-artifact acceptance remain release requirements.

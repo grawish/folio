@@ -4,6 +4,7 @@ import { promises as fs, createWriteStream } from 'node:fs';
 import path from 'node:path';
 import { finished } from 'node:stream/promises';
 import { macReleaseSuites } from './mac-release-suites.mjs';
+import { tsImport } from 'tsx/esm/api';
 
 const release = path.resolve(process.argv[2] ?? 'release/import-recovery');
 const executable = path.join(release, 'mac-arm64/Folio.app/Contents/MacOS/Folio');
@@ -13,6 +14,10 @@ const hash = async (file) =>
     .update(await fs.readFile(file))
     .digest('hex');
 const original = await hash(asar);
+const { qualificationIdentity } = await tsImport('./mac-qualification.ts', import.meta.url);
+const bundleIdentity = await qualificationIdentity(
+  path.dirname(path.dirname(path.dirname(executable))),
+);
 const suites = macReleaseSuites;
 const qualificationEnv = { ...process.env };
 // Qualification must exercise preparation from a fresh profile, even if an
@@ -27,7 +32,12 @@ try {
 }
 const completed = [];
 if (process.argv.includes('--resume')) {
-  if (!previous || previous.asarSha256 !== original || previous.executable !== executable)
+  if (
+    !previous ||
+    previous.asarSha256 !== original ||
+    previous.executable !== executable ||
+    JSON.stringify(previous.bundleIdentity) !== JSON.stringify(bundleIdentity)
+  )
     throw new Error('Resume requires a previous run against this exact app.');
   for (const [index, result] of previous.suites.entries()) {
     if (!result.passed) break;
@@ -49,6 +59,7 @@ const run = {
   startedAt: new Date().toISOString(),
   executable,
   asarSha256: original,
+  bundleIdentity,
   suites: completed,
   passed: false,
 };
@@ -86,7 +97,12 @@ try {
       log.end();
       await finished(log);
     });
-    const unchanged = (await hash(asar)) === original && (await hash(script)) === scriptHash;
+    const unchanged =
+      (await hash(asar)) === original &&
+      (await hash(script)) === scriptHash &&
+      JSON.stringify(
+        await qualificationIdentity(path.dirname(path.dirname(path.dirname(executable)))),
+      ) === JSON.stringify(bundleIdentity);
     const text = await fs.readFile(logFile, 'utf8');
     const evidence = text.match(/^Evidence: (.+)$/m)?.[1];
     const result = {
