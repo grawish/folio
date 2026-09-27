@@ -9,12 +9,14 @@ import { inspectRuntime, macSandboxProfile } from './runtime';
 import { parseDiagnostics } from './diagnostics';
 import { buildFingerprint } from './build-provenance';
 import { compilerLimits, limitedCompilerLaunch } from './compiler-limits';
+import { BuildWorkspaces } from './build-workspaces';
 import type { RuntimeLease, RuntimeSource } from './runtime-manager';
 
 export class Compiler {
   get busy() {
     return !!this.running;
   }
+  private readonly workspaces: BuildWorkspaces;
   private generation = 0;
   private abort: AbortController | undefined;
   private running: Promise<BuildResult> | undefined;
@@ -24,7 +26,9 @@ export class Compiler {
     readonly runtimeRoot: string | RuntimeSource,
     readonly workRoot: string,
     readonly timeoutMs = 30_000,
-  ) {}
+  ) {
+    this.workspaces = new BuildWorkspaces(workRoot);
+  }
 
   async cancel() {
     this.generation++;
@@ -59,6 +63,7 @@ export class Compiler {
       this.abort = controller;
       const start = performance.now();
       let job: string | undefined;
+      let workspace: Awaited<ReturnType<BuildWorkspaces['create']>> | undefined;
       let lease: RuntimeLease | undefined;
       let runtimeReady = false;
       try {
@@ -71,9 +76,8 @@ export class Compiler {
         if (!runtime.ready) throw new Error(runtime.message);
         runtimeReady = true;
         if (generation !== this.generation) return cancelled();
-        await fs.mkdir(this.workRoot, { recursive: true });
-        job = await fs.mkdtemp(path.join(this.workRoot, 'build-'));
-        job = await fs.realpath(job);
+        workspace = await this.workspaces.create();
+        job = workspace.path;
         const source = path.join(job, 'source');
         const output = path.join(job, 'output');
         const cache = path.join(this.workRoot, 'engine-cache', runtime.pin!.id!);
@@ -176,7 +180,7 @@ export class Compiler {
           runtimeUnavailable: !runtimeReady,
         };
       } finally {
-        if (job) await fs.rm(job, { recursive: true, force: true }).catch(() => {});
+        await workspace?.release().catch(() => {});
         await lease?.release();
         if (generation === this.generation) this.abort = undefined;
       }

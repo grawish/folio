@@ -25,7 +25,7 @@ The development source gives each build an idle watcher connected to the app by 
 
 On normal compiler exit, the app closes the same connection immediately. The watcher also stops leftover helpers after a successful result. It does not share the build's output pipes, and it stays in the group it can stop; no saved or guessed process ID is used after that group has disappeared. The ordinary cancellation, elapsed-time limit and macOS resource limits remain in place.
 
-This adds one idle shell process and one parent pipe per active build. It is process-crash containment, not a whole-app resource budget. Temporary build folders can still survive a crash: cleanup currently runs in the app's `finally` block, which an abrupt kill bypasses. Automatic cleanup of abandoned folders remains required and must preserve active builds and unrecognized data.
+This adds one idle shell process and one parent pipe per active build. It is process-crash containment, not a whole-app resource budget. The development source also records ownership of new temporary build folders and removes recognized abandoned jobs when its compiler starts. Editing and saving can open while that scan runs; the next build waits for it. See [temporary build recovery](BUILD_RECOVERY.md) for preserved data and recovery limits.
 
 ## Implementation
 
