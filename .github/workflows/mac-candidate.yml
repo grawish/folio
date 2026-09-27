@@ -72,6 +72,10 @@ jobs:
             test-results/runtime-*/startup-chat.png
             test-results/runtime-*/startup-editing.png
             test-results/runtime-*/failure.png
+            test-results/engine-cache-native-*/result.json
+            test-results/engine-cache-native-*/cache-limit.png
+            test-results/engine-cache-native-*/cache-rebuilt.png
+            test-results/engine-cache-native-*/failure.png
             test-results/build-requests-*/result.json
             test-results/build-requests-*/newest.pdf
             test-results/build-requests-*/failure.png
