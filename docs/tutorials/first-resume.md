@@ -4,6 +4,20 @@ This walkthrough uses a built-in template and works without an AI account. Folio
 
 ![Folio with a sample resume](../images/workspace.png)
 
+## Move around with the keyboard
+
+This improved keyboard flow is in the current development source; it is not in the preview-4 installer.
+
+1. Press **Tab** to move between controls. **Shift + Tab** moves backward. A ring shows which control has focus.
+2. When **Chat** or **Code** has focus, press **Left Arrow** or **Right Arrow** to switch views. Your draft stays in place. **Home** chooses Chat; **End** chooses Code.
+3. Press **Tab** to leave the view tabs and move to the next control. You do not need to tab through both views.
+4. Focus **Settings**, then press **Enter**. Tab to a section and press Enter to open it.
+5. Press **Escape** to close Settings. Focus returns to the Settings button, so you can keep using the keyboard.
+
+![The Code tab selected and focused using the keyboard](../images/keyboard-navigation.png)
+
+Dialogs keep keyboard focus inside while they are open. Some dialogs must finish a save or other operation before they can close. These controls have been checked in the real app with automated key presses; testing with VoiceOver and the full set of supported Macs is still needed.
+
 ## Choose a starting point
 
 1. Open Folio. Your saved work opens first; the included PDF builder prepares in the background.

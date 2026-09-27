@@ -20,6 +20,10 @@ Open **Settings → Editor & PDF**. Change **Editor text size** or **Automatic p
 
 ![Privacy settings](../images/privacy.png)
 
+Use **Tab** and **Shift + Tab** to reach a Settings section, then press **Enter** to open it. Folio exposes the current section to assistive technology. **Escape** closes Settings when no closing/restart operation is pending and returns focus to its opening control. See [the keyboard walkthrough](first-resume.md#move-around-with-the-keyboard).
+
+![The AI connections section selected and focused with the keyboard](../images/keyboard-settings.png)
+
 The header **Help and keyboard shortcuts** button lists shortcuts. Include the version from **Settings → About** in a bug report.
 
 ## Make a support bundle
@@ -55,7 +59,7 @@ The compiler is the local tool that turns TeX into PDF. Projects record which co
 
 ![Compiler integrity failure and repair button](../images/compiler-repair.png)
 
-This screenshot comes from deliberate corruption in an isolated test. Do not damage your own compiler to reproduce it. If a matching local copy is unavailable, you can still edit and save; online repair and additional managed packs are not implemented yet.
+This screenshot comes from deliberate corruption in an isolated test. Do not damage your own compiler to reproduce it. If a matching local copy is unavailable, you can still edit and save. For additional packages, use reviewed downloads or imports in **Settings → LaTeX resources**; see [resource packs](resource-packs.md).
 
 ## Compare a different included compiler
 

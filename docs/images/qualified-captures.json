@@ -239,5 +239,27 @@
     "liveAI": false,
     "diskSpaceFailureSimulated": true,
     "scope": "Actual Settings screen with a controlled low-space status. No real disk was filled and no signed replacement was attempted."
+  },
+  {
+    "file": "docs/images/keyboard-navigation.png",
+    "sourceSuite": "workspace",
+    "sourceCapture": "keyboard-tabs.png",
+    "sourceEvidence": "test-results/workspace-Dku6vl/result.json",
+    "sha256": "d58719a78ece8ee0bd613da5b056e4f70f1eeff9aebd257ec5e2af7ab5f99052",
+    "synthetic": true,
+    "liveAI": false,
+    "keyboardEventsAutomated": true,
+    "scope": "Actual Electron keyboard interaction with synthetic local resume content; no simulated UI state or physical VoiceOver acceptance."
+  },
+  {
+    "file": "docs/images/keyboard-settings.png",
+    "sourceSuite": "workspace",
+    "sourceCapture": "keyboard-settings.png",
+    "sourceEvidence": "test-results/workspace-Dku6vl/result.json",
+    "sha256": "b127ae92eeef3bb5b926d5ec3f43db11b1bb2e694c5dcf1648c18c833acf5d9e",
+    "synthetic": true,
+    "liveAI": false,
+    "keyboardEventsAutomated": true,
+    "scope": "Actual Electron keyboard interaction with synthetic local resume content; no simulated UI state or physical VoiceOver acceptance."
   }
 ]

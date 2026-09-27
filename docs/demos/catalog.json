@@ -474,5 +474,19 @@
     ],
     "kind": "Real source Settings \u00b7 simulated low space",
     "alt": "Folio Settings showing free-space guidance and enabled Check for updates and Done buttons"
+  },
+  {
+    "id": "keyboard-navigation",
+    "title": "Move around with the keyboard",
+    "image": "keyboard-navigation.png",
+    "guide": "tutorials/first-resume.md#move-around-with-the-keyboard",
+    "description": "Switch Chat and Code with arrow keys, open Settings, and return to work without losing your place.",
+    "steps": [
+      "Use Tab to reach the selected Chat or Code tab.",
+      "Use Left/Right to switch views; Tab moves onward.",
+      "Open Settings with Enter, then close it with Escape to return focus."
+    ],
+    "kind": "Real app \u00b7 automated keyboard input",
+    "alt": "Folio with a visible keyboard focus ring on the selected Code tab and a compiled synthetic resume beside it"
   }
 ]

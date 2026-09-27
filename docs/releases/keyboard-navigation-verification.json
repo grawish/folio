@@ -1,0 +1,161 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T10:30:54.267221+00:00",
+  "baseCommit": "3f5a3245d7fefb3af7d3a971fbb7a5105c4218b7",
+  "change": "Keyboard navigation for Chat/Code tabs, associated named panels, current Settings section semantics and restoration of focus when a native dialog unmounts.",
+  "inputs": [
+    {
+      "path": "src/App.tsx",
+      "bytes": 95700,
+      "sha256": "db678a6553bff3236f7ac684eec2cbbee38d1e68b08c2a7ba58ca710ed7350a1"
+    },
+    {
+      "path": "src/chat.css",
+      "bytes": 19545,
+      "sha256": "2e3e6d9b37553c2c362633074be58a7e7a516bca074c9f850dcfc847d54c48bb"
+    },
+    {
+      "path": "src/components/Modal.tsx",
+      "bytes": 2253,
+      "sha256": "0fe69e21ef566e958622c6889d6f5775e60ca973cb483f604747aea44fab5fc2"
+    },
+    {
+      "path": "src/components/SettingsModal.tsx",
+      "bytes": 16381,
+      "sha256": "ec1d2a0a946520afc1c6848637e902d0daee599523c38552c8b77809f4a79b6d"
+    },
+    {
+      "path": "src/components/ChatPanel.tsx",
+      "bytes": 12031,
+      "sha256": "95fd8eefac8504f241d8ff75d0555e1754f2b81d57346ac3ff92ca41f684fdb1"
+    },
+    {
+      "path": "src/components/LatexEditor.tsx",
+      "bytes": 11706,
+      "sha256": "20f312bbe299b94f83eebc7c441475589237aaa5759343bf4ee134734b239c11"
+    },
+    {
+      "path": "scripts/test-workspace.mjs",
+      "bytes": 22494,
+      "sha256": "835dec1353889a7885c0c223673ccae0fbacbd34dc41153c75c6b30a643ec89a"
+    },
+    {
+      "path": "scripts/test-chat.mjs",
+      "bytes": 36762,
+      "sha256": "ecc8c229f5792aefd47b860c7ff318c3bd60962972da2f57be4f9e7a454cd095"
+    },
+    {
+      "path": "scripts/mac-release-suites.mjs",
+      "bytes": 363,
+      "sha256": "d408c5af73eece2ea51ee5b10616559315693eb100a075af84961c292c0759f0"
+    },
+    {
+      "path": ".github/workflows/mac-candidate.yml",
+      "bytes": 4321,
+      "sha256": "e842709b3a847fd68919c3c21d79c9cb2ffca058ddedc4576244c969149d3417"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 206387,
+      "sha256": "f49e1352767126ce8d3c894ac5bfdc4d39fc951fbe1efe7283ca4ee4d991ae00"
+    }
+  ],
+  "reproducedBeforeChange": {
+    "chatSelected": "true",
+    "codeSelected": "false",
+    "focused": "Chat",
+    "chatControls": null,
+    "codeControls": null,
+    "namedPanels": 0,
+    "selectedSetting": null,
+    "focusInside": true,
+    "focusReturnsToSettings": false
+  },
+  "correctedNativeControl": {
+    "chatSelected": "false",
+    "codeSelected": "true",
+    "focused": "Code",
+    "chatControls": "workspace-chat-panel",
+    "codeControls": "workspace-code-panel",
+    "namedPanels": 1,
+    "selectedSetting": "true",
+    "focusInside": true,
+    "focusReturnsToSettings": true
+  },
+  "nativeWorkspace": {
+    "passed": true,
+    "errors": [],
+    "keyboardChecks": [
+      "Chat/Code arrows wrap, Home/End select, one tab participates in Tab order, named visible panels agree, and the unsent draft survives.",
+      "Native Settings traps forward/backward Tab, rejects outside focus, identifies its current section, and returns focus to its opener after Escape."
+    ],
+    "accessibilityScope": "Actual Electron keyboard and DOM accessibility semantics; no physical VoiceOver or full accessibility-conformance claim."
+  },
+  "checks": {
+    "typecheckBuildPassed": true,
+    "formatPassed": true,
+    "completeWorkspaceRegressionPassed": true,
+    "completeChatPdfRegressionPassed": true,
+    "rendererErrorsObserved": 0,
+    "desktopMobileWebsitePassed": true,
+    "galleryCards": 35,
+    "sourceKeyboardScreenshotsVisuallyInspected": true
+  },
+  "screenshots": [
+    {
+      "path": "docs/images/keyboard-navigation.png",
+      "bytes": 336066,
+      "sha256": "d58719a78ece8ee0bd613da5b056e4f70f1eeff9aebd257ec5e2af7ab5f99052"
+    },
+    {
+      "path": "docs/images/keyboard-settings.png",
+      "bytes": 180453,
+      "sha256": "b127ae92eeef3bb5b926d5ec3f43db11b1bb2e694c5dcf1648c18c833acf5d9e"
+    }
+  ],
+  "logs": [
+    {
+      "path": "test-results/keyboard-build.log",
+      "bytes": 1719,
+      "sha256": "33a6338f0d9f4d50b509298640ef5bbeb8632fe9c1a3b8927ddc086cb51c8008"
+    },
+    {
+      "path": "test-results/keyboard-format.log",
+      "bytes": 183,
+      "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+    },
+    {
+      "path": "test-results/keyboard-workspace.log",
+      "bytes": 826,
+      "sha256": "727d9c79f1fb7e0414511022729f7350a7e8e6edb180006fedcdad18abeb0592"
+    },
+    {
+      "path": "test-results/keyboard-chat.log",
+      "bytes": 1554,
+      "sha256": "401dd64a6379ab7cc8339b6db975d794947f2fcb0af2e0a1b484b7ca81f0ff16"
+    },
+    {
+      "path": "test-results/keyboard-website.log",
+      "bytes": 821,
+      "sha256": "d7538ba9bdf777110fc9d4fb4c15b25a75c2010c9b0448596470e98366e19a30"
+    },
+    {
+      "path": "test-results/workspace-Dku6vl/result.json",
+      "bytes": 503,
+      "sha256": "6f96e906aee78581cc64cc0bb5f50ed596635a895dd945902205cda1019d6832"
+    },
+    {
+      "path": "test-results/chat-stsmFU/lifecycle.json",
+      "bytes": 3698,
+      "sha256": "067623fa0c107989d9087ec7d733e8055e511e0d113b5e3133162497db7b47d9"
+    }
+  ],
+  "commands": [
+    "npm run build",
+    "node scripts/test-workspace.mjs",
+    "node scripts/test-chat.mjs",
+    "npm run format:check",
+    "npm run website:check"
+  ],
+  "scope": "Source-native Electron keyboard and DOM accessibility checks with isolated profiles and synthetic resumes. The workspace test uses actual keyboard events; the full chat regression uses the existing local AI fixture. No physical VoiceOver output, complete accessibility conformance, supported-device/OS matrix or final packaged qualification is claimed. Signing and production release acceptance remain open."
+}

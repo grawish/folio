@@ -1,4 +1,4 @@
-import { useEffect, useRef, type ReactNode } from 'react';
+import { useEffect, useId, useRef, type ReactNode } from 'react';
 import { X } from 'lucide-react';
 
 export function Modal({
@@ -19,16 +19,28 @@ export function Modal({
   className?: string;
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
+  const titleId = useId();
+  const descriptionId = useId();
   useEffect(() => {
     const el = dialog.current;
+    const opener = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     el?.showModal();
-    return () => el?.close();
+    return () => {
+      // Unmounting a native dialog can leave focus on the page body. Restore
+      // its opener unless another part of the workflow has already taken focus.
+      const restore =
+        el?.contains(document.activeElement) || document.activeElement === document.body;
+      el?.close();
+      if (restore && opener?.isConnected) opener.focus({ preventScroll: true });
+    };
   }, []);
   return (
     <dialog
       className={`modal ${wide ? 'modal-wide' : ''} ${className}`}
       ref={dialog}
-      aria-labelledby="modal-title"
+      aria-labelledby={titleId}
+      aria-describedby={description ? descriptionId : undefined}
+      aria-modal="true"
       onCancel={(event) => {
         event.preventDefault();
         if (dismissible) onClose();
@@ -49,8 +61,8 @@ export function Modal({
       <div className="modal-heading">
         <div>
           <span className="eyebrow">YOUR NEXT CHAPTER</span>
-          <h2 id="modal-title">{title}</h2>
-          {description && <p>{description}</p>}
+          <h2 id={titleId}>{title}</h2>
+          {description && <p id={descriptionId}>{description}</p>}
         </div>
         <button
           className="icon-button"

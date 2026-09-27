@@ -62,6 +62,7 @@ jobs:
             test-results/runtime-*/startup-editing.png
             test-results/runtime-*/failure.png
             test-results/workspace-*/layout-measurements.json
+            test-results/workspace-*/keyboard-*.png
             test-results/workspace-*/failure.png
             test-results/workspace-*/result.json
             test-results/history-storage-*/result.json

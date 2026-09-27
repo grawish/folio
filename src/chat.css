@@ -8,7 +8,8 @@
   gap: 4px;
   padding: 0 8px;
 }
-.workspace-tabs > button {
+.workspace-tabs > button,
+.workspace-view-tabs > button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,15 +19,20 @@
   border-bottom: 3px solid transparent;
   font-size: 13px;
 }
-.workspace-tabs > button[aria-selected='true'] {
+.workspace-view-tabs > button[aria-selected='true'] {
   border-bottom-color: var(--accent);
   color: var(--accent);
+}
+.workspace-view-tabs {
+  display: flex;
+  gap: 4px;
 }
 .workspace-tabs .history-button {
   margin-left: auto;
   padding: 0 8px;
   font-size: 12px;
 }
+.chat-view,
 .code-view {
   display: flex;
   flex-direction: column;
@@ -34,6 +40,7 @@
   min-height: 0;
   overflow: hidden;
 }
+.chat-view[hidden],
 .code-view[hidden] {
   display: none;
 }
@@ -890,7 +897,8 @@
   .chat-result-actions {
     gap: 8px;
   }
-  .workspace-tabs > button {
+  .workspace-tabs > button,
+  .workspace-view-tabs > button {
     padding: 0 11px;
   }
   .history-layout {
