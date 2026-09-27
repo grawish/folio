@@ -198,5 +198,22 @@
     "The pinned builder requires an additional final DMG signing/notarization/stapling operation before production acceptance; final checksums and update metadata must follow those changes.",
     "App inventories compare file bytes, modes and internal links; they do not claim general xattr/ACL equality or full filesystem allocation measurements.",
     "Hosted Mac qualification 36290271754 is for the earlier d054ac5 input and does not validate these new archive gates."
-  ]
+  ],
+  "hostedSource": {
+    "verifiedAt": "2026-09-27T03:41:48.560926+00:00",
+    "commit": "aa40c6b2c96a048ec6c7fa8731e4612371558b6e",
+    "run": "https://github.com/grawish/folio/actions/runs/36291950714",
+    "conclusion": "success",
+    "sourceTestsPassed": 293,
+    "buildPassed": true,
+    "formatPassed": true,
+    "generatedSkillCheckPassed": true,
+    "log": {
+      "path": "test-results/mac-archives-hosted-source.log",
+      "bytes": 99667,
+      "sha256": "db4b8e04fa55ea9f547c9526efc2f55e93e309e9fd5cfe5ada033bd035b4aa8f"
+    },
+    "fullMacQualification": "https://github.com/grawish/folio/actions/runs/36292003146",
+    "fullMacStatusObserved": "in_progress"
+  }
 }

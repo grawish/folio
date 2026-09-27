@@ -70,5 +70,12 @@
       "bytes": 98269,
       "sha256": "9c0923e12ad8d3155348cdb680bb73c73d287444d1101005faf03084d878c8da"
     }
+  },
+  "hostedMac": {
+    "commit": "d054ac591310f382de0fba1d55a7a1660177c6f1",
+    "run": "https://github.com/grawish/folio/actions/runs/36290271754",
+    "conclusion": "success",
+    "verificationRecord": "docs/releases/mac-runtime-signing-verification.json",
+    "scope": "Unsigned app qualification plus the separate actual signed-runtime integration. Not a signed/notarized production installer."
   }
 }

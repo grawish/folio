@@ -16,7 +16,7 @@ Download the **[Apple silicon DMG preview](https://github.com/grawish/folio/rele
 
 ## Development preview
 
-Folio is under active development; a signed, notarized installer and automatic updates are not available yet. The fully qualified unsigned history milestone at `d805a91` passes 274 source tests, 15 compiler integrations and all fifteen native Mac suites; [the verification record](docs/releases/mac-history-storage-verification.json) binds those checks to its exact source and app. See the [preview release notes](docs/releases/v0.1.0-preview.4.md) for the packaged build and the [release audit](docs/RELEASE_GAP_AUDIT.md) for remaining production requirements. These results do not establish compatibility with every macOS version.
+Folio is under active development; a signed, notarized installer and automatic updates are not available yet. The fully qualified unsigned source at `d054ac5` passes 288 source tests, 16 compiler integrations and all fifteen native Mac suites; [the verification record](docs/releases/mac-runtime-signing-verification.json) binds those checks to its exact source and app. See the [preview release notes](docs/releases/v0.1.0-preview.4.md) for the packaged build and the [release audit](docs/RELEASE_GAP_AUDIT.md) for remaining production requirements. These results do not establish compatibility with every macOS version.
 
 Windows, Linux and Intel Macs are outside this release's scope. Read the [remaining release requirements](docs/RELEASE_GAP_AUDIT.md) before relying on the preview for important documents.
 
