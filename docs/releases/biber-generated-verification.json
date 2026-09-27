@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T11:32:31.285414+00:00",
+  "sourceBaseCommit": "ee9b1794b72f0393639d8ff98a6b77b832f68af4",
+  "summary": {
+    "cases": 6,
+    "generatedFiles": 8,
+    "matchingPayloadFiles": 9,
+    "unmatchedTargets": 2
+  },
+  "combinedSourceCoverage": {
+    "totalPayloadFiles": 3932,
+    "previousUnmatched": 136,
+    "newMatches": 9,
+    "remainingUnmatched": 127,
+    "combinedMatchedPayloadFiles": 3805
+  },
+  "independentChecks": {
+    "retainedFilesVerified": 30,
+    "originalArchiveInputsVerified": 9,
+    "preparedRuntimeMatches": 9,
+    "zipMembersVerified": 3834,
+    "reviewedDuplicateNames": 2,
+    "packagerOutputsVerifiedAgainstEmbeddedZip": 3
+  },
+  "byteIdenticalReplay": {
+    "files": 31,
+    "includesInventory": true
+  },
+  "hostPerl": {
+    "path": "/usr/bin/perl",
+    "sha256": "85e5621137742a37be052f58800372b2005f91f609ad55019832214b5d9e61bc",
+    "version": "v5.34.1"
+  },
+  "sandbox": {
+    "controls": {
+      "insideWrite": true,
+      "outsideWriteDenied": true,
+      "networkConnectDenied": true
+    },
+    "networkDenied": true,
+    "readIsolation": false,
+    "writeScope": "unique temporary run directory and /dev/null",
+    "deadlineSeconds": 180
+  },
+  "sourceArchiveCount": 3,
+  "sourceArchiveBytes": 18355927,
+  "sources": [
+    {
+      "id": "perl-5.32.1",
+      "url": "https://cpan.metacpan.org/authors/id/S/SH/SHAY/perl-5.32.1.tar.gz",
+      "bytes": 18038522,
+      "sha256": "03b693901cd8ae807231b1787798cf1f2e0b8a56218d07b7da44f784a7caeb2c"
+    },
+    {
+      "id": "PAR-Packer-1.055",
+      "url": "https://cpan.metacpan.org/authors/id/R/RS/RSCHUPP/PAR-Packer-1.055.tar.gz",
+      "bytes": 206972,
+      "sha256": "d726c2e344517dee1c87553a7f09c1ccd430869208d442e1362eb3e7918188b1"
+    },
+    {
+      "id": "Lingua-Translit-0.28",
+      "url": "https://cpan.metacpan.org/authors/id/A/AL/ALINKE/Lingua-Translit-0.28.tar.gz",
+      "bytes": 110433,
+      "sha256": "113f91d8fc2c630437153a49fb7a52b023af8f6278ed96c070b1f60824b8eae1"
+    }
+  ],
+  "tools": [
+    {
+      "path": "scripts/collect-biber-generated-evidence.py",
+      "bytes": 12960,
+      "sha256": "22cd146651d360dc902da9f055de89e7b067a6e2d0a607d73a057b0344e2d2a5"
+    },
+    {
+      "path": "resources/biber-generated-sources.lock.json",
+      "bytes": 3812,
+      "sha256": "412384c90cd74b625f74fd9792f01cd0cb054e79e54737eefb12b4fd027db355"
+    },
+    {
+      "path": "tests/biber-generated-evidence.py",
+      "bytes": 7216,
+      "sha256": "8f5f01365a771c779bd2acb070e82c9be5be496b6fa104d4f3e8be16331a62de"
+    },
+    {
+      "path": "test-results/verify-biber-generated.py",
+      "bytes": 7637,
+      "sha256": "3b5b5008966914160b46764176adc93e4132820d658b8a8f99837b6e61797c4e"
+    }
+  ],
+  "retainedInventory": {
+    "path": "artifacts/license-materials/biber-generated/inventory.json",
+    "bytes": 9460,
+    "sha256": "00978512a6abe2ab58df6f3643a1f92c55e634dc19208dcda256eb3c66b79392"
+  },
+  "publishedMatches": {
+    "path": "docs/releases/biber-generated-matches.json.gz",
+    "bytes": 935,
+    "sha256": "3eb63577a05fc565e0a3c766e117725d79052b6cf1161dca182c1ca8bb3140f3"
+  },
+  "uncompressedMatches": {
+    "path": "artifacts/license-materials/biber-generated/source-matches.json",
+    "bytes": 5135,
+    "sha256": "cd152293890601ee7ff3aa025f8021db544ead1dd3c048783d41ba34c493866d"
+  },
+  "checks": {
+    "newOfflineControls": 8,
+    "relatedCpanControls": 8,
+    "relatedUnicodeControls": 8,
+    "passed": true
+  },
+  "logs": [
+    {
+      "path": "test-results/biber-generated-tests.log",
+      "bytes": 106,
+      "sha256": "5f95ecc3f3cae05822b8e4d73d235bfc0dc4fc448dd99eaf7e01087545c5f919"
+    },
+    {
+      "path": "test-results/biber-generated-cpan-tests.log",
+      "bytes": 106,
+      "sha256": "b3e6ba03c66ed598fe3f99d418edd76293bf4011ab7d5f2c76f78f3bb6de5253"
+    },
+    {
+      "path": "test-results/biber-generated-unicode-tests.log",
+      "bytes": 106,
+      "sha256": "f4ba55437dc3d75b86a000fafe058270e80323a46c972e57192328d087777342"
+    },
+    {
+      "path": "test-results/biber-generated-final.log",
+      "bytes": 221,
+      "sha256": "6dcb0c94c41fff211b1ba33723eb3836546ae23b27ee102a4ee7741a17026627"
+    },
+    {
+      "path": "test-results/biber-generated-replay.log",
+      "bytes": 221,
+      "sha256": "d17b6c98af39e67f54a5c50f9c2baf107970c029668f12fde4ad938a8c6e5a70"
+    }
+  ],
+  "applicationInputsChanged": false,
+  "releaseAuditComplete": false,
+  "limits": [
+    "Exact source attribution of nine generated text payload files only; native builds and 127 payload files remain unresolved.",
+    "Original Perl 5.32.1 generators run using system Perl 5.34.1 and system support modules, not the original build environment.",
+    "PAR packaging uses four verbatim upstream methods with a retained audit harness, reviewed options and independently parsed ZIP member names.",
+    "XSLoader retains two unmatched targets after the reviewed PAR compatibility patch; its loader-call argument differs and is not normalized.",
+    "Complete source archives retain original terms; redistribution/license review and the exact signed-app SBOM remain open.",
+    "No application, runtime, installer or existing release asset changes."
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "foundationLockSha256": "a7a53f3657ea2aeb98431edb89896bb8ff48ad79a2c342725d18c28c5a76c0d6",
+  "cpanLockSha256": "e000085cd45f2d475ddcd96426af92227178a5aa9d3e69860a022778fbf3b482",
+  "recipes": [
+    {
+      "id": "dynaloader",
+      "source": "perl-5.32.1",
+      "inputs": [
+        {
+          "path": "ext/DynaLoader/DynaLoader_pm.PL",
+          "bytes": 32921,
+          "sha256": "f35b830e53d5b6ea1f539ece9565cb58e82e845394e3fb90f5ccc8b4989a4c6f"
+        }
+      ],
+      "arguments": [
+        "ext/DynaLoader/DynaLoader_pm.PL"
+      ],
+      "outputs": {
+        "DynaLoader.pm": [
+          "par/lib/DynaLoader.pm",
+          "loader/75ed0d9e/DynaLoader.pm"
+        ]
+      }
+    },
+    {
+      "id": "xsloader",
+      "source": "perl-5.32.1",
+      "inputs": [
+        {
+          "path": "dist/XSLoader/XSLoader_pm.PL",
+          "bytes": 14577,
+          "sha256": "7ce16def2015af6801bda42d63bc5a38dd5df72468d9411eda6b323cf565d0ba"
+        }
+      ],
+      "arguments": [
+        "dist/XSLoader/XSLoader_pm.PL"
+      ],
+      "outputs": {
+        "XSLoader.pm": [
+          "par/lib/XSLoader.pm",
+          "loader/bd0d9ba8/XSLoader.pm"
+        ]
+      },
+      "packagerPatch": "XSLoader.pm"
+    },
+    {
+      "id": "lib",
+      "source": "perl-5.32.1",
+      "inputs": [
+        {
+          "path": "dist/lib/lib_pm.PL",
+          "bytes": 8180,
+          "sha256": "fd6fd221bad177a02581758f3bedb1b77d771299b452cd5ffa4df11b0ce274c4"
+        }
+      ],
+      "arguments": [
+        "dist/lib/lib_pm.PL"
+      ],
+      "outputs": {
+        "dist/lib/lib.pm": [
+          "loader/22f2737a/lib.pm"
+        ]
+      }
+    },
+    {
+      "id": "git",
+      "source": "perl-5.32.1",
+      "inputs": [
+        {
+          "path": "make_patchnum.pl",
+          "bytes": 7673,
+          "sha256": "9f4c24c9b964f1fa3f0e552805456a8b78eb76927fc73112fd131ce3699c8001"
+        },
+        {
+          "path": "perl.c",
+          "bytes": 147548,
+          "sha256": "28dac0ba91b61340e8ffdbb4aa834648830fa5b4771f7637b98bbddbc4b87958"
+        }
+      ],
+      "arguments": [
+        "make_patchnum.pl"
+      ],
+      "outputs": {
+        "lib/Config_git.pl": [
+          "par/lib/Config_git.pl",
+          "loader/c33fbebe/Config_git.pl"
+        ]
+      }
+    },
+    {
+      "id": "translit",
+      "source": "Lingua-Translit-0.28",
+      "inputs": [
+        {
+          "path": "tools/substitute_tables.pl",
+          "bytes": 1018,
+          "sha256": "9769d5ceb03e9cbbf3d37d4c7408fe017af6c4b7236ccc94401ad02f65a551ee"
+        },
+        {
+          "path": "lib/Lingua/Translit/Tables.pm",
+          "bytes": 8379,
+          "sha256": "05bd99f62441fa286a851dbc83d9f7a62df95f135ac2c3e105b8e047c539cef8"
+        },
+        {
+          "path": "xml/tables.dump",
+          "bytes": 139148,
+          "sha256": "304cbb5c65a50b99c87d1789fc36c061b13c82180dda07398f05e2e894af6897"
+        }
+      ],
+      "arguments": [
+        "tools/substitute_tables.pl",
+        "lib/Lingua/Translit/Tables.pm"
+      ],
+      "outputs": {
+        "lib/Lingua/Translit/Tables.pm": [
+          "par/lib/Lingua/Translit/Tables.pm"
+        ]
+      }
+    },
+    {
+      "id": "packer",
+      "source": "PAR-Packer-1.055",
+      "inputs": [
+        {
+          "path": "lib/PAR/Packer.pm",
+          "bytes": 49792,
+          "sha256": "8993f6c6dc1d62a1252f650afb9d73472979279b3f59102e1a5be5630069a31b"
+        }
+      ],
+      "arguments": [
+        "harness.pl"
+      ],
+      "outputs": {
+        "main.pl": [
+          "par/script/main.pl"
+        ],
+        "MANIFEST": [
+          "par/MANIFEST"
+        ],
+        "META.yml": [
+          "par/META.yml"
+        ]
+      }
+    }
+  ],
+  "scope": "Selected original text generators only. No source edits, native rebuild or complete license/SBOM acceptance."
+}
