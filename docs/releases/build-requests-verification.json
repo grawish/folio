@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "status": "Local source, compiler integrations, packaged build-request/workspace/chat checks and JavaScript reproduction passed; full hosted qualification pending",
+  "status": "Local source/compiler/native checks and complete hosted qualification passed; production requirements remain open",
   "focusedTestsPassed": 16,
   "sourceTestsPassed": 427,
   "typecheckPassed": true,
@@ -149,5 +149,6 @@
   "packageNote": "The retained local behavioral package predates the Electron-notice packaging fix. The branch now includes the independently qualified packaging merge 907c70d; full hosted qualification will build these changes together. No new installer is published.",
   "sourceTestsBeforePackagingMerge": 423,
   "packagingIntegratedFromMain": "907c70d6e771c33b7e943bed58a6c4bbd1862d80",
-  "appSourcesUnchangedByPackagingMerge": true
+  "appSourcesUnchangedByPackagingMerge": true,
+  "hostedQualification": "mac-bounded-build-hosted.json"
 }
