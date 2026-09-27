@@ -81,7 +81,12 @@ async function kill() {
   app = undefined;
 }
 const settings = () => page.getByRole('button', { name: 'Settings', exact: true }).click();
-const done = () => page.getByRole('button', { name: 'Done', exact: true }).click();
+const done = async () => {
+  await page.getByRole('button', { name: 'Done', exact: true }).click();
+  // Settings finishes native cancellation before closing its modal. Keyboard
+  // input behind an open modal can be ignored without an automation error.
+  await expect(page.locator('dialog[open]')).toHaveCount(0);
+};
 const code = () => page.getByRole('tab', { name: 'Code', exact: true }).click();
 const auto = () => page.getByRole('checkbox', { name: 'Auto-compile', exact: true });
 const read = async () => JSON.parse(await fs.readFile(settingsFile, 'utf8')).values;
@@ -103,12 +108,23 @@ async function choose(light) {
   await page.getByRole('button', { name: 'Editor & PDF', exact: true }).click();
   await page.getByLabel('Editor text size', { exact: true }).selectOption(light ? '18' : '12');
   await done();
-  await page.getByRole('separator', { name: 'Resize file sidebar' }).press('ArrowRight');
-  await page
-    .getByRole('separator', { name: 'Resize writing and PDF panes' })
-    .press(light ? 'Home' : 'End');
+  const previous = (await snapshot())['folio:panes'];
+  for (const name of ['Resize file sidebar', 'Resize writing and PDF panes']) {
+    const divider = page.getByRole('separator', { name });
+    const before = Number(await divider.getAttribute('aria-valuenow'));
+    const min = Number(await divider.getAttribute('aria-valuemin'));
+    const max = Number(await divider.getAttribute('aria-valuemax'));
+    const next = before === min ? max : min;
+    expect(next).not.toBe(before);
+    await divider.press(before === min ? 'End' : 'Home');
+    await expect(divider).toHaveAttribute('aria-valuenow', String(next));
+  }
+  await expect.poll(async () => (await snapshot())['folio:panes']).not.toBe(previous);
   const expected = await snapshot();
   expect(expected['folio:auto']).toBe('false');
+  expect(JSON.parse(expected['folio:panes']).sidebar).not.toBeNull();
+  result.preferenceSnapshots ??= [];
+  result.preferenceSnapshots.push(expected);
   return expected;
 }
 async function verify(expected) {
