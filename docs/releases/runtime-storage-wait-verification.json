@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-27T15:01:24.035883+00:00",
+  "baseCommit": "702e2156476d842ba6897cb54701c7913cc159f9",
+  "changeScope": "Native-test synchronization only; the final storage-removal assertion waits at most 60 seconds, with a deliberate six-second dialog delay. Application implementation and the tested app remain unchanged.",
+  "hostedFailure": {
+    "runId": 36325167931,
+    "url": "https://github.com/grawish/folio/actions/runs/36325167931",
+    "sourceCommit": "b3efc9de003ce9ce1f02a995e485cf3a2a4eea3b",
+    "conclusion": "failure",
+    "artifact": {
+      "path": "test-results/mac-tex-notices-hosted-evidence.zip",
+      "bytes": 4637667,
+      "sha256": "7864113a518a3570110ba0951e56b235c5ed59539e2932c71bf444b210f60bf4"
+    },
+    "sourceTestsPassed": 337,
+    "compilerIntegrationsPassed": 16,
+    "nativeSuitesPassed": [
+      "import-recovery",
+      "import",
+      "pdf-viewer",
+      "pdf-lifecycle",
+      "migration",
+      "chat"
+    ],
+    "failedSuite": "runtime",
+    "scriptHashesMatchSource": true,
+    "nativeRecord": {
+      "path": "test-results/mac-tex-notices-hosted-evidence/release/native-tests.json",
+      "bytes": 3669,
+      "sha256": "2150c11bf784b3877a008963542049ac959adecf6ea0884f20b5051255b59367"
+    },
+    "log": {
+      "path": "test-results/mac-tex-notices-hosted-evidence/test-results/release-runtime-final.log",
+      "bytes": 2676,
+      "sha256": "15fe0184271ac6185c5ffcfadc43f03f9a0a3bb64b512ba44fa47d9c37a4246d"
+    },
+    "screenshot": {
+      "path": "test-results/mac-tex-notices-hosted-evidence/test-results/runtime-tj2664/failure.png",
+      "bytes": 112433,
+      "sha256": "7178d10f7ebb50b7b1fe43ab8e8815f36d9156c48240dc2c76d3837c6ecb1082"
+    },
+    "observation": "The five-second row-removal assertion expired. The retained screenshot shows successful removal, the success status and only the protected included compiler. This evidence does not establish an application removal failure; the hosted run remains failed."
+  },
+  "repair": {
+    "path": "scripts/test-runtime.mjs",
+    "bytes": 23289,
+    "sha256": "7cba5fa227316a6009430d186f167d31e5cc2dcae798667826d34bf84a28c9a9"
+  },
+  "localVerification": {
+    "app": {
+      "path": "release/npm-notices/mac-arm64/Folio.app/Contents/Resources/app.asar",
+      "bytes": 7457665,
+      "sha256": "867f73ebb8e4b821964a5aa19cd9fd4751aabb88d8c4350bb266c89e9a00e05e"
+    },
+    "nativeResult": {
+      "path": "test-results/runtime-O54dct/result.json",
+      "bytes": 2790,
+      "sha256": "b3c430901bead560776e46f1851d75fe2e1581d607ce7aedbbd08cdfd900b299"
+    },
+    "log": {
+      "path": "test-results/runtime-storage-wait-native.log",
+      "bytes": 883,
+      "sha256": "956e6376d2889d6c65dee010b560005dd7880e8f439a5eff4d60a673a273e493"
+    },
+    "screenshot": {
+      "path": "test-results/runtime-O54dct/compiler-storage-removed.png",
+      "bytes": 112284,
+      "sha256": "b8e00982cfa3fe97713676666fe2731725dffd885cda3712ffab8a8316cf1540"
+    },
+    "passed": true,
+    "rendererErrors": [],
+    "editingReadyMs": 2906,
+    "storageReviewMs": 1310,
+    "controlledConfirmationDelayMs": 6000,
+    "logicalBytesRemoved": 516,
+    "checks": [
+      "real old compiler files removed and inventory refreshed",
+      "cancelled removal leaves files intact",
+      "confirmation blocks close",
+      "changed files invalidate confirmation",
+      "included compiler remains protected",
+      "resume source and exact compiler pin preserved",
+      "real PDF compilation succeeds",
+      "startup error retry and recovery retained",
+      "source ZIP, history and reopen preserve exact compiler identity",
+      "unavailable recorded compiler never switches silently"
+    ]
+  },
+  "fullHostedQualification": false,
+  "productionReleaseQualified": false,
+  "scope": "One full isolated native runtime suite against the existing unsigned npm-notice app. The deliberate confirmation delay tests synchronization; it is not a performance measurement or a replacement for complete hosted, signed or supported-macOS acceptance."
+}
