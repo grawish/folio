@@ -56,6 +56,26 @@ The [source index](../resources/pdfjs-notices/SOURCES.json) binds the exact npm 
 
 The PDF.js API input and copied minified worker are bound to the same npm archive by the application JavaScript inventory. Source-map associations identify the inspected upstream components; this does not independently reconstruct every byte of each minified component or its native codec build. Folio disables WASM and worker fetching; the codec WASM payloads and fallback scripts are not packaged. See [verification](releases/pdfjs-notices-verification.json) and the compact [retained-material inventory](releases/pdfjs-materials-inventory.json.gz). The existing `lazy-val` and optional canvas original-text gaps, other nested dependencies, native/compiler/TeX components and complete redistribution review remain separate. The public preview-4 installer predates this collection.
 
+## Include Electron and Chromium notices
+
+The current development package now includes Electron's complete original `LICENSE` and `LICENSES.chromium.html` under **Contents → Resources → electron-notices**. The preceding package contained the framework but neither notice file. The new folder also has a source index and a short reading guide. The older public preview-4 installer remains unchanged.
+
+Both notices come from the official [Electron 44.4.5 Apple silicon release](https://github.com/electron/electron/releases/tag/v44.4.5). The 130,418,529-byte ZIP matches its GitHub release-asset digest, the publisher's `SHASUMS256.txt` and the checksum entry inside the exact npm archive pinned by Folio's SHA-512 lock. The framework and both notice files also match the installed Electron distribution byte for byte. Original component terms remain intact; Folio's noncommercial license does not replace them.
+
+The repository keeps lossless gzip copies to avoid storing about 20 MB of plain HTML in Git. The compressed originals total 2,074,746 bytes. A `beforePack` hook expands and validates them offline before electron-builder copies resources. The readable installed notices, source index and guide add 20,116,322 logical bytes; compressed installer size and allocated filesystem size are separate measurements. No upstream code runs during this preparation.
+
+The package verifier requires all four files, their exact lengths and SHA-256 values, and the matching locked Electron version. Missing, altered, linked or unexpected files fail. An actual builder override selecting Electron 44.4.6 is rejected before runtime extraction; the pinned 44.4.5 build succeeds. Four focused controls cover complete copies, tampering/removal/links, corrupted compressed input preserving previous output, and dependency-version or malformed-index rejection. All 411 source tests pass. The actual packaging hook was exercised in a fresh Apple silicon package: all 39 compiled outputs, its ASAR, compiler manifest and all 5,199 earlier physical inventory entries remain identical to the qualified native-preference app. The only additions are the new directory and its four files. See [exact verification](releases/electron-notices-verification.json).
+
+To repeat the upstream check, retain the release ZIP and `SHASUMS256.txt` from the linked release and `electron-44.4.5.tgz` from the npm URL in [the source index](../resources/electron-notices/SOURCES.json), then run:
+
+```sh
+python3 scripts/verify-electron-upstream.py /absolute/path/to/retained-archives
+```
+
+The offline verifier checks the locked npm SHA-512, both publisher checksum entries, complete release members, the framework hash and the lossless notice copies. It reads named regular files without extracting or executing archive entries. Full original archives remain in ignored `artifacts/license-materials/electron-upstream/`; only necessary notices, the source index, tooling and verification are committed.
+
+This repairs a specific notice omission. It does not independently rebuild Electron/Chromium, finish corresponding-source obligations, resolve the remaining compiler/native materials or complete the binary SBOM. Full hosted qualification of the expanded package and production signing remain separate release gates.
+
 ## Collect and bundle compiler-font notices
 
 Current development packages include fifteen unchanged original notice files and a source guide in `Folio.app/Contents/Resources/tex-font-notices/`. These cover all **63 font binaries** in the included compiler bundle: Latin Modern, Latin Modern Math, Roboto/Condensed/Slab, Source Sans Pro and Font Awesome 5 Free. Their original terms remain separate from Folio's noncommercial license. The older preview-4 download predates this addition.

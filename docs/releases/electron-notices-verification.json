@@ -1,0 +1,260 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T21:34:29.029717+00:00",
+  "implementationCommit": "3ca6384e7c222d39b00e0cd3b67b9e5614521918",
+  "sourceHead": "3ca6384e7c222d39b00e0cd3b67b9e5614521918",
+  "upstream": {
+    "schemaVersion": 1,
+    "electronVersion": "44.4.5",
+    "sourceIndexSha256": "f9bdfa1394f1c0cb71777e76505af681c99c73466d4d11264681624bab130d10",
+    "archivesAndChecksums": [
+      {
+        "file": "electron-v44.4.5-darwin-arm64.zip",
+        "bytes": 130418529,
+        "sha256": "a212eee63ba2f45fd83bd28f77a3e3313a336ad17a4c25adf617942eef5e0e2c"
+      },
+      {
+        "file": "SHASUMS256.txt",
+        "bytes": 6740,
+        "sha256": "a0379166a35f9d3e2e1b63a72b90ddfe54a9558c56a3bde82e98f63823591d72"
+      },
+      {
+        "file": "electron-44.4.5.tgz",
+        "bytes": 198479,
+        "sha256": "712c161f94c755d94b4a1eefa2e97e76fca4f284bf6294b958bb82af3ae3e5e1"
+      }
+    ],
+    "noticeFiles": [
+      {
+        "file": "LICENSE",
+        "bytes": 1096,
+        "sha256": "5154e165bd6c2cc0cfbcd8916498c7abab0497923bafcd5cb07673fe8480087d"
+      },
+      {
+        "file": "LICENSES.chromium.html",
+        "bytes": 20111209,
+        "sha256": "a62dabd1c6ef1327365b2a3fdffb806222684a746dcb8f4afd1c1f690eba5535"
+      }
+    ],
+    "framework": {
+      "file": "Electron.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Electron Framework",
+      "bytes": 202847024,
+      "sha256": "e25ea99d8c7aba7f5f90710a27239bd073987e60be0e1bb79860b9eda1c1da10"
+    },
+    "publisherAndNpmChecksumEntriesAgree": true,
+    "compressedCopiesMatchCompleteOriginals": true,
+    "completeBinarySbom": false,
+    "scope": "Retained publisher archive identities and original notice copies verified offline. No archive is extracted or executed. This is not an independent native-source rebuild or complete redistribution/SBOM review."
+  },
+  "sources": [
+    {
+      "path": "scripts/electron-notices.ts",
+      "bytes": 6276,
+      "sha256": "a1a16e4f1834fb7e5abc95d54c5ad00e32bf1a56e3f768f506067769baed4932"
+    },
+    {
+      "path": "scripts/prepare-electron-notices.mjs",
+      "bytes": 899,
+      "sha256": "59bbac111216a65742d213f30284ac1055e1c6d7d7e7ac3828fe6f14c016d7de"
+    },
+    {
+      "path": "scripts/verify-electron-upstream.py",
+      "bytes": 6178,
+      "sha256": "2739ce39c2af410b1b944712941a8b88250eb673a20e0f7148562e906fdde046"
+    },
+    {
+      "path": "scripts/verify-mac-package.mjs",
+      "bytes": 7436,
+      "sha256": "2155db99e1ff07926befeb4d0664873416b5ee1340af0c4d28eae26cb82aa4da"
+    },
+    {
+      "path": "tests/electron-notices.test.ts",
+      "bytes": 5105,
+      "sha256": "92b32b0325c82cdf2d20fadcae3c25c0e562f76ece6be1a018416173d12d8372"
+    },
+    {
+      "path": "package.json",
+      "bytes": 6209,
+      "sha256": "1ebe4348da4a5a1eeeaf948d19aa47862f28912435e87c19647d4b07c1705887"
+    },
+    {
+      "path": "resources/electron-notices/SOURCES.json",
+      "bytes": 2573,
+      "sha256": "f9bdfa1394f1c0cb71777e76505af681c99c73466d4d11264681624bab130d10"
+    },
+    {
+      "path": "resources/electron-notices/README.md",
+      "bytes": 1444,
+      "sha256": "554a13d8a7ce37d2c004f12175a25a4cd2fcb33b2f28f0d427398577c7d164f9"
+    },
+    {
+      "path": "resources/electron-notices/LICENSE.gz",
+      "bytes": 658,
+      "sha256": "75da76cec39e435c358e8a770a0e98a2096d67933655c40a217c1845622360bf"
+    },
+    {
+      "path": "resources/electron-notices/LICENSES.chromium.html.gz",
+      "bytes": 2074088,
+      "sha256": "10ae352efb954a48303224f80067cf1eeff77c09e682f712976c26570aaf5955"
+    }
+  ],
+  "sourceTestsPassed": 411,
+  "focusedTestsPassed": 4,
+  "package": {
+    "appAsarSha256": "8d527da6957367ea1fbc264fdff842c39a3163ed76c9477cfcdf92a1f9da61d3",
+    "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+    "frameworkSha256": "e25ea99d8c7aba7f5f90710a27239bd073987e60be0e1bb79860b9eda1c1da10",
+    "all39CompiledOutputsMatchQualifiedPreferenceApp": true,
+    "asarAlsoMatchesQualifiedPreferenceApp": true,
+    "previousMissingNoticePackageRejected": true,
+    "notices": {
+      "electronVersion": "44.4.5",
+      "platform": "darwin-arm64",
+      "originalNoticeFiles": 2,
+      "sourceIndexSha256": "f9bdfa1394f1c0cb71777e76505af681c99c73466d4d11264681624bab130d10",
+      "upstreamArchiveSha256": "a212eee63ba2f45fd83bd28f77a3e3313a336ad17a4c25adf617942eef5e0e2c",
+      "records": [
+        {
+          "path": "LICENSE",
+          "bytes": 1096,
+          "sha256": "5154e165bd6c2cc0cfbcd8916498c7abab0497923bafcd5cb07673fe8480087d"
+        },
+        {
+          "path": "LICENSES.chromium.html",
+          "bytes": 20111209,
+          "sha256": "a62dabd1c6ef1327365b2a3fdffb806222684a746dcb8f4afd1c1f690eba5535"
+        },
+        {
+          "path": "README.md",
+          "bytes": 1444,
+          "sha256": "554a13d8a7ce37d2c004f12175a25a4cd2fcb33b2f28f0d427398577c7d164f9"
+        },
+        {
+          "path": "SOURCES.json",
+          "bytes": 2573,
+          "sha256": "f9bdfa1394f1c0cb71777e76505af681c99c73466d4d11264681624bab130d10"
+        }
+      ],
+      "completeBinarySbom": false
+    },
+    "independentlyCheckedPhysicalEntries": 5204,
+    "unchangedPreviousPhysicalEntries": 5199,
+    "addedEntries": [
+      {
+        "path": "Contents/Resources/electron-notices",
+        "mode": 493,
+        "kind": "directory"
+      },
+      {
+        "path": "Contents/Resources/electron-notices/LICENSE",
+        "mode": 420,
+        "kind": "file",
+        "bytes": 1096,
+        "sha256": "5154e165bd6c2cc0cfbcd8916498c7abab0497923bafcd5cb07673fe8480087d"
+      },
+      {
+        "path": "Contents/Resources/electron-notices/LICENSES.chromium.html",
+        "mode": 420,
+        "kind": "file",
+        "bytes": 20111209,
+        "sha256": "a62dabd1c6ef1327365b2a3fdffb806222684a746dcb8f4afd1c1f690eba5535"
+      },
+      {
+        "path": "Contents/Resources/electron-notices/README.md",
+        "mode": 420,
+        "kind": "file",
+        "bytes": 1444,
+        "sha256": "554a13d8a7ce37d2c004f12175a25a4cd2fcb33b2f28f0d427398577c7d164f9"
+      },
+      {
+        "path": "Contents/Resources/electron-notices/SOURCES.json",
+        "mode": 420,
+        "kind": "file",
+        "bytes": 2573,
+        "sha256": "f9bdfa1394f1c0cb71777e76505af681c99c73466d4d11264681624bab130d10"
+      }
+    ],
+    "logicalFileBytes": 702383953,
+    "addedLogicalBytes": 20116322,
+    "physicalInventorySha256": "03d77f22b3cd57217d78b414ec2806a317a8070fe3179bb57a656819bb5d838e",
+    "builderVersionOverrideRejected": "An actual electron-builder invocation selecting 44.4.6 fails in beforePack before extracting/copying the runtime. The ordinary pinned 44.4.5 build succeeds and reproduces the same app inventory."
+  },
+  "logs": [
+    {
+      "path": "test-results/electron-notices-focused.log",
+      "bytes": 497,
+      "sha256": "1d04692a01dc54ad2724af40c4b0e4f49052c830655a77bf65cbd0aadf2814ba"
+    },
+    {
+      "path": "test-results/electron-notices-typecheck.log",
+      "bytes": 64,
+      "sha256": "5e0497e27df921e099efd62066b397df0bfe0eb796edd626db840b92aaa1ccec"
+    },
+    {
+      "path": "test-results/electron-notices-source.log",
+      "bytes": 41602,
+      "sha256": "ee284a2bf3bf21c1947972ac02bc796d20d5c3d0176c6dca0a3d3e81dc7ad573"
+    },
+    {
+      "path": "test-results/electron-notices-build.log",
+      "bytes": 1719,
+      "sha256": "867b6da315f0439c4a9b131ae3281d521a2743987c943ee5d7e02bfc69ba5977"
+    },
+    {
+      "path": "test-results/electron-notices-package.log",
+      "bytes": 1357,
+      "sha256": "85a2971ca50e050b47a8154f50b3c8e566e319e0800110ddf2fa6532d9d6ed39"
+    },
+    {
+      "path": "test-results/electron-notices-package-check.log",
+      "bytes": 1214,
+      "sha256": "058bb48fd7e568ac67c7088bec93761c6d688ddace87f7b4dd6d745d29e42618"
+    },
+    {
+      "path": "test-results/electron-upstream-verification.json",
+      "bytes": 1568,
+      "sha256": "05968294394788ad86540e791ef7f1a04d713e8aed1d9045942e79ba29b8e5d0"
+    },
+    {
+      "path": "test-results/electron-notices-package-final.log",
+      "bytes": 1357,
+      "sha256": "85a2971ca50e050b47a8154f50b3c8e566e319e0800110ddf2fa6532d9d6ed39"
+    },
+    {
+      "path": "test-results/electron-notices-package-check-final.log",
+      "bytes": 1214,
+      "sha256": "058bb48fd7e568ac67c7088bec93761c6d688ddace87f7b4dd6d745d29e42618"
+    },
+    {
+      "path": "test-results/electron-notices-wrong-version.log",
+      "bytes": 2091,
+      "sha256": "84ef4baf8e913a14ebf9dbfbed393c9e24d4ea21602e5f4af076f3ca5d1e1e39"
+    }
+  ],
+  "completeBinarySbom": false,
+  "productionReleaseQualified": false,
+  "publicPreviewInstallerChanged": false,
+  "scope": "Adds both complete original Electron/Chromium notices to the development Mac package. Official release and locked npm archive checksums agree; lossless notice copies, the framework, the actual packaging hook and all added package records were verified. The package gate rejects the older missing-notice app. All previous app inventory entries and all compiled outputs remain byte-identical to the qualified native-preference app. Full hosted qualification of the expanded package remains pending. This does not independently rebuild Electron/Chromium or finish source obligations, the native/compiler license inventory, production signing or the full binary SBOM. The final hook also rejects an actual builder-version override before runtime extraction.",
+  "documentationValidation": [
+    {
+      "path": "test-results/electron-notices-format-final.log",
+      "bytes": 183,
+      "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+    },
+    {
+      "path": "test-results/electron-notices-website.log",
+      "bytes": 821,
+      "sha256": "f071f86862805faca63a6a8a30b980e120e7674c9d1598e23a8c13802212a91f"
+    },
+    {
+      "path": "test-results/electron-notices-skill-final.log",
+      "bytes": 122,
+      "sha256": "16bbf68e1cbc129aae8ce9e352583e63ebbaa00f2bccda0578bf139b2bff76dc"
+    },
+    {
+      "path": "test-results/electron-notices-skill-validation.log",
+      "bytes": 16,
+      "sha256": "db349825903d66adffea3ecf1bd8e1803043e8a71cf1a051235dabc5371f5bb0"
+    }
+  ]
+}
