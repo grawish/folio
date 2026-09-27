@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "status": "Local source, compiler integration and packaged IPC checks passed; broader native and hosted qualification pending",
+  "status": "Local source, compiler integrations, packaged build-request/workspace/chat checks and JavaScript reproduction passed; full hosted qualification pending",
   "focusedTestsPassed": 16,
   "sourceTestsPassed": 423,
   "typecheckPassed": true,
@@ -110,5 +110,26 @@
     "nativeSuites": 19,
     "newSuite": "build-requests",
     "hostedRunStatus": "not dispatched"
-  }
+  },
+  "implementationCommit": "321d96994e7e93c830893005c0f904077dc8a6cd",
+  "nativeSourceHashesMatchImplementationCommit": true,
+  "otherPackagedChecks": [
+    {
+      "suite": "workspace",
+      "passed": true,
+      "evidence": "test-results/workspace-uTwTZf",
+      "log": "test-results/bounded-build-workspace.log",
+      "logSha256": "8652c23f63c37a3510dcf0d786ee2bc777be50e57bd74b5750f0d69acff6efc6",
+      "scope": "Actual packaged workspace/autosave, conflict, write-failure and close/restart checks."
+    },
+    {
+      "suite": "chat",
+      "passed": true,
+      "evidence": "test-results/chat-SFF0wU",
+      "log": "test-results/bounded-build-chat.log",
+      "logSha256": "19bdd3fc99791e49da7754a08cf6ba85117c1bf759d81e40777a099bf1579b36",
+      "scope": "Production app workflows with synthetic source; chat uses the local provider protocol fixture, not a live AI subscription."
+    }
+  ],
+  "packageNote": "This local package predates the separately reviewed Electron-notice packaging change in PR 30. It is retained for behavioral regression evidence, not published as a new installer. Integrate current packaging before final hosted qualification."
 }
