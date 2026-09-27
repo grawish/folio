@@ -24,12 +24,15 @@ import {
   Square,
   MessageSquare,
   Send,
+  Sparkles,
   X,
   Trash2,
 } from 'lucide-react';
 import type { AnnotationTool, PdfAnnotation } from '../shared/ai';
 import { PdfAnnotations } from './PdfAnnotations';
+import { PdfChangeOverlay } from './PdfChangeOverlay';
 import { usePdfDocument } from '../usePdfDocument';
+import { usePdfChangeHighlight, type ChangeHighlightRequest } from '../usePdfChangeHighlight';
 import {
   PDF_LIMITS,
   pdfCanvasSize,
@@ -49,6 +52,7 @@ function PdfPageContent({
   onBusy,
   onReady,
   feedback,
+  changeOverlay,
 }: {
   document: PDFDocumentProxy;
   number: number;
@@ -65,6 +69,7 @@ function PdfPageContent({
     onAdd(note: PdfAnnotation): void;
     onSelect?(id: string): void;
   };
+  changeOverlay?: import('react').ReactNode;
 }) {
   const canvas = useRef<HTMLCanvasElement>(null);
   const text = useRef<HTMLDivElement>(null);
@@ -196,6 +201,7 @@ function PdfPageContent({
           />
         ))}
       </div>
+      {changeOverlay}
       {feedback && (
         <PdfAnnotations
           {...feedback}
@@ -223,6 +229,8 @@ export const PdfPreview = forwardRef<
     onAnnotations?(notes: PdfAnnotation[]): void;
     onAttach?(ids: string[]): void;
     focusNoteId?: string;
+    /** Triggers a translucent diff flash once `data` matches `changeHighlight.after`. */
+    changeHighlight?: ChangeHighlightRequest;
   }
 >(function PdfPreview(
   {
@@ -235,6 +243,7 @@ export const PdfPreview = forwardRef<
     onAnnotations,
     onAttach,
     focusNoteId,
+    changeHighlight,
   },
   ref,
 ) {
@@ -358,6 +367,18 @@ export const PdfPreview = forwardRef<
       else if (acceptedData === data && visibleReady) waiter.finish();
     }
   }, [data, acceptedData, error, visibleReady]);
+  // The flash only starts once the replacement PDF is the one actually
+  // displayed, its visible pages are painted, and there is no load/render
+  // error masking it — matching "wait until the PDF is visibly rendered".
+  const highlightActive =
+    !!changeHighlight && data === changeHighlight.after && visibleReady && !loading && !error;
+  const {
+    state: highlightState,
+    stops: highlightStops,
+    replay: replayHighlight,
+    next: nextChangeRegion,
+    previous: previousChangeRegion,
+  } = usePdfChangeHighlight(changeHighlight, highlightActive, visible.start, visible.end);
   useEffect(() => {
     const element = scroll.current;
     if (!element) return;
@@ -471,6 +492,44 @@ export const PdfPreview = forwardRef<
           >
             <Plus size={14} />
           </button>
+          {highlightStops.length > 0 && (
+            <>
+              <div className="control-divider" />
+              <button
+                className="icon-button"
+                title="Show changes"
+                aria-label={`Show changes (${highlightStops.length} ${highlightStops.length === 1 ? 'change' : 'changes'})`}
+                onClick={() => {
+                  navigate(highlightStops[0].page + 1);
+                  replayHighlight();
+                }}
+              >
+                <Sparkles size={14} />
+              </button>
+              <button
+                className="icon-button"
+                title="Previous change"
+                aria-label="Previous change"
+                onClick={() => {
+                  const stop = previousChangeRegion();
+                  if (stop) navigate(stop.page + 1);
+                }}
+              >
+                <ArrowUp size={12} />
+              </button>
+              <button
+                className="icon-button"
+                title="Next change"
+                aria-label="Next change"
+                onClick={() => {
+                  const stop = nextChangeRegion();
+                  if (stop) navigate(stop.page + 1);
+                }}
+              >
+                <ArrowDown size={12} />
+              </button>
+            </>
+          )}
           <div className="control-divider" />
           <button
             className="icon-button"
@@ -544,6 +603,18 @@ export const PdfPreview = forwardRef<
                               onSelect: onAnnotations ? selectNote : undefined,
                             }
                           : undefined
+                      }
+                      changeOverlay={
+                        changeHighlight && !highlightState.failed ? (
+                          <PdfChangeOverlay
+                            comparison={highlightState.pages.get(i)}
+                            phase={highlightState.phase}
+                            removedAdjacent={
+                              i === document.numPages - 1 &&
+                              highlightState.pages.get(document.numPages)?.status === 'removed'
+                            }
+                          />
+                        ) : undefined
                       }
                     />
                   )}

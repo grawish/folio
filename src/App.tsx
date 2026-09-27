@@ -28,6 +28,7 @@ import {
   X,
   MessageSquare,
   Code2,
+  GitBranch,
 } from 'lucide-react';
 import type {
   BuildResult,
@@ -43,6 +44,7 @@ import type { PaperSize } from './shared/template-catalog';
 import { TemplatePicker } from './components/TemplatePicker';
 import { LatexEditor, type EditorHandle } from './components/LatexEditor';
 import { PdfPreview, type PdfPreviewHandle } from './components/PdfPreview';
+import type { ChangeHighlightRequest } from './usePdfChangeHighlight';
 import { ActionMenu } from './components/ActionMenu';
 import { ProjectFiles } from './components/ProjectFiles';
 import { Modal } from './components/Modal';
@@ -56,6 +58,7 @@ import type {
   WorkspaceState,
 } from './shared/ai';
 import { ChatPanel } from './components/ChatPanel';
+import { GitPanel } from './components/GitPanel';
 import { SettingsModal } from './components/SettingsModal';
 import { InterruptedImports } from './components/InterruptedImports';
 import { VersionHistory } from './components/VersionHistory';
@@ -136,6 +139,7 @@ export default function App() {
   const [building, setBuilding] = useState(false);
   const [result, setResult] = useState<BuildResult | null>(null);
   const [lastGood, setLastGood] = useState<BuildResult | null>(null);
+  const [changeHighlight, setChangeHighlight] = useState<ChangeHighlightRequest>();
   const pdfPreview = useRef<PdfPreviewHandle>(null);
   const [autoCompile, setAutoCompile] = useState(
     () => localStorage.getItem('folio:auto') !== 'false',
@@ -174,7 +178,7 @@ export default function App() {
   const buildToken = useRef(0);
   const pendingAction = useRef<(() => void) | null>(null);
   const message = useCallback((text: string) => setToast(errorMessage(text)), []);
-  const [view, setView] = useState<'chat' | 'code'>('chat');
+  const [view, setView] = useState<'chat' | 'code' | 'git'>('chat');
   const [connections, setConnections] = useState<AISettings>({ connections: [], activeId: null });
   const [settingsTab, setSettingsTab] = useState<
     'general' | 'ai' | 'about' | 'privacy' | 'resources' | 'updates'
@@ -297,6 +301,7 @@ export default function App() {
       setActiveFile(next.mainFile);
       setResult(null);
       setLastGood(null);
+      setChangeHighlight(undefined);
       setBuilding(false);
       setLogsOpen(false);
       setSavedKey(next.directory ? keyOf(next) : '');
@@ -1100,6 +1105,16 @@ export default function App() {
         setLastGood(reply.build);
         setBuilding(false);
         setLogsOpen(false);
+        const afterPdf = reply.build.pdf,
+          beforeVersionId = reply.beforeVersionId;
+        if (afterPdf && beforeVersionId)
+          void desktop
+            .readVersion(next.id, beforeVersionId)
+            .then((before) => {
+              if (activeRun.current?.id !== id) return;
+              setChangeHighlight({ runId: id, before: before.pdf, after: afterPdf });
+            })
+            .catch(() => {});
       } else if (reply.status === 'complete' && reply.project)
         text =
           'The draft is saved in History. Your project changed while I was working, so I kept your newer edits. Open History to compare or restore the draft.';
@@ -1233,6 +1248,7 @@ export default function App() {
         diagnostics: [],
         log: '',
       });
+      setChangeHighlight(undefined);
       setResult(null);
       setDialog(null);
       setBuilding(false);
@@ -1697,6 +1713,10 @@ export default function App() {
                 <Code2 size={16} />
                 Code
               </button>
+              <button role="tab" aria-selected={view === 'git'} onClick={() => setView('git')}>
+                <GitBranch size={16} />
+                Git
+              </button>
               <button
                 className="history-button"
                 role="button"
@@ -1876,6 +1896,7 @@ export default function App() {
                 </div>
               )}
             </div>
+            {view === 'git' && <GitPanel projectId={project.id} />}
           </section>
           <PaneDivider
             key="preview-divider"
@@ -1894,6 +1915,7 @@ export default function App() {
               building={building}
               stale={stale}
               versionId={lastGood?.versionId}
+              changeHighlight={changeHighlight}
               annotations={workspace.annotations}
               onAnnotations={
                 workspaceReady

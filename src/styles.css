@@ -740,6 +740,71 @@ a {
   outline: 1px solid var(--link-outline);
 }
 
+.pdf-change-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.pdf-change-flash {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.pdf-change-flash.visible {
+  opacity: 1;
+  transition-duration: 0s;
+}
+
+.pdf-change-flash.fading {
+  opacity: 0;
+}
+
+.pdf-change-region {
+  position: absolute;
+  background: var(--green-marker);
+  opacity: 0.35;
+  border-radius: 2px;
+}
+
+.pdf-change-region.removed {
+  background: transparent;
+  border: 1.5px dashed var(--green);
+  opacity: 0.8;
+}
+
+.pdf-change-page-outline {
+  position: absolute;
+  inset: 3px;
+  border: 2px solid var(--green);
+  border-radius: 3px;
+}
+
+.pdf-change-page-label {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: var(--green);
+  color: var(--canvas);
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.pdf-change-removed-marker {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  transform: translateY(100%);
+  font-size: 10px;
+  color: var(--green);
+  text-align: center;
+  padding: 2px 0;
+}
+
 .paper-caption {
   font-size: 9px;
   letter-spacing: 0.5px;

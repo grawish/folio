@@ -157,5 +157,7 @@ export type AgentResult = {
   project?: import('./types').Project;
   build?: import('./types').BuildResult;
   version?: VersionInfo;
+  /** The pre-edit PDF's checkpoint, when one could be built or was already saved. */
+  beforeVersionId?: string;
   execution?: RunMetadata;
 };

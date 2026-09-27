@@ -1,5 +1,6 @@
 import { contextBridge, ipcRenderer } from 'electron';
 import type { DesktopAPI } from '../src/shared/types';
+import type { GitDiffTarget, GitOperationProgress } from '../src/shared/git';
 
 const api: DesktopAPI = {
   appUpdateStatus: () => ipcRenderer.invoke('updates:status'),
@@ -119,6 +120,52 @@ const api: DesktopAPI = {
       callback(event);
     ipcRenderer.on('agent:render', handler);
     return () => ipcRenderer.removeListener('agent:render', handler);
+  },
+  gitAvailability: () => ipcRenderer.invoke('git:availability'),
+  gitStatus: (projectId) => ipcRenderer.invoke('git:status', projectId),
+  gitInit: (projectId) => ipcRenderer.invoke('git:init', projectId),
+  gitClone: (id, url, directory) => ipcRenderer.invoke('git:clone', id, url, directory),
+  gitDiff: (projectId, target: GitDiffTarget) => ipcRenderer.invoke('git:diff', projectId, target),
+  gitStage: (projectId, paths) => ipcRenderer.invoke('git:stage', projectId, paths),
+  gitUnstage: (projectId, paths) => ipcRenderer.invoke('git:unstage', projectId, paths),
+  gitApplyPatch: (projectId, patch, options) =>
+    ipcRenderer.invoke('git:apply-patch', projectId, patch, options),
+  gitCommit: (projectId, message) => ipcRenderer.invoke('git:commit', projectId, message),
+  gitLog: (projectId, options) => ipcRenderer.invoke('git:log', projectId, options),
+  gitRestoreFiles: (projectId, hash, paths) =>
+    ipcRenderer.invoke('git:restore-files', projectId, hash, paths),
+  gitRevertCommit: (projectId, hash) => ipcRenderer.invoke('git:revert-commit', projectId, hash),
+  gitBranches: (projectId) => ipcRenderer.invoke('git:branches', projectId),
+  gitCreateBranch: (projectId, name, switchTo) =>
+    ipcRenderer.invoke('git:create-branch', projectId, name, switchTo),
+  gitSwitchBranch: (projectId, name) => ipcRenderer.invoke('git:switch-branch', projectId, name),
+  gitRenameBranch: (projectId, from, to) =>
+    ipcRenderer.invoke('git:rename-branch', projectId, from, to),
+  gitDeleteBranch: (projectId, name, force) =>
+    ipcRenderer.invoke('git:delete-branch', projectId, name, force),
+  gitMerge: (projectId, branch) => ipcRenderer.invoke('git:merge', projectId, branch),
+  gitMergeContinue: (projectId) => ipcRenderer.invoke('git:merge-continue', projectId),
+  gitMergeAbort: (projectId) => ipcRenderer.invoke('git:merge-abort', projectId),
+  gitConflict: (projectId, path) => ipcRenderer.invoke('git:conflict', projectId, path),
+  gitResolveConflict: (projectId, path, resolution) =>
+    ipcRenderer.invoke('git:resolve-conflict', projectId, path, resolution),
+  gitStashes: (projectId) => ipcRenderer.invoke('git:stashes', projectId),
+  gitStashSave: (projectId, message) => ipcRenderer.invoke('git:stash-save', projectId, message),
+  gitStashShow: (projectId, index) => ipcRenderer.invoke('git:stash-show', projectId, index),
+  gitStashApply: (projectId, index, pop) =>
+    ipcRenderer.invoke('git:stash-apply', projectId, index, pop),
+  gitStashDrop: (projectId, index) => ipcRenderer.invoke('git:stash-drop', projectId, index),
+  gitRemotes: (projectId) => ipcRenderer.invoke('git:remotes', projectId),
+  gitAddRemote: (projectId, name, url) => ipcRenderer.invoke('git:add-remote', projectId, name, url),
+  gitRemoveRemote: (projectId, name) => ipcRenderer.invoke('git:remove-remote', projectId, name),
+  gitFetch: (id, projectId, remote) => ipcRenderer.invoke('git:fetch', id, projectId, remote),
+  gitPull: (id, projectId) => ipcRenderer.invoke('git:pull', id, projectId),
+  gitPush: (id, projectId, options) => ipcRenderer.invoke('git:push', id, projectId, options),
+  gitCancel: (id) => ipcRenderer.invoke('git:cancel', id),
+  onGitProgress: (callback) => {
+    const handler = (_: unknown, event: GitOperationProgress) => callback(event);
+    ipcRenderer.on('git:progress', handler);
+    return () => ipcRenderer.removeListener('git:progress', handler);
   },
   onMenu: (callback) => {
     const handler = (_: unknown, action: string) => callback(action);
