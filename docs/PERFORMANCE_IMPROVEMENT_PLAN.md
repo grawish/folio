@@ -119,11 +119,37 @@ Maximum renderer timer lateness per edit ranges from 9.8 to 26.6 ms, and the lar
 
 ## Actual packaged app startup
 
-### Current source: editing before compiler readiness
+### Workspace opening before compiler readiness
 
-The next source change removes compiler preparation from workspace bootstrap. Bootstrap reads the compiler identity and restores the actual project; full preparation and inspection continue separately. The workspace can accept source edits, saves and chat drafts while Send, Compile and Export PDF remain blocked. All execution still obtains the ordinary verified runtime lease.
+The current implementation removes compiler preparation from workspace bootstrap. Bootstrap reads the compiler identity and restores the actual project; full preparation and inspection continue separately. The workspace can accept source edits, saves and chat drafts while Send, Compile and Export PDF remain blocked. All execution still obtains the ordinary verified runtime lease.
 
-The first native source observation reaches recovered editing in **409 ms** with no active compiler pointer yet. The test edits source, drafts a message and saves the exact compiler pin before preparation finishes, then closes, reopens and verifies the saved draft/source and eventual PDF. It also retains the early-close-before-recovery and failed-recovery protections. This sample has a synthetic recovered project and an early interruption, unlike the complete fresh/prepared package pairs below; it does not establish a speedup percentage, p95 or supported-device budget. A repeated final-package comparison remains required. The [walkthrough and screenshot](tutorials/first-resume.md#work-while-the-pdf-builder-gets-ready) identify this as development-source behavior, not the published preview-4 flow.
+The first native source observation reaches recovered editing in **409 ms** with no active compiler pointer yet. The test edits source, drafts a message and saves the exact compiler pin before preparation finishes, then closes, reopens and verifies the saved draft/source and eventual PDF. It also retains the early-close-before-recovery and failed-recovery protections. This sample has a synthetic recovered project and an early interruption, unlike the complete fresh/prepared package pairs below; it does not establish a speedup percentage, p95 or supported-device budget. The current unsigned-package launch pairs below add repeated observations; controlled before/after and supported-device comparisons remain required. The [walkthrough and screenshot](tutorials/first-resume.md#work-while-the-pdf-builder-gets-ready) identify this as development-source behavior, not the published preview-4 flow.
+
+### Current package: chat drafting before the first PDF
+
+The 27 September measurement uses the unchanged PDF.js-notice development app, app.asar SHA-256 `b3101633e1a7c78fe37789efe98a94ed442e0f927da03709959a17eff9cfbe3a`. Five new isolated profiles each launch twice: first with no prepared compiler, then after a normal close. The enhanced profiler types a short synthetic chat draft, checks it survives reopening, and verifies the exact Classic A4 source and compiler selection after both closes. No AI request is sent.
+
+```sh
+node scripts/profile-app.mjs /absolute/path/to/Folio.app/Contents/MacOS/Folio 5
+```
+
+| Pair | Fresh: draft accepted | Fresh: current PDF | Prepared: draft accepted | Prepared: current PDF |
+| --- | ---: | ---: | ---: | ---: |
+| 1 | 0.835 s | 52.620 s | 0.428 s | 4.251 s |
+| 2 | 0.457 s | 34.035 s | 0.425 s | 6.751 s |
+| 3 | 0.508 s | 52.191 s | 0.604 s | 6.939 s |
+| 4 | 0.461 s | 56.239 s | 0.525 s | 5.846 s |
+| 5 | 0.397 s | 34.474 s | 0.477 s | 5.304 s |
+
+The composer becomes enabled in **0.386–0.820 seconds** across all ten launches; a real draft is filled and checked in **0.397–0.835 seconds**. The compiler progress notice is still visible at workspace readiness in every case. All ten current PDFs render with the expected text and no renderer or sampler errors. Every pair retains the same source and exact compiler selection, and the prepared draft remains on disk. These observations support the separation of workspace readiness from compiler preparation on this Mac.
+
+The median fresh first-PDF observation is **52.191 seconds**; the prepared median is **5.846 seconds**. First-PDF time remains material and variable. These end-to-end times do not isolate preparation, runtime verification, TeX, recovery or rendering, so they do not establish the cause of the spread. The earlier backend evidence still supports profiling preparation and runtime verification first. No application speed change was made for this measurement, and the older runs used different app inputs and did not type a draft; do not calculate a before/after improvement from these tables.
+
+The profiler also reads Chromium's buffered paint entries. First contentful paint is **144–208 ms after renderer navigation**. This is a different clock origin from launch and can describe the loading screen; it is not complete workspace readiness or a physical-display measurement. The 1,089 Electron metric snapshots have peak summed working sets of **622.6–645.5 MiB** on fresh launches and **568.9–635.4 MiB** on prepared launches. Those sums exclude compiler children and can double-count shared pages.
+
+The host is an M4 Pro with 48 GiB RAM on macOS 27.0. OS caches were not purged; ordinary desktop activity and light documentation/status work continued. No other local Folio benchmark or native test ran concurrently; the hosted qualification used a separate machine. Five pairs are descriptive observations, not a population p95, supported-device acceptance, cold-disk result or production signed-installer measurement. The historical preview-4 download is unchanged.
+
+The [summary](performance/current-package-startup-summary.json), [all raw samples](performance/current-package-startup.json.gz) and [independent verification](releases/current-package-startup-verification.json) retain the exact source base, profiler/app/runtime/template hashes, host, timings and checks. The verifier recomputes every working-set sum, checks sample/time ordering, compares each final recovery/workspace file, and confirms the gzip round trip. All 39 compiled outputs and 3,982 compiler files match before and after the run. Event-level recovery/compile/render tracing, broader fixtures, supported Macs and whole-app resource budgets remain required.
 
 ### Earlier package baseline
 
@@ -148,7 +174,7 @@ All six launches reached the real Classic template PDF with no renderer or sampl
 
 Working-set numbers sum Electron's reported processes and may double-count shared pages. They exclude Tectonic/Biber children and are not a physical-memory or process-tree budget pass. CPU percentages are Electron's interval averages. Timing includes Playwright polling and instrumentation; three paired samples are not a reliable p95. `firstWindowMs` means the first window became available to automation, not a hardware measurement of its first painted pixel.
 
-### Current guided-recovery package: five launch pairs
+### Earlier guided-recovery package: five launch pairs
 
 A later [five-pair run](performance/save-recovery-app-baseline.json) measures the guided-recovery package, app.asar SHA-256 `dd9b1edd74789abe7b5f2da19fb6a1c8139f036304170f5685840ec01bb2ccf5`, with the same profiling script and M4 Pro host. The app hash and script hash were unchanged throughout. Run:
 
@@ -275,7 +301,7 @@ Targets below are acceptance targets for experiments, not achieved results.
 | Priority | Change to investigate | Why | Experiment target | Required protection |
 | --- | --- | --- | --- | --- |
 | 1 | Batch directory durability work within the unpublished runtime generation; first implementation achieves 36.1%, so the target remains open | About 31 s in verify/copy; nearly 4,000 directory syncs | At least 40% lower median preparation/copy time across five fresh profiles | Sync every required file and directory before publishing readiness; force-kill at every publication boundary; failed install preserves the previous compiler |
-| 1 | Recovery, editing, saves and chat drafting now open before compiler preparation in development source; finish repeated packaged/device measurements | The previous bootstrap waited for preparation; first source-native observation is 409 ms to recovered editing | Usable recovered project within the original plan's startup budget; progress remains visible until builds are ready | Load the real recovery project first; early close must preserve it; no compilation, export or AI apply may assume an unverified compiler |
+| 1 | Recovery, editing, saves and chat drafting now open before compiler preparation; extend the repeated package evidence to supported devices | Ten current-package launches accept chat drafts in 0.397–0.835 s; their first PDFs still take 4.25–56.24 s | Usable recovered project within the original plan's startup budget; progress remains visible until builds are ready | Load the real recovery project first; early close must preserve it; no compilation, export or AI apply may assume an unverified compiler |
 | 2 | Eliminate duplicate verification within one tightly scoped operation/verified lease, and assess safe reuse between requests | About 0.70–0.85 s of each small warm build precedes native execution | Median changed-source warm build below 0.5 s for this fixture, with runtime-acquire work below 0.2 s | No global forever-valid cache; changed/corrupt files, replacement paths and compiler pins must still fail before execution; mutation/replacement tests must defeat stale reuse |
 | 2 | Profile the self-test's TeX/Biber subprocess stages and first-execution behavior | Probe varies from 8.7 to 24.9 s | Attribute the variance first; target stable fresh preparation without first-user bibliography timeouts | Keep an actual offline bibliography self-test, immutable runtime files, restricted native execution and bounded timeouts |
 | 3 | Evaluate APFS clone/copy strategies and per-generation directory creation | Hundreds of megabytes and thousands of small files | Reduce I/O/metadata overhead without exceeding memory/disk budgets | Verify the resulting bytes and modes; retain independent versions through app replacement; handle non-APFS destinations explicitly |
@@ -286,7 +312,7 @@ Avoid treating the 700 ms source-edit debounce as compiler execution time. Measu
 
 ## Measurements still needed for the complete app report
 
-1. Add event-level recovery/compile/render timing and an actual first-paint marker to the five current-package launch pairs above. Expand sample count/device coverage for statistical performance claims, retaining failures.
+1. The ten current-package launches above now include buffered Chromium paint entries, verified draft input and close/reopen preservation. Add event-level recovery/compile/render timing and physical-display observations; extend the fixtures, sample count and supported-device coverage, retaining failures.
 2. The sixty warm edit-to-preview samples above now separate the visible debounce, compiler duration, other native handling and completed rendering. Break down the native self-test/build interval further into snapshot creation, runtime verification, TeX, Biber and PDF reading. Extend worker loading, first visible page and export readiness measurements to multi-file, bibliography and 100-page fixtures and cold caches.
 3. Measure AI edit requests, input-page rendering, candidate compilation, candidate-page rendering/review, retry and apply separately. Keep local protocol fixtures distinct from real-provider network latency.
 4. Extend the nine backend save/history cases above to autosave, Save As, source ZIP import/export, recovery and supported upper bounds, including larger PDFs/assets/chat images. Record actual UI responsiveness while checksums/inflation/history work runs.
