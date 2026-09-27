@@ -211,7 +211,10 @@
   },
   "nativeQualificationSuites": 17,
   "fullHostedQualification": {
-    "status": "not_dispatched"
+    "runId": 36347027297,
+    "url": "https://github.com/grawish/folio/actions/runs/36347027297",
+    "commit": "9f642c376fc03757050a1c85ac329e86150ac712",
+    "statusAtPublication": "in_progress"
   },
   "applicationSourceChanged": false,
   "productionReleaseQualified": false,
