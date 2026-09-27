@@ -1,3 +1,5 @@
+<!-- Generated from docs/BUILD_RECOVERY.md; run npm run skill:build after editing the guide. -->
+
 # Temporary build recovery
 
 When Folio builds a PDF, it works on a temporary copy of your source and images. After a normal build it removes that copy. In the development source, reopening Folio also cleans up recognized temporary copies left by a crashed app. Your project files, saved PDFs, conversation and History stay separate.
@@ -22,7 +24,7 @@ Before removing a dead owner's snapshot, Folio renames the containing job to `re
 
 The scan reads directory entries incrementally. It does not load all job records or source files into memory. A single record read is capped at 2,049 bytes, including a byte used to reject an oversized record. Failed allocation after a valid record is written clears the recognized empty job. A torn or missing record is preserved; no source is staged before the record write completes.
 
-The [compiler process watcher](COMPILER_RESOURCE_LIMITS.md#if-the-app-crashes) separately stops orphaned native work after parent death. Cleanup does not guess which unrelated processes it might be safe to kill.
+The [compiler process watcher](https://github.com/grawish/folio/blob/main/docs/COMPILER_RESOURCE_LIMITS.md#if-the-app-crashes) separately stops orphaned native work after parent death. Cleanup does not guess which unrelated processes it might be safe to kill.
 
 ## Verification and remaining work
 
@@ -30,6 +32,6 @@ The [compiler process watcher](COMPILER_RESOURCE_LIMITS.md#if-the-app-crashes) s
 
 `tests/integration/build-recovery.test.ts` uses the production Compiler to stage two real source snapshots, kills their owning processes before native execution, then checks startup cleanup and a new offline PDF build. The original project source, unmarked data and an engine-cache guard must survive, and the successful new job must also be removed.
 
-The [verification record](releases/build-workspace-recovery-verification.json) retains the exact source and log hashes, 392 source tests, 21 focused controls, 16 existing compiler integrations, the new recovery integration, and the packaged runtime/chat results. Full hosted qualification remains pending.
+The [verification record](https://github.com/grawish/folio/blob/main/docs/releases/build-workspace-recovery-verification.json) retains the exact source and log hashes, 392 source tests, 21 focused controls, 16 existing compiler integrations, the new recovery integration, and the packaged runtime/chat results. Full hosted qualification remains pending.
 
-These are process-interruption controls. They do not prove physical power-loss durability, acceptance on every supported Mac, large-backlog responsiveness, whole-profile storage quotas, or automatic removal of older unmarked folders. Those remain in [the release audit](RELEASE_GAP_AUDIT.md) and [performance plan](PERFORMANCE_IMPROVEMENT_PLAN.md#compiler-work-after-an-application-crash).
+These are process-interruption controls. They do not prove physical power-loss durability, acceptance on every supported Mac, large-backlog responsiveness, whole-profile storage quotas, or automatic removal of older unmarked folders. Those remain in [the release audit](RELEASE_GAP_AUDIT.md) and [performance plan](https://github.com/grawish/folio/blob/main/docs/PERFORMANCE_IMPROVEMENT_PLAN.md#compiler-work-after-an-application-crash).
