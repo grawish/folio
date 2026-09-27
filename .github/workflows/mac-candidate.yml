@@ -85,6 +85,10 @@ jobs:
             test-results/build-crash-*/recovered-chat.png
             test-results/build-crash-*/recovered.pdf
             test-results/build-crash-*/failure.png
+            test-results/recovery-writes-*/result.json
+            test-results/recovery-writes-*/recovery-retry.png
+            test-results/recovery-writes-*/recovery-retried.png
+            test-results/recovery-writes-*/failure.png
             test-results/preferences-*/result.json
             test-results/preferences-*/native-output.log
             test-results/preferences-*/save-error.png

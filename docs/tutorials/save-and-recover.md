@@ -14,6 +14,19 @@ If Folio says it is **finishing other workspace saves**, let the current work fi
 
 Close Folio normally and reopen it to check recovery. If a dialog asks about unsaved changes, choose the action that fits: save, keep the current project open, or discard only when you intend to lose those changes. Do not test forced crashes with your only copy of a real resume.
 
+## If recovery cannot be saved
+
+In current development builds, a recovery error stays on screen with a **Retry recovery** button. Your edits are still open.
+
+1. Keep Folio open and check that your Mac has free space.
+2. Fix any access problem with Folio's data folder.
+3. Click **Retry recovery**. Folio saves the newest draft, including changes you made after the error.
+4. Wait for the recovery warning to disappear. You can also use **Save** to keep the project in your chosen folder; read its result separately.
+
+![Recovery and Settings each have their own retry button](../images/recovery-retry.png)
+
+If there is also a Settings warning, click **Retry settings save** for that separate problem. Saving settings does not dismiss an unresolved recovery error. These screenshot errors were deliberately created with a sample document. This feature is newer than preview 4; see [recovery details and limits](../RECOVERY_WRITES.md).
+
 ## When another app edits the folder
 
 1. Choose **Review changes** when Folio reports outside-file changes.

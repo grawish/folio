@@ -283,5 +283,27 @@
     "liveAI": false,
     "oversizedCacheReadingSimulated": true,
     "scope": "Actual packaged UI with synthetic sample source and scoped file-size observation; no physical disk was filled."
+  },
+  {
+    "file": "docs/images/recovery-retry.png",
+    "sourceSuite": "recovery-writes",
+    "sourceCapture": "recovery-retry.png",
+    "sourceEvidence": "test-results/recovery-writes-PjxTKj/result.json",
+    "sha256": "d1df29a5b26268c1312ac2f2ce00e3dd500ba53a22560845b313e4492afc44a2",
+    "synthetic": true,
+    "liveAI": false,
+    "writeFailuresSimulated": true,
+    "scope": "Actual packaged UI with scoped recovery/settings rename failures; automatic compile is off. No physical power-loss claim."
+  },
+  {
+    "file": "docs/images/recovery-retried.png",
+    "sourceSuite": "recovery-writes",
+    "sourceCapture": "recovery-retried.png",
+    "sourceEvidence": "test-results/recovery-writes-PjxTKj/result.json",
+    "sha256": "29923561369d4720e67cd37f79a95c8e25f5ae7ac7cf04dbd2d4079e71ade5f7",
+    "synthetic": true,
+    "liveAI": false,
+    "writeFailuresSimulated": true,
+    "scope": "Actual packaged UI with scoped recovery/settings rename failures; automatic compile is off. No physical power-loss claim."
   }
 ]

@@ -569,11 +569,16 @@ try {
     )
     .not.toBe(originalId);
   projectId = JSON.parse(await fs.readFile(path.join(copied, 'resume.project.json'), 'utf8')).id;
+  // Publishing the folder precedes final recovery and the renderer identity handoff.
+  // Wait until Save As releases its inert workspace before sending input.
+  await expect(page.locator('.app-shell')).toHaveAttribute('aria-busy', 'false');
+  await expect(composer()).toBeEnabled();
   await expect(composer()).toHaveValue('Keep this unsent draft.');
   await expect
     .poll(async () => (await readWorkspace()).messages.length)
     .toBe(before.messages.length);
   await composer().fill('Draft in copied project.');
+  await expect(composer()).toHaveValue('Draft in copied project.');
   await expect.poll(async () => (await readWorkspace()).draft).toBe('Draft in copied project.');
   expect((await page.evaluate((id) => window.folio.loadWorkspace(id), originalId)).draft).toBe(
     'Keep this unsent draft.',

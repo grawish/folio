@@ -11,6 +11,7 @@ export const macReleaseSuites = [
   'build-requests',
   'engine-cache',
   'preferences',
+  'recovery-writes',
   'workspace',
   'history-storage',
   'diagnostics',

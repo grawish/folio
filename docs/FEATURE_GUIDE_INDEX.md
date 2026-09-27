@@ -5,6 +5,7 @@ Every currently implemented feature group below has a plain-language walkthrough
 | Feature | Tutorial | Screenshot demo |
 | --- | --- | --- |
 | Compiler cache limits | [Walkthrough](tutorials/settings-and-compiler.md#if-compiler-helper-files-reach-their-limit) | [Screenshot](images/cache-limit.png) · Development app · simulated oversized-cache reading |
+| Retry local recovery | [Walkthrough](tutorials/save-and-recover.md#if-recovery-cannot-be-saved) | [Screenshot](images/recovery-retry.png) · Development app · simulated write failures |
 | Your first resume | [Walkthrough](tutorials/first-resume.md) | [Screenshot](images/workspace.png) · Real app · synthetic project |
 | Work during compiler preparation | [Walkthrough](tutorials/first-resume.md#work-while-the-pdf-builder-gets-ready) | [Screenshot](images/startup-chat.png) · Current development source · recovered synthetic project |
 | Templates and paper size | [Walkthrough](tutorials/first-resume.md) | [Screenshot](images/templates.png) · Real app · synthetic project |

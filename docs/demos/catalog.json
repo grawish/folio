@@ -530,5 +530,19 @@
     ],
     "kind": "Real development app \u00b7 simulated oversized-cache reading",
     "alt": "Folio showing a compiler-cache limit message and the prior successful PDF beside the current source"
+  },
+  {
+    "id": "recovery-retry",
+    "title": "Retry a recovery save",
+    "image": "recovery-retry.png",
+    "guide": "tutorials/save-and-recover.md#if-recovery-cannot-be-saved",
+    "description": "Keep your edits open while fixing a local recovery-save problem, then save the newest draft with one retry.",
+    "steps": [
+      "Keep Folio open and check free space and folder access.",
+      "Click Retry recovery to save your latest draft.",
+      "Wait for the warning to disappear; retry Settings separately if needed."
+    ],
+    "kind": "Real development app \u00b7 simulated write failures",
+    "alt": "Folio showing separate Retry recovery and Retry settings save buttons above a synthetic source document"
   }
 ]

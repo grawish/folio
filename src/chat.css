@@ -348,7 +348,8 @@
 .toast .icon-button {
   pointer-events: auto;
 }
-.preference-error .button {
+.preference-error .button,
+.recovery-error .button {
   pointer-events: auto;
   color: var(--toast-ink);
   background: transparent;
@@ -1045,4 +1046,23 @@
   padding: 12px;
   border: 1px solid var(--line);
   border-radius: 10px;
+}
+
+.notifications {
+  position: fixed;
+  top: 154px;
+  right: 20px;
+  max-width: min(420px, calc(100vw - 40px));
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  z-index: 30;
+  pointer-events: none;
+}
+.notifications .toast {
+  position: static;
+  width: fit-content;
+  max-width: 100%;
+  transform: none;
 }
