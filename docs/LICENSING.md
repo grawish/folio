@@ -22,6 +22,19 @@ The first local inventory collected 22 installed npm production packages and Ele
 
 The [packaged Mac app inventory](MAC_APP_INVENTORY.md) now records every physical file, directory and internal link in one exact development app, verifies its runtime manifest and emits a schema-validated CycloneDX record with explicitly incomplete component coverage. It provides the artifact inventory to connect with the source evidence below. Embedded archives, linked components, complete license mapping and the final signed-app SBOM remain open. Its vendored CycloneDX schemas retain their original Apache 2.0 license under `resources/sbom-schema/`; the schema validators are developer dependencies.
 
+## Bundle original JavaScript dependency notices
+
+Current development packages include `Contents/Resources/npm-notices/`: 36 unchanged original notice files plus a source index and guide. The index covers all 38 installed npm production packages on Apple silicon, including optional or potentially unused dependencies. It records the exact package versions, publisher archives, npm SHA-512 integrity values and notice SHA-256 digests. All 38 complete publisher archives (27,952,156 bytes) were checked against `package-lock.json`; every copied notice matches its archive bytes.
+
+```sh
+python3 scripts/collect-npm-license-materials.py
+python3 scripts/collect-npm-license-materials.py --offline
+```
+
+The collector retains the original archives and texts under ignored `artifacts/license-materials/npm/`. It reads archive members without extracting paths, installing packages or running their code. Nine offline controls cover interrupted downloads, changed archives/notices, wrong identities/declarations, missing extra notices, duplicate or unsafe paths, links, destination names and npm integrity mismatches. The actual Mac package gate rejects missing, changed, linked or extra bundled files, including altered source documentation.
+
+`lazy-val` 1.0.5 and `@napi-rs/canvas-darwin-arm64` 1.0.9 declare MIT but have no separate notice file in their npm archives. Both remain explicit gaps; no copyright statement is invented. The older `app-update-notices.txt` remains included. This broader source collection does not assert that optional native canvas is shipped, close the linked-component SBOM, or replace the Electron/Chromium and compiler audits. See [source index](../resources/npm-notices/SOURCES.json) and [verification](releases/npm-notices-verification.json).
+
 ## Collect and bundle compiler-font notices
 
 Current development packages include fifteen unchanged original notice files and a source guide in `Folio.app/Contents/Resources/tex-font-notices/`. These cover all **63 font binaries** in the included compiler bundle: Latin Modern, Latin Modern Math, Roboto/Condensed/Slab, Source Sans Pro and Font Awesome 5 Free. Their original terms remain separate from Folio's noncommercial license. The older preview-4 download predates this addition.

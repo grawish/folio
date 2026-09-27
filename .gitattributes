@@ -1,3 +1,6 @@
 # Preserve original upstream notice bytes, including their line endings.
 resources/tex-font-notices/* -text
 resources/tex-resource-notices/* -text
+
+# Preserve publisher license bytes, including their original final blank lines.
+resources/npm-notices/*LICENSE* -whitespace

@@ -1,0 +1,296 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-27T14:26:16.787Z",
+  "passed": true,
+  "baseCommit": "b3efc9de003ce9ce1f02a995e485cf3a2a4eea3b",
+  "applicationCodeChanged": false,
+  "packagedNoticeFilesChanged": true,
+  "sourceInputs": [
+    {
+      "file": "scripts/collect-npm-license-materials.py",
+      "sha256": "f85b7e750cf29d4e9769e12c5fc205de1611ce9baafa7f43490ee4b54ae2f8fa"
+    },
+    {
+      "file": "scripts/verify-npm-notices.ts",
+      "sha256": "141f1531f68ce7845537694901155c8d07a54bd4bbe163d6334e91015d20bd95"
+    },
+    {
+      "file": "scripts/verify-mac-package.mjs",
+      "sha256": "853108cd164aea98cc3d27af1fe96f61498040e4031d9b450fd470b06c245943"
+    },
+    {
+      "file": "tests/npm-license-materials.py",
+      "sha256": "f35d91027157b88941e9e39c3bff594979c215c2ec4108f4321b6e175f99fbc1"
+    },
+    {
+      "file": "tests/npm-notices.test.ts",
+      "sha256": "13a6a4d2e3e434e7a5a89d28d20b0eac56a128fdcf21e061097d5c48f066af5e"
+    },
+    {
+      "file": "package.json",
+      "sha256": "a0862c1bc43e22be9563146a4a93f5b438cdd0b42d5312a340f29c2ad1b307fa"
+    },
+    {
+      "file": "package-lock.json",
+      "sha256": "f49e1352767126ce8d3c894ac5bfdc4d39fc951fbe1efe7283ca4ee4d991ae00"
+    },
+    {
+      "file": "THIRD_PARTY_NOTICES.md",
+      "sha256": "aa15ed36914e6c56e4fd3b26dc4b5259451e6fee9b1e412c51785a913d521fa1"
+    },
+    {
+      "file": "resources/npm-notices/SOURCES.json",
+      "sha256": "2ee0ac536ad0a4136bb3c849a3dbb543322aac0a5d2c623a19308b433edfb347"
+    },
+    {
+      "file": "resources/npm-notices/README.md",
+      "sha256": "fc3a2562eac904d2b5615780202ce4baa6f3bc8c04f34091fa0b13eae83ab944"
+    }
+  ],
+  "publisherArchives": {
+    "count": 38,
+    "bytes": 27952156,
+    "npmIntegrityVerified": true,
+    "originalNoticeFiles": 36,
+    "originalNoticeBytes": 63998
+  },
+  "archiveControls": {
+    "testsPassed": 9,
+    "logSha256": "203e8d11dc9529763cb172c4d4acdffe3b67db7d123ed6f2223ef9c377a8923b"
+  },
+  "packageControls": {
+    "testsPassed": 2,
+    "logSha256": "6f7af499e9579b230df538270364fdc94c3e8d6234b868e3b3e7c4cbcd84e240"
+  },
+  "offlineReplay": {
+    "passed": true,
+    "filesCompared": 76,
+    "bytesCompared": 28059858
+  },
+  "actualPackage": {
+    "passed": true,
+    "checkedAt": "2026-09-27T14:26:16.787Z",
+    "app": "release/npm-notices/mac-arm64/Folio.app",
+    "appAsarSha256": "867f73ebb8e4b821964a5aa19cd9fd4751aabb88d8c4350bb266c89e9a00e05e",
+    "compiledFilesMatched": 39,
+    "compiledOutputsUnchanged": true,
+    "originalLicenseAndNoticeTextsMatch": true,
+    "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+    "runtimeFilesVerified": 3982,
+    "npmNotices": {
+      "originalNoticeFiles": 36,
+      "indexedPackages": 38,
+      "missingOriginalText": [
+        "@napi-rs/canvas-darwin-arm64",
+        "lazy-val"
+      ],
+      "sourceIndexSha256": "2ee0ac536ad0a4136bb3c849a3dbb543322aac0a5d2c623a19308b433edfb347",
+      "records": [
+        {
+          "path": "README.md",
+          "bytes": 1766,
+          "sha256": "fc3a2562eac904d2b5615780202ce4baa6f3bc8c04f34091fa0b13eae83ab944"
+        },
+        {
+          "path": "SOURCES.json",
+          "bytes": 31083,
+          "sha256": "2ee0ac536ad0a4136bb3c849a3dbb543322aac0a5d2c623a19308b433edfb347"
+        },
+        {
+          "path": "argparse--LICENSE",
+          "bytes": 12775,
+          "sha256": "de4d1f2d2ad5ad0cfd1657a106476b31cb5db5ef9d1ff842b237c0c81f0c8a23"
+        },
+        {
+          "path": "builder-util-runtime--LICENSE",
+          "bytes": 1084,
+          "sha256": "bed8d0ab3e6031817f775a641ff37313b0f5591bc8ba0ed79b978dafbd4231ce"
+        },
+        {
+          "path": "codemirror--autocomplete--LICENSE",
+          "bytes": 1118,
+          "sha256": "05c6130cda97e7600ca91427a41e8a065efcf82365fc0293e7de80faec494c07"
+        },
+        {
+          "path": "codemirror--commands--LICENSE",
+          "bytes": 1118,
+          "sha256": "05c6130cda97e7600ca91427a41e8a065efcf82365fc0293e7de80faec494c07"
+        },
+        {
+          "path": "codemirror--language--LICENSE",
+          "bytes": 1118,
+          "sha256": "05c6130cda97e7600ca91427a41e8a065efcf82365fc0293e7de80faec494c07"
+        },
+        {
+          "path": "codemirror--legacy-modes--LICENSE",
+          "bytes": 1118,
+          "sha256": "05c6130cda97e7600ca91427a41e8a065efcf82365fc0293e7de80faec494c07"
+        },
+        {
+          "path": "codemirror--search--LICENSE",
+          "bytes": 1118,
+          "sha256": "05c6130cda97e7600ca91427a41e8a065efcf82365fc0293e7de80faec494c07"
+        },
+        {
+          "path": "codemirror--state--LICENSE",
+          "bytes": 1118,
+          "sha256": "05c6130cda97e7600ca91427a41e8a065efcf82365fc0293e7de80faec494c07"
+        },
+        {
+          "path": "codemirror--view--LICENSE",
+          "bytes": 1118,
+          "sha256": "05c6130cda97e7600ca91427a41e8a065efcf82365fc0293e7de80faec494c07"
+        },
+        {
+          "path": "crelt--LICENSE",
+          "bytes": 1089,
+          "sha256": "23852ebf6aef7fadffc92514b3c5df163a8651f2c3ed0dbb494cb49d93bd5de5"
+        },
+        {
+          "path": "debug--LICENSE",
+          "bytes": 1139,
+          "sha256": "3a61c6c96caf5c1d9b623fb9b04c822b783dfcb78aa7e49c76a3f643e6ed7f95"
+        },
+        {
+          "path": "electron-updater--LICENSE",
+          "bytes": 1084,
+          "sha256": "bed8d0ab3e6031817f775a641ff37313b0f5591bc8ba0ed79b978dafbd4231ce"
+        },
+        {
+          "path": "fflate--LICENSE",
+          "bytes": 1069,
+          "sha256": "0a1df3a083d0c010560aa342e87959c8c1070e6fd54545741f083f22d0c8b551"
+        },
+        {
+          "path": "fs-extra--LICENSE",
+          "bytes": 1084,
+          "sha256": "1e76029602ae9b21cc4e612db2496d92febed882ba13ba745f8b3309e85f9d39"
+        },
+        {
+          "path": "graceful-fs--LICENSE",
+          "bytes": 791,
+          "sha256": "f65c5d9f22a317b2a10803bd1868461ce6499c2ed7217bc80c0cc772a748789c"
+        },
+        {
+          "path": "js-yaml--LICENSE",
+          "bytes": 1084,
+          "sha256": "a07bc24468b9654ce76a547d47a2db282d07733b715db4c73a98bd63961f9550"
+        },
+        {
+          "path": "jsonfile--LICENSE",
+          "bytes": 1110,
+          "sha256": "a9801fb52ba22ef808682a094da8a7a480584b7ed0dfd0d888ab543616335031"
+        },
+        {
+          "path": "lezer--common--LICENSE",
+          "bytes": 1113,
+          "sha256": "568902fb66eaf1f11750e966b33fd7b5d7c618e65af09f35ef843635bcf5f1ba"
+        },
+        {
+          "path": "lezer--highlight--LICENSE",
+          "bytes": 1113,
+          "sha256": "568902fb66eaf1f11750e966b33fd7b5d7c618e65af09f35ef843635bcf5f1ba"
+        },
+        {
+          "path": "lezer--lr--LICENSE",
+          "bytes": 1113,
+          "sha256": "568902fb66eaf1f11750e966b33fd7b5d7c618e65af09f35ef843635bcf5f1ba"
+        },
+        {
+          "path": "lodash.escaperegexp--LICENSE",
+          "bytes": 1951,
+          "sha256": "ffd8b33b354585f4ce119f19c53728281e48a97b074491eb6bf6d5c5ff305272"
+        },
+        {
+          "path": "lodash.isequal--LICENSE",
+          "bytes": 1950,
+          "sha256": "e159c6d48c989185448658f276375bfb2300362ec6d4ae5525a2d49c4bcb947d"
+        },
+        {
+          "path": "lucide-react--LICENSE",
+          "bytes": 3208,
+          "sha256": "b495047bd93a9b06913511076f504daba17d5bbeb3e0650f3bb53a4220329c57"
+        },
+        {
+          "path": "marijn--find-cluster-break--LICENSE",
+          "bytes": 1102,
+          "sha256": "9360b00fdd091f05c783b568bdd46c679c41b72415599252de98949462ea1acb"
+        },
+        {
+          "path": "ms--license.md",
+          "bytes": 1079,
+          "sha256": "1662fae9b5314d11cf51284e2dcd1f006a354f7343f08712a730fcff9a359801"
+        },
+        {
+          "path": "napi-rs--canvas--LICENSE",
+          "bytes": 1075,
+          "sha256": "8802fecf9da4367bc23bcf20b21cc143785fc6c92b152f3fa7fbe6ce08d344d6"
+        },
+        {
+          "path": "pdfjs-dist--LICENSE",
+          "bytes": 10174,
+          "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+        },
+        {
+          "path": "react--LICENSE",
+          "bytes": 1088,
+          "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+        },
+        {
+          "path": "react-dom--LICENSE",
+          "bytes": 1088,
+          "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+        },
+        {
+          "path": "sax--LICENSE.md",
+          "bytes": 1552,
+          "sha256": "8a1af140fdfbf5afd3df27f7e662f989c5b963a300020dfafce42033cae9e004"
+        },
+        {
+          "path": "scheduler--LICENSE",
+          "bytes": 1088,
+          "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+        },
+        {
+          "path": "semver--LICENSE",
+          "bytes": 765,
+          "sha256": "4ec3d4c66cd87f5c8d8ad911b10f99bf27cb00cdfcff82621956e379186b016b"
+        },
+        {
+          "path": "style-mod--LICENSE",
+          "bytes": 1100,
+          "sha256": "cb4474e26547397169061d3586c00022cda5330a1b64fa13e872319f3b63aff1"
+        },
+        {
+          "path": "tiny-typed-emitter--LICENSE",
+          "bytes": 1104,
+          "sha256": "4b3faf884ee71eec3df920b66c98fc6618af28e824cf3a32ef3d8774048cc76d"
+        },
+        {
+          "path": "universalify--LICENSE",
+          "bytes": 1100,
+          "sha256": "3fda5977c0904e226190b4e21d64340c1731e2142d6fe5f3dee0090a216b8b63"
+        },
+        {
+          "path": "w3c-keyname--LICENSE",
+          "bytes": 1100,
+          "sha256": "869c30f368eb08735e779027b9f4bc9fea2f39624351856aebe42741f0bc0884"
+        }
+      ]
+    },
+    "existingFontNoticeFiles": 16,
+    "existingTexResourceNoticeFiles": 104,
+    "productionSigningVerified": false,
+    "fullNativeQualification": false
+  },
+  "missingOriginalNoticeTexts": [
+    "@napi-rs/canvas-darwin-arm64",
+    "lazy-val"
+  ],
+  "independentVerifierCorrection": {
+    "initialFailure": "The local comparison helper looked for the runtime under darwin-arm64 instead of using runtime-config.mjs. The corrected helper uses the same configured directory as the package build; all subsequent byte comparisons pass. No app change resulted.",
+    "initialLogSha256": "8866a23e639522a44d51307486885501751e729fdf035a554ade1efd51ad792d",
+    "finalHelperSha256": "4a5c786f3ba331481003fe8c552c715b03f19b367c9d0309980c00c1bceb44d1"
+  },
+  "scope": "Original notices for all installed npm production packages on Apple silicon, including optional or potentially unused packages. Exact publisher archive provenance and local unsigned package contents, not a complete linked-component SBOM, license clearance, complete native acceptance or production signed release. No installer or replacement of preview-4 is published."
+}

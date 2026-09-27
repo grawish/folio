@@ -34,6 +34,8 @@ const texFontNotices = await verifyTexFontNotices(
 const texResourceNotices = await verifyTexResourceNotices(
   path.join(app, 'Contents/Resources/tex-resource-notices'),
 );
+const { verifyNpmNotices } = await tsImport('./verify-npm-notices.ts', import.meta.url);
+const npmNotices = await verifyNpmNotices(path.join(app, 'Contents/Resources/npm-notices'));
 const architecture = execFileSync(
   '/usr/bin/lipo',
   ['-archs', path.join(app, 'Contents/MacOS/Folio')],
@@ -151,6 +153,7 @@ const result = {
   runtimeManifestMatches,
   texFontNotices,
   texResourceNotices,
+  npmNotices,
   ...(signing ? { signing } : {}),
   appBytes,
   hashes,
