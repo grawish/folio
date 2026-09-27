@@ -1,0 +1,183 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T13:43:32.065706+00:00",
+  "sourceBaseCommit": "b1d0adf062174e35126b14ddfc5830e3113ee35e",
+  "summary": {
+    "compiledModulePayloadFiles": 99,
+    "distinctCompiledModules": 88,
+    "sourceArchives": 41,
+    "sourceArchiveBytes": 38610746,
+    "ambiguousSourceAssociations": 6,
+    "generatedXsReviewRequired": 10,
+    "sourceMaterialFiles": 352,
+    "newExactNativeRebuilds": 0
+  },
+  "independentChecks": {
+    "retainedFilesVerified": 393,
+    "originalSourceMaterialsVerified": 352,
+    "sourceArchivesVerified": 41,
+    "modulePayloadFilesVerified": 99,
+    "independentlyInspectedBinaries": 88,
+    "nmExportsMatched": true,
+    "otoolDependenciesMatched": true,
+    "existingDylibInspectionsUnchanged": 14,
+    "byteIdenticalReplayFiles": 394
+  },
+  "unbundledNonSystemReferences": [
+    "/opt/local/lib/libX11.6.dylib",
+    "/opt/local/lib/mysql57/mysql/libmysqlclient.20.dylib"
+  ],
+  "ambiguousSourceModules": [
+    "Encode::Byte",
+    "Encode::CN",
+    "Encode::EBCDIC",
+    "Encode::KR",
+    "Encode::Symbol",
+    "Encode::TW"
+  ],
+  "generatedXsReviewRequired": [
+    "Encode::Byte",
+    "Encode::CN",
+    "Encode::EBCDIC",
+    "Encode::EUCJPASCII",
+    "Encode::HanExtra",
+    "Encode::JIS2K",
+    "Encode::JP",
+    "Encode::KR",
+    "Encode::Symbol",
+    "Encode::TW"
+  ],
+  "checks": {
+    "newOfflineControlsPassed": 9,
+    "existingNativeControlsPassed": 7,
+    "formattingPassed": true,
+    "websitePassed": true,
+    "websiteWidths": [
+      1440,
+      390
+    ]
+  },
+  "tools": [
+    {
+      "path": "scripts/collect-biber-module-materials.py",
+      "bytes": 12227,
+      "sha256": "9350e711c7f4181d1d679b55d8654ec4b5b5f88a6901793f9d35ce8b05452864"
+    },
+    {
+      "path": "scripts/collect-biber-native-materials.py",
+      "bytes": 14246,
+      "sha256": "d8409aa0e0f2f7a8923f96da040c8ca019cc2e4540ed17998f864bde0454e34e"
+    },
+    {
+      "path": "scripts/collect-biber-cpan-materials.py",
+      "bytes": 12796,
+      "sha256": "f1554cf322ecfcda786589f33c48da23370f0f430b911d91be95d38fa96fd41c"
+    },
+    {
+      "path": "scripts/collect-biber-build-evidence.py",
+      "bytes": 19517,
+      "sha256": "d3f9ed3a8248a4ce628b5d5f32e8cfd0bfaaab69b67713c1b0f023b2ec685e03"
+    },
+    {
+      "path": "scripts/collect-rust-license-materials.py",
+      "bytes": 15721,
+      "sha256": "20518ffb06eebee5f9107333f85f98a5fa9fa488557386f109c9ab83e951eaf1"
+    },
+    {
+      "path": "resources/biber-module-sources.lock.json",
+      "bytes": 101152,
+      "sha256": "5d8378cfcdea944c548811c98f2e4a6d5b5cf63449f0e8b42efd096078143972"
+    },
+    {
+      "path": "resources/biber-build-provenance.lock.json",
+      "bytes": 3783,
+      "sha256": "a7a53f3657ea2aeb98431edb89896bb8ff48ad79a2c342725d18c28c5a76c0d6"
+    },
+    {
+      "path": "resources/biber-cpan-sources.lock.json",
+      "bytes": 117605,
+      "sha256": "e000085cd45f2d475ddcd96426af92227178a5aa9d3e69860a022778fbf3b482"
+    },
+    {
+      "path": "tests/biber-module-materials.py",
+      "bytes": 7322,
+      "sha256": "67003675c07ff34f59082bc99f570e78592f8b46f56df5e9d69ba851ce8a5bfb"
+    },
+    {
+      "path": "tests/biber-native-materials.py",
+      "bytes": 6691,
+      "sha256": "9666b97e1054d0485576962c39cd2cac379fe5101930a4ecb13b0d54da5be34a"
+    },
+    {
+      "path": "test-results/verify-biber-modules.py",
+      "bytes": 4570,
+      "sha256": "74aee2e5fa869439128651839d8a493560e94fc28c955802031d1240b7a54d7b"
+    }
+  ],
+  "independentModuleInspections": {
+    "path": "test-results/biber-module-independent-checks.json",
+    "bytes": 35224,
+    "sha256": "2ebe19671687627bdcdeae984ee920eed0b99c387a6c31b5ffb79073d42004d4"
+  },
+  "retainedInventory": {
+    "path": "artifacts/license-materials/biber-modules/inventory.json",
+    "bytes": 300852,
+    "sha256": "2f50e0949095e26197c0991ba8a3a13c5dafcd206dbf78dd02b55dd7e1c25518"
+  },
+  "publishedInventory": {
+    "path": "docs/releases/biber-module-inventory.json.gz",
+    "bytes": 51627,
+    "sha256": "d94e3ae899f84c8680b7c6091dbbecc2a2a7cca45c1c7c1066d1f77e78d23d14"
+  },
+  "logs": [
+    {
+      "path": "test-results/biber-module-collection.log",
+      "bytes": 262,
+      "sha256": "bba5e6c933b6010495217e7beb8fa7e7468e31fb3bf7450e011c21fae0c1aaf8"
+    },
+    {
+      "path": "test-results/biber-module-independent.log",
+      "bytes": 589,
+      "sha256": "3221606f111e8ca1fbf089126928effdc11fb3a4b83d19028da3d85d3e4dd4ba"
+    },
+    {
+      "path": "test-results/biber-module-tests.log",
+      "bytes": 107,
+      "sha256": "d9d734ee1c2de67b748aeef1c4126433aa438ad8375ca953916f12b1df11414d"
+    },
+    {
+      "path": "test-results/biber-module-native-regression.log",
+      "bytes": 105,
+      "sha256": "e586fc0f3bb2a05f4c80f07d1b4c6171e830592f6c7aaf70d4af3b0aa3ebd072"
+    },
+    {
+      "path": "test-results/biber-module-format.log",
+      "bytes": 183,
+      "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+    },
+    {
+      "path": "test-results/biber-module-website.log",
+      "bytes": 821,
+      "sha256": "aee8d6d761cab51aa5b6b5bff29250ebb12e431751517c773e7c8b5337ac07d6"
+    },
+    {
+      "path": "test-results/biber-module-skill.log",
+      "bytes": 122,
+      "sha256": "50338b830dfd8bd541091b249b7158234bed093e1dd29fa1df03ae9437ca00bd"
+    }
+  ],
+  "applicationCodeChanged": false,
+  "runtimeInputsChanged": false,
+  "packagedNoticeTextChanged": true,
+  "newNativeQualificationRun": false,
+  "releaseAuditComplete": false,
+  "limits": [
+    "Exported entry points and exact paired Perl files establish source associations, not native build versions, vendor patches or byte-identical compiled binaries.",
+    "All matching candidate archives are retained where paired source bytes are shared by multiple releases; no ambiguous version is silently selected.",
+    "Some Encode XS sources are generated. Their paired modules and full original archives are retained; their generated XS inputs still require review.",
+    "Dependency paths and basename candidates are static references, not proof of runtime resolution. X11 and MySQL client references have no bundled library candidate.",
+    "Static/vendored native dependencies, complete license obligations, corresponding-source publication, production signing and the final app SBOM remain open.",
+    "No native binary was rebuilt; prior exact source/generated-byte coverage remains 3805 of 3932 payload files, leaving 127 gaps.",
+    "The existing unsigned font-notice package qualification at 662c411 does not qualify the current notice text or a production signed application."
+  ]
+}

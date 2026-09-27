@@ -1,0 +1,3327 @@
+{
+  "schemaVersion": 1,
+  "foundationLockSha256": "a7a53f3657ea2aeb98431edb89896bb8ff48ad79a2c342725d18c28c5a76c0d6",
+  "cpanLockSha256": "e000085cd45f2d475ddcd96426af92227178a5aa9d3e69860a022778fbf3b482",
+  "scope": "Static association of compiled Perl modules with matching packaged Perl source, original XS declarations and full upstream archives. Not exact native rebuilds, vendor-patch proof or completed redistribution acceptance.",
+  "modules": [
+    {
+      "module": "B",
+      "payloadPaths": [
+        "par/lib/auto/B/B.bundle"
+      ],
+      "bytes": 108789,
+      "sha256": "a85dfaab40214e6a5363265f74f9059ac809b612cd23c2b9c43e90886ef9b7b3",
+      "bootSymbols": [
+        "_boot_B"
+      ],
+      "sources": [
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "ext/B/B.pm",
+              "sourceSha256": "d9d2008a1e0bb35a353c8740a745e555d86b8e5c1d01bc9f6c4d2b9d05c1e52a",
+              "payload": [
+                "par/lib/B.pm"
+              ],
+              "payloadSha256": "d9d2008a1e0bb35a353c8740a745e555d86b8e5c1d01bc9f6c4d2b9d05c1e52a",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "ext/B/B.xs",
+              "bytes": 61988,
+              "sha256": "b4bba07eb5a9af96bb19ae5d93d5857d06aaf7d0599711f0fb2d7276b6b93bd5",
+              "modules": [
+                "B"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Class::XSAccessor",
+      "payloadPaths": [
+        "par/lib/auto/Class/XSAccessor/XSAccessor.bundle"
+      ],
+      "bytes": 75310,
+      "sha256": "43ffbbcfc7243bf08555ef0cfb1bc41fc4d9d9f72861c96abff1d0b2ab2453b4",
+      "bootSymbols": [
+        "_boot_Class__XSAccessor"
+      ],
+      "sources": [
+        {
+          "id": "Class-XSAccessor-1.19",
+          "anchors": [
+            {
+              "source": "lib/Class/XSAccessor.pm",
+              "sourceSha256": "463cf1f9ad2e206358a2174c9490a7b006070846077141fd9f6653df05dcbf7b",
+              "payload": [
+                "par/lib/Class/XSAccessor.pm"
+              ],
+              "payloadSha256": "463cf1f9ad2e206358a2174c9490a7b006070846077141fd9f6653df05dcbf7b",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "XS/Array.xs",
+              "bytes": 6844,
+              "sha256": "c47cf85d4db235ebc36c28157fe1bf9ea26d9e9c3f98be4cb09022352a344fb6",
+              "modules": [
+                "Class::XSAccessor"
+              ]
+            },
+            {
+              "path": "XS/Hash.xs",
+              "bytes": 9614,
+              "sha256": "2b6135ac868fca6a4f0794031a884ca882d2c12f25f057b85ec07fbb5b6a22a9",
+              "modules": [
+                "Class::XSAccessor"
+              ]
+            },
+            {
+              "path": "XS/HashCACompat.xs",
+              "bytes": 6408,
+              "sha256": "7205b314625cc8e9067561b948cea39cd9716771530f534dfad47b95d4b5d501",
+              "modules": [
+                "Class::XSAccessor"
+              ]
+            },
+            {
+              "path": "XSAccessor.xs",
+              "bytes": 24885,
+              "sha256": "1f3dfca2be86e8643b8fd43c83e33686bd80259e253c537fb346f1b4028d9f3d",
+              "modules": [
+                "Class::XSAccessor"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Clone",
+      "payloadPaths": [
+        "par/lib/auto/Clone/Clone.bundle"
+      ],
+      "bytes": 35609,
+      "sha256": "b6e6b9a1d6256baa117a907f459004e012abf81c64a3a61e86d9528769aa1863",
+      "bootSymbols": [
+        "_boot_Clone"
+      ],
+      "sources": [
+        {
+          "id": "Clone-0.45",
+          "anchors": [
+            {
+              "source": "Clone.pm",
+              "sourceSha256": "7e080f563541f12b0708f2e6e884440ed400bb521bb3e63f7c99cd6093e6ad0b",
+              "payload": [
+                "par/lib/Clone.pm"
+              ],
+              "payloadSha256": "7e080f563541f12b0708f2e6e884440ed400bb521bb3e63f7c99cd6093e6ad0b",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "Clone.xs",
+              "bytes": 11112,
+              "sha256": "bbd042d20608486d38f88223f9a6a1b3a210e340ba5db3bdcd4db9c121a75e74",
+              "modules": [
+                "Clone"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Compress::Raw::Bzip2",
+      "payloadPaths": [
+        "par/lib/auto/Compress/Raw/Bzip2/Bzip2.bundle"
+      ],
+      "bytes": 104969,
+      "sha256": "480804abc6068ae41099cabae1cbefff13df06b45dbbcb0f438bd1f4224aca5e",
+      "bootSymbols": [
+        "_boot_Compress__Raw__Bzip2"
+      ],
+      "sources": [
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "cpan/Compress-Raw-Bzip2/lib/Compress/Raw/Bzip2.pm",
+              "sourceSha256": "88493dd9ae6571d2f57bb27db16e8f2ba0955fed1ffcd0fd85077ecb5b58f30c",
+              "payload": [
+                "par/lib/Compress/Raw/Bzip2.pm"
+              ],
+              "payloadSha256": "88493dd9ae6571d2f57bb27db16e8f2ba0955fed1ffcd0fd85077ecb5b58f30c",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "cpan/Compress-Raw-Bzip2/Bzip2.xs",
+              "bytes": 22913,
+              "sha256": "40f555ec17d41caf0e1984b1a31241b317917e498e2ff346245e335bf63d60d6",
+              "modules": [
+                "Compress::Raw::Bzip2"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Compress::Raw::Zlib",
+      "payloadPaths": [
+        "loader/481c3f05/auto/Compress/Raw/Zlib/Zlib.bundle",
+        "par/lib/auto/Compress/Raw/Zlib/Zlib.bundle"
+      ],
+      "bytes": 144552,
+      "sha256": "e68dadecbb29f57bc39558717df948e5e5c6da0cd163a02beeacf7b90749fd2a",
+      "bootSymbols": [
+        "_boot_Compress__Raw__Zlib"
+      ],
+      "sources": [
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "cpan/Compress-Raw-Zlib/lib/Compress/Raw/Zlib.pm",
+              "sourceSha256": "2c3fc6744fb1da27d59676e0fb860eae8123701a3f16e31ee4e9843ab64de0d1",
+              "payload": [
+                "par/lib/Compress/Raw/Zlib.pm",
+                "loader/62d24a31/Compress/Raw/Zlib.pm"
+              ],
+              "payloadSha256": "2c3fc6744fb1da27d59676e0fb860eae8123701a3f16e31ee4e9843ab64de0d1",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "cpan/Compress-Raw-Zlib/Zlib.xs",
+              "bytes": 55574,
+              "sha256": "13ce800b0fabab3a48b4641be88321cb502e987a2bf80f8cbd969e4a96f88fde",
+              "modules": [
+                "Compress::Raw::Zlib"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Coro::State",
+      "payloadPaths": [
+        "par/lib/auto/Coro/State/State.bundle"
+      ],
+      "bytes": 113721,
+      "sha256": "ad646c023c81bbd7722a68c3776304217da5fc346f5d6a48e51ce80fdf63bdb7",
+      "bootSymbols": [
+        "_boot_Coro__State"
+      ],
+      "sources": [
+        {
+          "id": "Coro-6.57",
+          "anchors": [
+            {
+              "source": "Coro/State.pm",
+              "sourceSha256": "06d3c0820f2f55fb5400018b14ed57fb5139219c061fff907a51f0fedee4dcfa",
+              "payload": [
+                "par/lib/Coro/State.pm"
+              ],
+              "payloadSha256": "06d3c0820f2f55fb5400018b14ed57fb5139219c061fff907a51f0fedee4dcfa",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "Coro/State.xs",
+              "bytes": 113248,
+              "sha256": "08e33dadb5c9e77b1b751bfbf8f90f575a5aa40a5f6061d8d53ded7f6ec64754",
+              "modules": [
+                "Coro::State"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Cwd",
+      "payloadPaths": [
+        "loader/4ae6f8cf/auto/Cwd/Cwd.bundle",
+        "par/lib/auto/Cwd/Cwd.bundle"
+      ],
+      "bytes": 52631,
+      "sha256": "f2c3c42a46de84282212ec65e169ba37f9e3abc84fa79f27fc54236de34b8f37",
+      "bootSymbols": [
+        "_boot_Cwd"
+      ],
+      "sources": [
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "dist/PathTools/Cwd.pm",
+              "sourceSha256": "692c30595c2e11e9276d816133972a08a2b4cf50a772b6f5b8f646147aeeff00",
+              "payload": [
+                "par/lib/Cwd.pm",
+                "loader/3fd57d61/Cwd.pm"
+              ],
+              "payloadSha256": "692c30595c2e11e9276d816133972a08a2b4cf50a772b6f5b8f646147aeeff00",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "dist/PathTools/Cwd.xs",
+              "bytes": 19873,
+              "sha256": "3404f0617dd658459d86d6cfc89f98e70fd0a1ec750da9382162a1951a751303",
+              "modules": [
+                "Cwd"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "DBD::SQLite",
+      "payloadPaths": [
+        "par/lib/auto/DBD/SQLite/SQLite.bundle"
+      ],
+      "bytes": 1827978,
+      "sha256": "2f29f75b19130504248ec275f77175a5fcebef31524489e1d81aa38b20c1f4ae",
+      "bootSymbols": [
+        "_boot_DBD__SQLite"
+      ],
+      "sources": [
+        {
+          "id": "DBD-SQLite-1.70",
+          "anchors": [
+            {
+              "source": "lib/DBD/SQLite.pm",
+              "sourceSha256": "f5f7b908fff21a8859bb2f89be5fefea3ed156aa48a06cd8f5804ab5f288955a",
+              "payload": [
+                "par/lib/DBD/SQLite.pm"
+              ],
+              "payloadSha256": "f5f7b908fff21a8859bb2f89be5fefea3ed156aa48a06cd8f5804ab5f288955a",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "SQLite.xs",
+              "bytes": 9244,
+              "sha256": "831c2241ece5e144079ad5090687dc4789b97760088b423cc1baa0807e873ba7",
+              "modules": [
+                "DBD::SQLite"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "DBD::mysql",
+      "payloadPaths": [
+        "par/lib/auto/DBD/mysql/mysql.bundle"
+      ],
+      "bytes": 138889,
+      "sha256": "37ab6ee1a36ff5f69e46b32fea5c8c291ab61d14d9b8a65400b17315c72ebf6c",
+      "bootSymbols": [
+        "_boot_DBD__mysql"
+      ],
+      "sources": [
+        {
+          "id": "DBD-mysql-4.050",
+          "anchors": [
+            {
+              "source": "lib/DBD/mysql.pm",
+              "sourceSha256": "4babb3f90bbfa2ddbfefa5e59e188ce18a284ad776036225955dd9ef3789f865",
+              "payload": [
+                "par/lib/DBD/mysql.pm"
+              ],
+              "payloadSha256": "4babb3f90bbfa2ddbfefa5e59e188ce18a284ad776036225955dd9ef3789f865",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "mysql.xs",
+              "bytes": 20457,
+              "sha256": "b8f4d833b4e77ed98a4b9a4675c62e6c34850c3c826b366041ef9d4b3e1c79a1",
+              "modules": [
+                "DBD::mysql"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "DBI",
+      "payloadPaths": [
+        "par/lib/auto/DBI/DBI.bundle"
+      ],
+      "bytes": 161383,
+      "sha256": "374825e095525bc1108e62fd3902ca5fe180deed898c7324e4a0b302a903e57e",
+      "bootSymbols": [
+        "_boot_DBI"
+      ],
+      "sources": [
+        {
+          "id": "DBI-1.643",
+          "anchors": [
+            {
+              "source": "DBI.pm",
+              "sourceSha256": "d31bb0652a448cee4b965401273cef6a5d3b4b4e6e1115e9bb489d4513d99b03",
+              "payload": [
+                "par/lib/DBI.pm"
+              ],
+              "payloadSha256": "d31bb0652a448cee4b965401273cef6a5d3b4b4e6e1115e9bb489d4513d99b03",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "DBI.xs",
+              "bytes": 206306,
+              "sha256": "d4b18c595fc1cf65d76a5a9ee44ff4c884dd3b88ac6fe4332b7109f94512aed6",
+              "modules": [
+                "DBI"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Data::Dumper",
+      "payloadPaths": [
+        "par/lib/auto/Data/Dumper/Dumper.bundle"
+      ],
+      "bytes": 54874,
+      "sha256": "2b46ad221c41ee2b69c930d47dbc584e60eecf2ff80bcf38359a382d974a0880",
+      "bootSymbols": [
+        "_boot_Data__Dumper"
+      ],
+      "sources": [
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "dist/Data-Dumper/Dumper.pm",
+              "sourceSha256": "fa21074814598d34519ee83d4bbd66bca64b9b7291ff4d36a7453122bc21333f",
+              "payload": [
+                "par/lib/Data/Dumper.pm"
+              ],
+              "payloadSha256": "fa21074814598d34519ee83d4bbd66bca64b9b7291ff4d36a7453122bc21333f",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "dist/Data-Dumper/Dumper.xs",
+              "bytes": 51924,
+              "sha256": "bcee0cfd3f1fc83f8e0fb44dd377ee3fb15d6a12427cbc74337f418a8fbe44be",
+              "modules": [
+                "Data::Dumper"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "DateTime",
+      "payloadPaths": [
+        "par/lib/auto/DateTime/DateTime.bundle"
+      ],
+      "bytes": 34908,
+      "sha256": "d2966030d4cb13689056a4e77c2e2b8903d084dc40d3b3f7a4c4d616ac8e184f",
+      "bootSymbols": [
+        "_boot_DateTime"
+      ],
+      "sources": [
+        {
+          "id": "DateTime-1.54",
+          "anchors": [
+            {
+              "source": "lib/DateTime.pm",
+              "sourceSha256": "3f8b3a3a1850f2cecf5b8b4decd1a81dc650678a8be7c525d19fd14e88f51d5c",
+              "payload": [
+                "par/lib/DateTime.pm"
+              ],
+              "payloadSha256": "3f8b3a3a1850f2cecf5b8b4decd1a81dc650678a8be7c525d19fd14e88f51d5c",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "DateTime.xs",
+              "bytes": 6965,
+              "sha256": "29d56e0d4447c902c8b8d31f9b28af41a38bf7b39aa82672beb34fded23943f8",
+              "modules": [
+                "DateTime"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Devel::Caller",
+      "payloadPaths": [
+        "par/lib/auto/Devel/Caller/Caller.bundle"
+      ],
+      "bytes": 34202,
+      "sha256": "f5788795b04574a1ce16eafb4257538d7fa6e121aecab6af4aac903bca81ac5a",
+      "bootSymbols": [
+        "_boot_Devel__Caller"
+      ],
+      "sources": [
+        {
+          "id": "Devel-Caller-2.06",
+          "anchors": [
+            {
+              "source": "lib/Devel/Caller.pm",
+              "sourceSha256": "9837cff0dfa06bffa4c389d6b34d61a7c118fcc3442f57903f5073055272dcfb",
+              "payload": [
+                "par/lib/Devel/Caller.pm"
+              ],
+              "payloadSha256": "9837cff0dfa06bffa4c389d6b34d61a7c118fcc3442f57903f5073055272dcfb",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "Caller.xs",
+              "bytes": 757,
+              "sha256": "3a90ee28aa89e27bad6899e3fd6b55928260e081f90819e4a8d1c6ab61895afc",
+              "modules": [
+                "Devel::Caller"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Devel::LexAlias",
+      "payloadPaths": [
+        "par/lib/auto/Devel/LexAlias/LexAlias.bundle"
+      ],
+      "bytes": 34028,
+      "sha256": "6e6b59447a2057ddc23866e8d6704cbfe3180e759f15c35be5a83031ee19cad7",
+      "bootSymbols": [
+        "_boot_Devel__LexAlias"
+      ],
+      "sources": [
+        {
+          "id": "Devel-LexAlias-0.05",
+          "anchors": [
+            {
+              "source": "LexAlias.pm",
+              "sourceSha256": "527319529c07c0d363b17ed02fbc66e27f7c1d109985a77328b5fb2e70c95192",
+              "payload": [
+                "par/lib/Devel/LexAlias.pm"
+              ],
+              "payloadSha256": "527319529c07c0d363b17ed02fbc66e27f7c1d109985a77328b5fb2e70c95192",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "LexAlias.xs",
+              "bytes": 1464,
+              "sha256": "1bd574141bec33127c536a1624418b12fa1dfc783a2dff35f6d158ad6a508ad0",
+              "modules": [
+                "Devel::LexAlias"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Digest::MD5",
+      "payloadPaths": [
+        "par/lib/auto/Digest/MD5/MD5.bundle"
+      ],
+      "bytes": 35927,
+      "sha256": "799e3124e1cd7f168d314faaa822d3724a76d7b86b75d239d3f056e181142acb",
+      "bootSymbols": [
+        "_boot_Digest__MD5"
+      ],
+      "sources": [
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "cpan/Digest-MD5/MD5.pm",
+              "sourceSha256": "55c00429844a43c33faf6bef15d0ee6a0700a7244259030c1ec47695ef4ba85a",
+              "payload": [
+                "par/lib/Digest/MD5.pm"
+              ],
+              "payloadSha256": "55c00429844a43c33faf6bef15d0ee6a0700a7244259030c1ec47695ef4ba85a",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "cpan/Digest-MD5/MD5.xs",
+              "bytes": 21299,
+              "sha256": "cd05e6019e6a8b1a8a76ce613e1e65f72bf8d31a27b96ac89541fc7790c1c367",
+              "modules": [
+                "Digest::MD5"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Digest::SHA",
+      "payloadPaths": [
+        "loader/be541110/auto/Digest/SHA/SHA.bundle"
+      ],
+      "bytes": 52823,
+      "sha256": "c2ef7b80f2107ba1350e8abfd9a03f0b6cdbbbecb67aed8dd8cd293882cf8a1e",
+      "bootSymbols": [
+        "_boot_Digest__SHA"
+      ],
+      "sources": [
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "cpan/Digest-SHA/lib/Digest/SHA.pm",
+              "sourceSha256": "15efed6020da9028a7a5b2d41d7e6d8e6b1719aeae365bc592ffb4025f76d33d",
+              "payload": [
+                "loader/618bfe32/Digest/SHA.pm"
+              ],
+              "payloadSha256": "15efed6020da9028a7a5b2d41d7e6d8e6b1719aeae365bc592ffb4025f76d33d",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "cpan/Digest-SHA/SHA.xs",
+              "bytes": 8273,
+              "sha256": "4c7b823c95c4e690cd7a80cf03436be50a7877988c0c06d3431cf30a5c6ee6e1",
+              "modules": [
+                "Digest::SHA"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "EV",
+      "payloadPaths": [
+        "par/lib/auto/EV/EV.bundle"
+      ],
+      "bytes": 162838,
+      "sha256": "c09206727c8a6ff4cf8a2f4065aa9963902b7cb56796a13b84d386ba1ced71bc",
+      "bootSymbols": [
+        "_boot_EV"
+      ],
+      "sources": [
+        {
+          "id": "EV-4.33",
+          "anchors": [
+            {
+              "source": "EV.pm",
+              "sourceSha256": "69a91de6aa48f5147c7c5c6855a5a9a2eecfea531955b763ff8a063e43739528",
+              "payload": [
+                "par/lib/EV.pm"
+              ],
+              "payloadSha256": "69a91de6aa48f5147c7c5c6855a5a9a2eecfea531955b763ff8a063e43739528",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "EV.xs",
+              "bytes": 40326,
+              "sha256": "4b251e17f91459e5f1ffee27300a83cda8cf826e04bd5a7c2172bacae618015e",
+              "modules": [
+                "EV"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Encode",
+      "payloadPaths": [
+        "loader/100f609d/auto/Encode/Encode.bundle",
+        "par/lib/auto/Encode/Encode.bundle"
+      ],
+      "bytes": 56698,
+      "sha256": "c69c013320a80b88cfa09631f4af952996d7fe067bd78800f8f367b04ee49394",
+      "bootSymbols": [
+        "_boot_Encode"
+      ],
+      "sources": [
+        {
+          "id": "Encode-3.16",
+          "anchors": [
+            {
+              "source": "Encode.pm",
+              "sourceSha256": "8e753870500116c18d19cd947b6df8542891e2c318eef52715f26418dc3d4285",
+              "payload": [
+                "par/lib/Encode.pm",
+                "loader/8cb8c7a6/Encode.pm"
+              ],
+              "payloadSha256": "8e753870500116c18d19cd947b6df8542891e2c318eef52715f26418dc3d4285",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "Encode.xs",
+              "bytes": 30921,
+              "sha256": "ca3a1435c5e6468721b4f4736a50c835cb85b4af416c2a7917241a38128be06b",
+              "modules": [
+                "Encode"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Encode::Byte",
+      "payloadPaths": [
+        "par/lib/auto/Encode/Byte/Byte.bundle"
+      ],
+      "bytes": 202248,
+      "sha256": "0bf1ae97c4c9fa9797d0e0ce6cb43b5c13e43d187d4f0b39caf4865865c9efec",
+      "bootSymbols": [
+        "_boot_Encode__Byte"
+      ],
+      "sources": [
+        {
+          "id": "Encode-3.16",
+          "anchors": [
+            {
+              "source": "Byte/Byte.pm",
+              "sourceSha256": "4e6227c9b037cee4961025cb3549d5eabdd1e8ec5a3492ea66f7d933b1665a6d",
+              "payload": [
+                "par/lib/Encode/Byte.pm"
+              ],
+              "payloadSha256": "4e6227c9b037cee4961025cb3549d5eabdd1e8ec5a3492ea66f7d933b1665a6d",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": []
+        },
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "cpan/Encode/Byte/Byte.pm",
+              "sourceSha256": "4e6227c9b037cee4961025cb3549d5eabdd1e8ec5a3492ea66f7d933b1665a6d",
+              "payload": [
+                "par/lib/Encode/Byte.pm"
+              ],
+              "payloadSha256": "4e6227c9b037cee4961025cb3549d5eabdd1e8ec5a3492ea66f7d933b1665a6d",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": []
+        }
+      ]
+    },
+    {
+      "module": "Encode::CN",
+      "payloadPaths": [
+        "par/lib/auto/Encode/CN/CN.bundle"
+      ],
+      "bytes": 1064438,
+      "sha256": "7d8fe8fff867c515aa0786e462b1fc55e6f41ec75edf3ab2517378b21a3a76b0",
+      "bootSymbols": [
+        "_boot_Encode__CN"
+      ],
+      "sources": [
+        {
+          "id": "Encode-3.16",
+          "anchors": [
+            {
+              "source": "CN/CN.pm",
+              "sourceSha256": "6ece2a25e2c78a791607edad2b14dc64581553b3dac5d1bafbda73a98096a945",
+              "payload": [
+                "par/lib/Encode/CN.pm"
+              ],
+              "payloadSha256": "6ece2a25e2c78a791607edad2b14dc64581553b3dac5d1bafbda73a98096a945",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": []
+        },
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "cpan/Encode/CN/CN.pm",
+              "sourceSha256": "6ece2a25e2c78a791607edad2b14dc64581553b3dac5d1bafbda73a98096a945",
+              "payload": [
+                "par/lib/Encode/CN.pm"
+              ],
+              "payloadSha256": "6ece2a25e2c78a791607edad2b14dc64581553b3dac5d1bafbda73a98096a945",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": []
+        }
+      ]
+    },
+    {
+      "module": "Encode::EBCDIC",
+      "payloadPaths": [
+        "par/lib/auto/Encode/EBCDIC/EBCDIC.bundle"
+      ],
+      "bytes": 35946,
+      "sha256": "2793046734967e94544ae10090b2983752659611aed690d7736db370e186756a",
+      "bootSymbols": [
+        "_boot_Encode__EBCDIC"
+      ],
+      "sources": [
+        {
+          "id": "Encode-3.16",
+          "anchors": [
+            {
+              "source": "EBCDIC/EBCDIC.pm",
+              "sourceSha256": "9677e24db044d8ad6a82df14e85e2d9e1e6b95cdaf47703e9aeae54f4fc2dce1",
+              "payload": [
+                "par/lib/Encode/EBCDIC.pm"
+              ],
+              "payloadSha256": "9677e24db044d8ad6a82df14e85e2d9e1e6b95cdaf47703e9aeae54f4fc2dce1",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": []
+        },
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "cpan/Encode/EBCDIC/EBCDIC.pm",
+              "sourceSha256": "9677e24db044d8ad6a82df14e85e2d9e1e6b95cdaf47703e9aeae54f4fc2dce1",
+              "payload": [
+                "par/lib/Encode/EBCDIC.pm"
+              ],
+              "payloadSha256": "9677e24db044d8ad6a82df14e85e2d9e1e6b95cdaf47703e9aeae54f4fc2dce1",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": []
+        }
+      ]
+    },
+    {
+      "module": "Encode::EUCJPASCII",
+      "payloadPaths": [
+        "par/lib/auto/Encode/EUCJPASCII/EUCJPASCII.bundle"
+      ],
+      "bytes": 354606,
+      "sha256": "b1ac75db673e8cb0e2b0ae5f8176d0442d0b81a762f1a41fcbd7096e637104f8",
+      "bootSymbols": [
+        "_boot_Encode__EUCJPASCII"
+      ],
+      "sources": [
+        {
+          "id": "Encode-EUCJPASCII-0.03",
+          "anchors": [
+            {
+              "source": "EUCJPASCII.pm",
+              "sourceSha256": "cbb1e0f83d30b1e6e2a6af6acd754eeba3a16bd1c0c4878f8d8ad2cca1636ca6",
+              "payload": [
+                "par/lib/Encode/EUCJPASCII.pm"
+              ],
+              "payloadSha256": "cbb1e0f83d30b1e6e2a6af6acd754eeba3a16bd1c0c4878f8d8ad2cca1636ca6",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": []
+        }
+      ]
+    },
+    {
+      "module": "Encode::HanExtra",
+      "payloadPaths": [
+        "par/lib/auto/Encode/HanExtra/HanExtra.bundle"
+      ],
+      "bytes": 5753580,
+      "sha256": "7b9c68c83cd0cf74242e3ff10dc5a746a18367ca527affcd1af3ba375431cd76",
+      "bootSymbols": [
+        "_boot_Encode__HanExtra"
+      ],
+      "sources": [
+        {
+          "id": "Encode-HanExtra-0.23",
+          "anchors": [
+            {
+              "source": "lib/Encode/HanExtra.pm",
+              "sourceSha256": "dda8e56cb928b541cb2ef410a68904d2c40cb0e689df61f4a1d3cfe963736104",
+              "payload": [
+                "par/lib/Encode/HanExtra.pm"
+              ],
+              "payloadSha256": "dda8e56cb928b541cb2ef410a68904d2c40cb0e689df61f4a1d3cfe963736104",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": []
+        }
+      ]
+    },
+    {
+      "module": "Encode::JIS2K",
+      "payloadPaths": [
+        "par/lib/auto/Encode/JIS2K/JIS2K.bundle"
+      ],
+      "bytes": 1096361,
+      "sha256": "0f4532df22c5f0fbb791d4e58a5ea219e5d8168f4142a2904670c6627a8e6365",
+      "bootSymbols": [
+        "_boot_Encode__JIS2K"
+      ],
+      "sources": [
+        {
+          "id": "Encode-JIS2K-0.03",
+          "anchors": [
+            {
+              "source": "JIS2K.pm",
+              "sourceSha256": "67354629ad4213e937f847b222948c00dab460355fcc86cc01394fe4dc4a577a",
+              "payload": [
+                "par/lib/Encode/JIS2K.pm"
+              ],
+              "payloadSha256": "67354629ad4213e937f847b222948c00dab460355fcc86cc01394fe4dc4a577a",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": []
+        }
+      ]
+    },
+    {
+      "module": "Encode::JP",
+      "payloadPaths": [
+        "par/lib/auto/Encode/JP/JP.bundle"
+      ],
+      "bytes": 1241814,
+      "sha256": "f05cd4c81e33435313d0044b2f942fa7b31c473ba87335656d647985941b8884",
+      "bootSymbols": [
+        "_boot_Encode__JP"
+      ],
+      "sources": [
+        {
+          "id": "Encode-3.16",
+          "anchors": [
+            {
+              "source": "JP/JP.pm",
+              "sourceSha256": "22cf57da42c1909c292f3b882abdddcad99f96bd7d25db570ed3c8c35e542993",
+              "payload": [
+                "par/lib/Encode/JP.pm"
+              ],
+              "payloadSha256": "22cf57da42c1909c292f3b882abdddcad99f96bd7d25db570ed3c8c35e542993",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": []
+        }
+      ]
+    },
+    {
+      "module": "Encode::KR",
+      "payloadPaths": [
+        "par/lib/auto/Encode/KR/KR.bundle"
+      ],
+      "bytes": 1178262,
+      "sha256": "ec5fd38924e9f55565b7d6d68965e862b631b22992940f6e9f11ce1fa7d8e71a",
+      "bootSymbols": [
+        "_boot_Encode__KR"
+      ],
+      "sources": [
+        {
+          "id": "Encode-3.16",
+          "anchors": [
+            {
+              "source": "KR/KR.pm",
+              "sourceSha256": "325edafad01afb13459f6a0f6b0ca767893806e4113d77f4a3e7e517ed56f210",
+              "payload": [
+                "par/lib/Encode/KR.pm"
+              ],
+              "payloadSha256": "325edafad01afb13459f6a0f6b0ca767893806e4113d77f4a3e7e517ed56f210",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": []
+        },
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "cpan/Encode/KR/KR.pm",
+              "sourceSha256": "325edafad01afb13459f6a0f6b0ca767893806e4113d77f4a3e7e517ed56f210",
+              "payload": [
+                "par/lib/Encode/KR.pm"
+              ],
+              "payloadSha256": "325edafad01afb13459f6a0f6b0ca767893806e4113d77f4a3e7e517ed56f210",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": []
+        }
+      ]
+    },
+    {
+      "module": "Encode::Symbol",
+      "payloadPaths": [
+        "par/lib/auto/Encode/Symbol/Symbol.bundle"
+      ],
+      "bytes": 39258,
+      "sha256": "e4394d3c1826a81ce3afd9990be0bd50181275a9898ec7bc3c2459d6bb6c2a80",
+      "bootSymbols": [
+        "_boot_Encode__Symbol"
+      ],
+      "sources": [
+        {
+          "id": "Encode-3.16",
+          "anchors": [
+            {
+              "source": "Symbol/Symbol.pm",
+              "sourceSha256": "be5197c9acd38b8c68651d1e982e0467efac9b5d46c4e928b99192bdea4e4fdf",
+              "payload": [
+                "par/lib/Encode/Symbol.pm"
+              ],
+              "payloadSha256": "be5197c9acd38b8c68651d1e982e0467efac9b5d46c4e928b99192bdea4e4fdf",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": []
+        },
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "cpan/Encode/Symbol/Symbol.pm",
+              "sourceSha256": "be5197c9acd38b8c68651d1e982e0467efac9b5d46c4e928b99192bdea4e4fdf",
+              "payload": [
+                "par/lib/Encode/Symbol.pm"
+              ],
+              "payloadSha256": "be5197c9acd38b8c68651d1e982e0467efac9b5d46c4e928b99192bdea4e4fdf",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": []
+        }
+      ]
+    },
+    {
+      "module": "Encode::TW",
+      "payloadPaths": [
+        "par/lib/auto/Encode/TW/TW.bundle"
+      ],
+      "bytes": 1049398,
+      "sha256": "f614ba7df9518eccd140d467957a581740b3b49cc9a2455bb5e9340967bc8f51",
+      "bootSymbols": [
+        "_boot_Encode__TW"
+      ],
+      "sources": [
+        {
+          "id": "Encode-3.16",
+          "anchors": [
+            {
+              "source": "TW/TW.pm",
+              "sourceSha256": "2079c9f1486d270c204850fca458c83dd54dfdba475c126801f4a04b82f4b8ca",
+              "payload": [
+                "par/lib/Encode/TW.pm"
+              ],
+              "payloadSha256": "2079c9f1486d270c204850fca458c83dd54dfdba475c126801f4a04b82f4b8ca",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": []
+        },
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "cpan/Encode/TW/TW.pm",
+              "sourceSha256": "2079c9f1486d270c204850fca458c83dd54dfdba475c126801f4a04b82f4b8ca",
+              "payload": [
+                "par/lib/Encode/TW.pm"
+              ],
+              "payloadSha256": "2079c9f1486d270c204850fca458c83dd54dfdba475c126801f4a04b82f4b8ca",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": []
+        }
+      ]
+    },
+    {
+      "module": "Encode::Unicode",
+      "payloadPaths": [
+        "par/lib/auto/Encode/Unicode/Unicode.bundle"
+      ],
+      "bytes": 35819,
+      "sha256": "045e23e7e9a11a0e56f4a68154200793a1b4efa71e59abbf53e2b196071e5a8b",
+      "bootSymbols": [
+        "_boot_Encode__Unicode"
+      ],
+      "sources": [
+        {
+          "id": "Encode-3.16",
+          "anchors": [
+            {
+              "source": "Unicode/Unicode.pm",
+              "sourceSha256": "1992c841d01a8283d02ba3cbd5ee4932baae0c33cdfa8a91cd4a42404bc5a97d",
+              "payload": [
+                "par/lib/Encode/Unicode.pm"
+              ],
+              "payloadSha256": "1992c841d01a8283d02ba3cbd5ee4932baae0c33cdfa8a91cd4a42404bc5a97d",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "Unicode/Unicode.xs",
+              "bytes": 14709,
+              "sha256": "15083667bcc56baadb08e390f2a9983b899c307be2bd1e62545d73a7e1edcabd",
+              "modules": [
+                "Encode::Unicode"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Event",
+      "payloadPaths": [
+        "par/lib/auto/Event/Event.bundle"
+      ],
+      "bytes": 128137,
+      "sha256": "4a58d9bfb09a64665f0f5314e8cba0cf4cbd61700b3e141ad53770b13cedc410",
+      "bootSymbols": [
+        "_boot_Event"
+      ],
+      "sources": [
+        {
+          "id": "Event-1.28",
+          "anchors": [
+            {
+              "source": "lib/Event.pm",
+              "sourceSha256": "7590e04a838dbdb8111c27fcf446e4cde44b81fdfd47bcf95e160f420e2f27a1",
+              "payload": [
+                "par/lib/Event.pm"
+              ],
+              "payloadSha256": "7590e04a838dbdb8111c27fcf446e4cde44b81fdfd47bcf95e160f420e2f27a1",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "Event.xs",
+              "bytes": 19575,
+              "sha256": "5883eaf5a86346c19e95f4f24ca6e73ea40a328d84d7f5f20de4f4914951ec2e",
+              "modules": [
+                "Event"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Fcntl",
+      "payloadPaths": [
+        "loader/c1aa5d5f/auto/Fcntl/Fcntl.bundle",
+        "par/lib/auto/Fcntl/Fcntl.bundle"
+      ],
+      "bytes": 35193,
+      "sha256": "0d58638b76b4a474977514779dc679d057bf481877e0ef118b992f5ff5a66a35",
+      "bootSymbols": [
+        "_boot_Fcntl"
+      ],
+      "sources": [
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "ext/Fcntl/Fcntl.pm",
+              "sourceSha256": "02cce578326ffb0393234fd16f4d4d2ce62deec827a6e62454df27e5a2d3d22a",
+              "payload": [
+                "par/lib/Fcntl.pm",
+                "loader/485667e6/Fcntl.pm"
+              ],
+              "payloadSha256": "02cce578326ffb0393234fd16f4d4d2ce62deec827a6e62454df27e5a2d3d22a",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "ext/Fcntl/Fcntl.xs",
+              "bytes": 2716,
+              "sha256": "673579648b9862d471c0d78f13762fcf9494cbb6461701b95d91e96518feb583",
+              "modules": [
+                "Fcntl"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "File::DosGlob",
+      "payloadPaths": [
+        "par/lib/auto/File/DosGlob/DosGlob.bundle"
+      ],
+      "bytes": 50619,
+      "sha256": "4d819a4cbd94a2f285231dcb0d5f6eb36eab398e24731c83c39b0df780cea857",
+      "bootSymbols": [
+        "_boot_File__DosGlob"
+      ],
+      "sources": [
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "ext/File-DosGlob/lib/File/DosGlob.pm",
+              "sourceSha256": "d368f4970279a97a108268c6e8399977f6fe221ad34b31d753495ab9b6f9d99c",
+              "payload": [
+                "par/lib/File/DosGlob.pm"
+              ],
+              "payloadSha256": "d368f4970279a97a108268c6e8399977f6fe221ad34b31d753495ab9b6f9d99c",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "ext/File-DosGlob/DosGlob.xs",
+              "bytes": 976,
+              "sha256": "324253852e05115fe22e86252c01a769e5ec6a126a39a1d1ac967eff8759455b",
+              "modules": [
+                "File::DosGlob"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "File::Glob",
+      "payloadPaths": [
+        "loader/cc2ecc7d/auto/File/Glob/Glob.bundle",
+        "par/lib/auto/File/Glob/Glob.bundle"
+      ],
+      "bytes": 54712,
+      "sha256": "a466fef8f1909540fb5f050dae03ee55f3840132897df578d55977952a2f7a46",
+      "bootSymbols": [
+        "_boot_File__Glob"
+      ],
+      "sources": [
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "ext/File-Glob/Glob.pm",
+              "sourceSha256": "ff854e2cccfcd78e6c22278c843ea61fda1d0164704b1aa8941fe05ff9dbbfe8",
+              "payload": [
+                "par/lib/File/Glob.pm",
+                "loader/e4c67a8f/File/Glob.pm"
+              ],
+              "payloadSha256": "ff854e2cccfcd78e6c22278c843ea61fda1d0164704b1aa8941fe05ff9dbbfe8",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "ext/File-Glob/Glob.xs",
+              "bytes": 10440,
+              "sha256": "d1c4196776f68fd0d5c8357db4ee2a56e6a572dbe2c9e604b4f9f14adb8087ca",
+              "modules": [
+                "File::Glob"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Guard",
+      "payloadPaths": [
+        "par/lib/auto/Guard/Guard.bundle"
+      ],
+      "bytes": 52105,
+      "sha256": "e121951338b73fb5fcc91520885f84eef9b57af1ee7adb56c38dfbd2fc37137f",
+      "bootSymbols": [
+        "_boot_Guard"
+      ],
+      "sources": [
+        {
+          "id": "Guard-1.023",
+          "anchors": [
+            {
+              "source": "Guard.pm",
+              "sourceSha256": "69abf47662351d6fdc22de901abeef3c355d59a046fa99b7822ff63cd28133b3",
+              "payload": [
+                "par/lib/Guard.pm"
+              ],
+              "payloadSha256": "69abf47662351d6fdc22de901abeef3c355d59a046fa99b7822ff63cd28133b3",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "Guard.xs",
+              "bytes": 3008,
+              "sha256": "bdf76c01c33bf5c0098a66966c2cd3d761318a1da0f4c04463163eae539536ea",
+              "modules": [
+                "Guard"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "HTML::Parser",
+      "payloadPaths": [
+        "par/lib/auto/HTML/Parser/Parser.bundle"
+      ],
+      "bytes": 72362,
+      "sha256": "fcb8d3268bc094fe08d425c0b4890456a448b0ffef8e035ebef147c1d070e4a1",
+      "bootSymbols": [
+        "_boot_HTML__Parser"
+      ],
+      "sources": [
+        {
+          "id": "HTML-Parser-3.76",
+          "anchors": [
+            {
+              "source": "lib/HTML/Parser.pm",
+              "sourceSha256": "669d8e0086108a5a1403336c62781f55b6f83af18ed42f74217ff2c1f7dc2189",
+              "payload": [
+                "par/lib/HTML/Parser.pm"
+              ],
+              "payloadSha256": "669d8e0086108a5a1403336c62781f55b6f83af18ed42f74217ff2c1f7dc2189",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "Parser.xs",
+              "bytes": 16310,
+              "sha256": "4f5c83091f39ce702d73511c53760de49603b6ce07c6ea7fc75bddd367ab62e6",
+              "modules": [
+                "HTML::Parser"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Hash::Util::FieldHash",
+      "payloadPaths": [
+        "par/lib/auto/Hash/Util/FieldHash/FieldHash.bundle"
+      ],
+      "bytes": 53069,
+      "sha256": "ef6eaf37f41d636bf024dd33f5d5472a7590eee42956994559f6b37e672dc9b3",
+      "bootSymbols": [
+        "_boot_Hash__Util__FieldHash"
+      ],
+      "sources": [
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "ext/Hash-Util-FieldHash/lib/Hash/Util/FieldHash.pm",
+              "sourceSha256": "24853fda50b1d567dace6e7fd61c959891ac9e3a645907574e84a43af39c1dfa",
+              "payload": [
+                "par/lib/Hash/Util/FieldHash.pm"
+              ],
+              "payloadSha256": "24853fda50b1d567dace6e7fd61c959891ac9e3a645907574e84a43af39c1dfa",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "ext/Hash-Util-FieldHash/FieldHash.xs",
+              "bytes": 13305,
+              "sha256": "2a32221dfd4ec0baaee2bf4190feb721d7f3b39438abfe00293b6c07b6565c6f",
+              "modules": [
+                "Hash::Util::FieldHash"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "I18N::Langinfo",
+      "payloadPaths": [
+        "par/lib/auto/I18N/Langinfo/Langinfo.bundle"
+      ],
+      "bytes": 35068,
+      "sha256": "ad6d6098b51ebd1e393b2fba932b8d6078fe8b6fe27eab3859b74db406f5e3e8",
+      "bootSymbols": [
+        "_boot_I18N__Langinfo"
+      ],
+      "sources": [
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "ext/I18N-Langinfo/Langinfo.pm",
+              "sourceSha256": "b28678e2f1a206fce23eac4d45645116c00a3ef55bb1b07ed74d93a4246285ab",
+              "payload": [
+                "par/lib/I18N/Langinfo.pm"
+              ],
+              "payloadSha256": "b28678e2f1a206fce23eac4d45645116c00a3ef55bb1b07ed74d93a4246285ab",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "ext/I18N-Langinfo/Langinfo.xs",
+              "bytes": 2755,
+              "sha256": "dd6a72bf9266fcdf16ba1805f0ce041678962d8e747c21df6b8e9af93f29150a",
+              "modules": [
+                "I18N::Langinfo"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "IO",
+      "payloadPaths": [
+        "loader/be6a1d17/auto/IO/IO.bundle",
+        "par/lib/auto/IO/IO.bundle"
+      ],
+      "bytes": 37094,
+      "sha256": "791970cbe09973acc33bee70c446e82ebabf2410b0728be7650a146b53e2ce66",
+      "bootSymbols": [
+        "_boot_IO"
+      ],
+      "sources": [
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "dist/IO/IO.pm",
+              "sourceSha256": "d534d5376ce9125973c3ea6a97d71bf99afaa703067a216d10d8b5539b92c2b8",
+              "payload": [
+                "par/lib/IO.pm",
+                "loader/7e8ebb35/IO.pm"
+              ],
+              "payloadSha256": "d534d5376ce9125973c3ea6a97d71bf99afaa703067a216d10d8b5539b92c2b8",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "dist/IO/IO.xs",
+              "bytes": 16666,
+              "sha256": "a566260d1b4572b1ac76df64a63ab22fa68b228a955668ee80b276e3b5bd7664",
+              "modules": [
+                "IO"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "IO::AIO",
+      "payloadPaths": [
+        "par/lib/auto/IO/AIO/AIO.bundle"
+      ],
+      "bytes": 146903,
+      "sha256": "15a954366ba6b5f81ca5f33c89bc28ebf7d5917f6e0fa6931aef3f0432135b99",
+      "bootSymbols": [
+        "_boot_IO__AIO"
+      ],
+      "sources": [
+        {
+          "id": "IO-AIO-4.76",
+          "anchors": [
+            {
+              "source": "AIO.pm",
+              "sourceSha256": "393e08ae38ec8223dbb4cfcfe54bdd37b9b6f6a39b305ef7b4fff7318262afed",
+              "payload": [
+                "par/lib/IO/AIO.pm"
+              ],
+              "payloadSha256": "393e08ae38ec8223dbb4cfcfe54bdd37b9b6f6a39b305ef7b4fff7318262afed",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "AIO.xs",
+              "bytes": 71198,
+              "sha256": "e72f589895cfe6d325267ed90bb90ae90e88bfa3f8e6f51fff9e0f96dc24ab86",
+              "modules": [
+                "IO::AIO"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "IPC::SysV",
+      "payloadPaths": [
+        "par/lib/auto/IPC/SysV/SysV.bundle"
+      ],
+      "bytes": 52296,
+      "sha256": "1a65804089d2e468106fd2abc5eb1b4d66e8ad38c5b83c55cf36b3fbdc5c5217",
+      "bootSymbols": [
+        "_boot_IPC__SysV"
+      ],
+      "sources": [
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "cpan/IPC-SysV/lib/IPC/SysV.pm",
+              "sourceSha256": "7e73529def1ceb5d87f35a0ce33fbcaa27615b4e5d91b23dd7991f29d5cc75c1",
+              "payload": [
+                "par/lib/IPC/SysV.pm"
+              ],
+              "payloadSha256": "7e73529def1ceb5d87f35a0ce33fbcaa27615b4e5d91b23dd7991f29d5cc75c1",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "cpan/IPC-SysV/SysV.xs",
+              "bytes": 11091,
+              "sha256": "deaaf0dfcca0e984b803f6dbfbd1eb13258a89c6bf49f69ed3fc4d09f29ef715",
+              "modules": [
+                "IPC::SysV"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "List::MoreUtils::XS",
+      "payloadPaths": [
+        "par/lib/auto/List/MoreUtils/XS/XS.bundle"
+      ],
+      "bytes": 140678,
+      "sha256": "7ffc7e5a4b76fd520fa0e29b3f3a7764c277a381a5aa827caf0f0aa75809ca72",
+      "bootSymbols": [
+        "_boot_List__MoreUtils__XS"
+      ],
+      "sources": [
+        {
+          "id": "List-MoreUtils-XS-0.430",
+          "anchors": [
+            {
+              "source": "lib/List/MoreUtils/XS.pm",
+              "sourceSha256": "d23abecf1b10a13394a82fab807c5232bb17634dd2a2b5a186fb13410fc90d5f",
+              "payload": [
+                "par/lib/List/MoreUtils/XS.pm"
+              ],
+              "payloadSha256": "d23abecf1b10a13394a82fab807c5232bb17634dd2a2b5a186fb13410fc90d5f",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "XS.xs",
+              "bytes": 69238,
+              "sha256": "c5a4e8c7a5fda53748e0a03d32c8e722ef2edec140305986ae515ca0485876f3",
+              "modules": [
+                "List::MoreUtils::XS"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "List::SomeUtils::XS",
+      "payloadPaths": [
+        "par/lib/auto/List/SomeUtils/XS/XS.bundle"
+      ],
+      "bytes": 105910,
+      "sha256": "229a85d6b64b7edd2f9c7ba4a70ec042f950083425c4018779b1fb32f7347d59",
+      "bootSymbols": [
+        "_boot_List__SomeUtils__XS"
+      ],
+      "sources": [
+        {
+          "id": "List-SomeUtils-XS-0.58",
+          "anchors": [
+            {
+              "source": "lib/List/SomeUtils/XS.pm",
+              "sourceSha256": "170de1cc4284e3cfbddb424438465aab18b648c442d7f8c99a989e951c7f9d75",
+              "payload": [
+                "par/lib/List/SomeUtils/XS.pm"
+              ],
+              "payloadSha256": "170de1cc4284e3cfbddb424438465aab18b648c442d7f8c99a989e951c7f9d75",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "XS.xs",
+              "bytes": 37924,
+              "sha256": "c0118a1951d1ffd8ae9b09eb3b871aa95ddc4f3b8254be102adb95b1e26b58db",
+              "modules": [
+                "List::SomeUtils::XS"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "List::Util",
+      "payloadPaths": [
+        "loader/2368b87c/auto/List/Util/Util.bundle",
+        "par/lib/auto/List/Util/Util.bundle"
+      ],
+      "bytes": 73672,
+      "sha256": "7486244a4aa2a6799a4d9d9267d34ea9d3c51c8eccfd7544739867b4964bc900",
+      "bootSymbols": [
+        "_boot_List__Util"
+      ],
+      "sources": [
+        {
+          "id": "Scalar-List-Utils-1.60",
+          "anchors": [
+            {
+              "source": "lib/List/Util.pm",
+              "sourceSha256": "6af15faccb38df0b5eeb9856d28d94184b43bcc77c1672a2ab3a58ed35927786",
+              "payload": [
+                "par/lib/List/Util.pm",
+                "loader/5a07e242/List/Util.pm"
+              ],
+              "payloadSha256": "6af15faccb38df0b5eeb9856d28d94184b43bcc77c1672a2ab3a58ed35927786",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "ListUtil.xs",
+              "bytes": 53564,
+              "sha256": "f10aac96deb64c5d1cf8b214f5ff4f9ef29161fa511dc7b47bc0b821e109f513",
+              "modules": [
+                "List::Util"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "MIME::Base64",
+      "payloadPaths": [
+        "par/lib/auto/MIME/Base64/Base64.bundle"
+      ],
+      "bytes": 35146,
+      "sha256": "150eb5280082d56b8fbee497b961cf13b20107af017e5be0a08c49ec289e47f9",
+      "bootSymbols": [
+        "_boot_MIME__Base64"
+      ],
+      "sources": [
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "cpan/MIME-Base64/Base64.pm",
+              "sourceSha256": "91498dfbc6bd12dc65c54cd637793cd3c5183598f16e2340656310a30c28d0ab",
+              "payload": [
+                "par/lib/MIME/Base64.pm"
+              ],
+              "payloadSha256": "91498dfbc6bd12dc65c54cd637793cd3c5183598f16e2340656310a30c28d0ab",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "cpan/MIME-Base64/Base64.xs",
+              "bytes": 11860,
+              "sha256": "5a6461b2b199ab6c114f159790b942dcb9a716699d88bb5eeb16ff376f54be03",
+              "modules": [
+                "MIME::Base64"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Math::BigInt::FastCalc",
+      "payloadPaths": [
+        "par/lib/auto/Math/BigInt/FastCalc/FastCalc.bundle"
+      ],
+      "bytes": 35580,
+      "sha256": "d40657976aa67c6887a633df98d98113e8c627ef87ec1c6c064d77b4af88aa4a",
+      "bootSymbols": [
+        "_boot_Math__BigInt__FastCalc"
+      ],
+      "sources": [
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "cpan/Math-BigInt-FastCalc/lib/Math/BigInt/FastCalc.pm",
+              "sourceSha256": "ba4c6959b14456116641dd5f91c73f8aa6071a469f5cdce03a60b2c7c83c17d3",
+              "payload": [
+                "par/lib/Math/BigInt/FastCalc.pm"
+              ],
+              "payloadSha256": "ba4c6959b14456116641dd5f91c73f8aa6071a469f5cdce03a60b2c7c83c17d3",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "cpan/Math-BigInt-FastCalc/FastCalc.xs",
+              "bytes": 10206,
+              "sha256": "0bd7a07ab76e4e9cb36e6e37d46e1e3c72d9314b7e185b2a819a4a91e5694ffc",
+              "modules": [
+                "Math::BigInt::FastCalc"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Net::SSLeay",
+      "payloadPaths": [
+        "par/lib/auto/Net/SSLeay/SSLeay.bundle"
+      ],
+      "bytes": 611274,
+      "sha256": "8ff69dbdcd795b1bf268398dfcedd7e9e01977a1a3462d522ebcfa0e0cbee1c0",
+      "bootSymbols": [
+        "_boot_Net__SSLeay"
+      ],
+      "sources": [
+        {
+          "id": "Net-SSLeay-1.90",
+          "anchors": [
+            {
+              "source": "lib/Net/SSLeay.pm",
+              "sourceSha256": "0c8e8a24e340c97e508cba9ded9f7186017031e9d5650947e8ed83df69ac7cf6",
+              "payload": [
+                "par/lib/Net/SSLeay.pm"
+              ],
+              "payloadSha256": "0c8e8a24e340c97e508cba9ded9f7186017031e9d5650947e8ed83df69ac7cf6",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "SSLeay.xs",
+              "bytes": 186396,
+              "sha256": "bdfc080443e55bf0c67ee09b3005f1055928d2a7f9b3e521132d1bbcd417aab9",
+              "modules": [
+                "Net::SSLeay"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Opcode",
+      "payloadPaths": [
+        "par/lib/auto/Opcode/Opcode.bundle"
+      ],
+      "bytes": 53274,
+      "sha256": "ab8875f7a5ce404942dee4f3281ccf2281d1335b4cb48186f5ddddf5351dc3c7",
+      "bootSymbols": [
+        "_boot_Opcode"
+      ],
+      "sources": [
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "ext/Opcode/Opcode.pm",
+              "sourceSha256": "2597c2aeedab774d7e075a6b432e69ee40aba046ccef4a3a42741d5d6e227e6a",
+              "payload": [
+                "par/lib/Opcode.pm"
+              ],
+              "payloadSha256": "2597c2aeedab774d7e075a6b432e69ee40aba046ccef4a3a42741d5d6e227e6a",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "ext/Opcode/Opcode.xs",
+              "bytes": 14175,
+              "sha256": "703d64cea1778d69a7bc527346c7b9376530a3c1df2d6451be96afecd447a7b4",
+              "modules": [
+                "Opcode"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "POSIX",
+      "payloadPaths": [
+        "par/lib/auto/POSIX/POSIX.bundle"
+      ],
+      "bytes": 96601,
+      "sha256": "0c46f5a8325bd6aba77a4f739aab34063b97bd86f0fcafad152db32d0a1cd4d1",
+      "bootSymbols": [
+        "_boot_POSIX"
+      ],
+      "sources": [
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "ext/POSIX/lib/POSIX.pm",
+              "sourceSha256": "c3ac3494b7f7e61396e4d500c93032dc00631a6d0cba6b36ab35af564740d83c",
+              "payload": [
+                "par/lib/POSIX.pm"
+              ],
+              "payloadSha256": "c3ac3494b7f7e61396e4d500c93032dc00631a6d0cba6b36ab35af564740d83c",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "ext/POSIX/POSIX.xs",
+              "bytes": 94232,
+              "sha256": "80d31b1961bcfe1eaeb44915396e346270b08d333b4ed87f1cc9a95f314f53d5",
+              "modules": [
+                "POSIX"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Package::Stash::XS",
+      "payloadPaths": [
+        "par/lib/auto/Package/Stash/XS/XS.bundle"
+      ],
+      "bytes": 54422,
+      "sha256": "70d3f201e62afb1620b2f26b99c98712a1964fee99843d97bf47eeffa2731c1f",
+      "bootSymbols": [
+        "_boot_Package__Stash__XS"
+      ],
+      "sources": [
+        {
+          "id": "Package-Stash-XS-0.29",
+          "anchors": [
+            {
+              "source": "lib/Package/Stash/XS.pm",
+              "sourceSha256": "1be0ac4865505c3fa9267ec09a6fa2e8abde0e1d9e0a0ef836b2d71ec4c60ec6",
+              "payload": [
+                "par/lib/Package/Stash/XS.pm"
+              ],
+              "payloadSha256": "1be0ac4865505c3fa9267ec09a6fa2e8abde0e1d9e0a0ef836b2d71ec4c60ec6",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "XS.xs",
+              "bytes": 24222,
+              "sha256": "4762cf4980a25664c65983d9c1912c1dbd2f583ae3cb22a476d81569c2dfc84a",
+              "modules": [
+                "Package::Stash::XS"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "PadWalker",
+      "payloadPaths": [
+        "par/lib/auto/PadWalker/PadWalker.bundle"
+      ],
+      "bytes": 36173,
+      "sha256": "2d2828a7d100f8bffe72fc8b77471707f8f742526dabfadc6952d85e596c945c",
+      "bootSymbols": [
+        "_boot_PadWalker"
+      ],
+      "sources": [
+        {
+          "id": "PadWalker-2.5",
+          "anchors": [
+            {
+              "source": "PadWalker.pm",
+              "sourceSha256": "1ea84d36106c6a7c219839ca703cdac66eaf931ae1c63008993857fea4a8d59f",
+              "payload": [
+                "par/lib/PadWalker.pm"
+              ],
+              "payloadSha256": "1ea84d36106c6a7c219839ca703cdac66eaf931ae1c63008993857fea4a8d59f",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "PadWalker.xs",
+              "bytes": 18689,
+              "sha256": "44777e0c50355e0f7c3d5309bbed8c9335484eacb2f7981b389a5895fbb294aa",
+              "modules": [
+                "PadWalker"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Params::Util",
+      "payloadPaths": [
+        "par/lib/auto/Params/Util/Util.bundle"
+      ],
+      "bytes": 35784,
+      "sha256": "d77a578acfb253b81ebbcbeb227ebf1f25df9cf4b4839c34f406f88de0ea9040",
+      "bootSymbols": [
+        "_boot_Params__Util"
+      ],
+      "sources": [
+        {
+          "id": "Params-Util-1.102",
+          "anchors": [
+            {
+              "source": "lib/Params/Util.pm",
+              "sourceSha256": "5ed61f1d7ac654911ee666cf49e41393c904795c2a7e1ad9c57fbba9ad63149c",
+              "payload": [
+                "par/lib/Params/Util.pm"
+              ],
+              "payloadSha256": "5ed61f1d7ac654911ee666cf49e41393c904795c2a7e1ad9c57fbba9ad63149c",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "Util.xs",
+              "bytes": 6158,
+              "sha256": "076e1d5b857d454640c6a66843438bfa787573ef2e587e9830296eda0d7a62ec",
+              "modules": [
+                "Params::Util"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Params::Validate::XS",
+      "payloadPaths": [
+        "par/lib/auto/Params/Validate/XS/XS.bundle"
+      ],
+      "bytes": 71270,
+      "sha256": "cb2e82039bfaf7aa2043dd73233db5780f35d248c94adf88a7700cd3f702fd9f",
+      "bootSymbols": [
+        "_boot_Params__Validate__XS"
+      ],
+      "sources": [
+        {
+          "id": "Params-Validate-1.30",
+          "anchors": [
+            {
+              "source": "lib/Params/Validate/XS.pm",
+              "sourceSha256": "f21b9b01fccee034ae8d856263bf12eadce1e678a76b4dc46c905202f547b8e3",
+              "payload": [
+                "par/lib/Params/Validate/XS.pm"
+              ],
+              "payloadSha256": "f21b9b01fccee034ae8d856263bf12eadce1e678a76b4dc46c905202f547b8e3",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "lib/Params/Validate/XS.xs",
+              "bytes": 48462,
+              "sha256": "4dec80410f3b90e6258bc1cc442e321f9ceb190e98ec2689e4c8d3e91e1ff239",
+              "modules": [
+                "Params::Validate::XS"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "PerlIO::encoding",
+      "payloadPaths": [
+        "par/lib/auto/PerlIO/encoding/encoding.bundle"
+      ],
+      "bytes": 38604,
+      "sha256": "e4097be86896416bcf5291a5138f475ed3e3b72ff8bd78d993bd194ead6c0bab",
+      "bootSymbols": [
+        "_boot_PerlIO__encoding"
+      ],
+      "sources": [
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "ext/PerlIO-encoding/encoding.pm",
+              "sourceSha256": "b0390225cce5daae3eef4004f6d069102796efeafb9ff192506bf24a06082086",
+              "payload": [
+                "par/lib/PerlIO/encoding.pm"
+              ],
+              "payloadSha256": "b0390225cce5daae3eef4004f6d069102796efeafb9ff192506bf24a06082086",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "ext/PerlIO-encoding/encoding.xs",
+              "bytes": 17379,
+              "sha256": "8e9a2ad2d6a71fc998c6427335f3aaa6defb366fa107554733ab5fda5a257ff1",
+              "modules": [
+                "PerlIO::encoding"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "PerlIO::scalar",
+      "payloadPaths": [
+        "loader/8f8f83b9/auto/PerlIO/scalar/scalar.bundle",
+        "par/lib/auto/PerlIO/scalar/scalar.bundle"
+      ],
+      "bytes": 36458,
+      "sha256": "ec70bd6f2a0198cc67108d628a7553f27345835064526d18fc406a666e02c28a",
+      "bootSymbols": [
+        "_boot_PerlIO__scalar"
+      ],
+      "sources": [
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "ext/PerlIO-scalar/scalar.pm",
+              "sourceSha256": "d633e2e16110bd09fa6e261b5f5f653f3bdadb729691590de40b28b6d5317406",
+              "payload": [
+                "par/lib/PerlIO/scalar.pm",
+                "loader/16aff0b5/PerlIO/scalar.pm"
+              ],
+              "payloadSha256": "d633e2e16110bd09fa6e261b5f5f653f3bdadb729691590de40b28b6d5317406",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "ext/PerlIO-scalar/scalar.xs",
+              "bytes": 10894,
+              "sha256": "67f2724beac77a6ab89a3d600957549dae1fab6e3d0a8a79dd1a529884aac9d5",
+              "modules": [
+                "PerlIO::scalar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "PerlIO::utf8_strict",
+      "payloadPaths": [
+        "par/lib/auto/PerlIO/utf8_strict/utf8_strict.bundle"
+      ],
+      "bytes": 36351,
+      "sha256": "27105ac8bdc88a9f0ece20d4f719680d5218121dbcdacc293907dc97f5bb1d2f",
+      "bootSymbols": [
+        "_boot_PerlIO__utf8_strict"
+      ],
+      "sources": [
+        {
+          "id": "PerlIO-utf8_strict-0.008",
+          "anchors": [
+            {
+              "source": "lib/PerlIO/utf8_strict.pm",
+              "sourceSha256": "c3b072b934705f9e0b1d552d66327721e50f1b91a5da291f30004310d7ffb1e1",
+              "payload": [
+                "par/lib/PerlIO/utf8_strict.pm"
+              ],
+              "payloadSha256": "c3b072b934705f9e0b1d552d66327721e50f1b91a5da291f30004310d7ffb1e1",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "utf8_strict.xs",
+              "bytes": 9492,
+              "sha256": "36486884c4a848cac2dbb98cc213a64b2277d67c3efe5fb7cbed78ee42ed9638",
+              "modules": [
+                "PerlIO::utf8_strict"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Socket",
+      "payloadPaths": [
+        "par/lib/auto/Socket/Socket.bundle"
+      ],
+      "bytes": 54042,
+      "sha256": "39f1a40c38d09227a0f1a1c6662a257e89f1751b5b51136f02e09516baffffa8",
+      "bootSymbols": [
+        "_boot_Socket"
+      ],
+      "sources": [
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "cpan/Socket/Socket.pm",
+              "sourceSha256": "23749ef14ad7687c395ab4f581c58bccc75018dc7a51876a0438fadf71faa42c",
+              "payload": [
+                "par/lib/Socket.pm"
+              ],
+              "payloadSha256": "23749ef14ad7687c395ab4f581c58bccc75018dc7a51876a0438fadf71faa42c",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "cpan/Socket/Socket.xs",
+              "bytes": 36936,
+              "sha256": "310ad651e5ace62bf98a51d142cbb8ba08bdd72830deaecc9d9044db495a3aba",
+              "modules": [
+                "Socket"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Sort::Key",
+      "payloadPaths": [
+        "par/lib/auto/Sort/Key/Key.bundle"
+      ],
+      "bytes": 37271,
+      "sha256": "75375e7e6b7a0b11b3f359054efcf8621934882739882fc3dae8c6128bd48f8f",
+      "bootSymbols": [
+        "_boot_Sort__Key"
+      ],
+      "sources": [
+        {
+          "id": "Sort-Key-1.33",
+          "anchors": [
+            {
+              "source": "lib/Sort/Key.pm",
+              "sourceSha256": "ec40376dae00bf22e183d7bf1233db825b6ccacd80a7f86fc76b423e21878d6f",
+              "payload": [
+                "par/lib/Sort/Key.pm"
+              ],
+              "payloadSha256": "ec40376dae00bf22e183d7bf1233db825b6ccacd80a7f86fc76b423e21878d6f",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "Key.xs",
+              "bytes": 19838,
+              "sha256": "d52aaee231e8cb26a0793fa547b06461610d00ae8c6360afdda84475f1946d5f",
+              "modules": [
+                "Sort::Key"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Storable",
+      "payloadPaths": [
+        "loader/6bcde9b3/auto/Storable/Storable.bundle",
+        "par/lib/auto/Storable/Storable.bundle"
+      ],
+      "bytes": 125020,
+      "sha256": "0499b070890432140254e7e0a7a95a059ff84e301c0d9923337caed2849a9cb9",
+      "bootSymbols": [
+        "_boot_Storable"
+      ],
+      "sources": [
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "dist/Storable/Storable.pm",
+              "sourceSha256": "b1c10d3135bbbbb967a9594056cdd5e908b3577ca06e77c12d83603d3af81799",
+              "payload": [
+                "par/lib/Storable.pm",
+                "loader/e4e08509/Storable.pm"
+              ],
+              "payloadSha256": "b1c10d3135bbbbb967a9594056cdd5e908b3577ca06e77c12d83603d3af81799",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "dist/Storable/Storable.xs",
+              "bytes": 238289,
+              "sha256": "29ed28785b7274972f11b23428cec17cd6924754db1a44373170ebf561c09f60",
+              "modules": [
+                "Storable"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Sub::Identify",
+      "payloadPaths": [
+        "par/lib/auto/Sub/Identify/Identify.bundle"
+      ],
+      "bytes": 34236,
+      "sha256": "3a3ceb27600ff95196a1b5e9de9d1cfec9e8fe6676ef9f828fc7046cb480e30f",
+      "bootSymbols": [
+        "_boot_Sub__Identify"
+      ],
+      "sources": [
+        {
+          "id": "Sub-Identify-0.14",
+          "anchors": [
+            {
+              "source": "lib/Sub/Identify.pm",
+              "sourceSha256": "9b7160d05caf371030379bd5c1fc28ba0c07f300dfb4348122c99ac8d77e1c41",
+              "payload": [
+                "par/lib/Sub/Identify.pm"
+              ],
+              "payloadSha256": "9b7160d05caf371030379bd5c1fc28ba0c07f300dfb4348122c99ac8d77e1c41",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "Identify.xs",
+              "bytes": 1911,
+              "sha256": "aab0b826072c4d161539a3fe04371b7caf167da70bdc4635dc791c4da85dfc16",
+              "modules": [
+                "Sub::Identify"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Sys::Hostname",
+      "payloadPaths": [
+        "par/lib/auto/Sys/Hostname/Hostname.bundle"
+      ],
+      "bytes": 34028,
+      "sha256": "831e8dc10bebdb8b84d4bd9596d7676db0447b47184d26b6da21b6b0ea30210d",
+      "bootSymbols": [
+        "_boot_Sys__Hostname"
+      ],
+      "sources": [
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "ext/Sys-Hostname/Hostname.pm",
+              "sourceSha256": "3765762e4d6aba12e5310c50e447a40d4982a58db468dfc859ffafc84eab0c2e",
+              "payload": [
+                "par/lib/Sys/Hostname.pm"
+              ],
+              "payloadSha256": "3765762e4d6aba12e5310c50e447a40d4982a58db468dfc859ffafc84eab0c2e",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "ext/Sys-Hostname/Hostname.xs",
+              "bytes": 1293,
+              "sha256": "8aea527f4480969bb06c5644343d197612e4af2836d2b6c7d42c3a8b75f60f66",
+              "modules": [
+                "Sys::Hostname"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Sys::Syslog",
+      "payloadPaths": [
+        "par/lib/auto/Sys/Syslog/Syslog.bundle"
+      ],
+      "bytes": 35690,
+      "sha256": "36cef9a5234f93cbcaa7c424745a445cf31994389397ee78458b5b1b25a2ee88",
+      "bootSymbols": [
+        "_boot_Sys__Syslog"
+      ],
+      "sources": [
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "cpan/Sys-Syslog/Syslog.pm",
+              "sourceSha256": "b51724338f0b66c9d120169264d83a3ea6235e0468a22cddcb3087938a507abd",
+              "payload": [
+                "par/lib/Sys/Syslog.pm"
+              ],
+              "payloadSha256": "b51724338f0b66c9d120169264d83a3ea6235e0468a22cddcb3087938a507abd",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "cpan/Sys-Syslog/Syslog.xs",
+              "bytes": 2584,
+              "sha256": "2e05daf3e506e4b3cf23a263cccc8dc67d29ec823273f77976c282930724442a",
+              "modules": [
+                "Sys::Syslog"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Text::BibTeX",
+      "payloadPaths": [
+        "par/lib/auto/Text/BibTeX/BibTeX.bundle"
+      ],
+      "bytes": 54976,
+      "sha256": "d3b8b1990de30bc4eaefbd001e5dbce87e4ae91bf1672c2c3d96b997c5ee9727",
+      "bootSymbols": [
+        "_boot_Text__BibTeX"
+      ],
+      "sources": [
+        {
+          "id": "Text-BibTeX-0.88",
+          "anchors": [
+            {
+              "source": "lib/Text/BibTeX.pm",
+              "sourceSha256": "b7c50439fd7db3618f18dba20fd4250847b44c1e10a605330e83649af7ac207f",
+              "payload": [
+                "par/lib/Text/BibTeX.pm"
+              ],
+              "payloadSha256": "b7c50439fd7db3618f18dba20fd4250847b44c1e10a605330e83649af7ac207f",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "xscode/BibTeX.xs",
+              "bytes": 14985,
+              "sha256": "ad0aa1e152621b8825039ec55152f49daed877401930ec5ce061bebfc62817bb",
+              "modules": [
+                "Text::BibTeX"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Text::CSV_XS",
+      "payloadPaths": [
+        "par/lib/auto/Text/CSV_XS/CSV_XS.bundle"
+      ],
+      "bytes": 71162,
+      "sha256": "3aebe8d9bd239d63409323c5666a5b88a0a861b3238ed4e3cff5084fb0773841",
+      "bootSymbols": [
+        "_boot_Text__CSV_XS"
+      ],
+      "sources": [
+        {
+          "id": "Text-CSV_XS-1.46",
+          "anchors": [
+            {
+              "source": "CSV_XS.pm",
+              "sourceSha256": "6b0f1e190191a3ac87211e9ed00c48e8d992c43f37b58bc12e4e3fcfa564350c",
+              "payload": [
+                "par/lib/Text/CSV_XS.pm"
+              ],
+              "payloadSha256": "6b0f1e190191a3ac87211e9ed00c48e8d992c43f37b58bc12e4e3fcfa564350c",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "CSV_XS.xs",
+              "bytes": 63624,
+              "sha256": "4bd8680d4504db749151cf102b68a03ab3bd7cb91abe5885376d798faabfd024",
+              "modules": [
+                "Text::CSV_XS"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Time::HiRes",
+      "payloadPaths": [
+        "loader/0d7b89c9/auto/Time/HiRes/HiRes.bundle",
+        "par/lib/auto/Time/HiRes/HiRes.bundle"
+      ],
+      "bytes": 53769,
+      "sha256": "084cf376cffced541c28eabd4657e655685e5d9bd76b8fb28d34e38f339cbdc7",
+      "bootSymbols": [
+        "_boot_Time__HiRes"
+      ],
+      "sources": [
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "dist/Time-HiRes/HiRes.pm",
+              "sourceSha256": "e2a8fac68a3dd894c5876b1aebe4eacf5d7c58e5b1156ac627622a542d61db66",
+              "payload": [
+                "par/lib/Time/HiRes.pm",
+                "loader/2fe12c9a/Time/HiRes.pm"
+              ],
+              "payloadSha256": "e2a8fac68a3dd894c5876b1aebe4eacf5d7c58e5b1156ac627622a542d61db66",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "dist/Time-HiRes/HiRes.xs",
+              "bytes": 49217,
+              "sha256": "ba67b35451e67a7a024f28caba84db3fe679f88c0006baab2b73e7f266097b98",
+              "modules": [
+                "Time::HiRes"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Tk",
+      "payloadPaths": [
+        "par/lib/auto/Tk/Tk.bundle"
+      ],
+      "bytes": 848342,
+      "sha256": "52b6a64119c9843174e8ad76fe57491e5784364cc359e9941bec69df4ce4de0a",
+      "bootSymbols": [
+        "_boot_Tk"
+      ],
+      "sources": [
+        {
+          "id": "Tk-804.036",
+          "anchors": [
+            {
+              "source": "Tk.pm",
+              "sourceSha256": "f3f0b1d3916df92f13f3cf457fbb3b5faf5d32048fd8ef144bf4483e1656863c",
+              "payload": [
+                "par/lib/Tk.pm"
+              ],
+              "payloadSha256": "db0358f44d0400fd35a2014ec6661ad2f771999352b402597eb938433db3d754",
+              "transformation": "PAR::Filter::PatchContent:Tk.pm"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "Event/Event.xs",
+              "bytes": 31136,
+              "sha256": "15d00c1a41f59dd066f6ccc5bf6103f450a22e53ee298e108fdd5b740f04ae58",
+              "modules": [
+                "Tk"
+              ]
+            },
+            {
+              "path": "Tk.xs",
+              "bytes": 20258,
+              "sha256": "dd07aeef4c66ce4c5cd6cc530cd59242754747158abbfc64f88da18e0327f8f8",
+              "modules": [
+                "Tk"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Tk::Canvas",
+      "payloadPaths": [
+        "par/lib/auto/Tk/Canvas/Canvas.bundle"
+      ],
+      "bytes": 178650,
+      "sha256": "33f7ab6d418c43c6ff5baf1c33e7f9809c5e9acb1ee433a637161d0f2e011d00",
+      "bootSymbols": [
+        "_boot_Tk__Canvas"
+      ],
+      "sources": [
+        {
+          "id": "Tk-804.036",
+          "anchors": [
+            {
+              "source": "Canvas/Canvas.pm",
+              "sourceSha256": "d2dd2406a5531c98807ec465d3f9b5aaec299cb83024c9ff81f125e43caf7c64",
+              "payload": [
+                "par/lib/Tk/Canvas.pm"
+              ],
+              "payloadSha256": "d2dd2406a5531c98807ec465d3f9b5aaec299cb83024c9ff81f125e43caf7c64",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "Canvas/Canvas.xs",
+              "bytes": 756,
+              "sha256": "be2f8b749cb96225bdb9f14d29e374acc5c100c5a9ca54da389c27fc4446fe24",
+              "modules": [
+                "Tk::Canvas"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Tk::Entry",
+      "payloadPaths": [
+        "par/lib/auto/Tk/Entry/Entry.bundle"
+      ],
+      "bytes": 68825,
+      "sha256": "62655611ed40da3de593f7fb8ad7e3b845a7f416af92c273bfbc2286b80d921e",
+      "bootSymbols": [
+        "_boot_Tk__Entry"
+      ],
+      "sources": [
+        {
+          "id": "Tk-804.036",
+          "anchors": [
+            {
+              "source": "Entry/Entry.pm",
+              "sourceSha256": "8697c0ab35c78a4dddaed9c7d2d11f01ada5476bd0e9a01fec7f668fe8392f2d",
+              "payload": [
+                "par/lib/Tk/Entry.pm"
+              ],
+              "payloadSha256": "8697c0ab35c78a4dddaed9c7d2d11f01ada5476bd0e9a01fec7f668fe8392f2d",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "Entry/Entry.xs",
+              "bytes": 738,
+              "sha256": "1c2baa53aefab0f566febd6905d5fc4dea1c8a072ed3849a1d93919d9bef1fde",
+              "modules": [
+                "Tk::Entry"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Tk::Event",
+      "payloadPaths": [
+        "par/lib/auto/Tk/Event/Event.bundle"
+      ],
+      "bytes": 97193,
+      "sha256": "c622f80e8b1ed0fe6a9ab83cc9e884c23f2a690ef1e87e6c506473ffce2a2f80",
+      "bootSymbols": [
+        "_boot_Tk__Event"
+      ],
+      "sources": [
+        {
+          "id": "Tk-804.036",
+          "anchors": [
+            {
+              "source": "Event/Event.pm",
+              "sourceSha256": "1f7383d9def311b05630d654643a4edb47b3a70629f32210e423545bdc55dde2",
+              "payload": [
+                "par/lib/Tk/Event.pm"
+              ],
+              "payloadSha256": "1f7383d9def311b05630d654643a4edb47b3a70629f32210e423545bdc55dde2",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "Event/Event.xs",
+              "bytes": 31136,
+              "sha256": "15d00c1a41f59dd066f6ccc5bf6103f450a22e53ee298e108fdd5b740f04ae58",
+              "modules": [
+                "Tk::Event"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Tk::HList",
+      "payloadPaths": [
+        "par/lib/auto/Tk/HList/HList.bundle"
+      ],
+      "bytes": 87801,
+      "sha256": "fa04976e008a2d2f6d8274137dd9b6e20674e27c83f2e7ccbe5efd43451b2452",
+      "bootSymbols": [
+        "_boot_Tk__HList"
+      ],
+      "sources": [
+        {
+          "id": "Tk-804.036",
+          "anchors": [
+            {
+              "source": "HList/HList.pm",
+              "sourceSha256": "31fc18c4086454a6370f446c00445cce36ab2e3a543c21f5e91a6b5ab901448a",
+              "payload": [
+                "par/lib/Tk/HList.pm"
+              ],
+              "payloadSha256": "31fc18c4086454a6370f446c00445cce36ab2e3a543c21f5e91a6b5ab901448a",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "HList/HList.xs",
+              "bytes": 673,
+              "sha256": "02245a46e408b35ea50bf778da92d5e56d4430e6b44c6ba5b38b2f1a7a73768d",
+              "modules": [
+                "Tk::HList"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Tk::Listbox",
+      "payloadPaths": [
+        "par/lib/auto/Tk/Listbox/Listbox.bundle"
+      ],
+      "bytes": 68251,
+      "sha256": "56280a28feceb7212ac9666803d1a97c6fa0b4da90ae1bf29ca924e3f62cb7fb",
+      "bootSymbols": [
+        "_boot_Tk__Listbox"
+      ],
+      "sources": [
+        {
+          "id": "Tk-804.036",
+          "anchors": [
+            {
+              "source": "Listbox/Listbox.pm",
+              "sourceSha256": "b951a531db0d8ac633fed3291ddf416e293415c21a6068f2a475f6ee4fcdbfd6",
+              "payload": [
+                "par/lib/Tk/Listbox.pm"
+              ],
+              "payloadSha256": "b951a531db0d8ac633fed3291ddf416e293415c21a6068f2a475f6ee4fcdbfd6",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "Listbox/Listbox.xs",
+              "bytes": 605,
+              "sha256": "13cce2e55644fb6bd51389877f997f8ac39754e2af59618a083d63b8258280a7",
+              "modules": [
+                "Tk::Listbox"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Tk::Menubutton",
+      "payloadPaths": [
+        "par/lib/auto/Tk/Menubutton/Menubutton.bundle"
+      ],
+      "bytes": 51870,
+      "sha256": "b70653898b3a94e0d2de47bdd0bb63ca753c246ea3dd219889f75970c6ececa3",
+      "bootSymbols": [
+        "_boot_Tk__Menubutton"
+      ],
+      "sources": [
+        {
+          "id": "Tk-804.036",
+          "anchors": [
+            {
+              "source": "Menubutton/Menubutton.pm",
+              "sourceSha256": "fb513f95e9b0af447d55dcc0594aa11e304dea8fe9f4a7094b4d1c635e2301e8",
+              "payload": [
+                "par/lib/Tk/Menubutton.pm"
+              ],
+              "payloadSha256": "fb513f95e9b0af447d55dcc0594aa11e304dea8fe9f4a7094b4d1c635e2301e8",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "Menubutton/Menubutton.xs",
+              "bytes": 613,
+              "sha256": "0a4971e2e7f7a0f0955f8558a8291bbd565377734042db95739a826802def01d",
+              "modules": [
+                "Tk::Menubutton"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Tk::Pixmap",
+      "payloadPaths": [
+        "par/lib/auto/Tk/Pixmap/Pixmap.bundle"
+      ],
+      "bytes": 68682,
+      "sha256": "76d8fd79a73a3008e932c8949757fbec740f3ed2d15cc302a9531ace6f983935",
+      "bootSymbols": [
+        "_boot_Tk__Pixmap"
+      ],
+      "sources": [
+        {
+          "id": "Tk-804.036",
+          "anchors": [
+            {
+              "source": "TixPixmap/Pixmap.pm",
+              "sourceSha256": "7958dbf2a50fa5dd4f04f4ae184011145437832f0c6e8f70695367f0e54dec13",
+              "payload": [
+                "par/lib/Tk/Pixmap.pm"
+              ],
+              "payloadSha256": "7958dbf2a50fa5dd4f04f4ae184011145437832f0c6e8f70695367f0e54dec13",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "TixPixmap/Pixmap.xs",
+              "bytes": 1194,
+              "sha256": "af807cd3aa5bd9c2f3041646a41d42a8177dca75114bcd5de5a7cdd4655b99d8",
+              "modules": [
+                "Tk::Pixmap"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Tk::Scale",
+      "payloadPaths": [
+        "par/lib/auto/Tk/Scale/Scale.bundle"
+      ],
+      "bytes": 51993,
+      "sha256": "447bc48a51a96513d1bc80ad15929699a2df748341ec7b8a46f900aa1f0ab140",
+      "bootSymbols": [
+        "_boot_Tk__Scale"
+      ],
+      "sources": [
+        {
+          "id": "Tk-804.036",
+          "anchors": [
+            {
+              "source": "Scale/Scale.pm",
+              "sourceSha256": "834ed931b4e5a0513d80c7883c15e19312e5685bd9f79497f82a43778241f4c3",
+              "payload": [
+                "par/lib/Tk/Scale.pm"
+              ],
+              "payloadSha256": "834ed931b4e5a0513d80c7883c15e19312e5685bd9f79497f82a43778241f4c3",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "Scale/Scale.xs",
+              "bytes": 598,
+              "sha256": "2d4ba416e18f47fee7e4a2af18d45f162a8b17da0b8308702578b07f7a9f9cd8",
+              "modules": [
+                "Tk::Scale"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Tk::Scrollbar",
+      "payloadPaths": [
+        "par/lib/auto/Tk/Scrollbar/Scrollbar.bundle"
+      ],
+      "bytes": 52525,
+      "sha256": "9362281bc52029fd4416ab47926412942550e1a3a1ec5d1d46c759db8f9b64e9",
+      "bootSymbols": [
+        "_boot_Tk__Scrollbar"
+      ],
+      "sources": [
+        {
+          "id": "Tk-804.036",
+          "anchors": [
+            {
+              "source": "Scrollbar/Scrollbar.pm",
+              "sourceSha256": "1339af073b0a6f65d9a5d4ac94eaff701fd789c4483fcaba0f259cfd1e924dd9",
+              "payload": [
+                "par/lib/Tk/Scrollbar.pm"
+              ],
+              "payloadSha256": "1339af073b0a6f65d9a5d4ac94eaff701fd789c4483fcaba0f259cfd1e924dd9",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "Scrollbar/Scrollbar.xs",
+              "bytes": 729,
+              "sha256": "84acf95c616d82dcae328ae1fea9075d5239ddaf2625382056dc66f1bc2ada97",
+              "modules": [
+                "Tk::Scrollbar"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Tk::Text",
+      "payloadPaths": [
+        "par/lib/auto/Tk/Text/Text.bundle"
+      ],
+      "bytes": 158904,
+      "sha256": "6c0a0e3a8dd35c42f6dd86f208b888acb487a5f53251251810421044dde60134",
+      "bootSymbols": [
+        "_boot_Tk__Text"
+      ],
+      "sources": [
+        {
+          "id": "Tk-804.036",
+          "anchors": [
+            {
+              "source": "Text/Text.pm",
+              "sourceSha256": "4383cf656ad4f4ade7d0a69b6efae690e7e6aa1d5ccdb6c760f9b9364a284222",
+              "payload": [
+                "par/lib/Tk/Text.pm"
+              ],
+              "payloadSha256": "4383cf656ad4f4ade7d0a69b6efae690e7e6aa1d5ccdb6c760f9b9364a284222",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "Text/Text.xs",
+              "bytes": 592,
+              "sha256": "09c7df847a52d0a2e0c803fafca41394fc963b8c4a0dd1e17908f8bf032ed804",
+              "modules": [
+                "Tk::Text"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Unicode::Collate",
+      "payloadPaths": [
+        "par/lib/auto/Unicode/Collate/Collate.bundle"
+      ],
+      "bytes": 801083,
+      "sha256": "50123dd0f1b1e44b1d2d12c35dbb3c5360e926da6ad39560afcd959a45899569",
+      "bootSymbols": [
+        "_boot_Unicode__Collate"
+      ],
+      "sources": [
+        {
+          "id": "Unicode-Collate-1.31",
+          "anchors": [
+            {
+              "source": "Collate.pm",
+              "sourceSha256": "0a2de3e87f453601bcca0f5dcdf0ebae9e71f6cdce4dc96edc6a3603be61cd84",
+              "payload": [
+                "par/lib/Unicode/Collate.pm"
+              ],
+              "payloadSha256": "0a2de3e87f453601bcca0f5dcdf0ebae9e71f6cdce4dc96edc6a3603be61cd84",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "Collate.xs",
+              "bytes": 20578,
+              "sha256": "00d5d4d73f365b683529ecf062248f9870b5059d215aff7cdd0cc4067b812da2",
+              "modules": [
+                "Unicode::Collate"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Unicode::LineBreak",
+      "payloadPaths": [
+        "par/lib/auto/Unicode/LineBreak/LineBreak.bundle"
+      ],
+      "bytes": 193453,
+      "sha256": "c475732c1db052458eb393f7db8626d57b6d22ae90cda521d2846f388706245a",
+      "bootSymbols": [
+        "_boot_Unicode__LineBreak"
+      ],
+      "sources": [
+        {
+          "id": "Unicode-LineBreak-2019.001",
+          "anchors": [
+            {
+              "source": "lib/Unicode/LineBreak.pm",
+              "sourceSha256": "93c0f47c958521f9a2d634a9b4faac25fe0cb89a28b06dcd01a2e011dfa01032",
+              "payload": [
+                "par/lib/Unicode/LineBreak.pm"
+              ],
+              "payloadSha256": "93c0f47c958521f9a2d634a9b4faac25fe0cb89a28b06dcd01a2e011dfa01032",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "LineBreak.xs",
+              "bytes": 38006,
+              "sha256": "a1f3bf3a4a9ab9215dbcd0cb4faf3061bbdaab01acde20c5988b008bcda9b812",
+              "modules": [
+                "Unicode::LineBreak"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Unicode::Normalize",
+      "payloadPaths": [
+        "par/lib/auto/Unicode/Normalize/Normalize.bundle"
+      ],
+      "bytes": 428621,
+      "sha256": "13dabfe86e67fa53f9b102280ce6b0cb101f8e8956af4c187880c2747009c026",
+      "bootSymbols": [
+        "_boot_Unicode__Normalize"
+      ],
+      "sources": [
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "dist/Unicode-Normalize/Normalize.pm",
+              "sourceSha256": "368faaee4db6dce81f5f0f9a24d23eeb849c988b7df970fd2a86759d4f9be0dd",
+              "payload": [
+                "par/lib/Unicode/Normalize.pm"
+              ],
+              "payloadSha256": "368faaee4db6dce81f5f0f9a24d23eeb849c988b7df970fd2a86759d4f9be0dd",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "dist/Unicode-Normalize/Normalize.xs",
+              "bytes": 20171,
+              "sha256": "66571b59d8877c9875c9f8ef65a816f0df6ed08cf5611d23ebb7649f6c1b6a7e",
+              "modules": [
+                "Unicode::Normalize"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "Variable::Magic",
+      "payloadPaths": [
+        "par/lib/auto/Variable/Magic/Magic.bundle"
+      ],
+      "bytes": 71801,
+      "sha256": "5f8d4ecc11cd7ca9aa26c28fce29e0b7a65e62159de3d59d086dbfebbd297e77",
+      "bootSymbols": [
+        "_boot_Variable__Magic"
+      ],
+      "sources": [
+        {
+          "id": "Variable-Magic-0.62",
+          "anchors": [
+            {
+              "source": "lib/Variable/Magic.pm",
+              "sourceSha256": "76b5e48df688555481bd36509816649533b4de399b1154ce2e6823ea246cbc76",
+              "payload": [
+                "par/lib/Variable/Magic.pm"
+              ],
+              "payloadSha256": "76b5e48df688555481bd36509816649533b4de399b1154ce2e6823ea246cbc76",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "Magic.xs",
+              "bytes": 48440,
+              "sha256": "6119e04ae65deec758d1642b8acf6ec11c3d6ca1028b96f251ca026f066fd0ff",
+              "modules": [
+                "Variable::Magic"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "XML::LibXML",
+      "payloadPaths": [
+        "par/lib/auto/XML/LibXML/LibXML.bundle"
+      ],
+      "bytes": 397114,
+      "sha256": "2f80c4601497dd0094ea558b565c519515dbc1582c6e4f57a1860fc1cc262ee5",
+      "bootSymbols": [
+        "_boot_XML__LibXML",
+        "_boot_XML__LibXML__Devel"
+      ],
+      "sources": [
+        {
+          "id": "XML-LibXML-2.0207",
+          "anchors": [
+            {
+              "source": "LibXML.pm",
+              "sourceSha256": "8aa24f493f8665fe6b4a66b5a808a6d36a9b7c85c657aa20d66c2c7955d90a63",
+              "payload": [
+                "par/lib/XML/LibXML.pm"
+              ],
+              "payloadSha256": "8aa24f493f8665fe6b4a66b5a808a6d36a9b7c85c657aa20d66c2c7955d90a63",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "Devel.xs",
+              "bytes": 2569,
+              "sha256": "a71c4c4bbeee87cb324f724272cf528aef214949a36524d6be2a2593a6488818",
+              "modules": [
+                "XML::LibXML::Devel"
+              ]
+            },
+            {
+              "path": "LibXML.xs",
+              "bytes": 264532,
+              "sha256": "53177fc59e53371fcf2fc2f3f50b48d0b91f9a1837014a46da7911454dd56f7c",
+              "modules": [
+                "XML::LibXML"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "XML::LibXSLT",
+      "payloadPaths": [
+        "par/lib/auto/XML/LibXSLT/LibXSLT.bundle"
+      ],
+      "bytes": 77675,
+      "sha256": "a4f8b6b3238485c7661678cee88f6852e732261d96f34a43a4f3351a4aa564ee",
+      "bootSymbols": [
+        "_boot_XML__LibXSLT"
+      ],
+      "sources": [
+        {
+          "id": "XML-LibXSLT-1.99",
+          "anchors": [
+            {
+              "source": "LibXSLT.pm",
+              "sourceSha256": "a75f41738c7ef2d6726a12bbb76d432935da773e170d7000d02a533d6fa2d261",
+              "payload": [
+                "par/lib/XML/LibXSLT.pm"
+              ],
+              "payloadSha256": "a75f41738c7ef2d6726a12bbb76d432935da773e170d7000d02a533d6fa2d261",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "LibXSLT.xs",
+              "bytes": 38984,
+              "sha256": "41710858b8358ae3efdd631c7d7dde7fda0cd33dc51a22352d51c9465329d8c2",
+              "modules": [
+                "XML::LibXSLT"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "XML::Parser::Expat",
+      "payloadPaths": [
+        "par/lib/auto/XML/Parser/Expat/Expat.bundle"
+      ],
+      "bytes": 109977,
+      "sha256": "406213cdb555a33593ea9cb0759bc8fe8c695916e97e72f97a7986e98788ca47",
+      "bootSymbols": [
+        "_boot_XML__Parser__Expat"
+      ],
+      "sources": [
+        {
+          "id": "XML-Parser-2.46",
+          "anchors": [
+            {
+              "source": "Expat/Expat.pm",
+              "sourceSha256": "5c8158981712a0d160f0a85d66e847a98680b308fb03aa2ecad1af2b552f56e1",
+              "payload": [
+                "par/lib/XML/Parser/Expat.pm"
+              ],
+              "payloadSha256": "5c8158981712a0d160f0a85d66e847a98680b308fb03aa2ecad1af2b552f56e1",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "Expat/Expat.xs",
+              "bytes": 45879,
+              "sha256": "4d5b35d26188703b366e40a5024ccbc293083686dfc286111f3f6b0738db01d2",
+              "modules": [
+                "XML::Parser::Expat"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "attributes",
+      "payloadPaths": [
+        "loader/e8b7e20e/auto/attributes/attributes.bundle",
+        "par/lib/auto/attributes/attributes.bundle"
+      ],
+      "bytes": 35102,
+      "sha256": "d1548a55b45945cebfd3d52d03feb74fe271f6cdcee8e90b0f80ccd2b2e6057f",
+      "bootSymbols": [
+        "_boot_attributes"
+      ],
+      "sources": [
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "ext/attributes/attributes.pm",
+              "sourceSha256": "467b20bd8acd4c004080e71304fc5918c7fea98271a639bb07b4b31c489f60b8",
+              "payload": [
+                "par/lib/attributes.pm",
+                "loader/aaa8f800/attributes.pm"
+              ],
+              "payloadSha256": "467b20bd8acd4c004080e71304fc5918c7fea98271a639bb07b4b31c489f60b8",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "ext/attributes/attributes.xs",
+              "bytes": 5495,
+              "sha256": "a53f1e43f8c6733ff9cd31ec3a8c89320caa71c34408fcf915b0581cd8bf3f35",
+              "modules": [
+                "attributes"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "autovivification",
+      "payloadPaths": [
+        "par/lib/auto/autovivification/autovivification.bundle"
+      ],
+      "bytes": 70612,
+      "sha256": "e3a5edf5bc63c04345c31ca9eb25460236d0f6757797d36f10dc2af0307e7321",
+      "bootSymbols": [
+        "_boot_autovivification"
+      ],
+      "sources": [
+        {
+          "id": "autovivification-0.18",
+          "anchors": [
+            {
+              "source": "lib/autovivification.pm",
+              "sourceSha256": "b2f12387b90d8631d6c3cb9c095dcde1e7223a027c39ef54b0676e3545c6c284",
+              "payload": [
+                "par/lib/autovivification.pm"
+              ],
+              "payloadSha256": "b2f12387b90d8631d6c3cb9c095dcde1e7223a027c39ef54b0676e3545c6c284",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "autovivification.xs",
+              "bytes": 31306,
+              "sha256": "13abf4db2f95aee473d45a46b43c7c337ada09a8f124e74980688b69fb04f7ce",
+              "modules": [
+                "autovivification"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "mro",
+      "payloadPaths": [
+        "par/lib/auto/mro/mro.bundle"
+      ],
+      "bytes": 37111,
+      "sha256": "f7adc15a22aabcb360708647dc21c4e5c24baae07f593b80e5b7d8e8e848215c",
+      "bootSymbols": [
+        "_boot_mro"
+      ],
+      "sources": [
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "ext/mro/mro.pm",
+              "sourceSha256": "4a12e17a9e8e41d3edef2e79d158d0e4ef4a3d8e346bbf2e24ebbc851e03891d",
+              "payload": [
+                "par/lib/mro.pm"
+              ],
+              "payloadSha256": "4a12e17a9e8e41d3edef2e79d158d0e4ef4a3d8e346bbf2e24ebbc851e03891d",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "ext/mro/mro.xs",
+              "bytes": 21153,
+              "sha256": "99d6e14bb956be4f98a24840fffec831694cbe369f396e28baefad72a7b938a1",
+              "modules": [
+                "mro"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "re",
+      "payloadPaths": [
+        "par/lib/auto/re/re.bundle"
+      ],
+      "bytes": 854054,
+      "sha256": "e20ddbfb2857c9a1a2527773100cf6f0b0811d2a688e8de3c3597ec4c1397ae2",
+      "bootSymbols": [
+        "_boot_re"
+      ],
+      "sources": [
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "ext/re/re.pm",
+              "sourceSha256": "a19cba44e51203f71a22731d18d96e8bb7caf6c8f060ffe6d2b9118ff7b293eb",
+              "payload": [
+                "par/lib/re.pm"
+              ],
+              "payloadSha256": "a19cba44e51203f71a22731d18d96e8bb7caf6c8f060ffe6d2b9118ff7b293eb",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "ext/re/re.xs",
+              "bytes": 4471,
+              "sha256": "212512c1a724d68488c758f540c531380b46cc650bcf4902b1f0ef53e97dd3cc",
+              "modules": [
+                "re"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "threads",
+      "payloadPaths": [
+        "par/lib/auto/threads/threads.bundle"
+      ],
+      "bytes": 73339,
+      "sha256": "c635cd10538f9fdca14a23c6bde6c72160ff2a24e5f3c72bb4e9e4141a96fd80",
+      "bootSymbols": [
+        "_boot_threads"
+      ],
+      "sources": [
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "dist/threads/lib/threads.pm",
+              "sourceSha256": "b1ac5928ebc1330dc342faf04eefdac54e4feb3a586471aab518620ec14118f3",
+              "payload": [
+                "par/lib/threads.pm"
+              ],
+              "payloadSha256": "b1ac5928ebc1330dc342faf04eefdac54e4feb3a586471aab518620ec14118f3",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "dist/threads/threads.xs",
+              "bytes": 57982,
+              "sha256": "cf4f28ef4b93f29b8386b6f8eda81a5488959ae7fdcd3d3eb608a447ece3ace0",
+              "modules": [
+                "threads"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "threads::shared",
+      "payloadPaths": [
+        "par/lib/auto/threads/shared/shared.bundle"
+      ],
+      "bytes": 56938,
+      "sha256": "ed4057d2b7dbb1c6a0fe08e8000eac4f1ed1eb49f2948de53f86702bc414bc39",
+      "bootSymbols": [
+        "_boot_threads__shared"
+      ],
+      "sources": [
+        {
+          "id": "perl-5.32.1",
+          "anchors": [
+            {
+              "source": "dist/threads-shared/lib/threads/shared.pm",
+              "sourceSha256": "8eb775a2f8e98ddececea399a4955ff90045a352d52b9fc822f42b9bf2383ee4",
+              "payload": [
+                "par/lib/threads/shared.pm"
+              ],
+              "payloadSha256": "8eb775a2f8e98ddececea399a4955ff90045a352d52b9fc822f42b9bf2383ee4",
+              "transformation": "none"
+            }
+          ],
+          "xsDeclarations": [
+            {
+              "path": "dist/threads-shared/shared.xs",
+              "bytes": 51618,
+              "sha256": "0910f1b6da42bc3288b0071b7cc0fe41147f98ced01451b8212aef2aa4bfaa33",
+              "modules": [
+                "threads::shared"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
