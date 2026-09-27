@@ -72,6 +72,12 @@ jobs:
             test-results/runtime-*/startup-chat.png
             test-results/runtime-*/startup-editing.png
             test-results/runtime-*/failure.png
+            test-results/build-crash-*/result.json
+            test-results/build-crash-*/native-output.log
+            test-results/build-crash-*/during-compile.png
+            test-results/build-crash-*/recovered-chat.png
+            test-results/build-crash-*/recovered.pdf
+            test-results/build-crash-*/failure.png
             test-results/workspace-*/layout-measurements.json
             test-results/workspace-*/keyboard-*.png
             test-results/workspace-*/failure.png
