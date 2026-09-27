@@ -95,6 +95,8 @@ The fixture is a separate Mac qualification step. Its result, input hashes, prog
 
 The transfer uses Electron's `net.request` and its Node readable response directly. The actual Electron controls reproduced an intermittent uncaught `ERR_INVALID_STATE` error with the `session.fetch` Web-stream bridge during abort. The direct stream avoids that bridge, keeps backpressure during file writes, and aborts the request when its response closes. In pinned Electron 44, the request's Writable `close` event can occur before the response, so cancellation stays attached until the response closes. This behavior was checked against [Electron's pinned request implementation](https://github.com/electron/electron/blob/v44.4.5/lib/common/api/net-client-request.ts).
 
+Hosted qualification for unsigned source `0c0e712` passed the actual Electron transfer/staging controls and all sixteen packaged native suites, including Settings recovery from a simulated restart failure. Downloaded evidence, script/input hashes and the physical app inventory match that exact commit. This does not qualify the newer disk-space/cache changes or establish a real signed upgrade. See [hosted evidence](releases/mac-update-staging-hosted-verification.json).
+
 Still required before enabling production updates:
 
 - Two independently built, Developer ID signed and notarized versions, installed from real downloads, with a real Squirrel.Mac upgrade and exact resulting version/app identity.
