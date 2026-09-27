@@ -1,0 +1,227 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T16:07:39.063189+00:00",
+  "sourceBase": "2d3968d23e48d86eb12d121ba4c148449ea78d91",
+  "applicationInputsChanged": false,
+  "applicationPackageEvidence": "docs/releases/pdfjs-notices-verification.json",
+  "appAsarSha256": "b3101633e1a7c78fe37789efe98a94ed442e0f927da03709959a17eff9cfbe3a",
+  "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+  "scope": "Ten native launches of the current unsigned local Apple silicon package: five fresh isolated profiles and their prepared close/reopen pairs. A short typed chat draft and exact recovered source/compiler identity are checked. This is descriptive evidence on one development Mac, not a controlled before/after speedup, supported-device p95 or production qualification.",
+  "script": {
+    "path": "scripts/profile-app.mjs",
+    "bytes": 8205,
+    "sha256": "8d05df7fd47dc890fb881d27f5a6258ab0fd22effa4a4956c350d183fcefb9b9"
+  },
+  "summary": {
+    "path": "docs/performance/current-package-startup-summary.json",
+    "bytes": 15294,
+    "sha256": "99a5559eac8989835ee8e9aaacf71aafe0f14ad7856e7604b56f0e4d754805c7"
+  },
+  "raw": {
+    "path": "docs/performance/current-package-startup.json.gz",
+    "bytes": 66699,
+    "sha256": "f339e504dc290451a2b4ddfb7100d3c6f2cf430b31bbe999e1417ded5539893a",
+    "uncompressedBytes": 923547,
+    "uncompressedSha256": "32ade564408dbf97bd36cd5a266f5e969647d9e28a9021c714423cabe0adfb87"
+  },
+  "log": {
+    "path": "test-results/current-app-startup.log",
+    "bytes": 956,
+    "sha256": "ebda59342ba1a8b894f147d04fbab580ebb4266b67c24f6d39f61dfad7e1a604"
+  },
+  "independentChecks": {
+    "runs": 10,
+    "allTimingOrderings": true,
+    "allWorkingSetSums": true,
+    "allMetricSampleOrders": true,
+    "allRendererPaintEntries": true,
+    "allRecoveryFilesAndCompilerPins": true,
+    "allFinalChatDrafts": true,
+    "gzipRoundTrip": true,
+    "appHashUnchanged": true
+  },
+  "profiles": [
+    {
+      "sample": 1,
+      "recovery": {
+        "path": "test-results/app-profile-Lv4YUS/profile-1/recovery.json",
+        "bytes": 3407,
+        "sha256": "13a7b6ee0709fb3c6b8fc985f6325621f424b53ebd4817b82172484444f014f3"
+      },
+      "workspace": {
+        "path": "test-results/app-profile-Lv4YUS/profile-1/workspaces/bc721974-7577-4fb5-86cb-0e6f7201d202/state.json",
+        "bytes": 977,
+        "sha256": "b6f25171450a04a40c24c36ed0e5a1fa195e74fe9a1f6964a7632738d7e16ae1"
+      },
+      "exactSourceAndPin": true,
+      "freshDraftRecoveredInPreparedLaunch": true,
+      "preparedDraftRetainedOnDisk": true,
+      "aiMessages": 0
+    },
+    {
+      "sample": 2,
+      "recovery": {
+        "path": "test-results/app-profile-Lv4YUS/profile-2/recovery.json",
+        "bytes": 3407,
+        "sha256": "7345a60eb781737458fa061938a5ffc0e4d6f7a0cc3951e308074a2fca3fcbe8"
+      },
+      "workspace": {
+        "path": "test-results/app-profile-Lv4YUS/profile-2/workspaces/198ec973-2b22-415e-93c3-5cd06b26954f/state.json",
+        "bytes": 977,
+        "sha256": "658a225e7442cc553a4562096a23ea1e93cbfac16caf98cd88cb4a039d613969"
+      },
+      "exactSourceAndPin": true,
+      "freshDraftRecoveredInPreparedLaunch": true,
+      "preparedDraftRetainedOnDisk": true,
+      "aiMessages": 0
+    },
+    {
+      "sample": 3,
+      "recovery": {
+        "path": "test-results/app-profile-Lv4YUS/profile-3/recovery.json",
+        "bytes": 3407,
+        "sha256": "60aa55ed8bff63b2a9d2da51a1a07b959629764c23924be553cf9ad02cd8d59a"
+      },
+      "workspace": {
+        "path": "test-results/app-profile-Lv4YUS/profile-3/workspaces/e5d376b7-5ecd-4130-aa69-4c697bf54cb0/state.json",
+        "bytes": 977,
+        "sha256": "3ef0d83d2a6f181f41885acb637e83c10ab9bda20616179adc87a09dd699a8b1"
+      },
+      "exactSourceAndPin": true,
+      "freshDraftRecoveredInPreparedLaunch": true,
+      "preparedDraftRetainedOnDisk": true,
+      "aiMessages": 0
+    },
+    {
+      "sample": 4,
+      "recovery": {
+        "path": "test-results/app-profile-Lv4YUS/profile-4/recovery.json",
+        "bytes": 3407,
+        "sha256": "5358bf84f40bc3e582772b7a7ff182bcb85b2490fddd878c71dcf83a7e011c66"
+      },
+      "workspace": {
+        "path": "test-results/app-profile-Lv4YUS/profile-4/workspaces/54531d8f-cc70-4717-8301-6134ab10dad8/state.json",
+        "bytes": 977,
+        "sha256": "5023d4a63b4af17cc501ae861cdee03a0c79fbdea31d70abd6f276d1db83fbd1"
+      },
+      "exactSourceAndPin": true,
+      "freshDraftRecoveredInPreparedLaunch": true,
+      "preparedDraftRetainedOnDisk": true,
+      "aiMessages": 0
+    },
+    {
+      "sample": 5,
+      "recovery": {
+        "path": "test-results/app-profile-Lv4YUS/profile-5/recovery.json",
+        "bytes": 3407,
+        "sha256": "c637834ebac8e2fa0761a470c4262fb04a73271ad58bff72043c3c9594c51903"
+      },
+      "workspace": {
+        "path": "test-results/app-profile-Lv4YUS/profile-5/workspaces/510c5059-0d7e-4e34-8675-2f3d2860f49a/state.json",
+        "bytes": 977,
+        "sha256": "6223c4600bc1aa4f7b691b5ed93bd155c19030dd4d5b5375e61721aee3f8072c"
+      },
+      "exactSourceAndPin": true,
+      "freshDraftRecoveredInPreparedLaunch": true,
+      "preparedDraftRetainedOnDisk": true,
+      "aiMessages": 0
+    }
+  ],
+  "results": {
+    "fresh": {
+      "workspaceReadyMs": {
+        "minimum": 385.90983399999095,
+        "median": 433.8269169999985,
+        "maximum": 819.9344590000001
+      },
+      "chatInputVerifiedMs": {
+        "minimum": 396.58833400000003,
+        "median": 460.8809579999943,
+        "maximum": 834.8948750000001
+      },
+      "firstPdfMs": {
+        "minimum": 34035.376000000004,
+        "median": 52190.66945900001,
+        "maximum": 56238.62737499998
+      },
+      "peakSummedElectronWorkingSetKiB": {
+        "minimum": 637536,
+        "median": 652304,
+        "maximum": 660944
+      },
+      "samples": 5,
+      "metricSnapshots": 939
+    },
+    "prepared": {
+      "workspaceReadyMs": {
+        "minimum": 414.35112500000105,
+        "median": 467.1742920000106,
+        "maximum": 593.883708999987
+      },
+      "chatInputVerifiedMs": {
+        "minimum": 425.4556659999944,
+        "median": 476.5320000000065,
+        "maximum": 604.4835000000021
+      },
+      "firstPdfMs": {
+        "minimum": 4250.895040999996,
+        "median": 5846.213959000015,
+        "maximum": 6938.894624999986
+      },
+      "peakSummedElectronWorkingSetKiB": {
+        "minimum": 582512,
+        "median": 589328,
+        "maximum": 650672
+      },
+      "samples": 5,
+      "metricSnapshots": 150
+    }
+  },
+  "screenshots": [
+    {
+      "path": "test-results/app-profile-Lv4YUS/fresh-ready.png",
+      "bytes": 199929,
+      "sha256": "b7eac3e931bc8e5bf2f3c563ac7c77933458b0d808af5b9455c893fb9d7f6587"
+    },
+    {
+      "path": "test-results/app-profile-Lv4YUS/prepared-ready.png",
+      "bytes": 207741,
+      "sha256": "006cc787a1e56a4e913d20c3127318f21e0877e2868aa6139a94dc9dd2c78065"
+    }
+  ],
+  "retainedFailures": [],
+  "remaining": [
+    "Event-level recovery/compiler/render tracing, and timing through physical display",
+    "Minimum/current supported Mac and OS acceptance, more devices and controlled cache states",
+    "Broader startup fixtures, application-wide resource budgets and retention",
+    "Production signing/notarization, real signed updates, complete redistribution and SBOM"
+  ],
+  "packageVerification": {
+    "allCompiledOutputs": 39,
+    "allRuntimeFiles": 3982,
+    "originalNoticeGatesPassed": true,
+    "beforeAndAfter": [
+      {
+        "path": "test-results/startup-package-before.json",
+        "bytes": 3377,
+        "sha256": "15f38569b27ef207675144e31139f334200970f139c54946b56e5cae2ae30f6d"
+      },
+      {
+        "path": "test-results/startup-package-after.json",
+        "bytes": 3377,
+        "sha256": "01f9982d12ca0c9152297410d0a4cc2e0408f993ef67262c42ef5eec074296c6"
+      }
+    ]
+  },
+  "measurementConditions": {
+    "otherLocalFolioBenchmarksOrNativeTests": false,
+    "hostedQualificationOnSeparateMachine": true,
+    "ordinaryDesktopAndLightDocumentationActivity": true,
+    "osCachesPurged": false
+  },
+  "independentChecker": {
+    "path": "test-results/verify-current-startup.py",
+    "bytes": 5686,
+    "sha256": "c350ae22e5c999f33a264799459e1de97c39a48455ec6e7fdf3a3440d2a2a977"
+  }
+}
