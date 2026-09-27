@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-27T15:51:32.469371+00:00",
+  "baseCommit": "c51bad7b8e2a70869adb286e8a62f375d3913bcf",
+  "applicationInputsChanged": false,
+  "changeScope": "Test synchronization only: storage readiness, cancellation, dialog arrival, post-cancel readiness, stale-token rejection and removal use a bounded 60-second operation-completion wait. Immediate disabled/protected-state assertions remain unchanged.",
+  "hostedFailure": {
+    "sourceCommit": "fc3fc5790d8b808e97076ccbacfe8029fc63df9b",
+    "runId": 36329154908,
+    "url": "https://github.com/grawish/folio/actions/runs/36329154908",
+    "conclusion": "failure",
+    "artifact": {
+      "id": 10935880879,
+      "file": "test-results/mac-javascript-hosted-evidence.zip",
+      "bytes": 4633341,
+      "sha256": "927a42b2d8681461276760dc553f1b295237df60eacce837fe490b3a818a6fb0"
+    },
+    "sourceTestsPassed": 345,
+    "compilerIntegrationsPassed": 16,
+    "nativeSuitesPassed": [
+      "import-recovery",
+      "import",
+      "pdf-viewer",
+      "pdf-lifecycle",
+      "migration",
+      "chat"
+    ],
+    "failedSuite": "runtime",
+    "nativeScriptHashesMatchSource": true,
+    "nativeRecord": {
+      "file": "test-results/mac-javascript-hosted-evidence/release/native-tests.json",
+      "bytes": 3669,
+      "sha256": "3e3fedea70d586957c63ee500c4cf8a5f38dd594c5d5525cf71db698ac03e6ae"
+    },
+    "log": {
+      "file": "test-results/mac-javascript-hosted-evidence/test-results/release-runtime-final.log",
+      "bytes": 3348,
+      "sha256": "168878c80d63e1a769556e8afa64b4eb22592b81236e3e0b2b357fd1b8ecbc32"
+    },
+    "screenshot": {
+      "file": "test-results/mac-javascript-hosted-evidence/test-results/runtime-lNKTql/failure.png",
+      "bytes": 107919,
+      "sha256": "fe329a44d78ad53b106ec106454da41b379c137623360374f34ced017e58f783"
+    },
+    "observation": "The old compiler Remove button remained disabled during the five-second post-Cancel assertion. The retained screenshot says Reviewing compiler storage. The native action rechecks storage before confirmation and the renderer refreshes afterward. This artifact does not show completion of that action; the hosted run stays failed."
+  },
+  "repairScript": {
+    "file": "scripts/test-runtime.mjs",
+    "bytes": 24029,
+    "sha256": "e44b3e00eb4e5b9d67b66f551ff5c3b11509f076d9bffa975e61a78ad1b8fb06"
+  },
+  "localVerification": {
+    "passed": true,
+    "app": {
+      "file": "release/pdfjs-notices/mac-arm64/Folio.app/Contents/Resources/app.asar",
+      "bytes": 7458479,
+      "sha256": "b3101633e1a7c78fe37789efe98a94ed442e0f927da03709959a17eff9cfbe3a"
+    },
+    "result": {
+      "file": "test-results/runtime-9vKdyl/result.json",
+      "bytes": 2864,
+      "sha256": "4870112823c276dc1dce48b67ac58d82e9fc525aefe1d3fcaa0a61ae4a3f609e"
+    },
+    "log": {
+      "file": "test-results/runtime-storage-action-native.log",
+      "bytes": 883,
+      "sha256": "a2962a0618b9b530e252b50ed63b496dd3d51f7888b46f6a328981c3587efeb2"
+    },
+    "screenshot": {
+      "file": "test-results/runtime-9vKdyl/compiler-storage-removed.png",
+      "bytes": 112284,
+      "sha256": "b8e00982cfa3fe97713676666fe2731725dffd885cda3712ffab8a8316cf1540"
+    },
+    "errors": [],
+    "editingReadyMs": 2431,
+    "storageReviewMs": 801,
+    "controlledCancellationDelayMs": 6000,
+    "observedCancellationMsIncludingControlledDelay": 7895,
+    "controlledRemovalConfirmationDelayMs": 6000,
+    "cancelledRemoval": true,
+    "pendingConfirmationPreventsClose": true,
+    "changedDuringConfirmationRejected": true,
+    "sourceAndPinPreserved": true,
+    "realCompilerStillBuilds": true,
+    "logicalBytesRemoved": 516
+  },
+  "formatLog": {
+    "file": "test-results/runtime-storage-action-format.log",
+    "bytes": 30,
+    "sha256": "3f366153f834303741758d057edd290a13e3567ed05e8aa11030e32fb23e8b7b"
+  },
+  "fullHostedQualification": false,
+  "productionReleaseQualified": false,
+  "scope": "One complete native runtime suite against the unchanged PDF.js-notice unsigned package. Six-second delays are deliberate synchronization controls, not production performance measurements. Cancellation, close protection, stale-token rejection, old-version removal, source/pin retention, recovery, ZIP/history/reopen and real PDF builds remain checked. The separate hosted qualification of the notice package is still required."
+}
