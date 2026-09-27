@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T17:56:05.770756+00:00",
+  "baseCommit": "2bda16c9bfd00b960c2f0d95b2b8bd1a8dd279c4",
+  "measuredProfilerCommit": "16dd0890e9617654130daf1d0503928c625d892a",
+  "measuredProfilerSha256": "c816fc2d4f0f24abdf18c0d5665df8322efd89b5aec2d8230d30d2e0ce387df8",
+  "sourceIdentityNote": "The collection started at the base commit with the changed profiler in the working tree. The profiler bytes were committed unchanged as measuredProfilerCommit during the run. Subsequent edits only clarify report-limit wording; exact measured and current hashes are retained separately.",
+  "currentProfiler": {
+    "file": "scripts/profile-runtime.mjs",
+    "bytes": 15493,
+    "sha256": "a10871724815f60c89b8f90717db9ca09bd22a6d5f393738c4082029b62d3fb0"
+  },
+  "applicationInputsChanged": false,
+  "defaultRuntimeChanged": false,
+  "runtimePreparation": {
+    "record": {
+      "file": "/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/biber-comparison-input-MYlUyg/preparation.json",
+      "bytes": 65206,
+      "sha256": "b2f094a05e29a6db04dc5da887503b14663b06c85698ec64e67e59d5a38104b9"
+    },
+    "baselinePin": {
+      "engine": "tectonic",
+      "version": "0.17.0",
+      "bundle": "folio-core-v1",
+      "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+      "platform": "darwin-arm64",
+      "biberVersion": "2.17"
+    },
+    "comparisonPin": {
+      "engine": "tectonic",
+      "version": "0.17.0",
+      "bundle": "folio-core-v1",
+      "id": "ab6af75164ab846e978dfb48120498b56de6ac287f5a4900e65f4259df3a8b31",
+      "platform": "darwin-arm64",
+      "biberVersion": "2.17"
+    },
+    "changedNativeFiles": 158,
+    "allNonCodeFileHashesUnchanged": true,
+    "baselineRuntimeBytes": 371853687,
+    "comparisonRuntimeBytes": 311386733
+  },
+  "measurements": [
+    {
+      "file": "docs/performance/biber-runtime-comparison-summary.json",
+      "bytes": 44907,
+      "sha256": "7777ba0e26e03e4885fff7ecaf8fdf5db98af827d8d200f95e6ad7cea10e2e75"
+    },
+    {
+      "file": "docs/performance/biber-runtime-comparison.json.gz",
+      "bytes": 365387,
+      "sha256": "9f02d103ec5a8947e247e07091fb81539e3a72c37c2c3d4c5a1dfc654ac3d955"
+    },
+    {
+      "file": "docs/performance/biber-runtime-preparation.json.gz",
+      "bytes": 15361,
+      "sha256": "b4dc0473e0e3f1261f8745976681190ce7913522c1fa92728c8969166de4b818"
+    },
+    {
+      "file": "docs/performance/biber-runtime-diagnostic.json.gz",
+      "bytes": 96578,
+      "sha256": "f76b0dfee4ef8d2a14b5d971fd0a6cc13abd0eeb5eb34bccf39b29fe88a5a2ee"
+    }
+  ],
+  "independentChecks": {
+    "completeAlternatingPairs": 5,
+    "completeSamples": 10,
+    "exactCompilerLogsAndExitStatuses": 50,
+    "copiedRuntimeFileHashes": 39820,
+    "nativeSnapshotsWithRecomputedCpuRssAndFootprint": 3306,
+    "pdfsWithVerifiedFileHashes": 50,
+    "onePagePdfsWithEqualSourcesExtractedTextAndRasterPerDocumentRevision": 50,
+    "documentRevisionGroups": 5,
+    "changedNativeFiles": 158,
+    "allNonCodeFilesUnchanged": true,
+    "gzipRawIdentityVerified": true
+  },
+  "validation": {
+    "sourceTestsPassed": 359,
+    "typecheckPassed": true,
+    "formatPassed": true,
+    "logs": [
+      {
+        "file": "test-results/biber-comparison-source-tests.log",
+        "bytes": 37069,
+        "sha256": "5595a63d9817d7a2e9a224c4f7ed09a0921afcdf7f86c80bfa39ff780c270a08"
+      },
+      {
+        "file": "test-results/biber-comparison-typecheck.log",
+        "bytes": 64,
+        "sha256": "5e0497e27df921e099efd62066b397df0bfe0eb796edd626db840b92aaa1ccec"
+      },
+      {
+        "file": "test-results/biber-comparison-format.log",
+        "bytes": 183,
+        "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+      },
+      {
+        "file": "test-results/biber-comparison-five-pairs.log",
+        "bytes": 2231,
+        "sha256": "43c0c82f9019c557367f4756c73c16c529e7a383a115cd5760e1bab42d7541ed"
+      },
+      {
+        "file": "test-results/biber-comparison-independent-check.log",
+        "bytes": 2071,
+        "sha256": "67fb2750ed0b9ef4e8b1d195c19f9744408c0b980ba21b61010871b11d222f2f"
+      }
+    ]
+  },
+  "independentVerifier": {
+    "file": "test-results/verify-biber-comparison.py",
+    "bytes": 10548,
+    "sha256": "2bab1432b640abda2d12fa707e43e77005588590312c124e6763fcff12a1174a"
+  },
+  "preliminaryObserverCheck": {
+    "raw": {
+      "file": "test-results/runtime-profile-bP51Rz/measurements.json",
+      "bytes": 1377454,
+      "sha256": "57f9086d89ba7ea86faaf1b09a71f1b6713e0cda6ffb64d214b31c3e9b48742c"
+    },
+    "scope": "One preliminary pair before PDF retention was added. Excluded from final statistics."
+  },
+  "stackDiagnostic": {
+    "driver": {
+      "file": "test-results/capture-biber-stacks.mjs",
+      "bytes": 2177,
+      "sha256": "69708727216c13574f8addc4daac8ff5f9b4619bae965c002f3bdeedda1ac0a4"
+    },
+    "scope": "Separate pair with one-second sample captures for the two Biber processes. Excluded from primary timing dataset. Sample itself can perturb loading/debugger notifications.",
+    "bothCapturesSucceeded": true,
+    "completeDelayCauseEstablished": false
+  },
+  "limits": [
+    "Complete runtime variants differ in launcher, library relocation, code signatures and size; this does not isolate the launcher alone.",
+    "Fresh managed runtime and TeX cache each sample, with alternating pair order. OS caches were not purged; a separate one-pair observer check ran before the final five pairs.",
+    "Biber CPU is sampled cumulative kernel usage for Biber identities born during each observation window. Work after the last sample or entirely between samples can be missed.",
+    "Marker gaps use parent receipt times and include waiting, startup and adjacent engine work. They are not pure Biber computation time.",
+    "No other local Folio benchmark or native suite ran concurrently. Ordinary desktop work and light documentation/status work continued.",
+    "One development Mac, five pairs, ad-hoc test signatures, small bibliography/article fixtures; no population p95, Developer ID, supported-Mac or full-app-startup claim.",
+    "Application code and the default compiler are unchanged."
+  ],
+  "productionReleaseQualified": false
+}
