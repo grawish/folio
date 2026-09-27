@@ -1,0 +1,491 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-27T15:11:08.028181+00:00",
+  "baseCommit": "4130198e70032bbc59736626eb5ff89d5520c8bc",
+  "passed": true,
+  "applicationCodeChanged": false,
+  "compiledOutputsUnchanged": true,
+  "packagedNoticeFilesChanged": true,
+  "sourceInputs": [
+    {
+      "file": "scripts/build-electron.mjs",
+      "bytes": 1704,
+      "sha256": "e2ccdeadca0d9ddcac1ea246af884705c817bdc9a69ee29d57a0875ff2bca7aa"
+    },
+    {
+      "file": "scripts/inventory-javascript.mjs",
+      "bytes": 3723,
+      "sha256": "7c2b0bae4e259db63968b18138b216abb7746954fc3c22659da433a3e87cef2a"
+    },
+    {
+      "file": "scripts/javascript-bundle-inventory.ts",
+      "bytes": 17034,
+      "sha256": "dcd643447f315da8c6e718a0c21309c47545c37404dcf4163f491376c2cc02ed"
+    },
+    {
+      "file": "scripts/verify-javascript-sources.py",
+      "bytes": 7940,
+      "sha256": "cd23a58698e15f985ace128c687206be5924570105e0f59292aa619a3495e252"
+    },
+    {
+      "file": "scripts/collect-npm-license-materials.py",
+      "bytes": 7386,
+      "sha256": "7827abbd1cf0c30cb1dbfaf00aae283b5321a295d0c3df4e8037443fa54ffc59"
+    },
+    {
+      "file": "scripts/verify-npm-notices.ts",
+      "bytes": 3752,
+      "sha256": "9d2d9f140a62774508b50107596029fcf218aa567a998728de84013fdc2ef820"
+    },
+    {
+      "file": "tests/javascript-bundle-inventory.test.ts",
+      "bytes": 7251,
+      "sha256": "de61e2f4539f3764037717579bf12eb4ae4d42f47f8d29c034654dd24a4cdf90"
+    },
+    {
+      "file": "tests/javascript-publisher-sources.py",
+      "bytes": 5605,
+      "sha256": "ac76fc694043e666e33b541b7ca6b50afc1dd1d88d2f05716c38ad5fac5c4c5a"
+    },
+    {
+      "file": "tests/npm-license-materials.py",
+      "bytes": 7381,
+      "sha256": "9e97e687bd03772282a68791eb2c2df34a0c3d97843dde0061943c37b73e0636"
+    },
+    {
+      "file": "tests/npm-notices.test.ts",
+      "bytes": 2604,
+      "sha256": "c46a1176d4acc39896f88b9baa05d2541aac47d46c0267860f8813d5938fac5a"
+    },
+    {
+      "file": "package.json",
+      "bytes": 5963,
+      "sha256": "a0862c1bc43e22be9563146a4a93f5b438cdd0b42d5312a340f29c2ad1b307fa"
+    },
+    {
+      "file": "package-lock.json",
+      "bytes": 206387,
+      "sha256": "f49e1352767126ce8d3c894ac5bfdc4d39fc951fbe1efe7283ca4ee4d991ae00"
+    },
+    {
+      "file": "vite.config.ts",
+      "bytes": 841,
+      "sha256": "23c41f8085a0c628efeee6af255ea1e76128978a1ee9755a98287397a9932d93"
+    },
+    {
+      "file": "THIRD_PARTY_NOTICES.md",
+      "bytes": 11272,
+      "sha256": "52891bb5968db27eefda1764f8c3691ddfb52205fc447f6ca2e330e939b05c8a"
+    },
+    {
+      "file": "resources/npm-notices/SOURCES.json",
+      "bytes": 35544,
+      "sha256": "ec21f5ef6a8761f6a5c97f13526ffda69580f48170a80a3c0720cf397fd1009d"
+    },
+    {
+      "file": "resources/npm-notices/README.md",
+      "bytes": 2130,
+      "sha256": "90e4ff2352efd3fcc47e3cca357081ee8603fe32f720dadc31b167e241d57793"
+    },
+    {
+      "file": ".github/workflows/ci.yml",
+      "bytes": 1703,
+      "sha256": "4cf9acf208df121e86b2fda575f9c4dd0092c2f4d6cd513962f8d98050813f78"
+    },
+    {
+      "file": ".github/workflows/mac-candidate.yml",
+      "bytes": 4767,
+      "sha256": "f158b2b5b6f1a4d5a9db864c884eff04d2df30d4d4c7858663da1cde8021eff0"
+    }
+  ],
+  "actualPackage": {
+    "passed": true,
+    "app": "release/javascript-notices/mac-arm64/Folio.app",
+    "appAsarSha256": "2b397e1647ce44140efe0b91c9fecec85f2ed4f5f844bc172325c4f745bfa490",
+    "compiledFilesMatched": 39,
+    "compiledOutputsUnchanged": true,
+    "originalLicenseAndNoticeTextsMatch": true,
+    "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+    "runtimeFilesVerified": 3982,
+    "npmNotices": {
+      "originalNoticeFiles": 42,
+      "indexedPackages": 43,
+      "missingOriginalText": ["@napi-rs/canvas-darwin-arm64", "lazy-val"],
+      "sourceIndexSha256": "ec21f5ef6a8761f6a5c97f13526ffda69580f48170a80a3c0720cf397fd1009d",
+      "records": [
+        {
+          "path": "README.md",
+          "bytes": 2130,
+          "sha256": "90e4ff2352efd3fcc47e3cca357081ee8603fe32f720dadc31b167e241d57793"
+        },
+        {
+          "path": "SOURCES.json",
+          "bytes": 35544,
+          "sha256": "ec21f5ef6a8761f6a5c97f13526ffda69580f48170a80a3c0720cf397fd1009d"
+        },
+        {
+          "path": "argparse--LICENSE",
+          "bytes": 12775,
+          "sha256": "de4d1f2d2ad5ad0cfd1657a106476b31cb5db5ef9d1ff842b237c0c81f0c8a23"
+        },
+        {
+          "path": "builder-util-runtime--LICENSE",
+          "bytes": 1084,
+          "sha256": "bed8d0ab3e6031817f775a641ff37313b0f5591bc8ba0ed79b978dafbd4231ce"
+        },
+        {
+          "path": "codemirror--autocomplete--LICENSE",
+          "bytes": 1118,
+          "sha256": "05c6130cda97e7600ca91427a41e8a065efcf82365fc0293e7de80faec494c07"
+        },
+        {
+          "path": "codemirror--commands--LICENSE",
+          "bytes": 1118,
+          "sha256": "05c6130cda97e7600ca91427a41e8a065efcf82365fc0293e7de80faec494c07"
+        },
+        {
+          "path": "codemirror--language--LICENSE",
+          "bytes": 1118,
+          "sha256": "05c6130cda97e7600ca91427a41e8a065efcf82365fc0293e7de80faec494c07"
+        },
+        {
+          "path": "codemirror--legacy-modes--LICENSE",
+          "bytes": 1118,
+          "sha256": "05c6130cda97e7600ca91427a41e8a065efcf82365fc0293e7de80faec494c07"
+        },
+        {
+          "path": "codemirror--search--LICENSE",
+          "bytes": 1118,
+          "sha256": "05c6130cda97e7600ca91427a41e8a065efcf82365fc0293e7de80faec494c07"
+        },
+        {
+          "path": "codemirror--state--LICENSE",
+          "bytes": 1118,
+          "sha256": "05c6130cda97e7600ca91427a41e8a065efcf82365fc0293e7de80faec494c07"
+        },
+        {
+          "path": "codemirror--view--LICENSE",
+          "bytes": 1118,
+          "sha256": "05c6130cda97e7600ca91427a41e8a065efcf82365fc0293e7de80faec494c07"
+        },
+        {
+          "path": "crelt--LICENSE",
+          "bytes": 1089,
+          "sha256": "23852ebf6aef7fadffc92514b3c5df163a8651f2c3ed0dbb494cb49d93bd5de5"
+        },
+        {
+          "path": "debug--LICENSE",
+          "bytes": 1139,
+          "sha256": "3a61c6c96caf5c1d9b623fb9b04c822b783dfcb78aa7e49c76a3f643e6ed7f95"
+        },
+        {
+          "path": "electron-updater--LICENSE",
+          "bytes": 1084,
+          "sha256": "bed8d0ab3e6031817f775a641ff37313b0f5591bc8ba0ed79b978dafbd4231ce"
+        },
+        {
+          "path": "esbuild--LICENSE.md",
+          "bytes": 1069,
+          "sha256": "b40ec5baec7bb34fa5b1c09521fa3cd52d5fad7adafed74932a2010d3612a681"
+        },
+        {
+          "path": "fflate--LICENSE",
+          "bytes": 1069,
+          "sha256": "0a1df3a083d0c010560aa342e87959c8c1070e6fd54545741f083f22d0c8b551"
+        },
+        {
+          "path": "fs-extra--LICENSE",
+          "bytes": 1084,
+          "sha256": "1e76029602ae9b21cc4e612db2496d92febed882ba13ba745f8b3309e85f9d39"
+        },
+        {
+          "path": "graceful-fs--LICENSE",
+          "bytes": 791,
+          "sha256": "f65c5d9f22a317b2a10803bd1868461ce6499c2ed7217bc80c0cc772a748789c"
+        },
+        {
+          "path": "has-flag--license",
+          "bytes": 1109,
+          "sha256": "48da2f39e100d4085767e94966b43f4fa95ff6a0698fba57ed460914e35f94a0"
+        },
+        {
+          "path": "js-yaml--LICENSE",
+          "bytes": 1084,
+          "sha256": "a07bc24468b9654ce76a547d47a2db282d07733b715db4c73a98bd63961f9550"
+        },
+        {
+          "path": "jsonfile--LICENSE",
+          "bytes": 1110,
+          "sha256": "a9801fb52ba22ef808682a094da8a7a480584b7ed0dfd0d888ab543616335031"
+        },
+        {
+          "path": "lezer--common--LICENSE",
+          "bytes": 1113,
+          "sha256": "568902fb66eaf1f11750e966b33fd7b5d7c618e65af09f35ef843635bcf5f1ba"
+        },
+        {
+          "path": "lezer--highlight--LICENSE",
+          "bytes": 1113,
+          "sha256": "568902fb66eaf1f11750e966b33fd7b5d7c618e65af09f35ef843635bcf5f1ba"
+        },
+        {
+          "path": "lezer--lr--LICENSE",
+          "bytes": 1113,
+          "sha256": "568902fb66eaf1f11750e966b33fd7b5d7c618e65af09f35ef843635bcf5f1ba"
+        },
+        {
+          "path": "lodash.escaperegexp--LICENSE",
+          "bytes": 1951,
+          "sha256": "ffd8b33b354585f4ce119f19c53728281e48a97b074491eb6bf6d5c5ff305272"
+        },
+        {
+          "path": "lodash.isequal--LICENSE",
+          "bytes": 1950,
+          "sha256": "e159c6d48c989185448658f276375bfb2300362ec6d4ae5525a2d49c4bcb947d"
+        },
+        {
+          "path": "lucide-react--LICENSE",
+          "bytes": 3208,
+          "sha256": "b495047bd93a9b06913511076f504daba17d5bbeb3e0650f3bb53a4220329c57"
+        },
+        {
+          "path": "marijn--find-cluster-break--LICENSE",
+          "bytes": 1102,
+          "sha256": "9360b00fdd091f05c783b568bdd46c679c41b72415599252de98949462ea1acb"
+        },
+        {
+          "path": "ms--license.md",
+          "bytes": 1079,
+          "sha256": "1662fae9b5314d11cf51284e2dcd1f006a354f7343f08712a730fcff9a359801"
+        },
+        {
+          "path": "napi-rs--canvas--LICENSE",
+          "bytes": 1075,
+          "sha256": "8802fecf9da4367bc23bcf20b21cc143785fc6c92b152f3fa7fbe6ce08d344d6"
+        },
+        {
+          "path": "pdfjs-dist--LICENSE",
+          "bytes": 10174,
+          "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+        },
+        {
+          "path": "react--LICENSE",
+          "bytes": 1088,
+          "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+        },
+        {
+          "path": "react-dom--LICENSE",
+          "bytes": 1088,
+          "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+        },
+        {
+          "path": "rolldown--LICENSE",
+          "bytes": 1302,
+          "sha256": "23ecfff35a5a2e80d92142f75228912c3b1abc4b5a8337a821ff4397e2f9f734"
+        },
+        {
+          "path": "rolldown--THIRD-PARTY-LICENSE",
+          "bytes": 2209,
+          "sha256": "a877291d800ed43692f3f9ae09d8e01cc6f7293ad39d43896059c188ffbb8b7c"
+        },
+        {
+          "path": "sax--LICENSE.md",
+          "bytes": 1552,
+          "sha256": "8a1af140fdfbf5afd3df27f7e662f989c5b963a300020dfafce42033cae9e004"
+        },
+        {
+          "path": "scheduler--LICENSE",
+          "bytes": 1088,
+          "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+        },
+        {
+          "path": "semver--LICENSE",
+          "bytes": 765,
+          "sha256": "4ec3d4c66cd87f5c8d8ad911b10f99bf27cb00cdfcff82621956e379186b016b"
+        },
+        {
+          "path": "style-mod--LICENSE",
+          "bytes": 1100,
+          "sha256": "cb4474e26547397169061d3586c00022cda5330a1b64fa13e872319f3b63aff1"
+        },
+        {
+          "path": "supports-color--license",
+          "bytes": 1109,
+          "sha256": "48da2f39e100d4085767e94966b43f4fa95ff6a0698fba57ed460914e35f94a0"
+        },
+        {
+          "path": "tiny-typed-emitter--LICENSE",
+          "bytes": 1104,
+          "sha256": "4b3faf884ee71eec3df920b66c98fc6618af28e824cf3a32ef3d8774048cc76d"
+        },
+        {
+          "path": "universalify--LICENSE",
+          "bytes": 1100,
+          "sha256": "3fda5977c0904e226190b4e21d64340c1731e2142d6fe5f3dee0090a216b8b63"
+        },
+        {
+          "path": "vite--LICENSE.md",
+          "bytes": 112425,
+          "sha256": "387dd7baa307083401a27c58c362c30832f5ba1dba84f10cc22c33401523f45c"
+        },
+        {
+          "path": "w3c-keyname--LICENSE",
+          "bytes": 1100,
+          "sha256": "869c30f368eb08735e779027b9f4bc9fea2f39624351856aebe42741f0bc0884"
+        }
+      ]
+    },
+    "existingFontNoticeFiles": 16,
+    "existingTexResourceNoticeFiles": 104,
+    "productionSigningVerified": false,
+    "fullNativeQualification": false
+  },
+  "javascriptReplay": {
+    "schemaVersion": 1,
+    "appAsarSha256": "2b397e1647ce44140efe0b91c9fecec85f2ed4f5f844bc172325c4f745bfa490",
+    "inventorySha256": "71ba3468c28b56ec76a72f8b36007e59053ac8c70a260d3903b8a4e8862a3a7a",
+    "bomSha256": "b4c4271dc581c293b8473418c7d920bf4027994a4d0f8ce182fd645247659ab9",
+    "packagedJavaScriptAndMaps": 8,
+    "reproducedOutputs": 24,
+    "sourceModules": 402,
+    "runtimePackages": 35,
+    "generators": 3,
+    "completeBinarySbom": false,
+    "moduleKinds": {
+      "folio-source": 105,
+      "generated": 3,
+      "npm-source": 249,
+      "npm-source-map-content": 45
+    },
+    "developmentFlaggedContributors": [
+      {
+        "name": "esbuild",
+        "version": "0.28.2",
+        "roles": ["generator"]
+      },
+      {
+        "name": "has-flag",
+        "version": "4.0.0",
+        "roles": ["distributed-source-map", "runtime-code"]
+      },
+      {
+        "name": "rolldown",
+        "version": "1.2.11",
+        "roles": ["generator"]
+      },
+      {
+        "name": "supports-color",
+        "version": "7.2.0",
+        "roles": ["distributed-source-map", "runtime-code"]
+      },
+      {
+        "name": "vite",
+        "version": "8.3.1",
+        "roles": ["generator"]
+      }
+    ],
+    "unresolvedStaticExternalImports": [],
+    "bomSchema": "CycloneDX 1.6, validated offline against the pinned upstream schema",
+    "deterministicReplay": {
+      "passed": true,
+      "filesCompared": 4,
+      "hashes": {
+        "inventory.json": "71ba3468c28b56ec76a72f8b36007e59053ac8c70a260d3903b8a4e8862a3a7a",
+        "javascript.cdx.json": "b4c4271dc581c293b8473418c7d920bf4027994a4d0f8ce182fd645247659ab9",
+        "summary.json": "d0289f199947eb399481a99e2da42d3aa60aa54dd05741012e05ee0f67197527",
+        "publisher-sources.json": "10ed4588244c5cf8816fc13f2df4e3ce2f55e1f843dd5e2b271783ce141485ae"
+      }
+    }
+  },
+  "publisherVerification": {
+    "schemaVersion": 1,
+    "passed": true,
+    "inventorySha256": "71ba3468c28b56ec76a72f8b36007e59053ac8c70a260d3903b8a4e8862a3a7a",
+    "sourceIndexSha256": "ec21f5ef6a8761f6a5c97f13526ffda69580f48170a80a3c0720cf397fd1009d",
+    "npmInputFilesMatched": 249,
+    "embeddedOriginalSourcesMatched": 45,
+    "packageJsonFilesMatched": 38,
+    "originalArchivesChecked": 38,
+    "completeBinarySbom": false
+  },
+  "noticeSources": {
+    "indexedPackages": 43,
+    "fullArchiveBytes": 28776392,
+    "originalNotices": 42,
+    "originalNoticeBytes": 183221,
+    "missingOriginalText": ["@napi-rs/canvas-darwin-arm64", "lazy-val"],
+    "collectorLog": {
+      "file": "test-results/javascript-collection-final.log",
+      "bytes": 279,
+      "sha256": "334c5c9316c80099fbc227d7c141610d692007153aaf7a9216cb68b3ceb88715"
+    }
+  },
+  "validation": {
+    "sourceTestsPassed": 345,
+    "sourceTestLog": {
+      "file": "test-results/javascript-all-tests.log",
+      "bytes": 35645,
+      "sha256": "b43a0ca450412b06495912a1538409f27b448225c74f27e51d7ccc8999ac53d0"
+    },
+    "finalFocusedTestsPassed": 8,
+    "finalFocusedLog": {
+      "file": "test-results/javascript-final-focused-tests.log",
+      "bytes": 938,
+      "sha256": "e92f183b527d28c807a24c8eb69b60e99a20ed3780c4ecd8b14b362f32a1de36"
+    },
+    "publisherControlsPassed": 4,
+    "publisherControlsLog": {
+      "file": "test-results/javascript-publisher-controls-final.log",
+      "bytes": 102,
+      "sha256": "79f67ba8a97920a34cec119dace8230172188faa3db2533e13a06374aeb2ef49"
+    },
+    "archiveControlsPassed": 9,
+    "archiveControlsLog": {
+      "file": "test-results/javascript-notice-python-final.log",
+      "bytes": 107,
+      "sha256": "25660486d75d5f4b9efa5b4fdd11e9e694dfc634802c6601b239be93e2d13722"
+    },
+    "typecheck": {
+      "file": "test-results/javascript-final-typecheck.log",
+      "bytes": 64,
+      "sha256": "5e0497e27df921e099efd62066b397df0bfe0eb796edd626db840b92aaa1ccec"
+    },
+    "build": {
+      "file": "test-results/javascript-build.log",
+      "bytes": 1719,
+      "sha256": "c956b8591a16429458cbbc955ed93485bc865b6e0e396d43be49c409314989cc"
+    },
+    "format": {
+      "file": "test-results/javascript-format-check.log",
+      "bytes": 183,
+      "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+    }
+  },
+  "publicReports": [
+    {
+      "file": "docs/releases/javascript-bundle-inventory.json.gz",
+      "bytes": 43167,
+      "sha256": "3c9f9441be5dfd8b42fa665258dab75ce5b630c3de273906d43814bffa6192e4",
+      "uncompressedBytes": 267346,
+      "uncompressedSha256": "71ba3468c28b56ec76a72f8b36007e59053ac8c70a260d3903b8a4e8862a3a7a"
+    },
+    {
+      "file": "docs/releases/javascript-bundle.cdx.json.gz",
+      "bytes": 3159,
+      "sha256": "53fb6983ff14d6af4b91e0563da8ffdfee6f16f95f05a44d4ed5aa6e6a866911",
+      "uncompressedBytes": 39099,
+      "uncompressedSha256": "b4c4271dc581c293b8473418c7d920bf4027994a4d0f8ce182fd645247659ab9"
+    },
+    {
+      "file": "docs/releases/javascript-publisher-sources.json.gz",
+      "bytes": 2799,
+      "sha256": "0e862474c2f03f9ba679daa9be429d52e354abee50caf0bf88cc49bfa6c9cfb9",
+      "uncompressedBytes": 9445,
+      "uncompressedSha256": "10ed4588244c5cf8816fc13f2df4e3ce2f55e1f843dd5e2b271783ce141485ae"
+    }
+  ],
+  "completeBinarySbom": false,
+  "fullHostedQualification": false,
+  "productionReleaseQualified": false,
+  "scope": "Exact application JavaScript and distributed source maps in one unsigned Apple silicon app. Generated helpers have generator-chain attribution, not per-byte authorship. All source-backed npm contributions and package metadata match retained publisher archives. Vendored code inside npm packages, dynamic runtime discovery, Electron/Chromium, native/compiler/TeX components, missing original notices and complete redistribution conditions remain separate. The public preview-4 download is unchanged."
+}

@@ -24,7 +24,7 @@ The [packaged Mac app inventory](MAC_APP_INVENTORY.md) now records every physica
 
 ## Bundle original JavaScript dependency notices
 
-Current development packages include `Contents/Resources/npm-notices/`: 36 unchanged original notice files plus a source index and guide. The index covers all 38 installed npm production packages on Apple silicon, including optional or potentially unused dependencies. It records the exact package versions, publisher archives, npm SHA-512 integrity values and notice SHA-256 digests. All 38 complete publisher archives (27,952,156 bytes) were checked against `package-lock.json`; every copied notice matches its archive bytes.
+Current development packages include `Contents/Resources/npm-notices/`: 42 unchanged original notice files plus a source index and guide. The index covers all 38 installed npm production packages on Apple silicon, including optional or potentially unused dependencies, and five additional bundled-code/build-support packages. It records the exact package versions, publisher archives, npm SHA-512 integrity values and notice SHA-256 digests. All 43 complete publisher archives (28,776,392 bytes) were checked against `package-lock.json`; every copied notice matches its archive bytes.
 
 ```sh
 python3 scripts/collect-npm-license-materials.py
@@ -34,6 +34,14 @@ python3 scripts/collect-npm-license-materials.py --offline
 The collector retains the original archives and texts under ignored `artifacts/license-materials/npm/`. It reads archive members without extracting paths, installing packages or running their code. Nine offline controls cover interrupted downloads, changed archives/notices, wrong identities/declarations, missing extra notices, duplicate or unsafe paths, links, destination names and npm integrity mismatches. The actual Mac package gate rejects missing, changed, linked or extra bundled files, including altered source documentation.
 
 `lazy-val` 1.0.5 and `@napi-rs/canvas-darwin-arm64` 1.0.9 declare MIT but have no separate notice file in their npm archives. Both remain explicit gaps; no copyright statement is invented. The older `app-update-notices.txt` remains included. This broader source collection does not assert that optional native canvas is shipped, close the linked-component SBOM, or replace the Electron/Chromium and compiler audits. See [source index](../resources/npm-notices/SOURCES.json) and [verification](releases/npm-notices-verification.json).
+
+## Attribute the packaged JavaScript
+
+A byte-for-byte replay of the actual application bundles identified code from `has-flag` and `supports-color`, although npm marks both as development dependencies. The collection now includes their original notices and those for esbuild, Vite and Rolldown, including Rolldown’s original third-party notice. The earlier [36-notice verification](releases/npm-notices-verification.json) keeps its historical scope.
+
+The replay matches all eight application JavaScript/source-map files in `app.asar` and 24 total emitted outputs. Its 402 module records distinguish 105 Folio files, 249 npm source files, 45 original sources embedded in publisher source maps and three generated helpers. Thirty-five packages contribute source/code; three packages are recorded as generators. All 38 package metadata files and all 294 npm source contributions match the checksum-verified original archives. A separate CycloneDX record links each packaged JavaScript/map file to its actual contributing packages. Build tools are recorded separately from runtime dependencies.
+
+See [commands, evidence and scope](MAC_APP_INVENTORY.md#reproduce-and-attribute-application-javascript) and [verification](releases/javascript-bundle-verification.json). These records cover application JavaScript and distributed source maps. They do not finish attribution of vendored code inside npm packages, dynamic runtime discovery, Electron/Chromium, native/compiler components or all redistribution conditions. The composition remains explicitly incomplete.
 
 ## Collect and bundle compiler-font notices
 

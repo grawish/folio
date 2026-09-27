@@ -87,9 +87,10 @@ class NpmMaterialsTests(unittest.TestCase):
             mod.archive_notices(self.archive, self.package)
 
     def test_omitted_original_notice_rejected(self):
-        self.make_archive(extra=('package/NOTICE', b'Additional required notice\n'))
-        with self.assertRaisesRegex(ValueError, 'notice inventory differs'):
-            mod.archive_notices(self.archive, self.package)
+        for name in ['NOTICE', 'THIRD-PARTY-LICENSE', 'LICENSES']:
+            self.make_archive(extra=('package/' + name, b'Additional required notice\n'))
+            with self.assertRaisesRegex(ValueError, 'notice inventory differs'):
+                mod.archive_notices(self.archive, self.package)
 
     def test_invalid_destination_and_wrong_sha512_rejected(self):
         self.make_archive()
