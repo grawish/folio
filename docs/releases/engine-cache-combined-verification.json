@@ -1,0 +1,221 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T23:49:05.388435+00:00",
+  "sourceCommit": "d511220772f85615f66961ad5f73d5464192b02b",
+  "status": "Combined local package checks passed; full twenty-one-suite hosted qualification pending",
+  "sourceTestsPassed": 452,
+  "typecheckPassed": true,
+  "formatPassed": true,
+  "fullCompilerIntegrationStatus": "The cache implementation passed all 19 before integration. The combined branch is scheduled for full hosted compiler/native qualification.",
+  "appAsar": {
+    "file": "release/engine-cache-merged/mac-arm64/Folio.app/Contents/Resources/app.asar",
+    "bytes": 7538108,
+    "sha256": "21deec45a0be129a63d3d8b14a71f555000b9b40a0dbf5c6e6ebcfe0ff8e5144"
+  },
+  "runtimeManifest": {
+    "file": "release/engine-cache-merged/mac-arm64/Folio.app/Contents/Resources/runtime/manifest.json",
+    "bytes": 490036,
+    "sha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0"
+  },
+  "nativeSuites": [
+    {
+      "suite": "engine-cache",
+      "result": {
+        "sourceCommit": "d511220772f85615f66961ad5f73d5464192b02b",
+        "sourceHashes": {
+          "electron/core/compiler.ts": "1f0ba009f75054f9b42db09026a55c23fca8ec0ab44af991bfa613eaed09cf08",
+          "electron/core/engine-cache.ts": "753ca7c8a4e88b706998bd223ae902c46612109a2d251510a7148a918cc4b0b6"
+        },
+        "scriptSha256": "75aae207df73c8bd4971867263413d0c1c18470cdb3427133870268272894e65",
+        "appAsarSha256": "21deec45a0be129a63d3d8b14a71f555000b9b40a0dbf5c6e6ebcfe0ff8e5144",
+        "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+        "scope": "Actual packaged UI, compiler and cache in an isolated synthetic profile. Extra old caches contain inert bytes; oversized-cache UI is triggered by a scoped lstat size override. No real disk is filled. Native writer termination is separately tested with actual files and processes.",
+        "checks": [
+          "Warm builds reuse exact format bytes and mtime. Five runtime caches are reduced to the current cache and newest idle cache, preserving unmarked data.",
+          "A scoped oversized-file reading reaches the real build-error UI. Source and the last successful PDF remain available; the oversized cache is reclaimed and a normal retry rebuilds the current PDF.",
+          "Normal close/reopen retains the exact source and warm rebuilt format cache."
+        ],
+        "errors": [],
+        "passed": true,
+        "retention": {
+          "before": 5,
+          "after": 2,
+          "warmFormat": {
+            "sha256": "a86ffcac335474fb9fae47cd9986b929719dc3ddf29bfb31123ecc1790ef6bbb",
+            "bytes": 24451466,
+            "mtimeMs": 1790552809878.0845
+          }
+        }
+      },
+      "evidence": {
+        "file": "test-results/engine-cache-native-Bg8hQE/result.json",
+        "bytes": 1578,
+        "sha256": "321939c66c34902ce142d1ced7bc61f192596d4ed319fa033c269664759cdab9"
+      }
+    },
+    {
+      "suite": "recovery-writes",
+      "result": {
+        "sourceCommit": "d511220772f85615f66961ad5f73d5464192b02b",
+        "scriptSha256": "ca60ec2cab99532f07b3e1f6b065a52486f43b48eacb59d0045280f9ebf8d354",
+        "sourceHashes": {
+          "electron/core/project.ts": "495351408a61191adf13baff04783e401e729a0f18c9a95ef4ba35d2e83bd5b9",
+          "electron/main.ts": "c9a30b6af92f15197a7705654552967708c9331d828fc1cf0179f964fb1eca21",
+          "src/shared/recovery-writes.ts": "2ab7b36bd0fafee0e097cd3470092a7fdeceb4f6f303b5b4e549dfa70d961831",
+          "src/App.tsx": "4ce7132a12225bee71403e2b2a7d8e6be54594d97e43192e73f6418796d30cf7",
+          "src/chat.css": "c0c4ea35e3ee5598bc7bbaf90da1cdca0b61b6533b132e18937c22787993076a"
+        },
+        "appAsarSha256": "21deec45a0be129a63d3d8b14a71f555000b9b40a0dbf5c6e6ebcfe0ff8e5144",
+        "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+        "scope": "Synthetic native profile, real UI/preload/IPC/recovery and normal restarts. Scoped rename delays/failures expose queue behavior. No AI call, real user document, performance percentile or physical power-loss claim.",
+        "checks": [
+          "Eight debounce-separated UI snapshots become only the active and newest writes; exact newest source survives normal close and restart.",
+          "A failed rename preserves the previous recovery file, retains newer editor changes without repeated writes, and Retry saves the newest source. Independent recovery/settings errors remain visible and clickable without overlapping.",
+          "Native IPC admits four writes, rejects excess requests before acknowledgement, and accepts a later retry. Normal close flushes the actual visible editor snapshot before restart."
+        ],
+        "errors": [],
+        "passed": true,
+        "automaticWrites": [
+          {
+            "revision": 2,
+            "id": "588d3b37-d74f-4f73-9d32-905068531798",
+            "source": "\\documentclass{article}\n\\begin{document}\nRecovery snapshot 1.\n\\end{document}"
+          },
+          {
+            "revision": 9,
+            "id": "588d3b37-d74f-4f73-9d32-905068531798",
+            "source": "\\documentclass{article}\n\\begin{document}\nRecovery snapshot 8.\n\\end{document}"
+          }
+        ],
+        "nativeAdmission": {
+          "requests": 100,
+          "rejectedWhileHeld": 96,
+          "acknowledgedWhileHeld": 0,
+          "accepted": 4,
+          "newestRetrySaved": true
+        }
+      },
+      "evidence": {
+        "file": "test-results/recovery-writes-IARBcu/result.json",
+        "bytes": 2232,
+        "sha256": "7e3aa064cfd5f2edaffd59d12a7bf9e40f82899a772e4c87591ac6e7a6b039b8"
+      }
+    }
+  ],
+  "javascript": {
+    "summary": {
+      "schemaVersion": 1,
+      "appAsarSha256": "21deec45a0be129a63d3d8b14a71f555000b9b40a0dbf5c6e6ebcfe0ff8e5144",
+      "inventorySha256": "a103167359235ee9433ca63fd93cabd772ec0ade0c20c620890d1291cc0b731e",
+      "bomSha256": "659300c2292179dab96793179c4053d68726434ee6402caa46edf91957523a05",
+      "packagedJavaScriptAndMaps": 8,
+      "reproducedOutputs": 24,
+      "sourceModules": 411,
+      "runtimePackages": 35,
+      "generators": 3,
+      "completeBinarySbom": false
+    },
+    "folioSourceFilesMatchCommit": 114,
+    "allReplayInputsMatchCommit": true,
+    "allReproducedOutputsMatchLocalBuild": true,
+    "publisherSources": {
+      "schemaVersion": 1,
+      "passed": true,
+      "inventorySha256": "a103167359235ee9433ca63fd93cabd772ec0ade0c20c620890d1291cc0b731e",
+      "sourceIndexSha256": "ec21f5ef6a8761f6a5c97f13526ffda69580f48170a80a3c0720cf397fd1009d",
+      "npmInputFilesMatched": 249,
+      "embeddedOriginalSourcesMatched": 45,
+      "packageJsonFilesMatched": 38,
+      "originalArchivesChecked": 38,
+      "completeBinarySbom": false,
+      "scope": "Exact npm source bytes and published source-map contents from checksum-verified locked archives. Generated helpers are associated with their build tools, not assigned byte-level authorship. Nested vendored terms, native components and complete redistribution remain separate."
+    }
+  },
+  "website": {
+    "checks": [
+      {
+        "width": 1440,
+        "route": "/",
+        "images": 10,
+        "overflow": false,
+        "themePersistence": true
+      },
+      {
+        "width": 1440,
+        "route": "/demos.html",
+        "images": 39,
+        "overflow": false,
+        "themePersistence": true
+      },
+      {
+        "width": 390,
+        "route": "/",
+        "images": 10,
+        "overflow": false,
+        "themePersistence": true
+      },
+      {
+        "width": 390,
+        "route": "/demos.html",
+        "images": 39,
+        "overflow": false,
+        "themePersistence": true
+      }
+    ],
+    "errors": []
+  },
+  "documentationSkillValid": true,
+  "retainedLogs": [
+    {
+      "file": "test-results/engine-cache-merged-format.log",
+      "bytes": 183,
+      "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+    },
+    {
+      "file": "test-results/engine-cache-merged-source.log",
+      "bytes": 45405,
+      "sha256": "8b97b2fb1452adb7a0a055ed0aee53d03f5d72731a690552db680cc9856d4081"
+    },
+    {
+      "file": "test-results/engine-cache-merged-build.log",
+      "bytes": 1719,
+      "sha256": "87f7a12cac6028779fd6fbc3e6a3362db303ca0f14b1919b1448c1d12d81a37b"
+    },
+    {
+      "file": "test-results/engine-cache-merged-package.log",
+      "bytes": 1351,
+      "sha256": "1307001491f763a0e9709c64d46d31270b0b4931d67f7e66f1d4adb3174dd678"
+    },
+    {
+      "file": "test-results/engine-cache-merged-native.log",
+      "bytes": 216,
+      "sha256": "b8b50042604d8df0f97e7dde77bc93209e3f11e7260647ff334905f518ea77a3"
+    },
+    {
+      "file": "test-results/engine-cache-merged-recovery.log",
+      "bytes": 230,
+      "sha256": "cff1adba6b54d065a8f711ca55c3d06e1f4a870b3c8f3ea81ae3be85155bbd2c"
+    },
+    {
+      "file": "test-results/engine-cache-merged-javascript.log",
+      "bytes": 7091,
+      "sha256": "02b41666bce5aea7a69f84f8ecc01d0f693b9c70b9aa393218ae912e31e6bd7f"
+    },
+    {
+      "file": "test-results/engine-cache-merged-publisher.log",
+      "bytes": 681,
+      "sha256": "e58f3bd838cf17024f32d65104a0dda6cbd8de3af5832e2bc9733d3f0e0c5fd5"
+    },
+    {
+      "file": "test-results/engine-cache-merged-website.log",
+      "bytes": 821,
+      "sha256": "1144c0c81824e4cbacb4a02c1b358af0366562cc5265f583561cc5c8b69869c7"
+    },
+    {
+      "file": "test-results/engine-cache-merged-skill.log",
+      "bytes": 138,
+      "sha256": "411dbf930a279ec4878cdeefe79be75e2bff7169f13f897642ea0b5b8ec25d24"
+    }
+  ],
+  "scope": "Unsigned local Apple silicon package combines compiler-cache retention and the merged bounded recovery implementation. Tests use isolated synthetic profiles and scoped faults. This does not establish signing/notarization, real signed updates, clean supported-Mac acceptance, real BYOK, complete redistribution or whole-app resource budgets. The public installer is unchanged."
+}
