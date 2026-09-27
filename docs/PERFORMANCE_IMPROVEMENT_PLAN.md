@@ -473,3 +473,12 @@ The profiler creates only isolated synthetic data under `test-results/`. Retain 
 ![Actual packaged Folio after cleaning 1,000 synthetic abandoned jobs and exporting the new PDF](images/build-recovery-backlog.png)
 
 The screenshot shows the successful result after cleanup, with the unsent synthetic chat draft and new PDF. It is not a screenshot of the measured startup interval.
+
+
+## Bound obsolete compiler requests
+
+The controlled build-queue fixture holds runtime acquisition and issues 5,000 newer requests. The original promise chain leaves all 5,001 unsettled until the first acquisition finishes. The new active/newest scheduler settles 4,999 obsolete requests while that first request remains held, leaving two. Disk review, asset reads and history are bounded by an outer editor-build coordinator as well, so requests cannot accumulate file-read work before reaching the compiler.
+
+The sixteen focused controls include 10,000-request bursts at each asynchronous stage, cancellation while cleanup is held, and progress after an active failure. A native compiler integration additionally requires only the newest of 1,000 waiting requests to produce a PDF and checkpoint. See [implementation and reproduction](BUILD_REQUESTS.md), [before](performance/build-request-backlog-before.json), [after](performance/build-request-backlog-after.json) and [verification](releases/build-requests-verification.json).
+
+These are request-count and correctness observations. The raw diagnostic includes one enqueue interval and Node heap readings, which do not isolate retained memory or establish an app speedup. Next measure longer real editing sessions and the whole Electron/compiler process tree on supported Macs. Recovery queues, engine caches and aggregate profile retention remain separate work; this change does not satisfy the complete resource-budget requirement.

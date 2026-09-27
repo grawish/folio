@@ -7,6 +7,8 @@ import { spawnSync } from 'node:child_process';
 import { createServer } from 'node:http';
 import { spawn } from 'node:child_process';
 import { Compiler } from '../../electron/core/compiler';
+import { BuildRequests } from '../../electron/core/build-requests';
+import { buildFingerprint } from '../../electron/core/build-provenance';
 import { inspectRuntime, macSandboxProfile } from '../../electron/core/runtime';
 import type { Project } from '../../src/shared/types';
 import { templateCatalog, paperSizes, templateSource } from '../../src/shared/template-catalog';
@@ -181,6 +183,91 @@ test(
     const result = await newest;
     assert.equal(result.status, 'success', result.log);
     assert.equal(result.revision, 11);
+  },
+);
+test(
+  'a rapid editor build burst compiles and checkpoints only the newest native PDF',
+  { skip: !supported },
+  async () => {
+    let release!: () => void, entered!: () => void;
+    const hold = new Promise<void>((resolve) => (release = resolve));
+    const entry = new Promise<void>((resolve) => (entered = resolve));
+    let acquisitions = 0,
+      releases = 0;
+    const isolated = new Compiler(
+      {
+        acquire: async () => {
+          if (++acquisitions === 1) {
+            entered();
+            await hold;
+          }
+          return {
+            root: runtime,
+            status: await inspectRuntime(runtime),
+            release: async () => {
+              releases++;
+            },
+          };
+        },
+      },
+      path.join(root, 'burst'),
+    );
+    const reads: number[] = [],
+      checkpoints: number[] = [];
+    const builds = new BuildRequests({
+      review: async () => {},
+      assets: async (p) => {
+        reads.push(p.revision);
+        return new Map();
+      },
+      compile: (p, assets) => isolated.compile(p, assets),
+      cancelCompiler: () => isolated.cancel(),
+      checkpoint: async (p) => {
+        checkpoints.push(p.revision);
+        return `burst-${p.revision}`;
+      },
+    });
+    try {
+      const first = builds.compile(project(simple, 0));
+      await entry;
+      let settled = 0;
+      const pending = Array.from({ length: 1000 }, (_, i) =>
+        builds
+          .compile(
+            project(simple.replace('Offline resume', `Newest queued resume ${i + 1}`), i + 1),
+          )
+          .then((r) => {
+            settled++;
+            return r;
+          }),
+      );
+      await new Promise<void>((resolve) => setImmediate(resolve));
+      assert.equal(settled, 999);
+      assert.deepEqual(reads, [0]);
+      release();
+      assert.equal((await first).status, 'cancelled');
+      const results = await Promise.all(pending);
+      assert.ok(results.slice(0, -1).every((r) => r.status === 'cancelled' && !r.pdf));
+      const result = results.at(-1)!;
+      const newest = project(simple.replace('Offline resume', 'Newest queued resume 1000'), 1000);
+      assert.equal(result.status, 'success', result.log);
+      assert.equal(result.revision, 1000);
+      assert.equal(result.versionId, 'burst-1000');
+      assert.ok(result.pdf && result.pdf.length > 1000);
+      assert.deepEqual(isolated.currentPdf(newest), result.pdf);
+      assert.equal(
+        result.buildFingerprint,
+        buildFingerprint(newest, new Map(), (await inspectRuntime(runtime)).pin),
+      );
+      assert.deepEqual(reads, [0, 1000]);
+      assert.deepEqual(checkpoints, [1000]);
+      assert.equal(acquisitions, 2);
+      assert.equal(releases, 2);
+      assert.equal(builds.busy, false);
+    } finally {
+      release();
+      await builds.cancel();
+    }
   },
 );
 test('runaway compilation times out', { skip: !supported }, async () => {

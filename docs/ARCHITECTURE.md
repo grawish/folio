@@ -18,7 +18,7 @@ AI setup and the active connection live in Settings. The chat composer exposes A
 | --- | --- |
 | Workspace and project lifecycle | `src/App.tsx`, `src/useWorkspace.ts` |
 | Chat, notes and history | `src/components/ChatPanel.tsx`, `PdfAnnotations.tsx`, `VersionHistory.tsx` |
-| Local compiler and isolation | `electron/core/compiler.ts`, `runtime.ts` |
+| Local compiler, build scheduling and isolation | `electron/core/compiler.ts`, `build-requests.ts`, `latest-work-queue.ts`, `runtime.ts` |
 | Managed compiler copies | `electron/core/runtime-manager.ts`, `compiler-migration.ts` |
 | Signed resource packs and Settings | `electron/core/pack-service.ts`, `pack-catalog.ts`, `pack-download.ts`, `resource-pack.ts`, `src/components/ResourcePacks.tsx` |
 | Background history ZIPs | `electron/core/history-archive.ts`, `history-zip-worker.cjs`, `history-archive-limits.json` |
@@ -40,6 +40,8 @@ The Codex adapter reuses an isolated process with a 60-second idle timeout, crea
 PDF build provenance includes source, asset bytes and the exact compiler pin. Older snapshots without provenance remain readable but are rebuilt before reuse as a current baseline. Rendered images are cached by PDF bytes and annotations, bounded to four entries / 24 MiB and cleared on a project change. Run metadata records models, escalation, validation type and stage timings without credentials.
 
 See [harness measurements](HARNESS_PERFORMANCE.md) for the synthetic benchmark and its limits.
+
+Editor builds now keep one active request and one newest waiting request across disk review, asset reads, compilation and history. Each compiler instance has the same active/pending bound. Superseded waiting requests resolve as cancelled immediately, while active cleanup retains its ordering. Stop and operations that must stop editor builds wait for disk/history work as well as the native compiler. This request-count bound does not establish a whole-app resource budget. See [build request scheduling](BUILD_REQUESTS.md).
 
 ## Stored data
 
