@@ -439,4 +439,37 @@ New builds now use a private ownership record outside the compiler-writable snap
 
 The packaged-app crash gate now exercises actual Electron main-process death during a real UI compile, followed by draft/history recovery, cleanup and a new PDF export. The prior packaged app fails startup cleanup; the recovery app passes locally. The final local observation finds the native process group absent about 53 ms after SIGKILL, which is one observation rather than a percentile or supported-device bound. The test also found that a recently changed Auto-compile preference can reset after a crash. The current native preference change separately restores saved values before the workspace opens, coalesces renderer updates to one active write and at most five pending values, and waits on settings saves during ordinary close/restart. Fifteen focused controls and actual packaged crash/migration/error-retry workflows pass; this is a correctness change, without a startup-speed or physical power-loss claim. See [native preference evidence](releases/workspace-preferences-verification.json). See [exact evidence](releases/packaged-build-crash-verification.json).
 
-Next measure cleanup time and responsiveness with large snapshots and many abandoned jobs on supported Macs. Older unmarked folders and unrecognized data require separate review; the new ownership format does not justify deleting them. Engine-cache retention, historical versions, aggregate disk/memory/CPU limits and whole-app supported-device acceptance remain open. Measure the additional watcher and cleanup scan as part of those process-tree budgets.
+The development-host backlog measurements below now cover large payloads and many abandoned jobs; supported-Mac coverage remains open. Older unmarked folders and unrecognized data require separate review; the new ownership format does not justify deleting them. Engine-cache retention, historical versions, aggregate disk/memory/CPU limits and whole-app supported-device acceptance remain open. Measure the additional watcher and cleanup scan as part of those process-tree budgets.
+
+## Startup with many abandoned builds
+
+Twelve launches of the unchanged, qualified recovery app compare four synthetic backlogs on one Apple M4 Pro with 48 GiB RAM. Each fixture runs three times in rotating order. The isolated profile is prepared once through the real app; preparation takes 31.708 seconds and is excluded from the table. Later launches reuse that profile and its compiler cache after normal closes. OS caches are not purged.
+
+A separate process uses the production `BuildWorkspaces` manager to create valid ownership records and source/payload files. The harness kills that process after staging, then launches the actual packaged app. It never invents a dead owner PID. Each small job has one short source and four 16 KiB payload files. The large job has four 16 MiB payload files. Sizes below exclude ownership records, short source files and filesystem overhead.
+
+| Abandoned jobs | Synthetic payload | Chat draft verified | Source saved | Original jobs absent | New PDF verified |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| None | 0 | 0.420 s | 0.609 s | Not applicable | 2.741 s |
+| 100 small jobs | 6.25 MiB | 0.427 s | 0.618 s | 0.768 s | 2.279 s |
+| 1,000 small jobs | 62.5 MiB | 0.410 s | 0.603 s | 2.722 s | 3.232 s |
+| One large job | 64 MiB | 0.427 s | 0.609 s | 0.310 s | 2.741 s |
+
+Every table value is the median of three launch-relative observations, not a stage duration. The harness edits and saves source before requesting a build about 1.39–1.47 seconds after launch. An external directory poll every 50 ms observes removal of the original job IDs. Do not subtract these observations to claim exact cleanup or compiler execution time. The new PDF row includes the preceding UI actions and polling overhead.
+
+With 1,000 jobs, chat input is verified in 0.396–0.431 seconds and source saving in 0.577–0.635 seconds, while cleanup is still running. Cleanup finishes within the observation window at 2.706–2.752 seconds; the next PDF is verified at 3.206–3.262 seconds. All twelve actual PDF exports contain the expected one-page text when read independently. Source and chat drafts survive normal reopen, and unmarked/unknown guard files remain unchanged. No AI request is sent.
+
+The observed main-process 20 ms timer has at most 8.94 ms of lateness across these samples. Observation begins after automation connects and spans UI work, compilation and export; it misses earlier startup and does not measure renderer frames or full-process CPU/memory. This is a small descriptive experiment on one development host, not a population percentile, clean-machine result, whole-profile disk budget or optimization speedup.
+
+These observations support keeping chat, editing and saving independent of startup cleanup. The many-small-file case delays the next PDF more than the similarly sized large-payload fixture here. Investigate directory/file operation counts and bounded cleanup concurrency before assuming payload bytes explain the delay. Any experiment must retain ownership/inode checks, live-owner protection, interrupted-removal recovery and unknown-file preservation. Extend the same workload to supported Macs, longer queues and full process-tree resource measurements before setting a release-wide target.
+
+Reproduce after other Folio native tests and benchmarks finish:
+
+```sh
+FOLIO_PYTHON=/absolute/path/to/python-with-pypdf node scripts/profile-build-recovery.mjs /absolute/path/to/Folio.app/Contents/MacOS/Folio 3
+```
+
+The profiler creates only isolated synthetic data under `test-results/`. Retain that folder, the exact app and the script/source identities. The published [summary](performance/build-recovery-summary.json), [raw observations](performance/build-recovery.json.gz) and [independent verification](releases/build-recovery-profile-verification.json) include all twelve runs and the excluded pilot records. The first pilot failed in its file-appearance wait; the corrected four-case pilot passes and remains separate from the final measurements. Application and runtime inputs are unchanged.
+
+![Actual packaged Folio after cleaning 1,000 synthetic abandoned jobs and exporting the new PDF](images/build-recovery-backlog.png)
+
+The screenshot shows the successful result after cleanup, with the unsent synthetic chat draft and new PDF. It is not a screenshot of the measured startup interval.
