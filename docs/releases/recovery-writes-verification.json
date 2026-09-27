@@ -3,7 +3,7 @@
   "verifiedAt": "2026-09-27T23:00:02.301360+00:00",
   "implementationCommit": "aca6af8d829818fc19d92ff1b6e49632f8684d62",
   "sourceBaseCommit": "1d9a71291a35d0ef6b01ad527541aeaefd2fb9ed",
-  "status": "Local source, focused controls, packaged recovery and six related native workflows passed; full hosted qualification pending",
+  "status": "Local checks and complete hosted Apple silicon qualification passed; production release requirements remain open",
   "sourceTestsPassed": 442,
   "focusedTestsPassed": 15,
   "typecheckPassed": true,
@@ -230,10 +230,7 @@
   ],
   "website": {
     "passed": true,
-    "widths": [
-      1440,
-      390
-    ],
+    "widths": [1440, 390],
     "screenshotDemos": 38,
     "errors": []
   },
@@ -348,5 +345,16 @@
       "correction": "Reused the previously verified original cache in the other managed worktree. All 38 original archive checks pass without modifying either cache."
     }
   ],
-  "scope": "Request-count bounds, retry and native acknowledgement ordering on one development Apple silicon Mac. Real UI/preload/IPC/files with scoped synthetic rename delays and failures, normal restart and existing settings app-crash checks. No AI call, whole-app resource budget, physical power-loss guarantee, signed release or supported-device acceptance."
+  "scope": "Request-count bounds, retry and native acknowledgement ordering on one development Apple silicon Mac. Real UI/preload/IPC/files with scoped synthetic rename delays and failures, normal restart and existing settings app-crash checks. No AI call, whole-app resource budget, physical power-loss guarantee, signed release or supported-device acceptance.",
+  "hostedQualification": {
+    "commit": "5b7b288547576a92b79d66441fdbe80bba6363ce",
+    "runId": 36357345971,
+    "url": "https://github.com/grawish/folio/actions/runs/36357345971",
+    "independentRecord": "mac-recovery-writes-hosted.json",
+    "retainedArtifactFilesVerified": 165,
+    "sourceTestsPassed": 442,
+    "compilerIntegrationTestsPassed": 18,
+    "nativeSuitesPassed": 20,
+    "templateImagesPassed": 12
+  }
 }
