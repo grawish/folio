@@ -82,6 +82,10 @@
         "to": "app-update-notices.txt"
       },
       {
+        "from": "resources/tex-font-notices",
+        "to": "tex-font-notices"
+      },
+      {
         "from": "resources/runtime/${os}-${arch}",
         "to": "runtime"
       }

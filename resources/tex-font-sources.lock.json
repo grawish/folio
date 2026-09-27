@@ -1,0 +1,1120 @@
+{
+  "schemaVersion": 1,
+  "scope": "Exact TeX Live distribution provenance for all 63 bundled font binaries and 48 support files; original notices for inclusion in the app. Not a complete TeX/native redistribution or final-app SBOM audit.",
+  "bundleLockSha256": "269b1b0b2e306329848b385ae4168db124380a612dab316967819f61fc58bf6c",
+  "database": {
+    "archive": "texlive-2021.tlpdb.xz",
+    "url": "https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2021/tlnet-final/tlpkg/texlive.tlpdb.xz",
+    "bytes": 2361024,
+    "sha256": "a9257a3999861c2a26db0f395979bce2884cac61892d9d95ce3f6d6a50cd88ea",
+    "uncompressedBytes": 17197813,
+    "uncompressedSha256": "a39c299c6eca9955d3783e26689f0d04590413f30599648ae2ca76793884cf9f"
+  },
+  "sources": [
+    {
+      "id": "lm",
+      "url": "https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2021/tlnet-final/archive/lm.tar.xz",
+      "archive": "lm.tar.xz",
+      "bytes": 11944808,
+      "sha256": "6ebed6d30e83956392059620c7082ceea3169b3997ca3f8ae3a21b796b7cc835",
+      "matches": [
+        {
+          "bundle": "lm-ec.enc",
+          "source": "fonts/enc/dvips/lm/lm-ec.enc",
+          "bytes": 2375,
+          "sha256": "7f9932c402d22a937b853406cfdf4166b80260e3ff21a03fe9a4c05105a2918c"
+        },
+        {
+          "bundle": "lm-mathsy.enc",
+          "source": "fonts/enc/dvips/lm/lm-mathsy.enc",
+          "bytes": 2840,
+          "sha256": "a2980b38288ef4024b8a3e170c19c9d4e2ee8b7dde97a59e8148291ffd3443db"
+        },
+        {
+          "bundle": "lm-ts1.enc",
+          "source": "fonts/enc/dvips/lm/lm-ts1.enc",
+          "bytes": 3031,
+          "sha256": "c6e18df2fc30431ddebe5e4e3f7abebeef2d355bd97b81b574a685f8ded408c4"
+        },
+        {
+          "bundle": "lmroman10-bold.otf",
+          "source": "fonts/opentype/public/lm/lmroman10-bold.otf",
+          "bytes": 111240,
+          "sha256": "102fe06c430a8b681b2bf6876b7cd967ae4d47b4b6b41d915eb7913b726d9fb1"
+        },
+        {
+          "bundle": "lmroman10-bolditalic.otf",
+          "source": "fonts/opentype/public/lm/lmroman10-bolditalic.otf",
+          "bytes": 118204,
+          "sha256": "c37a28eed7a6e03f792b98b5e5f637b2fcda378bb4855f99284f1a88fe35f124"
+        },
+        {
+          "bundle": "lmroman10-italic.otf",
+          "source": "fonts/opentype/public/lm/lmroman10-italic.otf",
+          "bytes": 118828,
+          "sha256": "c1fce25075567bb8dbf2151658c3b442690041db17a2d49fc9e55905ea5b7169"
+        },
+        {
+          "bundle": "lmroman10-regular.otf",
+          "source": "fonts/opentype/public/lm/lmroman10-regular.otf",
+          "bytes": 111536,
+          "sha256": "1aa18cfefa58132c52ce5de70db1fd1154201c19cd2b2cdaffba4906a33e6852"
+        },
+        {
+          "bundle": "lmroman12-bold.otf",
+          "source": "fonts/opentype/public/lm/lmroman12-bold.otf",
+          "bytes": 110496,
+          "sha256": "28c8782ac2b6486958b5dc7610ada7800c53546ff7f36bc65909a876e1cd338e"
+        },
+        {
+          "bundle": "lmroman12-italic.otf",
+          "source": "fonts/opentype/public/lm/lmroman12-italic.otf",
+          "bytes": 117732,
+          "sha256": "ada6b3f451238784e5a5ea75d43efa1eb4329cd75ce65bf047ed2f31b7b5e2f3"
+        },
+        {
+          "bundle": "lmroman12-regular.otf",
+          "source": "fonts/opentype/public/lm/lmroman12-regular.otf",
+          "bytes": 110400,
+          "sha256": "e6be218ae83e61aa8a29990d3cdc401c678c1962188cb9a4a8b6359e4f5e5870"
+        },
+        {
+          "bundle": "lmroman17-regular.otf",
+          "source": "fonts/opentype/public/lm/lmroman17-regular.otf",
+          "bytes": 110248,
+          "sha256": "ed048c80fb4b67663b80899b89fe5fba17d7442e1286d61fd08fe5689c6b7c3c"
+        },
+        {
+          "bundle": "lmroman5-bold.otf",
+          "source": "fonts/opentype/public/lm/lmroman5-bold.otf",
+          "bytes": 109564,
+          "sha256": "6326fb955d07bedcc8f73684e6b6bfa76706d38f3a85bd89c0659504ace366a1"
+        },
+        {
+          "bundle": "lmroman5-regular.otf",
+          "source": "fonts/opentype/public/lm/lmroman5-regular.otf",
+          "bytes": 111872,
+          "sha256": "954bd9c376597c7043e7b616430163e0158155edf7434fd70082cf8460c08533"
+        },
+        {
+          "bundle": "lmroman7-bold.otf",
+          "source": "fonts/opentype/public/lm/lmroman7-bold.otf",
+          "bytes": 110212,
+          "sha256": "063ea9e378b4fca4fd59771cf522faa21eb7c8516c89464745c79725b384fb9a"
+        },
+        {
+          "bundle": "lmroman7-italic.otf",
+          "source": "fonts/opentype/public/lm/lmroman7-italic.otf",
+          "bytes": 117960,
+          "sha256": "19d20f2bb00fbffe5d3d66e9b6a54f0108289068029e9d88649d981d53613ddf"
+        },
+        {
+          "bundle": "lmroman7-regular.otf",
+          "source": "fonts/opentype/public/lm/lmroman7-regular.otf",
+          "bytes": 110792,
+          "sha256": "48c4b46ab255eec96588fb992fba1ed6102e53d051da480738a61cc6cdb328c3"
+        },
+        {
+          "bundle": "lmroman8-bold.otf",
+          "source": "fonts/opentype/public/lm/lmroman8-bold.otf",
+          "bytes": 112404,
+          "sha256": "04d4f633c3da31a169f4c54a7fe8c7e63925b39d030381f8d3eab955f16be7b2"
+        },
+        {
+          "bundle": "lmroman8-italic.otf",
+          "source": "fonts/opentype/public/lm/lmroman8-italic.otf",
+          "bytes": 117248,
+          "sha256": "fb0536b5c3eee5b5622cd827ceb410e6514e36512ebdc51d2cf98a96c06d44e8"
+        },
+        {
+          "bundle": "lmroman8-regular.otf",
+          "source": "fonts/opentype/public/lm/lmroman8-regular.otf",
+          "bytes": 111948,
+          "sha256": "f73015c3827596586faa380c398501caf9b5bcbb6f40b46af6a51277ca97c9fc"
+        },
+        {
+          "bundle": "lmroman9-bold.otf",
+          "source": "fonts/opentype/public/lm/lmroman9-bold.otf",
+          "bytes": 113040,
+          "sha256": "f72feac9ea12eb858d8093d6c0ee710a6c25f59b61278c88ec41c0a680838415"
+        },
+        {
+          "bundle": "lmroman9-italic.otf",
+          "source": "fonts/opentype/public/lm/lmroman9-italic.otf",
+          "bytes": 118380,
+          "sha256": "2106cffcdc9f9cb411d7c3441e34d77a168b998a58b40e727ab5b815437d1975"
+        },
+        {
+          "bundle": "lmroman9-regular.otf",
+          "source": "fonts/opentype/public/lm/lmroman9-regular.otf",
+          "bytes": 112680,
+          "sha256": "8ab7b017fc67ea0e30cbf9e7ebd940010442ea67b40cf65f87d73f3ca11b0e6f"
+        },
+        {
+          "bundle": "ec-lmbx10.tfm",
+          "source": "fonts/tfm/public/lm/ec-lmbx10.tfm",
+          "bytes": 12076,
+          "sha256": "0895c940bd2e763b70dcab18ebf27fd3f93c2490f43b2a8c028fc7fc24b2e855"
+        },
+        {
+          "bundle": "ec-lmbx12.tfm",
+          "source": "fonts/tfm/public/lm/ec-lmbx12.tfm",
+          "bytes": 12088,
+          "sha256": "d19c45859d453c0802699d27aa2bff735574b9bc97d8791aa76e3c7de6c38a36"
+        },
+        {
+          "bundle": "ec-lmcsc10.tfm",
+          "source": "fonts/tfm/public/lm/ec-lmcsc10.tfm",
+          "bytes": 11276,
+          "sha256": "0918c1e4cc3cbe056794ec14697f38e266aab7475d48ea182912360c287b9e05"
+        },
+        {
+          "bundle": "ec-lmr10.tfm",
+          "source": "fonts/tfm/public/lm/ec-lmr10.tfm",
+          "bytes": 12056,
+          "sha256": "cd13479f463b9a575d053dd7bf0884daa46bfdeffe4b7f537c193861652ac9e5"
+        },
+        {
+          "bundle": "ec-lmr12.tfm",
+          "source": "fonts/tfm/public/lm/ec-lmr12.tfm",
+          "bytes": 12092,
+          "sha256": "299021120f0a29ef61278a2363903bd8defbb8faaade458eb79067342aecb56f"
+        },
+        {
+          "bundle": "ec-lmr17.tfm",
+          "source": "fonts/tfm/public/lm/ec-lmr17.tfm",
+          "bytes": 12156,
+          "sha256": "67fb845ec934b2d50e788280d2c6d63ae719c9d8ac16a02d42fd346c81196c0c"
+        },
+        {
+          "bundle": "ec-lmri10.tfm",
+          "source": "fonts/tfm/public/lm/ec-lmri10.tfm",
+          "bytes": 17148,
+          "sha256": "372f968b4eeb47bf6a6c941c8793bce118d1800f12e194a351c7493ecc158f2a"
+        },
+        {
+          "bundle": "ec-lmss10.tfm",
+          "source": "fonts/tfm/public/lm/ec-lmss10.tfm",
+          "bytes": 11176,
+          "sha256": "c410d9aa507694a4fd18e65e3983d1a96d6eff789c2c7d7816b841b9338f79b1"
+        },
+        {
+          "bundle": "ec-lmss12.tfm",
+          "source": "fonts/tfm/public/lm/ec-lmss12.tfm",
+          "bytes": 11232,
+          "sha256": "7931fed40f5f8d49292e91f2471a842a516a7b6016e347f469ff1c86cc4e9c91"
+        },
+        {
+          "bundle": "ec-lmss17.tfm",
+          "source": "fonts/tfm/public/lm/ec-lmss17.tfm",
+          "bytes": 11252,
+          "sha256": "1848eea99fd807cae95553b4ca0bc0b9f9708d2d6f022ba335ba473f662d49d9"
+        },
+        {
+          "bundle": "ec-lmssbx10.tfm",
+          "source": "fonts/tfm/public/lm/ec-lmssbx10.tfm",
+          "bytes": 11168,
+          "sha256": "7d4bf0e356d4aa0db3acb7b581006e8e23e8cc36df802bcd5292418f02972546"
+        },
+        {
+          "bundle": "ec-lmsso10.tfm",
+          "source": "fonts/tfm/public/lm/ec-lmsso10.tfm",
+          "bytes": 11316,
+          "sha256": "9b4d9e757da9f9de1f5acc71c8f3ad944778f051ae7ad85f4147ba171fea8ffc"
+        },
+        {
+          "bundle": "lmex10.tfm",
+          "source": "fonts/tfm/public/lm/lmex10.tfm",
+          "bytes": 992,
+          "sha256": "9547b25fd525782610200d794a82de33037887422751fcc29c5768cfa650e626"
+        },
+        {
+          "bundle": "lmmi10.tfm",
+          "source": "fonts/tfm/public/lm/lmmi10.tfm",
+          "bytes": 1528,
+          "sha256": "d9fce8963e8cb075bf31a5715a8f4a54688f7026b3a06e882ff2eb9c0d110320"
+        },
+        {
+          "bundle": "lmmi5.tfm",
+          "source": "fonts/tfm/public/lm/lmmi5.tfm",
+          "bytes": 1508,
+          "sha256": "7bc98c12006eb1d784ce276f5dc008e0d631ee6bc659efadec24801c00d2a462"
+        },
+        {
+          "bundle": "lmmi6.tfm",
+          "source": "fonts/tfm/public/lm/lmmi6.tfm",
+          "bytes": 1512,
+          "sha256": "e7305bead3f6b2c8313e1234cb52376219d4283227c23295fe2f654e3ba3b551"
+        },
+        {
+          "bundle": "lmmi7.tfm",
+          "source": "fonts/tfm/public/lm/lmmi7.tfm",
+          "bytes": 1528,
+          "sha256": "8548d4d19fc2b3671a5e11526f9013df8828b5b9b0f8277dc0ae7148bd1d33f5"
+        },
+        {
+          "bundle": "lmmi8.tfm",
+          "source": "fonts/tfm/public/lm/lmmi8.tfm",
+          "bytes": 1520,
+          "sha256": "8d8514f9b0d11e443d9a3cdc059622b06797c1dbcb3cee994f6ac3329c462a82"
+        },
+        {
+          "bundle": "lmsy10.tfm",
+          "source": "fonts/tfm/public/lm/lmsy10.tfm",
+          "bytes": 1308,
+          "sha256": "11f429b2c08f944627faa5942277297d7f8fef40edae2bae46cb238b838400ba"
+        },
+        {
+          "bundle": "lmsy5.tfm",
+          "source": "fonts/tfm/public/lm/lmsy5.tfm",
+          "bytes": 1296,
+          "sha256": "cac282b076edc89a2bbc8cdd1bd899117cd1af05612bca2b203e8b5ebe715431"
+        },
+        {
+          "bundle": "lmsy6.tfm",
+          "source": "fonts/tfm/public/lm/lmsy6.tfm",
+          "bytes": 1300,
+          "sha256": "8548e4b09655eb2b166bf95df4be4f2a7ae54d5df2069bc04ef233bfd941167b"
+        },
+        {
+          "bundle": "lmsy7.tfm",
+          "source": "fonts/tfm/public/lm/lmsy7.tfm",
+          "bytes": 1304,
+          "sha256": "3e92767469b4df54c985a533b8064789df60f21ab69d381dbf01bb608e3fbff8"
+        },
+        {
+          "bundle": "lmsy8.tfm",
+          "source": "fonts/tfm/public/lm/lmsy8.tfm",
+          "bytes": 1304,
+          "sha256": "b6b96268d56481a5bc7cbb34b140ca1fa5017d2767acc4e11a94b30eabd114f7"
+        },
+        {
+          "bundle": "rm-lmr10.tfm",
+          "source": "fonts/tfm/public/lm/rm-lmr10.tfm",
+          "bytes": 11868,
+          "sha256": "50dc8240a67003c1ec5bcd55f703c87189aeab0d199c42b4dc3e141a02488998"
+        },
+        {
+          "bundle": "rm-lmr5.tfm",
+          "source": "fonts/tfm/public/lm/rm-lmr5.tfm",
+          "bytes": 11804,
+          "sha256": "420a4fc1563b171e5a791bb71211d85e6bf62fd2f2ed2a7f34f742049d6e5071"
+        },
+        {
+          "bundle": "rm-lmr6.tfm",
+          "source": "fonts/tfm/public/lm/rm-lmr6.tfm",
+          "bytes": 11836,
+          "sha256": "eb0bfdf8db3ae1409639fac9c88f84923872500d882d9ff8dc37aff445c723fe"
+        },
+        {
+          "bundle": "rm-lmr7.tfm",
+          "source": "fonts/tfm/public/lm/rm-lmr7.tfm",
+          "bytes": 11852,
+          "sha256": "373a4f72b5a088f9caee2cfd75adb2b25116e0cba3ad2bfa99b5f8a7e902a482"
+        },
+        {
+          "bundle": "rm-lmr8.tfm",
+          "source": "fonts/tfm/public/lm/rm-lmr8.tfm",
+          "bytes": 11864,
+          "sha256": "80bcbfd844d2310ac1d3bead45aee25e91b1a4a0a60ff1771959b9a1e90ec1a2"
+        },
+        {
+          "bundle": "ts1-lmr10.tfm",
+          "source": "fonts/tfm/public/lm/ts1-lmr10.tfm",
+          "bytes": 1556,
+          "sha256": "080be3dc1bf1bac9eb612e44718ea630d2bd2ebf4d8e8e00333a78b5332ca6b3"
+        },
+        {
+          "bundle": "ts1-lmss10.tfm",
+          "source": "fonts/tfm/public/lm/ts1-lmss10.tfm",
+          "bytes": 1576,
+          "sha256": "b4585b1f37f86b3817d818529e45dd70813fce07f4ae57232b065d7147e90788"
+        },
+        {
+          "bundle": "lmbx10.pfb",
+          "source": "fonts/type1/public/lm/lmbx10.pfb",
+          "bytes": 121021,
+          "sha256": "4acd67f9ece59a12e073aa863dbb1d5cea194f7f7b88ecce4659184d8275aa42"
+        },
+        {
+          "bundle": "lmbx12.pfb",
+          "source": "fonts/type1/public/lm/lmbx12.pfb",
+          "bytes": 116908,
+          "sha256": "fb9b7cf1d13a8a837c2c6b238e7255f8d6f4cd6608bf3024ee68e43d04f01a08"
+        },
+        {
+          "bundle": "lmcsc10.pfb",
+          "source": "fonts/type1/public/lm/lmcsc10.pfb",
+          "bytes": 116427,
+          "sha256": "cd00eadf0b9cd4641146a2ef8ff218861e4dc80c7eeb749871dc1f639ded1928"
+        },
+        {
+          "bundle": "lmr10.pfb",
+          "source": "fonts/type1/public/lm/lmr10.pfb",
+          "bytes": 119235,
+          "sha256": "84eb01245abb17c0530ca3909427256d73df8bed2d7243b9f2717ca08c010ac8"
+        },
+        {
+          "bundle": "lmr12.pfb",
+          "source": "fonts/type1/public/lm/lmr12.pfb",
+          "bytes": 113634,
+          "sha256": "d5fd4fdecfdbc8f97e955964aa2574927182303df178fe0c2e568fe9056e326c"
+        },
+        {
+          "bundle": "lmri10.pfb",
+          "source": "fonts/type1/public/lm/lmri10.pfb",
+          "bytes": 112593,
+          "sha256": "1239c71330ac8f0584e22f4d6abd0f016421fc73c545b15512ccf80b263f5c66"
+        },
+        {
+          "bundle": "lmss10.pfb",
+          "source": "fonts/type1/public/lm/lmss10.pfb",
+          "bytes": 97408,
+          "sha256": "55a4ebed5e5a9e9b8ffdee75ff27fd4c19bb65deec6de72fd23990b1e40c91ab"
+        },
+        {
+          "bundle": "lmss12.pfb",
+          "source": "fonts/type1/public/lm/lmss12.pfb",
+          "bytes": 96107,
+          "sha256": "ffd30f7a2c599f70ebbf512b966f36d5725de45d901ff37cdb592f4b8527280e"
+        },
+        {
+          "bundle": "lmssbx10.pfb",
+          "source": "fonts/type1/public/lm/lmssbx10.pfb",
+          "bytes": 119663,
+          "sha256": "bc7ab0fde2bc8a670051171fdb47d2b361fa5048011d179868ef2495458029e3"
+        },
+        {
+          "bundle": "lmsso10.pfb",
+          "source": "fonts/type1/public/lm/lmsso10.pfb",
+          "bytes": 108953,
+          "sha256": "8daca5001d969511edd3e5f4ed7900f689b2aaa83481248541596b6912ff21c8"
+        },
+        {
+          "bundle": "lmsy10.pfb",
+          "source": "fonts/type1/public/lm/lmsy10.pfb",
+          "bytes": 27863,
+          "sha256": "9969fd5ae5281ad40cdf6d8caf50084636a43ed7b7647e0e9e1195e859cec7cc"
+        },
+        {
+          "bundle": "lmodern.sty",
+          "source": "tex/latex/lm/lmodern.sty",
+          "bytes": 1608,
+          "sha256": "d2877369dcb4bfe7b1b6bba1a3d96c46e93366459c9b46576f1b221009bbe359"
+        },
+        {
+          "bundle": "omllmm.fd",
+          "source": "tex/latex/lm/omllmm.fd",
+          "bytes": 890,
+          "sha256": "0713fd8996320f03e8085c8da713bdc3a238b32c7ef83f5729151450d4bebbb5"
+        },
+        {
+          "bundle": "omslmsy.fd",
+          "source": "tex/latex/lm/omslmsy.fd",
+          "bytes": 807,
+          "sha256": "e1df006d08c2a73bba6b1a1f804e96160f2f8aeb7d8518b07da455b7dd45d1ff"
+        },
+        {
+          "bundle": "omxlmex.fd",
+          "source": "tex/latex/lm/omxlmex.fd",
+          "bytes": 568,
+          "sha256": "57ae2bb311d1126b02d61b9d26de8590d831f7f9a98ca1788cb62de920a495c1"
+        },
+        {
+          "bundle": "ot1lmr.fd",
+          "source": "tex/latex/lm/ot1lmr.fd",
+          "bytes": 1882,
+          "sha256": "51291fc1c1086c51d64f914ecc8051fe0dbe3f7601e89f2a5e18a5df5c6da1ea"
+        },
+        {
+          "bundle": "t1lmr.fd",
+          "source": "tex/latex/lm/t1lmr.fd",
+          "bytes": 1867,
+          "sha256": "6b61abc8a6796f1884f819afcfc4c33558564f7e5c1d47b720e50ee15dba829a"
+        },
+        {
+          "bundle": "t1lmss.fd",
+          "source": "tex/latex/lm/t1lmss.fd",
+          "bytes": 1641,
+          "sha256": "57f7fb749828d627aaa94be556bbb670f7a6b042bfed3add653e3c9c2d84f97a"
+        },
+        {
+          "bundle": "ts1lmr.fd",
+          "source": "tex/latex/lm/ts1lmr.fd",
+          "bytes": 1914,
+          "sha256": "ecda20924242346d91d241e19c89a9a36c7423dc76b1c94e4a3d4d8b51d235d7"
+        },
+        {
+          "bundle": "ts1lmss.fd",
+          "source": "tex/latex/lm/ts1lmss.fd",
+          "bytes": 1671,
+          "sha256": "f20c1e07ee5ba2b3e06cb098f0bb8f5482349da692a8bdb5dcb5e3108b8ad773"
+        }
+      ],
+      "materials": [
+        {
+          "path": "tlpkg/tlpobj/lm.tlpobj",
+          "bytes": 45844,
+          "sha256": "e46483f8d72566b92e4133bde290c26d438c6951b9164333b4e86933d438ba8f"
+        }
+      ],
+      "format": "tar.xz",
+      "package": "lm",
+      "revision": 61719,
+      "containerPrefix": "",
+      "publisherSha512": "07448def04c2dc6805d7077b7a65b4e353c99d22d802c56ef7e147ce6a209e9b2303752b5d56763ccd44b9cccf700207e48c246b141e63deb4d1895347d6d307",
+      "declaredLicense": "gfl",
+      "metadataBytes": 46728,
+      "metadataSha256": "ee77c1e6982f64bac75c7c7dbab6eb3860189a845cba7bb011574db26b451daf"
+    },
+    {
+      "id": "lm.doc",
+      "url": "https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2021/tlnet-final/archive/lm.doc.tar.xz",
+      "archive": "lm.doc.tar.xz",
+      "bytes": 1630432,
+      "sha256": "f5089ceeba92889b94e6cabca00dd18b19716d468f3d0569c83135f192b87982",
+      "matches": [],
+      "materials": [
+        {
+          "path": "doc/fonts/lm/GUST-FONT-LICENSE.TXT",
+          "bytes": 1377,
+          "sha256": "49ea6cb9257bbee0a3979c48a774cd221550ac1c20c95549efe45fc99cc18050"
+        },
+        {
+          "path": "doc/fonts/lm/MANIFEST-Latin-Modern.TXT",
+          "bytes": 52635,
+          "sha256": "402c79f4ede8548a6fe6f82f42f0288cb0243ba2403dfdeeaadf55d189a46fae"
+        },
+        {
+          "path": "doc/fonts/lm/README-Latin-Modern.TXT",
+          "bytes": 33548,
+          "sha256": "7cac4a4a78985ccb1ed429bb2eddf32eeb2e413c94493c7b268385bb7b525250"
+        },
+        {
+          "path": "tlpkg/tlpobj/lm.doc.tlpobj",
+          "bytes": 622,
+          "sha256": "2c5df0c9da143b29670a1a9ffa563a9cbf7c4ea422cfc90e4750645521c85609"
+        }
+      ],
+      "format": "tar.xz",
+      "package": "lm",
+      "revision": 61719,
+      "containerPrefix": "doc",
+      "publisherSha512": "d628f4ad7288eb378df86b4593738c0f755ec6a08a762b38d7fda95b2cee163acd81fdebec7bba693380bcf3d2b2510281f349fa17ac3da1fbe9ec40106a728e",
+      "declaredLicense": "gfl",
+      "metadataBytes": 46728,
+      "metadataSha256": "ee77c1e6982f64bac75c7c7dbab6eb3860189a845cba7bb011574db26b451daf"
+    },
+    {
+      "id": "lm-math",
+      "url": "https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2021/tlnet-final/archive/lm-math.tar.xz",
+      "archive": "lm-math.tar.xz",
+      "bytes": 377816,
+      "sha256": "325f0dcf6f303f642bf0bc0a53a757c6dd0ff0e42c20395203f7f6140a64794f",
+      "matches": [
+        {
+          "bundle": "latinmodern-math.otf",
+          "source": "fonts/opentype/public/lm-math/latinmodern-math.otf",
+          "bytes": 733736,
+          "sha256": "6075562b771f8b82f0c179e363389684f2dd09de30038269e2628e504bd7be0f"
+        }
+      ],
+      "materials": [
+        {
+          "path": "tlpkg/tlpobj/lm-math.tlpobj",
+          "bytes": 628,
+          "sha256": "18a33fa704c68ba5c4382546c2b42d442d65eb8dd76130434a916a24c2881e3c"
+        }
+      ],
+      "format": "tar.xz",
+      "package": "lm-math",
+      "revision": 36915,
+      "containerPrefix": "",
+      "publisherSha512": "f2424f917e13aa9805f6738ceed376d6063713dd4c58a5953b5456da4ba81eaba3f0f97963ecf36ead4f68b1311c4c9e30f064002ab8bbf0f5ed3a67db3ead4a",
+      "declaredLicense": "gfl",
+      "metadataBytes": 1693,
+      "metadataSha256": "f191432872c71d8d12c8e1921e4d2fa24e3974e5501bf191cb14fd7bb0fde980"
+    },
+    {
+      "id": "lm-math.doc",
+      "url": "https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2021/tlnet-final/archive/lm-math.doc.tar.xz",
+      "archive": "lm-math.doc.tar.xz",
+      "bytes": 94656,
+      "sha256": "38a71af7139ff2797f308069c248aa34eb373813c3bfa0fb2021fa8e4e8dbb23",
+      "matches": [],
+      "materials": [
+        {
+          "path": "doc/fonts/lm-math/GUST-FONT-LICENSE.txt",
+          "bytes": 1456,
+          "sha256": "2bd69affc3da00715116f713f57eab9707e96daf3562ad0215987b15b9c16f73"
+        },
+        {
+          "path": "doc/fonts/lm-math/MANIFEST-Latin-Modern-Math.txt",
+          "bytes": 2186,
+          "sha256": "1daa729f7922c42ba5ce8da7dfe4ecdc9e5c878ad86217fd6f32c4671505b007"
+        },
+        {
+          "path": "doc/fonts/lm-math/README-Latin-Modern-Math.txt",
+          "bytes": 4588,
+          "sha256": "e6fdd5fb44b656146fa988d191f58901c09a347d3f4fbaa3b45b24a6ad7ec30b"
+        },
+        {
+          "path": "tlpkg/tlpobj/lm-math.doc.tlpobj",
+          "bytes": 858,
+          "sha256": "61af7b02b33aafc29275e810af2e3d9a48873538baa28f2581a44e18d465a930"
+        }
+      ],
+      "format": "tar.xz",
+      "package": "lm-math",
+      "revision": 36915,
+      "containerPrefix": "doc",
+      "publisherSha512": "262a99ab29fd22976334eabaed77d3326e87b63014d9e640ef8ea31b14382b273a6435f3059aa235c50f9f829ec28adf754763e17a945265495e9a54e7ee53fa",
+      "declaredLicense": "gfl",
+      "metadataBytes": 1693,
+      "metadataSha256": "f191432872c71d8d12c8e1921e4d2fa24e3974e5501bf191cb14fd7bb0fde980"
+    },
+    {
+      "id": "roboto",
+      "url": "https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2021/tlnet-final/archive/roboto.tar.xz",
+      "archive": "roboto.tar.xz",
+      "bytes": 9903788,
+      "sha256": "a60244bee8507f355627f6aabc393cd30a13ef732d81fcb06212226c4167d935",
+      "matches": [
+        {
+          "bundle": "RobotoCondensed-Italic.otf",
+          "source": "fonts/opentype/google/roboto/RobotoCondensed-Italic.otf",
+          "bytes": 201768,
+          "sha256": "9e5dfe7589304d39f700f0bf11c7da41ebe569a84012877fac13d7b9a9fae4ac"
+        },
+        {
+          "bundle": "Roboto-Bold.otf",
+          "source": "fonts/opentype/google/roboto/Roboto-Bold.otf",
+          "bytes": 185508,
+          "sha256": "60ea65e6c33297b61348629096dd6648e5912c04b52561a51ab73fce268decfc"
+        },
+        {
+          "bundle": "Roboto-Black.otf",
+          "source": "fonts/opentype/google/roboto/Roboto-Black.otf",
+          "bytes": 192776,
+          "sha256": "4e123dbc226bb63ccaf41cc395b141ba9c37444b97cf3a6ef23f293557a6f733"
+        },
+        {
+          "bundle": "Roboto-BoldItalic.otf",
+          "source": "fonts/opentype/google/roboto/Roboto-BoldItalic.otf",
+          "bytes": 204200,
+          "sha256": "0361f9c26ca8310fc8dd7703b761fb41edeb3f7932f7d69449513b7f3df5fc1c"
+        },
+        {
+          "bundle": "RobotoSlab-Regular.otf",
+          "source": "fonts/opentype/google/roboto/RobotoSlab-Regular.otf",
+          "bytes": 175892,
+          "sha256": "c89cde9ffd67dec03babec06702e936fe6de6667b549cf99ea46f6b3120efa0f"
+        },
+        {
+          "bundle": "Roboto-Medium.otf",
+          "source": "fonts/opentype/google/roboto/Roboto-Medium.otf",
+          "bytes": 197212,
+          "sha256": "9595d4065558fb7bed2aeef6296025342de48f3bc36a7c75885ba763f644bad7"
+        },
+        {
+          "bundle": "RobotoSlab-Bold.otf",
+          "source": "fonts/opentype/google/roboto/RobotoSlab-Bold.otf",
+          "bytes": 179108,
+          "sha256": "29c7668174752578e0de336755f75a740597151ffdd0b080e396144aab95882b"
+        },
+        {
+          "bundle": "Roboto-Italic.otf",
+          "source": "fonts/opentype/google/roboto/Roboto-Italic.otf",
+          "bytes": 206388,
+          "sha256": "6e6d60f2b04ab69782df69d5e8471ee12b2bf5f2d53e64eee3f7356833857cd4"
+        },
+        {
+          "bundle": "RobotoCondensed-Regular.otf",
+          "source": "fonts/opentype/google/roboto/RobotoCondensed-Regular.otf",
+          "bytes": 184208,
+          "sha256": "c4e28b99832e1e39c170b25f9c798ed6f4b7dd7c4441ac712a18cc549a299faf"
+        },
+        {
+          "bundle": "RobotoCondensed-BoldItalic.otf",
+          "source": "fonts/opentype/google/roboto/RobotoCondensed-BoldItalic.otf",
+          "bytes": 197848,
+          "sha256": "f1997a169d9f377513adcc6ded527f999dcfc9a8a57d8feb9193d3d5a63ccc82"
+        },
+        {
+          "bundle": "Roboto-ThinItalic.otf",
+          "source": "fonts/opentype/google/roboto/Roboto-ThinItalic.otf",
+          "bytes": 217592,
+          "sha256": "563bb64ca5871565d639dd6c6065926752b188f10badcff7728ca74ef8e4582f"
+        },
+        {
+          "bundle": "RobotoCondensed-Bold.otf",
+          "source": "fonts/opentype/google/roboto/RobotoCondensed-Bold.otf",
+          "bytes": 183352,
+          "sha256": "794e78f50d489854910a0fc2efb3629b10b29a0f4b0cab64b26c3eb6a042a090"
+        },
+        {
+          "bundle": "Roboto-Thin.otf",
+          "source": "fonts/opentype/google/roboto/Roboto-Thin.otf",
+          "bytes": 201232,
+          "sha256": "5c88a7ed459f28c2e6f72610d110ef66d5261c39854ef6da438a0c5960cbdee9"
+        },
+        {
+          "bundle": "Roboto-BlackItalic.otf",
+          "source": "fonts/opentype/google/roboto/Roboto-BlackItalic.otf",
+          "bytes": 212128,
+          "sha256": "906ee41462711669ae1f6fc5545f7f769b57ed3f17ef55fc57948cc97c06bf6d"
+        },
+        {
+          "bundle": "Roboto-MediumItalic.otf",
+          "source": "fonts/opentype/google/roboto/Roboto-MediumItalic.otf",
+          "bytes": 216456,
+          "sha256": "68fb40c531d54f6f5e30e387f885edfab0a2a06fcc2b331140ea6c1289eeae92"
+        },
+        {
+          "bundle": "Roboto-LightItalic.otf",
+          "source": "fonts/opentype/google/roboto/Roboto-LightItalic.otf",
+          "bytes": 219340,
+          "sha256": "9d5ac803938ee7c4db2e44eaff98269f5fde8a57a46fe499a24550405a358508"
+        },
+        {
+          "bundle": "Roboto-Light.otf",
+          "source": "fonts/opentype/google/roboto/Roboto-Light.otf",
+          "bytes": 200084,
+          "sha256": "c53ee7b89233a165e5144f9fc99362f0e68bbfb3212fc827ce0692a444403e60"
+        },
+        {
+          "bundle": "Roboto-Regular.otf",
+          "source": "fonts/opentype/google/roboto/Roboto-Regular.otf",
+          "bytes": 186664,
+          "sha256": "c9556b475c2f0f0f566216b2158c191218206c016c522ef0537e46e03bca232f"
+        },
+        {
+          "bundle": "roboto.sty",
+          "source": "tex/latex/roboto/roboto.sty",
+          "bytes": 14885,
+          "sha256": "6be039fb88b5c106f2eea6c9e12ab8aa03f9dbc83e4c67d920f34cd07d238c4b"
+        }
+      ],
+      "materials": [
+        {
+          "path": "tlpkg/tlpobj/roboto.tlpobj",
+          "bytes": 145524,
+          "sha256": "3c91ab8a0a000123dd23a90f22bf867d6bfb87937980524a198973c77c630536"
+        }
+      ],
+      "format": "tar.xz",
+      "package": "roboto",
+      "revision": 54512,
+      "containerPrefix": "",
+      "publisherSha512": "08e409a234850d70207bc7551d61bdfe40869af032bba2d81a99f7507d399badaeb9e8dd8d663127d01ec78520c7dbb1d60b5de8395ed5a180de2d7b8c59aef5",
+      "declaredLicense": "apache2 lppl",
+      "metadataBytes": 146252,
+      "metadataSha256": "a185516b1792605d1fbd2272e798f21e297221140118cca7224e857689be1bfc"
+    },
+    {
+      "id": "roboto.doc",
+      "url": "https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2021/tlnet-final/archive/roboto.doc.tar.xz",
+      "archive": "roboto.doc.tar.xz",
+      "bytes": 394584,
+      "sha256": "39fac4f3e0e93ef024c47c2ba109947e475ba3dd73298b1c1e923d9df5a90825",
+      "matches": [],
+      "materials": [
+        {
+          "path": "doc/fonts/roboto/COPYRIGHT.txt",
+          "bytes": 31,
+          "sha256": "13fa0c04b0315e03825a7aa3833be3aeb15dd0be0ed61dc16c3a25c1974e82e4"
+        },
+        {
+          "path": "doc/fonts/roboto/LICENSE.txt",
+          "bytes": 11358,
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+        },
+        {
+          "path": "doc/fonts/roboto/README",
+          "bytes": 3641,
+          "sha256": "3b5e2654cf42dbcba79543097d78b3072cd51af1235382a2442edff43285d291"
+        },
+        {
+          "path": "tlpkg/tlpobj/roboto.doc.tlpobj",
+          "bytes": 436,
+          "sha256": "d6ac78f4117c385dc9fc39f95ea93784b1742668c273696a9eadf79f26ec3377"
+        }
+      ],
+      "format": "tar.xz",
+      "package": "roboto",
+      "revision": 54512,
+      "containerPrefix": "doc",
+      "publisherSha512": "f523a6017869c98991c766ea1ca3febc36e780fc66c0f9fbdd00036708865663670d6de178781489f49b2a0a0c7d3fc01c240fffe7cb06d6cb98fe355b15e549",
+      "declaredLicense": "apache2 lppl",
+      "metadataBytes": 146252,
+      "metadataSha256": "a185516b1792605d1fbd2272e798f21e297221140118cca7224e857689be1bfc"
+    },
+    {
+      "id": "sourcesanspro",
+      "url": "https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2021/tlnet-final/archive/sourcesanspro.tar.xz",
+      "archive": "sourcesanspro.tar.xz",
+      "bytes": 5153396,
+      "sha256": "1c9558be99163e277388d76c8017495e267e87f51b7749b2bb43827b77aadbde",
+      "matches": [
+        {
+          "bundle": "SourceSansPro-Black.otf",
+          "source": "fonts/opentype/adobe/sourcesanspro/SourceSansPro-Black.otf",
+          "bytes": 295500,
+          "sha256": "024579a918bd01d2cef7a616d85be994f8a3fa0d51f0cd0484e3eda98a163bf7"
+        },
+        {
+          "bundle": "SourceSansPro-BoldIt.otf",
+          "source": "fonts/opentype/adobe/sourcesanspro/SourceSansPro-BoldIt.otf",
+          "bytes": 212380,
+          "sha256": "8449c8884ae97ae11b00581cb61eba7141462ffc03000030e6de13ce297f9304"
+        },
+        {
+          "bundle": "SourceSansPro-Semibold.otf",
+          "source": "fonts/opentype/adobe/sourcesanspro/SourceSansPro-Semibold.otf",
+          "bytes": 295952,
+          "sha256": "aa53ed4fc17334a0c2ee8412c1e4e728bfb732a96b119164f7354343dad8f2f2"
+        },
+        {
+          "bundle": "SourceSansPro-Light.otf",
+          "source": "fonts/opentype/adobe/sourcesanspro/SourceSansPro-Light.otf",
+          "bytes": 290464,
+          "sha256": "4fae5ee1c17692ee2023bda95b332aacd2112d59ca81a2cfabd56324a24b2158"
+        },
+        {
+          "bundle": "SourceSansPro-LightIt.otf",
+          "source": "fonts/opentype/adobe/sourcesanspro/SourceSansPro-LightIt.otf",
+          "bytes": 204752,
+          "sha256": "373e4c1e38b745080313997a055891488cabd55f311f3878ee9ebc0e251ce260"
+        },
+        {
+          "bundle": "SourceSansPro-RegularIt.otf",
+          "source": "fonts/opentype/adobe/sourcesanspro/SourceSansPro-RegularIt.otf",
+          "bytes": 208408,
+          "sha256": "d38e0d70cd4f4aa072457c5ae647b987f10c3cea34bff581ee358a7c2a526053"
+        },
+        {
+          "bundle": "SourceSansPro-BlackIt.otf",
+          "source": "fonts/opentype/adobe/sourcesanspro/SourceSansPro-BlackIt.otf",
+          "bytes": 212660,
+          "sha256": "d21f1ddb0622185f7284ec58f7585cf120a0eeb4b04c5098367320b063409941"
+        },
+        {
+          "bundle": "SourceSansPro-SemiboldIt.otf",
+          "source": "fonts/opentype/adobe/sourcesanspro/SourceSansPro-SemiboldIt.otf",
+          "bytes": 210012,
+          "sha256": "cdeddc767fdb11770451c5fac8f98b7d343b7fc9604f9db5034f50f7f437047a"
+        },
+        {
+          "bundle": "SourceSansPro-ExtraLightIt.otf",
+          "source": "fonts/opentype/adobe/sourcesanspro/SourceSansPro-ExtraLightIt.otf",
+          "bytes": 198324,
+          "sha256": "1b49f890af1869021dbfb7d9e92477298ce1d79e79581679364266aef7fe84e4"
+        },
+        {
+          "bundle": "SourceSansPro-ExtraLight.otf",
+          "source": "fonts/opentype/adobe/sourcesanspro/SourceSansPro-ExtraLight.otf",
+          "bytes": 282200,
+          "sha256": "02337f010e2666fbf8b234752d673fd097d6dc47c391bab16cc3bebb46ca706f"
+        },
+        {
+          "bundle": "SourceSansPro-Regular.otf",
+          "source": "fonts/opentype/adobe/sourcesanspro/SourceSansPro-Regular.otf",
+          "bytes": 293200,
+          "sha256": "7134d229b15cdd0827376d8a24f6f531f616eb1b3fecd16e1cf8a86d0bf6bc51"
+        },
+        {
+          "bundle": "SourceSansPro-Bold.otf",
+          "source": "fonts/opentype/adobe/sourcesanspro/SourceSansPro-Bold.otf",
+          "bytes": 298076,
+          "sha256": "daccddbe3dd60fe10f6e8a785eda187925da6b611141024dffa43626998dfc7c"
+        },
+        {
+          "bundle": "sourcesanspro.sty",
+          "source": "tex/latex/sourcesanspro/sourcesanspro.sty",
+          "bytes": 6172,
+          "sha256": "0da098eca21da49cdadb2a31097cfe477333a8b605fe6d001c62d0dcf9f00ce8"
+        }
+      ],
+      "materials": [
+        {
+          "path": "tlpkg/tlpobj/sourcesanspro.tlpobj",
+          "bytes": 107861,
+          "sha256": "b28188160f9551a1305a7e7675a0ef2c108d9309bb5a1e83a6fa4bb3bb9601fa"
+        }
+      ],
+      "format": "tar.xz",
+      "package": "sourcesanspro",
+      "revision": 54892,
+      "containerPrefix": "",
+      "publisherSha512": "0511dcf736273d80f7143c9dad96dd9f631b016183b4078243ed061d35889fea62e50c5f48e9842ffae7b654fd2e08a21d1c46403e56349c0b515ff2eb62e164",
+      "declaredLicense": "ofl lppl1.3",
+      "metadataBytes": 108744,
+      "metadataSha256": "94dd75ee5d5ba33a79f838fece45b668eed9552a0ab8d49c6b4351a4c658d292"
+    },
+    {
+      "id": "sourcesanspro.doc",
+      "url": "https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2021/tlnet-final/archive/sourcesanspro.doc.tar.xz",
+      "archive": "sourcesanspro.doc.tar.xz",
+      "bytes": 671484,
+      "sha256": "f6af16ad7d2d82c815ad19ab85463fcec44076bf814be969fd0f2065b626c1e6",
+      "matches": [],
+      "materials": [
+        {
+          "path": "doc/latex/sourcesanspro/LICENSE.txt",
+          "bytes": 4529,
+          "sha256": "4a4a4179a96b5ef6786186d199f0d049b151352f460b8d2f3c00083792f37dd9"
+        },
+        {
+          "path": "doc/latex/sourcesanspro/README.md",
+          "bytes": 1120,
+          "sha256": "fa88e6abbdcde4bf00910f6c7a71aaca3efeb22dc71e895c12916b4fca564767"
+        },
+        {
+          "path": "tlpkg/tlpobj/sourcesanspro.doc.tlpobj",
+          "bytes": 596,
+          "sha256": "1c3dbe56900ecf9e1c2e128fefdb4c1d697f866f69ed71c4de50eea56f5b17bf"
+        }
+      ],
+      "format": "tar.xz",
+      "package": "sourcesanspro",
+      "revision": 54892,
+      "containerPrefix": "doc",
+      "publisherSha512": "174def8872588c27b8f90b3c384ee356aec43e4e42014bb1c02d648d8b309dfa8fb9cea03f65fa9bd86dc3ff1e64483f1312dbaca6e212f65d2d379a1d9935e3",
+      "declaredLicense": "ofl lppl1.3",
+      "metadataBytes": 108744,
+      "metadataSha256": "94dd75ee5d5ba33a79f838fece45b668eed9552a0ab8d49c6b4351a4c658d292"
+    },
+    {
+      "id": "fontawesome5",
+      "url": "https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2021/tlnet-final/archive/fontawesome5.tar.xz",
+      "archive": "fontawesome5.tar.xz",
+      "bytes": 865064,
+      "sha256": "22c2a9a62d330c0e19507a70781a4ccecb779a0d4da3b3ff963e618305f1bc78",
+      "matches": [
+        {
+          "bundle": "FontAwesome5Brands-Regular-400.otf",
+          "source": "fonts/opentype/public/fontawesome5/FontAwesome5Brands-Regular-400.otf",
+          "bytes": 183060,
+          "sha256": "d7341e9bf58e687a56b7ba4947bd4b7ef6ec572d5f399349f6095ea12a764afd"
+        },
+        {
+          "bundle": "FontAwesome5Free-Solid-900.otf",
+          "source": "fonts/opentype/public/fontawesome5/FontAwesome5Free-Solid-900.otf",
+          "bytes": 303000,
+          "sha256": "d8268e9499aadf7a0a57802e1587df6b8a1e01d6ef3d3ed09630f0de322d3faf"
+        },
+        {
+          "bundle": "fontawesome5-utex-helper.sty",
+          "source": "tex/latex/fontawesome5/fontawesome5-utex-helper.sty",
+          "bytes": 5272,
+          "sha256": "8ec96527e431ce529495734541776dff27810f52664362cc1b3a6423a13e2951"
+        },
+        {
+          "bundle": "fontawesome5.sty",
+          "source": "tex/latex/fontawesome5/fontawesome5.sty",
+          "bytes": 7431,
+          "sha256": "e683d354a4abe3dcaa8d17e0ff2bb0d0a113b2ac3e0d5a6663dd361aaf550c03"
+        },
+        {
+          "bundle": "tufontawesomebrands.fd",
+          "source": "tex/latex/fontawesome5/tufontawesomebrands.fd",
+          "bytes": 1252,
+          "sha256": "500754e19a74f55ccb7948032dd4624b703629bac42b2f1a872bc31a3ec6bd11"
+        },
+        {
+          "bundle": "tufontawesomefree.fd",
+          "source": "tex/latex/fontawesome5/tufontawesomefree.fd",
+          "bytes": 1075,
+          "sha256": "928ce44e6791b3c879245be2314dd1cae8f31cce8b2dccb7e47f1a67b8a524c1"
+        }
+      ],
+      "materials": [
+        {
+          "path": "tlpkg/tlpobj/fontawesome5.tlpobj",
+          "bytes": 2727,
+          "sha256": "495491b5cf7124ab84dc8b4248b9b9aef5cc7c990ddf51fd947d3f8599d94c7d"
+        }
+      ],
+      "format": "tar.xz",
+      "package": "fontawesome5",
+      "revision": 59462,
+      "containerPrefix": "",
+      "publisherSha512": "06a12635f8f847dc6f51e57ab122aba09705418b13b13bb23fc42c4f5f9ae7518bd509e47f4d591847077112b3e7588d7402a3b11d1dd3b93a71aabfc41d9e1e",
+      "declaredLicense": "ofl lppl1.3c",
+      "metadataBytes": 3312,
+      "metadataSha256": "e97a95d0ec192cf7861b58370aed0fc654eb97e086e606303fe9b246f85d440d"
+    },
+    {
+      "id": "fontawesome5.doc",
+      "url": "https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2021/tlnet-final/archive/fontawesome5.doc.tar.xz",
+      "archive": "fontawesome5.doc.tar.xz",
+      "bytes": 741952,
+      "sha256": "db4ca8bc9e8977f0b0ac330ccdcbd97a8a94caee912b91831349ebb9cd4fefaa",
+      "matches": [],
+      "materials": [
+        {
+          "path": "doc/fonts/fontawesome5/README.md",
+          "bytes": 990,
+          "sha256": "bfe9f415cd5f2fd6bb8d97cb8baf58e2cb1ceee19c0fd1ce4a2e74b8dd9aee49"
+        },
+        {
+          "path": "tlpkg/tlpobj/fontawesome5.doc.tlpobj",
+          "bytes": 297,
+          "sha256": "296b9448f58060a8e242aa0e2555dc9b60f1b6ec7523210d2dac02f7e6ca0b1f"
+        }
+      ],
+      "format": "tar.xz",
+      "package": "fontawesome5",
+      "revision": 59462,
+      "containerPrefix": "doc",
+      "publisherSha512": "35e403c1272908ce31a4d3622747317d2a4b482a2aca8be79df29478e92acd4977ace576d3ff8424005142edca2e4f4c3b125f5096c7f02ddd120f2b3b0799db",
+      "declaredLicense": "ofl lppl1.3c",
+      "metadataBytes": 3312,
+      "metadataSha256": "e97a95d0ec192cf7861b58370aed0fc654eb97e086e606303fe9b246f85d440d"
+    },
+    {
+      "id": "fontawesome-upstream-5.15.3",
+      "url": "https://codeload.github.com/FortAwesome/Font-Awesome/tar.gz/d79d85c3fad85ad1885e87ed558f4afd6fce8289",
+      "archive": "fontawesome-d79d85c3fad85ad1885e87ed558f4afd6fce8289.tar.gz",
+      "bytes": 11233319,
+      "sha256": "8323676644ab03a024b0464d65c786412889d39c6961f23b4a222ad2bf3a36cf",
+      "format": "tar.gz",
+      "commit": "d79d85c3fad85ad1885e87ed558f4afd6fce8289",
+      "role": "Supplemental publisher license notice only; these upstream OTF bytes differ from the exact TeX Live copies.",
+      "materials": [
+        {
+          "path": "Font-Awesome-d79d85c3fad85ad1885e87ed558f4afd6fce8289/LICENSE.txt",
+          "bytes": 1548,
+          "sha256": "e779748dfe75e84f974df3c7bc07f842011a100159158b0f1f49b2f2a5a515cb"
+        },
+        {
+          "path": "Font-Awesome-d79d85c3fad85ad1885e87ed558f4afd6fce8289/js-packages/@fortawesome/fontawesome-free/package.json",
+          "bytes": 1274,
+          "sha256": "39680bc044e3b1642b677324a4e6f1b59d731a46b5708f62c3f79a1b2f83de15"
+        }
+      ],
+      "matches": []
+    }
+  ],
+  "texts": [
+    {
+      "id": "OFL-1.1.txt",
+      "archive": "OFL-1.1.txt",
+      "url": "https://raw.githubusercontent.com/spdx/license-list-data/d46e94e2c78ceede1cfc63cfa0396472d2798d4c/text/OFL-1.1.txt",
+      "bytes": 4016,
+      "sha256": "8eea8287e5876b539670cadb82e99f9a7afddec6f6730811be1daf25d2e9bcfd"
+    },
+    {
+      "id": "LPPL-1.3c.txt",
+      "archive": "LPPL-1.3c.txt",
+      "url": "https://www.latex-project.org/lppl/lppl-1-3c.txt",
+      "bytes": 19102,
+      "sha256": "3d262cdf34dafa6955f703c634a8c238ec44109bc8dd6ef34fb7aa54809f7e66"
+    }
+  ],
+  "noticeFiles": [
+    {
+      "source": "lm.doc",
+      "member": "doc/fonts/lm/GUST-FONT-LICENSE.TXT",
+      "file": "lm-GUST-FONT-LICENSE.TXT",
+      "bytes": 1377,
+      "sha256": "49ea6cb9257bbee0a3979c48a774cd221550ac1c20c95549efe45fc99cc18050"
+    },
+    {
+      "source": "lm.doc",
+      "member": "doc/fonts/lm/MANIFEST-Latin-Modern.TXT",
+      "file": "lm-MANIFEST-Latin-Modern.TXT",
+      "bytes": 52635,
+      "sha256": "402c79f4ede8548a6fe6f82f42f0288cb0243ba2403dfdeeaadf55d189a46fae"
+    },
+    {
+      "source": "lm.doc",
+      "member": "doc/fonts/lm/README-Latin-Modern.TXT",
+      "file": "lm-README-Latin-Modern.TXT",
+      "bytes": 33548,
+      "sha256": "7cac4a4a78985ccb1ed429bb2eddf32eeb2e413c94493c7b268385bb7b525250"
+    },
+    {
+      "source": "lm-math.doc",
+      "member": "doc/fonts/lm-math/GUST-FONT-LICENSE.txt",
+      "file": "lm-math-GUST-FONT-LICENSE.txt",
+      "bytes": 1456,
+      "sha256": "2bd69affc3da00715116f713f57eab9707e96daf3562ad0215987b15b9c16f73"
+    },
+    {
+      "source": "lm-math.doc",
+      "member": "doc/fonts/lm-math/MANIFEST-Latin-Modern-Math.txt",
+      "file": "lm-math-MANIFEST-Latin-Modern-Math.txt",
+      "bytes": 2186,
+      "sha256": "1daa729f7922c42ba5ce8da7dfe4ecdc9e5c878ad86217fd6f32c4671505b007"
+    },
+    {
+      "source": "lm-math.doc",
+      "member": "doc/fonts/lm-math/README-Latin-Modern-Math.txt",
+      "file": "lm-math-README-Latin-Modern-Math.txt",
+      "bytes": 4588,
+      "sha256": "e6fdd5fb44b656146fa988d191f58901c09a347d3f4fbaa3b45b24a6ad7ec30b"
+    },
+    {
+      "source": "roboto.doc",
+      "member": "doc/fonts/roboto/COPYRIGHT.txt",
+      "file": "roboto-COPYRIGHT.txt",
+      "bytes": 31,
+      "sha256": "13fa0c04b0315e03825a7aa3833be3aeb15dd0be0ed61dc16c3a25c1974e82e4"
+    },
+    {
+      "source": "roboto.doc",
+      "member": "doc/fonts/roboto/LICENSE.txt",
+      "file": "roboto-LICENSE.txt",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "source": "roboto.doc",
+      "member": "doc/fonts/roboto/README",
+      "file": "roboto-README",
+      "bytes": 3641,
+      "sha256": "3b5e2654cf42dbcba79543097d78b3072cd51af1235382a2442edff43285d291"
+    },
+    {
+      "source": "sourcesanspro.doc",
+      "member": "doc/latex/sourcesanspro/LICENSE.txt",
+      "file": "sourcesanspro-LICENSE.txt",
+      "bytes": 4529,
+      "sha256": "4a4a4179a96b5ef6786186d199f0d049b151352f460b8d2f3c00083792f37dd9"
+    },
+    {
+      "source": "sourcesanspro.doc",
+      "member": "doc/latex/sourcesanspro/README.md",
+      "file": "sourcesanspro-README.md",
+      "bytes": 1120,
+      "sha256": "fa88e6abbdcde4bf00910f6c7a71aaca3efeb22dc71e895c12916b4fca564767"
+    },
+    {
+      "source": "fontawesome5.doc",
+      "member": "doc/fonts/fontawesome5/README.md",
+      "file": "fontawesome5-README.md",
+      "bytes": 990,
+      "sha256": "bfe9f415cd5f2fd6bb8d97cb8baf58e2cb1ceee19c0fd1ce4a2e74b8dd9aee49"
+    },
+    {
+      "source": "fontawesome-upstream-5.15.3",
+      "member": "Font-Awesome-d79d85c3fad85ad1885e87ed558f4afd6fce8289/LICENSE.txt",
+      "file": "FontAwesome-publisher-LICENSE.txt",
+      "bytes": 1548,
+      "sha256": "e779748dfe75e84f974df3c7bc07f842011a100159158b0f1f49b2f2a5a515cb"
+    },
+    {
+      "source": "OFL-1.1.txt",
+      "file": "OFL-1.1.txt",
+      "bytes": 4016,
+      "sha256": "8eea8287e5876b539670cadb82e99f9a7afddec6f6730811be1daf25d2e9bcfd"
+    },
+    {
+      "source": "LPPL-1.3c.txt",
+      "file": "LPPL-1.3c.txt",
+      "bytes": 19102,
+      "sha256": "3d262cdf34dafa6955f703c634a8c238ec44109bc8dd6ef34fb7aa54809f7e66"
+    }
+  ]
+}

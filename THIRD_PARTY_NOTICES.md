@@ -33,6 +33,8 @@ runtime.
 - **Electron**: https://github.com/electron/electron (MIT and licenses of bundled Chromium/Node.js components).
 - **fflate**: https://github.com/101arrowz/fflate (MIT).
 
+Current development packages also include `Contents/Resources/tex-font-notices/`: fifteen unchanged font copyright, license, README and manifest files, plus a source guide. All 63 included compiler font binaries and 48 matching support files map exactly to retained TeX Live distributions. The collector verifies the publisher’s archive checksums; full original archives remain available at the pinned source URLs. See [font materials and verification](docs/LICENSING.md#collect-and-bundle-compiler-font-notices). This does not complete the remaining TeX/native application audit or alter the older preview-4 download.
+
 The six resume templates are original sample content for this project. All names, organizations, achievements, and
 contact details in them are illustrative.
 
