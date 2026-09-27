@@ -348,6 +348,14 @@
 .toast .icon-button {
   pointer-events: auto;
 }
+.preference-error .button {
+  pointer-events: auto;
+  color: var(--toast-ink);
+  background: transparent;
+  border-color: currentColor;
+  flex-shrink: 0;
+  white-space: normal;
+}
 .settings-navigation {
   padding: 0 18px 0 0;
   border-right: 1px solid var(--line);

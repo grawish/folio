@@ -2614,9 +2614,10 @@ export default function App() {
         )}
       </div>
       {preferenceError && (
-        <div className="toast" role="alert">
+        <div className="toast preference-error" role="alert">
           <span>
-            Settings could not be saved. Your previous saved settings are kept. {preferenceError}
+            Settings could not be saved. Your previous saved settings are kept. Check free space and
+            folder access, then retry.
           </span>
           <button
             className="button secondary"
