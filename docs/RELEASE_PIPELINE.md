@@ -24,9 +24,9 @@ The newer history-worker candidate `0ad984f` reached twelve passing native suite
 
 ## Workflows
 
-The latest completed full Mac milestone is [`b80edb4`, run 36280347439](https://github.com/grawish/folio/actions/runs/36280347439). On macOS 15.7.9 arm64, it passes all 253 source tests, 15 compiler integrations, twelve image comparisons with zero changed pixels, fourteen native suites, all 39 packaged-output comparisons and disk-image integrity. Exact downloaded evidence and script hashes are checked in [the record](releases/mac-compiler-limits-verification.json). The imported-pack review took 5.535 seconds, confirming why its old five-second assertion was insufficient. This qualifies the history-worker/compiler-limit app; the later workspace-queue app has a separate qualification run.
+The latest completed full Mac milestone is [`cb6792f`, run 36280908640](https://github.com/grawish/folio/actions/runs/36280908640). On macOS 15.7.9 arm64, it passes all 256 source tests, 15 compiler integrations, twelve image comparisons with zero changed pixels, fourteen native suites, all 39 packaged-output comparisons and disk-image integrity. The evidence ZIP matches GitHub's digest, and all 118 retained files, native-script hashes and template source/PDF/image hashes are checked in [the record](releases/mac-workspace-queue-verification.json). The native-run ASAR matches final package verification and the local workspace-queue app. This qualifies the bounded workspace queue together with the earlier history-worker/compiler-limit app; it does not complete signing or broader release acceptance. No installer from this run was downloaded or published.
 
-New workflow revisions also create a [physical app inventory and CycloneDX record](MAC_APP_INVENTORY.md) after the package gates and retain them with qualification evidence. This does not mark component-license coverage complete or publish an installer.
+New workflow revisions also create a [physical app inventory and CycloneDX record](MAC_APP_INVENTORY.md) after the package gates and retain them with qualification evidence. That step was added after `cb6792f` and did not run in the milestone above. It does not mark component-license coverage complete or publish an installer.
 
 | Workflow | Trigger | Result |
 | --- | --- | --- |

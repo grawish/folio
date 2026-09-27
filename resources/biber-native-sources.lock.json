@@ -1,0 +1,423 @@
+{
+  "schemaVersion": 1,
+  "scope": "Native-library version evidence and source/notice materials. Not an exact vendor rebuild, complete license review, or final app SBOM.",
+  "biberEvidenceLockSha256": "a7a53f3657ea2aeb98431edb89896bb8ff48ad79a2c342725d18c28c5a76c0d6",
+  "libraries": [
+    {
+      "path": "shlib/darwin-thread-multi-2level/libbtparse.dylib",
+      "bytes": 113472,
+      "sha256": "efb41a8eab547871c6274bbf66d7a2789f5b9611d5464bcf968f53fc2b33ea1c",
+      "sourceComponent": null,
+      "identity": {
+        "name": "/opt/local/libexec/perl5.32/sitebin/libbtparse.dylib",
+        "currentVersion": "0.0.0",
+        "compatibilityVersion": "0.0.0"
+      },
+      "scalars": [],
+      "strings": [],
+      "versionBasis": "Unresolved: ABI version 0.0.0 does not identify a source release; Text-BibTeX materials are retained separately."
+    },
+    {
+      "path": "shlib/darwin-thread-multi-2level/libcrypto.3.dylib",
+      "bytes": 6868382,
+      "sha256": "3a3f1afe953ab6410bc8c83fa45c6d34c2e0d2e304814d4561acf44772c320f9",
+      "sourceComponent": "openssl",
+      "identity": {
+        "name": "/opt/local/libexec/openssl3/lib/libcrypto.3.dylib",
+        "currentVersion": "3.0.0",
+        "compatibilityVersion": "3.0.0"
+      },
+      "scalars": [],
+      "strings": ["OpenSSL 3.0.1 14 Dec 2021"],
+      "versionBasis": "Exported version scalar and/or complete version string in the arm64 library; original source declaration retained."
+    },
+    {
+      "path": "shlib/darwin-thread-multi-2level/libexslt.0.dylib",
+      "bytes": 114317,
+      "sha256": "d0a16799da6157ca397ee55e3481d8475634ef6adb76e25b1af6efa898f144f4",
+      "sourceComponent": "libxslt",
+      "identity": {
+        "name": "/opt/local/lib/libexslt.0.dylib",
+        "currentVersion": "9.20.0",
+        "compatibilityVersion": "9.0.0"
+      },
+      "scalars": [
+        {
+          "symbol": "_exsltLibexsltVersion",
+          "values": [820]
+        },
+        {
+          "symbol": "_exsltLibxsltVersion",
+          "values": [10134]
+        },
+        {
+          "symbol": "_exsltLibxmlVersion",
+          "values": [20912]
+        }
+      ],
+      "strings": [],
+      "versionBasis": "Exported version scalar and/or complete version string in the arm64 library; original source declaration retained."
+    },
+    {
+      "path": "shlib/darwin-thread-multi-2level/libgdbm.6.dylib",
+      "bytes": 206689,
+      "sha256": "8542d909561a8ef944b1b02bb9e26cd78e2b8b6be441ef7b928873e27a2f16d4",
+      "sourceComponent": "gdbm",
+      "identity": {
+        "name": "/opt/local/lib/libgdbm.6.dylib",
+        "currentVersion": "7.0.0",
+        "compatibilityVersion": "7.0.0"
+      },
+      "scalars": [
+        {
+          "symbol": "_gdbm_version_number",
+          "values": [1, 22, 0]
+        }
+      ],
+      "strings": ["GDBM version 1.22. 19/10/2021 (built Nov  2 2021 11:11:47)"],
+      "versionBasis": "Exported version scalar and/or complete version string in the arm64 library; original source declaration retained."
+    },
+    {
+      "path": "shlib/darwin-thread-multi-2level/libiconv.2.dylib",
+      "bytes": 2212013,
+      "sha256": "0a530fe388ddad3bc2258b3bc286bb56efbfc30547df8c4c22f29b0592258912",
+      "sourceComponent": "libiconv",
+      "identity": {
+        "name": "/opt/local/lib/libiconv.2.dylib",
+        "currentVersion": "9.1.0",
+        "compatibilityVersion": "9.0.0"
+      },
+      "scalars": [
+        {
+          "symbol": "__libiconv_version",
+          "values": [272]
+        }
+      ],
+      "strings": [],
+      "versionBasis": "Exported version scalar and/or complete version string in the arm64 library; original source declaration retained."
+    },
+    {
+      "path": "shlib/darwin-thread-multi-2level/libicudata.67.dylib",
+      "bytes": 57107480,
+      "sha256": "a84e5f49b6e9d5abac0bb4e04ae8f1f107b06e720f343fdf8c63bcc9281060d6",
+      "sourceComponent": "icu",
+      "identity": {
+        "name": "/opt/local/lib/libicudata.67.dylib",
+        "currentVersion": "67.1.0",
+        "compatibilityVersion": "67.0.0"
+      },
+      "scalars": [],
+      "strings": [],
+      "versionBasis": "Mach-O current version 67.1.0; original ICU version header retained."
+    },
+    {
+      "path": "shlib/darwin-thread-multi-2level/libicui18n.67.dylib",
+      "bytes": 5259656,
+      "sha256": "306b98a4732ca17fdb3c5bfc11286bfc15ca5aced53d9047daf252926dad793d",
+      "sourceComponent": "icu",
+      "identity": {
+        "name": "/opt/local/lib/libicui18n.67.dylib",
+        "currentVersion": "67.1.0",
+        "compatibilityVersion": "67.0.0"
+      },
+      "scalars": [],
+      "strings": [],
+      "versionBasis": "Mach-O current version 67.1.0; original ICU version header retained."
+    },
+    {
+      "path": "shlib/darwin-thread-multi-2level/libicuuc.67.dylib",
+      "bytes": 3354136,
+      "sha256": "de7fa2d3638f004806b6439bf74e57ce892e8adf0f5772f956b20fe66c493ee2",
+      "sourceComponent": "icu",
+      "identity": {
+        "name": "/opt/local/lib/libicuuc.67.dylib",
+        "currentVersion": "67.1.0",
+        "compatibilityVersion": "67.0.0"
+      },
+      "scalars": [],
+      "strings": [],
+      "versionBasis": "Mach-O current version 67.1.0; original ICU version header retained."
+    },
+    {
+      "path": "shlib/darwin-thread-multi-2level/libintl.8.dylib",
+      "bytes": 207228,
+      "sha256": "e26c152f0a1236e95d8c95550092dd1cd14adeb7d6cce83cf768de81516b4ef5",
+      "sourceComponent": "gettext",
+      "identity": {
+        "name": "/opt/local/lib/libintl.8.dylib",
+        "currentVersion": "11.0.0",
+        "compatibilityVersion": "11.0.0"
+      },
+      "scalars": [
+        {
+          "symbol": "_libintl_version",
+          "values": [5376]
+        }
+      ],
+      "strings": [],
+      "versionBasis": "Exported version scalar and/or complete version string in the arm64 library; original source declaration retained."
+    },
+    {
+      "path": "shlib/darwin-thread-multi-2level/liblzma.5.dylib",
+      "bytes": 311569,
+      "sha256": "9cf08039450b3ccf1c089d097f3f1b6dc5e83f85287bf077a11714a490721169",
+      "sourceComponent": "xz",
+      "identity": {
+        "name": "/opt/local/lib/liblzma.5.dylib",
+        "currentVersion": "8.5.0",
+        "compatibilityVersion": "8.0.0"
+      },
+      "scalars": [],
+      "strings": ["5.2.5"],
+      "versionBasis": "Exported version scalar and/or complete version string in the arm64 library; original source declaration retained."
+    },
+    {
+      "path": "shlib/darwin-thread-multi-2level/libssl.3.dylib",
+      "bytes": 1137659,
+      "sha256": "9bca5fcdf7af8cf433e45ced7fc87f3d9634169c0800542c8fb957edefd612c5",
+      "sourceComponent": "openssl",
+      "identity": {
+        "name": "/opt/local/libexec/openssl3/lib/libssl.3.dylib",
+        "currentVersion": "3.0.0",
+        "compatibilityVersion": "3.0.0"
+      },
+      "scalars": [],
+      "strings": [],
+      "versionBasis": "OpenSSL ABI 3.0.0 and co-packaged crypto 3.0.1; an independent SSL patch-version identifier is absent."
+    },
+    {
+      "path": "shlib/darwin-thread-multi-2level/libxml2.2.dylib",
+      "bytes": 2343595,
+      "sha256": "ff1d2a698c7287a0c1c5f2d74939283e9d3a01be993efdd16a6095db49d26b6c",
+      "sourceComponent": "libxml2",
+      "identity": {
+        "name": "/opt/local/lib/libxml2.2.dylib",
+        "currentVersion": "12.12.0",
+        "compatibilityVersion": "12.0.0"
+      },
+      "scalars": [],
+      "strings": ["20912"],
+      "versionBasis": "Exported version scalar and/or complete version string in the arm64 library; original source declaration retained."
+    },
+    {
+      "path": "shlib/darwin-thread-multi-2level/libxslt.1.dylib",
+      "bytes": 248780,
+      "sha256": "77b7c499514d24ffa657bd66c3e173217f7654a59ece9402b471c8f0465e8ead",
+      "sourceComponent": "libxslt",
+      "identity": {
+        "name": "/opt/local/lib/libxslt.1.dylib",
+        "currentVersion": "3.34.0",
+        "compatibilityVersion": "3.0.0"
+      },
+      "scalars": [
+        {
+          "symbol": "_xsltLibxsltVersion",
+          "values": [10134]
+        },
+        {
+          "symbol": "_xsltLibxmlVersion",
+          "values": [20912]
+        }
+      ],
+      "strings": [],
+      "versionBasis": "Exported version scalar and/or complete version string in the arm64 library; original source declaration retained."
+    },
+    {
+      "path": "shlib/darwin-thread-multi-2level/libz.1.dylib",
+      "bytes": 237423,
+      "sha256": "abebd23ddf6f09c0c1baeb8e12586dcd04476a3ffefb16a503dc324af02cf1aa",
+      "sourceComponent": "zlib",
+      "identity": {
+        "name": "/opt/local/lib/libz.1.dylib",
+        "currentVersion": "1.2.11",
+        "compatibilityVersion": "1.0.0"
+      },
+      "scalars": [],
+      "strings": ["1.2.11"],
+      "versionBasis": "Exported version scalar and/or complete version string in the arm64 library; original source declaration retained."
+    }
+  ],
+  "sources": [
+    {
+      "name": "gdbm",
+      "version": "1.22",
+      "url": "https://ftp.gnu.org/gnu/gdbm/gdbm-1.22.tar.gz",
+      "archive": "gdbm-1.22.tar.gz",
+      "root": "gdbm-1.22",
+      "bytes": 1090100,
+      "sha256": "f366c823a6724af313b6bbe975b2809f9a157e5f6a43612a72949138d161d762",
+      "requiredMaterials": ["COPYING", "src/version.c", "src/gdbm.h.in"],
+      "sourceAnchors": [
+        {
+          "path": "configure.ac",
+          "sha256": "fa644b1d7bc801576ce81311a96d7f94eeedd1fc89a0091ca54f4596be9aaefb",
+          "text": ["m4_define([_GDBM_VERSION_MAJOR], 1)", "m4_define([_GDBM_VERSION_MINOR], 22)"]
+        }
+      ]
+    },
+    {
+      "name": "gettext",
+      "version": "0.21",
+      "url": "https://ftp.gnu.org/gnu/gettext/gettext-0.21.tar.xz",
+      "archive": "gettext-0.21.tar.xz",
+      "root": "gettext-0.21",
+      "bytes": 9714352,
+      "sha256": "d20fcbb537e02dcf1383197ba05bd0734ef7bf5db06bdb241eb69b7d16b73192",
+      "requiredMaterials": ["gettext-runtime/intl/COPYING.LIB"],
+      "sourceAnchors": [
+        {
+          "path": "gettext-runtime/intl/libgnuintl.in.h",
+          "sha256": "401d40b53aeea8546a3222d5a6db9407328db97ab5622e0094b714bc4230f346",
+          "text": ["#define LIBINTL_VERSION 0x001500"]
+        }
+      ]
+    },
+    {
+      "name": "icu",
+      "version": "67.1",
+      "url": "https://github.com/unicode-org/icu/releases/download/release-67-1/icu4c-67_1-src.tgz",
+      "archive": "icu4c-67_1-src.tgz",
+      "root": "icu",
+      "bytes": 24518055,
+      "sha256": "94a80cd6f251a53bd2a997f6f1b5ac6653fe791dfab66e1eb0227740fb86d5dc",
+      "requiredMaterials": ["LICENSE", "license.html"],
+      "sourceAnchors": [
+        {
+          "path": "source/common/unicode/uvernum.h",
+          "sha256": "b1a313f7116cf9f128d1987678d6751e8ef7de08b1395cecf75bd487c4b5ea39",
+          "text": [
+            "#define U_ICU_VERSION_MAJOR_NUM 67",
+            "#define U_ICU_VERSION_MINOR_NUM 1",
+            "#define U_ICU_VERSION_PATCHLEVEL_NUM 0",
+            "#define U_ICU_VERSION \"67.1\""
+          ]
+        }
+      ]
+    },
+    {
+      "name": "libiconv",
+      "version": "1.16",
+      "url": "https://ftp.gnu.org/gnu/libiconv/libiconv-1.16.tar.gz",
+      "archive": "libiconv-1.16.tar.gz",
+      "root": "libiconv-1.16",
+      "bytes": 5166734,
+      "sha256": "e6a1b1b589654277ee790cce3734f07876ac4ccfaecbee8afa0b649cf529cc04",
+      "requiredMaterials": ["COPYING.LIB"],
+      "sourceAnchors": [
+        {
+          "path": "include/iconv.h.in",
+          "sha256": "9d1cd327de94d15dc53007d499d971627edbe7bc27da185b10fb07a7f122c748",
+          "text": ["#define _LIBICONV_VERSION 0x0110"]
+        }
+      ]
+    },
+    {
+      "name": "libxml2",
+      "version": "2.9.12",
+      "url": "https://download.gnome.org/sources/libxml2/2.9/libxml2-2.9.12.tar.xz",
+      "archive": "libxml2-2.9.12.tar.xz",
+      "root": "libxml2-2.9.12",
+      "bytes": 3389200,
+      "sha256": "28a92f6ab1f311acf5e478564c49088ef0ac77090d9c719bbc5d518f1fe62eb9",
+      "requiredMaterials": ["COPYING", "Copyright"],
+      "sourceAnchors": [
+        {
+          "path": "include/libxml/xmlversion.h",
+          "sha256": "85c0fc80453601377b0aa37fbc3b7639bd5bce2b5af083627777bf684b1f530e",
+          "text": ["#define LIBXML_DOTTED_VERSION \"2.9.12\"", "#define LIBXML_VERSION 20912"]
+        }
+      ]
+    },
+    {
+      "name": "libxslt",
+      "version": "1.1.34",
+      "url": "https://download.gnome.org/sources/libxslt/1.1/libxslt-1.1.34.tar.xz",
+      "archive": "libxslt-1.1.34.tar.xz",
+      "root": "libxslt-1.1.34",
+      "bytes": 1796260,
+      "sha256": "28c47db33ab4daefa6232f31ccb3c65260c825151ec86ec461355247f3f56824",
+      "requiredMaterials": [
+        "COPYING",
+        "Copyright",
+        "libxslt/xsltconfig.h.in",
+        "libexslt/exsltconfig.h.in"
+      ],
+      "sourceAnchors": [
+        {
+          "path": "configure.ac",
+          "sha256": "b6d911bdd82b830ec6e3ceb6cdeb128a847ccd1456acf7ef81c714f5e79b6b50",
+          "text": [
+            "m4_define([MAJOR_VERSION], [1])",
+            "m4_define([MINOR_VERSION], [1])",
+            "m4_define([MICRO_VERSION], [34])",
+            "LIBEXSLT_MAJOR_VERSION=0",
+            "LIBEXSLT_MINOR_VERSION=8",
+            "LIBEXSLT_MICRO_VERSION=20"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "openssl",
+      "version": "3.0.1",
+      "url": "https://github.com/openssl/openssl/releases/download/openssl-3.0.1/openssl-3.0.1.tar.gz",
+      "archive": "openssl-3.0.1.tar.gz",
+      "root": "openssl-3.0.1",
+      "bytes": 15011207,
+      "sha256": "c311ad853353bce796edad01a862c50a8a587f62e7e2100ef465ab53ec9b06d1",
+      "requiredMaterials": ["LICENSE.txt"],
+      "sourceAnchors": [
+        {
+          "path": "VERSION.dat",
+          "sha256": "d3f87674932e8ca287f8f9f7dd8af89b0a26806a9b9819f3202493825806ac85",
+          "text": ["MAJOR=3", "MINOR=0", "PATCH=1", "RELEASE_DATE=\"14 Dec 2021\""]
+        }
+      ]
+    },
+    {
+      "name": "xz",
+      "version": "5.2.5",
+      "url": "https://distfiles.macports.org/xz/xz-5.2.5.tar.bz2",
+      "archive": "xz-5.2.5.tar.bz2",
+      "root": "xz-5.2.5",
+      "bytes": 1473322,
+      "sha256": "5117f930900b341493827d63aa910ff5e011e0b994197c3b71c08a20228a42df",
+      "requiredMaterials": ["COPYING", "COPYING.GPLv2", "COPYING.LGPLv2.1"],
+      "sourceAnchors": [
+        {
+          "path": "src/liblzma/api/lzma/version.h",
+          "sha256": "a334c2e4d0f31e023f78e8582823166e342dfe3f661e28e0c549277aa2843592",
+          "text": [
+            "#define LZMA_VERSION_MAJOR 5",
+            "#define LZMA_VERSION_MINOR 2",
+            "#define LZMA_VERSION_PATCH 5"
+          ]
+        }
+      ],
+      "archiveChecksumSource": "https://github.com/macports/macports-ports/blob/d3f29bfc42ad1a389393d49faeab5d02b5610e42/archivers/xz/Portfile"
+    },
+    {
+      "name": "zlib",
+      "version": "1.2.11",
+      "url": "https://zlib.net/fossils/zlib-1.2.11.tar.gz",
+      "archive": "zlib-1.2.11.tar.gz",
+      "root": "zlib-1.2.11",
+      "bytes": 607698,
+      "sha256": "c3e5e9fdd5004dcb542feda5ee4f0ff0744628baf8ed2dd5d66f8ca1197cb1a1",
+      "requiredMaterials": ["zlib.h", "README"],
+      "sourceAnchors": [
+        {
+          "path": "zlib.h",
+          "sha256": "4ddc82b4af931ab55f44d977bde81bfbc4151b5dcdccc03142831a301b5ec3c8",
+          "text": ["#define ZLIB_VERSION \"1.2.11\""]
+        }
+      ]
+    }
+  ],
+  "remaining": [
+    "Exact vendor build commands, patches and features remain unproven; these are matching version declarations and original upstream materials.",
+    "libbtparse source revision and libssl patch-version evidence need further attribution.",
+    "Native Perl modules, other generated payload files, license obligations and the complete signed-app SBOM remain open.",
+    "No library is executed or modified, and no download or existing release asset is replaced."
+  ]
+}

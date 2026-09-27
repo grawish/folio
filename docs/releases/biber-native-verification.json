@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T01:08:20.002390+00:00",
+  "sourceBaseCommit": "b30e7c0d5998e706fc7dbd459b82ef39a05a594a",
+  "summary": {
+    "librariesInspected": 14,
+    "sourceArchives": 9,
+    "archiveBytes": 62766928,
+    "sourceMaterials": 58,
+    "sourceMaterialBytes": 599005
+  },
+  "independentChecks": {
+    "librariesCheckedAgainstOtool": 14,
+    "arm64SlicesCheckedAgainstLipo": 14,
+    "scalarsCheckedAgainstNmAndOtool": 8,
+    "sourceArchivesChecked": 9,
+    "sourceMaterialsCheckedAgainstOriginalArchives": 58,
+    "retainedEvidenceHashesChecked": 67,
+    "gzipRoundTrip": true
+  },
+  "byteIdenticalReplay": {
+    "files": 68,
+    "includesInventory": true
+  },
+  "tools": [
+    {
+      "path": "scripts/collect-biber-native-materials.py",
+      "bytes": 13727,
+      "sha256": "ff1f1cf768d8f2613be81454fb0af9c45f0e6232fa3d756eac2a2fc40662f286"
+    },
+    {
+      "path": "tests/biber-native-materials.py",
+      "bytes": 6691,
+      "sha256": "9666b97e1054d0485576962c39cd2cac379fe5101930a4ecb13b0d54da5be34a"
+    },
+    {
+      "path": "resources/biber-native-sources.lock.json",
+      "bytes": 15772,
+      "sha256": "e416ce4ce796d0ac1ea6d5946ada2645f6cdd243742a75d13e256f74b15a9893"
+    }
+  ],
+  "retainedInventory": {
+    "path": "artifacts/license-materials/biber-native/inventory.json",
+    "bytes": 53046,
+    "sha256": "2d8b2f2bc97d7ac787e3d64898a2087aa759947c432ed1b00beb5457f0042a70"
+  },
+  "publishedInventory": {
+    "path": "docs/releases/biber-native-inventory.json.gz",
+    "bytes": 8614,
+    "sha256": "90b87f63cc5beb4dece56245ba480dc1451a3568266bdfd9245e0ba51c6e7038"
+  },
+  "publisherChecksumEvidence": [
+    {
+      "source": "openssl",
+      "url": "https://github.com/openssl/openssl/releases/download/openssl-3.0.1/openssl-3.0.1.tar.gz.sha256",
+      "bytes": 66,
+      "sha256": "926412bc9d55a79b86879f520b65f61ca3de1f580750bcaaa72bc60b11a434ed",
+      "text": " c311ad853353bce796edad01a862c50a8a587f62e7e2100ef465ab53ec9b06d1\n"
+    },
+    {
+      "source": "libxml2",
+      "url": "https://download.gnome.org/sources/libxml2/2.9/libxml2-2.9.12.sha256sum",
+      "bytes": 88,
+      "sha256": "bfe6d84d6e02795e4993bb3d86085361acfe5ba297b5d05843422f48635a236a",
+      "text": "28a92f6ab1f311acf5e478564c49088ef0ac77090d9c719bbc5d518f1fe62eb9  libxml2-2.9.12.tar.xz\n"
+    },
+    {
+      "source": "libxslt",
+      "url": "https://download.gnome.org/sources/libxslt/1.1/libxslt-1.1.34.sha256sum",
+      "bytes": 88,
+      "sha256": "42e3fbffb98cdd029677b8c2e97337a797cbcd05bcfe434389d33b955368c22d",
+      "text": "28c47db33ab4daefa6232f31ccb3c65260c825151ec86ec461355247f3f56824  libxslt-1.1.34.tar.xz\n"
+    }
+  ],
+  "xzHistoricalChecksumEvidence": {
+    "source": "https://github.com/macports/macports-ports/blob/d3f29bfc42ad1a389393d49faeab5d02b5610e42/archivers/xz/Portfile",
+    "record": {
+      "path": "test-results/biber-xz-portfile.txt",
+      "bytes": 2942,
+      "sha256": "376f17c7e597c38e97e5839ab35f875c0974fc23dc6a3c9525b6b0f0187a979f"
+    },
+    "archiveSizeAndSha256Match": true
+  },
+  "checks": {
+    "newOfflineControls": 7,
+    "relatedFoundationControls": 8,
+    "passed": true
+  },
+  "logs": [
+    {
+      "path": "test-results/biber-native-tests.log",
+      "bytes": 105,
+      "sha256": "e586fc0f3bb2a05f4c80f07d1b4c6171e830592f6c7aaf70d4af3b0aa3ebd072"
+    },
+    {
+      "path": "test-results/biber-native-foundation-tests.log",
+      "bytes": 106,
+      "sha256": "133449d6f429f0588126e0403937f271f33f90517460d5c4b39d69c2eeda0f25"
+    },
+    {
+      "path": "test-results/biber-native-final-replay.log",
+      "bytes": 107,
+      "sha256": "f3a45bb42f546cc2c6b49d38b49c4aa3328e1a0726dad034d3d6ee45304e2ab6"
+    },
+    {
+      "path": "test-results/biber-native-independent.json",
+      "bytes": 269,
+      "sha256": "86870319d821b62467b5c30a80aa8971a2e2dada3c6c0df3a2fc62d60f076b3a"
+    }
+  ],
+  "unchangedPayloadSourceCoverage": {
+    "matched": 3796,
+    "total": 3932,
+    "remaining": 136
+  },
+  "applicationInputsChanged": false,
+  "releaseAuditComplete": false,
+  "limits": [
+    "Matching binary/source version declarations and retained original materials are not a byte-identical native rebuild or proof of vendor patches, build commands and features.",
+    "libbtparse has no resolved source release; libssl exposes ABI 3.0.0 and links the co-packaged OpenSSL 3.0.1 crypto library, but its independent patch version remains unproven.",
+    "The Mach-O reader inspects bounded arm64 data and is compared with Apple tools; it is not a complete executable or signature verifier. No native library or upstream source code is executed.",
+    "Three publisher SHA-256 files and the historical XZ recipe were checked. PGP signatures were not verified.",
+    "Complete original archives retain wider build/test/support sources. Selected notice files are not a final linked-component list or license compatibility decision.",
+    "The 14 native files remain within the existing 136 unmatched payload files. This adds complementary evidence without increasing byte-reproduced source coverage.",
+    "No application/runtime/installer bytes or existing release assets changed. Full redistribution/license review and the exact signed-app SBOM remain open."
+  ]
+}
