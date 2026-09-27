@@ -39,7 +39,22 @@ New workflow revisions also create a [physical app inventory and CycloneDX recor
 | Release source preview | `source-v*` tag | Tested source/docs/skill archives, checksums and provenance in a public prerelease |
 | Qualify Apple silicon candidate | Manual | Fresh runtime setup, sequential real compiler integration, twelve rendered-PDF comparisons, the isolated Electron updater transfer fixture, arm64 packaging, sixteen native suites (including app-update Settings, history storage, compiler help, local fonts, support export, save recovery and the public resource-pack catalog), artifact verification and an exact physical-app inventory |
 
-Official actions are pinned to immutable revisions. Jobs have bounded timeouts. Pull requests use read-only repository permissions and receive no provider keys or signing credentials. Native suites run sequentially. Qualification publishes test metadata/logs, not a downloadable compiler bundle or installer while the binary redistribution audit remains unfinished.
+Official actions are pinned to immutable revisions. The workflow actions now use their declared Node 24 runtime instead of relying on GitHub's forced upgrade of older Node 20 actions. This is separate from `node-version: '24'`, which selects the Node version used to build Folio.
+
+| Action | Reviewed release | Used for |
+| --- | --- | --- |
+| Checkout | [v7.0.1](https://github.com/actions/checkout/releases/tag/v7.0.1) | All five workflows |
+| Set up Node | [v7.0.0](https://github.com/actions/setup-node/releases/tag/v7.0.0) | All five workflows |
+| Upload artifact | [v7.0.1](https://github.com/actions/upload-artifact/releases/tag/v7.0.1) | Mac qualification evidence |
+| Configure Pages | [v6.0.0](https://github.com/actions/configure-pages/releases/tag/v6.0.0) | Website configuration |
+| Upload Pages artifact | [v5.0.0](https://github.com/actions/upload-pages-artifact/releases/tag/v5.0.0) | Website archive; its pinned nested uploader also uses Node 24 |
+| Deploy Pages | [v5.0.1](https://github.com/actions/deploy-pages/releases/tag/v5.0.1) | Website publication |
+
+The existing Python action already uses Node 24 and retains its pin. Use the exact full commit identifiers in `.github/workflows/`; release tags in this table explain provenance and are not floating workflow inputs. The actions require a compatible runner; these jobs use GitHub-hosted runners. No Docker action or privileged pull-request trigger is involved.
+
+The update preserves the workflow triggers, permissions, native-runner labels, commands, concurrency, timeouts, secret handling and artifact paths/retention. Node setup keeps the existing explicit npm caches; the website job explicitly disables automatic package-manager caching because it builds without dependency installation. Mac evidence explicitly keeps `archive: true`, so it remains a ZIP containing the selected reports/screenshots and retains the existing artifact-download verification procedure. The Pages composite retains its own reviewed archive/upload sequence. Updated pins require actual hosted runs; reviewing their YAML does not establish production installer acceptance.
+
+Jobs have bounded timeouts. Pull requests use read-only repository permissions and receive no provider keys or signing credentials. Native suites run sequentially. Qualification publishes test metadata/logs, not a downloadable compiler bundle or installer while the binary redistribution audit remains unfinished.
 
 The Mac jobs use the standard `macos-15` arm64 runner listed in [GitHub's runner documentation](https://docs.github.com/en/actions/reference/runners/github-hosted-runners). Pages uses the dedicated permissions and environment described in [GitHub's Pages workflow documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
 
