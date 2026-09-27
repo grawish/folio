@@ -1,3 +1,4 @@
+import { readPreference, writePreference } from './preferences';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import type { Appearance } from './shared/types';
 
@@ -6,7 +7,7 @@ const systemTheme = () => window.matchMedia('(prefers-color-scheme: dark)');
 
 function readAppearance(): Appearance {
   try {
-    const saved = localStorage.getItem(storageKey);
+    const saved = readPreference(storageKey);
     if (saved === 'light' || saved === 'dark' || saved === 'system') return saved;
   } catch {
     // Storage may be unavailable in a restricted browser preview.
@@ -44,7 +45,7 @@ export function useAppearance() {
 
   useEffect(() => {
     try {
-      localStorage.setItem(storageKey, appearance);
+      writePreference(storageKey, appearance);
     } catch {
       // The current session can still switch themes without persistent storage.
     }

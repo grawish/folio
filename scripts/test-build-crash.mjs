@@ -65,7 +65,7 @@ const report = {
   limits: [
     'Process interruption does not simulate physical power loss.',
     'One host observation is not a latency percentile or supported-device acceptance.',
-    'Preference durability across abrupt main-process death is recorded separately and is not an acceptance claim.',
+    'The separate preferences suite covers the other workspace settings; physical power loss remains unverified.',
   ],
   checks: [],
   events: [],
@@ -301,13 +301,10 @@ try {
   await launch();
   await expect(composer()).toHaveValue(draft);
   await code();
-  // Chromium preferences can still be unflushed when the main process dies.
-  // Record that separate durability gap, then stop any resumed compile through
-  // the actual UI before inspecting recovery and correcting the source.
+  // A recently disabled automatic preview must stay disabled after main death;
+  // reopening must not immediately replay the interrupted runaway source.
   report.autoCompileEnabledAfterCrash = await auto().isChecked();
-  await auto().uncheck();
-  const stop = page.getByRole('button', { name: 'Stop', exact: true });
-  if (await stop.isVisible()) await stop.click();
+  expect(report.autoCompileEnabledAfterCrash).toBe(false);
   await expect(page.getByRole('button', { name: 'Compile', exact: true })).toBeEnabled();
   await expect(editor()).toContainText('Unsaved editor draft.');
   await expect(editor()).toContainText('\\loop\\iftrue\\repeat');

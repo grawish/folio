@@ -102,6 +102,10 @@ export type ProjectDiskChanges = {
 };
 
 export interface DesktopAPI {
+  loadPreferences(
+    legacy: import('./preferences').Preferences,
+  ): Promise<import('./preferences').Preferences>;
+  savePreferences(patch: import('./preferences').PreferencePatch): Promise<void>;
   appUpdateStatus(): Promise<import('./updates').AppUpdateStatus>;
   configureAppUpdates(
     value: import('./updates').UpdatePreferences,

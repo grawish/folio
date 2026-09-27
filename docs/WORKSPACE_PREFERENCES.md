@@ -17,6 +17,22 @@ When a new PDF is loading, the previous document stays alive for resizing and zo
 
 The annotation tools are positioned inside the PDF area, below the preview controls and any stale/loading notice, so the notice remains readable in a narrow pane.
 
+## Remember settings after an unexpected quit
+
+The development app saves Automatic preview, Autosave project, Editor text size, Appearance and pane sizes in a small native settings file. It loads that file before opening the workspace, so a saved disabled Automatic preview does not become enabled while source recovery opens. Browser previews still use browser storage. This behavior is newer than the public preview 4.
+
+![Restored workspace settings after an abrupt app quit](images/preferences-recovered.png)
+
+When first opening an older profile, Folio copies valid existing browser preferences into native storage. After that, the native copy is authoritative. Changing a setting updates the current view immediately; saving happens asynchronously. A change interrupted before it finishes is not guaranteed to survive. Ordinary close and app-update restart wait for pending preference saves.
+
+If a write fails, **Settings could not be saved** stays visible. The previously saved values remain on disk and your newest changes remain queued in the open app. Check disk space and folder access, then click **Retry settings save**. The retry saves the latest values, including settings changed while the error was visible.
+
+![A settings-save error with an accessible Retry settings save button](images/preferences-save-error.png)
+
+An unknown, damaged, oversized or linked settings file is kept rather than silently replaced with defaults. Folio shows **Your settings could not be opened** before it restores the workspace. **Try again** retries the read; the native close button still works. Project and source-recovery files are kept. Do not delete an unfamiliar settings file to bypass the message.
+
+The native file is `workspace-preferences.json` in Folio's app-data directory. Its versioned record accepts only the five known values; types, lengths and pane/text-size ranges are checked in the main process. Updates replace the file atomically and serialize independent control changes. The renderer keeps one active write and at most one newest pending value per preference, so a long divider drag cannot build an unlimited renderer queue. This is application-process crash recovery, not proof of filesystem or power-loss durability.
+
 ## Optional autosave
 
 **Settings → General → Autosave project** is off by default. Once enabled, it saves source, project details, chat, notes and history after a two-second pause. The preference is remembered. A new project still needs one explicit Save to choose its folder; autosave never opens a folder picker.
@@ -34,6 +50,13 @@ The dedicated `project:autosave` IPC route accepts a validated project, uses its
 Autosave reuses the journaled source/manifest/history/saved-copy transaction. A failed history archive or file write leaves the previous saved project intact. Recovery and ordinary Save As protections remain in place. The usual filesystem/power-loss/platform limits in `SAVE_RELIABILITY.md` apply; this feature adds no cross-platform durability claim.
 
 ## Verification
+
+The native preference change has 15 focused controls for migration, independent concurrent updates, invalid/damaged/linked records, failed replacement and retry, three real writer-kill boundaries, and bounded renderer coalescing with 10,000 queued pane edits. All 407 source tests pass.
+
+`scripts/test-preferences.mjs` changes all five preferences through real controls, verifies both pane dividers move, kills the packaged app twice and checks the actual reopened settings and chat drafts. It also exercises a native write failure and retry, plus an unknown-format startup error that preserves the settings and recovery files while allowing normal close. The identical final fixture rejects the older package at the Auto-compile preservation assertion. An additional run with `--legacy-app /path/to/older/Folio` migrates a real older Chromium profile. Full workspace/autosave, interrupted-save, runtime repair, chat/PDF and strict app-crash workflows also pass on the exact final local package.
+
+The [verification record](releases/workspace-preferences-verification.json) retains exact inputs, output hashes, screenshots and the earlier retry-button failure and pane-fixture correction. Full [hosted qualification](releases/mac-workspace-preferences-hosted.json) at `b0f9b23` passes all eighteen native suites, 407 source tests, 17 compiler integrations and twelve template-image comparisons with zero changed pixels. All 158 retained evidence files, exact script/input identities, package/runtime/notice records and JavaScript/source replay were independently checked. The hosted preference workflow preserves both sets of all five settings through actual app kills; the strengthened compile-crash gate keeps Auto-compile disabled. Process-kill controls do not prove physical power-loss durability or acceptance on every supported Mac.
+
 
 `tests/autosave-layout.test.ts` checks pane bounds/preferences, source/asset/metadata additions/edits/deletions, unknown projects, overwrite/alternate-directory rejection, queue ordering and history-preparation failure. Current whole-app test counts are recorded in the release audit.
 

@@ -8,6 +8,7 @@ export const macReleaseSuites = [
   'chat',
   'runtime',
   'build-crash',
+  'preferences',
   'workspace',
   'history-storage',
   'diagnostics',

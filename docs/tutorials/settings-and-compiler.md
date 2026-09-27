@@ -14,6 +14,16 @@ Open **Settings → Editor & PDF**. Change **Editor text size** or **Automatic p
 
 ![Editor and PDF settings](../images/editor-settings.png)
 
+## Keep your settings after reopening
+
+The development app remembers your appearance, pane sizes, editor size, automatic preview and autosave in its native settings file. It brings valid settings forward from an older profile when you first open it.
+
+If **Settings could not be saved** appears, check disk space and folder access, then click **Retry settings save**. Your earlier saved settings stay on disk until the new save succeeds. Avoid forcing the app to quit while a settings save is failing.
+
+![Retrying a settings save](../images/preferences-save-error.png)
+
+See [workspace preference recovery](../WORKSPACE_PREFERENCES.md#remember-settings-after-an-unexpected-quit) for startup errors and the limits of crash recovery. This is development-source behavior, newer than the public preview 4.
+
 ## Understand privacy and help
 
 **Settings → Privacy** explains what is local and what is sent when you chat. Source ZIP exports include chat/history. PDF exports contain the resume without chat or marks. Review a source ZIP before sharing it.

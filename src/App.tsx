@@ -1,3 +1,9 @@
+import {
+  readPreference,
+  writePreference,
+  flushPreferences,
+  usePreferenceError,
+} from './preferences';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { flushSync } from 'react-dom';
 import {
@@ -121,6 +127,7 @@ const snippets = [
 ];
 
 export default function App() {
+  const preferenceError = usePreferenceError();
   const { appearance, setAppearance, theme } = useAppearance();
   const [project, setProject] = useState<Project>(() => createProject());
   const current = useRef(project);
@@ -137,10 +144,8 @@ export default function App() {
   const [result, setResult] = useState<BuildResult | null>(null);
   const [lastGood, setLastGood] = useState<BuildResult | null>(null);
   const pdfPreview = useRef<PdfPreviewHandle>(null);
-  const [autoCompile, setAutoCompile] = useState(
-    () => localStorage.getItem('folio:auto') !== 'false',
-  );
-  const [fontSize, setFontSize] = useState(() => Number(localStorage.getItem('folio:font')) || 14);
+  const [autoCompile, setAutoCompile] = useState(() => readPreference('folio:auto') !== 'false');
+  const [fontSize, setFontSize] = useState(() => Number(readPreference('folio:font')) || 14);
   const [dialog, setDialog] = useState<Dialog>(null);
   const saveReview = useRef<{ id: string; preparation?: Promise<void> } | null>(null);
   const [pendingImport, setPendingImport] = useState<ProjectImportPreview | null>(null);
@@ -152,7 +157,7 @@ export default function App() {
   const [rawLog, setRawLog] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const panes = usePaneLayout(sidebarOpen);
-  const [autoSave, setAutoSave] = useState(() => localStorage.getItem('folio:autosave') === 'true');
+  const [autoSave, setAutoSave] = useState(() => readPreference('folio:autosave') === 'true');
   const [autoSaveError, setAutoSaveError] = useState('');
   const [saveActive, setSaveActive] = useState(false);
   const [savedWorkspace, setSavedWorkspace] = useState<WorkspaceState | null>(null);
@@ -526,13 +531,13 @@ export default function App() {
     return () => clearTimeout(timer);
   }, [toast]);
   useEffect(() => {
-    localStorage.setItem('folio:auto', String(autoCompile));
+    writePreference('folio:auto', String(autoCompile));
   }, [autoCompile]);
   useEffect(() => {
-    localStorage.setItem('folio:font', String(fontSize));
+    writePreference('folio:font', String(fontSize));
   }, [fontSize]);
   useEffect(() => {
-    localStorage.setItem('folio:autosave', String(autoSave));
+    writePreference('folio:autosave', String(autoSave));
   }, [autoSave]);
 
   const save = async (saveAs = false, automatic = false): Promise<boolean> => {
@@ -921,6 +926,7 @@ export default function App() {
           if (fontImport.current) await window.folio?.cancelFontImport(fontImport.current.id);
           await window.folio?.recover(current.current);
           await flushWorkspace();
+          await flushPreferences();
           await window.folio?.closeWindow();
         } catch (e) {
           closing.current = false;
@@ -2344,6 +2350,7 @@ export default function App() {
                 );
               closing.current = true;
               try {
+                await flushPreferences();
                 await window.folio.restartForAppUpdate(current.current, workspaceRef.current);
               } catch (error) {
                 closing.current = false;
@@ -2606,6 +2613,22 @@ export default function App() {
           </Modal>
         )}
       </div>
+      {preferenceError && (
+        <div className="toast preference-error" role="alert">
+          <span>
+            Settings could not be saved. Your previous saved settings are kept. Check free space and
+            folder access, then retry.
+          </span>
+          <button
+            className="button secondary"
+            onClick={() => {
+              void flushPreferences().catch(() => {});
+            }}
+          >
+            Retry settings save
+          </button>
+        </div>
+      )}
       {!initialized && (
         <div className="startup-screen" role={bootstrapError ? 'alert' : 'status'}>
           <h1>

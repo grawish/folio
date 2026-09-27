@@ -16,7 +16,7 @@ The cleanup starts with the compiler service. Chat drafts, editing and saving do
 
 1. Open Folio again after an unexpected quit. The recovered source and unsent chat draft should return.
 2. Open **Code** and review the text. Your last saved project files remain on disk separately from the recovered draft.
-3. If a build restarts and stays busy, click **Stop**, then turn off **Auto-compile** while correcting the source. A recently changed Auto-compile setting can reset after an abrupt crash; preference durability is still an open issue.
+3. If a build restarts and stays busy, click **Stop**, then turn off **Auto-compile** while correcting the source. The current development source saves this setting in native storage. The earlier browser-storage implementation could reset a recently changed setting after an abrupt crash; see [preference recovery](WORKSPACE_PREFERENCES.md#remember-settings-after-an-unexpected-quit).
 4. Click **Compile** and inspect the new PDF. **History** keeps earlier successful versions for comparison.
 5. Click **Save**, then **Export PDF** when the result is ready.
 
@@ -52,7 +52,7 @@ Run it on Apple silicon with `FOLIO_PYTHON` pointing to Python with the pinned P
 node scripts/test-build-crash.mjs /path/to/Folio.app/Contents/MacOS/Folio
 ```
 
-The [packaged crash verification](releases/packaged-build-crash-verification.json) preserves the successful candidate, failing previous-app control and the initial preference-reset finding. It does not claim that Chromium preferences are durable after abrupt main-process death.
+The [packaged crash verification](releases/packaged-build-crash-verification.json) preserves the successful candidate, failing previous-app control and the initial preference-reset finding. That historical record does not claim Chromium preference durability. The newer [native preference change](releases/workspace-preferences-verification.json) keeps all five workspace settings in a validated native file and strengthens the app-crash gate to require Auto-compile to remain disabled. Its local fresh-profile, old-profile migration and crash checks pass. Full [hosted qualification](releases/mac-workspace-preferences-hosted.json) at `b0f9b23` also passes all eighteen native suites, including two preference kills and the strict compile-crash assertion that Auto-compile remains disabled.
 
 These are process-interruption controls. They do not prove physical power-loss durability, acceptance on every supported Mac, large-backlog responsiveness, whole-profile storage quotas, or automatic removal of older unmarked folders. Those remain in [the release audit](RELEASE_GAP_AUDIT.md) and [performance plan](PERFORMANCE_IMPROVEMENT_PLAN.md#compiler-work-after-an-application-crash).
 
