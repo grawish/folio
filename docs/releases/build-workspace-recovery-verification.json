@@ -340,7 +340,9 @@
     "runId": 36344771325,
     "url": "https://github.com/grawish/folio/actions/runs/36344771325",
     "commit": "3a1ffef4f8554b71953c60740f21cb27329b181d",
-    "statusAtPublication": "in_progress"
+    "statusAtPublication": "success",
+    "runAttempt": 1,
+    "independentVerification": "docs/releases/mac-build-recovery-hosted.json"
   },
   "remaining": [
     "Older unmarked folders and unrecognized data are retained and require separate review.",
