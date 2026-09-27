@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T03:02:19.217435+00:00",
+  "baseCommit": "807c00a527969bfeb20f52aca24a16789e6e9614",
+  "change": "Put the lipo input path before the variadic -verify_arch option so Xcode 16.4 checks arm64 instead of parsing the filename as an architecture.",
+  "input": {
+    "path": "scripts/sign-mac-runtime.ts",
+    "bytes": 5005,
+    "sha256": "8572d5b4857a9e1272f74efffd4c9cf2b3e05c8c12a36d92ab1efb7f1ee00c0a"
+  },
+  "retainedFailure": {
+    "sourceRun": "https://github.com/grawish/folio/actions/runs/36289844388",
+    "macRun": "https://github.com/grawish/folio/actions/runs/36289844032",
+    "sourceTests": 288,
+    "sourcePassed": 278,
+    "sourceFailed": 10,
+    "toolchain": "Xcode 16.4",
+    "log": {
+      "path": "test-results/runtime-signing-hosted-source-failure.log",
+      "bytes": 108977,
+      "sha256": "ef81db7453d5dad59ecae40e13ff2568025aa73dbc89500aac58723c15785be1"
+    }
+  },
+  "localValidation": {
+    "sourceTestsPassed": 288,
+    "signedRuntimeIntegrationPassed": 1,
+    "buildPassed": true,
+    "formatPassed": true,
+    "logs": [
+      {
+        "path": "test-results/runtime-signing-lipo-all-unit.log",
+        "bytes": 29830,
+        "sha256": "09112aec75915f14cfe2470ce94012b2234f3fb70114f1fe77f7ab426f8787c7"
+      },
+      {
+        "path": "test-results/runtime-signing-lipo-integration.log",
+        "bytes": 227,
+        "sha256": "37d800f8fb811b9b8934b4b61f0240ce587d58982c664e69121c3670136d56e1"
+      },
+      {
+        "path": "test-results/runtime-signing-lipo-build.log",
+        "bytes": 1719,
+        "sha256": "0bbfb89f7638e51a33406815a518beb3b936ea714c792b1c8e8220ad68aed858"
+      },
+      {
+        "path": "test-results/runtime-signing-lipo-format.log",
+        "bytes": 183,
+        "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+      }
+    ]
+  },
+  "scope": [
+    "Existing real signature, forged record and native compiler tests exercise the corrected command; no mock-only command assertion was added.",
+    "The signed-runtime integration signs the complete prepared runtime and renders an offline bibliography PDF in a path containing spaces.",
+    "Fresh hosted source and full Mac qualification remain required.",
+    "The earlier runtime-signing-verification.json remains historical evidence for its original inputs and private artifact; this record does not claim that artifact was rebuilt.",
+    "No authenticated installer, Developer ID, notarization or hardened-runtime acceptance is established by this compatibility fix."
+  ]
+}

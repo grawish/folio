@@ -46,7 +46,9 @@ export async function signMacRuntime(
   for (const name of Object.keys(manifest.files).sort()) {
     const data = await runtimeFile(root, name);
     if (magic.has(data.subarray(0, 4).toString('hex'))) {
-      await run('/usr/bin/lipo', ['-verify_arch', 'arm64', path.join(root, name)]);
+      // Older Apple lipo treats every argument after -verify_arch as an
+      // architecture. Put the input first, before that variadic option.
+      await run('/usr/bin/lipo', [path.join(root, name), '-verify_arch', 'arm64']);
       native.push(name);
     }
   }
