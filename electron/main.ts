@@ -21,6 +21,7 @@ import { ProjectStore, atomicWrite, validateProject, removedFileArchive } from '
 import { ProjectImporter } from './core/project-import';
 import { ProjectWatcher } from './core/project-scan';
 import { Compiler } from './core/compiler';
+import { PreferenceStore } from './core/preferences';
 import { RuntimeManager } from './core/runtime-manager';
 import { PackService } from './core/pack-service';
 import { packTrust } from './core/pack-trust';
@@ -92,6 +93,7 @@ const support = new SupportBundles({
   write: atomicWrite,
 });
 let workspaces: WorkspaceStore;
+let preferences: PreferenceStore;
 type PdfInspection = import('../src/shared/ai').PdfInspection;
 let connections: ConnectionStore;
 let providers: ProviderService;
@@ -228,6 +230,8 @@ function handle(channel: string, callback: (...args: any[]) => unknown) {
 }
 
 function registerHandlers() {
+  handle('preferences:load', (legacy: unknown) => preferences.initialize(legacy));
+  handle('preferences:save', (patch: unknown) => preferences.update(patch));
   handle('support:prepare', (value: unknown) => support.prepare(value));
   handle('support:export', (id: string, selected: unknown) => support.export(id, selected));
   handle('support:cancel', (id?: string) => support.cancel(id));
@@ -257,6 +261,7 @@ function registerHandlers() {
         await compiler.cancel();
         await recoveryQueue;
         await workspaces.flush();
+        await preferences.flush();
         await store.recover(project);
         await workspaces.save(workspace);
         await workspaces.flush();
@@ -814,6 +819,7 @@ function registerHandlers() {
     await agent.cancel();
     await providers.close();
     await workspaces.flush();
+    await preferences.flush();
     await compiler.cancel();
     closing = true;
     window?.close();
@@ -864,6 +870,7 @@ function createWindow() {
 if (primaryInstance)
   void app.whenReady().then(async () => {
     const dataRoot = app.getPath('userData');
+    preferences = new PreferenceStore(dataRoot);
     await fs.mkdir(dataRoot, { recursive: true });
     const installReason = await installedUpdateSupport(updatePublisher.expectedTeamId);
     updates = new AppUpdates(

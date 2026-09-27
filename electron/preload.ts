@@ -2,6 +2,8 @@ import { contextBridge, ipcRenderer } from 'electron';
 import type { DesktopAPI } from '../src/shared/types';
 
 const api: DesktopAPI = {
+  loadPreferences: (legacy) => ipcRenderer.invoke('preferences:load', legacy),
+  savePreferences: (patch) => ipcRenderer.invoke('preferences:save', patch),
   appUpdateStatus: () => ipcRenderer.invoke('updates:status'),
   configureAppUpdates: (value) => ipcRenderer.invoke('updates:configure', value),
   checkAppUpdates: () => ipcRenderer.invoke('updates:check'),

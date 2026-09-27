@@ -1,3 +1,4 @@
+import { readPreference, writePreference } from './preferences';
 import { useLayoutEffect, useRef, useState, useEffect } from 'react';
 import { defaultPanes, paneLayout, readPanes } from './shared/workspace-layout';
 
@@ -6,7 +7,7 @@ export function usePaneLayout(open: boolean) {
   const [width, setWidth] = useState(() => window.innerWidth);
   const [preferences, setPreferences] = useState(() => {
     try {
-      return readPanes(localStorage.getItem('folio:panes'));
+      return readPanes(readPreference('folio:panes'));
     } catch {
       return defaultPanes;
     }
@@ -21,7 +22,7 @@ export function usePaneLayout(open: boolean) {
   }, []);
   useEffect(() => {
     try {
-      localStorage.setItem('folio:panes', JSON.stringify(preferences));
+      writePreference('folio:panes', JSON.stringify(preferences));
     } catch {
       /* Session still works. */
     }
