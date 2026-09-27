@@ -24,13 +24,16 @@ The newer history-worker candidate `0ad984f` reached twelve passing native suite
 
 ## Workflows
 
+The latest completed full Mac milestone is [`b80edb4`, run 36280347439](https://github.com/grawish/folio/actions/runs/36280347439). On macOS 15.7.9 arm64, it passes all 253 source tests, 15 compiler integrations, twelve image comparisons with zero changed pixels, fourteen native suites, all 39 packaged-output comparisons and disk-image integrity. Exact downloaded evidence and script hashes are checked in [the record](releases/mac-compiler-limits-verification.json). The imported-pack review took 5.535 seconds, confirming why its old five-second assertion was insufficient. This qualifies the history-worker/compiler-limit app; the later workspace-queue app has a separate qualification run.
+
+New workflow revisions also create a [physical app inventory and CycloneDX record](MAC_APP_INVENTORY.md) after the package gates and retain them with qualification evidence. This does not mark component-license coverage complete or publish an installer.
 
 | Workflow | Trigger | Result |
 | --- | --- | --- |
 | Check source | Main pushes, pull requests, manual | Formatting, unit tests, offline Rust source/notices, Cargo graph and compiler-provenance controls, typecheck/build, website build and generated-skill consistency |
 | Publish website | Relevant main changes or manual | Static site deployment to GitHub Pages |
 | Release source preview | `source-v*` tag | Tested source/docs/skill archives, checksums and provenance in a public prerelease |
-| Qualify Apple silicon candidate | Manual | Fresh runtime setup, sequential real compiler integration, twelve rendered-PDF comparisons, arm64 packaging, fourteen native suites (including compiler help, local fonts, support export, save recovery and the public resource-pack catalog) and artifact verification |
+| Qualify Apple silicon candidate | Manual | Fresh runtime setup, sequential real compiler integration, twelve rendered-PDF comparisons, arm64 packaging, fourteen native suites (including compiler help, local fonts, support export, save recovery and the public resource-pack catalog) artifact verification and an exact physical-app inventory |
 
 Official actions are pinned to immutable revisions. Jobs have bounded timeouts. Pull requests use read-only repository permissions and receive no provider keys or signing credentials. Native suites run sequentially. Qualification publishes test metadata/logs, not a downloadable compiler bundle or installer while the binary redistribution audit remains unfinished.
 

@@ -33,4 +33,6 @@ The wrapper preserves the existing offline sandbox, immutable source snapshot, c
 
 The compiler integration suite exercises fresh offline template caches, imported packages/fonts/bibliography, isolation, cancellation, timeout and PDF freshness under the production launch path. Exact results and package checks are recorded in [the verification record](releases/compiler-limits-verification.json).
 
+Hosted qualification at `b80edb4` also passes on Apple silicon macOS 15.7.9: all 253 source tests, 15 compiler integrations, twelve zero-difference template comparisons, all fourteen native suites and final package verification. This includes the actual native resource-limit controls. The [hosted verification record](releases/mac-compiler-limits-verification.json) distinguishes downloaded evidence from runner-reported installer hashes. It does not establish the proposed macOS 14 minimum or every supported device.
+
 This change does not impose an application-wide memory budget, combined CPU quota, total disk budget or retained-history/cache limit. It also does not establish acceptance on every supported Mac or macOS version. Those requirements remain in [the release audit](RELEASE_GAP_AUDIT.md).

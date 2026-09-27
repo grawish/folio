@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T00:17:37.910932+00:00",
+  "applicationSourceCommit": "cb6792f966eab065a2d708656d75886921e2aa2f",
+  "application": {
+    "schemaVersion": 1,
+    "application": {
+      "name": "Folio",
+      "version": "0.1.0-preview.4",
+      "bundleIdentifier": "app.folio.resume",
+      "architecture": "arm64"
+    },
+    "appAsarSha256": "57acc51c137af76e038665a3149e68556ac4e475ad73919c51b6685b0610fb34",
+    "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+    "runtimeFilesVerified": 3982,
+    "regularFiles": 4241,
+    "directories": 761,
+    "symlinks": 14,
+    "logicalFileBytes": 679287682,
+    "records": [
+      {
+        "path": "bundle-inventory.json",
+        "bytes": 1175344,
+        "sha256": "04b5a1d75b693c0efd7d58daa3c93508348a3541dca03dd5a08b4a29b0279f06"
+      },
+      {
+        "path": "bundle.cdx.json",
+        "bytes": 3389149,
+        "sha256": "f2a62a73dee3eccf84b6c19da550017b792f1d974a306c62af7be4325a734101"
+      }
+    ],
+    "schemaValidation": "Official pinned CycloneDX 1.6 JSON schema, including formats; offline.",
+    "componentMappingComplete": false,
+    "releaseAuditComplete": false,
+    "limits": [
+      "Inventory of physical regular files, directories, POSIX modes and internal symbolic links in this exact local app.",
+      "Embedded ASAR/ZIP/PAR members, linked dependencies and per-component license/source mappings remain incomplete.",
+      "No extended attributes, ACLs, resource forks, code-signature/notarization validation, disk image or unique physical disk-size claim.",
+      "Before/after metadata checks detect ordinary concurrent changes; this is not an atomic filesystem snapshot or a hostile-mutation sandbox."
+    ]
+  },
+  "toolFiles": [
+    {
+      "path": "scripts/mac-app-inventory.ts",
+      "bytes": 8397,
+      "sha256": "c258ebba084cfd6d1e9a06142ee9c6dd3e8dd0a80d537e7ea360a6f1dd8eb966"
+    },
+    {
+      "path": "scripts/inventory-mac-app.ts",
+      "bytes": 4968,
+      "sha256": "d79b0741c1d28aba9f54d4d3413ad3701aabfda20540e12fb7ff6d82907c6590"
+    },
+    {
+      "path": "tests/mac-app-inventory.test.ts",
+      "bytes": 4706,
+      "sha256": "0354fc71d96966252a8407485a7bd6e29168ed8efc34b9d479da181660fca97f"
+    },
+    {
+      "path": "resources/sbom-schema/source.json",
+      "bytes": 1299,
+      "sha256": "a54abcf57e90f3a8e791e551dd74489a974af4401665d761bae31ea61db2f35e"
+    }
+  ],
+  "publicRecords": [
+    {
+      "path": "docs/releases/mac-app-inventory/bundle-inventory.json.gz",
+      "bytes": 210519,
+      "sha256": "2d655de8a65db935dc350e60b844a5f77707193d064b2e2348a117ab5735b0c1"
+    },
+    {
+      "path": "docs/releases/mac-app-inventory/bundle.cdx.json.gz",
+      "bytes": 238035,
+      "sha256": "027919e0ac7f6a6abc78fa3ac232ee53125c79ee04e5c73e2286f85492c4de4c"
+    },
+    {
+      "path": "docs/releases/mac-app-inventory/summary.json",
+      "bytes": 1528,
+      "sha256": "dc108e3ae70975a98f82f820aed0602a76ffa05b5ccc6eeccf4e4b07605fe4bb"
+    }
+  ],
+  "independentVerification": {
+    "pathsAndModesVerified": 5016,
+    "hashesVerified": 4241,
+    "internalLinksVerified": 14,
+    "logicalFileBytes": 679287682,
+    "bomFileMappingsVerified": 4255,
+    "incompleteCompositionVerified": true,
+    "gzipRoundTrip": true
+  },
+  "byteIdenticalReplay": true,
+  "sourceTestsPassed": 261,
+  "logs": [
+    {
+      "path": "test-results/mac-app-inventory-focused.log",
+      "bytes": 626,
+      "sha256": "25decc9bdf8902a60925fbcb3050af043bac117cad0683fdcd2ce1a9fba73f11"
+    },
+    {
+      "path": "test-results/mac-app-inventory-final-unit.log",
+      "bytes": 27174,
+      "sha256": "4b4543844e913595d78fb628fe50a19547b09729c88452b641e0ed66168c1958"
+    },
+    {
+      "path": "test-results/mac-app-inventory-final-build.log",
+      "bytes": 1719,
+      "sha256": "56851e99bcc4aff57e61865b4c94a5b6b4a1bd5903c4d5f25acfc9eb86e60e29"
+    },
+    {
+      "path": "test-results/mac-app-inventory-final-format.log",
+      "bytes": 183,
+      "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+    }
+  ],
+  "applicationOutputs": {
+    "compiledOutputsCompared": 39,
+    "allPackagedMetadataFieldsMatch": true,
+    "appCodeChanged": false,
+    "scope": "Developer validators, scripts, schema data, documentation and CI only."
+  },
+  "scope": "Complete physical-file inventory of this development app; incomplete embedded/linked component and license mapping. Does not complete the binary redistribution, signing/notarization or exact signed-release SBOM requirements."
+}

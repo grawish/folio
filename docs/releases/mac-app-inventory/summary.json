@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "application": {
+    "name": "Folio",
+    "version": "0.1.0-preview.4",
+    "bundleIdentifier": "app.folio.resume",
+    "architecture": "arm64"
+  },
+  "appAsarSha256": "57acc51c137af76e038665a3149e68556ac4e475ad73919c51b6685b0610fb34",
+  "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+  "runtimeFilesVerified": 3982,
+  "regularFiles": 4241,
+  "directories": 761,
+  "symlinks": 14,
+  "logicalFileBytes": 679287682,
+  "records": [
+    {
+      "path": "bundle-inventory.json",
+      "bytes": 1175344,
+      "sha256": "04b5a1d75b693c0efd7d58daa3c93508348a3541dca03dd5a08b4a29b0279f06"
+    },
+    {
+      "path": "bundle.cdx.json",
+      "bytes": 3389149,
+      "sha256": "f2a62a73dee3eccf84b6c19da550017b792f1d974a306c62af7be4325a734101"
+    }
+  ],
+  "schemaValidation": "Official pinned CycloneDX 1.6 JSON schema, including formats; offline.",
+  "componentMappingComplete": false,
+  "releaseAuditComplete": false,
+  "limits": [
+    "Inventory of physical regular files, directories, POSIX modes and internal symbolic links in this exact local app.",
+    "Embedded ASAR/ZIP/PAR members, linked dependencies and per-component license/source mappings remain incomplete.",
+    "No extended attributes, ACLs, resource forks, code-signature/notarization validation, disk image or unique physical disk-size claim.",
+    "Before/after metadata checks detect ordinary concurrent changes; this is not an atomic filesystem snapshot or a hostile-mutation sandbox."
+  ]
+}

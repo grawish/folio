@@ -36,6 +36,8 @@ jobs:
       - run: npm run dist -- --publish never
       - run: node scripts/test-mac-release.mjs release
       - run: node scripts/verify-mac-package.mjs release
+      - name: Inventory the exact qualified app
+        run: node --import tsx scripts/inventory-mac-app.ts release/mac-arm64/Folio.app
       - name: Preserve qualification evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
@@ -46,6 +48,7 @@ jobs:
             release/verification.json
             release/SHA256SUMS
             release/disk-image-verification.log
+            artifacts/license-materials/mac-app/
             test-results/*-final.log
             test-results/published-pack-base.json
             test-results/chat-*/failure.png
