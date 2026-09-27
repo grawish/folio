@@ -16,6 +16,7 @@ import {
 } from '../electron/core/update-manifest';
 import { fetchUpdateFeed } from '../electron/core/update-feed';
 import { AppUpdates, type AppUpdateInstaller } from '../electron/core/update-service';
+import { UpdateRestartRequired } from '../electron/core/update-staging';
 import { signedUpdateProvider } from '../electron/core/update-provider';
 import { verifyUpdateArchive, discardUpdateArchive } from '../electron/core/update-archive';
 import { downloadAppUpdate as transferAppUpdate } from '../electron/core/update-download';
@@ -371,6 +372,48 @@ test('download, save recovery, journal and install occur only after explicit use
     system: installed.system,
   });
   assert.match((await failed.status()).previousAttempt!, /did not finish/);
+});
+
+test('failed native staging retains recovery and disables installation until a new process', async (t) => {
+  const root = await temporary(t),
+    native = installer();
+  const recovery = path.join(root, 'saved-recovery.txt');
+  native.api.install = async () => {
+    assert.equal(await fs.readFile(recovery, 'utf8'), 'source, chat and notes');
+    const state = JSON.parse(await fs.readFile(path.join(root, 'state.json'), 'utf8'));
+    assert.equal(state.attempt.version, '0.2.0');
+    throw new UpdateRestartRequired('App update preparation took longer than two minutes.');
+  };
+  const options = {
+    version: installed.version,
+    system: installed.system,
+    now: () => now,
+    request: async () => new Response(envelope()),
+  };
+  const updates = new AppUpdates(root, trust, { ...options, installer: native.api });
+  await updates.check();
+  await updates.download();
+  await assert.rejects(
+    updates.restart(() => fs.writeFile(recovery, 'source, chat and notes')),
+    /two minutes/,
+  );
+  const failed = await updates.status();
+  assert.equal(failed.phase, 'error');
+  assert.equal(failed.canInstall, false);
+  assert.match(failed.installReason!, /Quit and reopen/);
+  assert.equal(await fs.readFile(recovery, 'utf8'), 'source, chat and notes');
+  await updates.configure({ channel: 'beta', automatic: false });
+  await updates.configure({ channel: 'stable', automatic: false });
+  await updates.check();
+  const before = [...native.calls];
+  await assert.rejects(updates.download(), /Quit and reopen/);
+  assert.deepEqual(native.calls, before);
+  const reopened = new AppUpdates(root, trust, { ...options, installer: installer().api });
+  assert.match((await reopened.status()).previousAttempt!, /did not finish/);
+  assert.equal((await reopened.status()).canInstall, true);
+  await reopened.check();
+  await reopened.download();
+  assert.equal((await reopened.status()).phase, 'downloaded');
 });
 
 test('failed recovery, expired metadata, invalid downloads and unavailable signing prevent installation', async (t) => {

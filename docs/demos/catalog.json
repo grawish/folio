@@ -446,5 +446,19 @@
     ],
     "kind": "Real source app \u00b7 unconfigured production publisher",
     "alt": "Folio app update Settings with Beta selected and an honest preview availability message"
+  },
+  {
+    "id": "app-update-recovery",
+    "title": "Keep working after an update timeout",
+    "image": "app-updates-recovery.png",
+    "guide": "tutorials/app-updates.md#if-preparing-an-update-takes-too-long",
+    "description": "The real Settings screen explains a simulated update timeout and lets you return to the document. This does not demonstrate a signed app update.",
+    "steps": [
+      "Read the recovery message after update preparation fails.",
+      "Return to the document and save your latest changes.",
+      "Quit and reopen Folio before trying another update."
+    ],
+    "kind": "Real source Settings \u00b7 simulated timeout",
+    "alt": "Folio update Settings after a simulated preparation timeout, with recovery guidance and an enabled Done button"
   }
 ]

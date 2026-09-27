@@ -1,0 +1,249 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T09:33:48.613152+00:00",
+  "baseCommit": "d83293ec6de9a2a3f8b2cbb2a44f8d7110203f8d",
+  "change": "Bound native update readiness to two minutes; release restart callers on failure; retain recovery, disable a second native attempt until a fresh process and ignore late ready events.",
+  "inputs": [
+    {
+      "path": "electron/core/update-staging.ts",
+      "bytes": 3144,
+      "sha256": "2a011ca6f0bd290f4ecdd9f37c10a5ca8fb8300fde7065d4ee55312113dbde93"
+    },
+    {
+      "path": "electron/core/update-installer.ts",
+      "bytes": 6410,
+      "sha256": "d316a85990c313b929870a22e08d8ec28d27523c6d913bd2d026a211b1839462"
+    },
+    {
+      "path": "electron/core/update-service.ts",
+      "bytes": 12759,
+      "sha256": "79da00ae39ba66dc7326546431ab92fed02350447b761f9a8477c7fc00d3c389"
+    },
+    {
+      "path": "electron/main.ts",
+      "bytes": 42073,
+      "sha256": "508f4c4eb17462c8d36e263a1b63968b91a8746e83df135e1cd1601a0f43b2c7"
+    },
+    {
+      "path": "src/components/AppUpdates.tsx",
+      "bytes": 7212,
+      "sha256": "db65b1cc3ca469aedc459da7ce8b27c9553ab601ba280dfc31272e3a563ba034"
+    },
+    {
+      "path": "src/components/SettingsModal.tsx",
+      "bytes": 16320,
+      "sha256": "9e3842a8cfd5f1f991eda48dfcd4188c30a81d65320366e3ddf541b6084b1eb4"
+    },
+    {
+      "path": "src/App.tsx",
+      "bytes": 93526,
+      "sha256": "81126f333019271c9e8cc409d17318016648f3e7a690aa3413406800b9f2942f"
+    },
+    {
+      "path": "tests/update-staging.test.ts",
+      "bytes": 4177,
+      "sha256": "878087bb3cf6f989ca4e7a3a1690f91328f36d9494d27bc38a48a02638b19f71"
+    },
+    {
+      "path": "tests/app-updates.test.ts",
+      "bytes": 27171,
+      "sha256": "430b566ca4edc3487fa19e19ad6c0fa54f344285ce218d40d876cac162995e52"
+    },
+    {
+      "path": "scripts/fixtures/update-download.ts",
+      "bytes": 15227,
+      "sha256": "c531735f14c375d60645c13ea979baa50f8049f9329b252ade7072d5125c8ed4"
+    },
+    {
+      "path": "scripts/test-update-download.mjs",
+      "bytes": 2602,
+      "sha256": "1036fece4739fd4de4307e8301e99e19ce46cfd2d1db8775646a316b2446ab19"
+    },
+    {
+      "path": "scripts/test-updates.mjs",
+      "bytes": 10587,
+      "sha256": "e06bce019519184d7438165047accace32f7506e51e698da617346a39fa0f605"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 206387,
+      "sha256": "f49e1352767126ce8d3c894ac5bfdc4d39fc951fbe1efe7283ca4ee4d991ae00"
+    }
+  ],
+  "sourceTestsPassed": 322,
+  "newTests": {
+    "nativeStagingTimerAndEventCases": 4,
+    "serviceRestartRequiredCase": 1
+  },
+  "checks": {
+    "typecheckAndBuildPassed": true,
+    "nativeSettingsWithSimulatedFailurePassed": true,
+    "actualElectronAdapterWithInterceptedNativeCheckPassed": true,
+    "lateReadyCannotRequestQuit": true,
+    "downloadAndStagingRetryBlockedUntilReopen": true,
+    "postFailureProjectAndChatEditsSurviveReopen": true,
+    "desktopMobileWebsitePassed": true,
+    "galleryCards": 33
+  },
+  "electronFixture": {
+    "result": {
+      "passed": true,
+      "checks": [
+        "Real MacUpdater bounded HTTPS-protocol transfer, SHA-512, exact cache bytes and authenticated loopback ZIP proxy pass.",
+        "Valid cached download is reusable offline; same-size cache tampering is rejected and a fresh retry succeeds.",
+        "Actual downloaded checksum mismatch is rejected before native staging.",
+        "Actual Electron request policy blocks an unapproved HTTPS redirect.",
+        "Approved GitHub asset redirect succeeds without session cookies or authorization.",
+        "An actual Electron request failure rejects without staging an update.",
+        "Actual transfer cancellation settles, keeps the app running, and permits a verified retry.",
+        "An oversized chunked response cannot become a verified native update.",
+        "Guarded native failure releases the adapter, ignores late events and blocks a second download or restart in this process."
+      ],
+      "requests": [
+        "https://github.com/grawish/folio/releases/download/v0.2.0/Folio-0.2.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.2.0/Folio-0.2.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.3.0/Folio-0.3.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.4.0/Folio-0.4.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.4.1/Folio-0.4.1-mac-arm64.zip",
+        "https://release-assets.githubusercontent.com/fixture.zip",
+        "https://github.com/grawish/folio/releases/download/v0.4.2/Folio-0.4.2-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.5.0/Folio-0.5.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.5.0/Folio-0.5.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.6.0/Folio-0.6.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.7.0/Folio-0.7.0-mac-arm64.zip"
+      ],
+      "elapsedMs": 194,
+      "electron": "44.4.5",
+      "updater": "6.8.10",
+      "sha512": "f/nVsVasZbEeoWt9clqdbE7TD8SQzXVdxb0n/WjLdDlez1DSTF9fNn+4/AaHnO0a5x/9gBSJwZVSu9aPL6ROLA==",
+      "zipBytes": 262399,
+      "transport": "Electron HTTPS protocol handler supplies deterministic responses; real MacUpdater, bounded net.request transfer, cache and proxy code.",
+      "syntheticTrust": true,
+      "isolatedCache": true,
+      "nativeInstallationAttempted": false,
+      "guardedStagingChecks": 1,
+      "nativeStagingSimulated": true,
+      "scope": "No runnable app ZIP, Developer ID, notarization, public network, or native replacement is claimed."
+    },
+    "inputs": {
+      "inputs": {
+        "scripts/fixtures/update-download.ts": "c531735f14c375d60645c13ea979baa50f8049f9329b252ade7072d5125c8ed4",
+        "electron/core/update-installer.ts": "d316a85990c313b929870a22e08d8ec28d27523c6d913bd2d026a211b1839462",
+        "electron/core/update-manifest.ts": "bdb05b30bc954260622e1b907b639c0ec631a5081e4365a8ec434d553d7e9ae6",
+        "electron/core/update-provider.ts": "02a914e55a42b3de2a0de648bdcca52b3ec90bccd854869a1bc7141da39e49d2",
+        "electron/core/update-archive.ts": "ba647d27b73d3cd019b5cd1f969e638ca2c9eb9c82e4236db485acded3a90a4d",
+        "electron/core/update-feed.ts": "345bcaf2eecccab926b6ca6fc1ff4b2929ed3d9b3b6ece4945481369c54ea5eb",
+        "electron/core/update-download.ts": "e796e2308906770315bdeb6b942cf76703860f2f22ebd976fbeca6a8c6a91d69",
+        "electron/core/update-request.ts": "61461ec2962f55e5657ace5abc96120e9574619171e78368153761248ab16c2e",
+        "electron/core/update-staging.ts": "2a011ca6f0bd290f4ecdd9f37c10a5ca8fb8300fde7065d4ee55312113dbde93",
+        "package-lock.json": "f49e1352767126ce8d3c894ac5bfdc4d39fc951fbe1efe7283ca4ee4d991ae00"
+      },
+      "bundleSha256": "a2dfee1594670ded79c70246fe156e66164683bdd9d5fbc933f3c5d5fce62a01"
+    },
+    "inputHashesMatchWorkingTree": true
+  },
+  "settings": {
+    "result": {
+      "passed": true,
+      "checks": [
+        "Persistent stable/beta preferences, opt-in checks and no install action without an approved download.",
+        "Unconfigured publisher fails closed before network access or installation.",
+        "Dark, light and 1040\u00d7680 Settings controls are reachable.",
+        "Normal quit/relaunch retains update preferences, project draft and chat draft.",
+        "A simulated restart IPC failure unlocks Settings and preserves subsequent project/chat edits through normal quit and reopen."
+      ],
+      "nativeInstallationTested": false,
+      "productionTrustConfigured": false,
+      "stagingFailureSimulated": true
+    },
+    "evidence": {
+      "path": "test-results/app-updates-XsXtTQ/result.json",
+      "bytes": 623,
+      "sha256": "7b0ec2907656ad0ef1d70c7e59b4aa9073bb6e84774cb913d7d14858025d907e"
+    },
+    "screenshot": {
+      "path": "docs/images/app-updates-recovery.png",
+      "bytes": 179990,
+      "sha256": "0be999a0ede98cfc87d7f9973afa41128e97acda4e80f177aa80ea3c5f32fb12"
+    },
+    "scope": "Actual renderer, native menu and normal close/reopen. One synthetic IPC rejection models staging failure; it does not run the main process restart handler or real macOS staging."
+  },
+  "website": {
+    "checks": [
+      {
+        "width": 1440,
+        "route": "/",
+        "images": 10,
+        "overflow": false,
+        "themePersistence": true
+      },
+      {
+        "width": 1440,
+        "route": "/demos.html",
+        "images": 33,
+        "overflow": false,
+        "themePersistence": true
+      },
+      {
+        "width": 390,
+        "route": "/",
+        "images": 10,
+        "overflow": false,
+        "themePersistence": true
+      },
+      {
+        "width": 390,
+        "route": "/demos.html",
+        "images": 33,
+        "overflow": false,
+        "themePersistence": true
+      }
+    ],
+    "errors": []
+  },
+  "logs": [
+    {
+      "path": "test-results/update-staging-all-unit-final.log",
+      "bytes": 33201,
+      "sha256": "2e2325353a65daadb7fdf63f8b6d8eac9746ccc9e300b14705f12345d7c60651"
+    },
+    {
+      "path": "test-results/update-staging-build-final.log",
+      "bytes": 1719,
+      "sha256": "bbaadb268b2a6824a2cf291d7e151155ed9a82ae3109586aa364fa4fc069916d"
+    },
+    {
+      "path": "test-results/update-staging-electron-final.log",
+      "bytes": 230,
+      "sha256": "4531c686254bd5af812d8c65ad5cca9d9c25fc4c69bcb04958b24432fe847141"
+    },
+    {
+      "path": "test-results/update-staging-settings-pass.log",
+      "bytes": 124,
+      "sha256": "1ffce9d1a41df02ff0f1177ad19c0642faaa37d37ec08ed84b6750464ff0b5d0"
+    },
+    {
+      "path": "test-results/update-staging-website-final.log",
+      "bytes": 821,
+      "sha256": "a93b3881dc78ce98d16235bf05a4676355ded2984ffda72dd443f062b28b3804"
+    }
+  ],
+  "retainedFailedControls": {
+    "settings": [
+      "test-results/update-staging-settings.log",
+      "test-results/update-staging-settings-final.log",
+      "test-results/update-staging-settings-verified.log"
+    ],
+    "resolution": "Wait for asynchronous Settings dismissal before reopening via the menu or editing background controls; assert React receives the project edit before close. No production close-flow change was needed.",
+    "website": "test-results/update-staging-website.log: sandbox blocked the local server; the permitted rerun passed.",
+    "ipcErrorName": "test-results/update-error-debug.log reproduced an internal class-name prefix. The final error keeps the standard Error name; the service uses instanceof."
+  },
+  "scope": {
+    "nativeDeadline": "Unit-controlled time; the real two-minute macOS delay was not induced.",
+    "nativeEvents": "Actual Electron adapter/event emitter with intercepted checkForUpdates; no inert ZIP reaches Squirrel.",
+    "signedNativeReplacementTested": false,
+    "productionPublisherConfigured": false,
+    "newInstallerPublished": false,
+    "remaining": "Developer ID/notarization and real signed-to-signed staging/install/recovery; cache/disk budgets, publisher feeds and supported-Mac acceptance remain required."
+  }
+}

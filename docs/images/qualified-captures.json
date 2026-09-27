@@ -217,5 +217,16 @@
     "sha256": "f89f89bafcc68c133837fc3df3807ca5de411590f4ab438baa64e660ba5407d4",
     "synthetic": true,
     "liveAI": false
+  },
+  {
+    "file": "docs/images/app-updates-recovery.png",
+    "sourceSuite": "updates",
+    "sourceCapture": "updates-staging-recovery.png",
+    "sourceEvidence": "test-results/app-updates-XsXtTQ/result.json",
+    "sha256": "0be999a0ede98cfc87d7f9973afa41128e97acda4e80f177aa80ea3c5f32fb12",
+    "synthetic": true,
+    "liveAI": false,
+    "nativeStagingSimulated": true,
+    "scope": "Actual Settings screen with a controlled restart IPC rejection. Subsequent project/chat edits survive normal close and reopen. No signed native replacement claimed."
   }
 ]

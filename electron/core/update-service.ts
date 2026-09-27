@@ -3,6 +3,7 @@ import type { AppUpdateStatus, UpdatePreferences } from '../../src/shared/update
 import { APP_DATA_EPOCH } from '../../src/shared/updates';
 import { packFile, savePackFile } from './pack-io';
 import { fetchUpdateFeed, type UpdateFetch } from './update-feed';
+import { UpdateRestartRequired, UPDATE_REOPEN_REASON } from './update-staging';
 import {
   UpdateVerifier,
   advanceUpdateCheckpoint,
@@ -146,6 +147,9 @@ export class AppUpdates {
     } catch (error) {
       this.change({
         phase: 'error',
+        ...(error instanceof UpdateRestartRequired
+          ? { canInstall: false, installReason: UPDATE_REOPEN_REASON }
+          : {}),
         message: controller.signal.aborted
           ? 'Update download cancelled. Check for updates to try again.'
           : (error as Error).message,
@@ -246,9 +250,9 @@ export class AppUpdates {
     });
   }
   private installable() {
-    if (!this.options.installer)
+    if (!this.options.installer || !this.value.canInstall)
       throw new Error(
-        this.options.installReason ?? 'This build cannot install app updates automatically.',
+        this.value.installReason ?? 'This build cannot install app updates automatically.',
       );
     const feed = this.selected;
     if (!feed?.release) throw new Error('Check for an available update first.');
@@ -329,6 +333,7 @@ export class AppUpdates {
         startedAt: new Date(this.now()).toISOString(),
       };
       await this.persist();
+      this.change({ message: 'macOS is preparing the update. This can take up to two minutes…' });
       // Never reach the native installer when recovery or the restart journal
       // could not be saved. A normal app quit never invokes this operation.
       await installer.install();

@@ -35,6 +35,8 @@ Every currently implemented feature group below has a plain-language walkthrough
 | Preview a pack before using it | [Walkthrough](tutorials/resource-packs.md) | [Screenshot](images/pack-preview-light.png) · Real source app/compiler · controlled missing package |
 | Reviewable support ZIP | [Walkthrough](tutorials/settings-and-compiler.md#make-a-support-bundle) | [Screenshot](images/support-bundle.png) · Real app · synthetic privacy fixture |
 | Privacy and support | [Walkthrough](tutorials/settings-and-compiler.md) | [Screenshot](images/privacy.png) · Real app · synthetic project |
+| App update preferences | [Walkthrough](tutorials/app-updates.md) | [Screenshot](images/app-updates-dark.png) · Development source · publisher not configured |
+| Return to work after update preparation fails | [Walkthrough](tutorials/app-updates.md#if-preparing-an-update-takes-too-long) | [Screenshot](images/app-updates-recovery.png) · Real Settings · simulated timeout |
 
 See [demo reproduction](demos/README.md) for commands and capture provenance. Pack workflows are demonstrated with the public catalog and published table resources. See [the release audit](RELEASE_GAP_AUDIT.md) for package qualification and remaining release requirements. Automatic updates have no working-feature demo yet. Wider OS, physical accessibility and live AI acceptance also remain open.
 
@@ -43,3 +45,5 @@ See [demo reproduction](demos/README.md) for commands and capture provenance. Pa
 [App updates tutorial](tutorials/app-updates.md) covers Stable/Beta, opt-in checks, preview signing limits and the GitHub fallback. `npm run test:updates` exercises the actual Settings and persisted preferences. The source implementation contains authenticated download/restart orchestration; native signed installation and publisher activation remain unverified.
 
 [Local app-update verification and limits](releases/app-updates-verification.json) records the source, native-preview and website checks.
+
+[Staging recovery verification](releases/update-staging-verification.json) records timer/event controls and simulated renderer failure recovery. A real signed update remains required.

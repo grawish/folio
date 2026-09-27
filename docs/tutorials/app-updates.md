@@ -29,3 +29,13 @@ The next launch will tell you whether the update finished. If it did not, your r
 **Demo:** `npm run test:updates` checks the real preview Settings and close/reopen behavior using a made-up project and chat draft. It does not demonstrate a signed app installation. See [developer details and remaining tests](../APP_UPDATES.md).
 
 When downloads are enabled, **Cancel download** stops the transfer and closes its temporary file. Check again to retry. A failed checksum or a download larger than its signed size is rejected; Folio does not restart from those bytes. These safeguards have automated Electron tests, while a real signed upgrade remains on the release checklist.
+
+## If preparing an update takes too long
+
+Folio waits up to two minutes for macOS to prepare the update. If that fails or takes longer, Settings shows a message and lets you return to your document. Your recovery copy stays saved. You can keep editing.
+
+Save your latest changes, quit Folio and open it again before trying another update. macOS may finish the update when you close Folio. The next launch tells you whether it finished. Folio will not start a second update while an earlier one might still be preparing.
+
+![Settings after a simulated update preparation timeout](../images/app-updates-recovery.png)
+
+This screenshot uses the real Settings screen with a simulated failure. It demonstrates returning to work; it does not show a real signed update. The test also edits the project name and chat draft afterward, then verifies both survive closing and reopening Folio.

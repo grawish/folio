@@ -11,6 +11,7 @@ import { updateDownloadRequest } from './update-request';
 import { verifyUpdateArchive, discardUpdateArchive } from './update-archive';
 import { requireVerifiedUpdate, type UpdateFeed } from './update-manifest';
 import { signedUpdateProvider } from './update-provider';
+import { NativeUpdateStaging } from './update-staging';
 import type { AppUpdateInstaller } from './update-service';
 
 const execute = promisify(execFile);
@@ -41,6 +42,7 @@ export async function installedUpdateSupport(teamId: string | null) {
 
 export class MacAppInstaller implements AppUpdateInstaller {
   private readonly updater = new MacUpdater();
+  private readonly staging = new NativeUpdateStaging(nativeUpdater);
   private readonly cacheRoot = path.join(
     homedir(),
     'Library',
@@ -80,6 +82,7 @@ export class MacAppInstaller implements AppUpdateInstaller {
     signal: AbortSignal,
     progress: (received: number, total: number) => void,
   ) {
+    this.staging.assertAvailable();
     requireVerifiedUpdate(feed);
     if (!feed.release) throw new Error('There is no approved app update.');
     signal.throwIfAborted();
@@ -143,35 +146,11 @@ export class MacAppInstaller implements AppUpdateInstaller {
   }
 
   async install() {
+    this.staging.assertAvailable();
     if (!this.downloaded) throw new Error('Download and verify an app update first.');
     await this.verify(this.downloaded.feed);
     // With autoInstallOnAppQuit=false the native updater has not staged a new
     // app yet. Only the explicit restart action can reach this point.
-    await new Promise<void>((resolve, reject) => {
-      const cleanup = () => {
-        nativeUpdater.removeListener('error', failed);
-        nativeUpdater.removeListener('update-downloaded', ready);
-      };
-      const failed = (error: Error) => {
-        cleanup();
-        reject(error);
-      };
-      const ready = () => {
-        cleanup();
-        try {
-          this.updater.quitAndInstall();
-          resolve();
-        } catch (error) {
-          reject(error);
-        }
-      };
-      nativeUpdater.once('error', failed);
-      nativeUpdater.once('update-downloaded', ready);
-      try {
-        nativeUpdater.checkForUpdates();
-      } catch (error) {
-        failed(error as Error);
-      }
-    });
+    await this.staging.install(() => this.updater.quitAndInstall());
   }
 }

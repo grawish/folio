@@ -7,6 +7,7 @@ import assert from 'node:assert/strict';
 import { zipSync } from 'fflate';
 import { DownloadedUpdateHelper } from 'electron-updater/out/DownloadedUpdateHelper';
 import { MacAppInstaller } from '../../electron/core/update-installer';
+import { UpdateRestartRequired } from '../../electron/core/update-staging';
 import {
   UpdateVerifier,
   UPDATE_SIGNATURE_CONTEXT,
@@ -19,6 +20,7 @@ const checks: string[] = [];
 const requests: string[] = [];
 const nativeFeeds: Parameters<typeof nativeUpdater.setFeedURL>[0][] = [];
 let nativeInstallationAttempts = 0;
+let guardedStagingChecks = 0;
 const startedAt = Date.now();
 let stage = 'launch';
 function checkpoint(next: string) {
@@ -293,6 +295,32 @@ void app.whenReady().then(async () => {
     assert.equal(nativeFeeds.length, beforeOversized);
     checks.push('An oversized chunked response cannot become a verified native update.');
 
+    assert.equal(nativeInstallationAttempts, 0);
+    checkpoint('guarded native staging failure and late event');
+    mode = 'good';
+    const staged = feed('0.7.0');
+    await installer.download(staged, new AbortController().signal, () => {});
+    // Intercept only this fixture's native entry point. Never send the inert
+    // ZIP to Squirrel. The actual adapter, staging state and event emitter run.
+    nativeUpdater.checkForUpdates = () => {
+      guardedStagingChecks++;
+      throw new Error('Controlled native staging rejection');
+    };
+    await assert.rejects(installer.install(), UpdateRestartRequired);
+    nativeUpdater.emit('update-downloaded');
+    nativeUpdater.emit('error', new Error('Controlled late native error'));
+    const beforeRetry = { requests: requests.length, feeds: nativeFeeds.length };
+    await assert.rejects(installer.install(), UpdateRestartRequired);
+    await assert.rejects(
+      installer.download(feed('0.8.0'), new AbortController().signal, () => {}),
+      UpdateRestartRequired,
+    );
+    assert.deepEqual({ requests: requests.length, feeds: nativeFeeds.length }, beforeRetry);
+    assert.equal(guardedStagingChecks, 1);
+    checks.push(
+      'Guarded native failure releases the adapter, ignores late events and blocks a second download or restart in this process.',
+    );
+
     checkpoint('complete');
     assert.equal(nativeInstallationAttempts, 0);
     await fs.writeFile(
@@ -312,6 +340,8 @@ void app.whenReady().then(async () => {
           syntheticTrust: true,
           isolatedCache: true,
           nativeInstallationAttempted: nativeInstallationAttempts > 0,
+          guardedStagingChecks,
+          nativeStagingSimulated: true,
           scope:
             'No runnable app ZIP, Developer ID, notarization, public network, or native replacement is claimed.',
         },

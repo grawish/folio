@@ -32,6 +32,7 @@ for (const file of [
   'electron/core/update-feed.ts',
   'electron/core/update-download.ts',
   'electron/core/update-request.ts',
+  'electron/core/update-staging.ts',
   'package-lock.json',
 ])
   inputs[file] = createHash('sha256')
@@ -62,7 +63,7 @@ try {
   await fs.writeFile(path.join(root, 'native-output.log'), result.stdout + result.stderr);
   process.stdout.write(result.stdout);
   const report = JSON.parse(await fs.readFile(path.join(root, 'result.json'), 'utf8'));
-  if (!report.passed || report.nativeInstallationAttempted)
+  if (!report.passed || report.nativeInstallationAttempted || report.guardedStagingChecks !== 1)
     throw new Error('The updater fixture did not finish safely.');
 } catch (error) {
   await fs.writeFile(
