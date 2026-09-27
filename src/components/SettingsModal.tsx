@@ -112,6 +112,7 @@ export function SettingsModal({
             <button
               key={id as string}
               className={tab === id ? 'active' : ''}
+              aria-current={tab === id ? 'true' : undefined}
               disabled={packBusy || closing || restarting}
               onClick={() => setTab(id as string)}
             >

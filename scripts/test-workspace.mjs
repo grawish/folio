@@ -11,6 +11,7 @@ delete env.ELECTRON_RUN_AS_NODE;
 let app, page;
 const errors = [];
 const layouts = [];
+const keyboardChecks = [];
 const pause = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const readSource = () => fs.readFile(path.join(folder, 'main.tex'), 'utf8');
 const launch = async () => {
@@ -128,6 +129,89 @@ const holdNextSourceWrite = (fail = false) =>
   );
 try {
   await launch();
+  const chatTab = page.getByRole('tab', { name: 'Chat', exact: true });
+  const codeTab = page.getByRole('tab', { name: 'Code', exact: true });
+  const historyButton = page.getByRole('button', { name: 'History', exact: true });
+  const composer = page.getByLabel('Message the resume agent');
+  const chatDraft = 'Keyboard navigation keeps this unsent draft.';
+  await composer.fill(chatDraft);
+  await chatTab.focus();
+  await chatTab.press('ArrowRight');
+  await expect(codeTab).toBeFocused();
+  await expect(codeTab).toHaveAttribute('aria-selected', 'true');
+  await expect(chatTab).toHaveAttribute('tabindex', '-1');
+  await expect(codeTab).toHaveAttribute('tabindex', '0');
+  const codePanel = page.getByRole('tabpanel', { name: 'Code', exact: true });
+  await expect(codePanel).toBeVisible();
+  await expect(codeTab).toHaveAttribute('aria-controls', await codePanel.getAttribute('id'));
+  await expect(page.getByRole('tabpanel')).toHaveCount(1);
+  await expect(
+    page.getByRole('tablist', { name: 'Workspace view' }).getByRole('button'),
+  ).toHaveCount(0);
+  await page.screenshot({ path: path.join(root, 'keyboard-tabs.png') });
+  await codeTab.press('Tab');
+  await expect(historyButton).toBeFocused();
+  await historyButton.press('Tab');
+  await expect(codePanel).toBeFocused();
+  await codePanel.press('Shift+Tab');
+  await expect(historyButton).toBeFocused();
+  await historyButton.press('Shift+Tab');
+  await expect(codeTab).toBeFocused();
+  await codeTab.press('ArrowRight');
+  await expect(chatTab).toBeFocused();
+  await expect(composer).toHaveValue(chatDraft);
+  const chatPanel = page.getByRole('tabpanel', { name: 'Chat', exact: true });
+  await expect(chatTab).toHaveAttribute('aria-controls', await chatPanel.getAttribute('id'));
+  await chatTab.press('ArrowLeft');
+  await expect(codeTab).toBeFocused();
+  await codeTab.press('Home');
+  await expect(chatTab).toBeFocused();
+  await chatTab.press('End');
+  await expect(codeTab).toBeFocused();
+  keyboardChecks.push(
+    'Chat/Code arrows wrap, Home/End select, one tab participates in Tab order, named visible panels agree, and the unsent draft survives.',
+  );
+
+  const settingsButton = page.getByRole('button', { name: 'Settings', exact: true });
+  await settingsButton.focus();
+  await settingsButton.press('Enter');
+  const settingsDialog = page.getByRole('dialog', { name: 'Settings', exact: true });
+  await expect(settingsDialog).toBeVisible();
+  await expect(settingsDialog).toHaveAttribute('aria-modal', 'true');
+  const general = settingsDialog.getByRole('button', { name: 'General', exact: true });
+  const ai = settingsDialog.getByRole('button', { name: 'AI connections', exact: true });
+  await expect(general).toHaveAttribute('aria-current', 'true');
+  const closeButton = settingsDialog.getByRole('button', { name: 'Close dialog', exact: true });
+  const doneButton = settingsDialog.getByRole('button', { name: 'Done', exact: true });
+  await doneButton.focus();
+  await doneButton.press('Tab');
+  await expect(closeButton).toBeFocused();
+  await closeButton.press('Shift+Tab');
+  await expect(doneButton).toBeFocused();
+  await settingsButton.focus();
+  expect(await settingsDialog.evaluate((el) => el.contains(document.activeElement))).toBe(true);
+  await closeButton.focus();
+  await closeButton.press('Tab');
+  await expect(general).toBeFocused();
+  await general.press('Tab');
+  await expect(ai).toBeFocused();
+  await ai.press('Enter');
+  await expect(ai).toHaveAttribute('aria-current', 'true');
+  await expect(general).not.toHaveAttribute('aria-current', 'true');
+  await page.screenshot({ path: path.join(root, 'keyboard-settings.png') });
+  await page.keyboard.press('Escape');
+  await expect(settingsDialog).toHaveCount(0);
+  await expect(settingsButton).toBeFocused();
+  keyboardChecks.push(
+    'Native Settings traps forward/backward Tab, rejects outside focus, identifies its current section, and returns focus to its opener after Escape.',
+  );
+  await codeTab.focus();
+  await codeTab.press('Home');
+  await expect(composer).toHaveValue(chatDraft);
+  await composer.fill('');
+  console.log(
+    'PASS: native workspace tab keys, named panels, retained draft, modal focus containment and return.',
+  );
   await app.evaluate(({ dialog }) => {
     dialog.openCount = 0;
     dialog.conflictCount = 0;
@@ -367,7 +451,17 @@ try {
   expect(errors).toEqual([]);
   await fs.writeFile(
     path.join(root, 'result.json'),
-    JSON.stringify({ passed: true, errors }, null, 2),
+    JSON.stringify(
+      {
+        passed: true,
+        errors,
+        keyboardChecks,
+        accessibilityScope:
+          'Actual Electron keyboard and DOM accessibility semantics; no physical VoiceOver or full accessibility-conformance claim.',
+      },
+      null,
+      2,
+    ),
   );
   console.log(
     `PASS: close waits for autosave; source, disabled recovery and preferences survive restart. No renderer errors.\nEvidence: ${root}`,

@@ -1679,7 +1679,7 @@ export default function App() {
             aria-label="Resume workspace"
             key="editor"
           >
-            <div className="workspace-tabs" role="tablist" aria-label="Workspace view">
+            <div className="workspace-tabs">
               {!sidebarOpen && (
                 <button
                   className="icon-button"
@@ -1689,14 +1689,58 @@ export default function App() {
                   <PanelLeftOpen size={16} />
                 </button>
               )}
-              <button role="tab" aria-selected={view === 'chat'} onClick={() => setView('chat')}>
-                <MessageSquare size={16} />
-                Chat
-              </button>
-              <button role="tab" aria-selected={view === 'code'} onClick={() => setView('code')}>
-                <Code2 size={16} />
-                Code
-              </button>
+              <div
+                className="workspace-view-tabs"
+                role="tablist"
+                aria-label="Workspace view"
+                onKeyDown={(event) => {
+                  if (
+                    event.altKey ||
+                    event.ctrlKey ||
+                    event.metaKey ||
+                    !['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)
+                  )
+                    return;
+                  const items = [
+                    ...event.currentTarget.querySelectorAll<HTMLButtonElement>('[role="tab"]'),
+                  ];
+                  const index = items.indexOf(event.target as HTMLButtonElement);
+                  if (index < 0) return;
+                  event.preventDefault();
+                  const next =
+                    event.key === 'Home'
+                      ? 0
+                      : event.key === 'End'
+                        ? items.length - 1
+                        : (index + (event.key === 'ArrowRight' ? 1 : -1) + items.length) %
+                          items.length;
+                  setView(next === 0 ? 'chat' : 'code');
+                  items[next].focus();
+                }}
+              >
+                <button
+                  id="workspace-chat-tab"
+                  role="tab"
+                  aria-controls="workspace-chat-panel"
+                  aria-selected={view === 'chat'}
+                  tabIndex={view === 'chat' ? 0 : -1}
+                  onClick={() => setView('chat')}
+                >
+                  <MessageSquare size={16} />
+                  Chat
+                </button>
+                <button
+                  id="workspace-code-tab"
+                  role="tab"
+                  aria-controls="workspace-code-panel"
+                  aria-selected={view === 'code'}
+                  tabIndex={view === 'code' ? 0 : -1}
+                  onClick={() => setView('code')}
+                >
+                  <Code2 size={16} />
+                  Code
+                </button>
+              </div>
               <button
                 className="history-button"
                 role="button"
@@ -1710,39 +1754,55 @@ export default function App() {
                 History
               </button>
             </div>
-            {view === 'chat' && (
-              <ChatPanel
-                workspace={workspace}
-                update={updateWorkspace}
-                ready={workspaceReady}
-                canSend={!!runtime?.ready}
-                progress={agentProgress}
-                connected={!!connections.activeId}
-                connections={connections}
-                onConnections={setConnections}
-                onSend={() => void sendToAgent()}
-                onStop={() => {
-                  if (activeRun.current)
-                    void window.folio
-                      ?.cancelAgent(activeRun.current.id)
-                      .catch((error) => message(error.message));
-                }}
-                onSettings={() => {
-                  setSettingsTab('ai');
-                  setDialog('settings');
-                }}
-                onTemplates={() => setDialog('templates')}
-                onHistory={(id) => {
-                  const index = workspace.versions.findIndex((v) => v.id === id);
-                  setHistoryId(index > 0 ? workspace.versions[index - 1].id : id);
-                  setHistoryNote(undefined);
-                  setDialog('history');
-                }}
-                onUndo={(id) => void undoVersion(id)}
-                onNote={showNote}
-              />
-            )}
-            <div className="code-view" hidden={view !== 'code'}>
+            <div
+              className="chat-view"
+              id="workspace-chat-panel"
+              role="tabpanel"
+              aria-labelledby="workspace-chat-tab"
+              hidden={view !== 'chat'}
+              tabIndex={0}
+            >
+              {view === 'chat' && (
+                <ChatPanel
+                  workspace={workspace}
+                  update={updateWorkspace}
+                  ready={workspaceReady}
+                  canSend={!!runtime?.ready}
+                  progress={agentProgress}
+                  connected={!!connections.activeId}
+                  connections={connections}
+                  onConnections={setConnections}
+                  onSend={() => void sendToAgent()}
+                  onStop={() => {
+                    if (activeRun.current)
+                      void window.folio
+                        ?.cancelAgent(activeRun.current.id)
+                        .catch((error) => message(error.message));
+                  }}
+                  onSettings={() => {
+                    setSettingsTab('ai');
+                    setDialog('settings');
+                  }}
+                  onTemplates={() => setDialog('templates')}
+                  onHistory={(id) => {
+                    const index = workspace.versions.findIndex((v) => v.id === id);
+                    setHistoryId(index > 0 ? workspace.versions[index - 1].id : id);
+                    setHistoryNote(undefined);
+                    setDialog('history');
+                  }}
+                  onUndo={(id) => void undoVersion(id)}
+                  onNote={showNote}
+                />
+              )}
+            </div>
+            <div
+              className="code-view"
+              id="workspace-code-panel"
+              role="tabpanel"
+              aria-labelledby="workspace-code-tab"
+              hidden={view !== 'code'}
+              tabIndex={0}
+            >
               <div className="editor-toolbar">
                 <div className="editor-tabs" ref={tabs} aria-label="Source files">
                   {project.files.map((file) => (
