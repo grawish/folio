@@ -4,7 +4,11 @@ import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
 import { execFileSync } from 'node:child_process';
-import { verifyMacArchives, verifyDistributionApp } from '../scripts/verify-mac-archives';
+import {
+  verifyMacArchives,
+  verifyDistributionApp,
+  verifyDmgSignature,
+} from '../scripts/verify-mac-archives';
 
 const supported = process.platform === 'darwin' && process.arch === 'arm64';
 let root: string, app: string, dmg: string, zip: string;
@@ -177,6 +181,7 @@ test(
   async () => {
     await assert.rejects(verifyDistributionApp(app, 'invalid'), /Apple Team ID/);
     await assert.rejects(verifyDistributionApp(app, 'ABCDE12345'), /codesign/);
+    await assert.rejects(verifyDmgSignature(dmg, 'ABCDE12345'), /codesign/);
     await assert.rejects(
       verifyMacArchives(app, dmg, zip, { distributionTeamId: '' }),
       /Apple Team ID/,

@@ -49,6 +49,7 @@
     "runtime:verify": "node scripts/verify-runtime.mjs",
     "pack": "npm run runtime:verify && npm run build && electron-builder --mac --arm64 --dir",
     "dist": "npm run runtime:verify && npm run build && electron-builder --mac --arm64",
+    "release:finalize-dmg": "node --import tsx scripts/finalize-mac-dmg.ts",
     "start": "electron .",
     "test:migration": "npm run build && node --import tsx scripts/test-migration.mjs",
     "demo:capture": "node scripts/capture-tutorials.mjs",

@@ -53,8 +53,12 @@ The source tests include real Apple signatures and changed-file/forged-record co
 Use the owner's Developer ID and notarization credentials through the builder's supported setup. Do not put secrets in source, documents or chat. Leave the production hardened-runtime and timestamp requirements enabled. Set the independently chosen, ten-character `FOLIO_APPLE_TEAM_ID`, then qualify the final app and use the explicit production check:
 
 ```sh
-node scripts/test-mac-release.mjs release
-node scripts/verify-mac-package.mjs release --distribution
+npm run dist -- --publish never -c.mac.notarize=true \
+  -c.dmg.sign=true -c.dmg.writeUpdateInfo=false \
+  -c.directories.output=release/production-candidate
+npm run release:finalize-dmg -- release/production-candidate
+node scripts/test-mac-release.mjs release/production-candidate
+node scripts/verify-mac-package.mjs release/production-candidate --distribution
 ```
 
 The verifier checks the real outer signature and every native runtime signature against the expected identifier, Apple Developer ID certificate requirement and owner-selected Team ID. It also requires hardened runtime and a secure timestamp. It checks the original runtime, final runtime, complete code list, resource bytes and launcher source record independently; `passed: true` in a sidecar is insufficient. Apple's [code-signing requirements note](https://developer.apple.com/documentation/technotes/tn3127-inside-code-signing-requirements) describes certificate and identity requirements.
@@ -67,9 +71,27 @@ The package verifier now compares the app inside **both** the DMG and ZIP with t
 
 The archive checker uses Python 3's standard library as a developer dependency (`FOLIO_PYTHON` may select the test virtual environment). End users do not need Python. A new verification attempt writes `passed: false` before checking, so a failed rerun cannot leave an old success report as current evidence. Keep the process exit status and current report together; archive previous evidence before rerunning if it must be retained.
 
-These gates are implemented, but successful production acceptance still requires the owner's signing credentials and real notarized artifacts. The pinned builder notarizes/staples the app; its current DMG target does not separately submit or staple the DMG. The production pipeline must finish the DMG's signing/notarization/stapling and produce final checksums/update metadata **after** those changes. Do not pass the gate with a private test signature or change a verified archive afterward.
+These gates are implemented, but successful production acceptance still requires the owner's signing credentials and real notarized artifacts. The pinned builder notarizes/staples the app and signs the DMG when `dmg.sign=true`; its DMG target does not separately submit or staple that disk image. The new `release:finalize-dmg` command performs this last step. Generate final checksums and signed update metadata **after** it succeeds. Do not pass the gate with a private test signature or change a verified archive afterward.
 
 Command-line checks do not replace installing a quarantined download on a fresh supported Mac and testing offline launch, relocation, upgrades and recovery. Apple's [testing procedure](https://developer.apple.com/forums/thread/130560) and [trusted-execution guide](https://developer.apple.com/forums/thread/706442) explain the difference. Full supported-Mac, updater and license/source/SBOM acceptance remain open. See [archive verification evidence](releases/mac-archives-verification.json) for the tested scope and negative controls.
+
+## Finalize and resume DMG notarization
+
+Set `FOLIO_APPLE_TEAM_ID` to the independently chosen publisher Team ID. Configure the builder's Developer ID identity and set `APPLE_KEYCHAIN_PROFILE` to an existing notarytool credential profile. `APPLE_KEYCHAIN` can select its keychain. Credentials stay in Keychain; this command does not accept a password or private key in an argument. Follow [Apple's notarization workflow](https://developer.apple.com/documentation/security/customizing-the-notarization-workflow) when setting up that profile. Build into a fresh output directory before starting finalization.
+
+`npm run release:finalize-dmg -- RELEASE_DIR` requires the already signed, timestamped DMG, the signed/notarized app and its matching ZIP. It verifies the publisher and compares both archive app copies before uploading anything. It then saves the DMG hash, app identity, ZIP hash and Apple submission ID in `dmg-notarization-state.json`. The command requires a regular DMG with no symbolic or hard links.
+
+A normal run waits at most 60 seconds for Apple's processing, then checks the same job again. Exit code **2** means Apple still reports **In Progress**. Keep the directory unchanged and rerun the same finalization command later. It resumes the saved job instead of submitting another copy. Do not rebuild the pending candidate or erase its state file.
+
+If the upload was interrupted before its ID was saved, the next run stops. Inspect Apple notarization history using the configured profile, then pass the identified UUID with `--submission-id UUID`. The command will still require Apple's accepted log to name that job and the exact saved DMG SHA-256. An unknown job, rejection or different checksum cannot authorize stapling.
+
+After acceptance, the command staples the ticket and independently runs the production archive checks: Developer ID, secure timestamps, notarization tickets, Apple policy and exact app copies inside both DMG and ZIP. An interruption after stapling can resume the same job. A completed rerun rechecks the current final bytes; it does not resubmit or staple again. The app and ZIP must remain unchanged throughout.
+
+A lock prevents concurrent finalizers. Normal failures release it. A killed process can leave `dmg-notarization.lock`; inspect its recorded PID and remove only that lock after confirming that the process has ended. Preserve the state and artifacts so the next command can resume safely.
+
+The finalizer invalidates any previous `verification.json` and does not write release checksums. Run the full native qualification and `verify-mac-package.mjs --distribution` afterward; that command creates `SHA256SUMS` from the final archives. Use a fresh build directory and `dmg.writeUpdateInfo=false` so there is no obsolete DMG blockmap to publish after stapling. Folio's authenticated update manifest uses the separately verified full ZIP.
+
+Eight source tests exercise success ordering, timeout/resume, an ambiguous upload, wrong/rejected Apple results, changed artifacts, failure after stapling, corrupt state and linked files. Apple service responses are simulated. The archive suite also uses actual macOS tools to reject an unsigned DMG. These checks do not prove a successful Apple notarization or a downloaded production install. See [finalization verification](releases/dmg-finalization-verification.json).
 
 ## Existing projects and resource packs
 

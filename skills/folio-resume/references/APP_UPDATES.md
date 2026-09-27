@@ -36,7 +36,7 @@ Only then does Squirrel.Mac receive the local ZIP through electron-updater's aut
 ## Publishing a production update
 
 1. Enroll a separate Ed25519 public key and the actual expected Developer ID Team ID in `resources/app-update-publisher.json`. Keep the private key outside Git, readable only by its owner. Retain retired public keys with their IDs in `retiredKeys`; never reuse an ID for another key. Ship the trust configuration in the signed base release.
-2. Build and qualify the exact signed app, DMG and ZIP using [Mac signing](MAC_SIGNING.md). Complete DMG notarization and stapling before generating checksums or update metadata. Record a unique version/tag; do not replace an existing version's ZIP.
+2. Build and qualify the exact signed app, DMG and ZIP using [Mac signing](MAC_SIGNING.md). Run `npm run release:finalize-dmg -- RELEASE_DIR` and complete production verification before generating checksums or update metadata. If Apple is still processing, resume that same submission before proceeding. Record a unique version/tag; do not replace an existing version's ZIP.
 3. Write a release plan such as this example. Dates are illustrative and must be replaced with a current expiry no more than 45 days after issue. `minimumSystemVersion` is a Darwin kernel version, not the macOS marketing version.
 
 ```json

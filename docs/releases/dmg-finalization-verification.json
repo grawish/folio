@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T09:06:15.842671+00:00",
+  "baseCommit": "10f80600762e9d2fed9dcf2acda0704ceeb5395f",
+  "change": "Resume final signed-DMG notarization by durable Apple submission ID, bind accepted logs to the submitted bytes, staple and independently verify production archive policy before final checksums.",
+  "inputs": [
+    {
+      "path": "scripts/dmg-notarization.ts",
+      "bytes": 10079,
+      "sha256": "da29aeafa55ea9d503acf18879c2c65333a7c0e4bd1bbb6fa4073bd2dc8c22dc"
+    },
+    {
+      "path": "scripts/finalize-mac-dmg.ts",
+      "bytes": 779,
+      "sha256": "0a286f4db4a7325e59689bc3d2b52e0f4dd2782116aa65d7b039073f00b532a4"
+    },
+    {
+      "path": "scripts/verify-mac-archives.ts",
+      "bytes": 8706,
+      "sha256": "6e1b1cf84c4d409367d809974d1877516092a5b593e4c28b19a48bbbe76bfddb"
+    },
+    {
+      "path": "scripts/verify-mac-package.mjs",
+      "bytes": 6403,
+      "sha256": "43af280dba287c06f5a3af86276ef33cfd4d9157d66465a835165b1f157061e7"
+    },
+    {
+      "path": "tests/dmg-notarization.test.ts",
+      "bytes": 9002,
+      "sha256": "ca0fdef3d69833d956cce8847d83ec7e02a1690c256b19ba5a5a4afa399a79a7"
+    },
+    {
+      "path": "tests/mac-archives.test.ts",
+      "bytes": 7946,
+      "sha256": "6623e3cba8d4ffc3072ae2699386c783ac5252950d6c82f92d1c17a08e8f6f64"
+    },
+    {
+      "path": "package.json",
+      "bytes": 5677,
+      "sha256": "f8d9b4164f27c8a637186fbc65d748ae2a23f55c0ebe9d2c4a100d7bccdc44cd"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 206387,
+      "sha256": "f49e1352767126ce8d3c894ac5bfdc4d39fc951fbe1efe7283ca4ee4d991ae00"
+    }
+  ],
+  "checks": {
+    "sourceTestsPassed": 317,
+    "newNotarizationWorkflowTestsPassed": 8,
+    "typecheckPassed": true,
+    "buildPassed": true,
+    "formatPassed": true,
+    "productionCliRejectsMissingPublisherBeforeCreatingOutput": true,
+    "realMacToolsRejectUnsignedDmg": true
+  },
+  "workflowControls": [
+    "check signatures and archive contents before any Apple upload",
+    "save input bytes and submission ID before waiting",
+    "resume pending Apple job without another submit",
+    "refuse automatic retry after ambiguous upload until an ID is reconciled",
+    "bind adopted and original jobs to their accepted log SHA-256",
+    "reject service failures, different jobs and different checksums before staple",
+    "retain accepted state after staple/policy failure and resume without another submit",
+    "reject changed DMG, ZIP, publisher, corrupt state and linked DMG files",
+    "exclude concurrent finalizers and invalidate old verification reports",
+    "verify final distribution archives and hash the actual final DMG; leave checksum generation to complete package verification"
+  ],
+  "logs": [
+    {
+      "path": "test-results/dmg-finalization-unit.log",
+      "bytes": 903,
+      "sha256": "684e8bc9a41853f88d5e5810577c06f249ca9c5bcffe36a48c90900ca120b80a"
+    },
+    {
+      "path": "test-results/dmg-finalization-all-unit.log",
+      "bytes": 32675,
+      "sha256": "e18133d7fee5a968475d1ee2f601af0f74cace30c27226a8ef55d36622fa3f00"
+    },
+    {
+      "path": "test-results/dmg-finalization-build.log",
+      "bytes": 1719,
+      "sha256": "4f33d8772a9fab7da609768f37d2566fda75ac7ac7df994a8d88a7be607f307e"
+    },
+    {
+      "path": "test-results/dmg-finalization-format.log",
+      "bytes": 183,
+      "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+    },
+    {
+      "path": "test-results/dmg-finalization-cli-negative.log",
+      "bytes": 638,
+      "sha256": "b3cc898b1ed11811eb9a386ae9a73b12ad334d4571ebd836f0ec5cf5b530571f"
+    }
+  ],
+  "appleAcceptance": {
+    "externalSubmissionAttempted": false,
+    "successfulProductionNotarizationVerified": false,
+    "freshDownloadedInstallVerified": false
+  },
+  "scope": "The new workflow tests use real temporary files and simulated Apple service/verification operations. The production CLI has no test override and uses real xcrun, codesign, stapler, syspolicy_check and spctl through the shared archive verifier. Existing native archive tests exercise real DMG/ZIP contents and rejection of unsigned/ad-hoc production artifacts. No Apple acceptance, ticket, signing credential, installed upgrade or production publication is claimed."
+}

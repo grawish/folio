@@ -47,6 +47,46 @@ export async function verifyDistributionApp(app: string, expectedTeamId: string)
   };
 }
 
+/** A disk image uses Developer ID Application, not an installer certificate. */
+export async function verifyDmgSignature(dmg: string, expectedTeamId: string) {
+  await command('/usr/bin/codesign', [
+    '--verify',
+    '--strict',
+    '-R',
+    `=${developerRequirement(expectedTeamId)}`,
+    dmg,
+  ]);
+  const details = await command('/usr/bin/codesign', ['--display', '--verbose=4', dmg]);
+  assert.match(details.stderr, /^Timestamp=.+/m, 'Missing secure disk-image signing timestamp.');
+}
+
+export async function verifyDistributionDmg(dmg: string, expectedTeamId: string) {
+  await verifyDmgSignature(dmg, expectedTeamId);
+  const staple = await command('/usr/bin/xcrun', ['stapler', 'validate', dmg]);
+  const policy = await command('/usr/sbin/spctl', [
+    '--assess',
+    '--type',
+    'open',
+    '--verbose=3',
+    '--context',
+    'context:primary-signature',
+    dmg,
+  ]);
+  assert.match(
+    policy.stderr,
+    /^source=Notarized Developer ID$/m,
+    'The disk image was not accepted as notarized Developer ID.',
+  );
+  return {
+    developerIdVerified: true,
+    secureTimestampVerified: true,
+    notarizationTicketVerified: true,
+    systemPolicyPassed: true,
+    stapleLogSha256: sha256(staple.stdout + staple.stderr),
+    policyLogSha256: sha256(policy.stdout + policy.stderr),
+  };
+}
+
 export async function archiveDigest(file: string) {
   const handle = await fs.open(
     file,
@@ -138,42 +178,7 @@ export async function verifyMacArchives(
     const dmgAppDistribution = team ? await verifyDistributionApp(mountedApp, team) : undefined;
     let dmgDistribution;
     if (team) {
-      await command('/usr/bin/codesign', [
-        '--verify',
-        '--strict',
-        '-R',
-        `=${developerRequirement(team)}`,
-        dmg,
-      ]);
-      const details = await command('/usr/bin/codesign', ['--display', '--verbose=4', dmg]);
-      assert.match(
-        details.stderr,
-        /^Timestamp=.+/m,
-        'Missing secure disk-image signing timestamp.',
-      );
-      const staple = await command('/usr/bin/xcrun', ['stapler', 'validate', dmg]);
-      const policy = await command('/usr/sbin/spctl', [
-        '--assess',
-        '--type',
-        'open',
-        '--verbose=3',
-        '--context',
-        'context:primary-signature',
-        dmg,
-      ]);
-      assert.match(
-        policy.stderr,
-        /^source=Notarized Developer ID$/m,
-        'The disk image was not accepted as notarized Developer ID.',
-      );
-      dmgDistribution = {
-        developerIdVerified: true,
-        secureTimestampVerified: true,
-        notarizationTicketVerified: true,
-        systemPolicyPassed: true,
-        stapleLogSha256: sha256(staple.stdout + staple.stderr),
-        policyLogSha256: sha256(policy.stdout + policy.stderr),
-      };
+      dmgDistribution = await verifyDistributionDmg(dmg, team);
     }
     await match(app);
     assert.deepEqual(
