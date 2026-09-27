@@ -83,7 +83,7 @@ const report = {
   limits: [
     'OS disk caches are not purged; fresh profile means new managed runtime and TeX cache, not cold physical storage.',
     'Operation sums overlap because four files copy concurrently; sums are not additive wall-clock shares.',
-    'Instrumentation adds timing overhead. Memory/CPU here describe the Node host, not the native compiler process tree.',
+    'Instrumentation adds timing overhead. Top-level memory/CPU fields describe the Node host; comparison mode separately retains native process snapshots.',
     'Subprocess events time stdout/stderr receipt in the parent. Buffered output can delay a marker; marker gaps are not pure engine CPU time.',
     ...(comparison
       ? [
@@ -91,7 +91,7 @@ const report = {
           'The sampler observes this Node host and its descendants, including its own short-lived observer. Biber analysis must select Biber process identities and not use the aggregate as Biber CPU.',
         ]
       : []),
-    'Raw samples are retained; three samples do not establish population p95 or supported-device performance.',
+    'Raw samples are retained; these small sample counts do not establish population p95 or supported-device performance.',
   ],
   samples: [],
 };

@@ -78,13 +78,50 @@ The enhanced `node --import tsx scripts/profile-runtime.mjs 5` records bounded s
 
 These intervals overlap; do not add the rows. The slow third sample's self-test contains a 22.189-second Biber-to-TeX interval. Copying stays comparatively stable, so the trace locates most of this run's variation around bibliography execution. The messages are observed at the parent: buffering, scheduling, native startup and surrounding engine work can contribute. This does not prove that Biber computation, macOS executable validation or archive unpacking is the cause.
 
-Next compare the existing self-extracting Biber entrypoint with the separately verified fixed-entry launcher from the signing work, using the same offline bibliography fixture and isolated profiles. Record the actual descendant process lifetime and CPU alongside these markers. Preserve exact runtime identities, real Biber execution, sandbox restrictions, integrity checks and the complete generated PDF. Do not remove the bibliography self-test or cache a successful verification indefinitely to hide the delay. Repeat any improvement in the complete app on supported Macs before changing a release claim.
+The paired runtime comparison below now adds native CPU observations and checks every generated PDF. Preserve exact runtime identities, real Biber execution, sandbox restrictions and integrity checks while investigating the remaining delay. Do not remove the bibliography self-test or cache a successful verification indefinitely to hide it. Repeat any improvement in the complete app on supported Macs before changing a release claim.
 
 The initial observer validation is retained separately: fresh preparation took 44.979 seconds and the self-test 25.354 seconds, including a 21.820-second Biber-to-TeX interval. A subsequent trial was stopped after a recorder bookkeeping fault was discovered; its console results are retained locally and excluded from the final five-sample dataset because it lacked the raw stage records. The corrected profiler retains incomplete samples and rejects missing samples. No application source changed during these trials.
 
 OS caches were not purged; the validation and abandoned trial ran first. No other local Folio native suite or benchmark ran concurrently; ordinary desktop work, documentation and read-only hosted-artifact verification continued. Five samples are not a population p95, physical cold-start result or supported-device budget pass. These are backend observations, not full-window startup or an optimization speedup.
 
 See the [summary and per-sample events](performance/runtime-stages-summary.json), [five raw samples](performance/runtime-stages.json.gz), [initial observer validation](performance/runtime-stage-observer-check.json.gz) and [verification](releases/runtime-stages-verification.json).
+
+### Paired Biber runtime comparison
+
+Five alternating pairs compare the default runtime with a fresh private copy made by the existing ad-hoc signing pipeline. The candidate uses the fixed-entry Biber launcher, relocated libraries and ad-hoc signatures. It changes 158 native files and the runtime identity; every non-code file remains identical. This measures complete runtime variants, not the launcher alone. The default compiler and application code were unchanged.
+
+Run `node --import tsx scripts/profile-runtime.mjs 5 '/absolute/path/to/candidate-runtime'` on an Apple silicon Mac after preparing and verifying a separate candidate. The pairs run AB, BA, AB, BA, AB, with a new managed runtime and TeX cache for each sample. The profiler observes native descendants every 100 ms and retains five synthetic PDFs per sample. Sources correspond to base `2bda16c` with the measured profiler committed as `16dd089`; its exact hash is recorded separately because the collection started before that commit. Later report-wording changes do not change these retained measurements.
+
+| Pair | Default fresh preparation | Candidate fresh preparation |
+| --- | ---: | ---: |
+| 1 | 26.227 s | 24.194 s |
+| 2 | 45.674 s | 23.923 s |
+| 3 | 27.787 s | 38.395 s |
+| 4 | 27.648 s | 25.082 s |
+| 5 | 28.072 s | 25.832 s |
+
+| Interval or counter | Default median (range) | Candidate median (range) |
+| --- | ---: | ---: |
+| Complete fresh preparation | 27.787 s (26.227–45.674) | 25.082 s (23.923–38.395) |
+| Through durable staged checkpoint | 18.032 s (17.009–18.451) | 17.886 s (16.773–18.761) |
+| Offline self-test | 8.870 s (8.581–27.902) | 6.474 s (6.374–18.893) |
+| Biber message to next TeX message | 5.679 s (5.375–24.435) | 3.398 s (3.282–15.463) |
+| Observed Biber CPU | 0.710 s (0.661–0.749) | 0.415 s (0.396–0.465) |
+
+The candidate is faster in four pairs, but 10.608 seconds slower in pair three. Its group median is 9.7% lower, which does not establish a consistent improvement or explain the large variation. Durable staging remains about 18 seconds despite the smaller candidate. These intervals overlap and must not be added together.
+
+The sampled Biber CPU counters are much smaller than the elapsed marker intervals. Counters were recomputed independently using process ID, birth time and the kernel timebase; the profiling host and observer are excluded from the Biber total. These are lower-bound observations: short-lived work, final CPU after the last sample and system services outside the descendant tree can be missed. They support investigating startup, loading and waiting, rather than assuming the whole gap is bibliography computation.
+
+A separate diagnostic pair ran Apple's `sample` for one second per observed Biber process. The default report contains 48 `_dyld_start` observations out of 49; the candidate report contains 66 `__fcntl` observations in library-loading stacks, including Perl module loading, and 18 `_dyld_start` observations. Some frames involve debugger notifications, which the sampling tool itself can affect. Neither report has a binary image list. These short, instrumented windows do not explain the entire delay or prove a code-signing service is responsible. The diagnostic pair is excluded from all five-pair timing statistics.
+
+Independent checks verified all 50 compiler logs, 39,820 installed runtime file hashes and 3,306 native process snapshots. All 50 one-page PDFs have matching authored sources, extracted text and 100-DPI Poppler raster bytes for their document/revision group. The two source runtime manifests contain the same 3,982 keys, and only the 158 native files differ.
+
+Next investigate library loading and waiting with longer, separate diagnostic observations and a controlled repeated-execution fixture; then repeat a justified change in the complete app. Keep the actual bibliography self-test and every integrity/durability check. Changing the default runtime also requires resource-pack compatibility and release qualification for the new pin, so this experiment does not change the shipped compiler.
+
+These results come from one M4 Pro/48 GiB development Mac. OS caches were not purged, and a separate observer-validation pair ran first. No local Folio native suite or benchmark ran alongside the final pairs; ordinary desktop and light documentation/status work continued. This is not a population p95, production signing result, supported-device pass or complete-app speedup.
+
+See [summary, PDF checks and per-pair statistics](performance/biber-runtime-comparison-summary.json), [raw measurements](performance/biber-runtime-comparison.json.gz), [candidate preparation](performance/biber-runtime-preparation.json.gz), [separate diagnostic records](performance/biber-runtime-diagnostic.json.gz) and [verification](releases/biber-runtime-comparison-verification.json).
+
 
 ### Resource observations
 
@@ -325,7 +362,7 @@ Targets below are acceptance targets for experiments, not achieved results.
 | 1 | Batch directory durability work within the unpublished runtime generation; first implementation achieves 36.1%, so the target remains open | About 31 s in verify/copy; nearly 4,000 directory syncs | At least 40% lower median preparation/copy time across five fresh profiles | Sync every required file and directory before publishing readiness; force-kill at every publication boundary; failed install preserves the previous compiler |
 | 1 | Recovery, editing, saves and chat drafting now open before compiler preparation; extend the repeated package evidence to supported devices | Ten current-package launches accept chat drafts in 0.397–0.835 s; their first PDFs still take 4.25–56.24 s | Usable recovered project within the original plan's startup budget; progress remains visible until builds are ready | Load the real recovery project first; early close must preserve it; no compilation, export or AI apply may assume an unverified compiler |
 | 2 | Eliminate duplicate verification within one tightly scoped operation/verified lease, and assess safe reuse between requests | About 0.70–0.85 s of each small warm build precedes native execution | Median changed-source warm build below 0.5 s for this fixture, with runtime-acquire work below 0.2 s | No global forever-valid cache; changed/corrupt files, replacement paths and compiler pins must still fail before execution; mutation/replacement tests must defeat stale reuse |
-| 2 | Compare the existing Biber bootstrap with the verified fixed-entry launcher; add descendant lifetime/CPU observations | Five traces locate 4.849–22.189 s between Biber and the next TeX message, while other self-test work stays 3.106–3.484 s | Explain the variation and reduce it in a matched comparison before claiming stable first-PDF behavior | Keep an actual offline bibliography self-test, exact runtime identities, sandbox restrictions and integrity checks; message gaps alone are not pure Biber CPU time |
+| 2 | Investigate native startup/library-loading waits using the completed five-pair runtime comparison | Candidate is faster in four pairs but slower in one; sampled Biber CPU remains below 0.75 s while elapsed marker gaps reach 24.44 s | Explain the variation and demonstrate consistent improvement before changing the default runtime or first-PDF claim | Keep the offline bibliography self-test, exact pins, PDF comparisons, sandbox and integrity checks; sampled CPU and short stack windows do not establish the complete cause |
 | 3 | Evaluate APFS clone/copy strategies and per-generation directory creation | Hundreds of megabytes and thousands of small files | Reduce I/O/metadata overhead without exceeding memory/disk budgets | Verify the resulting bytes and modes; retain independent versions through app replacement; handle non-APFS destinations explicitly |
 | 3 | Consider packaging the bibliography helper's cache differently | It is 3,979 files and about 236 MiB | Smaller installation work and measurable startup/storage benefit | Preserve Biber compatibility, offline operation, read-only dependencies, complete licenses and exact runtime identity |
 | 3 | Background compression passes the small-history timer target; measure the new quota/journal at maximum admitted history and extend whole-profile retention | With 100 small versions, history compression takes 46.8–50.1 ms and observed Node timer lateness reaches 30.3 ms; save rearchives history | Below 10 ms observed main-process timer lateness during a repeat of this fixture, with no material save-time regression | Retain exact version/source/PDF validation, immutable export snapshots, complete history round-trip and journaled save recovery; establish worker memory/cancellation limits |
