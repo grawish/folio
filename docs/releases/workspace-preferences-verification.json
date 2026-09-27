@@ -739,7 +739,8 @@
     "runId": 36349688214,
     "url": "https://github.com/grawish/folio/actions/runs/36349688214",
     "commit": "b0f9b232cfa1c07e5e7ace9debaeae7fa23e697d",
-    "statusAtPublication": "in_progress"
+    "statusAtPublication": "success",
+    "independentVerification": "docs/releases/mac-workspace-preferences-hosted.json"
   },
   "nativeQualificationSuites": 18,
   "productionReleaseQualified": false,

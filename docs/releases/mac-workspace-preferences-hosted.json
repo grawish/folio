@@ -1,0 +1,400 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T21:25:29.438798+00:00",
+  "commit": "b0f9b232cfa1c07e5e7ace9debaeae7fa23e697d",
+  "runId": 36349688214,
+  "url": "https://github.com/grawish/folio/actions/runs/36349688214",
+  "conclusion": "success",
+  "downloadedArtifact": {
+    "id": 10941869522,
+    "file": "test-results/workspace-preferences-hosted-evidence.zip",
+    "bytes": 6640402,
+    "sha256": "064eb4c482243042157d25a65e8d89de981cf31f8235a272bb03b5f7079a0075",
+    "githubDigestMatches": true
+  },
+  "retainedArtifactFilesVerified": 158,
+  "sourceTestsPassed": 407,
+  "compilerIntegrationTestsPassed": 17,
+  "templateImagesPassed": 12,
+  "changedPixels": 0,
+  "nativeSuites": [
+    {
+      "suite": "import-recovery",
+      "script": "scripts/test-import-recovery.mjs",
+      "scriptSha256": "81967721e2258427a438e89a2b9a7d0fee3800136c2823f69c7c2575c8781366",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "import",
+      "script": "scripts/test-import.mjs",
+      "scriptSha256": "270b9fc55851f29cbc5c88346e2ba4efd6c0f46892ebfcda4ae649df4ade1233",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "pdf-viewer",
+      "script": "scripts/test-pdf-viewer.mjs",
+      "scriptSha256": "359ac20b7e751cf7bfd62fbf114ed9146868f9606645cb1415b8b8089daa22a8",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "pdf-lifecycle",
+      "script": "scripts/test-pdf-lifecycle.mjs",
+      "scriptSha256": "050ebba2f302310289760eeefdf7055ae62b3a680c278ae5b26fc6ed6d56a913",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "migration",
+      "script": "scripts/test-migration.mjs",
+      "scriptSha256": "5f4a33db8cbe3afc37578caec954421a15567b37e24db7098c42db3136b52f53",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "chat",
+      "script": "scripts/test-chat.mjs",
+      "scriptSha256": "ecc8c229f5792aefd47b860c7ff318c3bd60962972da2f57be4f9e7a454cd095",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "runtime",
+      "script": "scripts/test-runtime.mjs",
+      "scriptSha256": "e44b3e00eb4e5b9d67b66f551ff5c3b11509f076d9bffa975e61a78ad1b8fb06",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "build-crash",
+      "script": "scripts/test-build-crash.mjs",
+      "scriptSha256": "028f65054d5d76d0e7b4e9015e60bfabc360caba9cfa677832ddc0cae9d15ce7",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "preferences",
+      "script": "scripts/test-preferences.mjs",
+      "scriptSha256": "a907c37a9e570186c0336b919a9f66302287d9a07bbaf800fab78c56d0abbc05",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "workspace",
+      "script": "scripts/test-workspace.mjs",
+      "scriptSha256": "835dec1353889a7885c0c223673ccae0fbacbd34dc41153c75c6b30a643ec89a",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "history-storage",
+      "script": "scripts/test-history-storage.mjs",
+      "scriptSha256": "3878352c388634b90551412f547d0a54790cc5deb2a403b2144c3448be741f9b",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "diagnostics",
+      "script": "scripts/test-diagnostics.mjs",
+      "scriptSha256": "fabc3516d0f4bb634243b03639cad2d399bcb63ef607e689cf5a2846d3f4cf20",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "fonts",
+      "script": "scripts/test-fonts.mjs",
+      "scriptSha256": "ea22d1c8498963eb07ada2f996ac306a99b83b45a017dac20a02abd1c5259682",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "support",
+      "script": "scripts/test-support.mjs",
+      "scriptSha256": "f6fe2f4ca8072aba6b21c054e63a7158896900c1dc7dcf533e9b74b2035dfd72",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "updates",
+      "script": "scripts/test-updates.mjs",
+      "scriptSha256": "7649800e49652401aae941ac91e057be2bfce64f048d938027560e4fa5ecd5f4",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "save-recovery",
+      "script": "scripts/test-save-recovery.mjs",
+      "scriptSha256": "51a376ee35310182258bd6a4fac2f037737630a852717eb946a60eb912e1ba46",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "pack-catalog",
+      "script": "scripts/test-pack-catalog.mjs",
+      "scriptSha256": "bdaf2bac1235655ff6dcba1f77567021e9b623acc9afdb452e2fbb3b3a0c2ad4",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "packaged",
+      "script": "scripts/test-packaged.mjs",
+      "scriptSha256": "be7b559a2cf786c3c1b5fa2ee04fc9381410f41a6fe8766ec0af2dc37d2cd5a3",
+      "passed": true,
+      "unchanged": true
+    }
+  ],
+  "allNativeScriptHashesMatchCommit": true,
+  "templateSourcePdfAndImageHashesVerified": true,
+  "transferInputHashesMatchCommit": true,
+  "transferPassed": true,
+  "transferScope": "No runnable app ZIP, Developer ID, notarization, public network, or native replacement is claimed.",
+  "fullAppIdentity": {
+    "schemaVersion": 1,
+    "bundleInventorySha256": "fd5cb328f871e8a44d9ed3b29185ac617205f1ac76d3a456d17582dd7bf1ab40",
+    "asarSha256": "8d527da6957367ea1fbc264fdff842c39a3163ed76c9477cfcdf92a1f9da61d3",
+    "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0"
+  },
+  "physicalInventory": {
+    "entries": 5199,
+    "regularFiles": 4420,
+    "directories": 765,
+    "symlinks": 14,
+    "logicalFileBytes": 682267684,
+    "runtimeFilesVerified": 3982,
+    "recordsVerified": [
+      {
+        "path": "bundle-inventory.json",
+        "bytes": 1217986,
+        "sha256": "fd5cb328f871e8a44d9ed3b29185ac617205f1ac76d3a456d17582dd7bf1ab40"
+      },
+      {
+        "path": "bundle.cdx.json",
+        "bytes": 3524229,
+        "sha256": "34db959ae471a3cd852ed764cbc23860b53424af75464b61ee6618c385f2bd99"
+      }
+    ],
+    "componentMappingComplete": false
+  },
+  "packagedNoticeFilesMatchCommitAndAppInventory": {
+    "npmNotices": 44,
+    "texFontNotices": 16,
+    "texResourceNotices": 104,
+    "pdfjsNotices": 13
+  },
+  "originalNpmNotices": 42,
+  "indexedNpmPackages": 43,
+  "npmSourceIndexSha256": "ec21f5ef6a8761f6a5c97f13526ffda69580f48170a80a3c0720cf397fd1009d",
+  "compiledOutputFilesCompared": 39,
+  "runnerReportedArchives": {
+    "passed": true,
+    "bundleInventorySha256": "fd5cb328f871e8a44d9ed3b29185ac617205f1ac76d3a456d17582dd7bf1ab40",
+    "dmg": {
+      "bytes": 303546520,
+      "sha256": "6a304d9eb4ab31f2a1930ff2009ee394ef445c766734b47eea61344202a75498",
+      "appMatches": true
+    },
+    "zip": {
+      "bytes": 306591881,
+      "sha256": "904c8999e891a2eaf6a0438c89df15ffdbb9e91be8f2c98074bfcdc1e96b563a",
+      "appMatches": true,
+      "matchedEntries": 5199,
+      "metadataEntries": 0,
+      "metadataBytes": 0
+    },
+    "distributionVerified": false,
+    "scope": "Exact app bytes, modes and internal links inside both archives. Apple checks run only in distribution mode; fresh-machine quarantined download/launch and updater acceptance remain separate."
+  },
+  "retainedNativeRecord": {
+    "file": "test-results/workspace-preferences-hosted-evidence/release/native-tests.json",
+    "bytes": 8463,
+    "sha256": "badcd5ff79dc29ac2e36e6eace44fb5f772b1b2e3ba350cb47763b02639a6c8a"
+  },
+  "retainedPackageRecord": {
+    "file": "test-results/workspace-preferences-hosted-evidence/release/verification.json",
+    "bytes": 32231,
+    "sha256": "82f248469f1f892d92df9d4c067f03f80e7909155726ac08cb0f19ed45f7ae01"
+  },
+  "retainedRunLog": {
+    "file": "test-results/workspace-preferences-hosted-full.log",
+    "bytes": 336261,
+    "sha256": "837e857fce4874e48ce18cc2877fcb837d868370ba6300c312389526f99c5739"
+  },
+  "productionReleaseQualified": false,
+  "scope": "Complete hosted qualification of unsigned source b0f9b23 with native workspace preference persistence and eighteen native suites. All 158 retained evidence files, exact script/input hashes, physical app/runtime/notice identities, JavaScript source replay and original-material records are independently checked. ZIP/DMG archive results are runner-reported because the artifact contains reports and screenshots rather than distributable app archives. This does not qualify production signing/notarization, real signed updates, supported-device acceptance, real BYOK or complete binary redistribution/SBOM. The public preview-4 installer is unchanged.",
+  "javascript": {
+    "summary": {
+      "schemaVersion": 1,
+      "appAsarSha256": "8d527da6957367ea1fbc264fdff842c39a3163ed76c9477cfcdf92a1f9da61d3",
+      "inventorySha256": "95914efce57e0cf49220c3064e8f87d27ed29ca7cb3a49fce53da0c4cc695e68",
+      "bomSha256": "c21eef0ff01ad287bd6114c0d284a260cff7d77808455e41ebaba9c89373c239",
+      "packagedJavaScriptAndMaps": 8,
+      "reproducedOutputs": 24,
+      "sourceModules": 407,
+      "runtimePackages": 35,
+      "generators": 3,
+      "completeBinarySbom": false
+    },
+    "folioSourceFilesMatchCommit": 110,
+    "allReplayInputsMatchCommit": true,
+    "allReproducedOutputsMatchLocalAppBuild": true,
+    "allFourReportsMatchPriorLocalReplay": true,
+    "publisherArchiveVerificationRepeatedLocally": true,
+    "publisherSources": {
+      "schemaVersion": 1,
+      "passed": true,
+      "inventorySha256": "95914efce57e0cf49220c3064e8f87d27ed29ca7cb3a49fce53da0c4cc695e68",
+      "sourceIndexSha256": "ec21f5ef6a8761f6a5c97f13526ffda69580f48170a80a3c0720cf397fd1009d",
+      "npmInputFilesMatched": 249,
+      "embeddedOriginalSourcesMatched": 45,
+      "packageJsonFilesMatched": 38,
+      "originalArchivesChecked": 38,
+      "completeBinarySbom": false,
+      "scope": "Exact npm source bytes and published source-map contents from checksum-verified locked archives. Generated helpers are associated with their build tools, not assigned byte-level authorship. Nested vendored terms, native components and complete redistribution remain separate."
+    },
+    "retainedRecords": [
+      {
+        "file": "test-results/workspace-preferences-hosted-evidence/artifacts/license-materials/javascript/95914efce57e0cf49220c3064e8f87d27ed29ca7cb3a49fce53da0c4cc695e68/inventory.json",
+        "bytes": 270210,
+        "sha256": "95914efce57e0cf49220c3064e8f87d27ed29ca7cb3a49fce53da0c4cc695e68"
+      },
+      {
+        "file": "test-results/workspace-preferences-hosted-evidence/artifacts/license-materials/javascript/95914efce57e0cf49220c3064e8f87d27ed29ca7cb3a49fce53da0c4cc695e68/javascript.cdx.json",
+        "bytes": 39099,
+        "sha256": "c21eef0ff01ad287bd6114c0d284a260cff7d77808455e41ebaba9c89373c239"
+      },
+      {
+        "file": "test-results/workspace-preferences-hosted-evidence/artifacts/license-materials/javascript/95914efce57e0cf49220c3064e8f87d27ed29ca7cb3a49fce53da0c4cc695e68/summary.json",
+        "bytes": 444,
+        "sha256": "13f87727b1a99e81e1edf516145da3c0ffa1821c9b302f5e37d3691a5c681be8"
+      },
+      {
+        "file": "test-results/workspace-preferences-hosted-evidence/artifacts/license-materials/javascript/95914efce57e0cf49220c3064e8f87d27ed29ca7cb3a49fce53da0c4cc695e68/publisher-sources.json",
+        "bytes": 9445,
+        "sha256": "e18680ca5c3544edf722f47daea31de3f98c01aa61262a9f17be628702b064c2"
+      }
+    ]
+  },
+  "originalMaterialCollections": {
+    "npm": {
+      "records": 85,
+      "bytes": 28959613,
+      "inventory": {
+        "file": "test-results/workspace-preferences-hosted-evidence/artifacts/license-materials/npm/inventory.json",
+        "bytes": 14420,
+        "sha256": "94688991e54f9a8c3da57058bd244df14645de211e9aae04d5f11502add56876"
+      },
+      "everyLocalOriginalFileMatchesHostedRecord": true
+    },
+    "pdfjs": {
+      "records": 38,
+      "bytes": 20688625,
+      "inventory": {
+        "file": "test-results/workspace-preferences-hosted-evidence/artifacts/license-materials/pdfjs/inventory.json",
+        "bytes": 7235,
+        "sha256": "ad49c58e74b2e436fd23b16d47b3695cd8102375906fe260acabe78e03cf7422"
+      },
+      "everyLocalOriginalFileMatchesHostedRecord": true
+    }
+  },
+  "verificationNote": "The hosted records match the previously retained and independently verified original npm/PDF.js materials and local JavaScript byte replay. No source collector was allowed to overwrite the downloaded reports.",
+  "pdfjsSourceIndexSha256": "6f0154cdb82715eb862d27e8616981c855e85209b16204b741cbf48d3707f78c",
+  "runAttempt": 1,
+  "localPackagedComparison": {
+    "localPhysicalInventorySha256": "b5427107f7a122ef3fd26c48282a0983b71c35e18305ea74fb68c01966dcb54b",
+    "asarMatches": true,
+    "remainingEntriesMatch": 5198,
+    "differences": [
+      {
+        "path": "Contents/Resources/app-update.yml",
+        "local": {
+          "path": "Contents/Resources/app-update.yml",
+          "mode": 420,
+          "kind": "file",
+          "bytes": 39,
+          "sha256": "799ed86348a8ba2676768213bc72e39bc5fc280771614fc701b3b41b37845b56"
+        },
+        "hosted": {
+          "path": "Contents/Resources/app-update.yml",
+          "mode": 420,
+          "kind": "file",
+          "bytes": 92,
+          "sha256": "1d7ebe4b263a81d446f3d2817b9e6685bf4e421038165f5052899cf1e060160e"
+        }
+      }
+    ],
+    "scope": "Local --dir packaging copies the 39-byte updater-cache setting; hosted archive packaging generates the 92-byte updater metadata. Every other inventory entry, including Info.plist and ASAR, matches exactly."
+  },
+  "packagedAppCrash": {
+    "record": {
+      "file": "test-results/workspace-preferences-hosted-evidence/test-results/build-crash-xnShGR/result.json",
+      "bytes": 4924,
+      "sha256": "55b8485c1291a6bd17cb2dce30b077d6c68672f8e621a9f43ba62908d88ad1b7"
+    },
+    "exportedPdf": {
+      "file": "test-results/workspace-preferences-hosted-evidence/test-results/build-crash-xnShGR/recovered.pdf",
+      "bytes": 6568,
+      "sha256": "a66c60b8fe3659cc0cd414c99f1b3f6c23976d168ad6bdfd99ce047cad02a118"
+    },
+    "pdfParsedIndependently": true,
+    "actualMainSignal": "SIGKILL",
+    "nativeGroupAbsentObservedMs": 127.07045899999866,
+    "autoCompileEnabledAfterCrash": false,
+    "checks": [
+      "SIGKILL reached the real app main; the observed native group and captured app descendants exited without test cleanup.",
+      "Reopening retained the unsaved editor source, chat draft, project ID, compiler pin and PDF History; saved project files stayed byte-identical; startup removed the abandoned job.",
+      "A fresh UI compile, save and export produced the new one-page PDF; its text was parsed independently; normal temporary-job cleanup completed."
+    ],
+    "scope": "One hosted main-process crash with the production UI/compiler, retained source/chat/history, Auto-compile remaining disabled and a fresh independently parsed PDF export."
+  },
+  "nativePreferences": {
+    "record": {
+      "file": "test-results/workspace-preferences-hosted-evidence/test-results/preferences-VMKOCv/result.json",
+      "bytes": 2556,
+      "sha256": "3f6140eef2f971dcec46c20f719a01ed9cf9ed1cb34ad6308cd6d071fdde6729"
+    },
+    "checks": [
+      "All five first UI preferences and chat draft survived SIGKILL and reopen.",
+      "All five second UI preferences and chat draft survived SIGKILL and reopen.",
+      "An actual native write failure kept old disk values, surfaced an error and retried the latest pending controls.",
+      "An unknown settings record stayed untouched; native close still worked before workspace startup, and source recovery remained byte-identical."
+    ],
+    "preferenceSnapshots": [
+      {
+        "folio:auto": "false",
+        "folio:autosave": "true",
+        "folio:font": "18",
+        "folio:appearance": "light",
+        "folio:panes": "{\"sidebar\":176,\"editorRatio\":0.2786377708978328}"
+      },
+      {
+        "folio:auto": "false",
+        "folio:autosave": "false",
+        "folio:font": "12",
+        "folio:appearance": "dark",
+        "folio:panes": "{\"sidebar\":360,\"editorRatio\":0.6209386281588448}"
+      }
+    ],
+    "actualMainKills": 2,
+    "errors": [],
+    "screenshots": [
+      {
+        "file": "test-results/workspace-preferences-hosted-evidence/test-results/preferences-VMKOCv/save-error.png",
+        "bytes": 93024,
+        "sha256": "fb9018e802b451fc122248ccf6562cf7697ca5bd0af009f5dd659c1e249a626d"
+      },
+      {
+        "file": "test-results/workspace-preferences-hosted-evidence/test-results/preferences-VMKOCv/startup-error.png",
+        "bytes": 22736,
+        "sha256": "c48afc1ef80d3b49c5ac541419a6655033c6155b70a442ffb52fd710906be43f"
+      },
+      {
+        "file": "test-results/workspace-preferences-hosted-evidence/test-results/preferences-VMKOCv/recovered-settings.png",
+        "bytes": 144721,
+        "sha256": "91debc6510b422dd8293c2cb15f4459a8d723e2277e02ec9b5af170a1c2afd3f"
+      }
+    ],
+    "scope": "Fresh-profile native preference preservation through two actual app kills, write-failure/retry and unknown-file preservation. Actual old-profile migration is separately verified locally; physical power loss and changes not yet acknowledged remain outside this claim."
+  }
+}
