@@ -736,7 +736,10 @@
     }
   ],
   "fullHostedQualification": {
-    "status": "not_dispatched"
+    "runId": 36349688214,
+    "url": "https://github.com/grawish/folio/actions/runs/36349688214",
+    "commit": "b0f9b232cfa1c07e5e7ace9debaeae7fa23e697d",
+    "statusAtPublication": "in_progress"
   },
   "nativeQualificationSuites": 18,
   "productionReleaseQualified": false,
@@ -745,5 +748,27 @@
     "UI changes are asynchronous until the native file replacement completes; a crash before acknowledgement may retain earlier values.",
     "Atomic replacement plus process-kill controls does not establish physical power-loss durability or supported-Mac acceptance.",
     "Application-wide storage/CPU/memory budgets, production signing/notarization, real BYOK and complete binary redistribution/SBOM remain open."
-  ]
+  ],
+  "documentation": {
+    "skillReferences": 15,
+    "skillValidated": true,
+    "websiteValidated": true,
+    "records": [
+      {
+        "file": "test-results/preferences-skill-validation.log",
+        "bytes": 16,
+        "sha256": "db349825903d66adffea3ecf1bd8e1803043e8a71cf1a051235dabc5371f5bb0"
+      },
+      {
+        "file": "test-results/preferences-website.log",
+        "bytes": 821,
+        "sha256": "f071f86862805faca63a6a8a30b980e120e7674c9d1598e23a8c13802212a91f"
+      },
+      {
+        "file": "test-results/preferences-format-final.log",
+        "bytes": 183,
+        "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+      }
+    ]
+  }
 }
