@@ -155,3 +155,10 @@ This audit uses the current implementation, actual native tests, package artifac
 5. Complete the added user/developer documentation, feature tutorials/demos, reusable skill, noncommercial licensing, measured performance plan and publication to the new `grawish/folio` repository. Follow `DELIVERY_SCOPE.md`; a repository or screenshot alone does not prove those deliverables complete.
 
 Signing credentials, release-hosting choices, native test environments and a signed-in Claude account may require external input later. They do not prevent the local project/template/robustness work listed above, so the goal is not currently blocked.
+
+
+## TeX resource source and notice collection — 27 September 2026
+
+The development package now includes 102 unchanged TeX notice/license/README/author/manifest files and two source guides. The bounded collector retains 246 complete distribution archives (110,489,548 bytes), verifies 245 against historical TeX Live publisher SHA-512 checksums, and maps 402 non-font resources byte-for-byte. Three are from the exact Tectonic bundle source: two patched LaTeX files and the format entry point. Together with the separate 111 font-family mappings, 513 of 516 resources now have exact matches. See [scope and reproduction](LICENSING.md#collect-and-bundle-tex-resource-notices) and [verification](releases/tex-resource-verification.json).
+
+The generated `kanjix.map`, `language.dat` and `pdftex.map` files remain unresolved. Original per-file grants are preserved, including wording that still needs review; catalogue license labels are not treated as approvals. Complete source redistribution, other compiler/native components, the final signed-app SBOM, Developer ID signing and production acceptance remain required. This notice/source work does not close the overall release audit or change the existing preview-4 download.

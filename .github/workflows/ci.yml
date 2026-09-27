@@ -34,6 +34,7 @@ jobs:
       - run: python tests/biber-autosplit-evidence.py
       - run: python tests/biber-generated-evidence.py
       - run: python tests/tex-font-materials.py
+      - run: python tests/tex-resource-materials.py
       - run: python tests/biber-native-materials.py
       - run: npm run format:check
       - run: npm test

@@ -1,2 +1,3 @@
 # Preserve original upstream notice bytes, including their line endings.
 resources/tex-font-notices/* -text
+resources/tex-resource-notices/* -text

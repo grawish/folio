@@ -86,6 +86,10 @@
         "to": "tex-font-notices"
       },
       {
+        "from": "resources/tex-resource-notices",
+        "to": "tex-resource-notices"
+      },
+      {
         "from": "resources/runtime/${os}-${arch}",
         "to": "runtime"
       }

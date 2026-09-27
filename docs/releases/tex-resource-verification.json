@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T12:40:29.219924+00:00",
+  "sourceBaseCommit": "662c41181aaedc77a8206f4ba6391cf16fb7e437",
+  "summary": {
+    "bundledResources": 516,
+    "matchedResources": 402,
+    "fontFamilyResources": 111,
+    "combinedMatchedResources": 513,
+    "unmatchedResources": 3,
+    "originalNoticeFiles": 102,
+    "sourceArchives": 246,
+    "sourceArchiveBytes": 110489548
+  },
+  "independentChecks": {
+    "retainedFilesVerified": 1123,
+    "originalArchiveMaterialsVerified": 747,
+    "publisherSha512ChecksumsVerified": 245,
+    "exactSourceMatches": 402,
+    "originalNoticeCopiesVerified": 102,
+    "byteIdenticalReplayFiles": 1227,
+    "generatedUnresolved": [
+      "kanjix.map",
+      "language.dat",
+      "pdftex.map"
+    ]
+  },
+  "localApp": {
+    "passed": true,
+    "architecture": "arm64",
+    "fontNotices": {
+      "originalNoticeFiles": 15,
+      "sourceLockSha256": "79ed91f2d8a1207ed72ba2f8016a47ecde316754c3dd874ba2f35b9683579d45",
+      "verifiedFiles": 16,
+      "recordsSha256": "929a52fbbb6c6ad71edc15c37586c4c48bb13f3b4c2bc86587b1a07f9d478395"
+    },
+    "resourceNotices": {
+      "originalNoticeFiles": 102,
+      "sourceLockSha256": "7f87f8433f31e528372b5e94f3bf6a9f12fa161a4139894dcd6bca1f111fcc73",
+      "verifiedFiles": 104,
+      "recordsSha256": "6fd5e77380fd0e44564f0ac663843c99461d20fcfebb2a06b44432ba98adf103"
+    },
+    "comparedOutputFiles": 39,
+    "originalWorkAndThirdPartyNoticesVerified": true,
+    "runtimeFilesVerified": 3982,
+    "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+    "identity": {
+      "schemaVersion": 1,
+      "bundleInventorySha256": "84d62b92b1a4e7981e6a2105206135e756d97ab260afcbc2b02586a2de2c85a8",
+      "asarSha256": "06130209449c3ca09cecf2cdcc9b0131f0951806685c630767e48309a16cef16",
+      "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0"
+    },
+    "nativeSuitesRunForThisPackage": false,
+    "scope": "Exact local app notice, compiled-output and runtime byte verification only. No signed installer, native-suite or broad platform qualification is claimed."
+  },
+  "checks": {
+    "newPythonControls": 4,
+    "sharedFontPythonControls": 8,
+    "noticePackageControls": 4,
+    "allSourceTestsPassed": 337,
+    "formattingPassed": true,
+    "buildPassed": true
+  },
+  "tools": [
+    {
+      "path": "scripts/collect-tex-resource-materials.py",
+      "bytes": 6754,
+      "sha256": "e2c555b08330ca08e7cdf98bed73fa768ebe5409e3b78b0377484965350192af"
+    },
+    {
+      "path": "scripts/collect-tex-font-materials.py",
+      "bytes": 13397,
+      "sha256": "2dfad552e6012c35f8a66f6c6860e7597cff835fefad2cf128d4bc3ce88617c6"
+    },
+    {
+      "path": "scripts/verify-tex-font-notices.ts",
+      "bytes": 2790,
+      "sha256": "88e650756ba7182acb3f442773a3a416cf5b2e25aabe7f060f8291e8d943ef5f"
+    },
+    {
+      "path": "scripts/verify-mac-package.mjs",
+      "bytes": 6808,
+      "sha256": "6b85b635da161639dfd7b2ec193a06e9087cdc0b6e115468c8e5c5e77b0e9faf"
+    },
+    {
+      "path": "resources/tex-resource-sources.lock.json",
+      "bytes": 460007,
+      "sha256": "7f87f8433f31e528372b5e94f3bf6a9f12fa161a4139894dcd6bca1f111fcc73"
+    },
+    {
+      "path": "resources/tex-font-sources.lock.json",
+      "bytes": 44531,
+      "sha256": "79ed91f2d8a1207ed72ba2f8016a47ecde316754c3dd874ba2f35b9683579d45"
+    },
+    {
+      "path": "tests/tex-resource-materials.py",
+      "bytes": 3782,
+      "sha256": "515f7fb3a0f0ee8d1680fe6592cb6c4baf7d6cfb4f047cc9cb6ceb5db507b901"
+    },
+    {
+      "path": "tests/tex-resource-notices.test.ts",
+      "bytes": 3514,
+      "sha256": "ff63f50b9e1d014fe64d942c1aebaec0c2b58e061cfdb1c46c29ead16f789a29"
+    },
+    {
+      "path": "test-results/verify-tex-resource-materials.py",
+      "bytes": 3238,
+      "sha256": "5433a80a52d4e2deb34aca8d048423580c202ece4077f1ed807a506b8aa350bc"
+    },
+    {
+      "path": "test-results/verify-tex-resource-app.mjs",
+      "bytes": 2904,
+      "sha256": "8f1d9dfd2120e1a4b4ac4d6e85d99e2785eb23e277bcb904ee80a8b20199626b"
+    }
+  ],
+  "retainedInventory": {
+    "path": "artifacts/license-materials/tex-resources/inventory.json",
+    "bytes": 409637,
+    "sha256": "9c85fb628a6ce3f28fa58bfe4d7ce98e91a651ea5a781717422fbd2b76712e57"
+  },
+  "publishedInventory": {
+    "path": "docs/releases/tex-resource-inventory.json.gz",
+    "bytes": 104900,
+    "sha256": "821047c7c97a9a479390649e057ecabfe1b7206d23de4679b54679ece62ebb0a"
+  },
+  "logs": [
+    {
+      "path": "test-results/tex-resource-collection.log",
+      "bytes": 239,
+      "sha256": "8252b39e8dd84e62579bb08fcd8f33062b137843192379a93936aa88270af236"
+    },
+    {
+      "path": "test-results/tex-resource-font-regression.log",
+      "bytes": 106,
+      "sha256": "637ad693971420b70a01476cd5d51065ecc3c7af270c41cfe91899ec8c2db4bd"
+    },
+    {
+      "path": "test-results/tex-resource-python-tests.log",
+      "bytes": 102,
+      "sha256": "feabb4add9e2ca3374e538560634d1ec97dc4f4ce89aab12f3d726e36ea9b2f6"
+    },
+    {
+      "path": "test-results/tex-resource-notice-tests.log",
+      "bytes": 512,
+      "sha256": "e8ddda5341af75a7bd93ac8d934327662e4c922bf3b172d80351b8dbf1755fe8"
+    },
+    {
+      "path": "test-results/tex-resource-all-unit.log",
+      "bytes": 34811,
+      "sha256": "6943e6fbb66b131baeb487d2b0b32460f52d6331f79d650a1c3162c2edf64035"
+    },
+    {
+      "path": "test-results/tex-resource-format.log",
+      "bytes": 183,
+      "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+    },
+    {
+      "path": "test-results/tex-resource-build.log",
+      "bytes": 1719,
+      "sha256": "3962de37c12bf084f7b812dbf414712726eee53ffdc3913e93f717cf67451937"
+    },
+    {
+      "path": "test-results/tex-resource-package.log",
+      "bytes": 1429,
+      "sha256": "cf8abdd3d39e2579653eb1425d8b7682fbcdfc3e328fc58f69b212058c741a48"
+    },
+    {
+      "path": "test-results/tex-resource-independent.log",
+      "bytes": 552,
+      "sha256": "ccac4dc1863624d4a36a8717f2c5b4272b82aa4f2d18584be6ae633f1df18718"
+    },
+    {
+      "path": "test-results/tex-resource-app.log",
+      "bytes": 171,
+      "sha256": "ec04af4ed68152ebbd6d1276e05a5c0b55c88b1cd88a6764735b930259a43b2a"
+    },
+    {
+      "path": "test-results/tex-resource-skill.log",
+      "bytes": 122,
+      "sha256": "50338b830dfd8bd541091b249b7158234bed093e1dd29fa1df03ae9437ca00bd"
+    }
+  ],
+  "applicationInputsChanged": true,
+  "runtimeInputsChanged": false,
+  "releaseAuditComplete": false,
+  "limits": [
+    "Exact distribution matches do not prove a rebuild from editable sources.",
+    "Original per-file headers remain in the unchanged runtime bundle; catalogue labels are not per-file license determinations.",
+    "Full corresponding-source distribution, three generated configuration files and final signed-app redistribution review remain open.",
+    "The unsigned local app has exact notice/output/runtime checks. Complete native qualification of this new package, production signing, corresponding-source publication and the full app SBOM remain open.",
+    "Historical catalogue labels are provenance only. Per-file differences and unusual original grant wording remain unchanged for review. Existing preview downloads were not modified."
+  ]
+}
