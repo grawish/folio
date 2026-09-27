@@ -1,0 +1,543 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T22:56:23.200257+00:00",
+  "commit": "1d9a71291a35d0ef6b01ad527541aeaefd2fb9ed",
+  "runId": 36355042088,
+  "url": "https://github.com/grawish/folio/actions/runs/36355042088",
+  "conclusion": "success",
+  "downloadedArtifact": {
+    "id": 10944113106,
+    "file": "test-results/bounded-build-hosted-evidence.zip",
+    "bytes": 6643708,
+    "sha256": "98cdf702cab484dfa5aad5092b2b650b7b0d47550ed85473d4db45d884b62686",
+    "githubDigestMatches": true
+  },
+  "retainedArtifactFilesVerified": 161,
+  "sourceTestsPassed": 427,
+  "compilerIntegrationTestsPassed": 18,
+  "templateImagesPassed": 12,
+  "changedPixels": 0,
+  "nativeSuites": [
+    {
+      "suite": "import-recovery",
+      "script": "scripts/test-import-recovery.mjs",
+      "scriptSha256": "81967721e2258427a438e89a2b9a7d0fee3800136c2823f69c7c2575c8781366",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "import",
+      "script": "scripts/test-import.mjs",
+      "scriptSha256": "270b9fc55851f29cbc5c88346e2ba4efd6c0f46892ebfcda4ae649df4ade1233",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "pdf-viewer",
+      "script": "scripts/test-pdf-viewer.mjs",
+      "scriptSha256": "359ac20b7e751cf7bfd62fbf114ed9146868f9606645cb1415b8b8089daa22a8",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "pdf-lifecycle",
+      "script": "scripts/test-pdf-lifecycle.mjs",
+      "scriptSha256": "050ebba2f302310289760eeefdf7055ae62b3a680c278ae5b26fc6ed6d56a913",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "migration",
+      "script": "scripts/test-migration.mjs",
+      "scriptSha256": "5f4a33db8cbe3afc37578caec954421a15567b37e24db7098c42db3136b52f53",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "chat",
+      "script": "scripts/test-chat.mjs",
+      "scriptSha256": "ecc8c229f5792aefd47b860c7ff318c3bd60962972da2f57be4f9e7a454cd095",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "runtime",
+      "script": "scripts/test-runtime.mjs",
+      "scriptSha256": "e44b3e00eb4e5b9d67b66f551ff5c3b11509f076d9bffa975e61a78ad1b8fb06",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "build-crash",
+      "script": "scripts/test-build-crash.mjs",
+      "scriptSha256": "028f65054d5d76d0e7b4e9015e60bfabc360caba9cfa677832ddc0cae9d15ce7",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "build-requests",
+      "script": "scripts/test-build-requests.mjs",
+      "scriptSha256": "ac62fb43615702f875ba8550e583f92b63234fc33468ec4e0cc267ad0151ee2e",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "preferences",
+      "script": "scripts/test-preferences.mjs",
+      "scriptSha256": "a907c37a9e570186c0336b919a9f66302287d9a07bbaf800fab78c56d0abbc05",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "workspace",
+      "script": "scripts/test-workspace.mjs",
+      "scriptSha256": "835dec1353889a7885c0c223673ccae0fbacbd34dc41153c75c6b30a643ec89a",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "history-storage",
+      "script": "scripts/test-history-storage.mjs",
+      "scriptSha256": "3878352c388634b90551412f547d0a54790cc5deb2a403b2144c3448be741f9b",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "diagnostics",
+      "script": "scripts/test-diagnostics.mjs",
+      "scriptSha256": "fabc3516d0f4bb634243b03639cad2d399bcb63ef607e689cf5a2846d3f4cf20",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "fonts",
+      "script": "scripts/test-fonts.mjs",
+      "scriptSha256": "ea22d1c8498963eb07ada2f996ac306a99b83b45a017dac20a02abd1c5259682",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "support",
+      "script": "scripts/test-support.mjs",
+      "scriptSha256": "f6fe2f4ca8072aba6b21c054e63a7158896900c1dc7dcf533e9b74b2035dfd72",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "updates",
+      "script": "scripts/test-updates.mjs",
+      "scriptSha256": "7649800e49652401aae941ac91e057be2bfce64f048d938027560e4fa5ecd5f4",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "save-recovery",
+      "script": "scripts/test-save-recovery.mjs",
+      "scriptSha256": "51a376ee35310182258bd6a4fac2f037737630a852717eb946a60eb912e1ba46",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "pack-catalog",
+      "script": "scripts/test-pack-catalog.mjs",
+      "scriptSha256": "bdaf2bac1235655ff6dcba1f77567021e9b623acc9afdb452e2fbb3b3a0c2ad4",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "packaged",
+      "script": "scripts/test-packaged.mjs",
+      "scriptSha256": "be7b559a2cf786c3c1b5fa2ee04fc9381410f41a6fe8766ec0af2dc37d2cd5a3",
+      "passed": true,
+      "unchanged": true
+    }
+  ],
+  "allNativeScriptHashesMatchCommit": true,
+  "templateSourcePdfAndImageHashesVerified": true,
+  "transferInputHashesMatchCommit": true,
+  "transferPassed": true,
+  "transferScope": "No runnable app ZIP, Developer ID, notarization, public network, or native replacement is claimed.",
+  "fullAppIdentity": {
+    "schemaVersion": 1,
+    "bundleInventorySha256": "bf7c62223d519c642955971008aca03487642b5237e73cb4df8c368a6188d2c4",
+    "asarSha256": "fe66b721212c7fa761564ed6fb0b852414b0d699aa8e59fdc5119b2a335d4877",
+    "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0"
+  },
+  "physicalInventory": {
+    "entries": 5204,
+    "regularFiles": 4424,
+    "directories": 766,
+    "symlinks": 14,
+    "logicalFileBytes": 702393790,
+    "runtimeFilesVerified": 3982,
+    "recordsVerified": [
+      {
+        "path": "bundle-inventory.json",
+        "bytes": 1218999,
+        "sha256": "bf7c62223d519c642955971008aca03487642b5237e73cb4df8c368a6188d2c4"
+      },
+      {
+        "path": "bundle.cdx.json",
+        "bytes": 3527161,
+        "sha256": "afe20d81105d323e91242e38336fd70a8849a6aedccffab85abb89b7392fd568"
+      }
+    ],
+    "componentMappingComplete": false
+  },
+  "packagedNoticeFilesMatchCommitAndAppInventory": {
+    "npmNotices": 44,
+    "texFontNotices": 16,
+    "texResourceNotices": 104,
+    "pdfjsNotices": 13,
+    "electronNotices": 4
+  },
+  "originalNpmNotices": 42,
+  "indexedNpmPackages": 43,
+  "npmSourceIndexSha256": "ec21f5ef6a8761f6a5c97f13526ffda69580f48170a80a3c0720cf397fd1009d",
+  "compiledOutputFilesCompared": 39,
+  "runnerReportedArchives": {
+    "passed": true,
+    "bundleInventorySha256": "bf7c62223d519c642955971008aca03487642b5237e73cb4df8c368a6188d2c4",
+    "dmg": {
+      "bytes": 305642154,
+      "sha256": "108beced7532689ef3cf9959af32162445bb883b688032ad4ea0ce27d8601732",
+      "appMatches": true
+    },
+    "zip": {
+      "bytes": 308683630,
+      "sha256": "7cf6860dbebd453c3b1410ec7a95a68b8021d9250ef80fae4f7f34f5b18e96e8",
+      "appMatches": true,
+      "matchedEntries": 5204,
+      "metadataEntries": 0,
+      "metadataBytes": 0
+    },
+    "distributionVerified": false,
+    "scope": "Exact app bytes, modes and internal links inside both archives. Apple checks run only in distribution mode; fresh-machine quarantined download/launch and updater acceptance remain separate."
+  },
+  "retainedNativeRecord": {
+    "file": "test-results/bounded-build-hosted-evidence/release/native-tests.json",
+    "bytes": 8915,
+    "sha256": "3cfa1fdafdc78ec740ed3e0b9bdb1bab741d640576395437b52b95b87f9ea09a"
+  },
+  "retainedPackageRecord": {
+    "file": "test-results/bounded-build-hosted-evidence/release/verification.json",
+    "bytes": 33233,
+    "sha256": "3dbf6268fc44cb6eb73fdd2ac889afd2bc262606d7f560aae8351b49f108a968"
+  },
+  "retainedRunLog": {
+    "file": "test-results/bounded-build-hosted-full.log",
+    "bytes": 344168,
+    "sha256": "a5864d352b9577053fa58e64ae24376348f9e3a5a59814b81de9e82e9b4e80aa"
+  },
+  "productionReleaseQualified": false,
+  "scope": "Complete hosted qualification of unsigned source 1d9a712 with bounded editor/compiler requests, original Electron notices and nineteen native suites. All 161 retained files, source identities, physical app/runtime/notices, JavaScript replay and original publisher materials were independently checked. Both the queued-build PDF and crash-recovery PDF were independently parsed. Archive results are runner-reported; distributable archives are outside this evidence artifact. Production signing/notarization, real signed updates, supported-device acceptance, real BYOK, whole-app resource budgets and complete binary redistribution remain open. The preview-4 installer is unchanged.",
+  "javascript": {
+    "summary": {
+      "schemaVersion": 1,
+      "appAsarSha256": "fe66b721212c7fa761564ed6fb0b852414b0d699aa8e59fdc5119b2a335d4877",
+      "inventorySha256": "eb5d1e46b15971eeec61098149668cacdfa142153a0f0259a59b663f3180a2e1",
+      "bomSha256": "13cd6871832d76e5895aed6be3bfaf3327e62c60194dd513b16453fff7ea08de",
+      "packagedJavaScriptAndMaps": 8,
+      "reproducedOutputs": 24,
+      "sourceModules": 409,
+      "runtimePackages": 35,
+      "generators": 3,
+      "completeBinarySbom": false
+    },
+    "folioSourceFilesMatchCommit": 112,
+    "allReplayInputsMatchCommit": true,
+    "allReproducedOutputsMatchLocalAppBuild": true,
+    "allFourReportsMatchPriorLocalReplay": true,
+    "publisherArchiveVerificationRepeatedLocally": true,
+    "publisherSources": {
+      "schemaVersion": 1,
+      "passed": true,
+      "inventorySha256": "eb5d1e46b15971eeec61098149668cacdfa142153a0f0259a59b663f3180a2e1",
+      "sourceIndexSha256": "ec21f5ef6a8761f6a5c97f13526ffda69580f48170a80a3c0720cf397fd1009d",
+      "npmInputFilesMatched": 249,
+      "embeddedOriginalSourcesMatched": 45,
+      "packageJsonFilesMatched": 38,
+      "originalArchivesChecked": 38,
+      "completeBinarySbom": false,
+      "scope": "Exact npm source bytes and published source-map contents from checksum-verified locked archives. Generated helpers are associated with their build tools, not assigned byte-level authorship. Nested vendored terms, native components and complete redistribution remain separate."
+    },
+    "retainedRecords": [
+      {
+        "file": "test-results/bounded-build-hosted-evidence/artifacts/license-materials/javascript/eb5d1e46b15971eeec61098149668cacdfa142153a0f0259a59b663f3180a2e1/inventory.json",
+        "bytes": 271286,
+        "sha256": "eb5d1e46b15971eeec61098149668cacdfa142153a0f0259a59b663f3180a2e1"
+      },
+      {
+        "file": "test-results/bounded-build-hosted-evidence/artifacts/license-materials/javascript/eb5d1e46b15971eeec61098149668cacdfa142153a0f0259a59b663f3180a2e1/javascript.cdx.json",
+        "bytes": 39099,
+        "sha256": "13cd6871832d76e5895aed6be3bfaf3327e62c60194dd513b16453fff7ea08de"
+      },
+      {
+        "file": "test-results/bounded-build-hosted-evidence/artifacts/license-materials/javascript/eb5d1e46b15971eeec61098149668cacdfa142153a0f0259a59b663f3180a2e1/summary.json",
+        "bytes": 444,
+        "sha256": "8bd6a509355a4febee47ce54d123914c553b5cf5236176561be3756f02d5b84b"
+      },
+      {
+        "file": "test-results/bounded-build-hosted-evidence/artifacts/license-materials/javascript/eb5d1e46b15971eeec61098149668cacdfa142153a0f0259a59b663f3180a2e1/publisher-sources.json",
+        "bytes": 9445,
+        "sha256": "0b27b81b5a2ca0c249e6fc107e9333c6f8ab9cec71571e980209f37149642c34"
+      }
+    ]
+  },
+  "originalMaterialCollections": {
+    "npm": {
+      "records": 85,
+      "bytes": 28959613,
+      "inventory": {
+        "file": "test-results/bounded-build-hosted-evidence/artifacts/license-materials/npm/inventory.json",
+        "bytes": 14420,
+        "sha256": "94688991e54f9a8c3da57058bd244df14645de211e9aae04d5f11502add56876"
+      },
+      "everyLocalOriginalFileMatchesHostedRecord": true
+    },
+    "pdfjs": {
+      "records": 38,
+      "bytes": 20688625,
+      "inventory": {
+        "file": "test-results/bounded-build-hosted-evidence/artifacts/license-materials/pdfjs/inventory.json",
+        "bytes": 7235,
+        "sha256": "ad49c58e74b2e436fd23b16d47b3695cd8102375906fe260acabe78e03cf7422"
+      },
+      "everyLocalOriginalFileMatchesHostedRecord": true
+    }
+  },
+  "verificationNote": "The hosted records match the previously retained and independently verified original npm/PDF.js materials and local JavaScript byte replay. No source collector was allowed to overwrite the downloaded reports.",
+  "pdfjsSourceIndexSha256": "6f0154cdb82715eb862d27e8616981c855e85209b16204b741cbf48d3707f78c",
+  "runAttempt": 1,
+  "localPackagedComparison": {
+    "localPhysicalInventorySha256": "03d77f22b3cd57217d78b414ec2806a317a8070fe3179bb57a656819bb5d838e",
+    "newAsarMatchesLocalBoundedBuildApp": true,
+    "remainingEntriesMatch": 5201,
+    "differences": [
+      {
+        "path": "Contents/Info.plist",
+        "local": {
+          "path": "Contents/Info.plist",
+          "mode": 420,
+          "kind": "file",
+          "bytes": 3849,
+          "sha256": "fc7459236d86dffa1d916e5c51bd52f4e4aa11dc3e2efb8edcc118b2e399c2c7"
+        },
+        "hosted": {
+          "path": "Contents/Info.plist",
+          "mode": 420,
+          "kind": "file",
+          "bytes": 3849,
+          "sha256": "0367a4b8fdb1adc9dc15751bda870f587b017711d1ed59614598a70403d653cc"
+        }
+      },
+      {
+        "path": "Contents/Resources/app-update.yml",
+        "local": {
+          "path": "Contents/Resources/app-update.yml",
+          "mode": 420,
+          "kind": "file",
+          "bytes": 39,
+          "sha256": "799ed86348a8ba2676768213bc72e39bc5fc280771614fc701b3b41b37845b56"
+        },
+        "hosted": {
+          "path": "Contents/Resources/app-update.yml",
+          "mode": 420,
+          "kind": "file",
+          "bytes": 92,
+          "sha256": "1d7ebe4b263a81d446f3d2817b9e6685bf4e421038165f5052899cf1e060160e"
+        }
+      },
+      {
+        "path": "Contents/Resources/app.asar",
+        "local": {
+          "path": "Contents/Resources/app.asar",
+          "mode": 420,
+          "kind": "file",
+          "bytes": 7505183,
+          "sha256": "8d527da6957367ea1fbc264fdff842c39a3163ed76c9477cfcdf92a1f9da61d3"
+        },
+        "hosted": {
+          "path": "Contents/Resources/app.asar",
+          "mode": 420,
+          "kind": "file",
+          "bytes": 7514967,
+          "sha256": "fe66b721212c7fa761564ed6fb0b852414b0d699aa8e59fdc5119b2a335d4877"
+        }
+      }
+    ],
+    "scope": "Compared with the previous qualified Electron-notice app. Only the new ASAR, its Info.plist integrity record and hosted updater metadata differ. The new ASAR and plist match the local bounded-build app exactly; only ElectronAsarIntegrity differs in the parsed plist."
+  },
+  "packagedAppCrash": {
+    "record": {
+      "file": "test-results/bounded-build-hosted-evidence/test-results/build-crash-XnV2w2/result.json",
+      "bytes": 4923,
+      "sha256": "b2705c7871f42a2411524551d2e4f6639cf22d75381c57aa68e190197fa1af32"
+    },
+    "exportedPdf": {
+      "file": "test-results/bounded-build-hosted-evidence/test-results/build-crash-XnV2w2/recovered.pdf",
+      "bytes": 6569,
+      "sha256": "b2554a84a402c7dbee4b9404af70fbaacc3f040b37ab87ac7b0e5ff6404202db"
+    },
+    "pdfParsedIndependently": true,
+    "actualMainSignal": "SIGKILL",
+    "nativeGroupAbsentObservedMs": 73.03512500000215,
+    "autoCompileEnabledAfterCrash": false,
+    "checks": [
+      "SIGKILL reached the real app main; the observed native group and captured app descendants exited without test cleanup.",
+      "Reopening retained the unsaved editor source, chat draft, project ID, compiler pin and PDF History; saved project files stayed byte-identical; startup removed the abandoned job.",
+      "A fresh UI compile, save and export produced the new one-page PDF; its text was parsed independently; normal temporary-job cleanup completed."
+    ],
+    "scope": "One hosted main-process crash with the production UI/compiler, retained source/chat/history, Auto-compile remaining disabled and a fresh independently parsed PDF export."
+  },
+  "nativePreferences": {
+    "record": {
+      "file": "test-results/bounded-build-hosted-evidence/test-results/preferences-Eg0gVa/result.json",
+      "bytes": 2556,
+      "sha256": "91923e963d42dd36b0ed4411256d7c56da3e6677971e34daff71b9e33fb7e562"
+    },
+    "checks": [
+      "All five first UI preferences and chat draft survived SIGKILL and reopen.",
+      "All five second UI preferences and chat draft survived SIGKILL and reopen.",
+      "An actual native write failure kept old disk values, surfaced an error and retried the latest pending controls.",
+      "An unknown settings record stayed untouched; native close still worked before workspace startup, and source recovery remained byte-identical."
+    ],
+    "preferenceSnapshots": [
+      {
+        "folio:auto": "false",
+        "folio:autosave": "true",
+        "folio:font": "18",
+        "folio:appearance": "light",
+        "folio:panes": "{\"sidebar\":176,\"editorRatio\":0.2786377708978328}"
+      },
+      {
+        "folio:auto": "false",
+        "folio:autosave": "false",
+        "folio:font": "12",
+        "folio:appearance": "dark",
+        "folio:panes": "{\"sidebar\":360,\"editorRatio\":0.6209386281588448}"
+      }
+    ],
+    "actualMainKills": 2,
+    "errors": [],
+    "screenshots": [
+      {
+        "file": "test-results/bounded-build-hosted-evidence/test-results/preferences-Eg0gVa/save-error.png",
+        "bytes": 93024,
+        "sha256": "fb9018e802b451fc122248ccf6562cf7697ca5bd0af009f5dd659c1e249a626d"
+      },
+      {
+        "file": "test-results/bounded-build-hosted-evidence/test-results/preferences-Eg0gVa/startup-error.png",
+        "bytes": 22736,
+        "sha256": "c48afc1ef80d3b49c5ac541419a6655033c6155b70a442ffb52fd710906be43f"
+      },
+      {
+        "file": "test-results/bounded-build-hosted-evidence/test-results/preferences-Eg0gVa/recovered-settings.png",
+        "bytes": 144721,
+        "sha256": "91debc6510b422dd8293c2cb15f4459a8d723e2277e02ec9b5af170a1c2afd3f"
+      }
+    ],
+    "scope": "Fresh-profile native preference preservation through two actual app kills, write-failure/retry and unknown-file preservation. Actual old-profile migration is separately verified locally; physical power loss and changes not yet acknowledged remain outside this claim."
+  },
+  "electronNotices": {
+    "packagedFiles": {
+      "electronVersion": "44.4.5",
+      "platform": "darwin-arm64",
+      "originalNoticeFiles": 2,
+      "sourceIndexSha256": "f9bdfa1394f1c0cb71777e76505af681c99c73466d4d11264681624bab130d10",
+      "upstreamArchiveSha256": "a212eee63ba2f45fd83bd28f77a3e3313a336ad17a4c25adf617942eef5e0e2c",
+      "records": [
+        {
+          "path": "LICENSE",
+          "bytes": 1096,
+          "sha256": "5154e165bd6c2cc0cfbcd8916498c7abab0497923bafcd5cb07673fe8480087d"
+        },
+        {
+          "path": "LICENSES.chromium.html",
+          "bytes": 20111209,
+          "sha256": "a62dabd1c6ef1327365b2a3fdffb806222684a746dcb8f4afd1c1f690eba5535"
+        },
+        {
+          "path": "README.md",
+          "bytes": 1444,
+          "sha256": "554a13d8a7ce37d2c004f12175a25a4cd2fcb33b2f28f0d427398577c7d164f9"
+        },
+        {
+          "path": "SOURCES.json",
+          "bytes": 2573,
+          "sha256": "f9bdfa1394f1c0cb71777e76505af681c99c73466d4d11264681624bab130d10"
+        }
+      ],
+      "completeBinarySbom": false
+    },
+    "retainedPublisherArchivesVerifiedIndependently": {
+      "schemaVersion": 1,
+      "electronVersion": "44.4.5",
+      "sourceIndexSha256": "f9bdfa1394f1c0cb71777e76505af681c99c73466d4d11264681624bab130d10",
+      "archivesAndChecksums": [
+        {
+          "file": "electron-v44.4.5-darwin-arm64.zip",
+          "bytes": 130418529,
+          "sha256": "a212eee63ba2f45fd83bd28f77a3e3313a336ad17a4c25adf617942eef5e0e2c"
+        },
+        {
+          "file": "SHASUMS256.txt",
+          "bytes": 6740,
+          "sha256": "a0379166a35f9d3e2e1b63a72b90ddfe54a9558c56a3bde82e98f63823591d72"
+        },
+        {
+          "file": "electron-44.4.5.tgz",
+          "bytes": 198479,
+          "sha256": "712c161f94c755d94b4a1eefa2e97e76fca4f284bf6294b958bb82af3ae3e5e1"
+        }
+      ],
+      "noticeFiles": [
+        {
+          "file": "LICENSE",
+          "bytes": 1096,
+          "sha256": "5154e165bd6c2cc0cfbcd8916498c7abab0497923bafcd5cb07673fe8480087d"
+        },
+        {
+          "file": "LICENSES.chromium.html",
+          "bytes": 20111209,
+          "sha256": "a62dabd1c6ef1327365b2a3fdffb806222684a746dcb8f4afd1c1f690eba5535"
+        }
+      ],
+      "framework": {
+        "file": "Electron.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Electron Framework",
+        "bytes": 202847024,
+        "sha256": "e25ea99d8c7aba7f5f90710a27239bd073987e60be0e1bb79860b9eda1c1da10"
+      },
+      "publisherAndNpmChecksumEntriesAgree": true,
+      "compressedCopiesMatchCompleteOriginals": true,
+      "completeBinarySbom": false,
+      "scope": "Retained publisher archive identities and original notice copies verified offline. No archive is extracted or executed. This is not an independent native-source rebuild or complete redistribution/SBOM review."
+    },
+    "frameworkMatchesVerifiedReleaseMember": true,
+    "allCompressedAndExpandedOriginalNoticesMatchExactCommit": true
+  },
+  "nativeBuildRequests": {
+    "record": {
+      "file": "test-results/bounded-build-hosted-evidence/test-results/build-requests-b0fKdg/result.json",
+      "bytes": 1747,
+      "sha256": "da6903b9ede2c1915d0a0beb60e4e5ae2a45f7a82082863047553f3670a2656f"
+    },
+    "exportedPdf": {
+      "file": "test-results/bounded-build-hosted-evidence/test-results/build-requests-b0fKdg/newest.pdf",
+      "bytes": 3760,
+      "sha256": "3303f516a642d8496cad2bbf0d4e4d2fd42cc5f72e4a815f27870a2b9984a5ca"
+    },
+    "pdfParsedIndependently": true,
+    "whileHeld": {
+      "requests": 501,
+      "settled": 499,
+      "cancelled": 499
+    },
+    "checks": [
+      "499 superseded IPC requests settle while disk review remains held; only revision 500 produces a PDF and history entry.",
+      "Stop drops pending IPC work and waits for active disk review; history and runtime removal remain blocked while review is held.",
+      "The final real PDF is independently parsed and contains the newest requested text."
+    ],
+    "sourceHashesMatchCommit": true
+  }
+}
