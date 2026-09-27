@@ -482,3 +482,12 @@ The controlled build-queue fixture holds runtime acquisition and issues 5,000 ne
 The sixteen focused controls include 10,000-request bursts at each asynchronous stage, cancellation while cleanup is held, and progress after an active failure. A native compiler integration additionally requires only the newest of 1,000 waiting requests to produce a PDF and checkpoint. See [implementation and reproduction](BUILD_REQUESTS.md), [before](performance/build-request-backlog-before.json), [after](performance/build-request-backlog-after.json) and [verification](releases/build-requests-verification.json).
 
 These are request-count and correctness observations. The raw diagnostic includes one enqueue interval and Node heap readings, which do not isolate retained memory or establish an app speedup. Next measure longer real editing sessions and the whole Electron/compiler process tree on supported Macs. Recovery queues, engine caches and aggregate profile retention remain separate work; this change does not satisfy the complete resource-budget requirement.
+
+
+### Bound pending recovery writes
+
+A held synthetic disk sink in the prior `ProjectStore` left all 5,001 recovery requests unsettled. Automatic renderer calls also accumulated during eight real, debounce-separated edits in the previous packaged app: all eight snapshots were written after the first write was released.
+
+The current renderer keeps one active and one newest waiting snapshot; the identical packaged check writes only snapshots 1 and 8. Native admission separately permits four unfinished recovery calls and rejects excess calls before queueing them. A real preload/IPC burst of 100 calls produced four accepted calls and 96 busy rejections while the first write was held, with no early save acknowledgement. Fifteen focused controls also exercise 10,000-request bursts and file/directory-flush failures. See [recovery design](RECOVERY_WRITES.md) and [exact verification](releases/recovery-writes-verification.json).
+
+This removes an unbounded pending-write list. It is not a speedup or retained-memory measurement; recovery now explicitly flushes files and directories, which adds durability work. Next measure recovery latency with large admitted projects and storage contention on supported Macs. Complete process-tree budgets, engine-cache bounds and retention of recovery copies remain open.

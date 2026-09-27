@@ -41,4 +41,6 @@ The packaged fixture uses the real preload, IPC, project registration, disk revi
 
 ## Limits
 
-This is a request-count bound. The single-run timing and Node heap readings in the raw diagnostic are not a speedup claim, retained-heap measurement, Electron process-tree measurement or release resource budget. Pending IPC messages outside the coordinator, project recovery writes, whole-profile cache/storage growth and total app CPU/memory require separate controls and measurements. Broader Mac acceptance and production signing remain in [the release audit](RELEASE_GAP_AUDIT.md).
+This is a request-count bound. The single-run timing and Node heap readings in the raw diagnostic are not a speedup claim, retained-heap measurement, Electron process-tree measurement or release resource budget. Pending IPC messages outside the coordinator, whole-profile cache/storage growth and total app CPU/memory require separate controls and measurements. Broader Mac acceptance and production signing remain in [the release audit](RELEASE_GAP_AUDIT.md).
+
+Project recovery has a separate [bounded-write implementation and verification](RECOVERY_WRITES.md).
