@@ -1,4 +1,5 @@
 import { spawn } from 'node:child_process';
+import type { Duplex } from 'node:stream';
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { performance } from 'node:perf_hooks';
@@ -202,11 +203,11 @@ export class Compiler {
     log: string;
   }> {
     return new Promise((resolve, reject) => {
-      const launch = limitedCompilerLaunch(command, args, this.timeoutMs);
+      const launch = limitedCompilerLaunch(command, args, this.timeoutMs, true);
       const child = spawn(launch.command, launch.args, {
         cwd,
         detached: true,
-        stdio: ['ignore', 'pipe', 'pipe'],
+        stdio: ['ignore', 'pipe', 'pipe', 'pipe'],
         env: {
           PATH: `${runtimePath}${path.delimiter}/usr/bin${path.delimiter}/bin`,
           PAR_GLOBAL_TEMP: path.join(home, 'biber-cache'),
@@ -218,6 +219,7 @@ export class Compiler {
           LANG: 'en_US.UTF-8',
         },
       });
+      const parentWatch = child.stdio[3] as Duplex;
       let log = '';
       let failure: string | undefined;
       const stop = () => {
@@ -229,6 +231,10 @@ export class Compiler {
           }
         }
       };
+      parentWatch.once('error', () => {
+        failure = 'The compiler parent connection failed.';
+        stop();
+      });
       const cancel = () => {
         failure = 'Compilation cancelled.';
         stop();
@@ -245,8 +251,8 @@ export class Compiler {
           stop();
         }
       };
-      child.stdout.on('data', append);
-      child.stderr.on('data', append);
+      child.stdout!.on('data', append);
+      child.stderr!.on('data', append);
       signal.addEventListener('abort', cancel, { once: true });
       if (signal.aborted) cancel();
       const cleanup = () => {
@@ -254,12 +260,15 @@ export class Compiler {
         signal.removeEventListener('abort', cancel);
       };
       child.once('error', (error) => {
+        parentWatch.destroy();
         cleanup();
         reject(error);
       });
-      // A kernel resource signal can stop the compiler before its children.
-      // Reap the whole group promptly instead of leaving a helper holding pipes.
+      // Close on exit, not close: descendants may still hold the log pipes.
+      // The watcher kills remaining helpers on successful exits too. A dead
+      // application closes this connection automatically in the kernel.
       child.once('exit', (code, exitSignal) => {
+        parentWatch.destroy();
         if (exitSignal || code !== 0) stop();
       });
       child.once('close', (code, exitSignal) => {
