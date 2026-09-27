@@ -12,6 +12,7 @@ import { validateRuntimePin, adoptRuntime } from '../src/shared/runtime';
 import { ProjectStore, fingerprint, validateProject } from '../electron/core/project';
 import { ProjectImporter } from '../electron/core/project-import';
 import { WorkspaceStore } from '../electron/core/workspace';
+import { compilerStorageTree, compilerInstallationBudget } from '../electron/core/compiler-storage';
 
 const hash = (value: string) => createHash('sha256').update(value).digest('hex');
 async function fixture(t: TestContext, extraFiles: Record<string, string> = {}) {
@@ -478,4 +479,192 @@ test('process interruption before directory flush, after staging, testing and po
     await verifyRuntime(await f.active(), f.pin);
     assert.equal((await fs.readdir(path.join(f.data, f.pin.id!, 'copies'))).length, 2);
   }
+});
+
+async function updatedFixture(t: TestContext) {
+  const f = await fixture(t);
+  await fs.writeFile(
+    path.join(f.bundle, 'manifest.json'),
+    JSON.stringify({ ...f.manifest, version: '0.18.0' }),
+  );
+  const manager = new RuntimeManager(f.bundle, f.data, { probe: async () => {} });
+  await manager.initialize();
+  const entry = async () =>
+    (await manager.storage()).entries.find((entry) => entry.key === f.pin.id)!;
+  return { ...f, updated: manager, entry };
+}
+
+test('compiler storage totals include self-test/unknown data; protected and leased identities cannot be removed', async (t) => {
+  const f = await updatedFixture(t);
+  await fs.mkdir(path.join(f.data, 'self-test'));
+  await fs.writeFile(path.join(f.data, 'self-test', 'retained'), 'check');
+  await fs.writeFile(path.join(f.data, 'keep.txt'), 'Unrecognized data');
+  const storage = await f.updated.storage(f.pin);
+  assert.equal(storage.bytes, (await compilerStorageTree(f.data)).bytes);
+  assert.equal(storage.installationBudgetBytes, compilerInstallationBudget);
+  assert.equal(storage.entries.length, 2);
+  const included = storage.entries.find((entry) => entry.key === f.updated.defaultPin!.id)!;
+  await assert.rejects(f.updated.removeStoredCompiler(included.key, included.token), /Included/);
+  const old = await f.entry();
+  await assert.rejects(
+    f.updated.removeStoredCompiler(old.key, old.token, f.pin),
+    /current project/,
+  );
+  if (process.platform === 'darwin') {
+    const lease = await f.updated.acquire(f.pin);
+    try {
+      await assert.rejects(f.updated.removeStoredCompiler(old.key, old.token), /PDF build/);
+    } finally {
+      await lease.release();
+    }
+  }
+  await verifyRuntime(await f.active(), f.pin);
+  assert.equal(await fs.readFile(path.join(f.data, 'keep.txt'), 'utf8'), 'Unrecognized data');
+});
+
+test('reviewed removal deletes only an old identity and preserves saved project pins, source and the included compiler', async (t) => {
+  const f = await updatedFixture(t);
+  const projectRoot = path.join(f.root, 'project');
+  const store = new ProjectStore(path.join(f.root, 'project-data'));
+  const project = {
+    id: 'old-project',
+    name: 'Old resume',
+    revision: 1,
+    mainFile: 'main.tex',
+    runtime: f.pin,
+    files: [{ path: 'main.tex', content: 'Keep this source' }],
+  };
+  await fs.mkdir(projectRoot);
+  await store.save(project, projectRoot, false);
+  const before = await fs.readFile(path.join(projectRoot, 'resume.project.json'));
+  const old = await f.entry();
+  await f.updated.removeStoredCompiler(old.key, old.token);
+  await assert.rejects(fs.access(path.join(f.data, old.key)));
+  await assert.rejects(f.updated.removeStoredCompiler(old.key, old.token), { code: 'ENOENT' });
+  await assert.rejects(fs.access(path.join(f.data, old.key)));
+  assert.deepEqual(await fs.readFile(path.join(projectRoot, 'resume.project.json')), before);
+  assert.equal(await fs.readFile(path.join(projectRoot, 'main.tex'), 'utf8'), 'Keep this source');
+  assert.equal((await f.updated.status()).ready, process.platform === 'darwin');
+  const absent = await f.updated.status(f.pin);
+  assert.equal(absent.ready, false);
+  assert.deepEqual(absent.pin, f.pin);
+  assert.match(absent.message, /matching Folio version/);
+});
+
+test('stale reviews, unknown files, traversal, links and replaced identities cannot remove compiler storage', async (t) => {
+  const f = await updatedFixture(t),
+    old = await f.entry();
+  await fs.writeFile(path.join(await f.active(), 'bundle.zip'), 'Changed after review');
+  await assert.rejects(f.updated.removeStoredCompiler(old.key, old.token), /changed/);
+  await fs.writeFile(path.join(f.data, old.key, 'notes.txt'), 'Keep unknown file');
+  const unknown = await f.entry();
+  assert.match(unknown.protectedReason!, /Unrecognized/);
+  await assert.rejects(f.updated.removeStoredCompiler(old.key, unknown.token), /Unrecognized/);
+  await assert.rejects(
+    f.updated.removeStoredCompiler('../outside', old.token),
+    /fresh storage review/,
+  );
+  await fs.unlink(path.join(f.data, old.key, 'notes.txt'));
+  const outside = path.join(f.root, 'outside');
+  await fs.writeFile(outside, 'Keep outside');
+  const resource = path.join(await f.active(), 'bundle.zip');
+  await fs.unlink(resource);
+  await fs.symlink(outside, resource);
+  await assert.rejects(f.updated.storage(), /link or special/);
+  await assert.rejects(f.updated.removeStoredCompiler(old.key, old.token), /link or special/);
+  await fs.unlink(resource);
+  await fs.link(outside, resource);
+  await assert.rejects(f.updated.removeStoredCompiler(old.key, old.token), /link or special/);
+  assert.equal(await fs.readFile(outside, 'utf8'), 'Keep outside');
+});
+
+test('an interrupted removal remains reviewable after restart; newly added files are not swept into deletion', async (t) => {
+  const f = await updatedFixture(t),
+    old = await f.entry();
+  const unlink = fs.unlink.bind(fs);
+  let injected = false;
+  const mock = t.mock.method(fs, 'unlink', async (name: Parameters<typeof fs.unlink>[0]) => {
+    if (!injected && typeof name === 'string' && name.includes('/removing-')) {
+      injected = true;
+      const target = name.slice(0, name.indexOf('/copies/'));
+      await fs.writeFile(path.join(target, 'new-after-review.txt'), 'Preserve new file');
+    }
+    return unlink(name);
+  });
+  await assert.rejects(f.updated.removeStoredCompiler(old.key, old.token), /removal stopped/);
+  mock.mock.restore();
+  const restarted = new RuntimeManager(f.bundle, f.data, { probe: async () => {} });
+  const remaining = (await restarted.storage()).entries.find((entry) => entry.unfinishedRemoval)!;
+  assert.ok(remaining);
+  assert.equal(
+    await fs.readFile(path.join(f.data, remaining.key, 'new-after-review.txt'), 'utf8'),
+    'Preserve new file',
+  );
+  assert.equal((await restarted.status()).ready, process.platform === 'darwin');
+  await restarted.removeStoredCompiler(remaining.key, remaining.token);
+  assert.equal(
+    (await restarted.storage()).entries.some((entry) => entry.unfinishedRemoval),
+    false,
+  );
+});
+
+test('admission refuses low space and an over-budget compiler copy before writes or pointer replacement', async (t) => {
+  const f = await fixture(t),
+    before = await f.pointer();
+  const statfs = t.mock.method(fs, 'statfs', async () => ({ bavail: 0n, bsize: 4096n }));
+  await assert.rejects(f.manager.repair(f.pin), /Not enough free disk space/);
+  assert.deepEqual(await f.pointer(), before);
+  assert.deepEqual(await fs.readdir(path.join(f.data, f.pin.id!, 'copies')), [before.generation]);
+  statfs.mock.restore();
+  // A sparse fixture exercises logical-byte admission without filling the disk.
+  const sparse = await fs.open(path.join(f.data, 'budget-fixture'), 'wx');
+  try {
+    await sparse.truncate(compilerInstallationBudget);
+  } finally {
+    await sparse.close();
+  }
+  await assert.rejects(f.manager.repair(f.pin), /16 GiB installation budget/);
+  assert.deepEqual(await f.pointer(), before);
+  await fs.unlink(path.join(f.data, 'budget-fixture'));
+  await f.manager.repair(f.pin);
+  await verifyRuntime(await f.active(), f.pin);
+});
+
+test('killing the remover after a real unlink leaves a reviewable remainder and a usable included compiler', async (t) => {
+  const f = await updatedFixture(t);
+  const child = spawn(
+    process.execPath,
+    ['--import', 'tsx', 'tests/fixtures/runtime-storage-crash.ts', f.bundle, f.data, f.pin.id!],
+    { stdio: ['ignore', 'pipe', 'pipe'] },
+  );
+  let output = '',
+    errors = '';
+  child.stderr.on('data', (data) => {
+    errors += data;
+  });
+  await new Promise<void>((resolve, reject) => {
+    const timer = setTimeout(() => {
+      child.kill('SIGKILL');
+      reject(new Error('Removal checkpoint timeout: ' + errors));
+    }, 15_000);
+    child.stdout.on('data', (data) => {
+      output += data;
+      if (output.includes('READY-TO-KILL')) child.kill('SIGKILL');
+    });
+    child.on('error', (error) => {
+      clearTimeout(timer);
+      reject(error);
+    });
+    child.on('exit', (_code, signal) => {
+      clearTimeout(timer);
+      if (signal === 'SIGKILL' && output.includes('READY-TO-KILL')) resolve();
+      else reject(new Error(errors));
+    });
+  });
+  const restarted = new RuntimeManager(f.bundle, f.data, { probe: async () => {} });
+  const remainder = (await restarted.storage()).entries.find((entry) => entry.unfinishedRemoval)!;
+  assert.ok(remainder);
+  assert.equal((await restarted.status()).ready, process.platform === 'darwin');
+  await restarted.removeStoredCompiler(remainder.key, remainder.token);
+  assert.equal((await restarted.storage()).entries.length, 1);
 });

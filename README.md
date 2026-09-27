@@ -16,7 +16,7 @@ Download the **[Apple silicon DMG preview](https://github.com/grawish/folio/rele
 
 ## Development preview
 
-Folio is under active development; a signed, notarized installer and live automatic updates are not available yet. The current source includes [app-update Settings and authentication](docs/APP_UPDATES.md); publisher enrollment and a real signed upgrade remain required. The fully qualified unsigned source at `aa40c6b` passes 293 source tests, 16 compiler integrations and all fifteen native Mac suites; [the verification record](docs/releases/mac-archives-hosted-verification.json) binds those checks to its exact source and app. See the [preview release notes](docs/releases/v0.1.0-preview.4.md) for the packaged build and the [release audit](docs/RELEASE_GAP_AUDIT.md) for remaining production requirements. These results do not establish compatibility with every macOS version.
+Folio is under active development; a signed, notarized installer and live automatic updates are not available yet. The current source includes [app-update Settings and authentication](docs/APP_UPDATES.md); publisher enrollment and a real signed upgrade remain required. The fully qualified unsigned source at `659a375` passes 327 source tests, 16 compiler integrations and all sixteen native Mac suites; [the verification record](docs/releases/mac-update-storage-hosted-verification.json) binds those checks to its exact source and app. See the [preview release notes](docs/releases/v0.1.0-preview.4.md) for the packaged build and the [release audit](docs/RELEASE_GAP_AUDIT.md) for remaining production requirements. These results do not establish compatibility with every macOS version.
 
 Windows, Linux and Intel Macs are outside this release's scope. Read the [remaining release requirements](docs/RELEASE_GAP_AUDIT.md) before relying on the preview for important documents.
 
@@ -63,7 +63,7 @@ The [release pipeline](docs/RELEASE_PIPELINE.md) covers source checks, source pr
 
 ## Learn and contribute
 
-Start with [your first resume](docs/tutorials/first-resume.md). The [feature matrix](docs/FEATURE_GUIDE_INDEX.md) links 35 screenshot walkthroughs and reproducible demos. A [reusable Folio skill](docs/DOCUMENTATION_SKILL.md) packages the guides for your assistant. The [performance investigation](docs/PERFORMANCE_IMPROVEMENT_PLAN.md) includes raw measurements and ranked optimization experiments.
+Start with [your first resume](docs/tutorials/first-resume.md). The [feature matrix](docs/FEATURE_GUIDE_INDEX.md) links 36 screenshot walkthroughs and reproducible demos. A [reusable Folio skill](docs/DOCUMENTATION_SKILL.md) packages the guides for your assistant. The [performance investigation](docs/PERFORMANCE_IMPROVEMENT_PLAN.md) includes raw measurements and ranked optimization experiments.
 
 Bug reports should describe what happened, what you expected, and your macOS/app version. Use a small synthetic example and remove personal details from logs and screenshots. See [security reporting](SECURITY.md) for sensitive issues.
 

@@ -160,6 +160,8 @@ export interface DesktopAPI {
   bootstrap(): Promise<Bootstrap>;
   inspectRuntime(pin?: import('./runtime').RuntimePin): Promise<RuntimeStatus>;
   repairRuntime(pin?: import('./runtime').RuntimePin): Promise<RuntimeStatus>;
+  compilerStorage(): Promise<import('./compiler-storage').CompilerStorage>;
+  removeStoredCompiler(key: string, token: string): Promise<boolean>;
   listPacks(): Promise<import('./packs').PackLibrary>;
   refreshPacks(id: string): Promise<import('./packs').PackLibrary>;
   preparePackImport(id: string): Promise<import('./packs').PackImportPreview | null>;

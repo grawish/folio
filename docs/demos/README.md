@@ -37,3 +37,5 @@ The app-update screenshots use `npm run test:updates` with the ordinary source b
 `app-updates-disk-space.png` comes from the same suite’s `updates-disk-space.png`. The low-space state is simulated in the real Settings screen; the test checks that retry and dismissal controls remain available. Separate adapter controls simulate free-space readings before both transfer and staging without filling a real disk.
 
 `keyboard-navigation.png` and `keyboard-settings.png` come from `npm run test:workspace` (`keyboard-tabs.png` and `keyboard-settings.png`). Real keyboard events move focus through the source-built app with a synthetic resume; no UI error state or AI response is injected. These captures do not establish physical VoiceOver or complete accessibility acceptance.
+
+`compiler-storage.png` comes from `npm run test:runtime`. Settings measures the real current compiler and a tiny inert old-compiler fixture in an isolated profile. Confirmation choices are intercepted for repeatability; cancellation, file-change rejection, removal and a subsequent real PDF build are checked. No personal compiler data is used.

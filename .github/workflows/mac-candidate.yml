@@ -57,6 +57,7 @@ jobs:
             test-results/chat-*/failure.png
             test-results/chat-*/lifecycle.json
             test-results/chat-*/native-output.log
+            test-results/runtime-*/compiler-storage*.png
             test-results/runtime-*/result.json
             test-results/runtime-*/startup-chat.png
             test-results/runtime-*/startup-editing.png

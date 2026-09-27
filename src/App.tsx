@@ -2288,12 +2288,14 @@ export default function App() {
             }}
             onPackBegin={async () => {
               if (saving.current || agentBusy || !workspaceReady || closing.current)
-                throw new Error('Finish saving or the AI request before managing packs.');
+                throw new Error(
+                  'Finish saving or the AI request before managing compiler resources.',
+                );
               buildToken.current++;
               setBuilding(false);
               await flushWorkspace();
               await window.folio?.recover(current.current);
-              if (closing.current) throw new Error('Pack operation cancelled while closing.');
+              if (closing.current) throw new Error('Resource operation cancelled while closing.');
             }}
             onCompareCompiler={(target) => {
               if (saving.current || agentBusy || !workspaceReady || needsDiskReview) {

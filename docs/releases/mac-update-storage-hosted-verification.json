@@ -1,0 +1,269 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T11:02:43.616710+00:00",
+  "commit": "659a37554fd8fb5f26110deb26c28bf0e448057a",
+  "runId": 36311618528,
+  "url": "https://github.com/grawish/folio/actions/runs/36311618528",
+  "conclusion": "success",
+  "downloadedArtifact": {
+    "id": 10929871665,
+    "path": "artifacts/mac-659a375.zip",
+    "bytes": 5644120,
+    "sha256": "a0fb33334c75a525312c194437789414f547ce101ab88c78d13401b11603632d"
+  },
+  "retainedArtifactFilesVerified": 136,
+  "sourceTestsPassed": 327,
+  "compilerIntegrationTestsPassed": 16,
+  "templateImagesPassed": 12,
+  "changedPixels": 0,
+  "nativeSuites": [
+    {
+      "suite": "import-recovery",
+      "script": "scripts/test-import-recovery.mjs",
+      "scriptSha256": "81967721e2258427a438e89a2b9a7d0fee3800136c2823f69c7c2575c8781366",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "import",
+      "script": "scripts/test-import.mjs",
+      "scriptSha256": "270b9fc55851f29cbc5c88346e2ba4efd6c0f46892ebfcda4ae649df4ade1233",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "pdf-viewer",
+      "script": "scripts/test-pdf-viewer.mjs",
+      "scriptSha256": "359ac20b7e751cf7bfd62fbf114ed9146868f9606645cb1415b8b8089daa22a8",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "pdf-lifecycle",
+      "script": "scripts/test-pdf-lifecycle.mjs",
+      "scriptSha256": "050ebba2f302310289760eeefdf7055ae62b3a680c278ae5b26fc6ed6d56a913",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "migration",
+      "script": "scripts/test-migration.mjs",
+      "scriptSha256": "5f4a33db8cbe3afc37578caec954421a15567b37e24db7098c42db3136b52f53",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "chat",
+      "script": "scripts/test-chat.mjs",
+      "scriptSha256": "ecc8c229f5792aefd47b860c7ff318c3bd60962972da2f57be4f9e7a454cd095",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "runtime",
+      "script": "scripts/test-runtime.mjs",
+      "scriptSha256": "0134a2bbad027e18fc2f448d39cb3dfb2c78ac3f40fc3c177010c22e8bee5b1b",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "workspace",
+      "script": "scripts/test-workspace.mjs",
+      "scriptSha256": "73d73aadd8a7f42c4d8287bf791b004e7571bf93acb06bf9c1658eb6ca1b7043",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "history-storage",
+      "script": "scripts/test-history-storage.mjs",
+      "scriptSha256": "3878352c388634b90551412f547d0a54790cc5deb2a403b2144c3448be741f9b",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "diagnostics",
+      "script": "scripts/test-diagnostics.mjs",
+      "scriptSha256": "fabc3516d0f4bb634243b03639cad2d399bcb63ef607e689cf5a2846d3f4cf20",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "fonts",
+      "script": "scripts/test-fonts.mjs",
+      "scriptSha256": "ea22d1c8498963eb07ada2f996ac306a99b83b45a017dac20a02abd1c5259682",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "support",
+      "script": "scripts/test-support.mjs",
+      "scriptSha256": "f6fe2f4ca8072aba6b21c054e63a7158896900c1dc7dcf533e9b74b2035dfd72",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "updates",
+      "script": "scripts/test-updates.mjs",
+      "scriptSha256": "7649800e49652401aae941ac91e057be2bfce64f048d938027560e4fa5ecd5f4",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "save-recovery",
+      "script": "scripts/test-save-recovery.mjs",
+      "scriptSha256": "bdf3126f22a6b45b5583a689aa406e2a2ebde1f6db672a182102a44cbc704ee3",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "pack-catalog",
+      "script": "scripts/test-pack-catalog.mjs",
+      "scriptSha256": "bdaf2bac1235655ff6dcba1f77567021e9b623acc9afdb452e2fbb3b3a0c2ad4",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "packaged",
+      "script": "scripts/test-packaged.mjs",
+      "scriptSha256": "be7b559a2cf786c3c1b5fa2ee04fc9381410f41a6fe8766ec0af2dc37d2cd5a3",
+      "passed": true,
+      "unchanged": true
+    }
+  ],
+  "allNativeScriptHashesMatchCommit": true,
+  "templateSourcePdfAndImageHashesVerified": true,
+  "electronTransfer": {
+    "result": {
+      "passed": true,
+      "checks": [
+        "Real MacUpdater bounded HTTPS-protocol transfer, SHA-512, exact cache bytes and authenticated loopback ZIP proxy pass.",
+        "Valid cached download is reusable offline; same-size cache tampering is rejected and a fresh retry succeeds.",
+        "Actual downloaded checksum mismatch is rejected before native staging.",
+        "Actual Electron request policy blocks an unapproved HTTPS redirect.",
+        "Approved GitHub asset redirect succeeds without session cookies or authorization.",
+        "An actual Electron request failure rejects without staging an update.",
+        "Actual transfer cancellation settles, keeps the app running, and permits a verified retry.",
+        "Controlled full-disk readings block transfer and staging; freeing space permits retry. Stale partial cache is removed, while unexpected items are preserved and stop the updater.",
+        "An oversized chunked response cannot become a verified native update.",
+        "Guarded native failure releases the adapter, ignores late events and blocks a second download or restart in this process."
+      ],
+      "requests": [
+        "https://github.com/grawish/folio/releases/download/v0.2.0/Folio-0.2.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.2.0/Folio-0.2.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.3.0/Folio-0.3.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.4.0/Folio-0.4.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.4.1/Folio-0.4.1-mac-arm64.zip",
+        "https://release-assets.githubusercontent.com/fixture.zip",
+        "https://github.com/grawish/folio/releases/download/v0.4.2/Folio-0.4.2-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.5.0/Folio-0.5.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.5.0/Folio-0.5.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.5.1/Folio-0.5.1-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.6.0/Folio-0.6.0-mac-arm64.zip",
+        "https://github.com/grawish/folio/releases/download/v0.7.0/Folio-0.7.0-mac-arm64.zip"
+      ],
+      "elapsedMs": 1123,
+      "electron": "44.4.5",
+      "updater": "6.8.10",
+      "sha512": "xctrxrE3E0vatQ1quVVsFV5yygejxAzxl+I7JGUDJAEBwiyKC4yTSYxkCCh5t8ehLSihRciv3rDz0CBj49SF2w==",
+      "zipBytes": 262399,
+      "transport": "Electron HTTPS protocol handler supplies deterministic responses; real MacUpdater, bounded net.request transfer, cache and proxy code.",
+      "syntheticTrust": true,
+      "isolatedCache": true,
+      "nativeInstallationAttempted": false,
+      "guardedStagingChecks": 1,
+      "nativeStagingSimulated": true,
+      "diskSpaceReadingsSimulated": true,
+      "scope": "No runnable app ZIP, Developer ID, notarization, public network, or native replacement is claimed."
+    },
+    "inputs": {
+      "inputs": {
+        "scripts/fixtures/update-download.ts": "a0dd45c85e0c3d85bf0e4ccd9ef981b72b3923dc2193d014686539cbe3949532",
+        "electron/core/update-installer.ts": "74084263a6ab899cb9f158f225e7faee54dd45da13872c90eec23855a4b9ce84",
+        "electron/core/update-manifest.ts": "47a9568903b66e40c7066ad2cc260392464b2f070595667641c5e40794294e81",
+        "electron/core/update-provider.ts": "02a914e55a42b3de2a0de648bdcca52b3ec90bccd854869a1bc7141da39e49d2",
+        "electron/core/update-archive.ts": "ba647d27b73d3cd019b5cd1f969e638ca2c9eb9c82e4236db485acded3a90a4d",
+        "electron/core/update-feed.ts": "345bcaf2eecccab926b6ca6fc1ff4b2929ed3d9b3b6ece4945481369c54ea5eb",
+        "electron/core/update-download.ts": "e796e2308906770315bdeb6b942cf76703860f2f22ebd976fbeca6a8c6a91d69",
+        "electron/core/update-request.ts": "61461ec2962f55e5657ace5abc96120e9574619171e78368153761248ab16c2e",
+        "electron/core/update-staging.ts": "2a011ca6f0bd290f4ecdd9f37c10a5ca8fb8300fde7065d4ee55312113dbde93",
+        "electron/core/update-storage.ts": "5f8de9a6260709afa66f84b849a40411a44691014f95acfe2b0e5a9171073e14",
+        "electron/core/pack-io.ts": "8f80c73ab4a8a4818e588f95cdb50c65debacea7e3429e7a4d2210a56e6a621b",
+        "package-lock.json": "f49e1352767126ce8d3c894ac5bfdc4d39fc951fbe1efe7283ca4ee4d991ae00"
+      },
+      "bundleSha256": "4f769aa1464d6b464d27540a6689027b284a7c8eb105bf00e11f0da63cda845b"
+    },
+    "inputHashesMatchCommit": true
+  },
+  "fullAppIdentity": {
+    "schemaVersion": 1,
+    "bundleInventorySha256": "ebb9ca9c8b0003cb482a4fe972f4ac52025ac413407745fbeb345436425dc07e",
+    "asarSha256": "7a9b8e2552b8ca4cf0e7c566727e3d4d97ef0f95463d829f012e1be4fc7e7e73",
+    "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0"
+  },
+  "physicalInventory": {
+    "recordsVerified": [
+      {
+        "path": "bundle-inventory.json",
+        "bytes": 1175769,
+        "sha256": "ebb9ca9c8b0003cb482a4fe972f4ac52025ac413407745fbeb345436425dc07e"
+      },
+      {
+        "path": "bundle.cdx.json",
+        "bytes": 3390562,
+        "sha256": "cac9cfa7d274e163faea6b18a28aadaf932a8d4199bcb5d572b8e985c4fccfaf"
+      }
+    ],
+    "regularFiles": 4243,
+    "symlinks": 14,
+    "runtimeFilesVerified": 3982,
+    "logicalFileBytes": 681096261,
+    "componentMappingComplete": false
+  },
+  "runnerReportedPackage": {
+    "passed": true,
+    "checkedAt": "2026-09-27T10:45:28.874Z",
+    "architecture": "arm64",
+    "comparedOutputFiles": 39,
+    "runtimeManifestMatches": true,
+    "appBytes": 681096261,
+    "hashes": [
+      {
+        "path": "Folio-0.1.0-preview.4-mac-arm64.dmg",
+        "bytes": 303205033,
+        "sha256": "7a5b44c2b21e8c2e2d5ce357d75819f7b5cd3b8630e314b61ecb7458c73d4873"
+      },
+      {
+        "path": "mac-arm64/Folio.app/Contents/Resources/app.asar",
+        "bytes": 7417539,
+        "sha256": "7a9b8e2552b8ca4cf0e7c566727e3d4d97ef0f95463d829f012e1be4fc7e7e73"
+      },
+      {
+        "path": "Folio-0.1.0-preview.4-mac-arm64.zip",
+        "bytes": 306194384,
+        "sha256": "a6f2c6b683529913ff45a95fdffb2464dbe2bc366aab29ce05d1aa7db4a48040"
+      }
+    ],
+    "archives": {
+      "passed": true,
+      "bundleInventorySha256": "ebb9ca9c8b0003cb482a4fe972f4ac52025ac413407745fbeb345436425dc07e",
+      "dmg": {
+        "bytes": 303205033,
+        "sha256": "7a5b44c2b21e8c2e2d5ce357d75819f7b5cd3b8630e314b61ecb7458c73d4873",
+        "appMatches": true
+      },
+      "zip": {
+        "bytes": 306194384,
+        "sha256": "a6f2c6b683529913ff45a95fdffb2464dbe2bc366aab29ce05d1aa7db4a48040",
+        "appMatches": true,
+        "matchedEntries": 5018,
+        "metadataEntries": 0,
+        "metadataBytes": 0
+      },
+      "distributionVerified": false,
+      "scope": "Exact app bytes, modes and internal links inside both archives. Apple checks run only in distribution mode; fresh-machine quarantined download/launch and updater acceptance remain separate."
+    },
+    "distributionVerified": false,
+    "nativeTestsPassed": true
+  },
+  "scope": "Downloaded and independently hashed the evidence ZIP and every retained file; checked source script and transfer input hashes against the exact commit, and bound native qualification and archive reports to the physical app inventory. The unsigned app, DMG and ZIP themselves were not downloaded or published. This qualifies unsigned source 659a375, including update-cache reuse, simulated disk-space admission and controlled native-staging recovery; it does not qualify later keyboard or compiler-storage changes. No real Apple notarization or signed update staging is claimed. Developer ID, notarization, real signed-to-signed upgrade, complete redistribution attribution and supported-device acceptance remain open."
+}
