@@ -1,0 +1,2394 @@
+{
+  "sourceCommit": "27ff98ab429c0aaa87f83e554612f3bc31c36bfa",
+  "appAsarSha256": "fbc69b9abcd714b69a35f139f7ac155a05458e5cefdc0bef3e29e861b932e91e",
+  "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+  "host": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "os": "27.0.0",
+    "cpu": "Apple M4 Pro",
+    "logicalCpus": 14,
+    "ramBytes": 51539607552,
+    "node": "v24.21.0"
+  },
+  "observer": {
+    "api": "proc_listchildpids and proc_pid_rusage RUSAGE_INFO_V0",
+    "intervalMs": 200,
+    "sha256": "8addb95700ef208fce5a0125f77864baca37f9e57db8b3292c2b93ad502ed4bd",
+    "pdfInspector": "6.10.0",
+    "samples": 8910,
+    "totalCpuSeconds": 27.73951199999991,
+    "maxCollectionMs": 578.471375,
+    "maxSampleGapMs": 778.515334,
+    "vanishedDuringReads": 6
+  },
+  "scripts": {
+    "scripts/profile-process-resources.mjs": "dce990ee74973497c6b2bfbf6cb259ce2db1050369b9c88dd8d63a1f07e05972",
+    "scripts/mac-process-sampler.mjs": "9d25c0620ac495dce59f14cab8f98779d67c5e38a730b589569afb80029924d7",
+    "scripts/sample-mac-processes.c": "696294d13261a728ccae0b15d6e5446d49781571997f9e3ef1b254e0992ca67b",
+    "scripts/profile-directory-storage.ts": "5e4741a3e3c5d9c94e7efd3f5b1f1115d28ce812ba0a26f2026af0d7487accf8"
+  },
+  "cycles": 120,
+  "longSession": true,
+  "viewport": {
+    "width": 1480,
+    "height": 960,
+    "devicePixelRatio": 1
+  },
+  "limits": [
+    "Sampling starts after Electron automation attaches; earliest process startup can be missed. Runtime preparation uses a fresh app profile; OS caches are not purged.",
+    "Root PID plus discovered descendants only. PDF workers are renderer threads, not separate sampled processes. Observed processes that exit retain their last CPU counters.",
+    "Read-only libproc snapshots are not atomic; short-lived children and peaks between samples can be missed. Reparented helpers may leave the observed tree. PID plus birth time distinguishes reuse.",
+    "Summed RSS and summed per-process physical footprint are accounting metrics, not unique physical memory. Shared pages and surfaces can be counted more than once.",
+    "CPU is observed per-process user plus system time, scaled from Mach ticks with the reported timebase. Initial counters of processes born before sampling are excluded. Child CPU fields are not added. Missing terminal samples undercount CPU.",
+    "The sampling helper and Playwright harness are outside the app tree but add host load. Their CPU cost and snapshot duration are reported separately; the desktop is not otherwise isolated.",
+    "Repeated small-text 1/100-page workflows on one development Mac do not establish a leak, population percentiles, worst-case images/history, or supported-device memory/CPU budgets.",
+    "Long-session storage observations read logical file sizes without following observed symlinks. Scans are non-atomic and run in separately marked phases outside builds/navigation; their host I/O and harness overhead can still affect the desktop. The closed final profile is inventoried after sampling. No deletion or GC is forced."
+  ],
+  "results": {
+    "samples": 8910,
+    "phaseCount": 1215,
+    "verifiedPdfs": 360,
+    "independentlyParsedPages": 12240,
+    "storageObservations": 14,
+    "observedCpuSeconds": 629.025328047,
+    "sampledSpanSeconds": 1679.4040577089997,
+    "peakSummedRssBytes": 1147846656,
+    "peakSummedFootprintBytes": 918690728,
+    "maxProcessCount": 7
+  },
+  "provisionalThresholdChecks": {
+    "peakSummedRssUnder1_5GiB": true,
+    "peakSummedFootprintUnder1GiB": true,
+    "idleObservedCpuUnder10PercentOfOneCore": false,
+    "ordinaryBuildsUnder3ObservedCpuSeconds": false
+  },
+  "cycleReturnIdleMemory": [
+    {
+      "cycle": 1,
+      "returnIdleMedianSummedRssBytes": 654802944.0,
+      "returnIdleMedianSummedFootprintBytes": 452056680.0,
+      "returnIdlePeakSummedRssBytes": 654868480,
+      "returnIdlePeakSummedFootprintBytes": 558667368
+    },
+    {
+      "cycle": 2,
+      "returnIdleMedianSummedRssBytes": 664207360,
+      "returnIdleMedianSummedFootprintBytes": 457954968,
+      "returnIdlePeakSummedRssBytes": 664289280,
+      "returnIdlePeakSummedFootprintBytes": 565171864
+    },
+    {
+      "cycle": 3,
+      "returnIdleMedianSummedRssBytes": 677101568,
+      "returnIdleMedianSummedFootprintBytes": 465950384,
+      "returnIdlePeakSummedRssBytes": 677150720,
+      "returnIdlePeakSummedFootprintBytes": 562894512
+    },
+    {
+      "cycle": 4,
+      "returnIdleMedianSummedRssBytes": 682246144,
+      "returnIdleMedianSummedFootprintBytes": 472569496,
+      "returnIdlePeakSummedRssBytes": 682295296,
+      "returnIdlePeakSummedFootprintBytes": 583030424
+    },
+    {
+      "cycle": 5,
+      "returnIdleMedianSummedRssBytes": 684294144,
+      "returnIdleMedianSummedFootprintBytes": 471717576,
+      "returnIdlePeakSummedRssBytes": 684359680,
+      "returnIdlePeakSummedFootprintBytes": 570152648
+    },
+    {
+      "cycle": 6,
+      "returnIdleMedianSummedRssBytes": 688324608,
+      "returnIdleMedianSummedFootprintBytes": 475846296,
+      "returnIdlePeakSummedRssBytes": 688390144,
+      "returnIdlePeakSummedFootprintBytes": 587257496
+    },
+    {
+      "cycle": 7,
+      "returnIdleMedianSummedRssBytes": 692944896,
+      "returnIdleMedianSummedFootprintBytes": 478205616,
+      "returnIdlePeakSummedRssBytes": 693010432,
+      "returnIdlePeakSummedFootprintBytes": 586897072
+    },
+    {
+      "cycle": 8,
+      "returnIdleMedianSummedRssBytes": 718225408,
+      "returnIdleMedianSummedFootprintBytes": 496916192,
+      "returnIdlePeakSummedRssBytes": 718290944,
+      "returnIdlePeakSummedFootprintBytes": 607246048
+    },
+    {
+      "cycle": 9,
+      "returnIdleMedianSummedRssBytes": 718913536,
+      "returnIdleMedianSummedFootprintBytes": 509679352,
+      "returnIdlePeakSummedRssBytes": 718979072,
+      "returnIdlePeakSummedFootprintBytes": 611751672
+    },
+    {
+      "cycle": 10,
+      "returnIdleMedianSummedRssBytes": 724189184,
+      "returnIdleMedianSummedFootprintBytes": 500618952,
+      "returnIdlePeakSummedRssBytes": 724254720,
+      "returnIdlePeakSummedFootprintBytes": 610817736
+    },
+    {
+      "cycle": 11,
+      "returnIdleMedianSummedRssBytes": 728203264,
+      "returnIdleMedianSummedFootprintBytes": 522540744,
+      "returnIdlePeakSummedRssBytes": 732053504,
+      "returnIdlePeakSummedFootprintBytes": 622155464
+    },
+    {
+      "cycle": 12,
+      "returnIdleMedianSummedRssBytes": 716472320,
+      "returnIdleMedianSummedFootprintBytes": 474535624,
+      "returnIdlePeakSummedRssBytes": 716537856,
+      "returnIdlePeakSummedFootprintBytes": 589436616
+    },
+    {
+      "cycle": 13,
+      "returnIdleMedianSummedRssBytes": 720928768,
+      "returnIdleMedianSummedFootprintBytes": 589518560,
+      "returnIdlePeakSummedRssBytes": 720994304,
+      "returnIdlePeakSummedFootprintBytes": 592320224
+    },
+    {
+      "cycle": 14,
+      "returnIdleMedianSummedRssBytes": 721911808,
+      "returnIdleMedianSummedFootprintBytes": 484005624,
+      "returnIdlePeakSummedRssBytes": 722501632,
+      "returnIdlePeakSummedFootprintBytes": 592549624
+    },
+    {
+      "cycle": 15,
+      "returnIdleMedianSummedRssBytes": 725843968,
+      "returnIdleMedianSummedFootprintBytes": 497948336,
+      "returnIdlePeakSummedRssBytes": 725909504,
+      "returnIdlePeakSummedFootprintBytes": 604952240
+    },
+    {
+      "cycle": 16,
+      "returnIdleMedianSummedRssBytes": 730742784,
+      "returnIdleMedianSummedFootprintBytes": 365958880,
+      "returnIdlePeakSummedRssBytes": 730808320,
+      "returnIdlePeakSummedFootprintBytes": 603199200
+    },
+    {
+      "cycle": 17,
+      "returnIdleMedianSummedRssBytes": 731758592,
+      "returnIdleMedianSummedFootprintBytes": 504813280,
+      "returnIdlePeakSummedRssBytes": 731824128,
+      "returnIdlePeakSummedFootprintBytes": 607966944
+    },
+    {
+      "cycle": 18,
+      "returnIdleMedianSummedRssBytes": 798457856,
+      "returnIdleMedianSummedFootprintBytes": 499406680,
+      "returnIdlePeakSummedRssBytes": 798523392,
+      "returnIdlePeakSummedFootprintBytes": 608655192
+    },
+    {
+      "cycle": 19,
+      "returnIdleMedianSummedRssBytes": 803454976,
+      "returnIdleMedianSummedFootprintBytes": 611964760,
+      "returnIdlePeakSummedRssBytes": 803487744,
+      "returnIdlePeakSummedFootprintBytes": 620484440
+    },
+    {
+      "cycle": 20,
+      "returnIdleMedianSummedRssBytes": 806453248,
+      "returnIdleMedianSummedFootprintBytes": 505321328,
+      "returnIdlePeakSummedRssBytes": 806502400,
+      "returnIdlePeakSummedFootprintBytes": 618927984
+    },
+    {
+      "cycle": 21,
+      "returnIdleMedianSummedRssBytes": 800653312,
+      "returnIdleMedianSummedFootprintBytes": 514234224,
+      "returnIdlePeakSummedRssBytes": 800702464,
+      "returnIdlePeakSummedFootprintBytes": 609245040
+    },
+    {
+      "cycle": 22,
+      "returnIdleMedianSummedRssBytes": 807632896,
+      "returnIdleMedianSummedFootprintBytes": 506468184,
+      "returnIdlePeakSummedRssBytes": 807698432,
+      "returnIdlePeakSummedFootprintBytes": 616798040
+    },
+    {
+      "cycle": 23,
+      "returnIdleMedianSummedRssBytes": 804962304,
+      "returnIdleMedianSummedFootprintBytes": 511776624,
+      "returnIdlePeakSummedRssBytes": 805027840,
+      "returnIdlePeakSummedFootprintBytes": 616535920
+    },
+    {
+      "cycle": 24,
+      "returnIdleMedianSummedRssBytes": 808714240,
+      "returnIdleMedianSummedFootprintBytes": 504158040,
+      "returnIdlePeakSummedRssBytes": 808779776,
+      "returnIdlePeakSummedFootprintBytes": 614487896
+    },
+    {
+      "cycle": 25,
+      "returnIdleMedianSummedRssBytes": 809435136,
+      "returnIdleMedianSummedFootprintBytes": 521754504,
+      "returnIdlePeakSummedRssBytes": 809500672,
+      "returnIdlePeakSummedFootprintBytes": 621746056
+    },
+    {
+      "cycle": 26,
+      "returnIdleMedianSummedRssBytes": 812154880,
+      "returnIdleMedianSummedFootprintBytes": 509318976,
+      "returnIdlePeakSummedRssBytes": 812220416,
+      "returnIdlePeakSummedFootprintBytes": 617338688
+    },
+    {
+      "cycle": 27,
+      "returnIdleMedianSummedRssBytes": 818479104,
+      "returnIdleMedianSummedFootprintBytes": 620287856,
+      "returnIdlePeakSummedRssBytes": 818544640,
+      "returnIdlePeakSummedFootprintBytes": 630085488
+    },
+    {
+      "cycle": 28,
+      "returnIdleMedianSummedRssBytes": 815316992,
+      "returnIdleMedianSummedFootprintBytes": 511055728,
+      "returnIdlePeakSummedRssBytes": 815349760,
+      "returnIdlePeakSummedFootprintBytes": 627185520
+    },
+    {
+      "cycle": 29,
+      "returnIdleMedianSummedRssBytes": 814907392,
+      "returnIdleMedianSummedFootprintBytes": 526538608,
+      "returnIdlePeakSummedRssBytes": 814956544,
+      "returnIdlePeakSummedFootprintBytes": 619124592
+    },
+    {
+      "cycle": 30,
+      "returnIdleMedianSummedRssBytes": 818937856,
+      "returnIdleMedianSummedFootprintBytes": 514692976,
+      "returnIdlePeakSummedRssBytes": 819003392,
+      "returnIdlePeakSummedFootprintBytes": 625055600
+    },
+    {
+      "cycle": 31,
+      "returnIdleMedianSummedRssBytes": 820461568,
+      "returnIdleMedianSummedFootprintBytes": 528455488,
+      "returnIdlePeakSummedRssBytes": 820527104,
+      "returnIdlePeakSummedFootprintBytes": 630839104
+    },
+    {
+      "cycle": 32,
+      "returnIdleMedianSummedRssBytes": 824557568,
+      "returnIdleMedianSummedFootprintBytes": 526636936,
+      "returnIdlePeakSummedRssBytes": 824623104,
+      "returnIdlePeakSummedFootprintBytes": 635705224
+    },
+    {
+      "cycle": 33,
+      "returnIdleMedianSummedRssBytes": 826064896,
+      "returnIdleMedianSummedFootprintBytes": 625809264,
+      "returnIdlePeakSummedRssBytes": 826097664,
+      "returnIdlePeakSummedFootprintBytes": 640145264
+    },
+    {
+      "cycle": 34,
+      "returnIdleMedianSummedRssBytes": 825589760,
+      "returnIdleMedianSummedFootprintBytes": 524638064,
+      "returnIdlePeakSummedRssBytes": 825655296,
+      "returnIdlePeakSummedFootprintBytes": 636049264
+    },
+    {
+      "cycle": 35,
+      "returnIdleMedianSummedRssBytes": 827392000,
+      "returnIdleMedianSummedFootprintBytes": 538695512,
+      "returnIdlePeakSummedRssBytes": 827457536,
+      "returnIdlePeakSummedFootprintBytes": 638343000
+    },
+    {
+      "cycle": 36,
+      "returnIdleMedianSummedRssBytes": 832323584,
+      "returnIdleMedianSummedFootprintBytes": 527521648,
+      "returnIdlePeakSummedRssBytes": 832389120,
+      "returnIdlePeakSummedFootprintBytes": 642258800
+    },
+    {
+      "cycle": 37,
+      "returnIdleMedianSummedRssBytes": 834043904,
+      "returnIdleMedianSummedFootprintBytes": 547002200,
+      "returnIdlePeakSummedRssBytes": 834109440,
+      "returnIdlePeakSummedFootprintBytes": 651466584
+    },
+    {
+      "cycle": 38,
+      "returnIdleMedianSummedRssBytes": 832684032,
+      "returnIdleMedianSummedFootprintBytes": 534206296,
+      "returnIdlePeakSummedRssBytes": 832798720,
+      "returnIdlePeakSummedFootprintBytes": 643929944
+    },
+    {
+      "cycle": 39,
+      "returnIdleMedianSummedRssBytes": 834355200,
+      "returnIdleMedianSummedFootprintBytes": 541185928,
+      "returnIdlePeakSummedRssBytes": 834387968,
+      "returnIdlePeakSummedFootprintBytes": 645814152
+    },
+    {
+      "cycle": 40,
+      "returnIdleMedianSummedRssBytes": 837566464,
+      "returnIdleMedianSummedFootprintBytes": 545314648,
+      "returnIdlePeakSummedRssBytes": 837632000,
+      "returnIdlePeakSummedFootprintBytes": 652040024
+    },
+    {
+      "cycle": 41,
+      "returnIdleMedianSummedRssBytes": 839385088,
+      "returnIdleMedianSummedFootprintBytes": 424007536,
+      "returnIdlePeakSummedRssBytes": 839450624,
+      "returnIdlePeakSummedFootprintBytes": 657741680
+    },
+    {
+      "cycle": 42,
+      "returnIdleMedianSummedRssBytes": 841777152,
+      "returnIdleMedianSummedFootprintBytes": 538105712,
+      "returnIdlePeakSummedRssBytes": 841842688,
+      "returnIdlePeakSummedFootprintBytes": 648435568
+    },
+    {
+      "cycle": 43,
+      "returnIdleMedianSummedRssBytes": 846036992,
+      "returnIdleMedianSummedFootprintBytes": 556324768,
+      "returnIdlePeakSummedRssBytes": 846102528,
+      "returnIdlePeakSummedFootprintBytes": 657676192
+    },
+    {
+      "cycle": 44,
+      "returnIdleMedianSummedRssBytes": 849018880,
+      "returnIdleMedianSummedFootprintBytes": 417388424,
+      "returnIdlePeakSummedRssBytes": 849133568,
+      "returnIdlePeakSummedFootprintBytes": 658610056
+    },
+    {
+      "cycle": 45,
+      "returnIdleMedianSummedRssBytes": 817102848,
+      "returnIdleMedianSummedFootprintBytes": 522131336,
+      "returnIdlePeakSummedRssBytes": 817168384,
+      "returnIdlePeakSummedFootprintBytes": 621844360
+    },
+    {
+      "cycle": 46,
+      "returnIdleMedianSummedRssBytes": 822607872,
+      "returnIdleMedianSummedFootprintBytes": 512595824,
+      "returnIdlePeakSummedRssBytes": 822673408,
+      "returnIdlePeakSummedFootprintBytes": 627300208
+    },
+    {
+      "cycle": 47,
+      "returnIdleMedianSummedRssBytes": 827506688,
+      "returnIdleMedianSummedFootprintBytes": 530028424,
+      "returnIdlePeakSummedRssBytes": 827539456,
+      "returnIdlePeakSummedFootprintBytes": 631084936
+    },
+    {
+      "cycle": 48,
+      "returnIdleMedianSummedRssBytes": 829308928,
+      "returnIdleMedianSummedFootprintBytes": 524457888,
+      "returnIdlePeakSummedRssBytes": 829374464,
+      "returnIdlePeakSummedFootprintBytes": 632231840
+    },
+    {
+      "cycle": 49,
+      "returnIdleMedianSummedRssBytes": 828620800,
+      "returnIdleMedianSummedFootprintBytes": 528602992,
+      "returnIdlePeakSummedRssBytes": 828653568,
+      "returnIdlePeakSummedFootprintBytes": 635115376
+    },
+    {
+      "cycle": 50,
+      "returnIdleMedianSummedRssBytes": 827342848,
+      "returnIdleMedianSummedFootprintBytes": 523704200,
+      "returnIdlePeakSummedRssBytes": 827408384,
+      "returnIdlePeakSummedFootprintBytes": 632772488
+    },
+    {
+      "cycle": 51,
+      "returnIdleMedianSummedRssBytes": 830013440,
+      "returnIdleMedianSummedFootprintBytes": 536336240,
+      "returnIdlePeakSummedRssBytes": 830046208,
+      "returnIdlePeakSummedFootprintBytes": 638424944
+    },
+    {
+      "cycle": 52,
+      "returnIdleMedianSummedRssBytes": 833634304,
+      "returnIdleMedianSummedFootprintBytes": 528668576,
+      "returnIdlePeakSummedRssBytes": 833699840,
+      "returnIdlePeakSummedFootprintBytes": 637720480
+    },
+    {
+      "cycle": 53,
+      "returnIdleMedianSummedRssBytes": 838467584,
+      "returnIdleMedianSummedFootprintBytes": 541103984,
+      "returnIdlePeakSummedRssBytes": 838533120,
+      "returnIdlePeakSummedFootprintBytes": 643225456
+    },
+    {
+      "cycle": 54,
+      "returnIdleMedianSummedRssBytes": 841138176,
+      "returnIdleMedianSummedFootprintBytes": 405231496,
+      "returnIdlePeakSummedRssBytes": 841203712,
+      "returnIdlePeakSummedFootprintBytes": 650925960
+    },
+    {
+      "cycle": 55,
+      "returnIdleMedianSummedRssBytes": 841973760,
+      "returnIdleMedianSummedFootprintBytes": 545904544,
+      "returnIdlePeakSummedRssBytes": 842039296,
+      "returnIdlePeakSummedFootprintBytes": 647272352
+    },
+    {
+      "cycle": 56,
+      "returnIdleMedianSummedRssBytes": 844955648,
+      "returnIdleMedianSummedFootprintBytes": 540596080,
+      "returnIdlePeakSummedRssBytes": 844988416,
+      "returnIdlePeakSummedFootprintBytes": 644667248
+    },
+    {
+      "cycle": 57,
+      "returnIdleMedianSummedRssBytes": 850919424,
+      "returnIdleMedianSummedFootprintBytes": 425580424,
+      "returnIdlePeakSummedRssBytes": 850968576,
+      "returnIdlePeakSummedFootprintBytes": 654301064
+    },
+    {
+      "cycle": 58,
+      "returnIdleMedianSummedRssBytes": 856997888,
+      "returnIdleMedianSummedFootprintBytes": 549492616,
+      "returnIdlePeakSummedRssBytes": 857030656,
+      "returnIdlePeakSummedFootprintBytes": 658888584
+    },
+    {
+      "cycle": 59,
+      "returnIdleMedianSummedRssBytes": 857735168,
+      "returnIdleMedianSummedFootprintBytes": 558274464,
+      "returnIdlePeakSummedRssBytes": 857767936,
+      "returnIdlePeakSummedFootprintBytes": 662476704
+    },
+    {
+      "cycle": 60,
+      "returnIdleMedianSummedRssBytes": 848510976,
+      "returnIdleMedianSummedFootprintBytes": 411162480,
+      "returnIdlePeakSummedRssBytes": 848576512,
+      "returnIdlePeakSummedFootprintBytes": 650745712
+    },
+    {
+      "cycle": 61,
+      "returnIdleMedianSummedRssBytes": 850362368,
+      "returnIdleMedianSummedFootprintBytes": 558307184,
+      "returnIdlePeakSummedRssBytes": 850427904,
+      "returnIdlePeakSummedFootprintBytes": 655824752
+    },
+    {
+      "cycle": 62,
+      "returnIdleMedianSummedRssBytes": 851034112,
+      "returnIdleMedianSummedFootprintBytes": 538285936,
+      "returnIdlePeakSummedRssBytes": 851099648,
+      "returnIdlePeakSummedFootprintBytes": 657463152
+    },
+    {
+      "cycle": 63,
+      "returnIdleMedianSummedRssBytes": 835485696,
+      "returnIdleMedianSummedFootprintBytes": 535385992,
+      "returnIdlePeakSummedRssBytes": 835551232,
+      "returnIdlePeakSummedFootprintBytes": 638572424
+    },
+    {
+      "cycle": 64,
+      "returnIdleMedianSummedRssBytes": 840761344,
+      "returnIdleMedianSummedFootprintBytes": 531306400,
+      "returnIdlePeakSummedRssBytes": 840826880,
+      "returnIdlePeakSummedFootprintBytes": 647714720
+    },
+    {
+      "cycle": 65,
+      "returnIdleMedianSummedRssBytes": 843530240,
+      "returnIdleMedianSummedFootprintBytes": 415061848,
+      "returnIdlePeakSummedRssBytes": 843563008,
+      "returnIdlePeakSummedFootprintBytes": 642127704
+    },
+    {
+      "cycle": 66,
+      "returnIdleMedianSummedRssBytes": 847331328,
+      "returnIdleMedianSummedFootprintBytes": 536516488,
+      "returnIdlePeakSummedRssBytes": 847396864,
+      "returnIdlePeakSummedFootprintBytes": 651728776
+    },
+    {
+      "cycle": 67,
+      "returnIdleMedianSummedRssBytes": 841957376,
+      "returnIdleMedianSummedFootprintBytes": 541267848,
+      "returnIdlePeakSummedRssBytes": 847790080,
+      "returnIdlePeakSummedFootprintBytes": 651745160
+    },
+    {
+      "cycle": 68,
+      "returnIdleMedianSummedRssBytes": 844906496,
+      "returnIdleMedianSummedFootprintBytes": 535091080,
+      "returnIdlePeakSummedRssBytes": 844972032,
+      "returnIdlePeakSummedFootprintBytes": 643110792
+    },
+    {
+      "cycle": 69,
+      "returnIdleMedianSummedRssBytes": 849543168,
+      "returnIdleMedianSummedFootprintBytes": 645699440,
+      "returnIdlePeakSummedRssBytes": 849592320,
+      "returnIdlePeakSummedFootprintBytes": 651794288
+    },
+    {
+      "cycle": 70,
+      "returnIdleMedianSummedRssBytes": 851017728,
+      "returnIdleMedianSummedFootprintBytes": 534943624,
+      "returnIdlePeakSummedRssBytes": 851083264,
+      "returnIdlePeakSummedFootprintBytes": 647485320
+    },
+    {
+      "cycle": 71,
+      "returnIdleMedianSummedRssBytes": 852541440,
+      "returnIdleMedianSummedFootprintBytes": 554456968,
+      "returnIdlePeakSummedRssBytes": 852606976,
+      "returnIdlePeakSummedFootprintBytes": 646764424
+    },
+    {
+      "cycle": 72,
+      "returnIdleMedianSummedRssBytes": 856997888,
+      "returnIdleMedianSummedFootprintBytes": 537483120,
+      "returnIdlePeakSummedRssBytes": 857063424,
+      "returnIdlePeakSummedFootprintBytes": 656906096
+    },
+    {
+      "cycle": 73,
+      "returnIdleMedianSummedRssBytes": 853360640,
+      "returnIdleMedianSummedFootprintBytes": 641472392,
+      "returnIdlePeakSummedRssBytes": 853393408,
+      "returnIdlePeakSummedFootprintBytes": 643929992
+    },
+    {
+      "cycle": 74,
+      "returnIdleMedianSummedRssBytes": 828997632,
+      "returnIdleMedianSummedFootprintBytes": 516495216,
+      "returnIdlePeakSummedRssBytes": 855113728,
+      "returnIdlePeakSummedFootprintBytes": 657463152
+    },
+    {
+      "cycle": 75,
+      "returnIdleMedianSummedRssBytes": 845201408,
+      "returnIdleMedianSummedFootprintBytes": 541579192,
+      "returnIdlePeakSummedRssBytes": 845234176,
+      "returnIdlePeakSummedFootprintBytes": 643422136
+    },
+    {
+      "cycle": 76,
+      "returnIdleMedianSummedRssBytes": 847691776,
+      "returnIdleMedianSummedFootprintBytes": 405051248,
+      "returnIdlePeakSummedRssBytes": 847757312,
+      "returnIdlePeakSummedFootprintBytes": 641210224
+    },
+    {
+      "cycle": 77,
+      "returnIdleMedianSummedRssBytes": 850952192,
+      "returnIdleMedianSummedFootprintBytes": 551688096,
+      "returnIdlePeakSummedRssBytes": 851083264,
+      "returnIdlePeakSummedFootprintBytes": 651925408
+    },
+    {
+      "cycle": 78,
+      "returnIdleMedianSummedRssBytes": 854589440,
+      "returnIdleMedianSummedFootprintBytes": 537728904,
+      "returnIdlePeakSummedRssBytes": 854917120,
+      "returnIdlePeakSummedFootprintBytes": 645666696
+    },
+    {
+      "cycle": 79,
+      "returnIdleMedianSummedRssBytes": 856391680,
+      "returnIdleMedianSummedFootprintBytes": 427349920,
+      "returnIdlePeakSummedRssBytes": 856457216,
+      "returnIdlePeakSummedFootprintBytes": 657201056
+    },
+    {
+      "cycle": 80,
+      "returnIdleMedianSummedRssBytes": 859357184,
+      "returnIdleMedianSummedFootprintBytes": 544790408,
+      "returnIdlePeakSummedRssBytes": 859422720,
+      "returnIdlePeakSummedFootprintBytes": 655120264
+    },
+    {
+      "cycle": 81,
+      "returnIdleMedianSummedRssBytes": 861618176,
+      "returnIdleMedianSummedFootprintBytes": 431216496,
+      "returnIdlePeakSummedRssBytes": 861650944,
+      "returnIdlePeakSummedFootprintBytes": 651728752
+    },
+    {
+      "cycle": 82,
+      "returnIdleMedianSummedRssBytes": 861552640,
+      "returnIdleMedianSummedFootprintBytes": 546232224,
+      "returnIdlePeakSummedRssBytes": 861585408,
+      "returnIdlePeakSummedFootprintBytes": 656529312
+    },
+    {
+      "cycle": 83,
+      "returnIdleMedianSummedRssBytes": 864927744,
+      "returnIdleMedianSummedFootprintBytes": 433346464,
+      "returnIdlePeakSummedRssBytes": 864993280,
+      "returnIdlePeakSummedFootprintBytes": 660035488
+    },
+    {
+      "cycle": 84,
+      "returnIdleMedianSummedRssBytes": 867057664,
+      "returnIdleMedianSummedFootprintBytes": 553736072,
+      "returnIdlePeakSummedRssBytes": 867123200,
+      "returnIdlePeakSummedFootprintBytes": 665147272
+    },
+    {
+      "cycle": 85,
+      "returnIdleMedianSummedRssBytes": 868990976,
+      "returnIdleMedianSummedFootprintBytes": 570382216,
+      "returnIdlePeakSummedRssBytes": 869023744,
+      "returnIdlePeakSummedFootprintBytes": 667817864
+    },
+    {
+      "cycle": 86,
+      "returnIdleMedianSummedRssBytes": 871301120,
+      "returnIdleMedianSummedFootprintBytes": 556603296,
+      "returnIdlePeakSummedRssBytes": 871366656,
+      "returnIdlePeakSummedFootprintBytes": 670652320
+    },
+    {
+      "cycle": 87,
+      "returnIdleMedianSummedRssBytes": 880115712,
+      "returnIdleMedianSummedFootprintBytes": 674961288,
+      "returnIdlePeakSummedRssBytes": 880181248,
+      "returnIdlePeakSummedFootprintBytes": 684939144
+    },
+    {
+      "cycle": 88,
+      "returnIdleMedianSummedRssBytes": 884588544,
+      "returnIdleMedianSummedFootprintBytes": 565008264,
+      "returnIdlePeakSummedRssBytes": 884703232,
+      "returnIdlePeakSummedFootprintBytes": 675633032
+    },
+    {
+      "cycle": 89,
+      "returnIdleMedianSummedRssBytes": 885882880,
+      "returnIdleMedianSummedFootprintBytes": 580491192,
+      "returnIdlePeakSummedRssBytes": 885915648,
+      "returnIdlePeakSummedFootprintBytes": 681646008
+    },
+    {
+      "cycle": 90,
+      "returnIdleMedianSummedRssBytes": 877035520,
+      "returnIdleMedianSummedFootprintBytes": 439031664,
+      "returnIdlePeakSummedRssBytes": 877101056,
+      "returnIdlePeakSummedFootprintBytes": 676271984
+    },
+    {
+      "cycle": 91,
+      "returnIdleMedianSummedRssBytes": 878542848,
+      "returnIdleMedianSummedFootprintBytes": 570988448,
+      "returnIdlePeakSummedRssBytes": 878608384,
+      "returnIdlePeakSummedFootprintBytes": 675829664
+    },
+    {
+      "cycle": 92,
+      "returnIdleMedianSummedRssBytes": 880869376,
+      "returnIdleMedianSummedFootprintBytes": 441112456,
+      "returnIdlePeakSummedRssBytes": 880934912,
+      "returnIdlePeakSummedFootprintBytes": 673372040
+    },
+    {
+      "cycle": 93,
+      "returnIdleMedianSummedRssBytes": 883474432,
+      "returnIdleMedianSummedFootprintBytes": 579868600,
+      "returnIdlePeakSummedRssBytes": 883539968,
+      "returnIdlePeakSummedFootprintBytes": 681875384
+    },
+    {
+      "cycle": 94,
+      "returnIdleMedianSummedRssBytes": 889225216,
+      "returnIdleMedianSummedFootprintBytes": 566974368,
+      "returnIdlePeakSummedRssBytes": 889257984,
+      "returnIdlePeakSummedFootprintBytes": 677107616
+    },
+    {
+      "cycle": 95,
+      "returnIdleMedianSummedRssBytes": 893796352,
+      "returnIdleMedianSummedFootprintBytes": 462559136,
+      "returnIdlePeakSummedRssBytes": 893829120,
+      "returnIdlePeakSummedFootprintBytes": 690182048
+    },
+    {
+      "cycle": 96,
+      "returnIdleMedianSummedRssBytes": 893845504,
+      "returnIdleMedianSummedFootprintBytes": 579835784,
+      "returnIdlePeakSummedRssBytes": 893911040,
+      "returnIdlePeakSummedFootprintBytes": 693409672
+    },
+    {
+      "cycle": 97,
+      "returnIdleMedianSummedRssBytes": 893632512,
+      "returnIdleMedianSummedFootprintBytes": 587601824,
+      "returnIdlePeakSummedRssBytes": 893698048,
+      "returnIdlePeakSummedFootprintBytes": 689674144
+    },
+    {
+      "cycle": 98,
+      "returnIdleMedianSummedRssBytes": 894894080,
+      "returnIdleMedianSummedFootprintBytes": 582850488,
+      "returnIdlePeakSummedRssBytes": 894959616,
+      "returnIdlePeakSummedFootprintBytes": 694572984
+    },
+    {
+      "cycle": 99,
+      "returnIdleMedianSummedRssBytes": 896663552,
+      "returnIdleMedianSummedFootprintBytes": 678664072,
+      "returnIdlePeakSummedRssBytes": 896729088,
+      "returnIdlePeakSummedFootprintBytes": 692623240
+    },
+    {
+      "cycle": 100,
+      "returnIdleMedianSummedRssBytes": 900382720,
+      "returnIdleMedianSummedFootprintBytes": 582850464,
+      "returnIdlePeakSummedRssBytes": 900448256,
+      "returnIdlePeakSummedFootprintBytes": 694310816
+    },
+    {
+      "cycle": 101,
+      "returnIdleMedianSummedRssBytes": 901857280,
+      "returnIdleMedianSummedFootprintBytes": 683415456,
+      "returnIdlePeakSummedRssBytes": 901922816,
+      "returnIdlePeakSummedFootprintBytes": 698750880
+    },
+    {
+      "cycle": 102,
+      "returnIdleMedianSummedRssBytes": 901971968,
+      "returnIdleMedianSummedFootprintBytes": 585045968,
+      "returnIdlePeakSummedRssBytes": 902037504,
+      "returnIdlePeakSummedFootprintBytes": 694048720
+    },
+    {
+      "cycle": 103,
+      "returnIdleMedianSummedRssBytes": 907051008,
+      "returnIdleMedianSummedFootprintBytes": 601462688,
+      "returnIdlePeakSummedRssBytes": 907116544,
+      "returnIdlePeakSummedFootprintBytes": 703469472
+    },
+    {
+      "cycle": 104,
+      "returnIdleMedianSummedRssBytes": 909705216,
+      "returnIdleMedianSummedFootprintBytes": 595924920,
+      "returnIdlePeakSummedRssBytes": 911343616,
+      "returnIdlePeakSummedFootprintBytes": 709318584
+    },
+    {
+      "cycle": 105,
+      "returnIdleMedianSummedRssBytes": 913932288,
+      "returnIdleMedianSummedFootprintBytes": 484169680,
+      "returnIdlePeakSummedRssBytes": 913965056,
+      "returnIdlePeakSummedFootprintBytes": 714758096
+    },
+    {
+      "cycle": 106,
+      "returnIdleMedianSummedRssBytes": 913752064,
+      "returnIdleMedianSummedFootprintBytes": 601872288,
+      "returnIdlePeakSummedRssBytes": 913784832,
+      "returnIdlePeakSummedFootprintBytes": 713480096
+    },
+    {
+      "cycle": 107,
+      "returnIdleMedianSummedRssBytes": 917438464,
+      "returnIdleMedianSummedFootprintBytes": 615110584,
+      "returnIdlePeakSummedRssBytes": 917504000,
+      "returnIdlePeakSummedFootprintBytes": 714102712
+    },
+    {
+      "cycle": 108,
+      "returnIdleMedianSummedRssBytes": 923156480,
+      "returnIdleMedianSummedFootprintBytes": 480401336,
+      "returnIdlePeakSummedRssBytes": 923222016,
+      "returnIdlePeakSummedFootprintBytes": 711317432
+    },
+    {
+      "cycle": 109,
+      "returnIdleMedianSummedRssBytes": 929382400,
+      "returnIdleMedianSummedFootprintBytes": 621107152,
+      "returnIdlePeakSummedRssBytes": 929447936,
+      "returnIdlePeakSummedFootprintBytes": 729257936
+    },
+    {
+      "cycle": 110,
+      "returnIdleMedianSummedRssBytes": 933986304,
+      "returnIdleMedianSummedFootprintBytes": 617355168,
+      "returnIdlePeakSummedRssBytes": 934051840,
+      "returnIdlePeakSummedFootprintBytes": 725309344
+    },
+    {
+      "cycle": 111,
+      "returnIdleMedianSummedRssBytes": 934952960,
+      "returnIdleMedianSummedFootprintBytes": 724948896,
+      "returnIdlePeakSummedRssBytes": 935002112,
+      "returnIdlePeakSummedFootprintBytes": 730879904
+    },
+    {
+      "cycle": 112,
+      "returnIdleMedianSummedRssBytes": 869498880,
+      "returnIdleMedianSummedFootprintBytes": 544102304,
+      "returnIdlePeakSummedRssBytes": 938262528,
+      "returnIdlePeakSummedFootprintBytes": 730797984
+    },
+    {
+      "cycle": 113,
+      "returnIdleMedianSummedRssBytes": 891207680,
+      "returnIdleMedianSummedFootprintBytes": 579590072,
+      "returnIdlePeakSummedRssBytes": 891240448,
+      "returnIdlePeakSummedFootprintBytes": 678893496
+    },
+    {
+      "cycle": 114,
+      "returnIdleMedianSummedRssBytes": 893779968,
+      "returnIdleMedianSummedFootprintBytes": 573855696,
+      "returnIdlePeakSummedRssBytes": 893845504,
+      "returnIdlePeakSummedFootprintBytes": 685725648
+    },
+    {
+      "cycle": 115,
+      "returnIdleMedianSummedRssBytes": 898695168,
+      "returnIdleMedianSummedFootprintBytes": 587143048,
+      "returnIdlePeakSummedRssBytes": 898760704,
+      "returnIdlePeakSummedFootprintBytes": 686987144
+    },
+    {
+      "cycle": 116,
+      "returnIdleMedianSummedRssBytes": 903593984,
+      "returnIdleMedianSummedFootprintBytes": 584439736,
+      "returnIdlePeakSummedRssBytes": 903659520,
+      "returnIdlePeakSummedFootprintBytes": 693508024
+    },
+    {
+      "cycle": 117,
+      "returnIdleMedianSummedRssBytes": 909885440,
+      "returnIdleMedianSummedFootprintBytes": 595810232,
+      "returnIdlePeakSummedRssBytes": 909918208,
+      "returnIdlePeakSummedFootprintBytes": 702633912
+    },
+    {
+      "cycle": 118,
+      "returnIdleMedianSummedRssBytes": 917946368,
+      "returnIdleMedianSummedFootprintBytes": 593680336,
+      "returnIdlePeakSummedRssBytes": 918028288,
+      "returnIdlePeakSummedFootprintBytes": 706926544
+    },
+    {
+      "cycle": 119,
+      "returnIdleMedianSummedRssBytes": 923041792,
+      "returnIdleMedianSummedFootprintBytes": 605362104,
+      "returnIdlePeakSummedRssBytes": 923074560,
+      "returnIdlePeakSummedFootprintBytes": 712366008
+    },
+    {
+      "cycle": 120,
+      "returnIdleMedianSummedRssBytes": 926105600,
+      "returnIdleMedianSummedFootprintBytes": 603281360,
+      "returnIdlePeakSummedRssBytes": 926171136,
+      "returnIdlePeakSummedFootprintBytes": 714561488
+    }
+  ],
+  "storage": [
+    {
+      "label": "ready",
+      "collectionMs": 117.83208300000115,
+      "regularFiles": 4042,
+      "directories": 496,
+      "symlinks": 3,
+      "logicalFileBytes": 429015828,
+      "groups": {
+        "Code Cache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 13220
+        },
+        "DIPS": {
+          "regularFiles": 1,
+          "logicalFileBytes": 4096
+        },
+        "DIPS-wal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 45352
+        },
+        "DawnGraphiteCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "DawnWebGPUCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "DevToolsActivePort": {
+          "regularFiles": 1,
+          "logicalFileBytes": 60
+        },
+        "GPUCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "GPUPersistentCache": {
+          "regularFiles": 3,
+          "logicalFileBytes": 0
+        },
+        "GraphiteDawnCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 5837168
+        },
+        "Local State": {
+          "regularFiles": 1,
+          "logicalFileBytes": 57
+        },
+        "Local Storage": {
+          "regularFiles": 5,
+          "logicalFileBytes": 763
+        },
+        "Network Persistent State": {
+          "regularFiles": 1,
+          "logicalFileBytes": 59
+        },
+        "Preferences": {
+          "regularFiles": 1,
+          "logicalFileBytes": 41
+        },
+        "Shared Dictionary": {
+          "regularFiles": 4,
+          "logicalFileBytes": 45128
+        },
+        "Trust Tokens": {
+          "regularFiles": 1,
+          "logicalFileBytes": 36864
+        },
+        "Trust Tokens-journal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 0
+        },
+        "app-updates": {
+          "regularFiles": 1,
+          "logicalFileBytes": 165
+        },
+        "builds": {
+          "regularFiles": 1,
+          "logicalFileBytes": 24451466
+        },
+        "declarative_performance_observer.db": {
+          "regularFiles": 1,
+          "logicalFileBytes": 32768
+        },
+        "declarative_performance_observer.db-journal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 0
+        },
+        "recovery.json": {
+          "regularFiles": 1,
+          "logicalFileBytes": 3407
+        },
+        "runtimes": {
+          "regularFiles": 3988,
+          "logicalFileBytes": 396845472
+        },
+        "workspace-preferences.json": {
+          "regularFiles": 1,
+          "logicalFileBytes": 187
+        },
+        "workspaces": {
+          "regularFiles": 3,
+          "logicalFileBytes": 27283
+        }
+      }
+    },
+    {
+      "label": "cycle-10",
+      "collectionMs": 108.78687500001979,
+      "regularFiles": 4102,
+      "directories": 526,
+      "symlinks": 3,
+      "logicalFileBytes": 429872283,
+      "groups": {
+        "Code Cache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 13220
+        },
+        "DIPS": {
+          "regularFiles": 1,
+          "logicalFileBytes": 4096
+        },
+        "DIPS-wal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 45352
+        },
+        "DawnGraphiteCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "DawnWebGPUCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "DevToolsActivePort": {
+          "regularFiles": 1,
+          "logicalFileBytes": 60
+        },
+        "GPUCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "GPUPersistentCache": {
+          "regularFiles": 3,
+          "logicalFileBytes": 0
+        },
+        "GraphiteDawnCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 5837168
+        },
+        "Local State": {
+          "regularFiles": 1,
+          "logicalFileBytes": 57
+        },
+        "Local Storage": {
+          "regularFiles": 5,
+          "logicalFileBytes": 864
+        },
+        "Network Persistent State": {
+          "regularFiles": 1,
+          "logicalFileBytes": 59
+        },
+        "Preferences": {
+          "regularFiles": 1,
+          "logicalFileBytes": 41
+        },
+        "Shared Dictionary": {
+          "regularFiles": 4,
+          "logicalFileBytes": 45128
+        },
+        "Trust Tokens": {
+          "regularFiles": 1,
+          "logicalFileBytes": 36864
+        },
+        "Trust Tokens-journal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 0
+        },
+        "app-updates": {
+          "regularFiles": 1,
+          "logicalFileBytes": 165
+        },
+        "builds": {
+          "regularFiles": 1,
+          "logicalFileBytes": 24451466
+        },
+        "declarative_performance_observer.db": {
+          "regularFiles": 1,
+          "logicalFileBytes": 32768
+        },
+        "declarative_performance_observer.db-journal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 0
+        },
+        "recovery.json": {
+          "regularFiles": 1,
+          "logicalFileBytes": 635
+        },
+        "runtimes": {
+          "regularFiles": 3988,
+          "logicalFileBytes": 396845472
+        },
+        "workspace-preferences.json": {
+          "regularFiles": 1,
+          "logicalFileBytes": 188
+        },
+        "workspaces": {
+          "regularFiles": 63,
+          "logicalFileBytes": 886408
+        }
+      }
+    },
+    {
+      "label": "cycle-20",
+      "collectionMs": 123.01745899999514,
+      "regularFiles": 4162,
+      "directories": 556,
+      "symlinks": 3,
+      "logicalFileBytes": 430734066,
+      "groups": {
+        "Code Cache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 13220
+        },
+        "DIPS": {
+          "regularFiles": 1,
+          "logicalFileBytes": 4096
+        },
+        "DIPS-wal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 45352
+        },
+        "DawnGraphiteCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "DawnWebGPUCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "DevToolsActivePort": {
+          "regularFiles": 1,
+          "logicalFileBytes": 60
+        },
+        "GPUCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "GPUPersistentCache": {
+          "regularFiles": 3,
+          "logicalFileBytes": 0
+        },
+        "GraphiteDawnCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 5837168
+        },
+        "Local State": {
+          "regularFiles": 1,
+          "logicalFileBytes": 57
+        },
+        "Local Storage": {
+          "regularFiles": 5,
+          "logicalFileBytes": 864
+        },
+        "Network Persistent State": {
+          "regularFiles": 1,
+          "logicalFileBytes": 59
+        },
+        "Preferences": {
+          "regularFiles": 1,
+          "logicalFileBytes": 41
+        },
+        "Shared Dictionary": {
+          "regularFiles": 4,
+          "logicalFileBytes": 45128
+        },
+        "Trust Tokens": {
+          "regularFiles": 1,
+          "logicalFileBytes": 36864
+        },
+        "Trust Tokens-journal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 0
+        },
+        "app-updates": {
+          "regularFiles": 1,
+          "logicalFileBytes": 165
+        },
+        "builds": {
+          "regularFiles": 1,
+          "logicalFileBytes": 24451466
+        },
+        "declarative_performance_observer.db": {
+          "regularFiles": 1,
+          "logicalFileBytes": 32768
+        },
+        "declarative_performance_observer.db-journal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 0
+        },
+        "recovery.json": {
+          "regularFiles": 1,
+          "logicalFileBytes": 635
+        },
+        "runtimes": {
+          "regularFiles": 3988,
+          "logicalFileBytes": 396845472
+        },
+        "workspace-preferences.json": {
+          "regularFiles": 1,
+          "logicalFileBytes": 188
+        },
+        "workspaces": {
+          "regularFiles": 123,
+          "logicalFileBytes": 1748191
+        }
+      }
+    },
+    {
+      "label": "cycle-30",
+      "collectionMs": 122.27204100001836,
+      "regularFiles": 4222,
+      "directories": 586,
+      "symlinks": 3,
+      "logicalFileBytes": 431597427,
+      "groups": {
+        "Code Cache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 13220
+        },
+        "DIPS": {
+          "regularFiles": 1,
+          "logicalFileBytes": 4096
+        },
+        "DIPS-wal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 45352
+        },
+        "DawnGraphiteCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "DawnWebGPUCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "DevToolsActivePort": {
+          "regularFiles": 1,
+          "logicalFileBytes": 60
+        },
+        "GPUCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "GPUPersistentCache": {
+          "regularFiles": 3,
+          "logicalFileBytes": 0
+        },
+        "GraphiteDawnCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 5837168
+        },
+        "Local State": {
+          "regularFiles": 1,
+          "logicalFileBytes": 57
+        },
+        "Local Storage": {
+          "regularFiles": 5,
+          "logicalFileBytes": 864
+        },
+        "Network Persistent State": {
+          "regularFiles": 1,
+          "logicalFileBytes": 59
+        },
+        "Preferences": {
+          "regularFiles": 1,
+          "logicalFileBytes": 41
+        },
+        "Shared Dictionary": {
+          "regularFiles": 4,
+          "logicalFileBytes": 45128
+        },
+        "Trust Tokens": {
+          "regularFiles": 1,
+          "logicalFileBytes": 36864
+        },
+        "Trust Tokens-journal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 0
+        },
+        "app-updates": {
+          "regularFiles": 1,
+          "logicalFileBytes": 165
+        },
+        "builds": {
+          "regularFiles": 1,
+          "logicalFileBytes": 24451466
+        },
+        "declarative_performance_observer.db": {
+          "regularFiles": 1,
+          "logicalFileBytes": 32768
+        },
+        "declarative_performance_observer.db-journal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 0
+        },
+        "recovery.json": {
+          "regularFiles": 1,
+          "logicalFileBytes": 635
+        },
+        "runtimes": {
+          "regularFiles": 3988,
+          "logicalFileBytes": 396845472
+        },
+        "workspace-preferences.json": {
+          "regularFiles": 1,
+          "logicalFileBytes": 188
+        },
+        "workspaces": {
+          "regularFiles": 183,
+          "logicalFileBytes": 2611552
+        }
+      }
+    },
+    {
+      "label": "cycle-40",
+      "collectionMs": 129.07629100000486,
+      "regularFiles": 4282,
+      "directories": 616,
+      "symlinks": 3,
+      "logicalFileBytes": 432461518,
+      "groups": {
+        "Code Cache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 13220
+        },
+        "DIPS": {
+          "regularFiles": 1,
+          "logicalFileBytes": 4096
+        },
+        "DIPS-wal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 45352
+        },
+        "DawnGraphiteCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "DawnWebGPUCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "DevToolsActivePort": {
+          "regularFiles": 1,
+          "logicalFileBytes": 60
+        },
+        "GPUCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "GPUPersistentCache": {
+          "regularFiles": 3,
+          "logicalFileBytes": 0
+        },
+        "GraphiteDawnCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 5837168
+        },
+        "Local State": {
+          "regularFiles": 1,
+          "logicalFileBytes": 57
+        },
+        "Local Storage": {
+          "regularFiles": 5,
+          "logicalFileBytes": 864
+        },
+        "Network Persistent State": {
+          "regularFiles": 1,
+          "logicalFileBytes": 59
+        },
+        "Preferences": {
+          "regularFiles": 1,
+          "logicalFileBytes": 41
+        },
+        "Shared Dictionary": {
+          "regularFiles": 4,
+          "logicalFileBytes": 45128
+        },
+        "Trust Tokens": {
+          "regularFiles": 1,
+          "logicalFileBytes": 36864
+        },
+        "Trust Tokens-journal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 0
+        },
+        "app-updates": {
+          "regularFiles": 1,
+          "logicalFileBytes": 165
+        },
+        "builds": {
+          "regularFiles": 1,
+          "logicalFileBytes": 24451466
+        },
+        "declarative_performance_observer.db": {
+          "regularFiles": 1,
+          "logicalFileBytes": 32768
+        },
+        "declarative_performance_observer.db-journal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 0
+        },
+        "recovery.json": {
+          "regularFiles": 1,
+          "logicalFileBytes": 636
+        },
+        "runtimes": {
+          "regularFiles": 3988,
+          "logicalFileBytes": 396845472
+        },
+        "workspace-preferences.json": {
+          "regularFiles": 1,
+          "logicalFileBytes": 188
+        },
+        "workspaces": {
+          "regularFiles": 243,
+          "logicalFileBytes": 3475642
+        }
+      }
+    },
+    {
+      "label": "cycle-50",
+      "collectionMs": 142.2049999999581,
+      "regularFiles": 4342,
+      "directories": 646,
+      "symlinks": 3,
+      "logicalFileBytes": 433324651,
+      "groups": {
+        "Code Cache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 13220
+        },
+        "DIPS": {
+          "regularFiles": 1,
+          "logicalFileBytes": 4096
+        },
+        "DIPS-wal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 45352
+        },
+        "DawnGraphiteCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "DawnWebGPUCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "DevToolsActivePort": {
+          "regularFiles": 1,
+          "logicalFileBytes": 60
+        },
+        "GPUCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "GPUPersistentCache": {
+          "regularFiles": 3,
+          "logicalFileBytes": 0
+        },
+        "GraphiteDawnCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 5837168
+        },
+        "Local State": {
+          "regularFiles": 1,
+          "logicalFileBytes": 57
+        },
+        "Local Storage": {
+          "regularFiles": 5,
+          "logicalFileBytes": 864
+        },
+        "Network Persistent State": {
+          "regularFiles": 1,
+          "logicalFileBytes": 59
+        },
+        "Preferences": {
+          "regularFiles": 1,
+          "logicalFileBytes": 41
+        },
+        "Shared Dictionary": {
+          "regularFiles": 4,
+          "logicalFileBytes": 45128
+        },
+        "Trust Tokens": {
+          "regularFiles": 1,
+          "logicalFileBytes": 36864
+        },
+        "Trust Tokens-journal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 0
+        },
+        "app-updates": {
+          "regularFiles": 1,
+          "logicalFileBytes": 165
+        },
+        "builds": {
+          "regularFiles": 1,
+          "logicalFileBytes": 24451466
+        },
+        "declarative_performance_observer.db": {
+          "regularFiles": 1,
+          "logicalFileBytes": 32768
+        },
+        "declarative_performance_observer.db-journal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 0
+        },
+        "recovery.json": {
+          "regularFiles": 1,
+          "logicalFileBytes": 636
+        },
+        "runtimes": {
+          "regularFiles": 3988,
+          "logicalFileBytes": 396845472
+        },
+        "workspace-preferences.json": {
+          "regularFiles": 1,
+          "logicalFileBytes": 188
+        },
+        "workspaces": {
+          "regularFiles": 303,
+          "logicalFileBytes": 4338775
+        }
+      }
+    },
+    {
+      "label": "cycle-60",
+      "collectionMs": 131.0912909999024,
+      "regularFiles": 4402,
+      "directories": 676,
+      "symlinks": 3,
+      "logicalFileBytes": 434189293,
+      "groups": {
+        "Code Cache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 13220
+        },
+        "DIPS": {
+          "regularFiles": 1,
+          "logicalFileBytes": 4096
+        },
+        "DIPS-wal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 45352
+        },
+        "DawnGraphiteCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "DawnWebGPUCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "DevToolsActivePort": {
+          "regularFiles": 1,
+          "logicalFileBytes": 60
+        },
+        "GPUCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "GPUPersistentCache": {
+          "regularFiles": 3,
+          "logicalFileBytes": 0
+        },
+        "GraphiteDawnCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 5837168
+        },
+        "Local State": {
+          "regularFiles": 1,
+          "logicalFileBytes": 57
+        },
+        "Local Storage": {
+          "regularFiles": 5,
+          "logicalFileBytes": 864
+        },
+        "Network Persistent State": {
+          "regularFiles": 1,
+          "logicalFileBytes": 59
+        },
+        "Preferences": {
+          "regularFiles": 1,
+          "logicalFileBytes": 41
+        },
+        "Shared Dictionary": {
+          "regularFiles": 4,
+          "logicalFileBytes": 45128
+        },
+        "Trust Tokens": {
+          "regularFiles": 1,
+          "logicalFileBytes": 36864
+        },
+        "Trust Tokens-journal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 0
+        },
+        "app-updates": {
+          "regularFiles": 1,
+          "logicalFileBytes": 165
+        },
+        "builds": {
+          "regularFiles": 1,
+          "logicalFileBytes": 24451466
+        },
+        "declarative_performance_observer.db": {
+          "regularFiles": 1,
+          "logicalFileBytes": 32768
+        },
+        "declarative_performance_observer.db-journal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 0
+        },
+        "recovery.json": {
+          "regularFiles": 1,
+          "logicalFileBytes": 636
+        },
+        "runtimes": {
+          "regularFiles": 3988,
+          "logicalFileBytes": 396845472
+        },
+        "workspace-preferences.json": {
+          "regularFiles": 1,
+          "logicalFileBytes": 188
+        },
+        "workspaces": {
+          "regularFiles": 363,
+          "logicalFileBytes": 5203417
+        }
+      }
+    },
+    {
+      "label": "cycle-70",
+      "collectionMs": 131.30270900006872,
+      "regularFiles": 4462,
+      "directories": 706,
+      "symlinks": 3,
+      "logicalFileBytes": 435053221,
+      "groups": {
+        "Code Cache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 13220
+        },
+        "DIPS": {
+          "regularFiles": 1,
+          "logicalFileBytes": 4096
+        },
+        "DIPS-wal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 45352
+        },
+        "DawnGraphiteCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "DawnWebGPUCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "DevToolsActivePort": {
+          "regularFiles": 1,
+          "logicalFileBytes": 60
+        },
+        "GPUCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "GPUPersistentCache": {
+          "regularFiles": 3,
+          "logicalFileBytes": 0
+        },
+        "GraphiteDawnCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 5837168
+        },
+        "Local State": {
+          "regularFiles": 1,
+          "logicalFileBytes": 57
+        },
+        "Local Storage": {
+          "regularFiles": 5,
+          "logicalFileBytes": 864
+        },
+        "Network Persistent State": {
+          "regularFiles": 1,
+          "logicalFileBytes": 59
+        },
+        "Preferences": {
+          "regularFiles": 1,
+          "logicalFileBytes": 41
+        },
+        "Shared Dictionary": {
+          "regularFiles": 4,
+          "logicalFileBytes": 45128
+        },
+        "Trust Tokens": {
+          "regularFiles": 1,
+          "logicalFileBytes": 36864
+        },
+        "Trust Tokens-journal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 0
+        },
+        "app-updates": {
+          "regularFiles": 1,
+          "logicalFileBytes": 165
+        },
+        "builds": {
+          "regularFiles": 1,
+          "logicalFileBytes": 24451466
+        },
+        "declarative_performance_observer.db": {
+          "regularFiles": 1,
+          "logicalFileBytes": 32768
+        },
+        "declarative_performance_observer.db-journal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 0
+        },
+        "recovery.json": {
+          "regularFiles": 1,
+          "logicalFileBytes": 636
+        },
+        "runtimes": {
+          "regularFiles": 3988,
+          "logicalFileBytes": 396845472
+        },
+        "workspace-preferences.json": {
+          "regularFiles": 1,
+          "logicalFileBytes": 188
+        },
+        "workspaces": {
+          "regularFiles": 423,
+          "logicalFileBytes": 6067345
+        }
+      }
+    },
+    {
+      "label": "cycle-80",
+      "collectionMs": 145.935707999859,
+      "regularFiles": 4522,
+      "directories": 736,
+      "symlinks": 3,
+      "logicalFileBytes": 435916677,
+      "groups": {
+        "Code Cache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 13220
+        },
+        "DIPS": {
+          "regularFiles": 1,
+          "logicalFileBytes": 4096
+        },
+        "DIPS-wal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 45352
+        },
+        "DawnGraphiteCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "DawnWebGPUCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "DevToolsActivePort": {
+          "regularFiles": 1,
+          "logicalFileBytes": 60
+        },
+        "GPUCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "GPUPersistentCache": {
+          "regularFiles": 3,
+          "logicalFileBytes": 0
+        },
+        "GraphiteDawnCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 5837168
+        },
+        "Local State": {
+          "regularFiles": 1,
+          "logicalFileBytes": 57
+        },
+        "Local Storage": {
+          "regularFiles": 5,
+          "logicalFileBytes": 864
+        },
+        "Network Persistent State": {
+          "regularFiles": 1,
+          "logicalFileBytes": 59
+        },
+        "Preferences": {
+          "regularFiles": 1,
+          "logicalFileBytes": 41
+        },
+        "Shared Dictionary": {
+          "regularFiles": 4,
+          "logicalFileBytes": 45128
+        },
+        "Trust Tokens": {
+          "regularFiles": 1,
+          "logicalFileBytes": 36864
+        },
+        "Trust Tokens-journal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 0
+        },
+        "app-updates": {
+          "regularFiles": 1,
+          "logicalFileBytes": 165
+        },
+        "builds": {
+          "regularFiles": 1,
+          "logicalFileBytes": 24451466
+        },
+        "declarative_performance_observer.db": {
+          "regularFiles": 1,
+          "logicalFileBytes": 32768
+        },
+        "declarative_performance_observer.db-journal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 0
+        },
+        "recovery.json": {
+          "regularFiles": 1,
+          "logicalFileBytes": 636
+        },
+        "runtimes": {
+          "regularFiles": 3988,
+          "logicalFileBytes": 396845472
+        },
+        "workspace-preferences.json": {
+          "regularFiles": 1,
+          "logicalFileBytes": 188
+        },
+        "workspaces": {
+          "regularFiles": 483,
+          "logicalFileBytes": 6930801
+        }
+      }
+    },
+    {
+      "label": "cycle-90",
+      "collectionMs": 142.57975000003353,
+      "regularFiles": 4582,
+      "directories": 766,
+      "symlinks": 3,
+      "logicalFileBytes": 436780458,
+      "groups": {
+        "Code Cache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 13220
+        },
+        "DIPS": {
+          "regularFiles": 1,
+          "logicalFileBytes": 4096
+        },
+        "DIPS-wal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 45352
+        },
+        "DawnGraphiteCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "DawnWebGPUCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "DevToolsActivePort": {
+          "regularFiles": 1,
+          "logicalFileBytes": 60
+        },
+        "GPUCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "GPUPersistentCache": {
+          "regularFiles": 3,
+          "logicalFileBytes": 0
+        },
+        "GraphiteDawnCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 5837168
+        },
+        "Local State": {
+          "regularFiles": 1,
+          "logicalFileBytes": 57
+        },
+        "Local Storage": {
+          "regularFiles": 5,
+          "logicalFileBytes": 864
+        },
+        "Network Persistent State": {
+          "regularFiles": 1,
+          "logicalFileBytes": 59
+        },
+        "Preferences": {
+          "regularFiles": 1,
+          "logicalFileBytes": 41
+        },
+        "Shared Dictionary": {
+          "regularFiles": 4,
+          "logicalFileBytes": 45128
+        },
+        "Trust Tokens": {
+          "regularFiles": 1,
+          "logicalFileBytes": 36864
+        },
+        "Trust Tokens-journal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 0
+        },
+        "app-updates": {
+          "regularFiles": 1,
+          "logicalFileBytes": 165
+        },
+        "builds": {
+          "regularFiles": 1,
+          "logicalFileBytes": 24451466
+        },
+        "declarative_performance_observer.db": {
+          "regularFiles": 1,
+          "logicalFileBytes": 32768
+        },
+        "declarative_performance_observer.db-journal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 0
+        },
+        "recovery.json": {
+          "regularFiles": 1,
+          "logicalFileBytes": 636
+        },
+        "runtimes": {
+          "regularFiles": 3988,
+          "logicalFileBytes": 396845472
+        },
+        "workspace-preferences.json": {
+          "regularFiles": 1,
+          "logicalFileBytes": 188
+        },
+        "workspaces": {
+          "regularFiles": 543,
+          "logicalFileBytes": 7794582
+        }
+      }
+    },
+    {
+      "label": "cycle-100",
+      "collectionMs": 147.53779199998826,
+      "regularFiles": 4642,
+      "directories": 796,
+      "symlinks": 3,
+      "logicalFileBytes": 437644954,
+      "groups": {
+        "Code Cache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 13220
+        },
+        "DIPS": {
+          "regularFiles": 1,
+          "logicalFileBytes": 4096
+        },
+        "DIPS-wal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 45352
+        },
+        "DawnGraphiteCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "DawnWebGPUCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "DevToolsActivePort": {
+          "regularFiles": 1,
+          "logicalFileBytes": 60
+        },
+        "GPUCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "GPUPersistentCache": {
+          "regularFiles": 3,
+          "logicalFileBytes": 0
+        },
+        "GraphiteDawnCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 5837168
+        },
+        "Local State": {
+          "regularFiles": 1,
+          "logicalFileBytes": 57
+        },
+        "Local Storage": {
+          "regularFiles": 5,
+          "logicalFileBytes": 864
+        },
+        "Network Persistent State": {
+          "regularFiles": 1,
+          "logicalFileBytes": 59
+        },
+        "Preferences": {
+          "regularFiles": 1,
+          "logicalFileBytes": 41
+        },
+        "Shared Dictionary": {
+          "regularFiles": 4,
+          "logicalFileBytes": 45128
+        },
+        "Trust Tokens": {
+          "regularFiles": 1,
+          "logicalFileBytes": 36864
+        },
+        "Trust Tokens-journal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 0
+        },
+        "app-updates": {
+          "regularFiles": 1,
+          "logicalFileBytes": 165
+        },
+        "builds": {
+          "regularFiles": 1,
+          "logicalFileBytes": 24451466
+        },
+        "declarative_performance_observer.db": {
+          "regularFiles": 1,
+          "logicalFileBytes": 32768
+        },
+        "declarative_performance_observer.db-journal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 0
+        },
+        "recovery.json": {
+          "regularFiles": 1,
+          "logicalFileBytes": 637
+        },
+        "runtimes": {
+          "regularFiles": 3988,
+          "logicalFileBytes": 396845472
+        },
+        "workspace-preferences.json": {
+          "regularFiles": 1,
+          "logicalFileBytes": 188
+        },
+        "workspaces": {
+          "regularFiles": 603,
+          "logicalFileBytes": 8659077
+        }
+      }
+    },
+    {
+      "label": "cycle-110",
+      "collectionMs": 147.46916699991561,
+      "regularFiles": 4702,
+      "directories": 826,
+      "symlinks": 3,
+      "logicalFileBytes": 438511781,
+      "groups": {
+        "Code Cache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 13220
+        },
+        "DIPS": {
+          "regularFiles": 1,
+          "logicalFileBytes": 4096
+        },
+        "DIPS-wal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 45352
+        },
+        "DawnGraphiteCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "DawnWebGPUCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "DevToolsActivePort": {
+          "regularFiles": 1,
+          "logicalFileBytes": 60
+        },
+        "GPUCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "GPUPersistentCache": {
+          "regularFiles": 3,
+          "logicalFileBytes": 0
+        },
+        "GraphiteDawnCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 5837168
+        },
+        "Local State": {
+          "regularFiles": 1,
+          "logicalFileBytes": 57
+        },
+        "Local Storage": {
+          "regularFiles": 5,
+          "logicalFileBytes": 864
+        },
+        "Network Persistent State": {
+          "regularFiles": 1,
+          "logicalFileBytes": 59
+        },
+        "Preferences": {
+          "regularFiles": 1,
+          "logicalFileBytes": 41
+        },
+        "Shared Dictionary": {
+          "regularFiles": 4,
+          "logicalFileBytes": 45128
+        },
+        "Trust Tokens": {
+          "regularFiles": 1,
+          "logicalFileBytes": 36864
+        },
+        "Trust Tokens-journal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 0
+        },
+        "app-updates": {
+          "regularFiles": 1,
+          "logicalFileBytes": 165
+        },
+        "builds": {
+          "regularFiles": 1,
+          "logicalFileBytes": 24451466
+        },
+        "declarative_performance_observer.db": {
+          "regularFiles": 1,
+          "logicalFileBytes": 32768
+        },
+        "declarative_performance_observer.db-journal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 0
+        },
+        "recovery.json": {
+          "regularFiles": 1,
+          "logicalFileBytes": 637
+        },
+        "runtimes": {
+          "regularFiles": 3988,
+          "logicalFileBytes": 396845472
+        },
+        "workspace-preferences.json": {
+          "regularFiles": 1,
+          "logicalFileBytes": 188
+        },
+        "workspaces": {
+          "regularFiles": 663,
+          "logicalFileBytes": 9525904
+        }
+      }
+    },
+    {
+      "label": "cycle-120",
+      "collectionMs": 152.99795800005086,
+      "regularFiles": 4762,
+      "directories": 856,
+      "symlinks": 3,
+      "logicalFileBytes": 439375583,
+      "groups": {
+        "Code Cache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 13220
+        },
+        "DIPS": {
+          "regularFiles": 1,
+          "logicalFileBytes": 4096
+        },
+        "DIPS-wal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 45352
+        },
+        "DawnGraphiteCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "DawnWebGPUCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "DevToolsActivePort": {
+          "regularFiles": 1,
+          "logicalFileBytes": 60
+        },
+        "GPUCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "GPUPersistentCache": {
+          "regularFiles": 3,
+          "logicalFileBytes": 0
+        },
+        "GraphiteDawnCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 5837168
+        },
+        "Local State": {
+          "regularFiles": 1,
+          "logicalFileBytes": 57
+        },
+        "Local Storage": {
+          "regularFiles": 5,
+          "logicalFileBytes": 864
+        },
+        "Network Persistent State": {
+          "regularFiles": 1,
+          "logicalFileBytes": 59
+        },
+        "Preferences": {
+          "regularFiles": 1,
+          "logicalFileBytes": 41
+        },
+        "Shared Dictionary": {
+          "regularFiles": 4,
+          "logicalFileBytes": 45128
+        },
+        "Trust Tokens": {
+          "regularFiles": 1,
+          "logicalFileBytes": 36864
+        },
+        "Trust Tokens-journal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 0
+        },
+        "app-updates": {
+          "regularFiles": 1,
+          "logicalFileBytes": 165
+        },
+        "builds": {
+          "regularFiles": 1,
+          "logicalFileBytes": 24451466
+        },
+        "declarative_performance_observer.db": {
+          "regularFiles": 1,
+          "logicalFileBytes": 32768
+        },
+        "declarative_performance_observer.db-journal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 0
+        },
+        "recovery.json": {
+          "regularFiles": 1,
+          "logicalFileBytes": 637
+        },
+        "runtimes": {
+          "regularFiles": 3988,
+          "logicalFileBytes": 396845472
+        },
+        "workspace-preferences.json": {
+          "regularFiles": 1,
+          "logicalFileBytes": 188
+        },
+        "workspaces": {
+          "regularFiles": 723,
+          "logicalFileBytes": 10389706
+        }
+      }
+    },
+    {
+      "label": "closed",
+      "collectionMs": 158.3682499998249,
+      "regularFiles": 4766,
+      "directories": 857,
+      "symlinks": 0,
+      "logicalFileBytes": 439363538,
+      "groups": {
+        "Code Cache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 13220
+        },
+        "DIPS": {
+          "regularFiles": 1,
+          "logicalFileBytes": 36864
+        },
+        "DawnGraphiteCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "DawnWebGPUCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "DevToolsActivePort": {
+          "regularFiles": 1,
+          "logicalFileBytes": 60
+        },
+        "GPUCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 557424
+        },
+        "GPUPersistentCache": {
+          "regularFiles": 3,
+          "logicalFileBytes": 0
+        },
+        "GraphiteDawnCache": {
+          "regularFiles": 5,
+          "logicalFileBytes": 5837168
+        },
+        "Local State": {
+          "regularFiles": 1,
+          "logicalFileBytes": 57
+        },
+        "Local Storage": {
+          "regularFiles": 5,
+          "logicalFileBytes": 864
+        },
+        "Network Persistent State": {
+          "regularFiles": 1,
+          "logicalFileBytes": 111
+        },
+        "Preferences": {
+          "regularFiles": 1,
+          "logicalFileBytes": 41
+        },
+        "Session Storage": {
+          "regularFiles": 5,
+          "logicalFileBytes": 487
+        },
+        "Shared Dictionary": {
+          "regularFiles": 4,
+          "logicalFileBytes": 45128
+        },
+        "Trust Tokens": {
+          "regularFiles": 1,
+          "logicalFileBytes": 36864
+        },
+        "Trust Tokens-journal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 0
+        },
+        "app-updates": {
+          "regularFiles": 1,
+          "logicalFileBytes": 165
+        },
+        "builds": {
+          "regularFiles": 1,
+          "logicalFileBytes": 24451466
+        },
+        "declarative_performance_observer.db": {
+          "regularFiles": 1,
+          "logicalFileBytes": 32768
+        },
+        "declarative_performance_observer.db-journal": {
+          "regularFiles": 1,
+          "logicalFileBytes": 0
+        },
+        "recovery.json": {
+          "regularFiles": 1,
+          "logicalFileBytes": 637
+        },
+        "runtimes": {
+          "regularFiles": 3988,
+          "logicalFileBytes": 396845472
+        },
+        "workspace-preferences.json": {
+          "regularFiles": 1,
+          "logicalFileBytes": 188
+        },
+        "workspaces": {
+          "regularFiles": 723,
+          "logicalFileBytes": 10389706
+        }
+      }
+    }
+  ]
+}

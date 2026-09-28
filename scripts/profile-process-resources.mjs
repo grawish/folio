@@ -5,12 +5,19 @@ import { createHash } from 'node:crypto';
 import path from 'node:path';
 import os from 'node:os';
 import { buildProcessSampler, ProcessSampler } from './mac-process-sampler.mjs';
+import { tsImport } from 'tsx/esm/api';
+const { profileStorage } = await tsImport('./profile-directory-storage.ts', import.meta.url);
 
 if (process.platform !== 'darwin' || process.arch !== 'arm64' || !process.argv[2])
   throw new Error('Provide a packaged Folio executable on an Apple silicon Mac.');
 const executablePath = path.resolve(process.argv[2]);
 const cycles = Number(process.argv[3] ?? 3);
-if (!Number.isInteger(cycles) || cycles < 1 || cycles > 5) throw new Error('Choose 1–5 cycles.');
+const longSession = process.argv.includes('--long-session');
+const maxCycles = longSession ? 120 : 5;
+if (!Number.isInteger(cycles) || cycles < 1 || cycles > maxCycles)
+  throw new Error(`Choose 1–${maxCycles} cycles${longSession ? '' : ', or use --long-session'}.`);
+if (process.argv.slice(4).some((flag) => flag !== '--long-session'))
+  throw new Error('Unknown profiling option.');
 const python = process.env.FOLIO_PYTHON ?? 'python3';
 const pdfInspector = execFileSync(python, ['-c', 'import pypdf; print(pypdf.__version__)'], {
   encoding: 'utf8',
@@ -27,6 +34,7 @@ const files = [
   'scripts/profile-process-resources.mjs',
   'scripts/mac-process-sampler.mjs',
   'scripts/sample-mac-processes.c',
+  'scripts/profile-directory-storage.ts',
 ];
 const report = {
   startedAt: new Date().toISOString(),
@@ -52,6 +60,8 @@ const report = {
     pdfInspector,
   },
   cycles,
+  longSession,
+  storage: [],
   phases: [],
   pdfs: [],
   canvases: [],
@@ -64,7 +74,8 @@ const report = {
     'Summed RSS and summed per-process physical footprint are accounting metrics, not unique physical memory. Shared pages and surfaces can be counted more than once.',
     'CPU is observed per-process user plus system time, scaled from Mach ticks with the reported timebase. Initial counters of processes born before sampling are excluded. Child CPU fields are not added. Missing terminal samples undercount CPU.',
     'The sampling helper and Playwright harness are outside the app tree but add host load. Their CPU cost and snapshot duration are reported separately; the desktop is not otherwise isolated.',
-    'Three repeated small-text 1/100-page workflows on one development Mac do not establish a leak, population percentiles, worst-case images, or supported-device memory/CPU budgets.',
+    'Repeated small-text 1/100-page workflows on one development Mac do not establish a leak, population percentiles, worst-case images/history, or supported-device memory/CPU budgets.',
+    'Long-session storage observations read logical file sizes without following observed symlinks. Scans are non-atomic and run in separately marked phases outside builds/navigation; their host I/O and harness overhead can still affect the desktop. The closed final profile is inventoried after sampling. No deletion or GC is forced.',
   ],
 };
 let app, page, sampler;
@@ -86,6 +97,11 @@ const begin = async (name) => {
 const idle = async (name) => {
   await begin(name);
   await new Promise((resolve) => setTimeout(resolve, 2500));
+};
+const storage = async (label, sampled = true) => {
+  if (!longSession) return;
+  if (sampled) await begin(`storage-${label}`);
+  report.storage.push({ label, ...(await profileStorage(env.FOLIO_USER_DATA)) });
 };
 const source = (pages, label) =>
   String.raw`\documentclass[letterpaper]{article}
@@ -172,6 +188,7 @@ try {
     devicePixelRatio,
   }));
   await idle('ready-idle');
+  await storage('ready');
   await page.getByRole('tab', { name: 'Code', exact: true }).click();
   await page.getByLabel('Auto-compile', { exact: true }).uncheck();
   for (let cycle = 1; cycle <= cycles; cycle++) {
@@ -191,6 +208,7 @@ try {
     await idle(`cycle-${cycle}-long-idle`);
     await compile(1, `Cycle ${cycle} return`);
     await idle(`cycle-${cycle}-return-idle`);
+    if (cycle % 10 === 0 || cycle === cycles) await storage(`cycle-${cycle}`);
     console.log(
       `Measured cycle ${cycle}/${cycles}: one page, 100 pages, navigation, one page again.`,
     );
@@ -203,6 +221,7 @@ try {
   await app.evaluate(({ app }) => app.exit(0)).catch(() => {});
   await app.close().catch(() => {});
   app = undefined;
+  await storage('closed', false);
   // Inspect PDFs after sampling so the inspector cannot contend with measured builds.
   for (const pdf of report.pdfs) {
     const result = JSON.parse(
@@ -225,6 +244,9 @@ try {
   }
   expect(report.errors).toEqual([]);
   expect(await hash(asar)).toBe(report.appAsarSha256);
+  expect(await hash(path.resolve(path.dirname(asar), 'runtime/manifest.json'))).toBe(
+    report.runtimeManifestSha256,
+  );
   for (const file of files) expect(await hash(file)).toBe(report.scripts[file]);
   report.passed = true;
 } finally {

@@ -1,0 +1,72 @@
+{
+  "thresholdProcessAttribution": [
+    {
+      "phase": "Cycle 73 return-build",
+      "observedCpuSeconds": 3.735028958999976,
+      "processNameCpuSeconds": {
+        "Folio": 3.290159709,
+        "Folio Helper (Renderer)": 0.197045625,
+        "Folio Helper": 0.079170084,
+        "tectonic": 0.168210708,
+        "bash": 0.000442833
+      },
+      "maxCollectionMs": 7.167667000088841,
+      "vanishedDuringReads": 0,
+      "peakRssMiB": 996.6875
+    },
+    {
+      "phase": "cycle-112-return-idle",
+      "observedCpuSeconds": 0.33297841499995684,
+      "processNameCpuSeconds": {
+        "Folio": 0.0028515,
+        "Folio Helper (Renderer)": 0.302035083,
+        "Folio Helper": 0.028091832
+      },
+      "maxCollectionMs": 8.652416000142694,
+      "vanishedDuringReads": 0,
+      "peakRssMiB": 894.796875
+    }
+  ],
+  "returnIdleMemoryByProcess": [
+    {
+      "cycles": "1-10",
+      "samples": 129,
+      "processNameMedians": {
+        "Folio Helper (Renderer)": {
+          "rssMiB": 259.671875,
+          "footprintMiB": 139.76725006103516
+        },
+        "Folio Helper": {
+          "rssMiB": 145.09375,
+          "footprintMiB": 221.72083282470703
+        },
+        "Folio": {
+          "rssMiB": 250.765625,
+          "footprintMiB": 89.3455581665039
+        }
+      }
+    },
+    {
+      "cycles": "111-120",
+      "samples": 130,
+      "processNameMedians": {
+        "Folio Helper (Renderer)": {
+          "rssMiB": 435.171875,
+          "footprintMiB": 221.2831039428711
+        },
+        "Folio Helper": {
+          "rssMiB": 146.2734375,
+          "footprintMiB": 219.90833282470703
+        },
+        "Folio": {
+          "rssMiB": 287.4609375,
+          "footprintMiB": 122.6268539428711
+        }
+      }
+    }
+  ],
+  "closedWorkspaceVersions": 361,
+  "interpretation": "CPU contribution names identify observed processes, not allocation sites, GC, or root cause. Early/late memory medians use all return-idle observations in each ten-cycle block. Retained versions contain user-visible history and are not disposable cache.",
+  "all360ExportsMatchRetainedHistoryPdfs": true,
+  "historyScope": "361 versions: the initial template plus 360 measured builds; every exported PDF hash matches a retained history PDF. This checks this observed session, not the 1,000-version/64 MiB admission boundary."
+}
