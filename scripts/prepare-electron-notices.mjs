@@ -10,6 +10,8 @@ export default async function beforePack(context) {
   const root = context.packager.projectDir;
   const { prepareElectronNotices } = await tsImport('./electron-notices.ts', import.meta.url);
   const notices = await prepareElectronNotices(path.join(root, 'artifacts/electron-notices'), root);
+  const { prepareTectonicNotices } = await tsImport('./tectonic-notices.ts', import.meta.url);
+  await prepareTectonicNotices(path.join(root, 'artifacts/tectonic-notices'), root);
   if (context.packager.info.framework.version !== notices.electronVersion)
     throw new Error('The selected Electron runtime does not match the pinned original notices.');
 }

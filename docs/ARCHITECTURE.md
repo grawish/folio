@@ -78,3 +78,5 @@ PDF viewing is bounded to 100 pages and 25 MiB; AI visual review has a separate 
 ## App update boundary
 
 Settings talks to a main-process update service through constrained IPC. Separate stable/beta manifests bind the official ZIP, SHA-512, version, rollout and data compatibility with Ed25519 signatures. A custom electron-updater provider consumes the verified snapshot. Explicit restart first saves and flushes project/conversation recovery; competing operations are rejected. App-update publisher trust remains unconfigured until production signing and actual two-version acceptance. See [implementation, protocol and limits](APP_UPDATES.md).
+
+The packaging hook expands and verifies original Tectonic notices before copying app resources; the final package gate checks their exact installed bytes. Source archives and build-closure records remain separately reproducible. See [compiler notice packaging](TECTONIC_NOTICES.md).
