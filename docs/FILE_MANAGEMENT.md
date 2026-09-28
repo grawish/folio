@@ -22,7 +22,7 @@ Limits are 100 saved copies, 2 MiB of UTF-8 source per copy, and 10 MiB of seria
 
 Each active project's file retains its own CodeMirror undo/redo, selection and scroll position across tab switches. Chat/Code, appearance changes, source renames and Save As preserve these editor states. Opening another project clears them, including when the new project uses the same filenames. Restoring a removed file restores its full text with a new editing history. Editor undo histories are session state; restart recovers source contents and saved copies, not the complete undo stack.
 
-The current development source keeps the visible editor only while Code is open. Chat retains each file's document, undo history, selection and scroll position without the editor DOM. AI edits and approved outside-file reloads update that state while Chat is open, including before the first visit to Code. Inserting a section or following a build-error link opens Code before applying the action. This lifecycle change does not erase editor undo or request garbage collection.
+The current development source keeps the visible editor only while Code is open. Chat and Git retain each file's document, undo history, selection and scroll position without the editor DOM. AI edits and approved outside-file reloads update that state while Chat is open, including before the first visit to Code. Inserting a section or following a build-error link opens Code before applying the action. This lifecycle change does not erase editor undo or request garbage collection.
 
 ## Verification
 

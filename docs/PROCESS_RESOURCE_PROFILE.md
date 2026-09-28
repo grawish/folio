@@ -273,7 +273,7 @@ The harness uses keyboard events for ordinary ASCII typing and Chromium's [Input
 
 The exact final harness was committed as `cb92308` after collection; each run copied its own harness before launch and checked its hash again at completion. Both snapshots match that commit. See [verification, identities and scope](releases/editor-input-verification.json) and [four retained reports with their harnesses](performance/editor-input-traces.tar.gz).
 
-These are automated browser-level composition checks on one development Mac, not a physical Mac input-source/candidate-window, every language or VoiceOver qualification. Unicode text is in TeX comments, so the PDFs check build continuity rather than font glyph coverage. No explicit collection is requested, but six observations per run do not establish natural-collection retention, timing or memory budgets. The harness is a local supplementary check, outside the twenty-three hosted native suites.
+These are automated browser-level composition checks on one development Mac, not a physical Mac input-source/candidate-window, every language or VoiceOver qualification. Unicode text is in TeX comments, so the PDFs check build continuity rather than font glyph coverage. No explicit collection is requested, but six observations per run do not establish natural-collection retention, timing or memory budgets. The harness is a local supplementary check, outside the hosted native suite set.
 
 ```sh
 node scripts/test-editor-input.mjs /path/to/candidate/Folio.app/Contents/MacOS/Folio disposed
@@ -282,3 +282,13 @@ python3 scripts/verify-editor-input.py /path/to/final-candidate /path/to/final-b
 ```
 
 The verifier is specific to the retained package identities and original failed pair. New measurements must preserve their own inputs and update the verification scope rather than overwriting this evidence.
+
+### Integration with the Git workspace
+
+The later candidate at `d042c50` includes the published Git/PDF-highlight work from `6eebe47` and a section-navigation correction. Both earlier hosted attempts at `aed7933` stopped in the file suite after six native suites passed: inserting a section from Chat left its text outside the visible editor. A local check of the unchanged package independently confirms that the exact inserted source was saved while the viewport assertion failed. The fix requests scrolling after insertion and prevents deferred restoration of an old viewport when the document or selection has changed. It also repairs an unclosed CSS block in the merged Git styles. The original failed reports, screenshots, artifact digests and local control are [preserved together](releases/editor-navigation-initial-failures.json).
+
+All 486 source tests, type checking/build and local file, Git, chat, diagnostic and watcher workflows pass. The exact new Apple silicon package separately passes the complete file workflow, all five input cases with restart, and visible Git initialization/staging/commit controls. Independent checks compare the actual input recovery and saved version with the retained baseline, parse the final PDF, and read the actual Git commit. All 39 packaged build outputs match; the compiler manifest is unchanged. See [integration verification](releases/editor-lifecycle-integration-verification.json) and [compact raw reports](performance/editor-lifecycle-integration-traces.tar.gz).
+
+The native qualification set now also checks Git, for twenty-four suites. The first isolated Git harness attempt expected initialization without an identity; the app correctly showed its setup prompt. The corrected harness checks that prompt and uses its own synthetic Git configuration, without changing the user's account. The new [Git walkthrough](tutorials/git-history.md) contains a real local-commit screenshot. Forty website demos pass desktop/mobile image, layout and theme checks.
+
+Hosted qualification of this integrated candidate remains pending. The earlier five-cycle heap results describe the earlier package; they are not a performance result for the merged Git/PDF-highlight app. Physical input/accessibility, natural-collection long sessions, upper-bound fixtures and the two earlier CPU failures remain open. These checks do not establish production signing or complete release acceptance.

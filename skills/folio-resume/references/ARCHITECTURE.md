@@ -21,6 +21,7 @@ AI setup and the active connection live in Settings. The chat composer exposes A
 | Workspace and project lifecycle | `src/App.tsx`, `src/useWorkspace.ts` |
 | Source editor state and visible view lifecycle | `src/editor-state.ts`, `src/components/LatexEditor.tsx` |
 | Chat, notes and history | `src/components/ChatPanel.tsx`, `PdfAnnotations.tsx`, `VersionHistory.tsx` |
+| Git operations and file diffs | `electron/core/git.ts`, `src/components/GitPanel.tsx`, `CodeDiff.tsx` |
 | Local compiler, build scheduling and isolation | `electron/core/compiler.ts`, `build-requests.ts`, `latest-work-queue.ts`, `runtime.ts` |
 | Managed compiler copies | `electron/core/runtime-manager.ts`, `compiler-migration.ts` |
 | Signed resource packs and Settings | `electron/core/pack-service.ts`, `pack-catalog.ts`, `pack-download.ts`, `resource-pack.ts`, `src/components/ResourcePacks.tsx` |
@@ -89,4 +90,4 @@ Biber's original license/declaration documents are also expanded before packagin
 
 ## Editor view lifetime
 
-Current development source creates an `EditorView` only in Code. Chat keeps the per-file `EditorState`, undo, selection and scroll offsets. AI edits and approved disk reloads update the state without a view, including before Code first opens. Layout effects restore the view before snippet and diagnostic actions run; changing projects clears the session cache. State extension callbacks are created outside the view effect. This lets obsolete editor DOM become collectible without clearing user undo or forcing collection. See [the measured scope](https://github.com/grawish/folio/blob/main/docs/PROCESS_RESOURCE_PROFILE.md#disposing-the-hidden-editor-view).
+Current development source creates an `EditorView` only in Code. Chat and Git keep the per-file `EditorState`, undo, selection and scroll offsets. AI edits and approved disk reloads update the state without a view, including before Code first opens. Layout effects restore the view before snippet and diagnostic actions run. Insertions request cursor scrolling; delayed viewport restoration applies only while the original document and selection remain current. Changing projects clears the session cache. State extension callbacks are created outside the view effect. This lets obsolete editor DOM become collectible without clearing user undo or forcing collection. See [the measured scope](https://github.com/grawish/folio/blob/main/docs/PROCESS_RESOURCE_PROFILE.md#disposing-the-hidden-editor-view).

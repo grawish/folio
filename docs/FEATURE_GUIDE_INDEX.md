@@ -19,6 +19,7 @@ Every currently implemented feature group below has a plain-language walkthrough
 | Visual PDF feedback | [Walkthrough](tutorials/chat-and-feedback.md) | [Screenshot](images/annotations.png) · Real app · scripted local AI fixture |
 | Compare, undo and restore | [Walkthrough](tutorials/chat-and-feedback.md) | [Screenshot](images/history.png) · Real app · scripted local AI fixture |
 | Make room in History | [Walkthrough](tutorials/chat-and-feedback.md#make-room-in-history) | [Screenshot](images/history-removal-dark.png) · Development source · synthetic resume and real PDF |
+| Local Git checkpoints | [Walkthrough](tutorials/git-history.md) | [Screenshot](images/git-history.png) · Development source · real local Git · synthetic identity |
 | Code and build errors | [Walkthrough](tutorials/editor-and-pdf.md) | [Screenshot](images/code.png) · Real app · synthetic project |
 | Missing files, fonts and engine help | [Walkthrough](tutorials/editor-and-pdf.md#fix-a-missing-file-font-or-package) | [Screenshot](images/build-help-font.png) · Real compiler · synthetic missing font |
 | Local font files | [Walkthrough](tutorials/editor-and-pdf.md#use-your-own-font-files) | [Screenshot](images/local-fonts.png) · Real app/compiler · synthetic project |

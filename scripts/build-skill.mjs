@@ -8,6 +8,7 @@ const names = [
   'save-and-recover',
   'recover-an-import',
   'editor-and-pdf',
+  'git-history',
   'settings-and-compiler',
   'resource-packs',
   'app-updates',
