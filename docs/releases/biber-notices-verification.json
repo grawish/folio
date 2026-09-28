@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "verifiedAt": "2026-09-28T01:02:08.885020+00:00",
   "implementationCommit": "fbb165fd4da09775f0ed36dcaf8df7733e4f7342",
-  "status": "Original materials, source tests, local package and bibliography smoke verified; full hosted combined qualification pending",
+  "status": "Original materials, source tests, local package and bibliography smoke verified; subsequent exact-source hosted qualification passed",
   "sourceTestsPassed": 460,
   "focusedControlsPassed": 8,
   "typecheckAndFormatPassed": true,
@@ -225,5 +225,12 @@
   ],
   "publicInstallerChanged": false,
   "completeBinarySbom": false,
-  "scope": "Original Biber/Perl/PAR, CPAN and native source material documents, including explicit supersets and full embedded-declaration files. Shared packaging checks preserve the Tectonic set. Individual grants, Biber declaration discrepancy, exact native vendor builds/version ambiguities, optional external libraries, corresponding-source publication, complete linked-component SBOM, signed production release and full qualification of the combined candidate remain open."
+  "scope": "Original Biber/Perl/PAR, CPAN and native source material documents, including explicit supersets and full embedded-declaration files. Shared packaging checks preserve the Tectonic set. Individual grants, Biber declaration discrepancy, exact native vendor builds/version ambiguities, optional external libraries, corresponding-source publication, complete linked-component SBOM, signed production release and full qualification of the combined candidate remain open.",
+  "hostedFollowup": {
+    "verifiedAt": "2026-09-28T01:40:48.915385+00:00",
+    "commit": "db6221a59eafe9ef0e7a8133587cc5360a276e24",
+    "runId": 36364651805,
+    "record": "mac-biber-notices-hosted.json",
+    "passed": true
+  }
 }
