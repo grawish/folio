@@ -96,19 +96,33 @@ const begin = async (name) => {
 };
 const observe = async (label) => {
   const native = await sampler.mark(label);
+  const viewState = await page.evaluate(() => ({
+    selectedTabs: [...document.querySelectorAll('[role="tab"][aria-selected="true"]')]
+      .filter((tab) => tab.id.startsWith('workspace-'))
+      .map((tab) => tab.id),
+    editorViews: document.querySelectorAll('.cm-editor').length,
+    visiblePanels: [...document.querySelectorAll('[role="tabpanel"]')]
+      .filter((panel) => panel.getClientRects().length > 0)
+      .map((panel) => panel.id),
+  }));
   report.observations.push({
     label,
     atMs: native.atMs,
     dom: await session.send('Memory.getDOMCounters'),
     heap: await session.send('Runtime.getHeapUsage'),
     mainMemory: await app.evaluate(() => process.memoryUsage()),
-    connectedEditorViews: await page.locator('.cm-editor').count(),
+    connectedEditorViews: viewState.editorViews,
+    viewState,
     native: {
       summedRssBytes: native.summedRssBytes,
       summedFootprintBytes: native.summedFootprintBytes,
       observedCpuSeconds: native.observedCpuSeconds,
     },
   });
+  const expectedMode = label === 'ready' ? 'code' : mode;
+  expect(viewState.selectedTabs).toEqual([`workspace-${expectedMode}-tab`]);
+  expect(viewState.editorViews).toBe(expectedMode === 'code' ? 1 : 0);
+  expect(viewState.visiblePanels).toEqual([`workspace-${expectedMode}-panel`]);
 };
 try {
   app = await electron.launch({ executablePath, args: [], env, timeout: 120_000 });
