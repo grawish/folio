@@ -108,6 +108,10 @@
       {
         "from": "artifacts/tectonic-notices",
         "to": "tectonic-notices"
+      },
+      {
+        "from": "artifacts/biber-notices",
+        "to": "biber-notices"
       }
     ],
     "mac": {

@@ -46,6 +46,8 @@ const { verifyTectonicNotices } = await tsImport('./tectonic-notices.ts', import
 const tectonicNotices = await verifyTectonicNotices(
   path.join(app, 'Contents/Resources/tectonic-notices'),
 );
+const { verifyBiberNotices } = await tsImport('./biber-notices.ts', import.meta.url);
+const biberNotices = await verifyBiberNotices(path.join(app, 'Contents/Resources/biber-notices'));
 const architecture = execFileSync(
   '/usr/bin/lipo',
   ['-archs', path.join(app, 'Contents/MacOS/Folio')],
@@ -167,6 +169,7 @@ const result = {
   pdfjsNotices,
   electronNotices,
   tectonicNotices,
+  biberNotices,
   ...(signing ? { signing } : {}),
   appBytes,
   hashes,
