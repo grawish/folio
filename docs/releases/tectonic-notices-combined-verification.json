@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "verifiedAt": "2026-09-28T00:35:41.709401+00:00",
   "sourceCommit": "13ece9c91c70869e1de7056ccefa92ec60df90f1",
-  "status": "Combined local build and package verified; full hosted qualification pending",
+  "status": "Combined local build and package verified; subsequent exact-source hosted qualification passed",
   "sourceTestsPassed": 457,
   "formatAndTypecheckPassed": true,
   "appAsarSha256": "ed51b14685caad966c3859de9bc738a5ca183193d31cf5fefa5c1685023f37c0",
@@ -189,5 +189,12 @@
       "sha256": "16bbf68e1cbc129aae8ce9e352583e63ebbaa00f2bccda0578bf139b2bff76dc"
     }
   ],
-  "scope": "Combined compiler-cache and Tectonic notice package. Local checks verify the built files and original texts; native suites and archive checks are reserved for the full hosted run. No signed production qualification, complete binary SBOM or public installer change is claimed."
+  "scope": "Combined compiler-cache and Tectonic notice package. Local checks verify the built files and original texts; native suites and archive checks are reserved for the full hosted run. No signed production qualification, complete binary SBOM or public installer change is claimed.",
+  "hostedFollowup": {
+    "verifiedAt": "2026-09-28T01:20:45.036854+00:00",
+    "commit": "3bd4a88d2ffb608f377a78ae747aa06f83eb7da8",
+    "runId": 36362795357,
+    "record": "mac-tectonic-notices-hosted.json",
+    "passed": true
+  }
 }
