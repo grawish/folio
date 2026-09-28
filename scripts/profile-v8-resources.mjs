@@ -10,7 +10,8 @@ import { captureRendererRetention } from './capture-renderer-retention.mjs';
 const { profileStorage } = await tsImport('./profile-directory-storage.ts', import.meta.url);
 
 const [executableArg, seedArg, cycleArg = '10', diagnosticArg] = process.argv.slice(2);
-const retention = diagnosticArg === '--retention';
+const retention = ['--retention', '--retention-paste'].includes(diagnosticArg);
+const pasteInput = diagnosticArg === '--retention-paste';
 const cycles = Number(cycleArg);
 if (
   process.platform !== 'darwin' ||
@@ -24,7 +25,7 @@ if (
   cycles > 20
 )
   throw new Error(
-    'Provide a packaged Folio executable, a completed synthetic process-profile directory and 1–20 cycles, optionally followed by --retention.',
+    'Provide a packaged Folio executable, a completed synthetic process-profile directory and 1–20 cycles, optionally followed by --retention or --retention-paste.',
   );
 const executablePath = path.resolve(executableArg),
   seedRoot = path.resolve(seedArg);
@@ -114,8 +115,9 @@ const report = {
     nativeObserverSha256: await hash(observer),
   },
   scope:
-    'Diagnostic CPU and sampled JavaScript allocation profiles on a copied synthetic history. Profiling changes CPU/allocation behavior; these timings are not acceptance or optimization comparisons. Heap samples estimate selected live allocations since sampling began, not all retained objects or native/PDF-worker/GPU memory. No heap snapshot or explicit GC is requested. Original profile and app are preserved. The app starts new processes from copied on-disk history; it does not restore the preceding session heap. CPU profiles cover the selected V8 isolates rather than all native threads or subprocess CPU.',
+    'Diagnostic CPU and sampled JavaScript allocation profiles on a copied synthetic history. Profiling changes CPU/allocation behavior; these timings are not acceptance or optimization comparisons. Heap samples estimate selected live allocations since sampling began, not all retained objects or native/PDF-worker/GPU memory. No heap snapshot or explicit GC is requested during the sampled workload. The optional retention diagnostic requests both after sampling stops and is reported separately. Original profile and app are preserved. The app starts new processes from copied on-disk history; it does not restore the preceding session heap. CPU profiles cover the selected V8 isolates rather than all native threads or subprocess CPU.',
   cycles,
+  inputMethod: pasteInput ? 'synthetic CodeMirror paste event' : 'native keyboard.insertText',
   phases: [],
   pdfs: [],
   canvases: [],
@@ -192,7 +194,15 @@ const compile = async (pages, label) => {
   const editor = page.locator('.cm-content');
   await editor.click();
   await editor.press('ControlOrMeta+A');
-  await page.keyboard.insertText(text);
+  if (pasteInput)
+    await editor.evaluate((node, text) => {
+      const data = new DataTransfer();
+      data.setData('text/plain', text);
+      node.dispatchEvent(
+        new ClipboardEvent('paste', { clipboardData: data, bubbles: true, cancelable: true }),
+      );
+    }, text);
+  else await page.keyboard.insertText(text);
   await page.getByRole('button', { name: 'Compile', exact: true }).click();
   await expect(page.locator('.preview-pane .pdf-sheet')).toHaveCount(pages, { timeout: 60_000 });
   const first = page.locator('.preview-pane .pdf-sheet[data-page="1"]');

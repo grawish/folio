@@ -92,7 +92,7 @@ export async function captureRendererRetention({ page, session, root, cycles }) 
     const recovery = JSON.parse(await fs.readFile(path.join(root, 'app-data/recovery.json')));
     result.originalSyntheticProjectId = recovery.project.id;
     await page.getByRole('button', { name: 'Explore templates', exact: true }).click();
-    await page.getByRole('button', { name: 'Create Classic resume', exact: true }).click();
+    await page.getByRole('button', { name: 'Create The Classic resume', exact: true }).click();
     // Discard only the disposable synthetic draft in this verified profile copy.
     await page.getByRole('button', { name: 'Discard changes', exact: true }).click();
     await page.getByRole('tab', { name: 'Code', exact: true }).click();
@@ -109,6 +109,10 @@ export async function captureRendererRetention({ page, session, root, cycles }) 
     await collect('new-project');
     result.completed = true;
     return result;
+  } catch (error) {
+    result.error = error.message;
+    await page.screenshot({ path: path.join(root, 'retention-failure.png') }).catch(() => {});
+    throw error;
   } finally {
     await fs.writeFile(path.join(root, 'retention.json'), JSON.stringify(result, null, 2) + '\n');
   }
