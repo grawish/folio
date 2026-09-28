@@ -6,22 +6,25 @@ import path from 'node:path';
 import os from 'node:os';
 import { tsImport } from 'tsx/esm/api';
 import { buildProcessSampler, ProcessSampler } from './mac-process-sampler.mjs';
+import { captureRendererRetention } from './capture-renderer-retention.mjs';
 const { profileStorage } = await tsImport('./profile-directory-storage.ts', import.meta.url);
 
-const [executableArg, seedArg, cycleArg = '10'] = process.argv.slice(2);
+const [executableArg, seedArg, cycleArg = '10', diagnosticArg] = process.argv.slice(2);
+const retention = diagnosticArg === '--retention';
 const cycles = Number(cycleArg);
 if (
   process.platform !== 'darwin' ||
   process.arch !== 'arm64' ||
   !executableArg ||
   !seedArg ||
-  process.argv.length > 5 ||
+  process.argv.length > 6 ||
+  (diagnosticArg !== undefined && !retention) ||
   !Number.isInteger(cycles) ||
   cycles < 1 ||
   cycles > 20
 )
   throw new Error(
-    'Provide a packaged Folio executable, a completed synthetic process-profile directory and 1–20 cycles.',
+    'Provide a packaged Folio executable, a completed synthetic process-profile directory and 1–20 cycles, optionally followed by --retention.',
   );
 const executablePath = path.resolve(executableArg),
   seedRoot = path.resolve(seedArg);
@@ -78,6 +81,7 @@ const scripts = [
   'scripts/mac-process-sampler.mjs',
   'scripts/sample-mac-processes.c',
 ];
+if (retention) scripts.push('scripts/capture-renderer-retention.mjs');
 const observer = await buildProcessSampler(root);
 const report = {
   startedAt: new Date().toISOString(),
@@ -106,6 +110,7 @@ const report = {
     cpuSamplingIntervalMicroseconds: 1000,
     heapSamplingIntervalBytes: 65536,
     explicitGcRequested: false,
+    postWorkloadRetentionDiagnostic: retention,
     nativeObserverSha256: await hash(observer),
   },
   scope:
@@ -292,6 +297,13 @@ try {
   await begin('finished');
   await sampler.stop();
   await rendererSession.send('HeapProfiler.stopSampling');
+  if (retention)
+    report.retention = await captureRendererRetention({
+      page,
+      session: rendererSession,
+      root,
+      cycles,
+    });
   await rendererSession.send('Profiler.disable');
   await rendererSession.detach();
   rendererSession = undefined;
