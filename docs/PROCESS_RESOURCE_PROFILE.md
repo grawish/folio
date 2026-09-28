@@ -1,8 +1,30 @@
 # Process memory and CPU measurements
 
-The current development app was measured while preparing its compiler, building a short document, building a 100-page document, visiting distant pages and exporting PDFs. Three cycles finished successfully. This fills part of the resource-use investigation; it does not establish a maximum for every document or finish the production release.
+Folio has two recorded three-cycle memory and CPU measurements: the earlier compiler-limit baseline and the qualified cache/recovery app. Both prepare a fresh compiler, build one-page and 100-page documents, visit distant pages and export PDFs. These observations help direct performance work; they do not establish a maximum for every document or finish production acceptance.
 
-## Recorded app and workload
+## Qualified cache/recovery app: 28 September
+
+The same published observer and workload were run against the app qualified at `05f58fe` (ASAR `21deec45a0be129a63d3d8b14a71f555000b9b40a0dbf5c6e6ebcfe0ff8e5144`), using source `1210eba`. No application or measurement code changed for this run. The observer executable also matches the baseline byte for byte. This includes the newer runtime verification, recovery scheduling, compiler-request limits and cache retention.
+
+All nine exported PDFs were independently parsed, including every page marker in the three 100-page documents. All 443 snapshot memory sums, Mach-timebase CPU accumulations, phase boundaries and peaks were recomputed independently. The app exited, and no Tectonic, Biber or compiler watchdog appeared in the settled-idle snapshots. The same M4 Pro and one-page/100-page synthetic workload were used; normal desktop work continued, OS caches were not purged, and no other local Folio build, native suite or benchmark ran concurrently. Hosted qualification ran on a separate GitHub machine.
+
+| Observed phase | Samples of the workload | Elapsed min–max, seconds | Observed CPU min–max, CPU-seconds | Peak summed RSS, MiB | Peak summed footprint, MiB |
+| --- | --- | --- | --- | --- | --- |
+| First preparation, after automation attaches | 1 | 44.380–44.380 | 18.060–18.060 | 910.2 | 566.9 |
+| One-page builds, including returns | 6 | 1.379–1.428 | 1.205–1.493 | 850.3 | 726.1 |
+| 100-page builds | 3 | 1.560–1.570 | 1.701–1.767 | 827.3 | 710.1 |
+| Page visits, including the specified dwells | 3 | 1.581–1.602 | 0.146–0.163 | 654.8 | 566.4 |
+| Settled idle intervals | 10 | 2.503–2.611 | 0.004–0.082 | 653.9 | 561.6 |
+
+The complete sampled span is 87.628 seconds with 32.774 observed CPU-seconds. Peak summed RSS is 910.2 MiB and peak summed footprint 726.1 MiB, reached at different times. All four existing fixture investigation thresholds below pass. These are accounting sums and sampled lower-bound CPU observations, not unique physical RAM, enforced app limits or worst-case guarantees.
+
+Fresh compiler preparation took 44.380 seconds in this run versus 34.190 seconds in the earlier baseline. The nine ordinary builds took 1.379–1.570 seconds here. These runs were taken at different times and many implementation changes apart; neither difference establishes a causal speedup or regression. Initial preparation remains a priority for repeated, paired subprocess measurements. Returning to one page leaves peak idle RSS of 626.1, 636.2 and 653.9 MiB across the three cycles; three samples do not establish a leak or long-session retention.
+
+The closed synthetic profile contains 4,064 regular files totaling 409.4 MiB of logical file sizes. This excludes the app installation, filesystem allocation and external caches. Observer collection took at most 184.862 ms, with a maximum sample gap of 384.798 ms; the observer consumed 1.421 CPU-seconds outside the app tree. Uneven sampling can miss short-lived work and peaks.
+
+See [all phases and limits](performance/process-tree-current-summary.json), [compressed original snapshots](performance/process-tree-current.json.gz) and [independent verification](releases/current-process-profile-verification.json). The original record below is retained unchanged. Upper-bound images/history, longer sessions and minimum supported-device measurements remain required before adopting release-wide budgets.
+
+## Earlier baseline: recorded app and workload
 
 The application is the unchanged compiler-limit package from source `349d6ce`, with app.asar SHA-256 `690e78289d9b79d5c05084fc809d7da2497652943523307deb733e1c690e721d`. Its runtime manifest is unchanged. The observer is a developer tool, built separately with the installed macOS SDK; it is not added to the application or installer.
 
