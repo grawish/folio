@@ -155,7 +155,13 @@ export function GitPanel({ projectId }: { projectId: string }) {
 
   if (!window.folio)
     return (
-      <section className="git-panel" aria-label="Git">
+      <section
+        className="git-panel"
+        id="workspace-git-panel"
+        role="tabpanel"
+        aria-labelledby="workspace-git-tab"
+        tabIndex={0}
+      >
         <p className="settings-hint">Open the desktop app to use Git.</p>
       </section>
     );
@@ -249,7 +255,13 @@ export function GitPanel({ projectId }: { projectId: string }) {
 
   if (!availability.installed)
     return (
-      <section className="git-panel" aria-label="Git">
+      <section
+        className="git-panel"
+        id="workspace-git-panel"
+        role="tabpanel"
+        aria-labelledby="workspace-git-tab"
+        tabIndex={0}
+      >
         <div className="git-setup-notice">
           <CircleAlert size={18} />
           <div>
@@ -265,7 +277,13 @@ export function GitPanel({ projectId }: { projectId: string }) {
 
   if (!availability.identity?.name || !availability.identity?.email)
     return (
-      <section className="git-panel" aria-label="Git">
+      <section
+        className="git-panel"
+        id="workspace-git-panel"
+        role="tabpanel"
+        aria-labelledby="workspace-git-tab"
+        tabIndex={0}
+      >
         <div className="git-setup-notice">
           <CircleAlert size={18} />
           <div>
@@ -282,7 +300,13 @@ export function GitPanel({ projectId }: { projectId: string }) {
 
   if (!status)
     return (
-      <section className="git-panel" aria-label="Git">
+      <section
+        className="git-panel"
+        id="workspace-git-panel"
+        role="tabpanel"
+        aria-labelledby="workspace-git-tab"
+        tabIndex={0}
+      >
         {error && (
           <p className="error-text" role="alert">
             {error}
@@ -454,7 +478,13 @@ export function GitPanel({ projectId }: { projectId: string }) {
   );
 
   return (
-    <section className="git-panel" aria-label="Git">
+    <section
+      className="git-panel"
+      id="workspace-git-panel"
+      role="tabpanel"
+      aria-labelledby="workspace-git-tab"
+      tabIndex={0}
+    >
       {error && (
         <p className="error-text" role="alert">
           {error}
