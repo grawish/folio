@@ -518,6 +518,20 @@
     "alt": "Folio storage Settings showing the protected current compiler and an explicitly removable synthetic old compiler"
   },
   {
+    "id": "compiler-cache",
+    "title": "Recover after a compiler cache limit",
+    "image": "cache-limit.png",
+    "guide": "tutorials/settings-and-compiler.md#if-compiler-helper-files-reach-their-limit",
+    "description": "Read a cache-limit message while the last successful PDF stays visible, then rebuild after fixing the cause.",
+    "steps": [
+      "Keep your source open and read the build message.",
+      "Simplify the document if it keeps creating large helper files.",
+      "Click Compile and check that the current PDF appears."
+    ],
+    "kind": "Real development app \u00b7 simulated oversized-cache reading",
+    "alt": "Folio showing a compiler-cache limit message and the prior successful PDF beside the current source"
+  },
+  {
     "id": "recovery-retry",
     "title": "Retry a recovery save",
     "image": "recovery-retry.png",
