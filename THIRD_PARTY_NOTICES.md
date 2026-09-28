@@ -81,3 +81,10 @@ The [generated-resource replay](docs/LICENSING.md#reproduce-generated-tex-resour
 ## Biber compiled-module source associations
 
 The offline [compiled-module collector](docs/LICENSING.md#collect-biber-compiled-module-materials) associates all 99 packaged Perl-module files with matching Perl source files and retained upstream archives. Original XS declarations, notices and build materials are preserved; six source-version ambiguities and ten generated-XS cases remain explicit. This evidence does not establish exact native rebuilds, resolve the unbundled X11/MySQL references or complete final redistribution review. Upstream materials retain their original terms.
+
+
+## Bundled Tectonic original notices
+
+Development packages include `Contents/Resources/tectonic-notices/` with 255 unchanged original texts, a readable component index and exact source archive records. These cover 657 notice references from Tectonic source families, the resolved executable Rust build closure, matching Rust toolchain distributions and eleven native build ports. Every selected archive and original text was rechecked; identical texts are stored once. Build/toolchain supersets include tools and potentially unused code, so this is not a final linked-component SBOM.
+
+The packaging hook expands the lossless originals and rejects missing, altered, linked, extra or mismatched files. This does not replace their original grants, complete the Biber/Perl review or satisfy every corresponding-source obligation. See `resources/tectonic-notices/README.md` and the licensing guide for source locations and reproduction. Existing compiler identities and historical downloads remain unchanged.

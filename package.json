@@ -104,6 +104,10 @@
       {
         "from": "artifacts/electron-notices",
         "to": "electron-notices"
+      },
+      {
+        "from": "artifacts/tectonic-notices",
+        "to": "tectonic-notices"
       }
     ],
     "mac": {
