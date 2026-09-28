@@ -39,6 +39,24 @@ Questions and requests for missing facts return without changing the source. A f
 
 Marks keep their position when you zoom. Notes belong to the PDF version you marked; an old note is not silently moved onto a changed layout. Read the current page before reusing feedback. PDF exports do not include these marks.
 
+## See what the AI changed
+
+This feature is in current development source; the preview-4 download does not include it yet.
+
+After a successful AI edit, the app compares the new PDF with the one you had before and marks the changed regions.
+
+1. Send an edit request and wait for the reply and the finished PDF.
+2. Changed regions flash briefly as a translucent overlay, then fade so you can read the page.
+3. Choose **Show changes** above the PDF to replay the marks. The button shows how many changes were found.
+4. Use **Previous change** and **Next change** to jump between marked pages.
+5. Zoom or resize freely; marks keep their position on the page.
+
+[Screenshot: Change highlights marking an AI edit on the PDF](https://github.com/grawish/folio/blob/main/docs/images/pdf-change-highlights.png)
+
+This real app capture uses a synthetic resume, a deterministic local AI fixture and a real compiled PDF; no live model produced the edit. Marks belong to the displayed PDF only: manual edits, project switches and History restores do not trigger them, and a comparison that finishes after you switch projects or rebuild is discarded instead of marking the wrong PDF. If a comparison cannot finish, the PDF simply appears without highlights.
+
+**Demo:** `npm run test:pdf-highlight` builds the app and runs `scripts/test-pdf-highlight-smoke.mjs`, checking an ordinary edit and a deliberately delayed comparison end-to-end.
+
 ## Compare and restore
 
 1. After an AI edit, choose **Compare changes** below the reply, or open **History**.

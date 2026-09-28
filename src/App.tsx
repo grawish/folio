@@ -1127,12 +1127,22 @@ export default function App() {
         setBuilding(false);
         setLogsOpen(false);
         const afterPdf = reply.build.pdf,
-          beforeVersionId = reply.beforeVersionId;
+          beforeVersionId = reply.beforeVersionId,
+          appliedProjectId = next.id,
+          appliedRevision = next.revision;
         if (afterPdf && beforeVersionId)
           void desktop
             .readVersion(next.id, beforeVersionId)
             .then((before) => {
-              if (activeRun.current?.id !== id) return;
+              // The run may already be cleared by completion. A valid late
+              // reply still belongs to this apply as long as the displayed
+              // project/build identity is unchanged; a project switch or a
+              // newer edit/build bumps id/revision and safely discards it.
+              if (
+                current.current.id !== appliedProjectId ||
+                current.current.revision !== appliedRevision
+              )
+                return;
               setChangeHighlight({ runId: id, before: before.pdf, after: afterPdf });
             })
             .catch(() => {});

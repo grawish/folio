@@ -1,0 +1,51 @@
+{
+  "title": "PDF change-highlight late-history-read failure and repair",
+  "recordedAt": "2026-09-28T12:00:00Z",
+  "failure": {
+    "applicationSource": "0bee2713cff6eed7872984f73229fec7ef722ff3",
+    "appAsarSha256": "7ab490486ba31a5a0b487231f7c176c756a22cff61869832c88bdd63373d99be",
+    "harnessSha256": "48ce3b680dbf77317ca2dd086d996675d7d5c427281713c8cf6b219f980bee01",
+    "summary": "Holding the real workspace:version before-PDF reply until the AI completion UI settled prevented Show changes from ever appearing. The comparison was discarded because src/App.tsx gated the late reply on activeRun, which completion had already cleared.",
+    "scenarios": [
+      {
+        "mode": "ordinary",
+        "passed": true
+      },
+      {
+        "mode": "delayed",
+        "passed": false
+      }
+    ],
+    "error": "expect(locator).toBeVisible() failed",
+    "evidence": "lifecycle worktree test-results/pdf-highlight-Xt0uDy (result.json, exact harness bytes, exports, screenshots)"
+  },
+  "repair": {
+    "sourceCommitOfRun": "573433bafa1e0b502db106cc6c84b1d4eb904532",
+    "workingTreeAt": "573433bafa1e0b502db106cc6c84b1d4eb904532",
+    "change": "src/App.tsx now keys the late before-PDF read on the applied project id and revision instead of activeRun, so a valid late reply completes while a project switch or newer build still discards it. PdfPreview also drops a comparison whose after-bytes differ from the displayed PDF and clamps change navigation to the surviving page count.",
+    "harness": "scripts/test-pdf-highlight-smoke.mjs (promoted from the retained fixture; npm run test:pdf-highlight)",
+    "harnessSha256": "c64194a8ee74b6c7fbeeabbf8d471b0a7f6c255be85897c314426b295054a4b0",
+    "scenarios": [
+      {
+        "mode": "ordinary",
+        "passed": true,
+        "checks": [
+          "Real AI edit and two-page image review; normalized regions, timed fade, replay, zoom, change navigation and byte-identical highlight-free export.",
+          "The AI-edited source is saved to disk before another project is opened."
+        ]
+      },
+      {
+        "mode": "delayed",
+        "passed": true,
+        "checks": [
+          "Real before-version reply held until the AI completion UI settled, then released.",
+          "Real AI edit and two-page image review; normalized regions, timed fade, replay, zoom, change navigation and byte-identical highlight-free export.",
+          "The AI-edited source is saved to disk before another project is opened."
+        ]
+      }
+    ],
+    "passed": true,
+    "evidence": "test-results/pdf-highlight-qJH9cp (result.json, harness.mjs, ordinary/delayed screenshots and exports)"
+  },
+  "remainingLimits": "Source-built development app on one developer Mac. Inserted/removed-page comparisons, packaged-candidate qualification and supported-Mac acceptance are not asserted by this record."
+}
