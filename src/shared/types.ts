@@ -1,3 +1,5 @@
+import type { GitAPI } from './git';
+
 export type TemplateId =
   'classic' | 'modern' | 'academic' | 'minimal' | 'compact-technical' | 'two-column';
 export type Appearance = 'light' | 'dark' | 'system';
@@ -101,7 +103,7 @@ export type ProjectDiskChanges = {
   error?: string;
 };
 
-export interface DesktopAPI {
+export interface DesktopAPI extends GitAPI {
   loadPreferences(
     legacy: import('./preferences').Preferences,
   ): Promise<import('./preferences').Preferences>;

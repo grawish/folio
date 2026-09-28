@@ -485,6 +485,7 @@ export class ResumeAgent {
           project: candidate,
           build: { ...build, versionId: version.id },
           version,
+          beforeVersionId: initial?.versionId,
         };
       }
       throw new Error(
