@@ -384,3 +384,10 @@ The root LICENSE is copied without modifications from the [official PolyForm lic
 ## Bundle the verified Tectonic notices
 
 The development app now carries 657 notice references as 255 unchanged original texts, with a component guide and exact source index. The source collector rechecks 319 original archives, the selected Rust build graph and the retained original bytes. The packaging hook expands the lossless originals offline, binds the result to compiler/source pins, and the final package gate rejects incomplete or altered notice sets. See [coverage and reproduction](TECTONIC_NOTICES.md). This includes explicitly labeled build/toolchain supersets; Biber/Perl, individual grants, complete corresponding-source distribution and the final app SBOM remain separate. Historical installers are unchanged.
+
+
+## Include Biber and Perl original notice documents
+
+Development packages now include 414 unchanged original documents representing 441 source references across Biber, Perl/PAR, 123 CPAN distributions and nine native-library source archives. The offline collector rechecks all 136 original archives and published material records. Complete source modules and READMEs preserve embedded license statements for the 44 distributions without a separate notice file. The app carries these texts, a component guide and exact source index in `Contents/Resources/biber-notices/`.
+
+See [coverage, reproduction and limits](BIBER_NOTICES.md). The shared Biber/Tectonic packaging guard binds each collection to its own compiler identity and source locks. This closes the packaging gap for the collected documents, not the remaining individual grant review, exact native source/build ambiguities, corresponding-source publication or final SBOM. Historical installers retain their original contents.

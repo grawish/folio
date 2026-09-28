@@ -88,3 +88,10 @@ The offline [compiled-module collector](docs/LICENSING.md#collect-biber-compiled
 Development packages include `Contents/Resources/tectonic-notices/` with 255 unchanged original texts, a readable component index and exact source archive records. These cover 657 notice references from Tectonic source families, the resolved executable Rust build closure, matching Rust toolchain distributions and eleven native build ports. Every selected archive and original text was rechecked; identical texts are stored once. Build/toolchain supersets include tools and potentially unused code, so this is not a final linked-component SBOM.
 
 The packaging hook expands the lossless originals and rejects missing, altered, linked, extra or mismatched files. This does not replace their original grants, complete the Biber/Perl review or satisfy every corresponding-source obligation. See `resources/tectonic-notices/README.md` and the licensing guide for source locations and reproduction. Existing compiler identities and historical downloads remain unchanged.
+
+
+## Bundled Biber original notice documents
+
+Development packages include `Contents/Resources/biber-notices/` with 414 unchanged original documents, a component guide and exact source index. The collection covers 441 document references from Biber 2.17, Perl/PAR, 123 CPAN distributions and nine native-library source archives. Full source modules and READMEs preserve embedded statements where no separate license file exists. Identical original bytes are stored once.
+
+The package guard checks the Biber identity, source locks and complete original text set. These documents keep their upstream terms. Native version/build ambiguities, individual grant review, corresponding-source obligations and the final app SBOM remain separate requirements. See [coverage and reproduction](docs/BIBER_NOTICES.md). Historical installers are unchanged.
