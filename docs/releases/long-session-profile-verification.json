@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-28T02:32:24.463265+00:00",
+  "sourceCommit": "27ff98ab429c0aaa87f83e554612f3bc31c36bfa",
+  "applicationReference": "mac-app-icon-verification.json",
+  "applicationAsarAndRuntimeMatchBiberQualification": 36364651805,
+  "appAsarSha256": "fbc69b9abcd714b69a35f139f7ac155a05458e5cefdc0bef3e29e861b932e91e",
+  "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+  "samplerBinaryMatchesCalibratedBaseline": true,
+  "appAndScriptHashesChecked": true,
+  "allMemorySumsAndCpuCountersRecomputed": true,
+  "allPhaseBoundariesAndPeaksRecomputed": true,
+  "all360PdfsAnd12240PagesIndependentlyParsed": true,
+  "all14StorageObservationsRecomputed": true,
+  "closedProfileMatchesIndependentFilesystemInventory": true,
+  "allRawBytesPreserved": true,
+  "raw": {
+    "file": "test-results/process-profile-T384Xg/measurements.json",
+    "bytes": 33316193,
+    "sha256": "5ec6271ca9c0ebba8bde0e585c202430cd6239cca966d748c3105af8e09cccff"
+  },
+  "compressed": {
+    "file": "docs/performance/process-tree-long-session.json.gz",
+    "bytes": 1620341,
+    "sha256": "5c73e73d3824a030ee88857042800cf5a7315c22755133693d735c19d26d1c28"
+  },
+  "summary": {
+    "file": "docs/performance/process-tree-long-session-summary.json",
+    "bytes": 71265,
+    "sha256": "1e2ca8d20a2a29c2e212ffb612665535d7e23d5b27491701d2dd0bc193195f00"
+  },
+  "retainedLog": {
+    "file": "test-results/long-session-120.log",
+    "bytes": 8762,
+    "sha256": "7543e8bab7a11a495c19c607ebab8d52bbadb6b2b7ee6bcddd48a6a0d698d897"
+  },
+  "profiledAppExited": true,
+  "idleSnapshots": 4690,
+  "idleCompilerOrWatchdogProcesses": 0,
+  "results": {
+    "samples": 8910,
+    "phaseCount": 1215,
+    "verifiedPdfs": 360,
+    "independentlyParsedPages": 12240,
+    "storageObservations": 14,
+    "observedCpuSeconds": 629.025328047,
+    "sampledSpanSeconds": 1679.4040577089997,
+    "peakSummedRssBytes": 1147846656,
+    "peakSummedFootprintBytes": 918690728,
+    "maxProcessCount": 7
+  },
+  "provisionalThresholdChecks": {
+    "peakSummedRssUnder1_5GiB": true,
+    "peakSummedFootprintUnder1GiB": true,
+    "idleObservedCpuUnder10PercentOfOneCore": false,
+    "ordinaryBuildsUnder3ObservedCpuSeconds": false
+  },
+  "scope": "120 synthetic small-text one-page/100-page editing, navigation and export cycles on one M4 Pro development Mac, with periodic read-only profile metadata observations. Normal garbage collection, fresh app profile, unchanged packaged app, and OS caches not purged. Sampled accounting sums are not unique physical RAM; CPU and short-lived peaks can be missed. Storage is logical, non-atomic and limited to this profile. This is not maximum images/history, live AI, supported-device coverage, causal leak diagnosis, a resource quota or complete production acceptance.",
+  "analysis": [
+    {
+      "file": "docs/performance/process-tree-long-session-analysis.json",
+      "bytes": 49687,
+      "sha256": "119d8e92599c67f2616824d483ddd89cb138f82c01d97c3f6a44485e1237cbdc"
+    },
+    {
+      "file": "docs/performance/process-tree-long-session-followup.json",
+      "bytes": 2331,
+      "sha256": "b076a5fc8854cc4fa749d951f81d170bf55107bc0ff140b932a93bfe017048b1"
+    }
+  ],
+  "measurementConditions": "No concurrent local Folio build, native suite or benchmark. Normal desktop, browser, documentation and hosted-evidence verification work continued; this Mac was not isolated. Website browser checks began only after the profiler exited.",
+  "all360ExportsMatchRetainedHistoryPdfs": true
+}

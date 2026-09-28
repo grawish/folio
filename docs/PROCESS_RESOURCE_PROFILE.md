@@ -96,3 +96,53 @@ FOLIO_PYTHON=/path/to/python3 node scripts/profile-process-resources.mjs \
 In long-session mode, read-only storage observations run after startup, every ten cycles, at the final cycle and after the app closes. Each observation retains relative metadata entries and grouped logical file totals. Directory enumeration is bounded to 50,000 entries and depth 16; observed symbolic links are counted without traversal. The collector fails rather than publishing silently truncated totals. Scans have separate phase markers outside measured builds/navigation. This is a non-atomic observation of an owned synthetic profile, not a hostile-filesystem boundary or an allocated-disk-block measurement.
 
 The scan's filesystem I/O and the external measurement harness still add host load. PDF inspection runs after sampling. Earlier measurements retain their original script hashes and scope. A longer repetition of this small-text workload does not cover maximum image/history inputs, real AI-provider sessions, all supported devices or every source of retained data. Results must be independently recomputed before using them to adjust a resource policy or claim a leak or budget pass.
+
+## 120-cycle result — 28 September 2026
+
+The complete 120-cycle run finished and its evidence passes independent verification. **Two CPU investigation thresholds fail**; the memory thresholds pass. This is a measurement result, not an application-wide resource-acceptance pass.
+
+The unchanged local Folio-icon app ran for a 1,679.404-second sampled span (about 28 minutes) on the development M4 Pro with 48 GiB RAM and macOS 27.0. The instrument source is `27ff98ab429c0aaa87f83e554612f3bc31c36bfa`; its app archive and runtime match the separately qualified combined-notice application. The exact package and earlier icon comparison remain recorded in [the app verification](releases/mac-app-icon-verification.json).
+
+All 360 exported PDFs and all 12,240 pages were independently parsed. The verifier recomputed 8,910 process snapshots, 1,215 phase boundaries and 14 storage observations. All 720 canvas observations stay within the existing five-page/16-megapixel bounds. No compiler or watchdog was observed during idle snapshots. The app exited before the closed-profile filesystem comparison.
+
+| Observation | Result | Existing investigation threshold |
+| --- | --- | --- |
+| Peak summed RSS | 1,094.7 MiB | Below 1.5 GiB: passes |
+| Peak summed physical footprint | 876.1 MiB | Below 1 GiB: passes |
+| Ordinary build CPU, all 360 builds | 1.228–3.735 observed CPU-seconds | Below 3 CPU-seconds: **one failure** |
+| Highest of 361 idle intervals | 13.30% of one core | Below 10%: **one failure** |
+| Whole sampled span | 629.025 observed CPU-seconds | Descriptive total; no whole-session threshold |
+
+The one-page builds have a median elapsed duration of 1.389 seconds (range 1.357–3.391); 100-page builds have a median of 1.557 seconds (range 1.546–2.579). These include automated source entry and current-PDF readiness. They are not the reference-corpus post-debounce p95 benchmark. Fresh preparation through the first PDF takes 47.827 seconds here; editing can become available earlier.
+
+### Investigate the CPU outliers
+
+Cycle 73's return-to-one-page build uses 3.735 observed CPU-seconds over 3.391 elapsed seconds. The main Folio process contributes 3.290 CPU-seconds, the renderer 0.197 and Tectonic 0.168; remaining helpers account for the rest. Cycle 112's return-idle interval uses 0.333 CPU-seconds over 2.503 seconds, predominantly the renderer (0.302 CPU-seconds). Neither interval has a vanished process during observer reads, and their maximum collection times are below 9 ms.
+
+These process totals do not identify JavaScript allocation sites, garbage collection, filesystem work or a causal defect. Retain both outliers. Next capture main-process CPU traces around builds with a larger retained history and renderer CPU/allocation traces around repeated PDF replacement. Compare with the same workload and ordinary garbage collection before changing code or thresholds.
+
+### Memory over the session
+
+Each row below is the median of ten per-cycle return-idle medians. Normal garbage collection remains enabled; no explicit collection is forced.
+
+| Cycles | Summed RSS | Summed footprint |
+| --- | --- | --- |
+| 1–10 | 654.5 MiB | 452.2 MiB |
+| 31–40 | 791.4 MiB | 511.6 MiB |
+| 61–70 | 806.9 MiB | 511.1 MiB |
+| 91–100 | 852.3 MiB | 553.0 MiB |
+| 111–120 | 864.7 MiB | 563.1 MiB |
+
+Late return-idle memory is higher than early memory, although the last block decreases from cycles 101–110. Across all return-idle snapshots in the first and last ten cycles, renderer median RSS rises from 259.7 to 435.2 MiB and main-process median RSS from 250.8 to 287.5 MiB. Per-process medians do not add to the median of totals. This is evidence to investigate retained renderer resources; it neither establishes a leak nor demonstrates a stable long-session plateau. Distinguish editor undo, saved-version state, PDF objects/workers and normal heap capacity with allocation evidence before choosing a fix.
+
+### Disk growth is retained history in this fixture
+
+The profile grows from 429,015,828 to 439,375,583 logical file bytes by cycle 120, and contains 439,363,538 bytes after closing. The workspace group grows by 10,362,423 bytes. Its 361 retained versions comprise the initial template and the 360 measured builds; every exported PDF hash matches a retained history PDF. This growth preserves user-visible source/PDF history. Do not treat it as disposable cache.
+
+The `builds` group remains at 24,451,466 bytes and `runtimes` at 396,845,472 bytes in every recorded storage observation. Read-only metadata scans take 108.8–158.4 ms, median 136.8 ms. This run remains below the separate [history admission policy](HISTORY_STORAGE.md) of 1,000 versions/64 MiB and does not test that boundary. It does not include runtime upgrades, repair churn, large images, imports or many separate projects.
+
+### Measurement limits and retained data
+
+The host was not isolated: normal desktop, browser, documentation and downloaded-evidence verification work continued. No other local Folio build, native suite or benchmark ran during sampling. Website browser checks began after the profiler exited. The observer consumes 27.740 CPU-seconds and the automation harness 30.817 CPU-seconds outside the measured app tree. The longest sample gap is 778.5 ms, maximum collection is 578.5 ms, and six processes disappear during snapshot reads. Short-lived work and between-sample peaks may therefore be missed. RSS and footprint remain sampled accounting sums, not unique physical RAM or enforced quotas.
+
+See [all raw observations](performance/process-tree-long-session.json.gz), [summary](performance/process-tree-long-session-summary.json), [phase/memory/storage analysis](performance/process-tree-long-session-analysis.json), [process attribution and history comparison](performance/process-tree-long-session-followup.json), and [independent verification](releases/long-session-profile-verification.json). Earlier raw baselines and the preliminary one-cycle instrument smoke remain preserved. This experiment advances repeated-use evidence; upper-bound inputs, supported-device coverage, CPU outliers, memory retention and final product budgets remain open.

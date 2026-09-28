@@ -1,0 +1,1863 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "27ff98ab429c0aaa87f83e554612f3bc31c36bfa",
+  "results": {
+    "samples": 8910,
+    "phaseCount": 1215,
+    "verifiedPdfs": 360,
+    "independentlyParsedPages": 12240,
+    "storageObservations": 14,
+    "observedCpuSeconds": 629.025328047,
+    "sampledSpanSeconds": 1679.4040577089997,
+    "peakSummedRssBytes": 1147846656,
+    "peakSummedFootprintBytes": 918690728,
+    "maxProcessCount": 7
+  },
+  "thresholdChecks": {
+    "peakSummedRssUnder1_5GiB": true,
+    "peakSummedFootprintUnder1GiB": true,
+    "idleObservedCpuUnder10PercentOfOneCore": false,
+    "ordinaryBuildsUnder3ObservedCpuSeconds": false
+  },
+  "phaseGroups": {
+    "startup": {
+      "count": 1,
+      "elapsedSeconds": {
+        "min": 47.826767042,
+        "median": 47.826767042,
+        "max": 47.826767042
+      },
+      "observedCpuSeconds": {
+        "min": 17.83192054,
+        "median": 17.83192054,
+        "max": 17.83192054
+      },
+      "peakSummedRssMiB": 919.25,
+      "peakSummedFootprintMiB": 574.8507995605469
+    },
+    "onePageBuilds": {
+      "count": 240,
+      "elapsedSeconds": {
+        "min": 1.3572044170000008,
+        "median": 1.3893199579999782,
+        "max": 3.391080874999985
+      },
+      "observedCpuSeconds": {
+        "min": 1.2281583749999925,
+        "median": 1.481654790499995,
+        "max": 3.735028958999976
+      },
+      "peakSummedRssMiB": 1094.671875,
+      "peakSummedFootprintMiB": 876.1317520141602
+    },
+    "hundredPageBuilds": {
+      "count": 120,
+      "elapsedSeconds": {
+        "min": 1.5455083749999758,
+        "median": 1.5570311874999896,
+        "max": 2.5789104999999983
+      },
+      "observedCpuSeconds": {
+        "min": 1.587801665000029,
+        "median": 1.7772165000000086,
+        "max": 2.907349917000033
+      },
+      "peakSummedRssMiB": 1088.203125,
+      "peakSummedFootprintMiB": 870.6317749023438
+    },
+    "navigation": {
+      "count": 120,
+      "elapsedSeconds": {
+        "min": 1.5512127499999477,
+        "median": 1.6016903954998996,
+        "max": 1.6114242089999897
+      },
+      "observedCpuSeconds": {
+        "min": 0.10463700099995776,
+        "median": 0.1562306454999316,
+        "max": 0.25526220799997645
+      },
+      "peakSummedRssMiB": 905.734375,
+      "peakSummedFootprintMiB": 732.4589157104492
+    },
+    "idle": {
+      "count": 361,
+      "elapsedSeconds": {
+        "min": 2.5017760409999754,
+        "median": 2.504685500000021,
+        "max": 2.516076958999998
+      },
+      "observedCpuSeconds": {
+        "min": 0.004470249999997122,
+        "median": 0.053006959000001075,
+        "max": 0.33297841499995684
+      },
+      "peakSummedRssMiB": 902.53125,
+      "peakSummedFootprintMiB": 727.0214157104492
+    },
+    "storage": {
+      "count": 13,
+      "elapsedSeconds": {
+        "min": 0.11156170799999382,
+        "median": 0.14701608299999497,
+        "max": 0.17880091700000048
+      },
+      "observedCpuSeconds": {
+        "min": 0,
+        "median": 9.008300003188197e-05,
+        "max": 0.06259108299999738
+      },
+      "peakSummedRssMiB": 886.28125,
+      "peakSummedFootprintMiB": 446.1307678222656
+    }
+  },
+  "idleMaxPercentOneCore": 13.30169054960938,
+  "returnIdleMemoryByCycle": [
+    {
+      "cycle": 1,
+      "medianRssMiB": 624.46875,
+      "medianFootprintMiB": 431.1148452758789,
+      "processNameMedianRssMiB": {
+        "Folio": 227.078125,
+        "Folio Helper (Renderer)": 252.53125,
+        "Folio Helper": 70.234375
+      }
+    },
+    {
+      "cycle": 2,
+      "medianRssMiB": 633.4375,
+      "medianFootprintMiB": 436.7398910522461,
+      "processNameMedianRssMiB": {
+        "Folio": 231.125,
+        "Folio Helper (Renderer)": 256.859375,
+        "Folio Helper": 70.5546875
+      }
+    },
+    {
+      "cycle": 3,
+      "medianRssMiB": 645.734375,
+      "medianFootprintMiB": 444.3649139404297,
+      "processNameMedianRssMiB": {
+        "Folio": 246.515625,
+        "Folio Helper (Renderer)": 253.6875,
+        "Folio Helper": 70.578125
+      }
+    },
+    {
+      "cycle": 4,
+      "medianRssMiB": 650.640625,
+      "medianFootprintMiB": 450.6773910522461,
+      "processNameMedianRssMiB": {
+        "Folio": 248.0,
+        "Folio Helper (Renderer)": 256.875,
+        "Folio Helper": 70.671875
+      }
+    },
+    {
+      "cycle": 5,
+      "medianRssMiB": 652.59375,
+      "medianFootprintMiB": 449.8649368286133,
+      "processNameMedianRssMiB": {
+        "Folio": 249.171875,
+        "Folio Helper (Renderer)": 257.703125,
+        "Folio Helper": 70.6875
+      }
+    },
+    {
+      "cycle": 6,
+      "medianRssMiB": 656.4375,
+      "medianFootprintMiB": 453.8023910522461,
+      "processNameMedianRssMiB": {
+        "Folio": 250.765625,
+        "Folio Helper (Renderer)": 259.765625,
+        "Folio Helper": 70.78125
+      }
+    },
+    {
+      "cycle": 7,
+      "medianRssMiB": 660.84375,
+      "medianFootprintMiB": 456.0524139404297,
+      "processNameMedianRssMiB": {
+        "Folio": 251.671875,
+        "Folio Helper (Renderer)": 263.203125,
+        "Folio Helper": 70.7890625
+      }
+    },
+    {
+      "cycle": 8,
+      "medianRssMiB": 684.953125,
+      "medianFootprintMiB": 473.8962097167969,
+      "processNameMedianRssMiB": {
+        "Folio": 273.6875,
+        "Folio Helper (Renderer)": 266.21875,
+        "Folio Helper": 70.3515625
+      }
+    },
+    {
+      "cycle": 9,
+      "medianRssMiB": 685.609375,
+      "medianFootprintMiB": 486.06810760498047,
+      "processNameMedianRssMiB": {
+        "Folio": 275.53125,
+        "Folio Helper (Renderer)": 264.984375,
+        "Folio Helper": 70.3671875
+      }
+    },
+    {
+      "cycle": 10,
+      "medianRssMiB": 690.640625,
+      "medianFootprintMiB": 477.4274368286133,
+      "processNameMedianRssMiB": {
+        "Folio": 277.671875,
+        "Folio Helper (Renderer)": 267.828125,
+        "Folio Helper": 70.4140625
+      }
+    },
+    {
+      "cycle": 11,
+      "medianRssMiB": 694.46875,
+      "medianFootprintMiB": 498.3336868286133,
+      "processNameMedianRssMiB": {
+        "Folio": 276.140625,
+        "Folio Helper (Renderer)": 273.109375,
+        "Folio Helper": 70.4375
+      }
+    },
+    {
+      "cycle": 12,
+      "medianRssMiB": 683.28125,
+      "medianFootprintMiB": 452.5524368286133,
+      "processNameMedianRssMiB": {
+        "Folio": 277.421875,
+        "Folio Helper (Renderer)": 260.453125,
+        "Folio Helper": 70.5390625
+      }
+    },
+    {
+      "cycle": 13,
+      "medianRssMiB": 687.53125,
+      "medianFootprintMiB": 562.2087097167969,
+      "processNameMedianRssMiB": {
+        "Folio": 278.796875,
+        "Folio Helper (Renderer)": 263.109375,
+        "Folio Helper": 70.6328125
+      }
+    },
+    {
+      "cycle": 14,
+      "medianRssMiB": 688.46875,
+      "medianFootprintMiB": 461.58373260498047,
+      "processNameMedianRssMiB": {
+        "Folio": 278.875,
+        "Folio Helper (Renderer)": 263.90625,
+        "Folio Helper": 70.6796875
+      }
+    },
+    {
+      "cycle": 15,
+      "medianRssMiB": 692.21875,
+      "medianFootprintMiB": 474.8805389404297,
+      "processNameMedianRssMiB": {
+        "Folio": 278.109375,
+        "Folio Helper (Renderer)": 268.359375,
+        "Folio Helper": 70.6953125
+      }
+    },
+    {
+      "cycle": 16,
+      "medianRssMiB": 696.890625,
+      "medianFootprintMiB": 349.0055847167969,
+      "processNameMedianRssMiB": {
+        "Folio": 279.375,
+        "Folio Helper (Renderer)": 271.671875,
+        "Folio Helper": 70.7421875
+      }
+    },
+    {
+      "cycle": 17,
+      "medianRssMiB": 697.859375,
+      "medianFootprintMiB": 481.4274597167969,
+      "processNameMedianRssMiB": {
+        "Folio": 278.484375,
+        "Folio Helper (Renderer)": 273.5,
+        "Folio Helper": 70.7578125
+      }
+    },
+    {
+      "cycle": 18,
+      "medianRssMiB": 761.46875,
+      "medianFootprintMiB": 476.27132415771484,
+      "processNameMedianRssMiB": {
+        "Folio": 278.796875,
+        "Folio Helper (Renderer)": 336.703125,
+        "Folio Helper": 70.8125
+      }
+    },
+    {
+      "cycle": 19,
+      "medianRssMiB": 766.234375,
+      "medianFootprintMiB": 583.6150741577148,
+      "processNameMedianRssMiB": {
+        "Folio": 279.59375,
+        "Folio Helper (Renderer)": 340.578125,
+        "Folio Helper": 70.84375
+      }
+    },
+    {
+      "cycle": 20,
+      "medianRssMiB": 769.09375,
+      "medianFootprintMiB": 481.91197204589844,
+      "processNameMedianRssMiB": {
+        "Folio": 279.59375,
+        "Folio Helper (Renderer)": 343.359375,
+        "Folio Helper": 70.8828125
+      }
+    },
+    {
+      "cycle": 21,
+      "medianRssMiB": 763.5625,
+      "medianFootprintMiB": 490.41197204589844,
+      "processNameMedianRssMiB": {
+        "Folio": 278.53125,
+        "Folio Helper (Renderer)": 338.84375,
+        "Folio Helper": 70.90625
+      }
+    },
+    {
+      "cycle": 22,
+      "medianRssMiB": 770.21875,
+      "medianFootprintMiB": 483.00569915771484,
+      "processNameMedianRssMiB": {
+        "Folio": 280.265625,
+        "Folio Helper (Renderer)": 343.6875,
+        "Folio Helper": 70.9609375
+      }
+    },
+    {
+      "cycle": 23,
+      "medianRssMiB": 767.671875,
+      "medianFootprintMiB": 488.06822204589844,
+      "processNameMedianRssMiB": {
+        "Folio": 279.640625,
+        "Folio Helper (Renderer)": 342.71875,
+        "Folio Helper": 70.4765625
+      }
+    },
+    {
+      "cycle": 24,
+      "medianRssMiB": 771.25,
+      "medianFootprintMiB": 480.80257415771484,
+      "processNameMedianRssMiB": {
+        "Folio": 280.125,
+        "Folio Helper (Renderer)": 345.75,
+        "Folio Helper": 70.5234375
+      }
+    },
+    {
+      "cycle": 25,
+      "medianRssMiB": 771.9375,
+      "medianFootprintMiB": 497.58386993408203,
+      "processNameMedianRssMiB": {
+        "Folio": 279.953125,
+        "Folio Helper (Renderer)": 346.53125,
+        "Folio Helper": 70.546875
+      }
+    },
+    {
+      "cycle": 26,
+      "medianRssMiB": 774.53125,
+      "medianFootprintMiB": 485.72442626953125,
+      "processNameMedianRssMiB": {
+        "Folio": 279.96875,
+        "Folio Helper (Renderer)": 348.96875,
+        "Folio Helper": 70.625
+      }
+    },
+    {
+      "cycle": 27,
+      "medianRssMiB": 780.5625,
+      "medianFootprintMiB": 591.5525970458984,
+      "processNameMedianRssMiB": {
+        "Folio": 280.265625,
+        "Folio Helper (Renderer)": 354.640625,
+        "Folio Helper": 70.6484375
+      }
+    },
+    {
+      "cycle": 28,
+      "medianRssMiB": 777.546875,
+      "medianFootprintMiB": 487.38072204589844,
+      "processNameMedianRssMiB": {
+        "Folio": 280.296875,
+        "Folio Helper (Renderer)": 351.515625,
+        "Folio Helper": 70.6953125
+      }
+    },
+    {
+      "cycle": 29,
+      "medianRssMiB": 777.15625,
+      "medianFootprintMiB": 502.14634704589844,
+      "processNameMedianRssMiB": {
+        "Folio": 278.828125,
+        "Folio Helper (Renderer)": 352.28125,
+        "Folio Helper": 70.8359375
+      }
+    },
+    {
+      "cycle": 30,
+      "medianRssMiB": 781.0,
+      "medianFootprintMiB": 490.84947204589844,
+      "processNameMedianRssMiB": {
+        "Folio": 280.078125,
+        "Folio Helper (Renderer)": 354.828125,
+        "Folio Helper": 70.8828125
+      }
+    },
+    {
+      "cycle": 31,
+      "medianRssMiB": 782.453125,
+      "medianFootprintMiB": 503.97442626953125,
+      "processNameMedianRssMiB": {
+        "Folio": 279.90625,
+        "Folio Helper (Renderer)": 356.390625,
+        "Folio Helper": 70.8984375
+      }
+    },
+    {
+      "cycle": 32,
+      "medianRssMiB": 786.359375,
+      "medianFootprintMiB": 502.24011993408203,
+      "processNameMedianRssMiB": {
+        "Folio": 280.03125,
+        "Folio Helper (Renderer)": 360.0625,
+        "Folio Helper": 70.9609375
+      }
+    },
+    {
+      "cycle": 33,
+      "medianRssMiB": 787.796875,
+      "medianFootprintMiB": 596.8182220458984,
+      "processNameMedianRssMiB": {
+        "Folio": 280.515625,
+        "Folio Helper (Renderer)": 360.921875,
+        "Folio Helper": 70.984375
+      }
+    },
+    {
+      "cycle": 34,
+      "medianRssMiB": 787.34375,
+      "medianFootprintMiB": 500.33384704589844,
+      "processNameMedianRssMiB": {
+        "Folio": 279.3125,
+        "Folio Helper (Renderer)": 361.640625,
+        "Folio Helper": 71.0234375
+      }
+    },
+    {
+      "cycle": 35,
+      "medianRssMiB": 789.0625,
+      "medianFootprintMiB": 513.7400741577148,
+      "processNameMedianRssMiB": {
+        "Folio": 279.40625,
+        "Folio Helper (Renderer)": 363.203125,
+        "Folio Helper": 71.046875
+      }
+    },
+    {
+      "cycle": 36,
+      "medianRssMiB": 793.765625,
+      "medianFootprintMiB": 503.08384704589844,
+      "processNameMedianRssMiB": {
+        "Folio": 279.671875,
+        "Folio Helper (Renderer)": 367.5625,
+        "Folio Helper": 71.09375
+      }
+    },
+    {
+      "cycle": 37,
+      "medianRssMiB": 795.40625,
+      "medianFootprintMiB": 521.6619491577148,
+      "processNameMedianRssMiB": {
+        "Folio": 279.546875,
+        "Folio Helper (Renderer)": 369.234375,
+        "Folio Helper": 71.1171875
+      }
+    },
+    {
+      "cycle": 38,
+      "medianRssMiB": 794.109375,
+      "medianFootprintMiB": 509.45882415771484,
+      "processNameMedianRssMiB": {
+        "Folio": 280.1875,
+        "Folio Helper (Renderer)": 368.25,
+        "Folio Helper": 70.6640625
+      }
+    },
+    {
+      "cycle": 39,
+      "medianRssMiB": 795.703125,
+      "medianFootprintMiB": 516.115119934082,
+      "processNameMedianRssMiB": {
+        "Folio": 279.9375,
+        "Folio Helper (Renderer)": 370.015625,
+        "Folio Helper": 70.6875
+      }
+    },
+    {
+      "cycle": 40,
+      "medianRssMiB": 798.765625,
+      "medianFootprintMiB": 520.0525741577148,
+      "processNameMedianRssMiB": {
+        "Folio": 280.09375,
+        "Folio Helper (Renderer)": 372.875,
+        "Folio Helper": 70.7265625
+      }
+    },
+    {
+      "cycle": 41,
+      "medianRssMiB": 800.5,
+      "medianFootprintMiB": 404.36509704589844,
+      "processNameMedianRssMiB": {
+        "Folio": 279.78125,
+        "Folio Helper (Renderer)": 374.84375,
+        "Folio Helper": 70.7421875
+      }
+    },
+    {
+      "cycle": 42,
+      "medianRssMiB": 802.78125,
+      "medianFootprintMiB": 513.1775970458984,
+      "processNameMedianRssMiB": {
+        "Folio": 279.78125,
+        "Folio Helper (Renderer)": 377.09375,
+        "Folio Helper": 70.7890625
+      }
+    },
+    {
+      "cycle": 43,
+      "medianRssMiB": 806.84375,
+      "medianFootprintMiB": 530.5526428222656,
+      "processNameMedianRssMiB": {
+        "Folio": 280.265625,
+        "Folio Helper (Renderer)": 380.59375,
+        "Folio Helper": 70.8125
+      }
+    },
+    {
+      "cycle": 44,
+      "medianRssMiB": 809.6875,
+      "medianFootprintMiB": 398.05261993408203,
+      "processNameMedianRssMiB": {
+        "Folio": 279.734375,
+        "Folio Helper (Renderer)": 383.90625,
+        "Folio Helper": 70.859375
+      }
+    },
+    {
+      "cycle": 45,
+      "medianRssMiB": 779.25,
+      "medianFootprintMiB": 497.94324493408203,
+      "processNameMedianRssMiB": {
+        "Folio": 279.375,
+        "Folio Helper (Renderer)": 353.765625,
+        "Folio Helper": 70.875
+      }
+    },
+    {
+      "cycle": 46,
+      "medianRssMiB": 784.5,
+      "medianFootprintMiB": 488.84947204589844,
+      "processNameMedianRssMiB": {
+        "Folio": 279.3125,
+        "Folio Helper (Renderer)": 358.984375,
+        "Folio Helper": 70.9296875
+      }
+    },
+    {
+      "cycle": 47,
+      "medianRssMiB": 789.171875,
+      "medianFootprintMiB": 505.47449493408203,
+      "processNameMedianRssMiB": {
+        "Folio": 279.328125,
+        "Folio Helper (Renderer)": 363.203125,
+        "Folio Helper": 71.1328125
+      }
+    },
+    {
+      "cycle": 48,
+      "medianRssMiB": 790.890625,
+      "medianFootprintMiB": 500.1620178222656,
+      "processNameMedianRssMiB": {
+        "Folio": 279.640625,
+        "Folio Helper (Renderer)": 364.53125,
+        "Folio Helper": 71.1875
+      }
+    },
+    {
+      "cycle": 49,
+      "medianRssMiB": 790.234375,
+      "medianFootprintMiB": 504.11509704589844,
+      "processNameMedianRssMiB": {
+        "Folio": 278.375,
+        "Folio Helper (Renderer)": 365.078125,
+        "Folio Helper": 71.203125
+      }
+    },
+    {
+      "cycle": 50,
+      "medianRssMiB": 789.015625,
+      "medianFootprintMiB": 499.44324493408203,
+      "processNameMedianRssMiB": {
+        "Folio": 279.46875,
+        "Folio Helper (Renderer)": 362.703125,
+        "Folio Helper": 71.2421875
+      }
+    },
+    {
+      "cycle": 51,
+      "medianRssMiB": 791.5625,
+      "medianFootprintMiB": 511.49009704589844,
+      "processNameMedianRssMiB": {
+        "Folio": 278.890625,
+        "Folio Helper (Renderer)": 365.796875,
+        "Folio Helper": 71.2578125
+      }
+    },
+    {
+      "cycle": 52,
+      "medianRssMiB": 795.015625,
+      "medianFootprintMiB": 504.1776428222656,
+      "processNameMedianRssMiB": {
+        "Folio": 279.578125,
+        "Folio Helper (Renderer)": 369.484375,
+        "Folio Helper": 70.8046875
+      }
+    },
+    {
+      "cycle": 53,
+      "medianRssMiB": 799.625,
+      "medianFootprintMiB": 516.0369720458984,
+      "processNameMedianRssMiB": {
+        "Folio": 280.84375,
+        "Folio Helper (Renderer)": 372.765625,
+        "Folio Helper": 70.8203125
+      }
+    },
+    {
+      "cycle": 54,
+      "medianRssMiB": 802.171875,
+      "medianFootprintMiB": 386.45886993408203,
+      "processNameMedianRssMiB": {
+        "Folio": 281.1875,
+        "Folio Helper (Renderer)": 374.921875,
+        "Folio Helper": 70.8671875
+      }
+    },
+    {
+      "cycle": 55,
+      "medianRssMiB": 802.96875,
+      "medianFootprintMiB": 520.6151428222656,
+      "processNameMedianRssMiB": {
+        "Folio": 280.890625,
+        "Folio Helper (Renderer)": 375.953125,
+        "Folio Helper": 70.8828125
+      }
+    },
+    {
+      "cycle": 56,
+      "medianRssMiB": 805.8125,
+      "medianFootprintMiB": 515.5525970458984,
+      "processNameMedianRssMiB": {
+        "Folio": 281.140625,
+        "Folio Helper (Renderer)": 378.453125,
+        "Folio Helper": 70.9375
+      }
+    },
+    {
+      "cycle": 57,
+      "medianRssMiB": 811.5,
+      "medianFootprintMiB": 405.86511993408203,
+      "processNameMedianRssMiB": {
+        "Folio": 281.515625,
+        "Folio Helper (Renderer)": 383.734375,
+        "Folio Helper": 70.953125
+      }
+    },
+    {
+      "cycle": 58,
+      "medianRssMiB": 817.296875,
+      "medianFootprintMiB": 524.036994934082,
+      "processNameMedianRssMiB": {
+        "Folio": 281.9375,
+        "Folio Helper (Renderer)": 389.0,
+        "Folio Helper": 71.0
+      }
+    },
+    {
+      "cycle": 59,
+      "medianRssMiB": 818.0,
+      "medianFootprintMiB": 532.4120178222656,
+      "processNameMedianRssMiB": {
+        "Folio": 279.921875,
+        "Folio Helper (Renderer)": 391.671875,
+        "Folio Helper": 71.015625
+      }
+    },
+    {
+      "cycle": 60,
+      "medianRssMiB": 809.203125,
+      "medianFootprintMiB": 392.11509704589844,
+      "processNameMedianRssMiB": {
+        "Folio": 281.90625,
+        "Folio Helper (Renderer)": 380.828125,
+        "Folio Helper": 71.0625
+      }
+    },
+    {
+      "cycle": 61,
+      "medianRssMiB": 810.96875,
+      "medianFootprintMiB": 532.4432220458984,
+      "processNameMedianRssMiB": {
+        "Folio": 281.578125,
+        "Folio Helper (Renderer)": 382.859375,
+        "Folio Helper": 71.0859375
+      }
+    },
+    {
+      "cycle": 62,
+      "medianRssMiB": 811.609375,
+      "medianFootprintMiB": 513.3494720458984,
+      "processNameMedianRssMiB": {
+        "Folio": 280.265625,
+        "Folio Helper (Renderer)": 384.75,
+        "Folio Helper": 71.1328125
+      }
+    },
+    {
+      "cycle": 63,
+      "medianRssMiB": 796.78125,
+      "medianFootprintMiB": 510.58386993408203,
+      "processNameMedianRssMiB": {
+        "Folio": 279.46875,
+        "Folio Helper (Renderer)": 370.546875,
+        "Folio Helper": 71.1875
+      }
+    },
+    {
+      "cycle": 64,
+      "medianRssMiB": 801.8125,
+      "medianFootprintMiB": 506.6932678222656,
+      "processNameMedianRssMiB": {
+        "Folio": 280.90625,
+        "Folio Helper (Renderer)": 374.09375,
+        "Folio Helper": 71.234375
+      }
+    },
+    {
+      "cycle": 65,
+      "medianRssMiB": 804.453125,
+      "medianFootprintMiB": 395.83382415771484,
+      "processNameMedianRssMiB": {
+        "Folio": 280.28125,
+        "Folio Helper (Renderer)": 377.328125,
+        "Folio Helper": 71.25
+      }
+    },
+    {
+      "cycle": 66,
+      "medianRssMiB": 808.078125,
+      "medianFootprintMiB": 511.66199493408203,
+      "processNameMedianRssMiB": {
+        "Folio": 280.71875,
+        "Folio Helper (Renderer)": 380.40625,
+        "Folio Helper": 71.296875
+      }
+    },
+    {
+      "cycle": 67,
+      "medianRssMiB": 802.953125,
+      "medianFootprintMiB": 516.193244934082,
+      "processNameMedianRssMiB": {
+        "Folio": 280.65625,
+        "Folio Helper (Renderer)": 376.296875,
+        "Folio Helper": 70.828125
+      }
+    },
+    {
+      "cycle": 68,
+      "medianRssMiB": 805.765625,
+      "medianFootprintMiB": 510.30261993408203,
+      "processNameMedianRssMiB": {
+        "Folio": 280.6875,
+        "Folio Helper (Renderer)": 379.015625,
+        "Folio Helper": 70.8671875
+      }
+    },
+    {
+      "cycle": 69,
+      "medianRssMiB": 810.1875,
+      "medianFootprintMiB": 615.7869720458984,
+      "processNameMedianRssMiB": {
+        "Folio": 281.75,
+        "Folio Helper (Renderer)": 382.28125,
+        "Folio Helper": 70.890625
+      }
+    },
+    {
+      "cycle": 70,
+      "medianRssMiB": 811.59375,
+      "medianFootprintMiB": 510.16199493408203,
+      "processNameMedianRssMiB": {
+        "Folio": 280.5625,
+        "Folio Helper (Renderer)": 384.828125,
+        "Folio Helper": 70.9296875
+      }
+    },
+    {
+      "cycle": 71,
+      "medianRssMiB": 813.046875,
+      "medianFootprintMiB": 528.771369934082,
+      "processNameMedianRssMiB": {
+        "Folio": 279.3125,
+        "Folio Helper (Renderer)": 387.484375,
+        "Folio Helper": 70.9453125
+      }
+    },
+    {
+      "cycle": 72,
+      "medianRssMiB": 817.296875,
+      "medianFootprintMiB": 512.5838470458984,
+      "processNameMedianRssMiB": {
+        "Folio": 280.65625,
+        "Folio Helper (Renderer)": 390.296875,
+        "Folio Helper": 70.9921875
+      }
+    },
+    {
+      "cycle": 73,
+      "medianRssMiB": 813.828125,
+      "medianFootprintMiB": 611.755744934082,
+      "processNameMedianRssMiB": {
+        "Folio": 280.3125,
+        "Folio Helper (Renderer)": 387.09375,
+        "Folio Helper": 71.046875
+      }
+    },
+    {
+      "cycle": 74,
+      "medianRssMiB": 790.59375,
+      "medianFootprintMiB": 492.56822204589844,
+      "processNameMedianRssMiB": {
+        "Folio": 279.09375,
+        "Folio Helper (Renderer)": 364.921875,
+        "Folio Helper": 71.1015625
+      }
+    },
+    {
+      "cycle": 75,
+      "medianRssMiB": 806.046875,
+      "medianFootprintMiB": 516.4901657104492,
+      "processNameMedianRssMiB": {
+        "Folio": 280.0625,
+        "Folio Helper (Renderer)": 379.359375,
+        "Folio Helper": 71.1328125
+      }
+    },
+    {
+      "cycle": 76,
+      "medianRssMiB": 808.421875,
+      "medianFootprintMiB": 386.28697204589844,
+      "processNameMedianRssMiB": {
+        "Folio": 278.90625,
+        "Folio Helper (Renderer)": 382.78125,
+        "Folio Helper": 71.1953125
+      }
+    },
+    {
+      "cycle": 77,
+      "medianRssMiB": 811.53125,
+      "medianFootprintMiB": 526.1307678222656,
+      "processNameMedianRssMiB": {
+        "Folio": 278.8125,
+        "Folio Helper (Renderer)": 385.921875,
+        "Folio Helper": 71.21875
+      }
+    },
+    {
+      "cycle": 78,
+      "medianRssMiB": 815.0,
+      "medianFootprintMiB": 512.818244934082,
+      "processNameMedianRssMiB": {
+        "Folio": 280.109375,
+        "Folio Helper (Renderer)": 388.015625,
+        "Folio Helper": 71.265625
+      }
+    },
+    {
+      "cycle": 79,
+      "medianRssMiB": 816.71875,
+      "medianFootprintMiB": 407.5526428222656,
+      "processNameMedianRssMiB": {
+        "Folio": 280.109375,
+        "Folio Helper (Renderer)": 389.6875,
+        "Folio Helper": 71.28125
+      }
+    },
+    {
+      "cycle": 80,
+      "medianRssMiB": 819.546875,
+      "medianFootprintMiB": 519.552619934082,
+      "processNameMedianRssMiB": {
+        "Folio": 280.59375,
+        "Folio Helper (Renderer)": 391.953125,
+        "Folio Helper": 71.328125
+      }
+    },
+    {
+      "cycle": 81,
+      "medianRssMiB": 821.703125,
+      "medianFootprintMiB": 411.24009704589844,
+      "processNameMedianRssMiB": {
+        "Folio": 280.609375,
+        "Folio Helper (Renderer)": 394.046875,
+        "Folio Helper": 71.34375
+      }
+    },
+    {
+      "cycle": 82,
+      "medianRssMiB": 821.640625,
+      "medianFootprintMiB": 520.9276428222656,
+      "processNameMedianRssMiB": {
+        "Folio": 280.828125,
+        "Folio Helper (Renderer)": 394.6875,
+        "Folio Helper": 70.890625
+      }
+    },
+    {
+      "cycle": 83,
+      "medianRssMiB": 824.859375,
+      "medianFootprintMiB": 413.2713928222656,
+      "processNameMedianRssMiB": {
+        "Folio": 281.28125,
+        "Folio Helper (Renderer)": 397.390625,
+        "Folio Helper": 70.90625
+      }
+    },
+    {
+      "cycle": 84,
+      "medianRssMiB": 826.890625,
+      "medianFootprintMiB": 528.083869934082,
+      "processNameMedianRssMiB": {
+        "Folio": 281.34375,
+        "Folio Helper (Renderer)": 399.28125,
+        "Folio Helper": 70.953125
+      }
+    },
+    {
+      "cycle": 85,
+      "medianRssMiB": 828.734375,
+      "medianFootprintMiB": 543.958869934082,
+      "processNameMedianRssMiB": {
+        "Folio": 280.140625,
+        "Folio Helper (Renderer)": 402.28125,
+        "Folio Helper": 70.96875
+      }
+    },
+    {
+      "cycle": 86,
+      "medianRssMiB": 830.9375,
+      "medianFootprintMiB": 530.8182678222656,
+      "processNameMedianRssMiB": {
+        "Folio": 279.15625,
+        "Folio Helper (Renderer)": 405.375,
+        "Folio Helper": 71.0234375
+      }
+    },
+    {
+      "cycle": 87,
+      "medianRssMiB": 839.34375,
+      "medianFootprintMiB": 643.693244934082,
+      "processNameMedianRssMiB": {
+        "Folio": 279.4375,
+        "Folio Helper (Renderer)": 413.421875,
+        "Folio Helper": 71.046875
+      }
+    },
+    {
+      "cycle": 88,
+      "medianRssMiB": 843.609375,
+      "medianFootprintMiB": 538.833869934082,
+      "processNameMedianRssMiB": {
+        "Folio": 280.53125,
+        "Folio Helper (Renderer)": 416.515625,
+        "Folio Helper": 71.1015625
+      }
+    },
+    {
+      "cycle": 89,
+      "medianRssMiB": 844.84375,
+      "medianFootprintMiB": 553.5995407104492,
+      "processNameMedianRssMiB": {
+        "Folio": 279.8125,
+        "Folio Helper (Renderer)": 418.453125,
+        "Folio Helper": 71.109375
+      }
+    },
+    {
+      "cycle": 90,
+      "medianRssMiB": 836.40625,
+      "medianFootprintMiB": 418.69322204589844,
+      "processNameMedianRssMiB": {
+        "Folio": 281.21875,
+        "Folio Helper (Renderer)": 408.5,
+        "Folio Helper": 71.171875
+      }
+    },
+    {
+      "cycle": 91,
+      "medianRssMiB": 837.84375,
+      "medianFootprintMiB": 544.5370178222656,
+      "processNameMedianRssMiB": {
+        "Folio": 281.5625,
+        "Folio Helper (Renderer)": 409.5625,
+        "Folio Helper": 71.1875
+      }
+    },
+    {
+      "cycle": 92,
+      "medianRssMiB": 840.0625,
+      "medianFootprintMiB": 420.67761993408203,
+      "processNameMedianRssMiB": {
+        "Folio": 280.46875,
+        "Folio Helper (Renderer)": 412.78125,
+        "Folio Helper": 71.2421875
+      }
+    },
+    {
+      "cycle": 93,
+      "medianRssMiB": 842.546875,
+      "medianFootprintMiB": 553.0057907104492,
+      "processNameMedianRssMiB": {
+        "Folio": 280.03125,
+        "Folio Helper (Renderer)": 415.625,
+        "Folio Helper": 71.2578125
+      }
+    },
+    {
+      "cycle": 94,
+      "medianRssMiB": 848.03125,
+      "medianFootprintMiB": 540.7088928222656,
+      "processNameMedianRssMiB": {
+        "Folio": 281.90625,
+        "Folio Helper (Renderer)": 419.203125,
+        "Folio Helper": 71.296875
+      }
+    },
+    {
+      "cycle": 95,
+      "medianRssMiB": 852.390625,
+      "medianFootprintMiB": 441.1307678222656,
+      "processNameMedianRssMiB": {
+        "Folio": 281.453125,
+        "Folio Helper (Renderer)": 423.921875,
+        "Folio Helper": 71.3203125
+      }
+    },
+    {
+      "cycle": 96,
+      "medianRssMiB": 852.4375,
+      "medianFootprintMiB": 552.974494934082,
+      "processNameMedianRssMiB": {
+        "Folio": 281.59375,
+        "Folio Helper (Renderer)": 423.75,
+        "Folio Helper": 71.3671875
+      }
+    },
+    {
+      "cycle": 97,
+      "medianRssMiB": 852.234375,
+      "medianFootprintMiB": 560.3807678222656,
+      "processNameMedianRssMiB": {
+        "Folio": 281.8125,
+        "Folio Helper (Renderer)": 423.296875,
+        "Folio Helper": 71.3828125
+      }
+    },
+    {
+      "cycle": 98,
+      "medianRssMiB": 853.4375,
+      "medianFootprintMiB": 555.8495407104492,
+      "processNameMedianRssMiB": {
+        "Folio": 282.65625,
+        "Folio Helper (Renderer)": 424.5625,
+        "Folio Helper": 70.9375
+      }
+    },
+    {
+      "cycle": 99,
+      "medianRssMiB": 855.125,
+      "medianFootprintMiB": 647.224494934082,
+      "processNameMedianRssMiB": {
+        "Folio": 283.0625,
+        "Folio Helper (Renderer)": 425.78125,
+        "Folio Helper": 70.9609375
+      }
+    },
+    {
+      "cycle": 100,
+      "medianRssMiB": 858.671875,
+      "medianFootprintMiB": 555.8495178222656,
+      "processNameMedianRssMiB": {
+        "Folio": 283.390625,
+        "Folio Helper (Renderer)": 428.875,
+        "Folio Helper": 71.03125
+      }
+    },
+    {
+      "cycle": 101,
+      "medianRssMiB": 860.078125,
+      "medianFootprintMiB": 651.7557678222656,
+      "processNameMedianRssMiB": {
+        "Folio": 282.8125,
+        "Folio Helper (Renderer)": 430.8125,
+        "Folio Helper": 71.046875
+      }
+    },
+    {
+      "cycle": 102,
+      "medianRssMiB": 860.1875,
+      "medianFootprintMiB": 557.9433135986328,
+      "processNameMedianRssMiB": {
+        "Folio": 283.125,
+        "Folio Helper (Renderer)": 430.5,
+        "Folio Helper": 71.1015625
+      }
+    },
+    {
+      "cycle": 103,
+      "medianRssMiB": 865.03125,
+      "medianFootprintMiB": 573.5995178222656,
+      "processNameMedianRssMiB": {
+        "Folio": 283.109375,
+        "Folio Helper (Renderer)": 435.34375,
+        "Folio Helper": 71.109375
+      }
+    },
+    {
+      "cycle": 104,
+      "medianRssMiB": 867.5625,
+      "medianFootprintMiB": 568.3182907104492,
+      "processNameMedianRssMiB": {
+        "Folio": 285.078125,
+        "Folio Helper (Renderer)": 435.828125,
+        "Folio Helper": 71.15625
+      }
+    },
+    {
+      "cycle": 105,
+      "medianRssMiB": 871.59375,
+      "medianFootprintMiB": 461.7401885986328,
+      "processNameMedianRssMiB": {
+        "Folio": 285.40625,
+        "Folio Helper (Renderer)": 439.46875,
+        "Folio Helper": 71.171875
+      }
+    },
+    {
+      "cycle": 106,
+      "medianRssMiB": 871.421875,
+      "medianFootprintMiB": 573.9901428222656,
+      "processNameMedianRssMiB": {
+        "Folio": 285.4375,
+        "Folio Helper (Renderer)": 439.203125,
+        "Folio Helper": 71.21875
+      }
+    },
+    {
+      "cycle": 107,
+      "medianRssMiB": 874.9375,
+      "medianFootprintMiB": 586.6151657104492,
+      "processNameMedianRssMiB": {
+        "Folio": 285.1875,
+        "Folio Helper (Renderer)": 442.90625,
+        "Folio Helper": 71.2421875
+      }
+    },
+    {
+      "cycle": 108,
+      "medianRssMiB": 880.390625,
+      "medianFootprintMiB": 458.1464157104492,
+      "processNameMedianRssMiB": {
+        "Folio": 285.4375,
+        "Folio Helper (Renderer)": 448.015625,
+        "Folio Helper": 71.296875
+      }
+    },
+    {
+      "cycle": 109,
+      "medianRssMiB": 886.328125,
+      "medianFootprintMiB": 592.3339385986328,
+      "processNameMedianRssMiB": {
+        "Folio": 285.9375,
+        "Folio Helper (Renderer)": 453.4375,
+        "Folio Helper": 71.3046875
+      }
+    },
+    {
+      "cycle": 110,
+      "medianRssMiB": 890.71875,
+      "medianFootprintMiB": 588.7557678222656,
+      "processNameMedianRssMiB": {
+        "Folio": 287.515625,
+        "Folio Helper (Renderer)": 456.09375,
+        "Folio Helper": 71.3828125
+      }
+    },
+    {
+      "cycle": 111,
+      "medianRssMiB": 891.640625,
+      "medianFootprintMiB": 691.3651428222656,
+      "processNameMedianRssMiB": {
+        "Folio": 288.03125,
+        "Folio Helper (Renderer)": 457.453125,
+        "Folio Helper": 70.8984375
+      }
+    },
+    {
+      "cycle": 112,
+      "medianRssMiB": 829.21875,
+      "medianFootprintMiB": 518.8963928222656,
+      "processNameMedianRssMiB": {
+        "Folio": 288.296875,
+        "Folio Helper (Renderer)": 394.671875,
+        "Folio Helper": 70.9453125
+      }
+    },
+    {
+      "cycle": 113,
+      "medianRssMiB": 849.921875,
+      "medianFootprintMiB": 552.7401657104492,
+      "processNameMedianRssMiB": {
+        "Folio": 288.546875,
+        "Folio Helper (Renderer)": 415.09375,
+        "Folio Helper": 70.9609375
+      }
+    },
+    {
+      "cycle": 114,
+      "medianRssMiB": 852.375,
+      "medianFootprintMiB": 547.2714385986328,
+      "processNameMedianRssMiB": {
+        "Folio": 287.3125,
+        "Folio Helper (Renderer)": 418.6875,
+        "Folio Helper": 71.0078125
+      }
+    },
+    {
+      "cycle": 115,
+      "medianRssMiB": 857.0625,
+      "medianFootprintMiB": 559.943244934082,
+      "processNameMedianRssMiB": {
+        "Folio": 286.3125,
+        "Folio Helper (Renderer)": 424.328125,
+        "Folio Helper": 71.03125
+      }
+    },
+    {
+      "cycle": 116,
+      "medianRssMiB": 861.734375,
+      "medianFootprintMiB": 557.3651657104492,
+      "processNameMedianRssMiB": {
+        "Folio": 286.28125,
+        "Folio Helper (Renderer)": 428.953125,
+        "Folio Helper": 71.078125
+      }
+    },
+    {
+      "cycle": 117,
+      "medianRssMiB": 867.734375,
+      "medianFootprintMiB": 568.2089157104492,
+      "processNameMedianRssMiB": {
+        "Folio": 285.984375,
+        "Folio Helper (Renderer)": 435.203125,
+        "Folio Helper": 71.09375
+      }
+    },
+    {
+      "cycle": 118,
+      "medianRssMiB": 875.421875,
+      "medianFootprintMiB": 566.1776885986328,
+      "processNameMedianRssMiB": {
+        "Folio": 287.609375,
+        "Folio Helper (Renderer)": 441.171875,
+        "Folio Helper": 71.140625
+      }
+    },
+    {
+      "cycle": 119,
+      "medianRssMiB": 880.28125,
+      "medianFootprintMiB": 577.3182907104492,
+      "processNameMedianRssMiB": {
+        "Folio": 287.1875,
+        "Folio Helper (Renderer)": 446.40625,
+        "Folio Helper": 71.15625
+      }
+    },
+    {
+      "cycle": 120,
+      "medianRssMiB": 883.203125,
+      "medianFootprintMiB": 575.3339385986328,
+      "processNameMedianRssMiB": {
+        "Folio": 288.671875,
+        "Folio Helper (Renderer)": 447.765625,
+        "Folio Helper": 71.203125
+      }
+    }
+  ],
+  "tenCycleBlockMedians": [
+    {
+      "cycles": "1-10",
+      "medianRssMiB": 654.515625,
+      "medianFootprintMiB": 452.2398910522461
+    },
+    {
+      "cycles": "11-20",
+      "medianRssMiB": 695.6796875,
+      "medianFootprintMiB": 478.84939193725586
+    },
+    {
+      "cycles": "21-30",
+      "medianRssMiB": 773.234375,
+      "medianFootprintMiB": 489.24009704589844
+    },
+    {
+      "cycles": "31-40",
+      "medianRssMiB": 791.4140625,
+      "medianFootprintMiB": 511.59944915771484
+    },
+    {
+      "cycles": "41-50",
+      "medianRssMiB": 790.5625,
+      "medianFootprintMiB": 499.8026313781738
+    },
+    {
+      "cycles": "51-60",
+      "medianRssMiB": 804.390625,
+      "medianFootprintMiB": 513.5213470458984
+    },
+    {
+      "cycles": "61-70",
+      "medianRssMiB": 806.921875,
+      "medianFootprintMiB": 511.12293243408203
+    },
+    {
+      "cycles": "71-80",
+      "medianRssMiB": 813.4375,
+      "medianFootprintMiB": 514.6542053222656
+    },
+    {
+      "cycles": "81-90",
+      "medianRssMiB": 829.8359375,
+      "medianFootprintMiB": 529.4510688781738
+    },
+    {
+      "cycles": "91-100",
+      "medianRssMiB": 852.3125,
+      "medianFootprintMiB": 552.9901428222656
+    },
+    {
+      "cycles": "101-110",
+      "medianRssMiB": 871.5078125,
+      "medianFootprintMiB": 573.7948303222656
+    },
+    {
+      "cycles": "111-120",
+      "medianRssMiB": 864.734375,
+      "medianFootprintMiB": 563.0604667663574
+    }
+  ],
+  "storageGroups": [
+    {
+      "group": "workspaces",
+      "ready": 27283,
+      "cycle120": 10389706,
+      "closed": 10389706,
+      "cycle120MinusReadyBytes": 10362423,
+      "closedMinusReadyBytes": 10362423
+    },
+    {
+      "group": "recovery.json",
+      "ready": 3407,
+      "cycle120": 637,
+      "closed": 637,
+      "cycle120MinusReadyBytes": -2770,
+      "closedMinusReadyBytes": -2770
+    },
+    {
+      "group": "Local Storage",
+      "ready": 763,
+      "cycle120": 864,
+      "closed": 864,
+      "cycle120MinusReadyBytes": 101,
+      "closedMinusReadyBytes": 101
+    },
+    {
+      "group": "workspace-preferences.json",
+      "ready": 187,
+      "cycle120": 188,
+      "closed": 188,
+      "cycle120MinusReadyBytes": 1,
+      "closedMinusReadyBytes": 1
+    },
+    {
+      "group": "Code Cache",
+      "ready": 13220,
+      "cycle120": 13220,
+      "closed": 13220,
+      "cycle120MinusReadyBytes": 0,
+      "closedMinusReadyBytes": 0
+    },
+    {
+      "group": "DIPS",
+      "ready": 4096,
+      "cycle120": 4096,
+      "closed": 36864,
+      "cycle120MinusReadyBytes": 0,
+      "closedMinusReadyBytes": 32768
+    },
+    {
+      "group": "DIPS-wal",
+      "ready": 45352,
+      "cycle120": 45352,
+      "closed": 0,
+      "cycle120MinusReadyBytes": 0,
+      "closedMinusReadyBytes": -45352
+    },
+    {
+      "group": "DawnGraphiteCache",
+      "ready": 557424,
+      "cycle120": 557424,
+      "closed": 557424,
+      "cycle120MinusReadyBytes": 0,
+      "closedMinusReadyBytes": 0
+    },
+    {
+      "group": "DawnWebGPUCache",
+      "ready": 557424,
+      "cycle120": 557424,
+      "closed": 557424,
+      "cycle120MinusReadyBytes": 0,
+      "closedMinusReadyBytes": 0
+    },
+    {
+      "group": "DevToolsActivePort",
+      "ready": 60,
+      "cycle120": 60,
+      "closed": 60,
+      "cycle120MinusReadyBytes": 0,
+      "closedMinusReadyBytes": 0
+    },
+    {
+      "group": "GPUCache",
+      "ready": 557424,
+      "cycle120": 557424,
+      "closed": 557424,
+      "cycle120MinusReadyBytes": 0,
+      "closedMinusReadyBytes": 0
+    },
+    {
+      "group": "GPUPersistentCache",
+      "ready": 0,
+      "cycle120": 0,
+      "closed": 0,
+      "cycle120MinusReadyBytes": 0,
+      "closedMinusReadyBytes": 0
+    },
+    {
+      "group": "GraphiteDawnCache",
+      "ready": 5837168,
+      "cycle120": 5837168,
+      "closed": 5837168,
+      "cycle120MinusReadyBytes": 0,
+      "closedMinusReadyBytes": 0
+    },
+    {
+      "group": "Local State",
+      "ready": 57,
+      "cycle120": 57,
+      "closed": 57,
+      "cycle120MinusReadyBytes": 0,
+      "closedMinusReadyBytes": 0
+    },
+    {
+      "group": "Network Persistent State",
+      "ready": 59,
+      "cycle120": 59,
+      "closed": 111,
+      "cycle120MinusReadyBytes": 0,
+      "closedMinusReadyBytes": 52
+    },
+    {
+      "group": "Preferences",
+      "ready": 41,
+      "cycle120": 41,
+      "closed": 41,
+      "cycle120MinusReadyBytes": 0,
+      "closedMinusReadyBytes": 0
+    },
+    {
+      "group": "Session Storage",
+      "ready": 0,
+      "cycle120": 0,
+      "closed": 487,
+      "cycle120MinusReadyBytes": 0,
+      "closedMinusReadyBytes": 487
+    },
+    {
+      "group": "Shared Dictionary",
+      "ready": 45128,
+      "cycle120": 45128,
+      "closed": 45128,
+      "cycle120MinusReadyBytes": 0,
+      "closedMinusReadyBytes": 0
+    },
+    {
+      "group": "Trust Tokens",
+      "ready": 36864,
+      "cycle120": 36864,
+      "closed": 36864,
+      "cycle120MinusReadyBytes": 0,
+      "closedMinusReadyBytes": 0
+    },
+    {
+      "group": "Trust Tokens-journal",
+      "ready": 0,
+      "cycle120": 0,
+      "closed": 0,
+      "cycle120MinusReadyBytes": 0,
+      "closedMinusReadyBytes": 0
+    },
+    {
+      "group": "app-updates",
+      "ready": 165,
+      "cycle120": 165,
+      "closed": 165,
+      "cycle120MinusReadyBytes": 0,
+      "closedMinusReadyBytes": 0
+    },
+    {
+      "group": "builds",
+      "ready": 24451466,
+      "cycle120": 24451466,
+      "closed": 24451466,
+      "cycle120MinusReadyBytes": 0,
+      "closedMinusReadyBytes": 0
+    },
+    {
+      "group": "declarative_performance_observer.db",
+      "ready": 32768,
+      "cycle120": 32768,
+      "closed": 32768,
+      "cycle120MinusReadyBytes": 0,
+      "closedMinusReadyBytes": 0
+    },
+    {
+      "group": "declarative_performance_observer.db-journal",
+      "ready": 0,
+      "cycle120": 0,
+      "closed": 0,
+      "cycle120MinusReadyBytes": 0,
+      "closedMinusReadyBytes": 0
+    },
+    {
+      "group": "runtimes",
+      "ready": 396845472,
+      "cycle120": 396845472,
+      "closed": 396845472,
+      "cycle120MinusReadyBytes": 0,
+      "closedMinusReadyBytes": 0
+    }
+  ],
+  "largestFileDeltas": [
+    {
+      "path": "workspaces/60193304-f984-407a-99f1-131807792dd1/state.json",
+      "readyBytes": 540,
+      "cycle120Bytes": 142992,
+      "deltaBytes": 142452
+    },
+    {
+      "path": "workspaces/60193304-f984-407a-99f1-131807792dd1/versions/d9d08a73-ddce-49fa-81b6-1c24782d09a0/resume.pdf",
+      "readyBytes": 0,
+      "cycle120Bytes": 55031,
+      "deltaBytes": 55031
+    },
+    {
+      "path": "workspaces/60193304-f984-407a-99f1-131807792dd1/versions/41688f3b-030c-404f-a2bf-564673678b71/resume.pdf",
+      "readyBytes": 0,
+      "cycle120Bytes": 55013,
+      "deltaBytes": 55013
+    },
+    {
+      "path": "workspaces/60193304-f984-407a-99f1-131807792dd1/versions/071a2df9-9a47-42f0-8913-d7f13aed135b/resume.pdf",
+      "readyBytes": 0,
+      "cycle120Bytes": 55001,
+      "deltaBytes": 55001
+    },
+    {
+      "path": "workspaces/60193304-f984-407a-99f1-131807792dd1/versions/0427629e-4511-49df-9748-27c2309b7edb/resume.pdf",
+      "readyBytes": 0,
+      "cycle120Bytes": 54996,
+      "deltaBytes": 54996
+    },
+    {
+      "path": "workspaces/60193304-f984-407a-99f1-131807792dd1/versions/dbe90945-c795-411d-9d90-a42fa8271270/resume.pdf",
+      "readyBytes": 0,
+      "cycle120Bytes": 54995,
+      "deltaBytes": 54995
+    },
+    {
+      "path": "workspaces/60193304-f984-407a-99f1-131807792dd1/versions/a03eaab5-3981-44f6-b567-568d956fc73b/resume.pdf",
+      "readyBytes": 0,
+      "cycle120Bytes": 54984,
+      "deltaBytes": 54984
+    },
+    {
+      "path": "workspaces/60193304-f984-407a-99f1-131807792dd1/versions/f41b6480-4ec5-41d3-8abd-445f95edaab8/resume.pdf",
+      "readyBytes": 0,
+      "cycle120Bytes": 54984,
+      "deltaBytes": 54984
+    },
+    {
+      "path": "workspaces/60193304-f984-407a-99f1-131807792dd1/versions/53a80ccf-cf2e-4a5b-849c-28ec2f56de9d/resume.pdf",
+      "readyBytes": 0,
+      "cycle120Bytes": 54957,
+      "deltaBytes": 54957
+    },
+    {
+      "path": "workspaces/60193304-f984-407a-99f1-131807792dd1/versions/f750cffb-b97f-4941-9947-234bc2a2b655/resume.pdf",
+      "readyBytes": 0,
+      "cycle120Bytes": 54944,
+      "deltaBytes": 54944
+    },
+    {
+      "path": "workspaces/60193304-f984-407a-99f1-131807792dd1/versions/ff265b86-3896-431d-acae-611fe8592f30/resume.pdf",
+      "readyBytes": 0,
+      "cycle120Bytes": 54909,
+      "deltaBytes": 54909
+    },
+    {
+      "path": "workspaces/60193304-f984-407a-99f1-131807792dd1/versions/a404fedb-8f7a-4e7d-afb0-1742726ee3d9/resume.pdf",
+      "readyBytes": 0,
+      "cycle120Bytes": 54897,
+      "deltaBytes": 54897
+    },
+    {
+      "path": "workspaces/60193304-f984-407a-99f1-131807792dd1/versions/41c802a6-0e40-4586-93b3-cd41c28b76c0/resume.pdf",
+      "readyBytes": 0,
+      "cycle120Bytes": 54886,
+      "deltaBytes": 54886
+    },
+    {
+      "path": "workspaces/60193304-f984-407a-99f1-131807792dd1/versions/bb801d74-823a-4605-a45c-837085e72414/resume.pdf",
+      "readyBytes": 0,
+      "cycle120Bytes": 54852,
+      "deltaBytes": 54852
+    },
+    {
+      "path": "workspaces/60193304-f984-407a-99f1-131807792dd1/versions/b64fe1c9-edaf-4c75-a912-7bf3361208a6/resume.pdf",
+      "readyBytes": 0,
+      "cycle120Bytes": 54850,
+      "deltaBytes": 54850
+    }
+  ],
+  "storageScanDurationMs": {
+    "min": 108.78687500001979,
+    "median": 136.7538545000134,
+    "max": 158.3682499998249
+  },
+  "thresholdExceedances": [
+    {
+      "phase": "Cycle 73 return-build",
+      "reasons": [
+        "ordinary build at least 3 observed CPU-seconds"
+      ],
+      "observedCpuSeconds": 3.735028958999976,
+      "durationSeconds": 3.391080874999985
+    },
+    {
+      "phase": "cycle-112-return-idle",
+      "reasons": [
+        "idle at least 10% of one core"
+      ],
+      "observedCpuSeconds": 0.33297841499995684,
+      "durationSeconds": 2.5032789160001556
+    }
+  ],
+  "harnessCpuSeconds": 30.817041,
+  "observer": {
+    "api": "proc_listchildpids and proc_pid_rusage RUSAGE_INFO_V0",
+    "intervalMs": 200,
+    "sha256": "8addb95700ef208fce5a0125f77864baca37f9e57db8b3292c2b93ad502ed4bd",
+    "pdfInspector": "6.10.0",
+    "samples": 8910,
+    "totalCpuSeconds": 27.73951199999991,
+    "maxCollectionMs": 578.471375,
+    "maxSampleGapMs": 778.515334,
+    "vanishedDuringReads": 6
+  },
+  "maxRssSnapshot": {
+    "atMs": 1567846.6208749998,
+    "phase": "Cycle 112 return-build",
+    "collectionMs": 2.4415840001311153,
+    "atAbstime": "22932708599385",
+    "timebase": {
+      "numer": 125,
+      "denom": 3
+    },
+    "processes": [
+      {
+        "pid": 7515,
+        "parent": 7480,
+        "name": "Folio",
+        "birthAbstime": "22895066970297",
+        "userTicks": "3871457209",
+        "systemTicks": "5510865574",
+        "rssBytes": 302235648,
+        "footprintBytes": 126142360
+      },
+      {
+        "pid": 25457,
+        "parent": 7515,
+        "name": "tectonic",
+        "birthAbstime": "22932703874849",
+        "userTicks": "4146933",
+        "systemTicks": "453352",
+        "rssBytes": 199655424,
+        "footprintBytes": 190595816
+      },
+      {
+        "pid": 7518,
+        "parent": 7515,
+        "name": "Folio Helper (Renderer)",
+        "birthAbstime": "22895076954217",
+        "userTicks": "2226013063",
+        "systemTicks": "168333971",
+        "rssBytes": 489832448,
+        "footprintBytes": 263489432
+      },
+      {
+        "pid": 7517,
+        "parent": 7515,
+        "name": "Folio Helper",
+        "birthAbstime": "22895075129606",
+        "userTicks": "3752013",
+        "systemTicks": "1414242",
+        "rssBytes": 49414144,
+        "footprintBytes": 7848968
+      },
+      {
+        "pid": 7516,
+        "parent": 7515,
+        "name": "Folio Helper",
+        "birthAbstime": "22895074789073",
+        "userTicks": "441235354",
+        "systemTicks": "278752442",
+        "rssBytes": 104890368,
+        "footprintBytes": 327517312
+      },
+      {
+        "pid": 25458,
+        "parent": 25457,
+        "name": "bash",
+        "birthAbstime": "22932703954703",
+        "userTicks": "1108",
+        "systemTicks": "5859",
+        "rssBytes": 1818624,
+        "footprintBytes": 1376544
+      }
+    ],
+    "vanished": 0,
+    "samplerCpuSeconds": 0.00145,
+    "observedCpuSeconds": 586.796205686,
+    "summedRssBytes": 1147846656,
+    "summedFootprintBytes": 916970432
+  },
+  "maxFootprintSnapshot": {
+    "atMs": 1554309.700084,
+    "phase": "Cycle 111 return-build",
+    "collectionMs": 2.47316600009799,
+    "atAbstime": "22932383715190",
+    "timebase": {
+      "numer": 125,
+      "denom": 3
+    },
+    "processes": [
+      {
+        "pid": 7515,
+        "parent": 7480,
+        "name": "Folio",
+        "birthAbstime": "22895066970297",
+        "userTicks": "3836926353",
+        "systemTicks": "5463487528",
+        "rssBytes": 301957120,
+        "footprintBytes": 131925912
+      },
+      {
+        "pid": 25332,
+        "parent": 7515,
+        "name": "tectonic",
+        "birthAbstime": "22932379392890",
+        "userTicks": "3685651",
+        "systemTicks": "517939",
+        "rssBytes": 195395584,
+        "footprintBytes": 186319568
+      },
+      {
+        "pid": 7518,
+        "parent": 7515,
+        "name": "Folio Helper (Renderer)",
+        "birthAbstime": "22895076954217",
+        "userTicks": "2208012751",
+        "systemTicks": "167014124",
+        "rssBytes": 488226816,
+        "footprintBytes": 263767960
+      },
+      {
+        "pid": 7517,
+        "parent": 7515,
+        "name": "Folio Helper",
+        "birthAbstime": "22895075129606",
+        "userTicks": "3723177",
+        "systemTicks": "1406231",
+        "rssBytes": 49414144,
+        "footprintBytes": 7848968
+      },
+      {
+        "pid": 7516,
+        "parent": 7515,
+        "name": "Folio Helper",
+        "birthAbstime": "22895074789073",
+        "userTicks": "437810703",
+        "systemTicks": "276426803",
+        "rssBytes": 104824832,
+        "footprintBytes": 327468160
+      },
+      {
+        "pid": 25333,
+        "parent": 25332,
+        "name": "bash",
+        "birthAbstime": "22932379476395",
+        "userTicks": "1552",
+        "systemTicks": "9280",
+        "rssBytes": 1802240,
+        "footprintBytes": 1360160
+      }
+    ],
+    "vanished": 0,
+    "samplerCpuSeconds": 0.001538,
+    "observedCpuSeconds": 581.926795688,
+    "summedRssBytes": 1141620736,
+    "summedFootprintBytes": 918690728
+  },
+  "scope": "Descriptive analysis of one synthetic 120-cycle run. Ten-cycle medians describe observations, not population percentiles or a causal leak diagnosis. Logical profile bytes exclude installation, exports outside the profile and filesystem allocation. Other normal desktop, browser, document and artifact-verification work continued; no other local Folio build, native suite or benchmark ran during sampling."
+}
