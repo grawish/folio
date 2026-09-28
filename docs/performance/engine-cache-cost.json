@@ -1,0 +1,736 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-09-27T23:54:53.165Z",
+  "sourceCommit": "05f58fee56a0227e53c959d4073422a5141d8f7c",
+  "inputs": {
+    "scripts/profile-engine-cache.mjs": "85289311361afe0b3aa46e420f4d401102bda1454f6f46c5ef13edc50d07b38a",
+    "electron/core/engine-cache.ts": "753ca7c8a4e88b706998bd223ae902c46612109a2d251510a7148a918cc4b0b6"
+  },
+  "host": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "os": "27.0.0",
+    "macos": "27.0",
+    "cpu": "Apple M4 Pro",
+    "logicalCpus": 14,
+    "ramBytes": 51539607552,
+    "node": "v24.21.0"
+  },
+  "policy": {
+    "runtimes": 2,
+    "bytes": 134217728,
+    "entries": 4096,
+    "depth": 8,
+    "pollMs": 500
+  },
+  "sourceFormat": {
+    "bytes": 24451466,
+    "sha256": "a86ffcac335474fb9fae47cd9986b929719dc3ddf29bfb31123ecc1790ef6bbb"
+  },
+  "repetitions": 5,
+  "fixtures": [
+    {
+      "name": "warm-format",
+      "runtimes": 1,
+      "kind": "format",
+      "before": {
+        "runtimes": ["0000000000000000000000000000000000000000000000000000000000000001"],
+        "descendantEntries": 2,
+        "logicalFileBytes": 24451466,
+        "payloadSha256": "1e178c8afa529e793c207758f9d9767a16cbac16882311313be206bccce06d27"
+      },
+      "after": {
+        "runtimes": ["0000000000000000000000000000000000000000000000000000000000000001"],
+        "descendantEntries": 2,
+        "logicalFileBytes": 24451466,
+        "payloadSha256": "1e178c8afa529e793c207758f9d9767a16cbac16882311313be206bccce06d27"
+      }
+    },
+    {
+      "name": "two-warm-formats",
+      "runtimes": 2,
+      "kind": "format",
+      "before": {
+        "runtimes": [
+          "0000000000000000000000000000000000000000000000000000000000000001",
+          "0000000000000000000000000000000000000000000000000000000000000002"
+        ],
+        "descendantEntries": 4,
+        "logicalFileBytes": 48902932,
+        "payloadSha256": "90521c87af73bdbecc710702287c7d8d88bac02a17766d0ed90400d3963017a0"
+      },
+      "after": {
+        "runtimes": [
+          "0000000000000000000000000000000000000000000000000000000000000001",
+          "0000000000000000000000000000000000000000000000000000000000000002"
+        ],
+        "descendantEntries": 4,
+        "logicalFileBytes": 48902932,
+        "payloadSha256": "90521c87af73bdbecc710702287c7d8d88bac02a17766d0ed90400d3963017a0"
+      }
+    },
+    {
+      "name": "file-entry-limit",
+      "runtimes": 1,
+      "kind": "files",
+      "before": {
+        "runtimes": ["0000000000000000000000000000000000000000000000000000000000000001"],
+        "descendantEntries": 4096,
+        "logicalFileBytes": 4096,
+        "payloadSha256": "185c5bd1a48cf40cea1974b0905679fe95d7a556251f82a757e77e7a8b5055d6"
+      },
+      "after": {
+        "runtimes": ["0000000000000000000000000000000000000000000000000000000000000001"],
+        "descendantEntries": 4096,
+        "logicalFileBytes": 4096,
+        "payloadSha256": "185c5bd1a48cf40cea1974b0905679fe95d7a556251f82a757e77e7a8b5055d6"
+      }
+    },
+    {
+      "name": "directory-entry-limit",
+      "runtimes": 1,
+      "kind": "directories",
+      "before": {
+        "runtimes": ["0000000000000000000000000000000000000000000000000000000000000001"],
+        "descendantEntries": 4096,
+        "logicalFileBytes": 0,
+        "payloadSha256": "85eca030f1d70f8ca31027aa028b62e8f350b6a875864d1c70f7ad3e2cd22874"
+      },
+      "after": {
+        "runtimes": ["0000000000000000000000000000000000000000000000000000000000000001"],
+        "descendantEntries": 4096,
+        "logicalFileBytes": 0,
+        "payloadSha256": "85eca030f1d70f8ca31027aa028b62e8f350b6a875864d1c70f7ad3e2cd22874"
+      }
+    },
+    {
+      "name": "logical-byte-limit",
+      "runtimes": 1,
+      "kind": "sparse",
+      "before": {
+        "runtimes": ["0000000000000000000000000000000000000000000000000000000000000001"],
+        "descendantEntries": 1,
+        "logicalFileBytes": 134217728,
+        "payloadSha256": "6c0ddaea25ba7b5afccfdf534df0c24cde6d979bda754c4d09ea803b4e0e5f96"
+      },
+      "after": {
+        "runtimes": ["0000000000000000000000000000000000000000000000000000000000000001"],
+        "descendantEntries": 1,
+        "logicalFileBytes": 134217728,
+        "payloadSha256": "6c0ddaea25ba7b5afccfdf534df0c24cde6d979bda754c4d09ea803b4e0e5f96"
+      }
+    }
+  ],
+  "observations": [
+    {
+      "fixture": "warm-format",
+      "repetition": 1,
+      "operation": "acquire",
+      "elapsedMs": 1.548082999999906,
+      "userCpuMs": 1.226,
+      "systemCpuMs": 0.382
+    },
+    {
+      "fixture": "warm-format",
+      "repetition": 1,
+      "operation": "check",
+      "elapsedMs": 0.2490419999999176,
+      "userCpuMs": 0.15,
+      "systemCpuMs": 0.108
+    },
+    {
+      "fixture": "warm-format",
+      "repetition": 1,
+      "operation": "release",
+      "elapsedMs": 0.40437500000007276,
+      "userCpuMs": 0.318,
+      "systemCpuMs": 0.185
+    },
+    {
+      "fixture": "two-warm-formats",
+      "repetition": 1,
+      "operation": "acquire",
+      "elapsedMs": 0.8797910000000684,
+      "userCpuMs": 0.848,
+      "systemCpuMs": 0.477
+    },
+    {
+      "fixture": "two-warm-formats",
+      "repetition": 1,
+      "operation": "check",
+      "elapsedMs": 0.17562500000008185,
+      "userCpuMs": 0.092,
+      "systemCpuMs": 0.09
+    },
+    {
+      "fixture": "two-warm-formats",
+      "repetition": 1,
+      "operation": "release",
+      "elapsedMs": 0.40408400000001166,
+      "userCpuMs": 0.193,
+      "systemCpuMs": 0.226
+    },
+    {
+      "fixture": "file-entry-limit",
+      "repetition": 1,
+      "operation": "acquire",
+      "elapsedMs": 47.598624999999856,
+      "userCpuMs": 24.896,
+      "systemCpuMs": 28.74
+    },
+    {
+      "fixture": "file-entry-limit",
+      "repetition": 1,
+      "operation": "check",
+      "elapsedMs": 49.81216699999982,
+      "userCpuMs": 19.229,
+      "systemCpuMs": 31.785
+    },
+    {
+      "fixture": "file-entry-limit",
+      "repetition": 1,
+      "operation": "release",
+      "elapsedMs": 49.92145800000003,
+      "userCpuMs": 24.986,
+      "systemCpuMs": 31.75
+    },
+    {
+      "fixture": "directory-entry-limit",
+      "repetition": 1,
+      "operation": "acquire",
+      "elapsedMs": 258.5406250000001,
+      "userCpuMs": 107.235,
+      "systemCpuMs": 180.128
+    },
+    {
+      "fixture": "directory-entry-limit",
+      "repetition": 1,
+      "operation": "check",
+      "elapsedMs": 247.4377089999998,
+      "userCpuMs": 93.407,
+      "systemCpuMs": 173.037
+    },
+    {
+      "fixture": "directory-entry-limit",
+      "repetition": 1,
+      "operation": "release",
+      "elapsedMs": 249.21445799999992,
+      "userCpuMs": 99.324,
+      "systemCpuMs": 175.305
+    },
+    {
+      "fixture": "logical-byte-limit",
+      "repetition": 1,
+      "operation": "acquire",
+      "elapsedMs": 0.4438329999998132,
+      "userCpuMs": 0.326,
+      "systemCpuMs": 0.219
+    },
+    {
+      "fixture": "logical-byte-limit",
+      "repetition": 1,
+      "operation": "check",
+      "elapsedMs": 0.08783300000004601,
+      "userCpuMs": 0.036,
+      "systemCpuMs": 0.054
+    },
+    {
+      "fixture": "logical-byte-limit",
+      "repetition": 1,
+      "operation": "release",
+      "elapsedMs": 0.15995799999973315,
+      "userCpuMs": 0.072,
+      "systemCpuMs": 0.096
+    },
+    {
+      "fixture": "two-warm-formats",
+      "repetition": 2,
+      "operation": "acquire",
+      "elapsedMs": 0.567417000000205,
+      "userCpuMs": 0.258,
+      "systemCpuMs": 0.328
+    },
+    {
+      "fixture": "two-warm-formats",
+      "repetition": 2,
+      "operation": "check",
+      "elapsedMs": 0.1463340000000244,
+      "userCpuMs": 0.058,
+      "systemCpuMs": 0.093
+    },
+    {
+      "fixture": "two-warm-formats",
+      "repetition": 2,
+      "operation": "release",
+      "elapsedMs": 0.36654200000020865,
+      "userCpuMs": 0.152,
+      "systemCpuMs": 0.228
+    },
+    {
+      "fixture": "file-entry-limit",
+      "repetition": 2,
+      "operation": "acquire",
+      "elapsedMs": 42.2204999999999,
+      "userCpuMs": 17.073,
+      "systemCpuMs": 25.959
+    },
+    {
+      "fixture": "file-entry-limit",
+      "repetition": 2,
+      "operation": "check",
+      "elapsedMs": 43.6870829999998,
+      "userCpuMs": 16.541,
+      "systemCpuMs": 27.635
+    },
+    {
+      "fixture": "file-entry-limit",
+      "repetition": 2,
+      "operation": "release",
+      "elapsedMs": 42.23570900000004,
+      "userCpuMs": 16.623,
+      "systemCpuMs": 26.205
+    },
+    {
+      "fixture": "directory-entry-limit",
+      "repetition": 2,
+      "operation": "acquire",
+      "elapsedMs": 252.79041600000028,
+      "userCpuMs": 87.538,
+      "systemCpuMs": 178.847
+    },
+    {
+      "fixture": "directory-entry-limit",
+      "repetition": 2,
+      "operation": "check",
+      "elapsedMs": 261.466625,
+      "userCpuMs": 95.996,
+      "systemCpuMs": 184.652
+    },
+    {
+      "fixture": "directory-entry-limit",
+      "repetition": 2,
+      "operation": "release",
+      "elapsedMs": 268.1257919999998,
+      "userCpuMs": 96.592,
+      "systemCpuMs": 191.057
+    },
+    {
+      "fixture": "logical-byte-limit",
+      "repetition": 2,
+      "operation": "acquire",
+      "elapsedMs": 0.9446250000000873,
+      "userCpuMs": 1.515,
+      "systemCpuMs": 0.324
+    },
+    {
+      "fixture": "logical-byte-limit",
+      "repetition": 2,
+      "operation": "check",
+      "elapsedMs": 0.14637500000026193,
+      "userCpuMs": 0.182,
+      "systemCpuMs": 0.082
+    },
+    {
+      "fixture": "logical-byte-limit",
+      "repetition": 2,
+      "operation": "release",
+      "elapsedMs": 0.1897079999998823,
+      "userCpuMs": 0.087,
+      "systemCpuMs": 0.111
+    },
+    {
+      "fixture": "warm-format",
+      "repetition": 2,
+      "operation": "acquire",
+      "elapsedMs": 0.4570420000000013,
+      "userCpuMs": 0.207,
+      "systemCpuMs": 0.269
+    },
+    {
+      "fixture": "warm-format",
+      "repetition": 2,
+      "operation": "check",
+      "elapsedMs": 0.19795899999962785,
+      "userCpuMs": 0.081,
+      "systemCpuMs": 0.123
+    },
+    {
+      "fixture": "warm-format",
+      "repetition": 2,
+      "operation": "release",
+      "elapsedMs": 0.3260410000002594,
+      "userCpuMs": 0.218,
+      "systemCpuMs": 0.203
+    },
+    {
+      "fixture": "file-entry-limit",
+      "repetition": 3,
+      "operation": "acquire",
+      "elapsedMs": 45.72916699999996,
+      "userCpuMs": 17.156,
+      "systemCpuMs": 29.063
+    },
+    {
+      "fixture": "file-entry-limit",
+      "repetition": 3,
+      "operation": "check",
+      "elapsedMs": 41.65079100000003,
+      "userCpuMs": 16.789,
+      "systemCpuMs": 25.7
+    },
+    {
+      "fixture": "file-entry-limit",
+      "repetition": 3,
+      "operation": "release",
+      "elapsedMs": 41.83916700000009,
+      "userCpuMs": 16.697,
+      "systemCpuMs": 25.762
+    },
+    {
+      "fixture": "directory-entry-limit",
+      "repetition": 3,
+      "operation": "acquire",
+      "elapsedMs": 246.63666599999988,
+      "userCpuMs": 84.934,
+      "systemCpuMs": 175.66
+    },
+    {
+      "fixture": "directory-entry-limit",
+      "repetition": 3,
+      "operation": "check",
+      "elapsedMs": 246.4075829999997,
+      "userCpuMs": 90.385,
+      "systemCpuMs": 173.566
+    },
+    {
+      "fixture": "directory-entry-limit",
+      "repetition": 3,
+      "operation": "release",
+      "elapsedMs": 251.68975,
+      "userCpuMs": 87.862,
+      "systemCpuMs": 178.247
+    },
+    {
+      "fixture": "logical-byte-limit",
+      "repetition": 3,
+      "operation": "acquire",
+      "elapsedMs": 0.39820899999995163,
+      "userCpuMs": 0.196,
+      "systemCpuMs": 0.215
+    },
+    {
+      "fixture": "logical-byte-limit",
+      "repetition": 3,
+      "operation": "check",
+      "elapsedMs": 0.08587500000021464,
+      "userCpuMs": 0.037,
+      "systemCpuMs": 0.051
+    },
+    {
+      "fixture": "logical-byte-limit",
+      "repetition": 3,
+      "operation": "release",
+      "elapsedMs": 0.1606249999999818,
+      "userCpuMs": 0.073,
+      "systemCpuMs": 0.094
+    },
+    {
+      "fixture": "warm-format",
+      "repetition": 3,
+      "operation": "acquire",
+      "elapsedMs": 0.3376250000001164,
+      "userCpuMs": 0.145,
+      "systemCpuMs": 0.208
+    },
+    {
+      "fixture": "warm-format",
+      "repetition": 3,
+      "operation": "check",
+      "elapsedMs": 0.1578340000000935,
+      "userCpuMs": 0.146,
+      "systemCpuMs": 0.104
+    },
+    {
+      "fixture": "warm-format",
+      "repetition": 3,
+      "operation": "release",
+      "elapsedMs": 0.22158300000000963,
+      "userCpuMs": 0.093,
+      "systemCpuMs": 0.138
+    },
+    {
+      "fixture": "two-warm-formats",
+      "repetition": 3,
+      "operation": "acquire",
+      "elapsedMs": 0.5039170000000013,
+      "userCpuMs": 0.2,
+      "systemCpuMs": 0.324
+    },
+    {
+      "fixture": "two-warm-formats",
+      "repetition": 3,
+      "operation": "check",
+      "elapsedMs": 0.1461669999998776,
+      "userCpuMs": 0.059,
+      "systemCpuMs": 0.095
+    },
+    {
+      "fixture": "two-warm-formats",
+      "repetition": 3,
+      "operation": "release",
+      "elapsedMs": 0.3531670000002123,
+      "userCpuMs": 0.145,
+      "systemCpuMs": 0.224
+    },
+    {
+      "fixture": "directory-entry-limit",
+      "repetition": 4,
+      "operation": "acquire",
+      "elapsedMs": 255.0927499999998,
+      "userCpuMs": 92.914,
+      "systemCpuMs": 180.223
+    },
+    {
+      "fixture": "directory-entry-limit",
+      "repetition": 4,
+      "operation": "check",
+      "elapsedMs": 263.7460000000001,
+      "userCpuMs": 90.084,
+      "systemCpuMs": 188.911
+    },
+    {
+      "fixture": "directory-entry-limit",
+      "repetition": 4,
+      "operation": "release",
+      "elapsedMs": 261.70858300000054,
+      "userCpuMs": 96.038,
+      "systemCpuMs": 185.081
+    },
+    {
+      "fixture": "logical-byte-limit",
+      "repetition": 4,
+      "operation": "acquire",
+      "elapsedMs": 0.42145799999980227,
+      "userCpuMs": 0.291,
+      "systemCpuMs": 0.22
+    },
+    {
+      "fixture": "logical-byte-limit",
+      "repetition": 4,
+      "operation": "check",
+      "elapsedMs": 0.11025000000063301,
+      "userCpuMs": 0.042,
+      "systemCpuMs": 0.078
+    },
+    {
+      "fixture": "logical-byte-limit",
+      "repetition": 4,
+      "operation": "release",
+      "elapsedMs": 0.18683299999975134,
+      "userCpuMs": 0.081,
+      "systemCpuMs": 0.115
+    },
+    {
+      "fixture": "warm-format",
+      "repetition": 4,
+      "operation": "acquire",
+      "elapsedMs": 0.3772500000004584,
+      "userCpuMs": 0.15,
+      "systemCpuMs": 0.24
+    },
+    {
+      "fixture": "warm-format",
+      "repetition": 4,
+      "operation": "check",
+      "elapsedMs": 0.17504100000041944,
+      "userCpuMs": 0.073,
+      "systemCpuMs": 0.11
+    },
+    {
+      "fixture": "warm-format",
+      "repetition": 4,
+      "operation": "release",
+      "elapsedMs": 0.24583400000028632,
+      "userCpuMs": 0.102,
+      "systemCpuMs": 0.153
+    },
+    {
+      "fixture": "two-warm-formats",
+      "repetition": 4,
+      "operation": "acquire",
+      "elapsedMs": 0.5634159999999611,
+      "userCpuMs": 0.224,
+      "systemCpuMs": 0.36
+    },
+    {
+      "fixture": "two-warm-formats",
+      "repetition": 4,
+      "operation": "check",
+      "elapsedMs": 0.17287500000020373,
+      "userCpuMs": 0.066,
+      "systemCpuMs": 0.115
+    },
+    {
+      "fixture": "two-warm-formats",
+      "repetition": 4,
+      "operation": "release",
+      "elapsedMs": 0.41345900000033,
+      "userCpuMs": 0.162,
+      "systemCpuMs": 0.264
+    },
+    {
+      "fixture": "file-entry-limit",
+      "repetition": 4,
+      "operation": "acquire",
+      "elapsedMs": 44.15441600000031,
+      "userCpuMs": 16.532,
+      "systemCpuMs": 28.048
+    },
+    {
+      "fixture": "file-entry-limit",
+      "repetition": 4,
+      "operation": "check",
+      "elapsedMs": 43.055333000000246,
+      "userCpuMs": 17.253,
+      "systemCpuMs": 26.807
+    },
+    {
+      "fixture": "file-entry-limit",
+      "repetition": 4,
+      "operation": "release",
+      "elapsedMs": 41.99912500000028,
+      "userCpuMs": 16.578,
+      "systemCpuMs": 26.092
+    },
+    {
+      "fixture": "logical-byte-limit",
+      "repetition": 5,
+      "operation": "acquire",
+      "elapsedMs": 0.43354200000067067,
+      "userCpuMs": 0.196,
+      "systemCpuMs": 0.255
+    },
+    {
+      "fixture": "logical-byte-limit",
+      "repetition": 5,
+      "operation": "check",
+      "elapsedMs": 0.09012500000062573,
+      "userCpuMs": 0.037,
+      "systemCpuMs": 0.057
+    },
+    {
+      "fixture": "logical-byte-limit",
+      "repetition": 5,
+      "operation": "release",
+      "elapsedMs": 0.1755830000001879,
+      "userCpuMs": 0.079,
+      "systemCpuMs": 0.106
+    },
+    {
+      "fixture": "warm-format",
+      "repetition": 5,
+      "operation": "acquire",
+      "elapsedMs": 0.3549169999996593,
+      "userCpuMs": 0.149,
+      "systemCpuMs": 0.215
+    },
+    {
+      "fixture": "warm-format",
+      "repetition": 5,
+      "operation": "check",
+      "elapsedMs": 0.17383299999983137,
+      "userCpuMs": 0.066,
+      "systemCpuMs": 0.121
+    },
+    {
+      "fixture": "warm-format",
+      "repetition": 5,
+      "operation": "release",
+      "elapsedMs": 0.24570800000037707,
+      "userCpuMs": 0.096,
+      "systemCpuMs": 0.165
+    },
+    {
+      "fixture": "two-warm-formats",
+      "repetition": 5,
+      "operation": "acquire",
+      "elapsedMs": 0.5123340000000098,
+      "userCpuMs": 0.193,
+      "systemCpuMs": 0.339
+    },
+    {
+      "fixture": "two-warm-formats",
+      "repetition": 5,
+      "operation": "check",
+      "elapsedMs": 0.1482080000005226,
+      "userCpuMs": 0.059,
+      "systemCpuMs": 0.094
+    },
+    {
+      "fixture": "two-warm-formats",
+      "repetition": 5,
+      "operation": "release",
+      "elapsedMs": 0.3735420000002705,
+      "userCpuMs": 0.146,
+      "systemCpuMs": 0.242
+    },
+    {
+      "fixture": "file-entry-limit",
+      "repetition": 5,
+      "operation": "acquire",
+      "elapsedMs": 42.93604199999936,
+      "userCpuMs": 16.78,
+      "systemCpuMs": 26.791
+    },
+    {
+      "fixture": "file-entry-limit",
+      "repetition": 5,
+      "operation": "check",
+      "elapsedMs": 42.028290999999626,
+      "userCpuMs": 16.164,
+      "systemCpuMs": 26.236
+    },
+    {
+      "fixture": "file-entry-limit",
+      "repetition": 5,
+      "operation": "release",
+      "elapsedMs": 42.298499999999876,
+      "userCpuMs": 16.602,
+      "systemCpuMs": 26.381
+    },
+    {
+      "fixture": "directory-entry-limit",
+      "repetition": 5,
+      "operation": "acquire",
+      "elapsedMs": 251.47170800000004,
+      "userCpuMs": 86.388,
+      "systemCpuMs": 178.591
+    },
+    {
+      "fixture": "directory-entry-limit",
+      "repetition": 5,
+      "operation": "check",
+      "elapsedMs": 249.6755830000002,
+      "userCpuMs": 91.601,
+      "systemCpuMs": 175.799
+    },
+    {
+      "fixture": "directory-entry-limit",
+      "repetition": 5,
+      "operation": "release",
+      "elapsedMs": 246.16912500000035,
+      "userCpuMs": 85.863,
+      "systemCpuMs": 173.836
+    }
+  ],
+  "passed": true,
+  "limits": [
+    "Production cache metadata operations in Node, not a complete Electron build or a native compiler measurement.",
+    "Synthetic runtime IDs and near-limit entries; ordinary fixtures copy an actual test-generated LaTeX format. The byte-limit file is sparse and does not fill a real disk.",
+    "Fixture creation and final integrity reads are outside measurement. All fixtures exist before measurement; OS caches are not purged. Every recorded operation is retained, including the first.",
+    "Five repetitions rotate fixture order. One check is timed per acquired lease; this does not reproduce the compiler’s periodic scheduling or contention with a native writer.",
+    "CPU readings cover this Node process and timing overhead. They exclude filesystem service work in other processes; elapsed time includes I/O and scheduling.",
+    "This is one development Mac with ordinary desktop activity. No population p95, whole-app budget, physical disk quota or UI latency claim."
+  ],
+  "finishedAt": "2026-09-27T23:54:59.404Z"
+}

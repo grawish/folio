@@ -263,6 +263,28 @@
     "scope": "Actual Electron keyboard interaction with synthetic local resume content; no simulated UI state or physical VoiceOver acceptance."
   },
   {
+    "file": "docs/images/cache-limit.png",
+    "sourceSuite": "engine-cache",
+    "sourceCapture": "cache-limit.png",
+    "sourceEvidence": "test-results/engine-cache-native-Od19tY/result.json",
+    "sha256": "38e6797f285a1421ec9c54a0b544a384ecb0951ab4b89d1087b3d4bfff7c4a69",
+    "synthetic": true,
+    "liveAI": false,
+    "oversizedCacheReadingSimulated": true,
+    "scope": "Actual packaged UI with synthetic sample source and scoped file-size observation; no physical disk was filled."
+  },
+  {
+    "file": "docs/images/cache-rebuilt.png",
+    "sourceSuite": "engine-cache",
+    "sourceCapture": "cache-rebuilt.png",
+    "sourceEvidence": "test-results/engine-cache-native-Od19tY/result.json",
+    "sha256": "c64c561d6b9c4676b7e77b327e6d031d1c160de549eb169cd91aab9f74059d7c",
+    "synthetic": true,
+    "liveAI": false,
+    "oversizedCacheReadingSimulated": true,
+    "scope": "Actual packaged UI with synthetic sample source and scoped file-size observation; no physical disk was filled."
+  },
+  {
     "file": "docs/images/recovery-retry.png",
     "sourceSuite": "recovery-writes",
     "sourceCapture": "recovery-retry.png",

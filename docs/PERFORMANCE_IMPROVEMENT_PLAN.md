@@ -484,10 +484,45 @@ The sixteen focused controls include 10,000-request bursts at each asynchronous 
 These are request-count and correctness observations. The raw diagnostic includes one enqueue interval and Node heap readings, which do not isolate retained memory or establish an app speedup. Next measure longer real editing sessions and the whole Electron/compiler process tree on supported Macs. Recovery queues, engine caches and aggregate profile retention remain separate work; this change does not satisfy the complete resource-budget requirement.
 
 
+### Bound retained compiler caches
+
+The former Compiler made one persistent `engine-cache/<runtime-id>` folder for each selected runtime, without eviction. Existing native fixture profiles contain a 24,451,466-byte LaTeX format in each warmed editor, agent or runtime self-test context. These are observed file sizes, not a complete app disk budget.
+
+A controlled before/after Compiler lifecycle diagnostic uses five synthetic runtime identities and a substituted 256-byte cache writer. The old implementation retains five directories (1,280 bytes); the new implementation retains two (512 bytes). Actual format reuse and the native growth guard are checked separately. No speedup is inferred from these tiny synthetic files.
+
+The [cache policy](ENGINE_CACHE.md) retains two runtimes, 128 MiB and 4,096 descendant entries per context, with a depth limit and non-overlapping 500 ms active-cache checks. The retained-byte ceiling leaves room above the observed 24 MB format while preventing accumulation across runtime changes. It is an initial engineering bound, not a measured whole-app resource budget. Next measure scan overhead, warm/cold latency after eviction and process-tree resources with the supported corpus and larger imported documents on supported Macs. Keep original source, current PDF protection and offline rebuilding intact.
+
+
+### Measured cost of cache checks
+
+Five repetitions of the production cache lease measured admission, one active-cache check and release across five cache shapes. The order rotates each repetition, and all 75 operations—including the first—are retained. Ordinary fixtures copy an actual 24,451,466-byte LaTeX format from the packaged cache workflow. The boundary fixtures use one-byte files, empty folders or a sparse file at the logical byte ceiling; they do not fill a real disk.
+
+| Cache shape | One check elapsed, min / median / max (ms) | Node CPU for that check, min / median / max (ms) | Median admission / release (ms) |
+| --- | ---: | ---: | ---: |
+| One actual format; 2 entries | 0.158 / 0.175 / 0.249 | 0.183 / 0.204 / 0.258 | 0.377 / 0.246 |
+| Two actual formats; 4 entries total | 0.146 / 0.148 / 0.176 | 0.151 / 0.154 / 0.182 | 0.563 / 0.374 |
+| 4,096 one-byte files | 41.651 / 43.055 / 49.812 | 42.400 / 44.060 / 51.014 | 44.154 / 42.236 |
+| 4,096 empty folders | 246.408 / 249.676 / 263.746 | 263.951 / 267.400 / 280.648 | 252.790 / 251.690 |
+| One sparse 128 MiB file | 0.086 / 0.090 / 0.146 | 0.088 / 0.094 / 0.264 | 0.434 / 0.176 |
+
+The active check scans only the selected runtime; admission and release inspect retained caches. Ordinary checks take under 0.25 ms in this fixture. The 128 MiB file costs little to inspect because the guard reads metadata, not payload bytes. Many directories cost more: each empty folder requires another directory traversal as well as its entry check. This identifies metadata entry count and shape as the next concern, rather than treating cache bytes alone as a cost predictor.
+
+The 4,096-folder case takes about a quarter second per scan and up to 280.648 ms of this Node process's CPU. Treat that as an investigation trigger for the admitted boundary. Before changing the policy, measure the actual Electron/compiler combination with this cache shape and inspect real cache directory counts. If many folders occur in supported workloads, compare a separate directory-count limit or a bounded worker implementation. Preserve complete checks, directory-identity validation, native-writer termination and cleanup ordering; do not skip checks to make a benchmark pass.
+
+This is metadata-operation cost on one M4 Pro/48 GiB development Mac running macOS 27.0, without a native writer. Fixture creation and independent payload hashing happen outside timing; final hashing uses 128 KiB buffers. OS caches are not purged, normal desktop work continues, and no other local Folio build, native suite or benchmark runs concurrently. The observation does not establish UI delay, periodic guard CPU duty, a population p95 or a whole-app resource budget. The initial instrument trial used whole-file hashing outside timing; it is retained separately and excluded from this final summary.
+
+Reproduce with a test-generated format file and isolated developer output:
+
+```sh
+node --import tsx scripts/profile-engine-cache.mjs /path/to/test-generated-latex.fmt 5
+```
+
+The script creates only a new directory under `test-results/`; it never edits the supplied format or an existing app cache. See [every observation](performance/engine-cache-cost.json) and [independent source/payload verification](releases/engine-cache-profile-verification.json). Every fixture's contents are unchanged after measurement, and the exact profiler and production cache module are identified by SHA-256 and source commits.
+
 ### Bound pending recovery writes
 
 A held synthetic disk sink in the prior `ProjectStore` left all 5,001 recovery requests unsettled. Automatic renderer calls also accumulated during eight real, debounce-separated edits in the previous packaged app: all eight snapshots were written after the first write was released.
 
 The current renderer keeps one active and one newest waiting snapshot; the identical packaged check writes only snapshots 1 and 8. Native admission separately permits four unfinished recovery calls and rejects excess calls before queueing them. A real preload/IPC burst of 100 calls produced four accepted calls and 96 busy rejections while the first write was held, with no early save acknowledgement. Fifteen focused controls also exercise 10,000-request bursts and file/directory-flush failures. See [recovery design](RECOVERY_WRITES.md) and [exact verification](releases/recovery-writes-verification.json).
 
-This removes an unbounded pending-write list. It is not a speedup or retained-memory measurement; recovery now explicitly flushes files and directories, which adds durability work. Next measure recovery latency with large admitted projects and storage contention on supported Macs. Complete process-tree budgets, engine-cache bounds and retention of recovery copies remain open.
+This removes an unbounded pending-write list. It is not a speedup or retained-memory measurement; recovery now explicitly flushes files and directories, which adds durability work. Next measure recovery latency with large admitted projects and storage contention on supported Macs. Complete process-tree budgets and retention of recovery copies remain open. Compiler-cache retention now has the separate bounds described above, with combined hosted qualification pending.

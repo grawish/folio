@@ -9,6 +9,7 @@ export const macReleaseSuites = [
   'runtime',
   'build-crash',
   'build-requests',
+  'engine-cache',
   'preferences',
   'recovery-writes',
   'workspace',

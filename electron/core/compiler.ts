@@ -11,6 +11,7 @@ import { buildFingerprint } from './build-provenance';
 import { compilerLimits, limitedCompilerLaunch } from './compiler-limits';
 import { BuildWorkspaces } from './build-workspaces';
 import { LatestWorkQueue } from './latest-work-queue';
+import { acquireEngineCache, engineCachePolicy } from './engine-cache';
 import type { RuntimeLease, RuntimeSource } from './runtime-manager';
 
 export class Compiler {
@@ -65,6 +66,7 @@ export class Compiler {
       let job: string | undefined;
       let workspace: Awaited<ReturnType<BuildWorkspaces['create']>> | undefined;
       let lease: RuntimeLease | undefined;
+      let cacheLease: Awaited<ReturnType<typeof acquireEngineCache>> | undefined;
       let runtimeReady = false;
       try {
         lease =
@@ -80,11 +82,10 @@ export class Compiler {
         job = workspace.path;
         const source = path.join(job, 'source');
         const output = path.join(job, 'output');
-        const cache = path.join(this.workRoot, 'engine-cache', runtime.pin!.id!);
+        cacheLease = await acquireEngineCache(this.workRoot, runtime.pin!.id!);
+        const cache = cacheLease.path;
         await Promise.all(
-          [source, output, cache, path.join(job, 'home')].map((p) =>
-            fs.mkdir(p, { recursive: true }),
-          ),
+          [source, output, path.join(job, 'home')].map((p) => fs.mkdir(p, { recursive: true })),
         );
         for (const [name, data] of [
           ...assets,
@@ -138,7 +139,11 @@ export class Compiler {
           cache,
           controller.signal,
           runtimePath,
+          () => cacheLease!.check(),
         );
+        await cacheLease.check();
+        await cacheLease.release();
+        cacheLease = undefined;
         if (generation !== this.generation) return cancelled();
         const diagnostics = parseDiagnostics(execution.log);
         const result: BuildResult = {
@@ -181,6 +186,7 @@ export class Compiler {
           runtimeUnavailable: !runtimeReady,
         };
       } finally {
+        await cacheLease?.release().catch(() => {});
         await workspace?.release().catch(() => {});
         await lease?.release();
         if (generation === this.generation) this.abort = undefined;
@@ -200,6 +206,7 @@ export class Compiler {
     cache: string,
     signal: AbortSignal,
     runtimePath: string,
+    checkCache?: () => Promise<void>,
   ): Promise<{
     code: number;
     log: string;
@@ -257,11 +264,28 @@ export class Compiler {
       child.stderr!.on('data', append);
       signal.addEventListener('abort', cancel, { once: true });
       if (signal.aborted) cancel();
+      let cacheCheck: Promise<void> | undefined;
+      let nativeClosed = false;
+      const cacheTimer = checkCache
+        ? setInterval(() => {
+            if (cacheCheck) return;
+            cacheCheck = checkCache()
+              .catch((error) => {
+                failure = (error as Error).message;
+                if (!nativeClosed) stop();
+              })
+              .finally(() => {
+                cacheCheck = undefined;
+              });
+          }, engineCachePolicy.pollMs)
+        : undefined;
       const cleanup = () => {
         clearTimeout(timer);
+        clearInterval(cacheTimer);
         signal.removeEventListener('abort', cancel);
       };
       child.once('error', (error) => {
+        nativeClosed = true;
         parentWatch.destroy();
         cleanup();
         reject(error);
@@ -273,8 +297,10 @@ export class Compiler {
         parentWatch.destroy();
         if (exitSignal || code !== 0) stop();
       });
-      child.once('close', (code, exitSignal) => {
+      child.once('close', async (code, exitSignal) => {
+        nativeClosed = true;
         cleanup();
+        await cacheCheck;
         if (!failure && exitSignal) {
           if (exitSignal === 'SIGXCPU')
             failure = `Compilation reached the ${Math.ceil(this.timeoutMs / 1000)}-second CPU-time limit. Simplify the document and try again.`;
