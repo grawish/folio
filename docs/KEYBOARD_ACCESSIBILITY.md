@@ -4,9 +4,9 @@ The current development source keeps the chat-first layout and adds keyboard nav
 
 ## Behavior
 
-- Chat and Code are the only members of the workspace tab list. Sidebar and History actions keep their button roles outside that list.
-- Only the selected view tab is a normal Tab stop. Left/Right select and focus the adjacent view, wrapping at either end; Home selects Chat and End selects Code. Modified Command/Control/Option keys are left alone. Up/Down keep their usual behavior.
-- Each tab names and controls its associated panel. The hidden panel is excluded from keyboard navigation and the accessible view; an active panel can receive focus. Switching views retains the source editor instance and parent-owned chat draft.
+- Chat, Code and Git are the members of the workspace tab list. Sidebar and History actions keep their button roles outside that list.
+- Only the selected view tab is a normal Tab stop. Left/Right select and focus the adjacent view, wrapping at either end; Home selects Chat and End selects Git. Modified Command/Control/Option keys are left alone. Up/Down keep their usual behavior.
+- Each tab names and controls its associated panel. The hidden panel is excluded from keyboard navigation and the accessible view; an active panel can receive focus. Switching away from Code disposes its CodeMirror view instance while retaining each file's source, undo/redo, selection and scroll position; returning to Code restores that state. The parent-owned chat draft persists across all views.
 - Settings sections remain ordinary navigation buttons. The current section has `aria-current="true"`; changing it works with Tab and Enter.
 - Shared dialogs use unique title/description identifiers and native modal behavior. Opening one makes the surrounding workspace inert. Closing restores the connected opener when focus would otherwise be left on the page body. It does not take focus away from another control already selected by the workflow.
 

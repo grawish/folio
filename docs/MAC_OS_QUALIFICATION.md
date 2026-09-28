@@ -45,6 +45,10 @@ Both environments report `VirtualMac2,1`, three logical CPUs and 7 GiB RAM. All 
 
 The [initial viewport failures](releases/editor-navigation-initial-failures.json) and [later recovery/keyboard failures](releases/editor-integrated-hosted-failures.json) remain preserved. The latest qualification includes their fixes. This is coverage of the recorded test corpus on developer images. The merged PDF-change overlay still needs its separate native workflow check and tutorial; it is not asserted by these 24 suites. Clean consumer installation, physical input/accessibility, signing, full redistribution and application-wide resource acceptance remain open. The public preview-4 installer is unchanged.
 
+### PDF-change overlay gap closed on developer hardware
+
+The native workflow check and tutorial this section flagged as missing landed on main at `95e1159` (28 September 2026): `scripts/test-pdf-highlight-smoke.mjs`, ordinary/delayed/inserted/removed-page scenarios, and the [chat tutorial's Show-changes walkthrough](tutorials/chat-and-feedback.md#see-what-the-ai-changed). This was run and verified on the developer's local arm64 Mac only (`npm run test:pdf-highlight`, `docs/releases/pdf-highlight-fix-verification.json`); it has not yet been re-qualified on hosted macOS 14/27 images. The next hosted qualification run should include it in the recorded suite count.
+
 ## Earlier icon-only results — 28 September 2026
 
 Both runs completed successfully at source `ae62d1ab1187241beb2537504f32bbf11917a147`. Each passed 460 source tests, 19 compiler integrations, twelve template-image comparisons with zero changed pixels, all twenty-one native suites and the final app/archive gates.

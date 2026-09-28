@@ -14,7 +14,7 @@ The Git tab uses a Git installation on your Mac; this preview does not bundle Gi
 2. Open the **Git** tab beside Chat and Code.
 3. If Folio shows **Set your Git identity**, follow its name and email instructions, then reopen the Git tab. The identity is attached to your commits; it is separate from your AI account.
 4. Choose **Initialize repository** if this folder does not already use Git.
-5. Find a file under **Untracked** or **Changes**. Choose its **Stage** button. Staging chooses the saved changes for the next checkpoint.
+5. Find a file under **Untracked** or **Changes**. Choose its name to expand a line-by-line diff of that file's changes (binary files show a notice instead), or choose its **Stage** button. Staging chooses the saved changes for the next checkpoint.
 6. Review **Staged changes**, write a short **Commit message**, and choose **Commit**.
 7. Look for your message under **History**. Open a history row to inspect its file changes.
 
