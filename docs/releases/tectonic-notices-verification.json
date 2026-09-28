@@ -1,0 +1,232 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-28T00:23:15.154664+00:00",
+  "implementationCommit": "447df7afd9d679c902a613797671faaecce7fde8",
+  "status": "Verified source, original materials and local package; full combined hosted qualification pending",
+  "sourceTestsPassed": 447,
+  "focusedTestsPassed": 5,
+  "typecheckPassed": true,
+  "formatPassed": true,
+  "noticeSourceIndex": {
+    "file": "resources/tectonic-notices/SOURCES.json",
+    "bytes": 377330,
+    "sha256": "60d4dd31e26b2c0516c250fa211c5ed40f55b653442ec7f329ecddf2edac1b3d"
+  },
+  "sourceCollectorSha256": "fd6bca380a766603a8258c92706c32cc305e2bff10c313d904aac84d00a9a314",
+  "originalArchivesVerified": 319,
+  "components": 319,
+  "originalNoticeReferences": 657,
+  "uniqueOriginalTexts": 255,
+  "originalTextBytes": 921303,
+  "everyExpandedTextIndependentlyComparedWithCommittedPayload": true,
+  "packagedNoticeFiles": 257,
+  "allCompiledOutputsMatchPreviousQualifiedRecoveryApp": 39,
+  "compilerBytesAndRuntimeManifestUnchanged": true,
+  "physicalInventory": {
+    "schemaVersion": 1,
+    "application": {
+      "name": "Folio",
+      "version": "0.1.0-preview.4",
+      "bundleIdentifier": "app.folio.resume",
+      "architecture": "arm64"
+    },
+    "appAsarSha256": "d01f52f066e82db583cf3d575cf899cfa44867d9eeae252282e76ebef6cde9da",
+    "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+    "runtimeFilesVerified": 3982,
+    "regularFiles": 4681,
+    "directories": 767,
+    "symlinks": 14,
+    "logicalFileBytes": 703776309,
+    "records": [
+      {
+        "path": "bundle-inventory.json",
+        "bytes": 1290971,
+        "sha256": "d8e72aaaefb2b91750e6c5076c4d5cda536b5379dc5905824c4ccc68a0c71edb"
+      },
+      {
+        "path": "bundle.cdx.json",
+        "bytes": 3743598,
+        "sha256": "4735d1fce97734fff7b2b0c4ef12c1de5b0c9924f1ccd817ccdc9f202c2e0960"
+      }
+    ],
+    "schemaValidation": "Official pinned CycloneDX 1.6 JSON schema, including formats; offline.",
+    "componentMappingComplete": false,
+    "releaseAuditComplete": false,
+    "limits": [
+      "Inventory of physical regular files, directories, POSIX modes and internal symbolic links in this exact local app.",
+      "Embedded ASAR/ZIP/PAR members, linked dependencies and per-component license/source mappings remain incomplete.",
+      "No extended attributes, ACLs, resource forks, code-signature/notarization validation, disk image or unique physical disk-size claim.",
+      "Before/after metadata checks detect ordinary concurrent changes; this is not an atomic filesystem snapshot or a hostile-mutation sandbox."
+    ]
+  },
+  "physicalComparison": {
+    "previousInventory": "test-results/recovery-writes-hosted-evidence/artifacts/license-materials/mac-app/e2300f6473b44bd33dc4c13aa4615fbc162c7d655babcc897370e84786fba1f7/bundle-inventory.json",
+    "newInventory": "artifacts/license-materials/mac-app/d8e72aaaefb2b91750e6c5076c4d5cda536b5379dc5905824c4ccc68a0c71edb/bundle-inventory.json",
+    "previousEntries": 5204,
+    "currentEntries": 5462,
+    "changed": [
+      {
+        "path": "Contents/Info.plist",
+        "previous": {
+          "path": "Contents/Info.plist",
+          "mode": 420,
+          "kind": "file",
+          "bytes": 3849,
+          "sha256": "9ceea74bf8211109f6a938a72cffa690a9412d495812f28e5fca1dbfb94bf26e"
+        },
+        "current": {
+          "path": "Contents/Info.plist",
+          "mode": 420,
+          "kind": "file",
+          "bytes": 3849,
+          "sha256": "57068eb8cdd599931922e36bff249f394583f45e32a3488d5f955d8b3c439964"
+        }
+      },
+      {
+        "path": "Contents/Resources/app-update.yml",
+        "previous": {
+          "path": "Contents/Resources/app-update.yml",
+          "mode": 420,
+          "kind": "file",
+          "bytes": 92,
+          "sha256": "1d7ebe4b263a81d446f3d2817b9e6685bf4e421038165f5052899cf1e060160e"
+        },
+        "current": {
+          "path": "Contents/Resources/app-update.yml",
+          "mode": 420,
+          "kind": "file",
+          "bytes": 39,
+          "sha256": "799ed86348a8ba2676768213bc72e39bc5fc280771614fc701b3b41b37845b56"
+        }
+      },
+      {
+        "path": "Contents/Resources/app.asar",
+        "previous": {
+          "path": "Contents/Resources/app.asar",
+          "mode": 420,
+          "kind": "file",
+          "bytes": 7517961,
+          "sha256": "05fb8ceb6fe7adf40c56455daca40542c42fd0c23841106c50410250bcfca929"
+        },
+        "current": {
+          "path": "Contents/Resources/app.asar",
+          "mode": 420,
+          "kind": "file",
+          "bytes": 7518967,
+          "sha256": "d01f52f066e82db583cf3d575cf899cfa44867d9eeae252282e76ebef6cde9da"
+        }
+      }
+    ],
+    "unchangedExistingEntries": 5201
+  },
+  "addedNoticeEntries": 258,
+  "javascript": {
+    "summary": {
+      "schemaVersion": 1,
+      "appAsarSha256": "d01f52f066e82db583cf3d575cf899cfa44867d9eeae252282e76ebef6cde9da",
+      "inventorySha256": "408a52fd693b870e487fb35faf88bb66a6127021c8610aab37c0e885f298d69b",
+      "bomSha256": "abaed929c83fb206f574a2d358e500a3208bd986109c91c2ee8b7ce853a84cb8",
+      "packagedJavaScriptAndMaps": 8,
+      "reproducedOutputs": 24,
+      "sourceModules": 410,
+      "runtimePackages": 35,
+      "generators": 3,
+      "completeBinarySbom": false
+    },
+    "folioSourcesMatchImplementationCommit": 113,
+    "allInputsMatchImplementationCommit": true,
+    "publisherSources": {
+      "schemaVersion": 1,
+      "passed": true,
+      "inventorySha256": "408a52fd693b870e487fb35faf88bb66a6127021c8610aab37c0e885f298d69b",
+      "sourceIndexSha256": "ec21f5ef6a8761f6a5c97f13526ffda69580f48170a80a3c0720cf397fd1009d",
+      "npmInputFilesMatched": 249,
+      "embeddedOriginalSourcesMatched": 45,
+      "packageJsonFilesMatched": 38,
+      "originalArchivesChecked": 38,
+      "completeBinarySbom": false,
+      "scope": "Exact npm source bytes and published source-map contents from checksum-verified locked archives. Generated helpers are associated with their build tools, not assigned byte-level authorship. Nested vendored terms, native components and complete redistribution remain separate."
+    }
+  },
+  "documentationSkillValid": true,
+  "retainedLogs": [
+    {
+      "file": "test-results/tectonic-notices-final-collection.log",
+      "bytes": 373,
+      "sha256": "e48c942084eb622f72610ccb9157aa3efaebe68a72ef58ed0f79c49eb7637f5f"
+    },
+    {
+      "file": "test-results/tectonic-notices-pins-focused.log",
+      "bytes": 607,
+      "sha256": "cecf6653e685da735882528ad00147e36f587f6888a822dc163edc1b266c7849"
+    },
+    {
+      "file": "test-results/tectonic-notices-final-source.log",
+      "bytes": 44946,
+      "sha256": "88ccd739401b311c0bd1b9c148364a5f2cb45f469c83b7a4aec971d0197fe133"
+    },
+    {
+      "file": "test-results/tectonic-notices-pins-typecheck.log",
+      "bytes": 64,
+      "sha256": "5e0497e27df921e099efd62066b397df0bfe0eb796edd626db840b92aaa1ccec"
+    },
+    {
+      "file": "test-results/tectonic-notices-final-format.log",
+      "bytes": 66,
+      "sha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20"
+    },
+    {
+      "file": "test-results/tectonic-notices-runtime.log",
+      "bytes": 609,
+      "sha256": "c57a553e6a359ddc19f98d953e4515e7a5537a34792a94ae8c1728f5f1c24163"
+    },
+    {
+      "file": "test-results/tectonic-notices-build.log",
+      "bytes": 1719,
+      "sha256": "5917f6af4e1dba60d8a44c893abd17055242276250e71abda7d5565b0cd7b87e"
+    },
+    {
+      "file": "test-results/tectonic-notices-package.log",
+      "bytes": 1357,
+      "sha256": "6db5fbce9593ebfe4d5e6017e81b0164a32588f8e4c687e261e0d5b287ee0220"
+    },
+    {
+      "file": "test-results/tectonic-notices-pins-package.log",
+      "bytes": 387,
+      "sha256": "ecbd2c97189ca3f3807d93592fd86333244e36c8882eaa7967a0ae54b7262018"
+    },
+    {
+      "file": "test-results/tectonic-notices-physical-inventory.log",
+      "bytes": 1712,
+      "sha256": "655f6097f4260f682ec64677c83de82ccc06c6015235073054e66f61cabab150"
+    },
+    {
+      "file": "test-results/tectonic-notices-physical-comparison.json",
+      "bytes": 30986,
+      "sha256": "cc418a1e3ecbca6daadbcfac19c124d0468da61706ecda70dc28ada083b0622a"
+    },
+    {
+      "file": "test-results/tectonic-notices-outputs.json",
+      "bytes": 6943,
+      "sha256": "d08a91956364655b2c1edbfde895c7271220f763a00bf9168759922e13d61365"
+    },
+    {
+      "file": "test-results/tectonic-notices-javascript.log",
+      "bytes": 7095,
+      "sha256": "6bfe7a45153888a9921b1c2e847edef6e98af24758271183c625eff80ad327bc"
+    },
+    {
+      "file": "test-results/tectonic-notices-publisher.log",
+      "bytes": 681,
+      "sha256": "2ce266c2c42fdf4b0d5b89f1ef63dbc501177ba5c2ecb28174ca42b4af913251"
+    },
+    {
+      "file": "test-results/tectonic-notices-skill.log",
+      "bytes": 138,
+      "sha256": "411dbf930a279ec4878cdeefe79be75e2bff7169f13f897642ea0b5b8ec25d24"
+    }
+  ],
+  "publicInstallerChanged": false,
+  "completeBinarySbom": false,
+  "scope": "Tectonic source families, the resolved executable Rust build closure, matching Rust toolchain and native build-port notice supersets. Exact original archive/text provenance and local installed bytes are verified. Build tools or potentially unused code are not asserted to be linked libraries. Biber/Perl, individual source grants, corresponding-source publication, final linked-component SBOM, production signing and full qualification after cache integration remain open."
+}
