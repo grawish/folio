@@ -6,9 +6,9 @@ The first reviewed source commit was pushed to `grawish/folio` before these work
 
 ## Current hosting state
 
-The latest fully qualified unsigned Mac source is `db6221a`. [Run 36364651805](https://github.com/grawish/folio/actions/runs/36364651805) passes 460 source tests, 19 compiler integrations, twelve unchanged template images, all twenty-one native suites and the final app/archive gates. All 169 retained evidence files, source/app/runtime identities, JavaScript replay and original publisher materials were independently checked. This includes the original Tectonic and Biber notice collections, compiler-cache limits and bounded recovery writes. See [hosted verification](releases/mac-biber-notices-hosted.json).
+The latest fully qualified unsigned Mac source is `ae62d1a`. Full hosted runs pass on **macOS 14.8.9** and **macOS 27.0**, with 460 source tests, 19 compiler integrations, twelve unchanged template images, all twenty-one native suites and final app/archive gates on each OS. All 170 retained evidence files per run were independently checked. The two 5,879-entry physical app inventories are identical, including the application archive, runtime, icon and collected original notices. See [OS qualification and limits](MAC_OS_QUALIFICATION.md), [macOS 14 evidence](releases/macos-14-hosted.json) and [macOS 27 evidence](releases/macos-27-hosted.json).
 
-The cache change is merged on main. Its [source checks](https://github.com/grawish/folio/actions/runs/36362551786) and [website deployment](https://github.com/grawish/folio/actions/runs/36362551779) pass. The website and main domain load over HTTPS after the owner-approved repair. The public preview-4 installer is unchanged. The following compiler-notice packaging addition needs its own full qualification; signing, broader supported-Mac acceptance, real BYOK and complete redistribution/SBOM remain open.
+The website and main domain load over HTTPS after the owner-approved repair. The public preview-4 installer is unchanged. Hosted developer-image compatibility does not complete clean consumer installation, signing/notarization, physical accessibility/display acceptance, real BYOK or the complete redistribution/SBOM audit. Earlier milestones below preserve their results and limitations.
 
 ## Earlier publication and qualification milestones
 
@@ -47,7 +47,7 @@ New workflow revisions also create a [physical app inventory and CycloneDX recor
 | Check source | Main pushes, pull requests, manual | Formatting, unit tests, offline Rust source/notices, Cargo graph and compiler-provenance controls, typecheck/build, website build and generated-skill consistency |
 | Publish website | Relevant main changes or manual | Static site deployment to GitHub Pages |
 | Release source preview | `source-v*` tag | Tested source/docs/skill archives, checksums and provenance in a public prerelease |
-| Qualify Apple silicon candidate | Manual | Fresh runtime setup, sequential real compiler integration, twelve rendered-PDF comparisons, the isolated Electron updater transfer fixture, arm64 packaging, sixteen native suites (including app-update Settings, history storage, compiler help, local fonts, support export, save recovery and the public resource-pack catalog), artifact verification and an exact physical-app inventory |
+| Qualify Apple silicon candidate | Manual | Fresh runtime setup, sequential real compiler integration, twelve rendered-PDF comparisons, the isolated Electron updater transfer fixture, arm64 packaging, twenty-one native suites (including app-update Settings, history storage, compiler help, local fonts, support export, save recovery and the public resource-pack catalog), artifact verification and an exact physical-app inventory |
 
 Official actions are pinned to immutable revisions. The workflow actions now use their declared Node 24 runtime instead of relying on GitHub's forced upgrade of older Node 20 actions. This is separate from `node-version: '24'`, which selects the Node version used to build Folio.
 
@@ -66,7 +66,7 @@ The update preserves the workflow triggers, permissions, native-runner labels, c
 
 Jobs have bounded timeouts. Pull requests use read-only repository permissions and receive no provider keys or signing credentials. Native suites run sequentially. Qualification publishes test metadata/logs, not a downloadable compiler bundle or installer while the binary redistribution audit remains unfinished.
 
-The Mac jobs use the standard `macos-15` arm64 runner listed in [GitHub's runner documentation](https://docs.github.com/en/actions/reference/runners/github-hosted-runners). Pages uses the dedicated permissions and environment described in [GitHub's Pages workflow documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
+The Mac qualification job defaults to `macos-15` arm64 and accepts explicit `macos-14`, `macos-26` and `xcode-27` choices. The source-preview job continues to use `macos-15`. See [OS selection and qualification](MAC_OS_QUALIFICATION.md) and [GitHub's runner documentation](https://docs.github.com/en/actions/reference/runners/github-hosted-runners). Pages uses the dedicated permissions and environment described in [GitHub's Pages workflow documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
 
 ## Publish a source preview
 
@@ -151,3 +151,7 @@ The final DMG command stores Apple’s job ID before waiting and resumes the sam
 Development builds use Folio’s existing navy mark in Finder and the Dock. The reviewed ICNS asset includes ten standard Mac image representations, rendered directly from `website/favicon.svg` at each pixel size. Packaging selects it through `build.mac.icon`; the final package verifier checks the plist’s icon selection and exact installed bytes. See [regeneration instructions](../resources/branding/README.md) and [local package evidence](releases/mac-app-icon-verification.json).
 
 The local package passes the existing startup, Settings, resume and Biber smoke check. Compared with the preceding Biber-notice package, only the icon file and the plist’s icon filename change; all 5,877 other physical entries, the ASAR, runtime and 39 compiled outputs are identical. This does not replace the public preview installer or claim a new complete native qualification or physical display acceptance.
+
+## Select the Mac OS for qualification
+
+The manual Mac candidate workflow offers `macos-14`, `macos-15` (default), `macos-26` and `xcode-27`, with the same full gates on each. It rejects an unexpected actual OS/architecture and retains an environment record with the exact source and image identifiers. Different OS choices can run independently without cancelling an existing attempt. See [OS qualification and remaining clean-install requirements](MAC_OS_QUALIFICATION.md).
