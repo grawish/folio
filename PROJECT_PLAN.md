@@ -1,7 +1,7 @@
 # Resume Maker — Detailed Project Plan
 
 Date: 24 September 2026
-Status: Implementation started; see [implementation status](docs/IMPLEMENTATION_STATUS.md). The release scope below remains the target.
+Status: Implementation started; see [implementation status](docs/IMPLEMENTATION_STATUS.md) and the [current remaining-work checklist](docs/REMAINING_WORK.md). The release scope below remains the target.
 Working name: Resume Maker
 
 **25 September workflow amendment:** [Chat-first implementation](docs/CHAT_FIRST_IMPLEMENTATION.md)

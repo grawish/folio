@@ -1,5 +1,7 @@
 # Implementation status — 0.1 development preview
 
+For the current actionable backlog, dependencies and completion criteria, see [Remaining work](REMAINING_WORK.md), updated 28 September 2026. The evidence below retains its original source and milestone scope.
+
 The development app now adds the requested chat-first workflow to real editing, native filesystem operations, local compilation, PDF preview, and a packaged macOS application. The production plan remains incomplete, with the user’s latest scope restricted to macOS Apple silicon.
 
 ## Implemented
