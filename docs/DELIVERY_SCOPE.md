@@ -1,6 +1,6 @@
 # Implementation and community delivery
 
-Updated 27 September 2026. This is an acceptance checklist, not a claim that the application or public release is complete. The active goal includes the Apple silicon implementation in `PROJECT_PLAN.md` and the additions below.
+Updated 28 September 2026. This is an acceptance checklist, not a claim that the application or public release is complete. The active goal includes the Apple silicon implementation in `PROJECT_PLAN.md` and the additions below. Current unsigned source `ae62d1a` passes full hosted qualification on macOS 14.8.9 and 27.0: each has 460 source tests, 19 compiler integrations, twelve unchanged template images and twenty-one native suites. The independently verified app inventories are identical; see [OS evidence and limits](MAC_OS_QUALIFICATION.md). Hosted compatibility does not close clean consumer installation or signed production acceptance.
 
 | Deliverable | Completion evidence required | Current state |
 | --- | --- | --- |
