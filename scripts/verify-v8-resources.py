@@ -11,6 +11,7 @@ import io
 import json
 import math
 import os
+import re
 from pathlib import Path
 import stat
 import subprocess
@@ -18,7 +19,11 @@ import sys
 import tarfile
 from pypdf import PdfReader
 
-root, app = (Path(x).resolve() for x in sys.argv[1:])
+if len(sys.argv) not in [3, 4]:
+    raise SystemExit('Provide RESULT_DIRECTORY, Folio.app and an optional evidence prefix.')
+root, app = (Path(x).resolve() for x in sys.argv[1:3])
+prefix = sys.argv[3] if len(sys.argv) == 4 else 'v8-resource'
+assert re.fullmatch(r'[a-z][a-z0-9-]{1,60}', prefix), 'Invalid evidence prefix.'
 sha = lambda data: hashlib.sha256(data).hexdigest()
 def file_hash(file):
     digest = hashlib.sha256()
@@ -195,7 +200,14 @@ for obs, calculated in zip(r['heapObservations'], a['heaps'], strict=True):
 files = [root / 'measurements.json', root / 'v8-analysis.json']
 files += [root / Path(c[role]['file']).name for c in r['cpuProfiles'] for role in ['main', 'renderer']]
 files += [root / Path(o['profile']['file']).name for o in r['heapObservations']]
-archive = Path('docs/performance/v8-resource-traces.tar.gz')
+if 'retention' in r:
+    assert r['retention'].get('completed')
+    assert json.loads((root / 'retention.json').read_bytes()) == r['retention']
+    for snapshot in r['retention']['snapshots']:
+        file = root / Path(snapshot['file']).name
+        assert file.stat().st_size == snapshot['bytes'] and file_hash(file) == snapshot['sha256']
+    files.append(root / 'retention.json')
+archive = Path(f'docs/performance/{prefix}-traces.tar.gz')
 with archive.open('wb') as target, gzip.GzipFile(fileobj=target, mode='wb', filename='', mtime=0) as compressed, tarfile.open(fileobj=compressed, mode='w') as tar:
     for file in sorted(files):
         data = file.read_bytes()
@@ -210,6 +222,8 @@ summary = {
     'schemaVersion': 1,
     'sourceCommit': r['sourceCommit'], 'appAsarSha256': r['appAsarSha256'], 'runtimeManifestSha256': r['runtimeManifestSha256'],
     'host': r['host'], 'applicationVersions': r['applicationVersions'], 'instrumentation': r['instrumentation'],
+    'inputMethod': r.get('inputMethod', 'native keyboard.insertText'),
+    'postWorkloadRetentionDiagnostic': r.get('retention'),
     'seed': r['seed'], 'cycles': cycles, 'pdfs': len(r['pdfs']), 'independentlyParsedPages': pages,
     'nativeSnapshots': len(r['samples']), 'phaseMarkers': len(r['phases']), 'canvasObservations': len(r['canvases']),
     'cpuProfiles': cycles * 2, 'heapObservations': len(a['heaps']),
@@ -217,7 +231,7 @@ summary = {
     'heap': [{k: v for k, v in h.items() if k != 'selfEstimatedBytes'} for h in a['heaps']],
     'sourceMaps': a['sourceMaps'], 'scope': r['scope'] + ' ' + a['scope'],
 }
-summary_file = Path('docs/performance/v8-resource-summary.json')
+summary_file = Path(f'docs/performance/{prefix}-summary.json')
 summary_file.write_text(json.dumps(summary, indent=2) + '\n')
 record = {
     'schemaVersion': 1, 'verifiedAt': datetime.datetime.now(datetime.timezone.utc).isoformat(),
@@ -231,8 +245,8 @@ record = {
     'sourceMapAnalyzer': artifact('scripts/analyze-v8-resources.mjs'),
     'independentVerifier': artifact('scripts/verify-v8-resources.py'),
     'rawArchive': artifact(archive), 'summary': artifact(summary_file),
-    'retained': [artifact(root / 'measurements.json'), artifact(root / 'v8-analysis.json'), artifact('test-results/v8-profile-20.log'), artifact('test-results/v8-profile-analysis-final.log')],
+    'retained': [artifact(root / 'measurements.json'), artifact(root / 'v8-analysis.json')] + ([artifact('test-results/v8-profile-20.log'), artifact('test-results/v8-profile-analysis-final.log')] if prefix == 'v8-resource' else []),
     'scope': 'Diagnostic validation, not an app speedup, root-cause proof, threshold pass or production resource acceptance. Original 120-cycle failures remain open.',
 }
-Path('docs/releases/v8-resource-verification.json').write_text(json.dumps(record, indent=2) + '\n')
+Path(f'docs/releases/{prefix}-verification.json').write_text(json.dumps(record, indent=2) + '\n')
 print(json.dumps({'passed': True, 'pdfs': len(r['pdfs']), 'independentlyParsedPages': pages, 'nativeSnapshots': len(r['samples']), 'cpuProfiles': cycles * 2, 'heapObservations': len(a['heaps']), 'archiveBytes': archive.stat().st_size, 'originalSeedPreserved': True}, indent=2))
