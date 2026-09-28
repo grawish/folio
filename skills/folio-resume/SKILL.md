@@ -13,7 +13,7 @@ Read only what the task needs:
 
 - First launch, templates, paper size, saving and PDF export: [first-resume](references/first-resume.md).
 - Codex, Claude Code, BYOK, custom endpoints, selecting/editing/removing a connection: [ai-connections](references/ai-connections.md).
-- Chat, PDF marks, attachments, stop/retry, compare, undo and restore: [chat-and-feedback](references/chat-and-feedback.md).
+- Chat, PDF marks, attachments, stop/retry, compare, undo, restore and post-edit change highlights: [chat-and-feedback](references/chat-and-feedback.md).
 - Source files, main document, ZIP import, Save As and source export: [files-and-import](references/files-and-import.md).
 - Autosave, recovery, outside-file changes and conflicts: [save-and-recover](references/save-and-recover.md).
 - Temporary compiler files after a crash, automatic cleanup and preserved unknown folders: [build recovery](references/BUILD_RECOVERY.md).

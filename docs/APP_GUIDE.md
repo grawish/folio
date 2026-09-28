@@ -165,12 +165,23 @@ npm run test:chat
 npm run test:import
 npm run test:import-recovery
 npm run test:files
+npm run test:git
 npm run test:watch
 npm run test:templates
 npm run test:workspace
+npm run test:history-storage
+npm run test:diagnostics
+npm run test:fonts
+npm run test:support
+npm run test:updates
+npm run test:save-recovery
 npm run test:pdf-lifecycle
 npm run test:pdf-viewer
+npm run test:pdf-highlight
 npm run test:runtime
+npm run test:packs
+npm run test:pack-catalog
+npm run test:template-images
 npm run test:migration
 npm run format:check
 npm run pack
@@ -184,12 +195,21 @@ npm run pack
 - Import tests cover unsafe ZIP rejection, unsaved-change guards, selection/cancellation, real relative-input compilation, byte-for-byte assets, export/re-import with independent history, folder opening, compact dark/light screens and close-during-import recovery. Run against a packaged build with `node scripts/test-import.mjs /absolute/path/Folio.app/Contents/MacOS/Folio`.
 - File-management tests cover independent file undo/redo, rename/removal/restore, long names, conflict choices, earlier disk copies, Save As, ZIP contents, new files and restart recovery. Run against a packaged build with `node scripts/test-files.mjs /absolute/path/Folio.app/Contents/MacOS/Folio`.
 - Watcher tests cover outside additions/edits/removals, review and reload, preserved buffers, asset-only stale PDFs, native stale-export rejection, Save As, restart, metadata conflicts and compact light/dark dialogs. The chat suite checks both reported and delayed outside edits during inference. Run against a packaged build with `node scripts/test-watch.mjs /absolute/path/Folio.app/Contents/MacOS/Folio`.
+- Git tests exercise a real spawned `git` binary through the app's IPC: init, working-tree stage/unstage of tracked and untracked files, commit, and paged log, against a synthetic fixture repository and identity. No network remote is exercised. Run against a packaged build with `node scripts/test-git.mjs /absolute/path/Folio.app/Contents/MacOS/Folio`.
+- PDF-highlight tests exercise a real AI edit end to end: ordinary and deliberately delayed before-PDF reads, real content changes across two pages, region geometry, timed fade/replay, zoom stability, Previous/Next change navigation, an inserted page, a removed page and byte-identical highlight-free export. See [the walkthrough](tutorials/chat-and-feedback.md#see-what-the-ai-changed).
 - Packaged smoke test: `node scripts/test-packaged.mjs /absolute/path/Folio.app/Contents/MacOS/Folio`.
 - Template tests create all six layouts at both paper sizes, inspect PDF text and exported dimensions, preserve origin metadata through save/restart/ZIP, and check keyboard selection and the compact picker. `npm run templates:build` regenerates actual thumbnails and runs text/font/layout checks; see [prerequisites and evidence](TEMPLATES.md).
 - Workspace tests exercise pointer/keyboard resizing, minimum widths, preference persistence, actual autosave writes, typing during a save, conflicts, rollback/retry, native project selection and close/restart recovery. The chat suite also verifies autosave deferral during AI work. Run native UI suites sequentially to avoid competing test-window focus.
 - PDF viewer tests exercise real 35-/100-/101-page documents, distant-page notes, canvas budgets, mixed page geometry, rejected PDFs, stalled loads/renders, actual worker termination and export recovery. The lifecycle suite separately checks delayed replacement while resizing. See [bounds and evidence](PDF_VIEWER_LIMITS.md).
 - Isolation tests must run outside a parent sandbox that prohibits `sandbox-exec`.
 - Runtime tests check exact compiler selection, damaged-file rejection, offline repair, saved/source-export/history pins and restart using an isolated profile. Run against a packaged build with `node scripts/test-runtime.mjs /absolute/path/Folio.app/Contents/MacOS/Folio`.
+- History-storage tests exercise a real PDF/note, current-version protection, compact dark/light removal confirmation, cancel, removal, unchanged current source/PDF, unsaved draft/source retention, portable save, and native close waiting for a held journal write. See [history storage](HISTORY_STORAGE.md).
+- Diagnostic tests show real package, file, engine and font errors with specific advice, retaining the PDF and raw logs/source links; compact dark/light layouts scroll without horizontal overflow and the suggested bundled-font repair fixes the build.
+- Font tests cover local font import/preview/apply/remove, external reload during preview, and byte-for-byte source-ZIP round-tripping. Run against a packaged build with `node scripts/test-fonts.mjs /absolute/path/Folio.app/Contents/MacOS/Folio`. See [local fonts](LOCAL_FONTS.md).
+- Support-bundle tests cover reload creating a fresh review, a failed write preserving the previous ZIP, retry, and native close waiting for an atomic export. See [support bundles](SUPPORT_BUNDLES.md).
+- Update tests launch the real app with an isolated profile and check Settings, persisted preferences, unsigned-preview gating, light/dark/compact controls, the native menu, and close/relaunch recovery; no app update is installed. See [app updates](APP_UPDATES.md).
+- Managed-pack tests cover cancellation before any catalog request, signed catalog rollback/expiry/redirect rejection, coordinated download/installation, offline retry, corrupt retained archives and an interrupted native picker. `npm run test:pack-catalog` additionally exercises the ordinary source against the published HTTPS catalog. See [managed packs](MANAGED_PACKS.md).
+- `npm run test:template-images` runs the same corpus checks read-only (`--check`), for CI use without touching committed thumbnails.
 
 Tests use temporary directories and `test-results/`. Set `FOLIO_USER_DATA` to isolate a development/test workspace. Normal installs use Electron's platform-standard application data directory.
 

@@ -75,7 +75,7 @@ If another app changes your project while you preview, Folio stops the save. Clo
 
 ## Read and export the PDF
 
-Scroll, use page arrows, or enter a page number. Use − and + to zoom and **Fit to width** to reset the view. In selection mode, text can be selected and document links can be followed. Switch to a mark tool when you want to annotate.
+Scroll or use the page arrows; the counter shows your position (page / total). Use − and + to zoom and **Fit to width** to reset the view. In selection mode, text can be selected and document links can be followed. Switch to a mark tool when you want to annotate.
 
 [Screenshot: Navigating and marking a long synthetic PDF](https://github.com/grawish/folio/blob/main/docs/images/pdf-navigation.png)
 
