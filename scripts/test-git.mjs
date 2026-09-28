@@ -34,9 +34,10 @@ await fs.writeFile(
 const env = {
   ...process.env,
   FOLIO_USER_DATA: dataRoot,
-  GIT_CONFIG_GLOBAL: '/dev/null',
+  GIT_CONFIG_GLOBAL: path.join(root, 'gitconfig'),
   GIT_CONFIG_NOSYSTEM: '1',
 };
+await fs.writeFile(env.GIT_CONFIG_GLOBAL, '');
 delete env.ELECTRON_RUN_AS_NODE;
 let app, page;
 const errors = [];
@@ -86,6 +87,13 @@ try {
   expect(await gitCall('gitStatus', projectId)).toBeNull();
   await page.getByRole('tab', { name: 'Git', exact: true }).click();
   await expect(page.locator('.cm-editor')).toHaveCount(0);
+  await expect(page.getByText('Set your Git identity', { exact: true })).toBeVisible();
+  await fs.writeFile(
+    env.GIT_CONFIG_GLOBAL,
+    '[user]\n  name = Folio Test\n  email = test@folio.local\n[commit]\n  gpgsign = false\n',
+  );
+  await page.getByRole('tab', { name: 'Chat', exact: true }).click();
+  await page.getByRole('tab', { name: 'Git', exact: true }).click();
   await page.getByRole('button', { name: 'Initialize repository', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Refresh status', exact: true })).toBeEnabled();
   const initStatus = await gitCall('gitStatus', projectId);
