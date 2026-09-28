@@ -199,3 +199,38 @@ python3 scripts/verify-v8-resources.py test-results/v8-profile-YOUR_RUN /path/to
 The verifier writes the public summary, compact raw archive and verification record. The archive preserves the report, all 46 CPU/allocation profiles and the full analysis byte for byte. It excludes the copied app profile, app binaries, PDFs and reproducible source maps. The synthetic PDFs and seed remain local for the full independent check. Embedded versions are Node 24.21.0, Electron 44.4.5, Chromium 152.0.7977.130 and V8 15.2.124.28-electron.0.
 
 See [summary and all context totals](performance/v8-resource-summary.json), [raw traces and analysis](performance/v8-resource-traces.tar.gz) and [independent verification](releases/v8-resource-verification.json). Ordinary desktop work continued on the same M4 Pro/48 GiB development Mac; the host was not isolated. Profiling overhead makes this a separate diagnosis, not a timing comparison, speedup, memory-retention fix or production budget pass. The original 120-cycle observations and failures remain unchanged.
+
+
+### Renderer retaining paths and input control
+
+Two completed five-cycle runs of the unchanged app use the same synthetic seed, instrument source `bf98091`, script hashes and embedded runtime. One uses the existing native `keyboard.insertText` replacement; the other sends a synthetic paste event to CodeMirror's existing paste handler. Both select the complete document first. The control does not read or change the system clipboard and is not a physical-paste or IME acceptance test.
+
+After the ordinary workload and CPU/allocation sampling stop, a separate diagnostic counts connected DOM nodes, explicitly collects garbage and takes local heap snapshots. It then switches to Chat and finally creates a new synthetic project. Code remains mounted while hidden in Chat. Changing the project replaces the editor session and PDF. These destructive test actions apply only to a disposable copy, and all original seed files remain unchanged.
+
+| Checkpoint | Native insertion: DOM counter after GC | Paste handler: DOM counter after GC | Detached snapshot nodes, native / paste |
+| --- | ---: | ---: | ---: |
+| Code after five cycles | 8,771 | 443 | 6,766 / 1 |
+| Chat, existing editor hidden | 8,812 | 484 | 6,766 / 1 |
+| New project, new editor session and PDF | 1,234 | 1,226 | 22 / 22 |
+
+The first Code checkpoint has 400 connected nodes in the native case and 392 in the paste control. The snapshot reader finds one shortest path from the synthetic root while excluding weak edges. Of 6,766 detached native-case nodes, 6,345 have that path through `blink::UndoStack` and 420 through `blink::TypingCommand`. They include old CodeMirror lines, text and spans. The selected graph paths therefore locate this workload's retention in native browser editing history. They are not dominators, complete retained sizes or proof that every object has only one owner.
+
+Explicit collection and switching to Chat keep those nodes alive. After changing projects, none of the original detached snapshot identifiers remain in the detached set, and the native-undo path groups are empty. Both new-project snapshots have 22 detached PDF text spans referenced from the current page's text-layer state. These smaller counts require their own lifecycle context; detachedness alone does not establish a leak.
+
+The two runs produce 15 matching document pairs. Independent checks compare every one of the 510 page pairs for extracted text, page boxes and link targets/rectangles. Every export matches its retained history PDF, every saved TeX file matches the intended input hash, and all 361 original history versions survive in each copied workspace. The normal native snapshots and V8 trace accounting are also independently checked. Three graph-reader controls cover a misleading weak shortcut, an unreachable weak-only node, invalid node offsets and changed snapshot bytes.
+
+This is **one sequential input-method comparison on one development Mac**. It narrows the cause of these retained editor nodes, without explaining all earlier RSS growth or the CPU outliers. Preserve the native-replacement stress case; replacing it with paste and calling the budget fixed would hide the observed behavior. Next measure ordinary character typing, composition and agent-driven source changes separately, and evaluate releasing a hidden editor view while preserving CodeMirror document/undo state, per-file history, selection, focus and external changes. Do not clear user undo history or force collection in the product to improve a graph.
+
+```sh
+# Each command starts from a fresh exact copy of the historical synthetic seed.
+FOLIO_PYTHON=/path/to/python3 node scripts/profile-v8-resources.mjs /path/to/Folio.app/Contents/MacOS/Folio test-results/process-profile-SEED 5 --retention
+FOLIO_PYTHON=/path/to/python3 node scripts/profile-v8-resources.mjs /path/to/Folio.app/Contents/MacOS/Folio test-results/process-profile-SEED 5 --retention-paste
+python3 scripts/analyze-renderer-retention.py test-results/v8-profile-RUN
+node scripts/analyze-v8-resources.mjs test-results/v8-profile-RUN /path/to/Folio.app
+# Use a distinct evidence prefix to preserve the published 20-cycle result.
+python3 scripts/verify-v8-resources.py test-results/v8-profile-RUN /path/to/Folio.app renderer-retention-native
+```
+
+Full heap snapshots are bounded to 128 MiB each and remain local. Published [comparison and representative paths](performance/renderer-retention-comparison.json), [native-input summary](performance/renderer-retention-native-summary.json), [paste-control summary](performance/renderer-retention-paste-summary.json), and their [native](releases/renderer-retention-native-verification.json) / [paste](releases/renderer-retention-paste-verification.json) verification records retain exact identities and limits. Compact [native traces](performance/renderer-retention-native-traces.tar.gz) and [paste traces](performance/renderer-retention-paste-traces.tar.gz) exclude full heaps and profile copies. The initial five-cycle trial completed two snapshots, then failed because its template selector omitted “The”; that failed report, log and snapshots remain retained and excluded from the completed comparison. Its original top-level no-GC wording applied to the sampled workload; the added post-workload diagnostic did request collection. The completed runs explicitly describe that separation.
+
+The snapshot detachedness values follow [V8's embedder-graph states](https://chromium.googlesource.com/v8/v8.git/+/refs/heads/13.1.95/include/v8-profiler.h). The analyzer reads the actual snapshot's field/type tables, checks every node/edge and retains its source hash. This is a diagnosis with an input control, not a shipped optimization or completed resource acceptance.

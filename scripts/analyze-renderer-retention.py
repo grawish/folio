@@ -68,6 +68,16 @@ for artifact in report['snapshots']:
             if target not in parents:
                 parents[target] = (idx, at)
                 queue.append(target)
+    native_paths = collections.Counter()
+    for idx in detached:
+        current = idx
+        chain_names = set()
+        while parents.get(current) is not None:
+            current = parents[current][0]
+            chain_names.add(name(current))
+        group = ('nativeUndoStack' if 'blink::UndoStack' in chain_names else
+                 'nativeTypingCommand' if 'blink::TypingCommand' in chain_names else 'other')
+        native_paths[group] += 1
     examples = []
     # Cover distinct names deterministically; keep all detached ids for cross-snapshot checks.
     chosen = set()
@@ -87,6 +97,7 @@ for artifact in report['snapshots']:
         'label': artifact['label'], 'sha256': artifact['sha256'], 'nodeFields': nf, 'edgeFields': ef,
         'nodes': len(n) // ns, 'edges': len(e) // es,
         'detachedNodes': len(detached), 'detachedSelfBytes': sum(field(i, 'self_size') for i in detached),
+        'detachedShortestPathGroups': dict(native_paths),
         'detachedKinds': dict(kinds), 'detachedNames': [{'name': key, 'count': value, 'selfBytes': self_bytes[key]} for key, value in counts.most_common()],
         'detachedReachableWithoutWeakEdges': sum(i in parents for i in detached),
         'representativePaths': examples,

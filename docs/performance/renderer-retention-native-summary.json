@@ -1,0 +1,903 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "bf980919786623a563f548e4894d2a4ff4ff6dc6",
+  "appAsarSha256": "fbc69b9abcd714b69a35f139f7ac155a05458e5cefdc0bef3e29e861b932e91e",
+  "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+  "host": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "os": "27.0.0",
+    "cpu": "Apple M4 Pro",
+    "logicalCpus": 14,
+    "ramBytes": 51539607552,
+    "node": "v24.21.0"
+  },
+  "applicationVersions": {
+    "node": "24.21.0",
+    "electron": "44.4.5",
+    "chrome": "152.0.7977.130",
+    "v8": "15.2.124.28-electron.0"
+  },
+  "instrumentation": {
+    "cpuSamplingIntervalMicroseconds": 1000,
+    "heapSamplingIntervalBytes": 65536,
+    "explicitGcRequested": false,
+    "postWorkloadRetentionDiagnostic": true,
+    "nativeObserverSha256": "8addb95700ef208fce5a0125f77864baca37f9e57db8b3292c2b93ad502ed4bd"
+  },
+  "inputMethod": "native keyboard.insertText",
+  "postWorkloadRetentionDiagnostic": {
+    "scope": "Separate diagnostic after V8/native workload sampling. Explicit garbage collection and heap snapshots change collection behavior; these are not ordinary-session memory or timing acceptance measurements. Chat hides the mounted editor; creating a new synthetic project replaces its session and PDF. Full heap snapshots remain local.",
+    "observations": [
+      {
+        "label": "code-before-gc",
+        "at": "2026-09-28T03:21:28.136Z",
+        "connected": {
+          "nodes": 400,
+          "elements": 302,
+          "editors": 1,
+          "textLayers": 1,
+          "canvases": 2,
+          "codeHidden": false
+        },
+        "dom": {
+          "documents": 1,
+          "nodes": 8771,
+          "jsEventListeners": 246
+        },
+        "memory": {
+          "usedSize": 11557736,
+          "totalSize": 14991360,
+          "embedderHeapUsedSize": 4211920,
+          "backingStorageSize": 1410993
+        }
+      },
+      {
+        "label": "code-after-gc",
+        "at": "2026-09-28T03:21:28.148Z",
+        "connected": {
+          "nodes": 400,
+          "elements": 302,
+          "editors": 1,
+          "textLayers": 1,
+          "canvases": 2,
+          "codeHidden": false
+        },
+        "dom": {
+          "documents": 1,
+          "nodes": 8771,
+          "jsEventListeners": 246
+        },
+        "memory": {
+          "usedSize": 11158532,
+          "totalSize": 12369920,
+          "embedderHeapUsedSize": 3956544,
+          "backingStorageSize": 1410449
+        }
+      },
+      {
+        "label": "code-after-snapshot",
+        "at": "2026-09-28T03:21:28.715Z",
+        "connected": {
+          "nodes": 400,
+          "elements": 302,
+          "editors": 1,
+          "textLayers": 1,
+          "canvases": 2,
+          "codeHidden": false
+        },
+        "dom": {
+          "documents": 1,
+          "nodes": 8771,
+          "jsEventListeners": 246
+        },
+        "memory": {
+          "usedSize": 11160248,
+          "totalSize": 12369920,
+          "embedderHeapUsedSize": 3956544,
+          "backingStorageSize": 1410449
+        }
+      },
+      {
+        "label": "chat-existing-editor-before-gc",
+        "at": "2026-09-28T03:21:28.738Z",
+        "connected": {
+          "nodes": 427,
+          "elements": 324,
+          "editors": 1,
+          "textLayers": 1,
+          "canvases": 2,
+          "codeHidden": true
+        },
+        "dom": {
+          "documents": 1,
+          "nodes": 8820,
+          "jsEventListeners": 283
+        },
+        "memory": {
+          "usedSize": 11640584,
+          "totalSize": 12632064,
+          "embedderHeapUsedSize": 4528392,
+          "backingStorageSize": 1410985
+        }
+      },
+      {
+        "label": "chat-existing-editor-after-gc",
+        "at": "2026-09-28T03:21:28.746Z",
+        "connected": {
+          "nodes": 427,
+          "elements": 324,
+          "editors": 1,
+          "textLayers": 1,
+          "canvases": 2,
+          "codeHidden": true
+        },
+        "dom": {
+          "documents": 1,
+          "nodes": 8812,
+          "jsEventListeners": 251
+        },
+        "memory": {
+          "usedSize": 11136260,
+          "totalSize": 12369920,
+          "embedderHeapUsedSize": 3900808,
+          "backingStorageSize": 1410449
+        }
+      },
+      {
+        "label": "chat-existing-editor-after-snapshot",
+        "at": "2026-09-28T03:21:29.296Z",
+        "connected": {
+          "nodes": 427,
+          "elements": 324,
+          "editors": 1,
+          "textLayers": 1,
+          "canvases": 2,
+          "codeHidden": true
+        },
+        "dom": {
+          "documents": 1,
+          "nodes": 8812,
+          "jsEventListeners": 251
+        },
+        "memory": {
+          "usedSize": 11139040,
+          "totalSize": 12369920,
+          "embedderHeapUsedSize": 4141152,
+          "backingStorageSize": 1410488
+        }
+      },
+      {
+        "label": "new-project-before-gc",
+        "at": "2026-09-28T03:21:31.673Z",
+        "connected": {
+          "nodes": 1164,
+          "elements": 707,
+          "editors": 1,
+          "textLayers": 1,
+          "canvases": 2,
+          "codeHidden": true
+        },
+        "dom": {
+          "documents": 1,
+          "nodes": 1261,
+          "jsEventListeners": 341
+        },
+        "memory": {
+          "usedSize": 11611072,
+          "totalSize": 16564224,
+          "embedderHeapUsedSize": 5721016,
+          "backingStorageSize": 1422903
+        }
+      },
+      {
+        "label": "new-project-after-gc",
+        "at": "2026-09-28T03:21:31.691Z",
+        "connected": {
+          "nodes": 1164,
+          "elements": 707,
+          "editors": 1,
+          "textLayers": 1,
+          "canvases": 2,
+          "codeHidden": true
+        },
+        "dom": {
+          "documents": 1,
+          "nodes": 1234,
+          "jsEventListeners": 252
+        },
+        "memory": {
+          "usedSize": 10485224,
+          "totalSize": 11583488,
+          "embedderHeapUsedSize": 3723400,
+          "backingStorageSize": 1382761
+        }
+      },
+      {
+        "label": "new-project-after-snapshot",
+        "at": "2026-09-28T03:21:32.202Z",
+        "connected": {
+          "nodes": 1156,
+          "elements": 700,
+          "editors": 1,
+          "textLayers": 1,
+          "canvases": 2,
+          "codeHidden": true
+        },
+        "dom": {
+          "documents": 1,
+          "nodes": 1234,
+          "jsEventListeners": 288
+        },
+        "memory": {
+          "usedSize": 10730172,
+          "totalSize": 11583488,
+          "embedderHeapUsedSize": 3702960,
+          "backingStorageSize": 1382846
+        }
+      }
+    ],
+    "snapshots": [
+      {
+        "label": "code",
+        "file": "/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/v8-profile-ismP0o/code.heapsnapshot",
+        "bytes": 21391622,
+        "sha256": "8d781a67b657277e16e9f8eddf70180aaa714e058a2e4af9f30eadb6b9969898",
+        "nodes": 265879,
+        "edges": 1098410,
+        "parameters": {
+          "captureNumericValue": false,
+          "exposeInternals": true
+        }
+      },
+      {
+        "label": "chat-existing-editor",
+        "file": "/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/v8-profile-ismP0o/chat-existing-editor.heapsnapshot",
+        "bytes": 21436460,
+        "sha256": "f5b1ba078c5c02a90ec89245edc55eecce5667ff469c58807413d25c132dd670",
+        "nodes": 265946,
+        "edges": 1100413,
+        "parameters": {
+          "captureNumericValue": false,
+          "exposeInternals": true
+        }
+      },
+      {
+        "label": "new-project",
+        "file": "/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/v8-profile-ismP0o/new-project.heapsnapshot",
+        "bytes": 19249307,
+        "sha256": "a17de8c329482d9412928b36d795d9aeeee4e3d2eb58f19b2c1583a353fc967a",
+        "nodes": 232009,
+        "edges": 985794,
+        "parameters": {
+          "captureNumericValue": false,
+          "exposeInternals": true
+        }
+      }
+    ],
+    "originalSyntheticProjectId": "60193304-f984-407a-99f1-131807792dd1",
+    "completed": true
+  },
+  "seed": {
+    "report": "/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/process-profile-T384Xg/measurements.json",
+    "reportSha256": "5ec6271ca9c0ebba8bde0e585c202430cd6239cca966d748c3105af8e09cccff",
+    "profileInventorySha256": "0ad04d78024789d5a2d210c85c4d1f9ad33f1219d9866e37b22833057c3a8a4e",
+    "entries": 5623,
+    "logicalFileBytes": 439363538,
+    "copiedExactly": true,
+    "preservedAfterRun": true
+  },
+  "cycles": 5,
+  "pdfs": 15,
+  "independentlyParsedPages": 510,
+  "nativeSnapshots": 376,
+  "phaseMarkers": 62,
+  "canvasObservations": 30,
+  "cpuProfiles": 10,
+  "heapObservations": 3,
+  "cpuContextSampleWeights": {
+    "main": [
+      {
+        "sourceOrLabel": "(idle)",
+        "sampleWeightMicroseconds": 63078124
+      },
+      {
+        "sourceOrLabel": "electron/core/runtime.ts",
+        "sampleWeightMicroseconds": 3993972
+      },
+      {
+        "sourceOrLabel": "(program)",
+        "sampleWeightMicroseconds": 706135
+      },
+      {
+        "sourceOrLabel": "node:inspector",
+        "sampleWeightMicroseconds": 104011
+      },
+      {
+        "sourceOrLabel": "electron/core/save-io.ts",
+        "sampleWeightMicroseconds": 82875
+      },
+      {
+        "sourceOrLabel": "electron/core/workspace.ts",
+        "sampleWeightMicroseconds": 77981
+      },
+      {
+        "sourceOrLabel": "(garbage collector)",
+        "sampleWeightMicroseconds": 62162
+      },
+      {
+        "sourceOrLabel": "node:internal/fs/promises",
+        "sampleWeightMicroseconds": 50054
+      },
+      {
+        "sourceOrLabel": "node:internal/util",
+        "sampleWeightMicroseconds": 30752
+      },
+      {
+        "sourceOrLabel": "electron/core/compiler.ts",
+        "sampleWeightMicroseconds": 19487
+      },
+      {
+        "sourceOrLabel": "node:internal/fs/utils",
+        "sampleWeightMicroseconds": 13605
+      },
+      {
+        "sourceOrLabel": "electron/core/file-io.ts",
+        "sampleWeightMicroseconds": 10082
+      },
+      {
+        "sourceOrLabel": "node:fs",
+        "sampleWeightMicroseconds": 9019
+      },
+      {
+        "sourceOrLabel": "electron/core/project.ts",
+        "sampleWeightMicroseconds": 6027
+      },
+      {
+        "sourceOrLabel": "electron/core/build-workspaces.ts",
+        "sampleWeightMicroseconds": 5606
+      },
+      {
+        "sourceOrLabel": "(native/unmapped)",
+        "sampleWeightMicroseconds": 4522
+      },
+      {
+        "sourceOrLabel": "createUnsafeArrayBuffer",
+        "sampleWeightMicroseconds": 4509
+      },
+      {
+        "sourceOrLabel": "electron/main.ts",
+        "sampleWeightMicroseconds": 3978
+      },
+      {
+        "sourceOrLabel": "electron/core/save-transactions.ts",
+        "sampleWeightMicroseconds": 3673
+      },
+      {
+        "sourceOrLabel": "node:net",
+        "sampleWeightMicroseconds": 3012
+      },
+      {
+        "sourceOrLabel": "node:internal/streams/writable",
+        "sampleWeightMicroseconds": 3009
+      },
+      {
+        "sourceOrLabel": "node:internal/per_context/primordials",
+        "sampleWeightMicroseconds": 2864
+      },
+      {
+        "sourceOrLabel": "node:internal/deps/undici/undici",
+        "sampleWeightMicroseconds": 2395
+      },
+      {
+        "sourceOrLabel": "electron/core/engine-cache.ts",
+        "sampleWeightMicroseconds": 2382
+      },
+      {
+        "sourceOrLabel": "node:events",
+        "sampleWeightMicroseconds": 1577
+      },
+      {
+        "sourceOrLabel": "node:electron/js2c/node_init",
+        "sampleWeightMicroseconds": 1519
+      },
+      {
+        "sourceOrLabel": "node:internal/fs/rimraf",
+        "sampleWeightMicroseconds": 1516
+      },
+      {
+        "sourceOrLabel": "src/shared/project-files.ts",
+        "sampleWeightMicroseconds": 1515
+      },
+      {
+        "sourceOrLabel": "node:internal/errors",
+        "sampleWeightMicroseconds": 1507
+      },
+      {
+        "sourceOrLabel": "electron/core/runtime-manager.ts",
+        "sampleWeightMicroseconds": 1507
+      },
+      {
+        "sourceOrLabel": "node:internal/async_hooks",
+        "sampleWeightMicroseconds": 1507
+      },
+      {
+        "sourceOrLabel": "node:internal/worker/js_transferable",
+        "sampleWeightMicroseconds": 1506
+      },
+      {
+        "sourceOrLabel": "node:internal/streams/readable",
+        "sampleWeightMicroseconds": 1505
+      },
+      {
+        "sourceOrLabel": "read",
+        "sampleWeightMicroseconds": 1505
+      },
+      {
+        "sourceOrLabel": "node:internal/process/task_queues",
+        "sampleWeightMicroseconds": 1505
+      },
+      {
+        "sourceOrLabel": "params",
+        "sampleWeightMicroseconds": 1502
+      },
+      {
+        "sourceOrLabel": "node:internal/stream_base_commons",
+        "sampleWeightMicroseconds": 1502
+      },
+      {
+        "sourceOrLabel": "node:internal/timers",
+        "sampleWeightMicroseconds": 1501
+      },
+      {
+        "sourceOrLabel": "rmdir",
+        "sampleWeightMicroseconds": 1501
+      },
+      {
+        "sourceOrLabel": "node:electron/js2c/browser_init",
+        "sampleWeightMicroseconds": 1498
+      },
+      {
+        "sourceOrLabel": "close",
+        "sampleWeightMicroseconds": 1479
+      }
+    ],
+    "renderer": [
+      {
+        "sourceOrLabel": "(idle)",
+        "sampleWeightMicroseconds": 66305988
+      },
+      {
+        "sourceOrLabel": "(program)",
+        "sampleWeightMicroseconds": 1568296
+      },
+      {
+        "sourceOrLabel": "node_modules/@codemirror/view/dist/index.js",
+        "sampleWeightMicroseconds": 108177
+      },
+      {
+        "sourceOrLabel": "node_modules/pdfjs-dist/build/pdf.mjs",
+        "sampleWeightMicroseconds": 104548
+      },
+      {
+        "sourceOrLabel": "node_modules/react-dom/cjs/react-dom-client.production.js",
+        "sampleWeightMicroseconds": 79385
+      },
+      {
+        "sourceOrLabel": "(garbage collector)",
+        "sampleWeightMicroseconds": 53424
+      },
+      {
+        "sourceOrLabel": "(native/unmapped)",
+        "sampleWeightMicroseconds": 27589
+      },
+      {
+        "sourceOrLabel": "src/useWorkspace.ts",
+        "sampleWeightMicroseconds": 22210
+      },
+      {
+        "sourceOrLabel": "query",
+        "sampleWeightMicroseconds": 18206
+      },
+      {
+        "sourceOrLabel": "src/components/PdfPreview.tsx",
+        "sampleWeightMicroseconds": 15146
+      },
+      {
+        "sourceOrLabel": "node_modules/lucide-react/dist/esm/shared/src/build/buildLucideIconNode.mjs",
+        "sampleWeightMicroseconds": 13738
+      },
+      {
+        "sourceOrLabel": "node_modules/lucide-react/dist/esm/Icon.mjs",
+        "sampleWeightMicroseconds": 8926
+      },
+      {
+        "sourceOrLabel": "node_modules/react/cjs/react.production.js",
+        "sampleWeightMicroseconds": 8792
+      },
+      {
+        "sourceOrLabel": "querySelectorAll",
+        "sampleWeightMicroseconds": 8448
+      },
+      {
+        "sourceOrLabel": "node_modules/@codemirror/state/dist/index.js",
+        "sampleWeightMicroseconds": 7843
+      },
+      {
+        "sourceOrLabel": "src/App.tsx",
+        "sampleWeightMicroseconds": 7830
+      },
+      {
+        "sourceOrLabel": "previewNode",
+        "sampleWeightMicroseconds": 7419
+      },
+      {
+        "sourceOrLabel": "src/pdf-job.ts",
+        "sampleWeightMicroseconds": 6043
+      },
+      {
+        "sourceOrLabel": "node_modules/@codemirror/language/dist/index.js",
+        "sampleWeightMicroseconds": 6024
+      },
+      {
+        "sourceOrLabel": "checkVisibility",
+        "sampleWeightMicroseconds": 6019
+      },
+      {
+        "sourceOrLabel": "scrollIntoView",
+        "sampleWeightMicroseconds": 5177
+      },
+      {
+        "sourceOrLabel": "node_modules/scheduler/cjs/scheduler.production.js",
+        "sampleWeightMicroseconds": 4535
+      },
+      {
+        "sourceOrLabel": "src/components/PdfAnnotations.tsx",
+        "sampleWeightMicroseconds": 4526
+      },
+      {
+        "sourceOrLabel": "computeBox",
+        "sampleWeightMicroseconds": 4141
+      },
+      {
+        "sourceOrLabel": "serialize",
+        "sampleWeightMicroseconds": 4092
+      },
+      {
+        "sourceOrLabel": "getBoundingClientRect",
+        "sampleWeightMicroseconds": 3448
+      },
+      {
+        "sourceOrLabel": "node_modules/react/cjs/react-jsx-runtime.production.js",
+        "sampleWeightMicroseconds": 3105
+      },
+      {
+        "sourceOrLabel": "parseEvaluationResultValue",
+        "sampleWeightMicroseconds": 3045
+      },
+      {
+        "sourceOrLabel": "innerSerialize",
+        "sampleWeightMicroseconds": 3008
+      },
+      {
+        "sourceOrLabel": "elementsFromPoint",
+        "sampleWeightMicroseconds": 3004
+      },
+      {
+        "sourceOrLabel": "node_modules/lucide-react/dist/esm/shared/src/utils/mergeClasses.mjs",
+        "sampleWeightMicroseconds": 2971
+      },
+      {
+        "sourceOrLabel": "isElementHiddenForAria",
+        "sampleWeightMicroseconds": 2815
+      },
+      {
+        "sourceOrLabel": "node_modules/lucide-react/dist/esm/shared/src/build/buildLucideIconForReact.mjs",
+        "sampleWeightMicroseconds": 2723
+      },
+      {
+        "sourceOrLabel": "getExplicitAriaRole",
+        "sampleWeightMicroseconds": 2700
+      },
+      {
+        "sourceOrLabel": "getImplicitAriaRole",
+        "sampleWeightMicroseconds": 2659
+      },
+      {
+        "sourceOrLabel": "_cached",
+        "sampleWeightMicroseconds": 2642
+      },
+      {
+        "sourceOrLabel": "getAriaRole",
+        "sampleWeightMicroseconds": 2454
+      },
+      {
+        "sourceOrLabel": "node_modules/@codemirror/legacy-modes/mode/stex.js",
+        "sampleWeightMicroseconds": 2335
+      },
+      {
+        "sourceOrLabel": "listener",
+        "sampleWeightMicroseconds": 1522
+      },
+      {
+        "sourceOrLabel": "evaluate",
+        "sampleWeightMicroseconds": 1518
+      },
+      {
+        "sourceOrLabel": "expectHitTarget",
+        "sampleWeightMicroseconds": 1517
+      },
+      {
+        "sourceOrLabel": "getTextAlternativeInternal",
+        "sampleWeightMicroseconds": 1512
+      },
+      {
+        "sourceOrLabel": "visit",
+        "sampleWeightMicroseconds": 1511
+      },
+      {
+        "sourceOrLabel": "dispatchEvent",
+        "sampleWeightMicroseconds": 1510
+      },
+      {
+        "sourceOrLabel": "matches",
+        "sampleWeightMicroseconds": 1510
+      },
+      {
+        "sourceOrLabel": "CustomEvent",
+        "sampleWeightMicroseconds": 1509
+      },
+      {
+        "sourceOrLabel": "node_modules/lucide-react/dist/esm/createLucideIcon.mjs",
+        "sampleWeightMicroseconds": 1506
+      },
+      {
+        "sourceOrLabel": "appendElement",
+        "sampleWeightMicroseconds": 1506
+      },
+      {
+        "sourceOrLabel": "readAttribute",
+        "sampleWeightMicroseconds": 1505
+      },
+      {
+        "sourceOrLabel": "elementText",
+        "sampleWeightMicroseconds": 1504
+      },
+      {
+        "sourceOrLabel": "computeAccessibleNameComposite",
+        "sampleWeightMicroseconds": 1502
+      },
+      {
+        "sourceOrLabel": "elementSafeTagName",
+        "sampleWeightMicroseconds": 1502
+      },
+      {
+        "sourceOrLabel": "getCSSContent",
+        "sampleWeightMicroseconds": 1501
+      },
+      {
+        "sourceOrLabel": "eval",
+        "sampleWeightMicroseconds": 1501
+      },
+      {
+        "sourceOrLabel": "parentElementOrShadowHost",
+        "sampleWeightMicroseconds": 1501
+      },
+      {
+        "sourceOrLabel": "shouldSkipForTextMatching",
+        "sampleWeightMicroseconds": 1498
+      },
+      {
+        "sourceOrLabel": "belongsToDisplayNoneOrAriaHiddenOrNonSlotted",
+        "sampleWeightMicroseconds": 1498
+      },
+      {
+        "sourceOrLabel": "expectSingleElement",
+        "sampleWeightMicroseconds": 1495
+      },
+      {
+        "sourceOrLabel": "_queryEngineAll",
+        "sampleWeightMicroseconds": 1492
+      },
+      {
+        "sourceOrLabel": "src/pdf-policy.ts",
+        "sampleWeightMicroseconds": 1491
+      },
+      {
+        "sourceOrLabel": "node_modules/@lezer/common/dist/index.js",
+        "sampleWeightMicroseconds": 1481
+      },
+      {
+        "sourceOrLabel": "normalize",
+        "sampleWeightMicroseconds": 1424
+      },
+      {
+        "sourceOrLabel": "src/components/LatexEditor.tsx",
+        "sampleWeightMicroseconds": 1390
+      },
+      {
+        "sourceOrLabel": "computeElementStyleVisibilityVisible",
+        "sampleWeightMicroseconds": 1160
+      },
+      {
+        "sourceOrLabel": "_matchesSimple",
+        "sampleWeightMicroseconds": 1119
+      },
+      {
+        "sourceOrLabel": "normalizeWhiteSpace",
+        "sampleWeightMicroseconds": 1056
+      }
+    ]
+  },
+  "heap": [
+    {
+      "label": "ready",
+      "memory": {
+        "usedSize": 8917360,
+        "totalSize": 12566528,
+        "embedderHeapUsedSize": 3769200,
+        "backingStorageSize": 1348864
+      },
+      "dom": {
+        "documents": 2,
+        "nodes": 896,
+        "jsEventListeners": 472
+      },
+      "mainMemory": {
+        "rss": 204849152,
+        "heapTotal": 18350080,
+        "heapUsed": 9114304,
+        "external": 6591781,
+        "arrayBuffers": 0
+      },
+      "nodes": 1,
+      "treeReportedEstimatedBytes": 0,
+      "samplesReportedEstimatedBytes": 0,
+      "contextEstimatedBytes": [
+        {
+          "label": "",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "label": "cycle-1",
+      "memory": {
+        "usedSize": 12794732,
+        "totalSize": 19185664,
+        "embedderHeapUsedSize": 4431816,
+        "backingStorageSize": 1434200
+      },
+      "dom": {
+        "documents": 1,
+        "nodes": 2293,
+        "jsEventListeners": 429
+      },
+      "mainMemory": {
+        "rss": 236257280,
+        "heapTotal": 29097984,
+        "heapUsed": 13070092,
+        "external": 9359937,
+        "arrayBuffers": 0
+      },
+      "nodes": 68,
+      "treeReportedEstimatedBytes": 2368592,
+      "samplesReportedEstimatedBytes": 2368712,
+      "contextEstimatedBytes": [
+        {
+          "label": "",
+          "value": 1763812
+        },
+        {
+          "label": "node_modules/pdfjs-dist/build/pdf.mjs",
+          "value": 394488
+        },
+        {
+          "label": "node_modules/@codemirror/state/dist/index.js",
+          "value": 78468
+        },
+        {
+          "label": "node_modules/@codemirror/view/dist/index.js",
+          "value": 66264
+        },
+        {
+          "label": "node_modules/react/cjs/react.production.js",
+          "value": 65560
+        },
+        {
+          "label": "node_modules/lucide-react/dist/esm/Icon.mjs",
+          "value": 0
+        },
+        {
+          "label": "node_modules/react-dom/cjs/react-dom-client.production.js",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "label": "cycle-5",
+      "memory": {
+        "usedSize": 17771800,
+        "totalSize": 24166400,
+        "embedderHeapUsedSize": 10634808,
+        "backingStorageSize": 1455850
+      },
+      "dom": {
+        "documents": 1,
+        "nodes": 9152,
+        "jsEventListeners": 655
+      },
+      "mainMemory": {
+        "rss": 261767168,
+        "heapTotal": 43909120,
+        "heapUsed": 17476824,
+        "external": 8345066,
+        "arrayBuffers": 0
+      },
+      "nodes": 116,
+      "treeReportedEstimatedBytes": 2843852,
+      "samplesReportedEstimatedBytes": 2843912,
+      "contextEstimatedBytes": [
+        {
+          "label": "",
+          "value": 1501800
+        },
+        {
+          "label": "node_modules/pdfjs-dist/build/pdf.mjs",
+          "value": 593600
+        },
+        {
+          "label": "node_modules/react-dom/cjs/react-dom-client.production.js",
+          "value": 263048
+        },
+        {
+          "label": "node_modules/@codemirror/view/dist/index.js",
+          "value": 262920
+        },
+        {
+          "label": "node_modules/@codemirror/state/dist/index.js",
+          "value": 156936
+        },
+        {
+          "label": "node_modules/@codemirror/legacy-modes/mode/stex.js",
+          "value": 65548
+        },
+        {
+          "label": "node_modules/@codemirror/language/dist/index.js",
+          "value": 0
+        },
+        {
+          "label": "node_modules/lucide-react/dist/esm/Icon.mjs",
+          "value": 0
+        },
+        {
+          "label": "node_modules/react/cjs/react.production.js",
+          "value": 0
+        },
+        {
+          "label": "node_modules/scheduler/cjs/scheduler.production.js",
+          "value": 0
+        },
+        {
+          "label": "src/App.tsx",
+          "value": 0
+        }
+      ]
+    }
+  ],
+  "sourceMaps": [
+    {
+      "member": "dist-electron/main.cjs",
+      "kind": "packaged",
+      "bytes": 1975811,
+      "sha256": "a2511a2f75325f43ec48aa3243acc5a612d25ba1a368260375c186f0614041cf"
+    },
+    {
+      "member": "dist/assets/index-CfZ2RJ3X.js",
+      "kind": "byte-identical in-memory replay",
+      "bytes": 4789956,
+      "sha256": "3bbfee79e6cb3c5dbaeff8f483649b7833b37e91909e0478e3f75d0cc9889e9e"
+    }
+  ],
+  "scope": "Diagnostic CPU and sampled JavaScript allocation profiles on a copied synthetic history. Profiling changes CPU/allocation behavior; these timings are not acceptance or optimization comparisons. Heap samples estimate selected live allocations since sampling began, not all retained objects or native/PDF-worker/GPU memory. No heap snapshot or explicit GC is requested during the sampled workload. The optional retention diagnostic requests both after sampling stops and is reported separately. Original profile and app are preserved. The app starts new processes from copied on-disk history; it does not restore the preceding session heap. CPU profiles cover the selected V8 isolates rather than all native threads or subprocess CPU. CPU weights sum V8 time deltas, not kernel CPU time or complete native-thread work. Context attribution assigns each sample once to its nearest mapped stack ancestor; it is call-stack context, not causal blame. Heap node selfSize and individual sample estimates are reported separately because rounding can differ. Allocation samples are not the full retained heap. All mappings require exact packaged JavaScript and matching owned source contents; no app files or dist outputs are changed."
+}

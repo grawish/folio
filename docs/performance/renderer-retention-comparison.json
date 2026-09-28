@@ -1,0 +1,4660 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-28T03:28:03.825472+00:00",
+  "sourceCommit": "bf980919786623a563f548e4894d2a4ff4ff6dc6",
+  "appAsarSha256": "fbc69b9abcd714b69a35f139f7ac155a05458e5cefdc0bef3e29e861b932e91e",
+  "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+  "matchingInstrumentHashes": {
+    "scripts/profile-v8-resources.mjs": "9e9aa80c9cb2ed5563303c75cbd64a0e6ae8471d884a5a4af5a944431d475f55",
+    "scripts/profile-directory-storage.ts": "5e4741a3e3c5d9c94e7efd3f5b1f1115d28ce812ba0a26f2026af0d7487accf8",
+    "scripts/mac-process-sampler.mjs": "9d25c0620ac495dce59f14cab8f98779d67c5e38a730b589569afb80029924d7",
+    "scripts/sample-mac-processes.c": "696294d13261a728ccae0b15d6e5446d49781571997f9e3ef1b254e0992ca67b",
+    "scripts/capture-renderer-retention.mjs": "bddb5eca69d021437b75618086b9e2d79d27df92350551c642e043c9755fdfe7"
+  },
+  "sameSeedAndEmbeddedRuntime": true,
+  "allActualSavedSourcesMatchIntendedInput": true,
+  "allExportHashesMatchRetainedHistory": true,
+  "allOriginal361VersionsPreserved": true,
+  "comparedPdfPairs": 15,
+  "comparedPagePairs": 510,
+  "independentlyParsedPages": 1020,
+  "pairs": [
+    {
+      "label": "Trace 1 small",
+      "pages": 1,
+      "sourceSha256": "edc35a415e85fd0e818d2ac281505eca2589992510770eb153c888299ef04185",
+      "pageTextGeometryAndLinkComparisonSha256": "046662d97c9b103b2531dac61c462e87ea5bb4ca1dd8be05f786429368a54975"
+    },
+    {
+      "label": "Trace 1 long",
+      "pages": 100,
+      "sourceSha256": "7e777266856cbc5580411729e8d3d96bfb61955d34f695722d9aafc40fb0a365",
+      "pageTextGeometryAndLinkComparisonSha256": "fa134cbaeb198118d7c15966f832eef518ef1355fdb277d93691ecaa9cea0016"
+    },
+    {
+      "label": "Trace 1 return",
+      "pages": 1,
+      "sourceSha256": "9923df9e45b47fdc4fb08a148b830acc49d95887fce65497a7f4c177e78334ac",
+      "pageTextGeometryAndLinkComparisonSha256": "f372cc600220e90fc9575bf4f5322b81fc1df28c45f1db0663372c77be998454"
+    },
+    {
+      "label": "Trace 2 small",
+      "pages": 1,
+      "sourceSha256": "a32268a5a23655b6a4cc19734f94c0350fb96fc6c516846f73a3dd6591d9bc53",
+      "pageTextGeometryAndLinkComparisonSha256": "8c451e8f7475c41f4e679455c5c28c3ed8436ab3424e063231ae9d2b86185281"
+    },
+    {
+      "label": "Trace 2 long",
+      "pages": 100,
+      "sourceSha256": "d06de31762cae6acf505c125a2008f75a16ae545199968060898c4f877f92c73",
+      "pageTextGeometryAndLinkComparisonSha256": "750c1d6fb9d960894f3cb52c9d6a67a2c7c317f220f0368475ed1026e608bb5e"
+    },
+    {
+      "label": "Trace 2 return",
+      "pages": 1,
+      "sourceSha256": "6b23db0ebee2e0e3a544f5a0d2485aae84dbc7ca1b78feea233a7945b977e40c",
+      "pageTextGeometryAndLinkComparisonSha256": "140f42de7ab0984c609cb04a9be38af8fc2f593b3b46f0b2a52742e35bf49ba8"
+    },
+    {
+      "label": "Trace 3 small",
+      "pages": 1,
+      "sourceSha256": "9e56643aff990c6884118f6d5d4f578c08a59775fd62af7c2c6ac0c695add7a2",
+      "pageTextGeometryAndLinkComparisonSha256": "dc19a5573b881820dcb34e097903e252bf31c19ee90bd1c838efd0b352c2761a"
+    },
+    {
+      "label": "Trace 3 long",
+      "pages": 100,
+      "sourceSha256": "85e8ccc98726e5859d7ef301426461db8b948b6a8a1cc390b6fc0fba51aa0d75",
+      "pageTextGeometryAndLinkComparisonSha256": "505f640761a1e6ae2da07172bf5bfd9f70a014ad896add40edeab30339cfe9ee"
+    },
+    {
+      "label": "Trace 3 return",
+      "pages": 1,
+      "sourceSha256": "8f631a20cad0b989f44e20a6d91fc3394d8b2d88ffaf4865d3609642f09a563f",
+      "pageTextGeometryAndLinkComparisonSha256": "d4c9dfd6ef72a7381db880a8309e65e4df9310394ced7f77cf72dd634f41a6dc"
+    },
+    {
+      "label": "Trace 4 small",
+      "pages": 1,
+      "sourceSha256": "eb9a9722f349a6ff8f51641e1cca798ed2ae6a3c5229f7a875ca66185d18ae82",
+      "pageTextGeometryAndLinkComparisonSha256": "68712b396d7663206d67614e296b1fdf72a8d97bbb92decc9b8150886741fcf2"
+    },
+    {
+      "label": "Trace 4 long",
+      "pages": 100,
+      "sourceSha256": "ae05948ded3c6c1354c0f25363f305b653a29fa5aca39ff68712f5c7edb10363",
+      "pageTextGeometryAndLinkComparisonSha256": "b654376e01f260982f55c318c145af5966320172626d04d7f87e18b76086bed5"
+    },
+    {
+      "label": "Trace 4 return",
+      "pages": 1,
+      "sourceSha256": "e0565b7901d06efa947e938dc375ec25891867d3b97d1ea692c8e41de144adfa",
+      "pageTextGeometryAndLinkComparisonSha256": "3c450f3c064b6df4184b51a44252318a950aaffe2fc79d39d9720922b07607b5"
+    },
+    {
+      "label": "Trace 5 small",
+      "pages": 1,
+      "sourceSha256": "2b1c9e349aef3c7d0f71b8c481911fb73180d2b4c568fda9ec18509aba1ed59c",
+      "pageTextGeometryAndLinkComparisonSha256": "6b40dc1db874b39d53f4293e5df11806de3db7fe0cf1adb1759013144b233a8c"
+    },
+    {
+      "label": "Trace 5 long",
+      "pages": 100,
+      "sourceSha256": "1c144864b9eaaa6ec043ed376628b117c3600bac55c8cfb15bd1dbe876cb4cf2",
+      "pageTextGeometryAndLinkComparisonSha256": "03502fa9466f47cadeb97d36dcaf20a8a5efaaaad39064a8e10e9cf140ea0f9e"
+    },
+    {
+      "label": "Trace 5 return",
+      "pages": 1,
+      "sourceSha256": "13be439ac37b344722551b037a9c3a05dbfecb1cb11ba7a2613a70398c90491f",
+      "pageTextGeometryAndLinkComparisonSha256": "1047ef9d1e471bf72a3015e58555e70cebf750ea3e9a742f5177d67fbe62ca91"
+    }
+  ],
+  "runs": [
+    {
+      "inputMethod": "native keyboard.insertText",
+      "measurements": {
+        "path": "test-results/v8-profile-ismP0o/measurements.json",
+        "bytes": 646608,
+        "sha256": "8f8642bb6a2c4544bb6abd3707fb4308384507c0892477ce822184e554231f1b"
+      },
+      "observations": [
+        {
+          "label": "code-before-gc",
+          "at": "2026-09-28T03:21:28.136Z",
+          "connected": {
+            "nodes": 400,
+            "elements": 302,
+            "editors": 1,
+            "textLayers": 1,
+            "canvases": 2,
+            "codeHidden": false
+          },
+          "dom": {
+            "documents": 1,
+            "nodes": 8771,
+            "jsEventListeners": 246
+          },
+          "memory": {
+            "usedSize": 11557736,
+            "totalSize": 14991360,
+            "embedderHeapUsedSize": 4211920,
+            "backingStorageSize": 1410993
+          }
+        },
+        {
+          "label": "code-after-gc",
+          "at": "2026-09-28T03:21:28.148Z",
+          "connected": {
+            "nodes": 400,
+            "elements": 302,
+            "editors": 1,
+            "textLayers": 1,
+            "canvases": 2,
+            "codeHidden": false
+          },
+          "dom": {
+            "documents": 1,
+            "nodes": 8771,
+            "jsEventListeners": 246
+          },
+          "memory": {
+            "usedSize": 11158532,
+            "totalSize": 12369920,
+            "embedderHeapUsedSize": 3956544,
+            "backingStorageSize": 1410449
+          }
+        },
+        {
+          "label": "code-after-snapshot",
+          "at": "2026-09-28T03:21:28.715Z",
+          "connected": {
+            "nodes": 400,
+            "elements": 302,
+            "editors": 1,
+            "textLayers": 1,
+            "canvases": 2,
+            "codeHidden": false
+          },
+          "dom": {
+            "documents": 1,
+            "nodes": 8771,
+            "jsEventListeners": 246
+          },
+          "memory": {
+            "usedSize": 11160248,
+            "totalSize": 12369920,
+            "embedderHeapUsedSize": 3956544,
+            "backingStorageSize": 1410449
+          }
+        },
+        {
+          "label": "chat-existing-editor-before-gc",
+          "at": "2026-09-28T03:21:28.738Z",
+          "connected": {
+            "nodes": 427,
+            "elements": 324,
+            "editors": 1,
+            "textLayers": 1,
+            "canvases": 2,
+            "codeHidden": true
+          },
+          "dom": {
+            "documents": 1,
+            "nodes": 8820,
+            "jsEventListeners": 283
+          },
+          "memory": {
+            "usedSize": 11640584,
+            "totalSize": 12632064,
+            "embedderHeapUsedSize": 4528392,
+            "backingStorageSize": 1410985
+          }
+        },
+        {
+          "label": "chat-existing-editor-after-gc",
+          "at": "2026-09-28T03:21:28.746Z",
+          "connected": {
+            "nodes": 427,
+            "elements": 324,
+            "editors": 1,
+            "textLayers": 1,
+            "canvases": 2,
+            "codeHidden": true
+          },
+          "dom": {
+            "documents": 1,
+            "nodes": 8812,
+            "jsEventListeners": 251
+          },
+          "memory": {
+            "usedSize": 11136260,
+            "totalSize": 12369920,
+            "embedderHeapUsedSize": 3900808,
+            "backingStorageSize": 1410449
+          }
+        },
+        {
+          "label": "chat-existing-editor-after-snapshot",
+          "at": "2026-09-28T03:21:29.296Z",
+          "connected": {
+            "nodes": 427,
+            "elements": 324,
+            "editors": 1,
+            "textLayers": 1,
+            "canvases": 2,
+            "codeHidden": true
+          },
+          "dom": {
+            "documents": 1,
+            "nodes": 8812,
+            "jsEventListeners": 251
+          },
+          "memory": {
+            "usedSize": 11139040,
+            "totalSize": 12369920,
+            "embedderHeapUsedSize": 4141152,
+            "backingStorageSize": 1410488
+          }
+        },
+        {
+          "label": "new-project-before-gc",
+          "at": "2026-09-28T03:21:31.673Z",
+          "connected": {
+            "nodes": 1164,
+            "elements": 707,
+            "editors": 1,
+            "textLayers": 1,
+            "canvases": 2,
+            "codeHidden": true
+          },
+          "dom": {
+            "documents": 1,
+            "nodes": 1261,
+            "jsEventListeners": 341
+          },
+          "memory": {
+            "usedSize": 11611072,
+            "totalSize": 16564224,
+            "embedderHeapUsedSize": 5721016,
+            "backingStorageSize": 1422903
+          }
+        },
+        {
+          "label": "new-project-after-gc",
+          "at": "2026-09-28T03:21:31.691Z",
+          "connected": {
+            "nodes": 1164,
+            "elements": 707,
+            "editors": 1,
+            "textLayers": 1,
+            "canvases": 2,
+            "codeHidden": true
+          },
+          "dom": {
+            "documents": 1,
+            "nodes": 1234,
+            "jsEventListeners": 252
+          },
+          "memory": {
+            "usedSize": 10485224,
+            "totalSize": 11583488,
+            "embedderHeapUsedSize": 3723400,
+            "backingStorageSize": 1382761
+          }
+        },
+        {
+          "label": "new-project-after-snapshot",
+          "at": "2026-09-28T03:21:32.202Z",
+          "connected": {
+            "nodes": 1156,
+            "elements": 700,
+            "editors": 1,
+            "textLayers": 1,
+            "canvases": 2,
+            "codeHidden": true
+          },
+          "dom": {
+            "documents": 1,
+            "nodes": 1234,
+            "jsEventListeners": 288
+          },
+          "memory": {
+            "usedSize": 10730172,
+            "totalSize": 11583488,
+            "embedderHeapUsedSize": 3702960,
+            "backingStorageSize": 1382846
+          }
+        }
+      ],
+      "snapshots": [
+        {
+          "label": "code",
+          "sha256": "8d781a67b657277e16e9f8eddf70180aaa714e058a2e4af9f30eadb6b9969898",
+          "nodeFields": [
+            "type",
+            "name",
+            "id",
+            "self_size",
+            "edge_count",
+            "detachedness"
+          ],
+          "edgeFields": [
+            "type",
+            "name_or_index",
+            "to_node"
+          ],
+          "nodes": 265879,
+          "edges": 1098410,
+          "detachedNodes": 6766,
+          "detachedSelfBytes": 685544,
+          "detachedShortestPathGroups": {
+            "nativeUndoStack": 6345,
+            "nativeTypingCommand": 420,
+            "other": 1
+          },
+          "detachedKinds": {
+            "native": 6766
+          },
+          "detachedNames": [
+            {
+              "name": "Text",
+              "count": 2265,
+              "selfBytes": 217440
+            },
+            {
+              "name": "<div class=\"cm-line\" style=\"color: rgb(140, 216, 228);\">",
+              "count": 2010,
+              "selfBytes": 209040
+            },
+            {
+              "name": "<br>",
+              "count": 1288,
+              "selfBytes": 133952
+            },
+            {
+              "name": "<span class=\"\u037ca\">",
+              "count": 510,
+              "selfBytes": 53040
+            },
+            {
+              "name": "<div class=\"cm-line\">",
+              "count": 340,
+              "selfBytes": 35360
+            },
+            {
+              "name": "<span class=\"\u037c5\">",
+              "count": 280,
+              "selfBytes": 29120
+            },
+            {
+              "name": "<span class=\"\u037c6\">",
+              "count": 45,
+              "selfBytes": 4680
+            },
+            {
+              "name": "<div class=\"cm-line cm-activeLine\">",
+              "count": 15,
+              "selfBytes": 1560
+            },
+            {
+              "name": "Attr",
+              "count": 7,
+              "selfBytes": 728
+            },
+            {
+              "name": "<div class=\"cm-gap\" style=\"height: 7417.12px;\">",
+              "count": 5,
+              "selfBytes": 520
+            },
+            {
+              "name": "<span role=\"presentation\" dir=\"ltr\">",
+              "count": 1,
+              "selfBytes": 104
+            }
+          ],
+          "detachedReachableWithoutWeakEdges": 6766,
+          "representativePaths": [
+            {
+              "id": 54915,
+              "name": "Text",
+              "selfBytes": 96,
+              "reachableIgnoringWeakEdges": true,
+              "pathFromRoot": [
+                {
+                  "fromId": 1,
+                  "fromType": "synthetic",
+                  "fromName": "",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 3,
+                  "toType": "synthetic",
+                  "toName": "(GC roots)"
+                },
+                {
+                  "fromId": 3,
+                  "fromType": "synthetic",
+                  "fromName": "(GC roots)",
+                  "edgeType": "element",
+                  "edge": "29",
+                  "toId": 444033,
+                  "toType": "synthetic",
+                  "toName": "C++ Persistent roots"
+                },
+                {
+                  "fromId": 444033,
+                  "fromType": "synthetic",
+                  "fromName": "C++ Persistent roots",
+                  "edgeType": "internal",
+                  "edge": "blink::WebLocalFrameImpl::WebLocalFrameImpl(base::PassKey<WebLocalFrameImpl>, mojom::blink::TreeScopeType, WebLocalFrameClient *, blink::InterfaceRegistry *, const LocalFrameToken &)@../../third_party/blink/renderer/core/frame/web_local_frame_impl.cc:2296",
+                  "toId": 112,
+                  "toType": "native",
+                  "toName": "blink::WebLocalFrameImpl"
+                },
+                {
+                  "fromId": 112,
+                  "fromType": "native",
+                  "fromName": "blink::WebLocalFrameImpl",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 10698,
+                  "toType": "native",
+                  "toName": "blink::LocalFrame"
+                },
+                {
+                  "fromId": 10698,
+                  "fromType": "native",
+                  "fromName": "blink::LocalFrame",
+                  "edgeType": "element",
+                  "edge": "11",
+                  "toId": 76038,
+                  "toType": "native",
+                  "toName": "blink::Editor"
+                },
+                {
+                  "fromId": 76038,
+                  "fromType": "native",
+                  "fromName": "blink::Editor",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 62702,
+                  "toType": "native",
+                  "toName": "blink::UndoStack"
+                },
+                {
+                  "fromId": 62702,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStack",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 62704,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 62704,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "2",
+                  "toId": 84206,
+                  "toType": "native",
+                  "toName": "blink::UndoStep"
+                },
+                {
+                  "fromId": 84206,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStep",
+                  "edgeType": "element",
+                  "edge": "14",
+                  "toId": 84208,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::SimpleEditCommand, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 84208,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::SimpleEditCommand, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "624",
+                  "toId": 32762,
+                  "toType": "native",
+                  "toName": "blink::InsertNodeBeforeCommand"
+                },
+                {
+                  "fromId": 32762,
+                  "fromType": "native",
+                  "fromName": "blink::InsertNodeBeforeCommand",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 54915,
+                  "toType": "native",
+                  "toName": "Text"
+                }
+              ]
+            },
+            {
+              "id": 54921,
+              "name": "<br>",
+              "selfBytes": 104,
+              "reachableIgnoringWeakEdges": true,
+              "pathFromRoot": [
+                {
+                  "fromId": 1,
+                  "fromType": "synthetic",
+                  "fromName": "",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 3,
+                  "toType": "synthetic",
+                  "toName": "(GC roots)"
+                },
+                {
+                  "fromId": 3,
+                  "fromType": "synthetic",
+                  "fromName": "(GC roots)",
+                  "edgeType": "element",
+                  "edge": "29",
+                  "toId": 444033,
+                  "toType": "synthetic",
+                  "toName": "C++ Persistent roots"
+                },
+                {
+                  "fromId": 444033,
+                  "fromType": "synthetic",
+                  "fromName": "C++ Persistent roots",
+                  "edgeType": "internal",
+                  "edge": "blink::WebLocalFrameImpl::WebLocalFrameImpl(base::PassKey<WebLocalFrameImpl>, mojom::blink::TreeScopeType, WebLocalFrameClient *, blink::InterfaceRegistry *, const LocalFrameToken &)@../../third_party/blink/renderer/core/frame/web_local_frame_impl.cc:2296",
+                  "toId": 112,
+                  "toType": "native",
+                  "toName": "blink::WebLocalFrameImpl"
+                },
+                {
+                  "fromId": 112,
+                  "fromType": "native",
+                  "fromName": "blink::WebLocalFrameImpl",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 10698,
+                  "toType": "native",
+                  "toName": "blink::LocalFrame"
+                },
+                {
+                  "fromId": 10698,
+                  "fromType": "native",
+                  "fromName": "blink::LocalFrame",
+                  "edgeType": "element",
+                  "edge": "11",
+                  "toId": 76038,
+                  "toType": "native",
+                  "toName": "blink::Editor"
+                },
+                {
+                  "fromId": 76038,
+                  "fromType": "native",
+                  "fromName": "blink::Editor",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 62702,
+                  "toType": "native",
+                  "toName": "blink::UndoStack"
+                },
+                {
+                  "fromId": 62702,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStack",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 62704,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 62704,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "2",
+                  "toId": 84206,
+                  "toType": "native",
+                  "toName": "blink::UndoStep"
+                },
+                {
+                  "fromId": 84206,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStep",
+                  "edgeType": "element",
+                  "edge": "14",
+                  "toId": 84208,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::SimpleEditCommand, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 84208,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::SimpleEditCommand, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "628",
+                  "toId": 32838,
+                  "toType": "native",
+                  "toName": "blink::AppendNodeCommand"
+                },
+                {
+                  "fromId": 32838,
+                  "fromType": "native",
+                  "fromName": "blink::AppendNodeCommand",
+                  "edgeType": "element",
+                  "edge": "2",
+                  "toId": 54921,
+                  "toType": "native",
+                  "toName": "<br>"
+                }
+              ]
+            },
+            {
+              "id": 54957,
+              "name": "<div class=\"cm-line\" style=\"color: rgb(140, 216, 228);\">",
+              "selfBytes": 104,
+              "reachableIgnoringWeakEdges": true,
+              "pathFromRoot": [
+                {
+                  "fromId": 1,
+                  "fromType": "synthetic",
+                  "fromName": "",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 3,
+                  "toType": "synthetic",
+                  "toName": "(GC roots)"
+                },
+                {
+                  "fromId": 3,
+                  "fromType": "synthetic",
+                  "fromName": "(GC roots)",
+                  "edgeType": "element",
+                  "edge": "29",
+                  "toId": 444033,
+                  "toType": "synthetic",
+                  "toName": "C++ Persistent roots"
+                },
+                {
+                  "fromId": 444033,
+                  "fromType": "synthetic",
+                  "fromName": "C++ Persistent roots",
+                  "edgeType": "internal",
+                  "edge": "blink::WebLocalFrameImpl::WebLocalFrameImpl(base::PassKey<WebLocalFrameImpl>, mojom::blink::TreeScopeType, WebLocalFrameClient *, blink::InterfaceRegistry *, const LocalFrameToken &)@../../third_party/blink/renderer/core/frame/web_local_frame_impl.cc:2296",
+                  "toId": 112,
+                  "toType": "native",
+                  "toName": "blink::WebLocalFrameImpl"
+                },
+                {
+                  "fromId": 112,
+                  "fromType": "native",
+                  "fromName": "blink::WebLocalFrameImpl",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 10698,
+                  "toType": "native",
+                  "toName": "blink::LocalFrame"
+                },
+                {
+                  "fromId": 10698,
+                  "fromType": "native",
+                  "fromName": "blink::LocalFrame",
+                  "edgeType": "element",
+                  "edge": "11",
+                  "toId": 76038,
+                  "toType": "native",
+                  "toName": "blink::Editor"
+                },
+                {
+                  "fromId": 76038,
+                  "fromType": "native",
+                  "fromName": "blink::Editor",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 62702,
+                  "toType": "native",
+                  "toName": "blink::UndoStack"
+                },
+                {
+                  "fromId": 62702,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStack",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 62704,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 62704,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "2",
+                  "toId": 84206,
+                  "toType": "native",
+                  "toName": "blink::UndoStep"
+                },
+                {
+                  "fromId": 84206,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStep",
+                  "edgeType": "element",
+                  "edge": "14",
+                  "toId": 84208,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::SimpleEditCommand, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 84208,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::SimpleEditCommand, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "775",
+                  "toId": 54248,
+                  "toType": "native",
+                  "toName": "blink::AppendNodeCommand"
+                },
+                {
+                  "fromId": 54248,
+                  "fromType": "native",
+                  "fromName": "blink::AppendNodeCommand",
+                  "edgeType": "element",
+                  "edge": "2",
+                  "toId": 54957,
+                  "toType": "native",
+                  "toName": "<div class=\"cm-line\" style=\"color: rgb(140, 216, 228);\">"
+                }
+              ]
+            },
+            {
+              "id": 55073,
+              "name": "<span class=\"\u037c5\">",
+              "selfBytes": 104,
+              "reachableIgnoringWeakEdges": true,
+              "pathFromRoot": [
+                {
+                  "fromId": 1,
+                  "fromType": "synthetic",
+                  "fromName": "",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 3,
+                  "toType": "synthetic",
+                  "toName": "(GC roots)"
+                },
+                {
+                  "fromId": 3,
+                  "fromType": "synthetic",
+                  "fromName": "(GC roots)",
+                  "edgeType": "element",
+                  "edge": "29",
+                  "toId": 444033,
+                  "toType": "synthetic",
+                  "toName": "C++ Persistent roots"
+                },
+                {
+                  "fromId": 444033,
+                  "fromType": "synthetic",
+                  "fromName": "C++ Persistent roots",
+                  "edgeType": "internal",
+                  "edge": "blink::WebLocalFrameImpl::WebLocalFrameImpl(base::PassKey<WebLocalFrameImpl>, mojom::blink::TreeScopeType, WebLocalFrameClient *, blink::InterfaceRegistry *, const LocalFrameToken &)@../../third_party/blink/renderer/core/frame/web_local_frame_impl.cc:2296",
+                  "toId": 112,
+                  "toType": "native",
+                  "toName": "blink::WebLocalFrameImpl"
+                },
+                {
+                  "fromId": 112,
+                  "fromType": "native",
+                  "fromName": "blink::WebLocalFrameImpl",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 10698,
+                  "toType": "native",
+                  "toName": "blink::LocalFrame"
+                },
+                {
+                  "fromId": 10698,
+                  "fromType": "native",
+                  "fromName": "blink::LocalFrame",
+                  "edgeType": "element",
+                  "edge": "11",
+                  "toId": 76038,
+                  "toType": "native",
+                  "toName": "blink::Editor"
+                },
+                {
+                  "fromId": 76038,
+                  "fromType": "native",
+                  "fromName": "blink::Editor",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 62702,
+                  "toType": "native",
+                  "toName": "blink::UndoStack"
+                },
+                {
+                  "fromId": 62702,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStack",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 62704,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 62704,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "14",
+                  "toId": 84266,
+                  "toType": "native",
+                  "toName": "blink::UndoStep"
+                },
+                {
+                  "fromId": 84266,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStep",
+                  "edgeType": "element",
+                  "edge": "14",
+                  "toId": 84268,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::SimpleEditCommand, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 84268,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::SimpleEditCommand, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "7",
+                  "toId": 56460,
+                  "toType": "native",
+                  "toName": "blink::RemoveNodeCommand"
+                },
+                {
+                  "fromId": 56460,
+                  "fromType": "native",
+                  "fromName": "blink::RemoveNodeCommand",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 57867,
+                  "toType": "native",
+                  "toName": "<div class=\"cm-line\">"
+                },
+                {
+                  "fromId": 57867,
+                  "fromType": "native",
+                  "fromName": "<div class=\"cm-line\">",
+                  "edgeType": "element",
+                  "edge": "8",
+                  "toId": 55073,
+                  "toType": "native",
+                  "toName": "<span class=\"\u037c5\">"
+                }
+              ]
+            },
+            {
+              "id": 55905,
+              "name": "<span class=\"\u037ca\">",
+              "selfBytes": 104,
+              "reachableIgnoringWeakEdges": true,
+              "pathFromRoot": [
+                {
+                  "fromId": 1,
+                  "fromType": "synthetic",
+                  "fromName": "",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 3,
+                  "toType": "synthetic",
+                  "toName": "(GC roots)"
+                },
+                {
+                  "fromId": 3,
+                  "fromType": "synthetic",
+                  "fromName": "(GC roots)",
+                  "edgeType": "element",
+                  "edge": "29",
+                  "toId": 444033,
+                  "toType": "synthetic",
+                  "toName": "C++ Persistent roots"
+                },
+                {
+                  "fromId": 444033,
+                  "fromType": "synthetic",
+                  "fromName": "C++ Persistent roots",
+                  "edgeType": "internal",
+                  "edge": "blink::WebLocalFrameImpl::WebLocalFrameImpl(base::PassKey<WebLocalFrameImpl>, mojom::blink::TreeScopeType, WebLocalFrameClient *, blink::InterfaceRegistry *, const LocalFrameToken &)@../../third_party/blink/renderer/core/frame/web_local_frame_impl.cc:2296",
+                  "toId": 112,
+                  "toType": "native",
+                  "toName": "blink::WebLocalFrameImpl"
+                },
+                {
+                  "fromId": 112,
+                  "fromType": "native",
+                  "fromName": "blink::WebLocalFrameImpl",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 10698,
+                  "toType": "native",
+                  "toName": "blink::LocalFrame"
+                },
+                {
+                  "fromId": 10698,
+                  "fromType": "native",
+                  "fromName": "blink::LocalFrame",
+                  "edgeType": "element",
+                  "edge": "11",
+                  "toId": 76038,
+                  "toType": "native",
+                  "toName": "blink::Editor"
+                },
+                {
+                  "fromId": 76038,
+                  "fromType": "native",
+                  "fromName": "blink::Editor",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 62702,
+                  "toType": "native",
+                  "toName": "blink::UndoStack"
+                },
+                {
+                  "fromId": 62702,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStack",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 62704,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 62704,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "14",
+                  "toId": 84266,
+                  "toType": "native",
+                  "toName": "blink::UndoStep"
+                },
+                {
+                  "fromId": 84266,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStep",
+                  "edgeType": "element",
+                  "edge": "14",
+                  "toId": 84268,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::SimpleEditCommand, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 84268,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::SimpleEditCommand, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "8",
+                  "toId": 56276,
+                  "toType": "native",
+                  "toName": "blink::RemoveNodeCommand"
+                },
+                {
+                  "fromId": 56276,
+                  "fromType": "native",
+                  "fromName": "blink::RemoveNodeCommand",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 55987,
+                  "toType": "native",
+                  "toName": "<div class=\"cm-line\">"
+                },
+                {
+                  "fromId": 55987,
+                  "fromType": "native",
+                  "fromName": "<div class=\"cm-line\">",
+                  "edgeType": "element",
+                  "edge": "8",
+                  "toId": 55981,
+                  "toType": "native",
+                  "toName": "<span class=\"\u037c5\">"
+                },
+                {
+                  "fromId": 55981,
+                  "fromType": "native",
+                  "fromName": "<span class=\"\u037c5\">",
+                  "edgeType": "element",
+                  "edge": "11",
+                  "toId": 55969,
+                  "toType": "native",
+                  "toName": "Text"
+                },
+                {
+                  "fromId": 55969,
+                  "fromType": "native",
+                  "fromName": "Text",
+                  "edgeType": "element",
+                  "edge": "9",
+                  "toId": 55905,
+                  "toType": "native",
+                  "toName": "<span class=\"\u037ca\">"
+                }
+              ]
+            },
+            {
+              "id": 55925,
+              "name": "<div class=\"cm-line\">",
+              "selfBytes": 104,
+              "reachableIgnoringWeakEdges": true,
+              "pathFromRoot": [
+                {
+                  "fromId": 1,
+                  "fromType": "synthetic",
+                  "fromName": "",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 3,
+                  "toType": "synthetic",
+                  "toName": "(GC roots)"
+                },
+                {
+                  "fromId": 3,
+                  "fromType": "synthetic",
+                  "fromName": "(GC roots)",
+                  "edgeType": "element",
+                  "edge": "29",
+                  "toId": 444033,
+                  "toType": "synthetic",
+                  "toName": "C++ Persistent roots"
+                },
+                {
+                  "fromId": 444033,
+                  "fromType": "synthetic",
+                  "fromName": "C++ Persistent roots",
+                  "edgeType": "internal",
+                  "edge": "blink::WebLocalFrameImpl::WebLocalFrameImpl(base::PassKey<WebLocalFrameImpl>, mojom::blink::TreeScopeType, WebLocalFrameClient *, blink::InterfaceRegistry *, const LocalFrameToken &)@../../third_party/blink/renderer/core/frame/web_local_frame_impl.cc:2296",
+                  "toId": 112,
+                  "toType": "native",
+                  "toName": "blink::WebLocalFrameImpl"
+                },
+                {
+                  "fromId": 112,
+                  "fromType": "native",
+                  "fromName": "blink::WebLocalFrameImpl",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 10698,
+                  "toType": "native",
+                  "toName": "blink::LocalFrame"
+                },
+                {
+                  "fromId": 10698,
+                  "fromType": "native",
+                  "fromName": "blink::LocalFrame",
+                  "edgeType": "element",
+                  "edge": "11",
+                  "toId": 76038,
+                  "toType": "native",
+                  "toName": "blink::Editor"
+                },
+                {
+                  "fromId": 76038,
+                  "fromType": "native",
+                  "fromName": "blink::Editor",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 62702,
+                  "toType": "native",
+                  "toName": "blink::UndoStack"
+                },
+                {
+                  "fromId": 62702,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStack",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 62704,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 62704,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "14",
+                  "toId": 84266,
+                  "toType": "native",
+                  "toName": "blink::UndoStep"
+                },
+                {
+                  "fromId": 84266,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStep",
+                  "edgeType": "element",
+                  "edge": "14",
+                  "toId": 84268,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::SimpleEditCommand, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 84268,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::SimpleEditCommand, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "7",
+                  "toId": 56460,
+                  "toType": "native",
+                  "toName": "blink::RemoveNodeCommand"
+                },
+                {
+                  "fromId": 56460,
+                  "fromType": "native",
+                  "fromName": "blink::RemoveNodeCommand",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 55925,
+                  "toType": "native",
+                  "toName": "<div class=\"cm-line\">"
+                }
+              ]
+            },
+            {
+              "id": 55951,
+              "name": "<span class=\"\u037c6\">",
+              "selfBytes": 104,
+              "reachableIgnoringWeakEdges": true,
+              "pathFromRoot": [
+                {
+                  "fromId": 1,
+                  "fromType": "synthetic",
+                  "fromName": "",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 3,
+                  "toType": "synthetic",
+                  "toName": "(GC roots)"
+                },
+                {
+                  "fromId": 3,
+                  "fromType": "synthetic",
+                  "fromName": "(GC roots)",
+                  "edgeType": "element",
+                  "edge": "29",
+                  "toId": 444033,
+                  "toType": "synthetic",
+                  "toName": "C++ Persistent roots"
+                },
+                {
+                  "fromId": 444033,
+                  "fromType": "synthetic",
+                  "fromName": "C++ Persistent roots",
+                  "edgeType": "internal",
+                  "edge": "blink::WebLocalFrameImpl::WebLocalFrameImpl(base::PassKey<WebLocalFrameImpl>, mojom::blink::TreeScopeType, WebLocalFrameClient *, blink::InterfaceRegistry *, const LocalFrameToken &)@../../third_party/blink/renderer/core/frame/web_local_frame_impl.cc:2296",
+                  "toId": 112,
+                  "toType": "native",
+                  "toName": "blink::WebLocalFrameImpl"
+                },
+                {
+                  "fromId": 112,
+                  "fromType": "native",
+                  "fromName": "blink::WebLocalFrameImpl",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 10698,
+                  "toType": "native",
+                  "toName": "blink::LocalFrame"
+                },
+                {
+                  "fromId": 10698,
+                  "fromType": "native",
+                  "fromName": "blink::LocalFrame",
+                  "edgeType": "element",
+                  "edge": "11",
+                  "toId": 76038,
+                  "toType": "native",
+                  "toName": "blink::Editor"
+                },
+                {
+                  "fromId": 76038,
+                  "fromType": "native",
+                  "fromName": "blink::Editor",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 62702,
+                  "toType": "native",
+                  "toName": "blink::UndoStack"
+                },
+                {
+                  "fromId": 62702,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStack",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 62704,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 62704,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "14",
+                  "toId": 84266,
+                  "toType": "native",
+                  "toName": "blink::UndoStep"
+                },
+                {
+                  "fromId": 84266,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStep",
+                  "edgeType": "element",
+                  "edge": "14",
+                  "toId": 84268,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::SimpleEditCommand, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 84268,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::SimpleEditCommand, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "4",
+                  "toId": 57208,
+                  "toType": "native",
+                  "toName": "blink::RemoveNodeCommand"
+                },
+                {
+                  "fromId": 57208,
+                  "fromType": "native",
+                  "fromName": "blink::RemoveNodeCommand",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 55951,
+                  "toType": "native",
+                  "toName": "<span class=\"\u037c6\">"
+                }
+              ]
+            },
+            {
+              "id": 79009,
+              "name": "<div class=\"cm-line cm-activeLine\">",
+              "selfBytes": 104,
+              "reachableIgnoringWeakEdges": true,
+              "pathFromRoot": [
+                {
+                  "fromId": 1,
+                  "fromType": "synthetic",
+                  "fromName": "",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 3,
+                  "toType": "synthetic",
+                  "toName": "(GC roots)"
+                },
+                {
+                  "fromId": 3,
+                  "fromType": "synthetic",
+                  "fromName": "(GC roots)",
+                  "edgeType": "element",
+                  "edge": "29",
+                  "toId": 444033,
+                  "toType": "synthetic",
+                  "toName": "C++ Persistent roots"
+                },
+                {
+                  "fromId": 444033,
+                  "fromType": "synthetic",
+                  "fromName": "C++ Persistent roots",
+                  "edgeType": "internal",
+                  "edge": "blink::WebLocalFrameImpl::WebLocalFrameImpl(base::PassKey<WebLocalFrameImpl>, mojom::blink::TreeScopeType, WebLocalFrameClient *, blink::InterfaceRegistry *, const LocalFrameToken &)@../../third_party/blink/renderer/core/frame/web_local_frame_impl.cc:2296",
+                  "toId": 112,
+                  "toType": "native",
+                  "toName": "blink::WebLocalFrameImpl"
+                },
+                {
+                  "fromId": 112,
+                  "fromType": "native",
+                  "fromName": "blink::WebLocalFrameImpl",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 10698,
+                  "toType": "native",
+                  "toName": "blink::LocalFrame"
+                },
+                {
+                  "fromId": 10698,
+                  "fromType": "native",
+                  "fromName": "blink::LocalFrame",
+                  "edgeType": "element",
+                  "edge": "11",
+                  "toId": 76038,
+                  "toType": "native",
+                  "toName": "blink::Editor"
+                },
+                {
+                  "fromId": 76038,
+                  "fromType": "native",
+                  "fromName": "blink::Editor",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 62702,
+                  "toType": "native",
+                  "toName": "blink::UndoStack"
+                },
+                {
+                  "fromId": 62702,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStack",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 62704,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 62704,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "12",
+                  "toId": 84484,
+                  "toType": "native",
+                  "toName": "blink::UndoStep"
+                },
+                {
+                  "fromId": 84484,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStep",
+                  "edgeType": "element",
+                  "edge": "2",
+                  "toId": 346869,
+                  "toType": "native",
+                  "toName": "Text"
+                },
+                {
+                  "fromId": 346869,
+                  "fromType": "native",
+                  "fromName": "Text",
+                  "edgeType": "element",
+                  "edge": "6",
+                  "toId": 78995,
+                  "toType": "native",
+                  "toName": "<span class=\"\u037c5\">"
+                },
+                {
+                  "fromId": 78995,
+                  "fromType": "native",
+                  "fromName": "<span class=\"\u037c5\">",
+                  "edgeType": "element",
+                  "edge": "9",
+                  "toId": 79009,
+                  "toType": "native",
+                  "toName": "<div class=\"cm-line cm-activeLine\">"
+                }
+              ]
+            },
+            {
+              "id": 145607,
+              "name": "<div class=\"cm-gap\" style=\"height: 7417.12px;\">",
+              "selfBytes": 104,
+              "reachableIgnoringWeakEdges": true,
+              "pathFromRoot": [
+                {
+                  "fromId": 1,
+                  "fromType": "synthetic",
+                  "fromName": "",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 3,
+                  "toType": "synthetic",
+                  "toName": "(GC roots)"
+                },
+                {
+                  "fromId": 3,
+                  "fromType": "synthetic",
+                  "fromName": "(GC roots)",
+                  "edgeType": "element",
+                  "edge": "29",
+                  "toId": 444033,
+                  "toType": "synthetic",
+                  "toName": "C++ Persistent roots"
+                },
+                {
+                  "fromId": 444033,
+                  "fromType": "synthetic",
+                  "fromName": "C++ Persistent roots",
+                  "edgeType": "internal",
+                  "edge": "blink::WebLocalFrameImpl::WebLocalFrameImpl(base::PassKey<WebLocalFrameImpl>, mojom::blink::TreeScopeType, WebLocalFrameClient *, blink::InterfaceRegistry *, const LocalFrameToken &)@../../third_party/blink/renderer/core/frame/web_local_frame_impl.cc:2296",
+                  "toId": 112,
+                  "toType": "native",
+                  "toName": "blink::WebLocalFrameImpl"
+                },
+                {
+                  "fromId": 112,
+                  "fromType": "native",
+                  "fromName": "blink::WebLocalFrameImpl",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 10698,
+                  "toType": "native",
+                  "toName": "blink::LocalFrame"
+                },
+                {
+                  "fromId": 10698,
+                  "fromType": "native",
+                  "fromName": "blink::LocalFrame",
+                  "edgeType": "element",
+                  "edge": "11",
+                  "toId": 76038,
+                  "toType": "native",
+                  "toName": "blink::Editor"
+                },
+                {
+                  "fromId": 76038,
+                  "fromType": "native",
+                  "fromName": "blink::Editor",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 62702,
+                  "toType": "native",
+                  "toName": "blink::UndoStack"
+                },
+                {
+                  "fromId": 62702,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStack",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 62704,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 62704,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "6",
+                  "toId": 84536,
+                  "toType": "native",
+                  "toName": "blink::UndoStep"
+                },
+                {
+                  "fromId": 84536,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStep",
+                  "edgeType": "element",
+                  "edge": "14",
+                  "toId": 84538,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::SimpleEditCommand, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 84538,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::SimpleEditCommand, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "2",
+                  "toId": 20014,
+                  "toType": "native",
+                  "toName": "blink::RemoveNodeCommand"
+                },
+                {
+                  "fromId": 20014,
+                  "fromType": "native",
+                  "fromName": "blink::RemoveNodeCommand",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 145607,
+                  "toType": "native",
+                  "toName": "<div class=\"cm-gap\" style=\"height: 7417.12px;\">"
+                }
+              ]
+            },
+            {
+              "id": 159981,
+              "name": "Attr",
+              "selfBytes": 104,
+              "reachableIgnoringWeakEdges": true,
+              "pathFromRoot": [
+                {
+                  "fromId": 1,
+                  "fromType": "synthetic",
+                  "fromName": "",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 3,
+                  "toType": "synthetic",
+                  "toName": "(GC roots)"
+                },
+                {
+                  "fromId": 3,
+                  "fromType": "synthetic",
+                  "fromName": "(GC roots)",
+                  "edgeType": "element",
+                  "edge": "29",
+                  "toId": 444033,
+                  "toType": "synthetic",
+                  "toName": "C++ Persistent roots"
+                },
+                {
+                  "fromId": 444033,
+                  "fromType": "synthetic",
+                  "fromName": "C++ Persistent roots",
+                  "edgeType": "internal",
+                  "edge": "blink::WebLocalFrameImpl::WebLocalFrameImpl(base::PassKey<WebLocalFrameImpl>, mojom::blink::TreeScopeType, WebLocalFrameClient *, blink::InterfaceRegistry *, const LocalFrameToken &)@../../third_party/blink/renderer/core/frame/web_local_frame_impl.cc:2296",
+                  "toId": 112,
+                  "toType": "native",
+                  "toName": "blink::WebLocalFrameImpl"
+                },
+                {
+                  "fromId": 112,
+                  "fromType": "native",
+                  "fromName": "blink::WebLocalFrameImpl",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 10698,
+                  "toType": "native",
+                  "toName": "blink::LocalFrame"
+                },
+                {
+                  "fromId": 10698,
+                  "fromType": "native",
+                  "fromName": "blink::LocalFrame",
+                  "edgeType": "element",
+                  "edge": "11",
+                  "toId": 76038,
+                  "toType": "native",
+                  "toName": "blink::Editor"
+                },
+                {
+                  "fromId": 76038,
+                  "fromType": "native",
+                  "fromName": "blink::Editor",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 62702,
+                  "toType": "native",
+                  "toName": "blink::UndoStack"
+                },
+                {
+                  "fromId": 62702,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStack",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 62704,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 62704,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "4",
+                  "toId": 84728,
+                  "toType": "native",
+                  "toName": "blink::UndoStep"
+                },
+                {
+                  "fromId": 84728,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStep",
+                  "edgeType": "element",
+                  "edge": "2",
+                  "toId": 146717,
+                  "toType": "native",
+                  "toName": "Text"
+                },
+                {
+                  "fromId": 146717,
+                  "fromType": "native",
+                  "fromName": "Text",
+                  "edgeType": "element",
+                  "edge": "7",
+                  "toId": 146883,
+                  "toType": "native",
+                  "toName": "<span class=\"\u037c5\">"
+                },
+                {
+                  "fromId": 146883,
+                  "fromType": "native",
+                  "fromName": "<span class=\"\u037c5\">",
+                  "edgeType": "element",
+                  "edge": "9",
+                  "toId": 142293,
+                  "toType": "native",
+                  "toName": "<div class=\"cm-line\">"
+                },
+                {
+                  "fromId": 142293,
+                  "fromType": "native",
+                  "fromName": "<div class=\"cm-line\">",
+                  "edgeType": "element",
+                  "edge": "10",
+                  "toId": 26570,
+                  "toType": "native",
+                  "toName": "blink::NodeRareData"
+                },
+                {
+                  "fromId": 26570,
+                  "fromType": "native",
+                  "fromName": "blink::NodeRareData",
+                  "edgeType": "element",
+                  "edge": "2",
+                  "toId": 20428,
+                  "toType": "native",
+                  "toName": "blink::NodeRareData::DataFieldWrapper<blink::BasicHeapVector<blink::internal::HeapCollectionType::kDisallowNew, cppgc::internal::BasicMember<blink::Attr, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>>"
+                },
+                {
+                  "fromId": 20428,
+                  "fromType": "native",
+                  "fromName": "blink::NodeRareData::DataFieldWrapper<blink::BasicHeapVector<blink::internal::HeapCollectionType::kDisallowNew, cppgc::internal::BasicMember<blink::Attr, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>>",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 20430,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::Attr, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 20430,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::Attr, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 159981,
+                  "toType": "native",
+                  "toName": "Attr"
+                }
+              ]
+            },
+            {
+              "id": 343549,
+              "name": "<span role=\"presentation\" dir=\"ltr\">",
+              "selfBytes": 104,
+              "reachableIgnoringWeakEdges": true,
+              "pathFromRoot": [
+                {
+                  "fromId": 1,
+                  "fromType": "synthetic",
+                  "fromName": "",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 3,
+                  "toType": "synthetic",
+                  "toName": "(GC roots)"
+                },
+                {
+                  "fromId": 3,
+                  "fromType": "synthetic",
+                  "fromName": "(GC roots)",
+                  "edgeType": "element",
+                  "edge": "29",
+                  "toId": 444033,
+                  "toType": "synthetic",
+                  "toName": "C++ Persistent roots"
+                },
+                {
+                  "fromId": 444033,
+                  "fromType": "synthetic",
+                  "fromName": "C++ Persistent roots",
+                  "edgeType": "internal",
+                  "edge": "blink::WebLocalFrameImpl::WebLocalFrameImpl(base::PassKey<WebLocalFrameImpl>, mojom::blink::TreeScopeType, WebLocalFrameClient *, blink::InterfaceRegistry *, const LocalFrameToken &)@../../third_party/blink/renderer/core/frame/web_local_frame_impl.cc:2296",
+                  "toId": 112,
+                  "toType": "native",
+                  "toName": "blink::WebLocalFrameImpl"
+                },
+                {
+                  "fromId": 112,
+                  "fromType": "native",
+                  "fromName": "blink::WebLocalFrameImpl",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 10698,
+                  "toType": "native",
+                  "toName": "blink::LocalFrame"
+                },
+                {
+                  "fromId": 10698,
+                  "fromType": "native",
+                  "fromName": "blink::LocalFrame",
+                  "edgeType": "element",
+                  "edge": "9",
+                  "toId": 82442,
+                  "toType": "native",
+                  "toName": "blink::LocalFrameView"
+                },
+                {
+                  "fromId": 82442,
+                  "fromType": "native",
+                  "fromName": "blink::LocalFrameView",
+                  "edgeType": "element",
+                  "edge": "4",
+                  "toId": 85550,
+                  "toType": "native",
+                  "toName": "blink::HeapHashTableBacking<blink::HashTable<cppgc::internal::BasicMember<blink::PaintLayerScrollableArea, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>, cppgc::internal::BasicMember<blink::PaintLayerScrollableArea, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>, blink::IdentityExtractor, blink::HashTraits<cppgc::internal::BasicMember<blink::PaintLayerScrollableArea, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::HashTraits<cppgc::internal::BasicMember<blink::PaintLayerScrollableArea, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::HeapAllocator>>"
+                },
+                {
+                  "fromId": 85550,
+                  "fromType": "native",
+                  "fromName": "blink::HeapHashTableBacking<blink::HashTable<cppgc::internal::BasicMember<blink::PaintLayerScrollableArea, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>, cppgc::internal::BasicMember<blink::PaintLayerScrollableArea, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>, blink::IdentityExtractor, blink::HashTraits<cppgc::internal::BasicMember<blink::PaintLayerScrollableArea, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::HashTraits<cppgc::internal::BasicMember<blink::PaintLayerScrollableArea, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::HeapAllocator>>",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 15760,
+                  "toType": "native",
+                  "toName": "blink::PaintLayerScrollableArea"
+                },
+                {
+                  "fromId": 15760,
+                  "fromType": "native",
+                  "fromName": "blink::PaintLayerScrollableArea",
+                  "edgeType": "element",
+                  "edge": "5",
+                  "toId": 79636,
+                  "toType": "native",
+                  "toName": "blink::PaintLayer"
+                },
+                {
+                  "fromId": 79636,
+                  "fromType": "native",
+                  "fromName": "blink::PaintLayer",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 68126,
+                  "toType": "native",
+                  "toName": "blink::LayoutBlockFlow"
+                },
+                {
+                  "fromId": 68126,
+                  "fromType": "native",
+                  "fromName": "blink::LayoutBlockFlow",
+                  "edgeType": "element",
+                  "edge": "6",
+                  "toId": 352811,
+                  "toType": "native",
+                  "toName": "<div class=\"pdf-sheet\" data-page=\"1\" style=\"width: 591.797px; height: 765.855px;\">"
+                },
+                {
+                  "fromId": 352811,
+                  "fromType": "native",
+                  "fromName": "<div class=\"pdf-sheet\" data-page=\"1\" style=\"width: 591.797px; height: 765.855px;\">",
+                  "edgeType": "property",
+                  "edge": "__reactFiber$xkvhybjsppb",
+                  "toId": 180785,
+                  "toType": "object",
+                  "toName": "ji"
+                },
+                {
+                  "fromId": 180785,
+                  "fromType": "object",
+                  "fromName": "ji",
+                  "edgeType": "property",
+                  "edge": "child",
+                  "toId": 180723,
+                  "toType": "object",
+                  "toName": "ji"
+                },
+                {
+                  "fromId": 180723,
+                  "fromType": "object",
+                  "fromName": "ji",
+                  "edgeType": "property",
+                  "edge": "updateQueue",
+                  "toId": 180789,
+                  "toType": "object",
+                  "toName": "Object"
+                },
+                {
+                  "fromId": 180789,
+                  "fromType": "object",
+                  "fromName": "Object",
+                  "edgeType": "property",
+                  "edge": "lastEffect",
+                  "toId": 409679,
+                  "toType": "object",
+                  "toName": "Object"
+                },
+                {
+                  "fromId": 409679,
+                  "fromType": "object",
+                  "fromName": "Object",
+                  "edgeType": "property",
+                  "edge": "inst",
+                  "toId": 55621,
+                  "toType": "object",
+                  "toName": "Object"
+                },
+                {
+                  "fromId": 55621,
+                  "fromType": "object",
+                  "fromName": "Object",
+                  "edgeType": "property",
+                  "edge": "destroy",
+                  "toId": 180731,
+                  "toType": "closure",
+                  "toName": ""
+                },
+                {
+                  "fromId": 180731,
+                  "fromType": "closure",
+                  "fromName": "",
+                  "edgeType": "internal",
+                  "edge": "context",
+                  "toId": 335503,
+                  "toType": "object",
+                  "toName": "system / Context / scope @127961"
+                },
+                {
+                  "fromId": 335503,
+                  "fromType": "object",
+                  "fromName": "system / Context / scope @127961",
+                  "edgeType": "context",
+                  "edge": "d",
+                  "toId": 338805,
+                  "toType": "object",
+                  "toName": "e"
+                },
+                {
+                  "fromId": 338805,
+                  "fromType": "object",
+                  "fromName": "e",
+                  "edgeType": "property",
+                  "edge": "#g",
+                  "toId": 343545,
+                  "toType": "object",
+                  "toName": "Array"
+                },
+                {
+                  "fromId": 343545,
+                  "fromType": "object",
+                  "fromName": "Array",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 343549,
+                  "toType": "native",
+                  "toName": "<span role=\"presentation\" dir=\"ltr\">"
+                }
+              ]
+            }
+          ],
+          "sameDetachedIdsAsFirstSnapshot": 6766
+        },
+        {
+          "label": "chat-existing-editor",
+          "sha256": "f5b1ba078c5c02a90ec89245edc55eecce5667ff469c58807413d25c132dd670",
+          "nodeFields": [
+            "type",
+            "name",
+            "id",
+            "self_size",
+            "edge_count",
+            "detachedness"
+          ],
+          "edgeFields": [
+            "type",
+            "name_or_index",
+            "to_node"
+          ],
+          "nodes": 265946,
+          "edges": 1100413,
+          "detachedNodes": 6766,
+          "detachedSelfBytes": 685544,
+          "detachedShortestPathGroups": {
+            "nativeUndoStack": 6345,
+            "nativeTypingCommand": 420,
+            "other": 1
+          },
+          "detachedKinds": {
+            "native": 6766
+          },
+          "detachedNames": [
+            {
+              "name": "Text",
+              "count": 2265,
+              "selfBytes": 217440
+            },
+            {
+              "name": "<div class=\"cm-line\" style=\"color: rgb(140, 216, 228);\">",
+              "count": 2010,
+              "selfBytes": 209040
+            },
+            {
+              "name": "<br>",
+              "count": 1288,
+              "selfBytes": 133952
+            },
+            {
+              "name": "<span class=\"\u037ca\">",
+              "count": 510,
+              "selfBytes": 53040
+            },
+            {
+              "name": "<div class=\"cm-line\">",
+              "count": 340,
+              "selfBytes": 35360
+            },
+            {
+              "name": "<span class=\"\u037c5\">",
+              "count": 280,
+              "selfBytes": 29120
+            },
+            {
+              "name": "<span class=\"\u037c6\">",
+              "count": 45,
+              "selfBytes": 4680
+            },
+            {
+              "name": "<div class=\"cm-line cm-activeLine\">",
+              "count": 15,
+              "selfBytes": 1560
+            },
+            {
+              "name": "Attr",
+              "count": 7,
+              "selfBytes": 728
+            },
+            {
+              "name": "<div class=\"cm-gap\" style=\"height: 7417.12px;\">",
+              "count": 5,
+              "selfBytes": 520
+            },
+            {
+              "name": "<span role=\"presentation\" dir=\"ltr\">",
+              "count": 1,
+              "selfBytes": 104
+            }
+          ],
+          "detachedReachableWithoutWeakEdges": 6766,
+          "representativePaths": [
+            {
+              "id": 54915,
+              "name": "Text",
+              "selfBytes": 96,
+              "reachableIgnoringWeakEdges": true,
+              "pathFromRoot": [
+                {
+                  "fromId": 1,
+                  "fromType": "synthetic",
+                  "fromName": "",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 3,
+                  "toType": "synthetic",
+                  "toName": "(GC roots)"
+                },
+                {
+                  "fromId": 3,
+                  "fromType": "synthetic",
+                  "fromName": "(GC roots)",
+                  "edgeType": "element",
+                  "edge": "29",
+                  "toId": 534877,
+                  "toType": "synthetic",
+                  "toName": "C++ Persistent roots"
+                },
+                {
+                  "fromId": 534877,
+                  "fromType": "synthetic",
+                  "fromName": "C++ Persistent roots",
+                  "edgeType": "internal",
+                  "edge": "blink::WebLocalFrameImpl::WebLocalFrameImpl(base::PassKey<WebLocalFrameImpl>, mojom::blink::TreeScopeType, WebLocalFrameClient *, blink::InterfaceRegistry *, const LocalFrameToken &)@../../third_party/blink/renderer/core/frame/web_local_frame_impl.cc:2296",
+                  "toId": 112,
+                  "toType": "native",
+                  "toName": "blink::WebLocalFrameImpl"
+                },
+                {
+                  "fromId": 112,
+                  "fromType": "native",
+                  "fromName": "blink::WebLocalFrameImpl",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 10698,
+                  "toType": "native",
+                  "toName": "blink::LocalFrame"
+                },
+                {
+                  "fromId": 10698,
+                  "fromType": "native",
+                  "fromName": "blink::LocalFrame",
+                  "edgeType": "element",
+                  "edge": "11",
+                  "toId": 76038,
+                  "toType": "native",
+                  "toName": "blink::Editor"
+                },
+                {
+                  "fromId": 76038,
+                  "fromType": "native",
+                  "fromName": "blink::Editor",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 62702,
+                  "toType": "native",
+                  "toName": "blink::UndoStack"
+                },
+                {
+                  "fromId": 62702,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStack",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 62704,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 62704,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "2",
+                  "toId": 84206,
+                  "toType": "native",
+                  "toName": "blink::UndoStep"
+                },
+                {
+                  "fromId": 84206,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStep",
+                  "edgeType": "element",
+                  "edge": "14",
+                  "toId": 84208,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::SimpleEditCommand, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 84208,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::SimpleEditCommand, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "624",
+                  "toId": 32762,
+                  "toType": "native",
+                  "toName": "blink::InsertNodeBeforeCommand"
+                },
+                {
+                  "fromId": 32762,
+                  "fromType": "native",
+                  "fromName": "blink::InsertNodeBeforeCommand",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 54915,
+                  "toType": "native",
+                  "toName": "Text"
+                }
+              ]
+            },
+            {
+              "id": 54921,
+              "name": "<br>",
+              "selfBytes": 104,
+              "reachableIgnoringWeakEdges": true,
+              "pathFromRoot": [
+                {
+                  "fromId": 1,
+                  "fromType": "synthetic",
+                  "fromName": "",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 3,
+                  "toType": "synthetic",
+                  "toName": "(GC roots)"
+                },
+                {
+                  "fromId": 3,
+                  "fromType": "synthetic",
+                  "fromName": "(GC roots)",
+                  "edgeType": "element",
+                  "edge": "29",
+                  "toId": 534877,
+                  "toType": "synthetic",
+                  "toName": "C++ Persistent roots"
+                },
+                {
+                  "fromId": 534877,
+                  "fromType": "synthetic",
+                  "fromName": "C++ Persistent roots",
+                  "edgeType": "internal",
+                  "edge": "blink::WebLocalFrameImpl::WebLocalFrameImpl(base::PassKey<WebLocalFrameImpl>, mojom::blink::TreeScopeType, WebLocalFrameClient *, blink::InterfaceRegistry *, const LocalFrameToken &)@../../third_party/blink/renderer/core/frame/web_local_frame_impl.cc:2296",
+                  "toId": 112,
+                  "toType": "native",
+                  "toName": "blink::WebLocalFrameImpl"
+                },
+                {
+                  "fromId": 112,
+                  "fromType": "native",
+                  "fromName": "blink::WebLocalFrameImpl",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 10698,
+                  "toType": "native",
+                  "toName": "blink::LocalFrame"
+                },
+                {
+                  "fromId": 10698,
+                  "fromType": "native",
+                  "fromName": "blink::LocalFrame",
+                  "edgeType": "element",
+                  "edge": "11",
+                  "toId": 76038,
+                  "toType": "native",
+                  "toName": "blink::Editor"
+                },
+                {
+                  "fromId": 76038,
+                  "fromType": "native",
+                  "fromName": "blink::Editor",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 62702,
+                  "toType": "native",
+                  "toName": "blink::UndoStack"
+                },
+                {
+                  "fromId": 62702,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStack",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 62704,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 62704,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "2",
+                  "toId": 84206,
+                  "toType": "native",
+                  "toName": "blink::UndoStep"
+                },
+                {
+                  "fromId": 84206,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStep",
+                  "edgeType": "element",
+                  "edge": "14",
+                  "toId": 84208,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::SimpleEditCommand, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 84208,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::SimpleEditCommand, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "628",
+                  "toId": 32838,
+                  "toType": "native",
+                  "toName": "blink::AppendNodeCommand"
+                },
+                {
+                  "fromId": 32838,
+                  "fromType": "native",
+                  "fromName": "blink::AppendNodeCommand",
+                  "edgeType": "element",
+                  "edge": "2",
+                  "toId": 54921,
+                  "toType": "native",
+                  "toName": "<br>"
+                }
+              ]
+            },
+            {
+              "id": 54957,
+              "name": "<div class=\"cm-line\" style=\"color: rgb(140, 216, 228);\">",
+              "selfBytes": 104,
+              "reachableIgnoringWeakEdges": true,
+              "pathFromRoot": [
+                {
+                  "fromId": 1,
+                  "fromType": "synthetic",
+                  "fromName": "",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 3,
+                  "toType": "synthetic",
+                  "toName": "(GC roots)"
+                },
+                {
+                  "fromId": 3,
+                  "fromType": "synthetic",
+                  "fromName": "(GC roots)",
+                  "edgeType": "element",
+                  "edge": "29",
+                  "toId": 534877,
+                  "toType": "synthetic",
+                  "toName": "C++ Persistent roots"
+                },
+                {
+                  "fromId": 534877,
+                  "fromType": "synthetic",
+                  "fromName": "C++ Persistent roots",
+                  "edgeType": "internal",
+                  "edge": "blink::WebLocalFrameImpl::WebLocalFrameImpl(base::PassKey<WebLocalFrameImpl>, mojom::blink::TreeScopeType, WebLocalFrameClient *, blink::InterfaceRegistry *, const LocalFrameToken &)@../../third_party/blink/renderer/core/frame/web_local_frame_impl.cc:2296",
+                  "toId": 112,
+                  "toType": "native",
+                  "toName": "blink::WebLocalFrameImpl"
+                },
+                {
+                  "fromId": 112,
+                  "fromType": "native",
+                  "fromName": "blink::WebLocalFrameImpl",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 10698,
+                  "toType": "native",
+                  "toName": "blink::LocalFrame"
+                },
+                {
+                  "fromId": 10698,
+                  "fromType": "native",
+                  "fromName": "blink::LocalFrame",
+                  "edgeType": "element",
+                  "edge": "11",
+                  "toId": 76038,
+                  "toType": "native",
+                  "toName": "blink::Editor"
+                },
+                {
+                  "fromId": 76038,
+                  "fromType": "native",
+                  "fromName": "blink::Editor",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 62702,
+                  "toType": "native",
+                  "toName": "blink::UndoStack"
+                },
+                {
+                  "fromId": 62702,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStack",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 62704,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 62704,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "2",
+                  "toId": 84206,
+                  "toType": "native",
+                  "toName": "blink::UndoStep"
+                },
+                {
+                  "fromId": 84206,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStep",
+                  "edgeType": "element",
+                  "edge": "14",
+                  "toId": 84208,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::SimpleEditCommand, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 84208,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::SimpleEditCommand, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "775",
+                  "toId": 54248,
+                  "toType": "native",
+                  "toName": "blink::AppendNodeCommand"
+                },
+                {
+                  "fromId": 54248,
+                  "fromType": "native",
+                  "fromName": "blink::AppendNodeCommand",
+                  "edgeType": "element",
+                  "edge": "2",
+                  "toId": 54957,
+                  "toType": "native",
+                  "toName": "<div class=\"cm-line\" style=\"color: rgb(140, 216, 228);\">"
+                }
+              ]
+            },
+            {
+              "id": 55073,
+              "name": "<span class=\"\u037c5\">",
+              "selfBytes": 104,
+              "reachableIgnoringWeakEdges": true,
+              "pathFromRoot": [
+                {
+                  "fromId": 1,
+                  "fromType": "synthetic",
+                  "fromName": "",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 3,
+                  "toType": "synthetic",
+                  "toName": "(GC roots)"
+                },
+                {
+                  "fromId": 3,
+                  "fromType": "synthetic",
+                  "fromName": "(GC roots)",
+                  "edgeType": "element",
+                  "edge": "29",
+                  "toId": 534877,
+                  "toType": "synthetic",
+                  "toName": "C++ Persistent roots"
+                },
+                {
+                  "fromId": 534877,
+                  "fromType": "synthetic",
+                  "fromName": "C++ Persistent roots",
+                  "edgeType": "internal",
+                  "edge": "blink::WebLocalFrameImpl::WebLocalFrameImpl(base::PassKey<WebLocalFrameImpl>, mojom::blink::TreeScopeType, WebLocalFrameClient *, blink::InterfaceRegistry *, const LocalFrameToken &)@../../third_party/blink/renderer/core/frame/web_local_frame_impl.cc:2296",
+                  "toId": 112,
+                  "toType": "native",
+                  "toName": "blink::WebLocalFrameImpl"
+                },
+                {
+                  "fromId": 112,
+                  "fromType": "native",
+                  "fromName": "blink::WebLocalFrameImpl",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 10698,
+                  "toType": "native",
+                  "toName": "blink::LocalFrame"
+                },
+                {
+                  "fromId": 10698,
+                  "fromType": "native",
+                  "fromName": "blink::LocalFrame",
+                  "edgeType": "element",
+                  "edge": "11",
+                  "toId": 76038,
+                  "toType": "native",
+                  "toName": "blink::Editor"
+                },
+                {
+                  "fromId": 76038,
+                  "fromType": "native",
+                  "fromName": "blink::Editor",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 62702,
+                  "toType": "native",
+                  "toName": "blink::UndoStack"
+                },
+                {
+                  "fromId": 62702,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStack",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 62704,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 62704,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "14",
+                  "toId": 84266,
+                  "toType": "native",
+                  "toName": "blink::UndoStep"
+                },
+                {
+                  "fromId": 84266,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStep",
+                  "edgeType": "element",
+                  "edge": "14",
+                  "toId": 84268,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::SimpleEditCommand, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 84268,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::SimpleEditCommand, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "7",
+                  "toId": 56460,
+                  "toType": "native",
+                  "toName": "blink::RemoveNodeCommand"
+                },
+                {
+                  "fromId": 56460,
+                  "fromType": "native",
+                  "fromName": "blink::RemoveNodeCommand",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 57867,
+                  "toType": "native",
+                  "toName": "<div class=\"cm-line\">"
+                },
+                {
+                  "fromId": 57867,
+                  "fromType": "native",
+                  "fromName": "<div class=\"cm-line\">",
+                  "edgeType": "element",
+                  "edge": "8",
+                  "toId": 55073,
+                  "toType": "native",
+                  "toName": "<span class=\"\u037c5\">"
+                }
+              ]
+            },
+            {
+              "id": 55905,
+              "name": "<span class=\"\u037ca\">",
+              "selfBytes": 104,
+              "reachableIgnoringWeakEdges": true,
+              "pathFromRoot": [
+                {
+                  "fromId": 1,
+                  "fromType": "synthetic",
+                  "fromName": "",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 3,
+                  "toType": "synthetic",
+                  "toName": "(GC roots)"
+                },
+                {
+                  "fromId": 3,
+                  "fromType": "synthetic",
+                  "fromName": "(GC roots)",
+                  "edgeType": "element",
+                  "edge": "29",
+                  "toId": 534877,
+                  "toType": "synthetic",
+                  "toName": "C++ Persistent roots"
+                },
+                {
+                  "fromId": 534877,
+                  "fromType": "synthetic",
+                  "fromName": "C++ Persistent roots",
+                  "edgeType": "internal",
+                  "edge": "blink::WebLocalFrameImpl::WebLocalFrameImpl(base::PassKey<WebLocalFrameImpl>, mojom::blink::TreeScopeType, WebLocalFrameClient *, blink::InterfaceRegistry *, const LocalFrameToken &)@../../third_party/blink/renderer/core/frame/web_local_frame_impl.cc:2296",
+                  "toId": 112,
+                  "toType": "native",
+                  "toName": "blink::WebLocalFrameImpl"
+                },
+                {
+                  "fromId": 112,
+                  "fromType": "native",
+                  "fromName": "blink::WebLocalFrameImpl",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 10698,
+                  "toType": "native",
+                  "toName": "blink::LocalFrame"
+                },
+                {
+                  "fromId": 10698,
+                  "fromType": "native",
+                  "fromName": "blink::LocalFrame",
+                  "edgeType": "element",
+                  "edge": "11",
+                  "toId": 76038,
+                  "toType": "native",
+                  "toName": "blink::Editor"
+                },
+                {
+                  "fromId": 76038,
+                  "fromType": "native",
+                  "fromName": "blink::Editor",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 62702,
+                  "toType": "native",
+                  "toName": "blink::UndoStack"
+                },
+                {
+                  "fromId": 62702,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStack",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 62704,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 62704,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "14",
+                  "toId": 84266,
+                  "toType": "native",
+                  "toName": "blink::UndoStep"
+                },
+                {
+                  "fromId": 84266,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStep",
+                  "edgeType": "element",
+                  "edge": "14",
+                  "toId": 84268,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::SimpleEditCommand, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 84268,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::SimpleEditCommand, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "8",
+                  "toId": 56276,
+                  "toType": "native",
+                  "toName": "blink::RemoveNodeCommand"
+                },
+                {
+                  "fromId": 56276,
+                  "fromType": "native",
+                  "fromName": "blink::RemoveNodeCommand",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 55987,
+                  "toType": "native",
+                  "toName": "<div class=\"cm-line\">"
+                },
+                {
+                  "fromId": 55987,
+                  "fromType": "native",
+                  "fromName": "<div class=\"cm-line\">",
+                  "edgeType": "element",
+                  "edge": "8",
+                  "toId": 55981,
+                  "toType": "native",
+                  "toName": "<span class=\"\u037c5\">"
+                },
+                {
+                  "fromId": 55981,
+                  "fromType": "native",
+                  "fromName": "<span class=\"\u037c5\">",
+                  "edgeType": "element",
+                  "edge": "11",
+                  "toId": 55969,
+                  "toType": "native",
+                  "toName": "Text"
+                },
+                {
+                  "fromId": 55969,
+                  "fromType": "native",
+                  "fromName": "Text",
+                  "edgeType": "element",
+                  "edge": "9",
+                  "toId": 55905,
+                  "toType": "native",
+                  "toName": "<span class=\"\u037ca\">"
+                }
+              ]
+            },
+            {
+              "id": 55925,
+              "name": "<div class=\"cm-line\">",
+              "selfBytes": 104,
+              "reachableIgnoringWeakEdges": true,
+              "pathFromRoot": [
+                {
+                  "fromId": 1,
+                  "fromType": "synthetic",
+                  "fromName": "",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 3,
+                  "toType": "synthetic",
+                  "toName": "(GC roots)"
+                },
+                {
+                  "fromId": 3,
+                  "fromType": "synthetic",
+                  "fromName": "(GC roots)",
+                  "edgeType": "element",
+                  "edge": "29",
+                  "toId": 534877,
+                  "toType": "synthetic",
+                  "toName": "C++ Persistent roots"
+                },
+                {
+                  "fromId": 534877,
+                  "fromType": "synthetic",
+                  "fromName": "C++ Persistent roots",
+                  "edgeType": "internal",
+                  "edge": "blink::WebLocalFrameImpl::WebLocalFrameImpl(base::PassKey<WebLocalFrameImpl>, mojom::blink::TreeScopeType, WebLocalFrameClient *, blink::InterfaceRegistry *, const LocalFrameToken &)@../../third_party/blink/renderer/core/frame/web_local_frame_impl.cc:2296",
+                  "toId": 112,
+                  "toType": "native",
+                  "toName": "blink::WebLocalFrameImpl"
+                },
+                {
+                  "fromId": 112,
+                  "fromType": "native",
+                  "fromName": "blink::WebLocalFrameImpl",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 10698,
+                  "toType": "native",
+                  "toName": "blink::LocalFrame"
+                },
+                {
+                  "fromId": 10698,
+                  "fromType": "native",
+                  "fromName": "blink::LocalFrame",
+                  "edgeType": "element",
+                  "edge": "11",
+                  "toId": 76038,
+                  "toType": "native",
+                  "toName": "blink::Editor"
+                },
+                {
+                  "fromId": 76038,
+                  "fromType": "native",
+                  "fromName": "blink::Editor",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 62702,
+                  "toType": "native",
+                  "toName": "blink::UndoStack"
+                },
+                {
+                  "fromId": 62702,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStack",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 62704,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 62704,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "14",
+                  "toId": 84266,
+                  "toType": "native",
+                  "toName": "blink::UndoStep"
+                },
+                {
+                  "fromId": 84266,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStep",
+                  "edgeType": "element",
+                  "edge": "14",
+                  "toId": 84268,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::SimpleEditCommand, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 84268,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::SimpleEditCommand, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "7",
+                  "toId": 56460,
+                  "toType": "native",
+                  "toName": "blink::RemoveNodeCommand"
+                },
+                {
+                  "fromId": 56460,
+                  "fromType": "native",
+                  "fromName": "blink::RemoveNodeCommand",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 55925,
+                  "toType": "native",
+                  "toName": "<div class=\"cm-line\">"
+                }
+              ]
+            },
+            {
+              "id": 55951,
+              "name": "<span class=\"\u037c6\">",
+              "selfBytes": 104,
+              "reachableIgnoringWeakEdges": true,
+              "pathFromRoot": [
+                {
+                  "fromId": 1,
+                  "fromType": "synthetic",
+                  "fromName": "",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 3,
+                  "toType": "synthetic",
+                  "toName": "(GC roots)"
+                },
+                {
+                  "fromId": 3,
+                  "fromType": "synthetic",
+                  "fromName": "(GC roots)",
+                  "edgeType": "element",
+                  "edge": "29",
+                  "toId": 534877,
+                  "toType": "synthetic",
+                  "toName": "C++ Persistent roots"
+                },
+                {
+                  "fromId": 534877,
+                  "fromType": "synthetic",
+                  "fromName": "C++ Persistent roots",
+                  "edgeType": "internal",
+                  "edge": "blink::WebLocalFrameImpl::WebLocalFrameImpl(base::PassKey<WebLocalFrameImpl>, mojom::blink::TreeScopeType, WebLocalFrameClient *, blink::InterfaceRegistry *, const LocalFrameToken &)@../../third_party/blink/renderer/core/frame/web_local_frame_impl.cc:2296",
+                  "toId": 112,
+                  "toType": "native",
+                  "toName": "blink::WebLocalFrameImpl"
+                },
+                {
+                  "fromId": 112,
+                  "fromType": "native",
+                  "fromName": "blink::WebLocalFrameImpl",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 10698,
+                  "toType": "native",
+                  "toName": "blink::LocalFrame"
+                },
+                {
+                  "fromId": 10698,
+                  "fromType": "native",
+                  "fromName": "blink::LocalFrame",
+                  "edgeType": "element",
+                  "edge": "11",
+                  "toId": 76038,
+                  "toType": "native",
+                  "toName": "blink::Editor"
+                },
+                {
+                  "fromId": 76038,
+                  "fromType": "native",
+                  "fromName": "blink::Editor",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 62702,
+                  "toType": "native",
+                  "toName": "blink::UndoStack"
+                },
+                {
+                  "fromId": 62702,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStack",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 62704,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 62704,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "14",
+                  "toId": 84266,
+                  "toType": "native",
+                  "toName": "blink::UndoStep"
+                },
+                {
+                  "fromId": 84266,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStep",
+                  "edgeType": "element",
+                  "edge": "14",
+                  "toId": 84268,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::SimpleEditCommand, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 84268,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::SimpleEditCommand, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "4",
+                  "toId": 57208,
+                  "toType": "native",
+                  "toName": "blink::RemoveNodeCommand"
+                },
+                {
+                  "fromId": 57208,
+                  "fromType": "native",
+                  "fromName": "blink::RemoveNodeCommand",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 55951,
+                  "toType": "native",
+                  "toName": "<span class=\"\u037c6\">"
+                }
+              ]
+            },
+            {
+              "id": 79009,
+              "name": "<div class=\"cm-line cm-activeLine\">",
+              "selfBytes": 104,
+              "reachableIgnoringWeakEdges": true,
+              "pathFromRoot": [
+                {
+                  "fromId": 1,
+                  "fromType": "synthetic",
+                  "fromName": "",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 3,
+                  "toType": "synthetic",
+                  "toName": "(GC roots)"
+                },
+                {
+                  "fromId": 3,
+                  "fromType": "synthetic",
+                  "fromName": "(GC roots)",
+                  "edgeType": "element",
+                  "edge": "29",
+                  "toId": 534877,
+                  "toType": "synthetic",
+                  "toName": "C++ Persistent roots"
+                },
+                {
+                  "fromId": 534877,
+                  "fromType": "synthetic",
+                  "fromName": "C++ Persistent roots",
+                  "edgeType": "internal",
+                  "edge": "blink::WebLocalFrameImpl::WebLocalFrameImpl(base::PassKey<WebLocalFrameImpl>, mojom::blink::TreeScopeType, WebLocalFrameClient *, blink::InterfaceRegistry *, const LocalFrameToken &)@../../third_party/blink/renderer/core/frame/web_local_frame_impl.cc:2296",
+                  "toId": 112,
+                  "toType": "native",
+                  "toName": "blink::WebLocalFrameImpl"
+                },
+                {
+                  "fromId": 112,
+                  "fromType": "native",
+                  "fromName": "blink::WebLocalFrameImpl",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 10698,
+                  "toType": "native",
+                  "toName": "blink::LocalFrame"
+                },
+                {
+                  "fromId": 10698,
+                  "fromType": "native",
+                  "fromName": "blink::LocalFrame",
+                  "edgeType": "element",
+                  "edge": "11",
+                  "toId": 76038,
+                  "toType": "native",
+                  "toName": "blink::Editor"
+                },
+                {
+                  "fromId": 76038,
+                  "fromType": "native",
+                  "fromName": "blink::Editor",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 62702,
+                  "toType": "native",
+                  "toName": "blink::UndoStack"
+                },
+                {
+                  "fromId": 62702,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStack",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 62704,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 62704,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "12",
+                  "toId": 84484,
+                  "toType": "native",
+                  "toName": "blink::UndoStep"
+                },
+                {
+                  "fromId": 84484,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStep",
+                  "edgeType": "element",
+                  "edge": "2",
+                  "toId": 346869,
+                  "toType": "native",
+                  "toName": "Text"
+                },
+                {
+                  "fromId": 346869,
+                  "fromType": "native",
+                  "fromName": "Text",
+                  "edgeType": "element",
+                  "edge": "6",
+                  "toId": 78995,
+                  "toType": "native",
+                  "toName": "<span class=\"\u037c5\">"
+                },
+                {
+                  "fromId": 78995,
+                  "fromType": "native",
+                  "fromName": "<span class=\"\u037c5\">",
+                  "edgeType": "element",
+                  "edge": "9",
+                  "toId": 79009,
+                  "toType": "native",
+                  "toName": "<div class=\"cm-line cm-activeLine\">"
+                }
+              ]
+            },
+            {
+              "id": 145607,
+              "name": "<div class=\"cm-gap\" style=\"height: 7417.12px;\">",
+              "selfBytes": 104,
+              "reachableIgnoringWeakEdges": true,
+              "pathFromRoot": [
+                {
+                  "fromId": 1,
+                  "fromType": "synthetic",
+                  "fromName": "",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 3,
+                  "toType": "synthetic",
+                  "toName": "(GC roots)"
+                },
+                {
+                  "fromId": 3,
+                  "fromType": "synthetic",
+                  "fromName": "(GC roots)",
+                  "edgeType": "element",
+                  "edge": "29",
+                  "toId": 534877,
+                  "toType": "synthetic",
+                  "toName": "C++ Persistent roots"
+                },
+                {
+                  "fromId": 534877,
+                  "fromType": "synthetic",
+                  "fromName": "C++ Persistent roots",
+                  "edgeType": "internal",
+                  "edge": "blink::WebLocalFrameImpl::WebLocalFrameImpl(base::PassKey<WebLocalFrameImpl>, mojom::blink::TreeScopeType, WebLocalFrameClient *, blink::InterfaceRegistry *, const LocalFrameToken &)@../../third_party/blink/renderer/core/frame/web_local_frame_impl.cc:2296",
+                  "toId": 112,
+                  "toType": "native",
+                  "toName": "blink::WebLocalFrameImpl"
+                },
+                {
+                  "fromId": 112,
+                  "fromType": "native",
+                  "fromName": "blink::WebLocalFrameImpl",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 10698,
+                  "toType": "native",
+                  "toName": "blink::LocalFrame"
+                },
+                {
+                  "fromId": 10698,
+                  "fromType": "native",
+                  "fromName": "blink::LocalFrame",
+                  "edgeType": "element",
+                  "edge": "11",
+                  "toId": 76038,
+                  "toType": "native",
+                  "toName": "blink::Editor"
+                },
+                {
+                  "fromId": 76038,
+                  "fromType": "native",
+                  "fromName": "blink::Editor",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 62702,
+                  "toType": "native",
+                  "toName": "blink::UndoStack"
+                },
+                {
+                  "fromId": 62702,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStack",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 62704,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 62704,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "6",
+                  "toId": 84536,
+                  "toType": "native",
+                  "toName": "blink::UndoStep"
+                },
+                {
+                  "fromId": 84536,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStep",
+                  "edgeType": "element",
+                  "edge": "14",
+                  "toId": 84538,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::SimpleEditCommand, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 84538,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::SimpleEditCommand, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "2",
+                  "toId": 20014,
+                  "toType": "native",
+                  "toName": "blink::RemoveNodeCommand"
+                },
+                {
+                  "fromId": 20014,
+                  "fromType": "native",
+                  "fromName": "blink::RemoveNodeCommand",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 145607,
+                  "toType": "native",
+                  "toName": "<div class=\"cm-gap\" style=\"height: 7417.12px;\">"
+                }
+              ]
+            },
+            {
+              "id": 159981,
+              "name": "Attr",
+              "selfBytes": 104,
+              "reachableIgnoringWeakEdges": true,
+              "pathFromRoot": [
+                {
+                  "fromId": 1,
+                  "fromType": "synthetic",
+                  "fromName": "",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 3,
+                  "toType": "synthetic",
+                  "toName": "(GC roots)"
+                },
+                {
+                  "fromId": 3,
+                  "fromType": "synthetic",
+                  "fromName": "(GC roots)",
+                  "edgeType": "element",
+                  "edge": "29",
+                  "toId": 534877,
+                  "toType": "synthetic",
+                  "toName": "C++ Persistent roots"
+                },
+                {
+                  "fromId": 534877,
+                  "fromType": "synthetic",
+                  "fromName": "C++ Persistent roots",
+                  "edgeType": "internal",
+                  "edge": "blink::WebLocalFrameImpl::WebLocalFrameImpl(base::PassKey<WebLocalFrameImpl>, mojom::blink::TreeScopeType, WebLocalFrameClient *, blink::InterfaceRegistry *, const LocalFrameToken &)@../../third_party/blink/renderer/core/frame/web_local_frame_impl.cc:2296",
+                  "toId": 112,
+                  "toType": "native",
+                  "toName": "blink::WebLocalFrameImpl"
+                },
+                {
+                  "fromId": 112,
+                  "fromType": "native",
+                  "fromName": "blink::WebLocalFrameImpl",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 10698,
+                  "toType": "native",
+                  "toName": "blink::LocalFrame"
+                },
+                {
+                  "fromId": 10698,
+                  "fromType": "native",
+                  "fromName": "blink::LocalFrame",
+                  "edgeType": "element",
+                  "edge": "11",
+                  "toId": 76038,
+                  "toType": "native",
+                  "toName": "blink::Editor"
+                },
+                {
+                  "fromId": 76038,
+                  "fromType": "native",
+                  "fromName": "blink::Editor",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 62702,
+                  "toType": "native",
+                  "toName": "blink::UndoStack"
+                },
+                {
+                  "fromId": 62702,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStack",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 62704,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 62704,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::UndoStep, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "4",
+                  "toId": 84728,
+                  "toType": "native",
+                  "toName": "blink::UndoStep"
+                },
+                {
+                  "fromId": 84728,
+                  "fromType": "native",
+                  "fromName": "blink::UndoStep",
+                  "edgeType": "element",
+                  "edge": "2",
+                  "toId": 146717,
+                  "toType": "native",
+                  "toName": "Text"
+                },
+                {
+                  "fromId": 146717,
+                  "fromType": "native",
+                  "fromName": "Text",
+                  "edgeType": "element",
+                  "edge": "7",
+                  "toId": 146883,
+                  "toType": "native",
+                  "toName": "<span class=\"\u037c5\">"
+                },
+                {
+                  "fromId": 146883,
+                  "fromType": "native",
+                  "fromName": "<span class=\"\u037c5\">",
+                  "edgeType": "element",
+                  "edge": "9",
+                  "toId": 142293,
+                  "toType": "native",
+                  "toName": "<div class=\"cm-line\">"
+                },
+                {
+                  "fromId": 142293,
+                  "fromType": "native",
+                  "fromName": "<div class=\"cm-line\">",
+                  "edgeType": "element",
+                  "edge": "10",
+                  "toId": 26570,
+                  "toType": "native",
+                  "toName": "blink::NodeRareData"
+                },
+                {
+                  "fromId": 26570,
+                  "fromType": "native",
+                  "fromName": "blink::NodeRareData",
+                  "edgeType": "element",
+                  "edge": "2",
+                  "toId": 20428,
+                  "toType": "native",
+                  "toName": "blink::NodeRareData::DataFieldWrapper<blink::BasicHeapVector<blink::internal::HeapCollectionType::kDisallowNew, cppgc::internal::BasicMember<blink::Attr, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>>"
+                },
+                {
+                  "fromId": 20428,
+                  "fromType": "native",
+                  "fromName": "blink::NodeRareData::DataFieldWrapper<blink::BasicHeapVector<blink::internal::HeapCollectionType::kDisallowNew, cppgc::internal::BasicMember<blink::Attr, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>>",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 20430,
+                  "toType": "native",
+                  "toName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::Attr, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>"
+                },
+                {
+                  "fromId": 20430,
+                  "fromType": "native",
+                  "fromName": "blink::HeapVectorBacking<cppgc::internal::BasicMember<blink::Attr, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 159981,
+                  "toType": "native",
+                  "toName": "Attr"
+                }
+              ]
+            },
+            {
+              "id": 343549,
+              "name": "<span role=\"presentation\" dir=\"ltr\">",
+              "selfBytes": 104,
+              "reachableIgnoringWeakEdges": true,
+              "pathFromRoot": [
+                {
+                  "fromId": 1,
+                  "fromType": "synthetic",
+                  "fromName": "",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 3,
+                  "toType": "synthetic",
+                  "toName": "(GC roots)"
+                },
+                {
+                  "fromId": 3,
+                  "fromType": "synthetic",
+                  "fromName": "(GC roots)",
+                  "edgeType": "element",
+                  "edge": "29",
+                  "toId": 534877,
+                  "toType": "synthetic",
+                  "toName": "C++ Persistent roots"
+                },
+                {
+                  "fromId": 534877,
+                  "fromType": "synthetic",
+                  "fromName": "C++ Persistent roots",
+                  "edgeType": "internal",
+                  "edge": "blink::WebLocalFrameImpl::WebLocalFrameImpl(base::PassKey<WebLocalFrameImpl>, mojom::blink::TreeScopeType, WebLocalFrameClient *, blink::InterfaceRegistry *, const LocalFrameToken &)@../../third_party/blink/renderer/core/frame/web_local_frame_impl.cc:2296",
+                  "toId": 112,
+                  "toType": "native",
+                  "toName": "blink::WebLocalFrameImpl"
+                },
+                {
+                  "fromId": 112,
+                  "fromType": "native",
+                  "fromName": "blink::WebLocalFrameImpl",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 10698,
+                  "toType": "native",
+                  "toName": "blink::LocalFrame"
+                },
+                {
+                  "fromId": 10698,
+                  "fromType": "native",
+                  "fromName": "blink::LocalFrame",
+                  "edgeType": "element",
+                  "edge": "9",
+                  "toId": 82442,
+                  "toType": "native",
+                  "toName": "blink::LocalFrameView"
+                },
+                {
+                  "fromId": 82442,
+                  "fromType": "native",
+                  "fromName": "blink::LocalFrameView",
+                  "edgeType": "element",
+                  "edge": "4",
+                  "toId": 85550,
+                  "toType": "native",
+                  "toName": "blink::HeapHashTableBacking<blink::HashTable<cppgc::internal::BasicMember<blink::PaintLayerScrollableArea, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>, cppgc::internal::BasicMember<blink::PaintLayerScrollableArea, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>, blink::IdentityExtractor, blink::HashTraits<cppgc::internal::BasicMember<blink::PaintLayerScrollableArea, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::HashTraits<cppgc::internal::BasicMember<blink::PaintLayerScrollableArea, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::HeapAllocator>>"
+                },
+                {
+                  "fromId": 85550,
+                  "fromType": "native",
+                  "fromName": "blink::HeapHashTableBacking<blink::HashTable<cppgc::internal::BasicMember<blink::PaintLayerScrollableArea, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>, cppgc::internal::BasicMember<blink::PaintLayerScrollableArea, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>, blink::IdentityExtractor, blink::HashTraits<cppgc::internal::BasicMember<blink::PaintLayerScrollableArea, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::HashTraits<cppgc::internal::BasicMember<blink::PaintLayerScrollableArea, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::HeapAllocator>>",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 15760,
+                  "toType": "native",
+                  "toName": "blink::PaintLayerScrollableArea"
+                },
+                {
+                  "fromId": 15760,
+                  "fromType": "native",
+                  "fromName": "blink::PaintLayerScrollableArea",
+                  "edgeType": "element",
+                  "edge": "5",
+                  "toId": 79636,
+                  "toType": "native",
+                  "toName": "blink::PaintLayer"
+                },
+                {
+                  "fromId": 79636,
+                  "fromType": "native",
+                  "fromName": "blink::PaintLayer",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 68126,
+                  "toType": "native",
+                  "toName": "blink::LayoutBlockFlow"
+                },
+                {
+                  "fromId": 68126,
+                  "fromType": "native",
+                  "fromName": "blink::LayoutBlockFlow",
+                  "edgeType": "element",
+                  "edge": "6",
+                  "toId": 352811,
+                  "toType": "native",
+                  "toName": "<div class=\"pdf-sheet\" data-page=\"1\" style=\"width: 591.797px; height: 765.855px;\">"
+                },
+                {
+                  "fromId": 352811,
+                  "fromType": "native",
+                  "fromName": "<div class=\"pdf-sheet\" data-page=\"1\" style=\"width: 591.797px; height: 765.855px;\">",
+                  "edgeType": "property",
+                  "edge": "__reactFiber$xkvhybjsppb",
+                  "toId": 180785,
+                  "toType": "object",
+                  "toName": "ji"
+                },
+                {
+                  "fromId": 180785,
+                  "fromType": "object",
+                  "fromName": "ji",
+                  "edgeType": "property",
+                  "edge": "child",
+                  "toId": 180723,
+                  "toType": "object",
+                  "toName": "ji"
+                },
+                {
+                  "fromId": 180723,
+                  "fromType": "object",
+                  "fromName": "ji",
+                  "edgeType": "property",
+                  "edge": "updateQueue",
+                  "toId": 180789,
+                  "toType": "object",
+                  "toName": "Object"
+                },
+                {
+                  "fromId": 180789,
+                  "fromType": "object",
+                  "fromName": "Object",
+                  "edgeType": "property",
+                  "edge": "lastEffect",
+                  "toId": 409679,
+                  "toType": "object",
+                  "toName": "Object"
+                },
+                {
+                  "fromId": 409679,
+                  "fromType": "object",
+                  "fromName": "Object",
+                  "edgeType": "property",
+                  "edge": "inst",
+                  "toId": 55621,
+                  "toType": "object",
+                  "toName": "Object"
+                },
+                {
+                  "fromId": 55621,
+                  "fromType": "object",
+                  "fromName": "Object",
+                  "edgeType": "property",
+                  "edge": "destroy",
+                  "toId": 180731,
+                  "toType": "closure",
+                  "toName": ""
+                },
+                {
+                  "fromId": 180731,
+                  "fromType": "closure",
+                  "fromName": "",
+                  "edgeType": "internal",
+                  "edge": "context",
+                  "toId": 335503,
+                  "toType": "object",
+                  "toName": "system / Context / scope @127961"
+                },
+                {
+                  "fromId": 335503,
+                  "fromType": "object",
+                  "fromName": "system / Context / scope @127961",
+                  "edgeType": "context",
+                  "edge": "d",
+                  "toId": 338805,
+                  "toType": "object",
+                  "toName": "e"
+                },
+                {
+                  "fromId": 338805,
+                  "fromType": "object",
+                  "fromName": "e",
+                  "edgeType": "property",
+                  "edge": "#g",
+                  "toId": 343545,
+                  "toType": "object",
+                  "toName": "Array"
+                },
+                {
+                  "fromId": 343545,
+                  "fromType": "object",
+                  "fromName": "Array",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 343549,
+                  "toType": "native",
+                  "toName": "<span role=\"presentation\" dir=\"ltr\">"
+                }
+              ]
+            }
+          ],
+          "sameDetachedIdsAsFirstSnapshot": 6766
+        },
+        {
+          "label": "new-project",
+          "sha256": "a17de8c329482d9412928b36d795d9aeeee4e3d2eb58f19b2c1583a353fc967a",
+          "nodeFields": [
+            "type",
+            "name",
+            "id",
+            "self_size",
+            "edge_count",
+            "detachedness"
+          ],
+          "edgeFields": [
+            "type",
+            "name_or_index",
+            "to_node"
+          ],
+          "nodes": 232009,
+          "edges": 985794,
+          "detachedNodes": 22,
+          "detachedSelfBytes": 2288,
+          "detachedShortestPathGroups": {
+            "other": 22
+          },
+          "detachedKinds": {
+            "native": 22
+          },
+          "detachedNames": [
+            {
+              "name": "<span role=\"presentation\" dir=\"ltr\">",
+              "count": 22,
+              "selfBytes": 2288
+            }
+          ],
+          "detachedReachableWithoutWeakEdges": 22,
+          "representativePaths": [
+            {
+              "id": 591761,
+              "name": "<span role=\"presentation\" dir=\"ltr\">",
+              "selfBytes": 104,
+              "reachableIgnoringWeakEdges": true,
+              "pathFromRoot": [
+                {
+                  "fromId": 1,
+                  "fromType": "synthetic",
+                  "fromName": "",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 3,
+                  "toType": "synthetic",
+                  "toName": "(GC roots)"
+                },
+                {
+                  "fromId": 3,
+                  "fromType": "synthetic",
+                  "fromName": "(GC roots)",
+                  "edgeType": "element",
+                  "edge": "29",
+                  "toId": 651041,
+                  "toType": "synthetic",
+                  "toName": "C++ Persistent roots"
+                },
+                {
+                  "fromId": 651041,
+                  "fromType": "synthetic",
+                  "fromName": "C++ Persistent roots",
+                  "edgeType": "internal",
+                  "edge": "blink::ScrollbarLayerDelegate::ScrollbarLayerDelegate(blink::Scrollbar &)@../../third_party/blink/renderer/core/scroll/scrollbar_layer_delegate.cc:40",
+                  "toId": 90174,
+                  "toType": "native",
+                  "toName": "blink::Scrollbar"
+                },
+                {
+                  "fromId": 90174,
+                  "fromType": "native",
+                  "fromName": "blink::Scrollbar",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 14180,
+                  "toType": "native",
+                  "toName": "blink::PaintLayerScrollableArea"
+                },
+                {
+                  "fromId": 14180,
+                  "fromType": "native",
+                  "fromName": "blink::PaintLayerScrollableArea",
+                  "edgeType": "element",
+                  "edge": "6",
+                  "toId": 67332,
+                  "toType": "native",
+                  "toName": "blink::PaintLayer"
+                },
+                {
+                  "fromId": 67332,
+                  "fromType": "native",
+                  "fromName": "blink::PaintLayer",
+                  "edgeType": "element",
+                  "edge": "4",
+                  "toId": 102416,
+                  "toType": "native",
+                  "toName": "blink::PaintLayer"
+                },
+                {
+                  "fromId": 102416,
+                  "fromType": "native",
+                  "fromName": "blink::PaintLayer",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 105642,
+                  "toType": "native",
+                  "toName": "blink::LayoutBlockFlow"
+                },
+                {
+                  "fromId": 105642,
+                  "fromType": "native",
+                  "fromName": "blink::LayoutBlockFlow",
+                  "edgeType": "element",
+                  "edge": "6",
+                  "toId": 594949,
+                  "toType": "native",
+                  "toName": "<div class=\"pdf-sheet\" data-page=\"1\" style=\"width: 591.797px; height: 836.964px;\">"
+                },
+                {
+                  "fromId": 594949,
+                  "fromType": "native",
+                  "fromName": "<div class=\"pdf-sheet\" data-page=\"1\" style=\"width: 591.797px; height: 836.964px;\">",
+                  "edgeType": "property",
+                  "edge": "__reactFiber$xkvhybjsppb",
+                  "toId": 584367,
+                  "toType": "object",
+                  "toName": "ji"
+                },
+                {
+                  "fromId": 584367,
+                  "fromType": "object",
+                  "fromName": "ji",
+                  "edgeType": "property",
+                  "edge": "child",
+                  "toId": 585511,
+                  "toType": "object",
+                  "toName": "ji"
+                },
+                {
+                  "fromId": 585511,
+                  "fromType": "object",
+                  "fromName": "ji",
+                  "edgeType": "property",
+                  "edge": "updateQueue",
+                  "toId": 585523,
+                  "toType": "object",
+                  "toName": "Object"
+                },
+                {
+                  "fromId": 585523,
+                  "fromType": "object",
+                  "fromName": "Object",
+                  "edgeType": "property",
+                  "edge": "lastEffect",
+                  "toId": 585525,
+                  "toType": "object",
+                  "toName": "Object"
+                },
+                {
+                  "fromId": 585525,
+                  "fromType": "object",
+                  "fromName": "Object",
+                  "edgeType": "property",
+                  "edge": "inst",
+                  "toId": 603157,
+                  "toType": "object",
+                  "toName": "Object"
+                },
+                {
+                  "fromId": 603157,
+                  "fromType": "object",
+                  "fromName": "Object",
+                  "edgeType": "property",
+                  "edge": "destroy",
+                  "toId": 597405,
+                  "toType": "closure",
+                  "toName": ""
+                },
+                {
+                  "fromId": 597405,
+                  "fromType": "closure",
+                  "fromName": "",
+                  "edgeType": "internal",
+                  "edge": "context",
+                  "toId": 594253,
+                  "toType": "object",
+                  "toName": "system / Context / scope @127961"
+                },
+                {
+                  "fromId": 594253,
+                  "fromType": "object",
+                  "fromName": "system / Context / scope @127961",
+                  "edgeType": "context",
+                  "edge": "d",
+                  "toId": 594257,
+                  "toType": "object",
+                  "toName": "e"
+                },
+                {
+                  "fromId": 594257,
+                  "fromType": "object",
+                  "fromName": "e",
+                  "edgeType": "property",
+                  "edge": "#g",
+                  "toId": 603477,
+                  "toType": "object",
+                  "toName": "Array"
+                },
+                {
+                  "fromId": 603477,
+                  "fromType": "object",
+                  "fromName": "Array",
+                  "edgeType": "element",
+                  "edge": "98",
+                  "toId": 591761,
+                  "toType": "native",
+                  "toName": "<span role=\"presentation\" dir=\"ltr\">"
+                }
+              ]
+            }
+          ],
+          "sameDetachedIdsAsFirstSnapshot": 0
+        }
+      ],
+      "retentionAnalysis": {
+        "path": "test-results/v8-profile-ismP0o/retention-analysis.json",
+        "bytes": 122994,
+        "sha256": "a144c49f4dadf987bfe99e0735c0c646c3ce8a691038e063b3e343ee0ebb03ca"
+      }
+    },
+    {
+      "inputMethod": "synthetic CodeMirror paste event",
+      "measurements": {
+        "path": "test-results/v8-profile-vygPhz/measurements.json",
+        "bytes": 700075,
+        "sha256": "fcdb35483fdb36c2fd7b20c27aa30f06e391aeb1fc7900291c8ec6c42e9785be"
+      },
+      "observations": [
+        {
+          "label": "code-before-gc",
+          "at": "2026-09-28T03:23:54.826Z",
+          "connected": {
+            "nodes": 392,
+            "elements": 295,
+            "editors": 1,
+            "textLayers": 1,
+            "canvases": 2,
+            "codeHidden": false
+          },
+          "dom": {
+            "documents": 1,
+            "nodes": 451,
+            "jsEventListeners": 246
+          },
+          "memory": {
+            "usedSize": 10973376,
+            "totalSize": 17874944,
+            "embedderHeapUsedSize": 2182032,
+            "backingStorageSize": 1545946
+          }
+        },
+        {
+          "label": "code-after-gc",
+          "at": "2026-09-28T03:23:54.835Z",
+          "connected": {
+            "nodes": 392,
+            "elements": 295,
+            "editors": 1,
+            "textLayers": 1,
+            "canvases": 2,
+            "codeHidden": false
+          },
+          "dom": {
+            "documents": 1,
+            "nodes": 443,
+            "jsEventListeners": 245
+          },
+          "memory": {
+            "usedSize": 10486336,
+            "totalSize": 11845632,
+            "embedderHeapUsedSize": 2023040,
+            "backingStorageSize": 1477937
+          }
+        },
+        {
+          "label": "code-after-snapshot",
+          "at": "2026-09-28T03:23:55.330Z",
+          "connected": {
+            "nodes": 392,
+            "elements": 295,
+            "editors": 1,
+            "textLayers": 1,
+            "canvases": 2,
+            "codeHidden": false
+          },
+          "dom": {
+            "documents": 1,
+            "nodes": 443,
+            "jsEventListeners": 245
+          },
+          "memory": {
+            "usedSize": 10488332,
+            "totalSize": 11845632,
+            "embedderHeapUsedSize": 2023304,
+            "backingStorageSize": 1477937
+          }
+        },
+        {
+          "label": "chat-existing-editor-before-gc",
+          "at": "2026-09-28T03:23:55.356Z",
+          "connected": {
+            "nodes": 419,
+            "elements": 317,
+            "editors": 1,
+            "textLayers": 1,
+            "canvases": 2,
+            "codeHidden": true
+          },
+          "dom": {
+            "documents": 1,
+            "nodes": 492,
+            "jsEventListeners": 281
+          },
+          "memory": {
+            "usedSize": 10960768,
+            "totalSize": 12107776,
+            "embedderHeapUsedSize": 2587552,
+            "backingStorageSize": 1478467
+          }
+        },
+        {
+          "label": "chat-existing-editor-after-gc",
+          "at": "2026-09-28T03:23:55.363Z",
+          "connected": {
+            "nodes": 419,
+            "elements": 317,
+            "editors": 1,
+            "textLayers": 1,
+            "canvases": 2,
+            "codeHidden": true
+          },
+          "dom": {
+            "documents": 1,
+            "nodes": 484,
+            "jsEventListeners": 250
+          },
+          "memory": {
+            "usedSize": 10461132,
+            "totalSize": 11583488,
+            "embedderHeapUsedSize": 1975432,
+            "backingStorageSize": 1477937
+          }
+        },
+        {
+          "label": "chat-existing-editor-after-snapshot",
+          "at": "2026-09-28T03:23:55.846Z",
+          "connected": {
+            "nodes": 419,
+            "elements": 317,
+            "editors": 1,
+            "textLayers": 1,
+            "canvases": 2,
+            "codeHidden": true
+          },
+          "dom": {
+            "documents": 1,
+            "nodes": 484,
+            "jsEventListeners": 250
+          },
+          "memory": {
+            "usedSize": 10478864,
+            "totalSize": 11845632,
+            "embedderHeapUsedSize": 2220776,
+            "backingStorageSize": 1477976
+          }
+        },
+        {
+          "label": "new-project-before-gc",
+          "at": "2026-09-28T03:23:58.241Z",
+          "connected": {
+            "nodes": 1156,
+            "elements": 700,
+            "editors": 1,
+            "textLayers": 1,
+            "canvases": 2,
+            "codeHidden": true
+          },
+          "dom": {
+            "documents": 1,
+            "nodes": 1253,
+            "jsEventListeners": 339
+          },
+          "memory": {
+            "usedSize": 11364404,
+            "totalSize": 16302080,
+            "embedderHeapUsedSize": 5641680,
+            "backingStorageSize": 1422895
+          }
+        },
+        {
+          "label": "new-project-after-gc",
+          "at": "2026-09-28T03:23:58.257Z",
+          "connected": {
+            "nodes": 1156,
+            "elements": 700,
+            "editors": 1,
+            "textLayers": 1,
+            "canvases": 2,
+            "codeHidden": true
+          },
+          "dom": {
+            "documents": 1,
+            "nodes": 1226,
+            "jsEventListeners": 251
+          },
+          "memory": {
+            "usedSize": 10237196,
+            "totalSize": 11583488,
+            "embedderHeapUsedSize": 3434352,
+            "backingStorageSize": 1375571
+          }
+        },
+        {
+          "label": "new-project-after-snapshot",
+          "at": "2026-09-28T03:23:58.775Z",
+          "connected": {
+            "nodes": 1156,
+            "elements": 700,
+            "editors": 1,
+            "textLayers": 1,
+            "canvases": 2,
+            "codeHidden": true
+          },
+          "dom": {
+            "documents": 1,
+            "nodes": 1226,
+            "jsEventListeners": 251
+          },
+          "memory": {
+            "usedSize": 10237376,
+            "totalSize": 11321344,
+            "embedderHeapUsedSize": 3444256,
+            "backingStorageSize": 1375604
+          }
+        }
+      ],
+      "snapshots": [
+        {
+          "label": "code",
+          "sha256": "866a1a1a3ec072ca62f53c3b17940f553d0b8ed94f4266ac66669475939be7c4",
+          "nodeFields": [
+            "type",
+            "name",
+            "id",
+            "self_size",
+            "edge_count",
+            "detachedness"
+          ],
+          "edgeFields": [
+            "type",
+            "name_or_index",
+            "to_node"
+          ],
+          "nodes": 221246,
+          "edges": 945146,
+          "detachedNodes": 1,
+          "detachedSelfBytes": 104,
+          "detachedShortestPathGroups": {
+            "other": 1
+          },
+          "detachedKinds": {
+            "native": 1
+          },
+          "detachedNames": [
+            {
+              "name": "<span role=\"presentation\" dir=\"ltr\">",
+              "count": 1,
+              "selfBytes": 104
+            }
+          ],
+          "detachedReachableWithoutWeakEdges": 1,
+          "representativePaths": [
+            {
+              "id": 216627,
+              "name": "<span role=\"presentation\" dir=\"ltr\">",
+              "selfBytes": 104,
+              "reachableIgnoringWeakEdges": true,
+              "pathFromRoot": [
+                {
+                  "fromId": 1,
+                  "fromType": "synthetic",
+                  "fromName": "",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 3,
+                  "toType": "synthetic",
+                  "toName": "(GC roots)"
+                },
+                {
+                  "fromId": 3,
+                  "fromType": "synthetic",
+                  "fromName": "(GC roots)",
+                  "edgeType": "element",
+                  "edge": "29",
+                  "toId": 407287,
+                  "toType": "synthetic",
+                  "toName": "C++ Persistent roots"
+                },
+                {
+                  "fromId": 407287,
+                  "fromType": "synthetic",
+                  "fromName": "C++ Persistent roots",
+                  "edgeType": "internal",
+                  "edge": "blink::WebLocalFrameImpl::WebLocalFrameImpl(base::PassKey<WebLocalFrameImpl>, mojom::blink::TreeScopeType, WebLocalFrameClient *, blink::InterfaceRegistry *, const LocalFrameToken &)@../../third_party/blink/renderer/core/frame/web_local_frame_impl.cc:2296",
+                  "toId": 110,
+                  "toType": "native",
+                  "toName": "blink::WebLocalFrameImpl"
+                },
+                {
+                  "fromId": 110,
+                  "fromType": "native",
+                  "fromName": "blink::WebLocalFrameImpl",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 1170,
+                  "toType": "native",
+                  "toName": "blink::LocalFrame"
+                },
+                {
+                  "fromId": 1170,
+                  "fromType": "native",
+                  "fromName": "blink::LocalFrame",
+                  "edgeType": "element",
+                  "edge": "9",
+                  "toId": 33052,
+                  "toType": "native",
+                  "toName": "blink::LocalFrameView"
+                },
+                {
+                  "fromId": 33052,
+                  "fromType": "native",
+                  "fromName": "blink::LocalFrameView",
+                  "edgeType": "element",
+                  "edge": "4",
+                  "toId": 33126,
+                  "toType": "native",
+                  "toName": "blink::HeapHashTableBacking<blink::HashTable<cppgc::internal::BasicMember<blink::PaintLayerScrollableArea, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>, cppgc::internal::BasicMember<blink::PaintLayerScrollableArea, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>, blink::IdentityExtractor, blink::HashTraits<cppgc::internal::BasicMember<blink::PaintLayerScrollableArea, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::HashTraits<cppgc::internal::BasicMember<blink::PaintLayerScrollableArea, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::HeapAllocator>>"
+                },
+                {
+                  "fromId": 33126,
+                  "fromType": "native",
+                  "fromName": "blink::HeapHashTableBacking<blink::HashTable<cppgc::internal::BasicMember<blink::PaintLayerScrollableArea, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>, cppgc::internal::BasicMember<blink::PaintLayerScrollableArea, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>, blink::IdentityExtractor, blink::HashTraits<cppgc::internal::BasicMember<blink::PaintLayerScrollableArea, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::HashTraits<cppgc::internal::BasicMember<blink::PaintLayerScrollableArea, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::HeapAllocator>>",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 5974,
+                  "toType": "native",
+                  "toName": "blink::PaintLayerScrollableArea"
+                },
+                {
+                  "fromId": 5974,
+                  "fromType": "native",
+                  "fromName": "blink::PaintLayerScrollableArea",
+                  "edgeType": "element",
+                  "edge": "5",
+                  "toId": 20366,
+                  "toType": "native",
+                  "toName": "blink::PaintLayer"
+                },
+                {
+                  "fromId": 20366,
+                  "fromType": "native",
+                  "fromName": "blink::PaintLayer",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 18142,
+                  "toType": "native",
+                  "toName": "blink::LayoutBlockFlow"
+                },
+                {
+                  "fromId": 18142,
+                  "fromType": "native",
+                  "fromName": "blink::LayoutBlockFlow",
+                  "edgeType": "element",
+                  "edge": "6",
+                  "toId": 142891,
+                  "toType": "native",
+                  "toName": "<div class=\"pdf-sheet\" data-page=\"1\" style=\"width: 591.797px; height: 765.855px;\">"
+                },
+                {
+                  "fromId": 142891,
+                  "fromType": "native",
+                  "fromName": "<div class=\"pdf-sheet\" data-page=\"1\" style=\"width: 591.797px; height: 765.855px;\">",
+                  "edgeType": "property",
+                  "edge": "__reactFiber$sgmgj6w7bmo",
+                  "toId": 135169,
+                  "toType": "object",
+                  "toName": "ji"
+                },
+                {
+                  "fromId": 135169,
+                  "fromType": "object",
+                  "fromName": "ji",
+                  "edgeType": "property",
+                  "edge": "child",
+                  "toId": 142893,
+                  "toType": "object",
+                  "toName": "ji"
+                },
+                {
+                  "fromId": 142893,
+                  "fromType": "object",
+                  "fromName": "ji",
+                  "edgeType": "property",
+                  "edge": "updateQueue",
+                  "toId": 167903,
+                  "toType": "object",
+                  "toName": "Object"
+                },
+                {
+                  "fromId": 167903,
+                  "fromType": "object",
+                  "fromName": "Object",
+                  "edgeType": "property",
+                  "edge": "lastEffect",
+                  "toId": 357875,
+                  "toType": "object",
+                  "toName": "Object"
+                },
+                {
+                  "fromId": 357875,
+                  "fromType": "object",
+                  "fromName": "Object",
+                  "edgeType": "property",
+                  "edge": "inst",
+                  "toId": 138053,
+                  "toType": "object",
+                  "toName": "Object"
+                },
+                {
+                  "fromId": 138053,
+                  "fromType": "object",
+                  "fromName": "Object",
+                  "edgeType": "property",
+                  "edge": "destroy",
+                  "toId": 188297,
+                  "toType": "closure",
+                  "toName": ""
+                },
+                {
+                  "fromId": 188297,
+                  "fromType": "closure",
+                  "fromName": "",
+                  "edgeType": "internal",
+                  "edge": "context",
+                  "toId": 218583,
+                  "toType": "object",
+                  "toName": "system / Context / scope @149333"
+                },
+                {
+                  "fromId": 218583,
+                  "fromType": "object",
+                  "fromName": "system / Context / scope @149333",
+                  "edgeType": "context",
+                  "edge": "d",
+                  "toId": 218585,
+                  "toType": "object",
+                  "toName": "e"
+                },
+                {
+                  "fromId": 218585,
+                  "fromType": "object",
+                  "fromName": "e",
+                  "edgeType": "property",
+                  "edge": "#g",
+                  "toId": 218687,
+                  "toType": "object",
+                  "toName": "Array"
+                },
+                {
+                  "fromId": 218687,
+                  "fromType": "object",
+                  "fromName": "Array",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 216627,
+                  "toType": "native",
+                  "toName": "<span role=\"presentation\" dir=\"ltr\">"
+                }
+              ]
+            }
+          ],
+          "sameDetachedIdsAsFirstSnapshot": 1
+        },
+        {
+          "label": "chat-existing-editor",
+          "sha256": "a28a9420704618ecdcac6a1c629a39b0c199fc524e2822b05151aeaf612ebee1",
+          "nodeFields": [
+            "type",
+            "name",
+            "id",
+            "self_size",
+            "edge_count",
+            "detachedness"
+          ],
+          "edgeFields": [
+            "type",
+            "name_or_index",
+            "to_node"
+          ],
+          "nodes": 221144,
+          "edges": 946115,
+          "detachedNodes": 1,
+          "detachedSelfBytes": 104,
+          "detachedShortestPathGroups": {
+            "other": 1
+          },
+          "detachedKinds": {
+            "native": 1
+          },
+          "detachedNames": [
+            {
+              "name": "<span role=\"presentation\" dir=\"ltr\">",
+              "count": 1,
+              "selfBytes": 104
+            }
+          ],
+          "detachedReachableWithoutWeakEdges": 1,
+          "representativePaths": [
+            {
+              "id": 216627,
+              "name": "<span role=\"presentation\" dir=\"ltr\">",
+              "selfBytes": 104,
+              "reachableIgnoringWeakEdges": true,
+              "pathFromRoot": [
+                {
+                  "fromId": 1,
+                  "fromType": "synthetic",
+                  "fromName": "",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 3,
+                  "toType": "synthetic",
+                  "toName": "(GC roots)"
+                },
+                {
+                  "fromId": 3,
+                  "fromType": "synthetic",
+                  "fromName": "(GC roots)",
+                  "edgeType": "element",
+                  "edge": "29",
+                  "toId": 497861,
+                  "toType": "synthetic",
+                  "toName": "C++ Persistent roots"
+                },
+                {
+                  "fromId": 497861,
+                  "fromType": "synthetic",
+                  "fromName": "C++ Persistent roots",
+                  "edgeType": "internal",
+                  "edge": "blink::WebLocalFrameImpl::WebLocalFrameImpl(base::PassKey<WebLocalFrameImpl>, mojom::blink::TreeScopeType, WebLocalFrameClient *, blink::InterfaceRegistry *, const LocalFrameToken &)@../../third_party/blink/renderer/core/frame/web_local_frame_impl.cc:2296",
+                  "toId": 110,
+                  "toType": "native",
+                  "toName": "blink::WebLocalFrameImpl"
+                },
+                {
+                  "fromId": 110,
+                  "fromType": "native",
+                  "fromName": "blink::WebLocalFrameImpl",
+                  "edgeType": "element",
+                  "edge": "3",
+                  "toId": 1170,
+                  "toType": "native",
+                  "toName": "blink::LocalFrame"
+                },
+                {
+                  "fromId": 1170,
+                  "fromType": "native",
+                  "fromName": "blink::LocalFrame",
+                  "edgeType": "element",
+                  "edge": "9",
+                  "toId": 33052,
+                  "toType": "native",
+                  "toName": "blink::LocalFrameView"
+                },
+                {
+                  "fromId": 33052,
+                  "fromType": "native",
+                  "fromName": "blink::LocalFrameView",
+                  "edgeType": "element",
+                  "edge": "4",
+                  "toId": 33126,
+                  "toType": "native",
+                  "toName": "blink::HeapHashTableBacking<blink::HashTable<cppgc::internal::BasicMember<blink::PaintLayerScrollableArea, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>, cppgc::internal::BasicMember<blink::PaintLayerScrollableArea, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>, blink::IdentityExtractor, blink::HashTraits<cppgc::internal::BasicMember<blink::PaintLayerScrollableArea, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::HashTraits<cppgc::internal::BasicMember<blink::PaintLayerScrollableArea, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::HeapAllocator>>"
+                },
+                {
+                  "fromId": 33126,
+                  "fromType": "native",
+                  "fromName": "blink::HeapHashTableBacking<blink::HashTable<cppgc::internal::BasicMember<blink::PaintLayerScrollableArea, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>, cppgc::internal::BasicMember<blink::PaintLayerScrollableArea, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>, blink::IdentityExtractor, blink::HashTraits<cppgc::internal::BasicMember<blink::PaintLayerScrollableArea, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::HashTraits<cppgc::internal::BasicMember<blink::PaintLayerScrollableArea, cppgc::internal::StrongMemberTag, cppgc::internal::DijkstraWriteBarrierPolicy>>, blink::HeapAllocator>>",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 5974,
+                  "toType": "native",
+                  "toName": "blink::PaintLayerScrollableArea"
+                },
+                {
+                  "fromId": 5974,
+                  "fromType": "native",
+                  "fromName": "blink::PaintLayerScrollableArea",
+                  "edgeType": "element",
+                  "edge": "5",
+                  "toId": 20366,
+                  "toType": "native",
+                  "toName": "blink::PaintLayer"
+                },
+                {
+                  "fromId": 20366,
+                  "fromType": "native",
+                  "fromName": "blink::PaintLayer",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 18142,
+                  "toType": "native",
+                  "toName": "blink::LayoutBlockFlow"
+                },
+                {
+                  "fromId": 18142,
+                  "fromType": "native",
+                  "fromName": "blink::LayoutBlockFlow",
+                  "edgeType": "element",
+                  "edge": "6",
+                  "toId": 142891,
+                  "toType": "native",
+                  "toName": "<div class=\"pdf-sheet\" data-page=\"1\" style=\"width: 591.797px; height: 765.855px;\">"
+                },
+                {
+                  "fromId": 142891,
+                  "fromType": "native",
+                  "fromName": "<div class=\"pdf-sheet\" data-page=\"1\" style=\"width: 591.797px; height: 765.855px;\">",
+                  "edgeType": "property",
+                  "edge": "__reactFiber$sgmgj6w7bmo",
+                  "toId": 135169,
+                  "toType": "object",
+                  "toName": "ji"
+                },
+                {
+                  "fromId": 135169,
+                  "fromType": "object",
+                  "fromName": "ji",
+                  "edgeType": "property",
+                  "edge": "child",
+                  "toId": 142893,
+                  "toType": "object",
+                  "toName": "ji"
+                },
+                {
+                  "fromId": 142893,
+                  "fromType": "object",
+                  "fromName": "ji",
+                  "edgeType": "property",
+                  "edge": "updateQueue",
+                  "toId": 167903,
+                  "toType": "object",
+                  "toName": "Object"
+                },
+                {
+                  "fromId": 167903,
+                  "fromType": "object",
+                  "fromName": "Object",
+                  "edgeType": "property",
+                  "edge": "lastEffect",
+                  "toId": 357875,
+                  "toType": "object",
+                  "toName": "Object"
+                },
+                {
+                  "fromId": 357875,
+                  "fromType": "object",
+                  "fromName": "Object",
+                  "edgeType": "property",
+                  "edge": "inst",
+                  "toId": 138053,
+                  "toType": "object",
+                  "toName": "Object"
+                },
+                {
+                  "fromId": 138053,
+                  "fromType": "object",
+                  "fromName": "Object",
+                  "edgeType": "property",
+                  "edge": "destroy",
+                  "toId": 188297,
+                  "toType": "closure",
+                  "toName": ""
+                },
+                {
+                  "fromId": 188297,
+                  "fromType": "closure",
+                  "fromName": "",
+                  "edgeType": "internal",
+                  "edge": "context",
+                  "toId": 218583,
+                  "toType": "object",
+                  "toName": "system / Context / scope @149333"
+                },
+                {
+                  "fromId": 218583,
+                  "fromType": "object",
+                  "fromName": "system / Context / scope @149333",
+                  "edgeType": "context",
+                  "edge": "d",
+                  "toId": 218585,
+                  "toType": "object",
+                  "toName": "e"
+                },
+                {
+                  "fromId": 218585,
+                  "fromType": "object",
+                  "fromName": "e",
+                  "edgeType": "property",
+                  "edge": "#g",
+                  "toId": 218687,
+                  "toType": "object",
+                  "toName": "Array"
+                },
+                {
+                  "fromId": 218687,
+                  "fromType": "object",
+                  "fromName": "Array",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 216627,
+                  "toType": "native",
+                  "toName": "<span role=\"presentation\" dir=\"ltr\">"
+                }
+              ]
+            }
+          ],
+          "sameDetachedIdsAsFirstSnapshot": 1
+        },
+        {
+          "label": "new-project",
+          "sha256": "ad371a82023c2555053567ba0a936f493a336545cba2cd5f331662b6448aec64",
+          "nodeFields": [
+            "type",
+            "name",
+            "id",
+            "self_size",
+            "edge_count",
+            "detachedness"
+          ],
+          "edgeFields": [
+            "type",
+            "name_or_index",
+            "to_node"
+          ],
+          "nodes": 228028,
+          "edges": 968806,
+          "detachedNodes": 22,
+          "detachedSelfBytes": 2288,
+          "detachedShortestPathGroups": {
+            "other": 22
+          },
+          "detachedKinds": {
+            "native": 22
+          },
+          "detachedNames": [
+            {
+              "name": "<span role=\"presentation\" dir=\"ltr\">",
+              "count": 22,
+              "selfBytes": 2288
+            }
+          ],
+          "detachedReachableWithoutWeakEdges": 22,
+          "representativePaths": [
+            {
+              "id": 504023,
+              "name": "<span role=\"presentation\" dir=\"ltr\">",
+              "selfBytes": 104,
+              "reachableIgnoringWeakEdges": true,
+              "pathFromRoot": [
+                {
+                  "fromId": 1,
+                  "fromType": "synthetic",
+                  "fromName": "",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 3,
+                  "toType": "synthetic",
+                  "toName": "(GC roots)"
+                },
+                {
+                  "fromId": 3,
+                  "fromType": "synthetic",
+                  "fromName": "(GC roots)",
+                  "edgeType": "element",
+                  "edge": "29",
+                  "toId": 613617,
+                  "toType": "synthetic",
+                  "toName": "C++ Persistent roots"
+                },
+                {
+                  "fromId": 613617,
+                  "fromType": "synthetic",
+                  "fromName": "C++ Persistent roots",
+                  "edgeType": "internal",
+                  "edge": "blink::ScrollbarLayerDelegate::ScrollbarLayerDelegate(blink::Scrollbar &)@../../third_party/blink/renderer/core/scroll/scrollbar_layer_delegate.cc:40",
+                  "toId": 37620,
+                  "toType": "native",
+                  "toName": "blink::Scrollbar"
+                },
+                {
+                  "fromId": 37620,
+                  "fromType": "native",
+                  "fromName": "blink::Scrollbar",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 4634,
+                  "toType": "native",
+                  "toName": "blink::PaintLayerScrollableArea"
+                },
+                {
+                  "fromId": 4634,
+                  "fromType": "native",
+                  "fromName": "blink::PaintLayerScrollableArea",
+                  "edgeType": "element",
+                  "edge": "6",
+                  "toId": 20200,
+                  "toType": "native",
+                  "toName": "blink::PaintLayer"
+                },
+                {
+                  "fromId": 20200,
+                  "fromType": "native",
+                  "fromName": "blink::PaintLayer",
+                  "edgeType": "element",
+                  "edge": "4",
+                  "toId": 59244,
+                  "toType": "native",
+                  "toName": "blink::PaintLayer"
+                },
+                {
+                  "fromId": 59244,
+                  "fromType": "native",
+                  "fromName": "blink::PaintLayer",
+                  "edgeType": "element",
+                  "edge": "1",
+                  "toId": 57258,
+                  "toType": "native",
+                  "toName": "blink::LayoutBlockFlow"
+                },
+                {
+                  "fromId": 57258,
+                  "fromType": "native",
+                  "fromName": "blink::LayoutBlockFlow",
+                  "edgeType": "element",
+                  "edge": "6",
+                  "toId": 506491,
+                  "toType": "native",
+                  "toName": "<div class=\"pdf-sheet\" data-page=\"1\" style=\"width: 591.797px; height: 836.964px;\">"
+                },
+                {
+                  "fromId": 506491,
+                  "fromType": "native",
+                  "fromName": "<div class=\"pdf-sheet\" data-page=\"1\" style=\"width: 591.797px; height: 836.964px;\">",
+                  "edgeType": "property",
+                  "edge": "__reactFiber$sgmgj6w7bmo",
+                  "toId": 506493,
+                  "toType": "object",
+                  "toName": "ji"
+                },
+                {
+                  "fromId": 506493,
+                  "fromType": "object",
+                  "fromName": "ji",
+                  "edgeType": "property",
+                  "edge": "child",
+                  "toId": 503715,
+                  "toType": "object",
+                  "toName": "ji"
+                },
+                {
+                  "fromId": 503715,
+                  "fromType": "object",
+                  "fromName": "ji",
+                  "edgeType": "property",
+                  "edge": "updateQueue",
+                  "toId": 508699,
+                  "toType": "object",
+                  "toName": "Object"
+                },
+                {
+                  "fromId": 508699,
+                  "fromType": "object",
+                  "fromName": "Object",
+                  "edgeType": "property",
+                  "edge": "lastEffect",
+                  "toId": 503743,
+                  "toType": "object",
+                  "toName": "Object"
+                },
+                {
+                  "fromId": 503743,
+                  "fromType": "object",
+                  "fromName": "Object",
+                  "edgeType": "property",
+                  "edge": "inst",
+                  "toId": 503753,
+                  "toType": "object",
+                  "toName": "Object"
+                },
+                {
+                  "fromId": 503753,
+                  "fromType": "object",
+                  "fromName": "Object",
+                  "edgeType": "property",
+                  "edge": "destroy",
+                  "toId": 503789,
+                  "toType": "closure",
+                  "toName": ""
+                },
+                {
+                  "fromId": 503789,
+                  "fromType": "closure",
+                  "fromName": "",
+                  "edgeType": "internal",
+                  "edge": "context",
+                  "toId": 510821,
+                  "toType": "object",
+                  "toName": "system / Context / scope @149333"
+                },
+                {
+                  "fromId": 510821,
+                  "fromType": "object",
+                  "fromName": "system / Context / scope @149333",
+                  "edgeType": "context",
+                  "edge": "d",
+                  "toId": 508343,
+                  "toType": "object",
+                  "toName": "e"
+                },
+                {
+                  "fromId": 508343,
+                  "fromType": "object",
+                  "fromName": "e",
+                  "edgeType": "property",
+                  "edge": "#g",
+                  "toId": 508359,
+                  "toType": "object",
+                  "toName": "Array"
+                },
+                {
+                  "fromId": 508359,
+                  "fromType": "object",
+                  "fromName": "Array",
+                  "edgeType": "element",
+                  "edge": "38",
+                  "toId": 504023,
+                  "toType": "native",
+                  "toName": "<span role=\"presentation\" dir=\"ltr\">"
+                }
+              ]
+            }
+          ],
+          "sameDetachedIdsAsFirstSnapshot": 0
+        }
+      ],
+      "retentionAnalysis": {
+        "path": "test-results/v8-profile-vygPhz/retention-analysis.json",
+        "bytes": 25804,
+        "sha256": "15281e977800a4b86af31c2f538b2c4c7d17c534be0cd63e900974ad04387ec9"
+      }
+    }
+  ],
+  "initialFailure": {
+    "sourceCommit": "c10a3565d3ffd2a17d414ef984fa52115c3c13d3",
+    "reason": "Five cycles and two snapshots completed; the fresh-project selector omitted The from Create The Classic resume. This failed run is excluded from the completed comparison.",
+    "report": {
+      "path": "test-results/v8-profile-fernzO/measurements.json",
+      "bytes": 745374,
+      "sha256": "6fa0b3d844fb97cb915ce258252829a0243bc993441a4dc94ba746a32811a995"
+    },
+    "log": {
+      "path": "test-results/renderer-retention-initial.log",
+      "bytes": 3253,
+      "sha256": "d48e4def3d79f5f48853a020ca17e1558c00a06a508736242daf8d6ddc59a920"
+    }
+  },
+  "logs": [
+    {
+      "path": "test-results/renderer-retention-native.log",
+      "bytes": 3735,
+      "sha256": "0a25241e9c3ccca311c7881f40fbb3e3bfff762d39b0bc16d7df98fde0f8ad77"
+    },
+    {
+      "path": "test-results/renderer-retention-paste.log",
+      "bytes": 3729,
+      "sha256": "f8ef72490d50c9818d3e8549bf8a9b6d2f227b4fcfb053848a4e3ca0db7ba8a6"
+    }
+  ],
+  "analyzer": {
+    "path": "scripts/analyze-renderer-retention.py",
+    "bytes": 6111,
+    "sha256": "937c80d0020c25c512b93fe9bb4fc875aeccb4e6e51ed27c993f506c67e770aa"
+  },
+  "comparisonVerifier": {
+    "path": "test-results/verify-renderer-retention-comparison.py",
+    "bytes": 6853,
+    "sha256": "73d802b00d389c5b096bd8d1d10de1caf4d3b5c8aa0b2814c987d13a429f9016"
+  },
+  "scope": "One sequential native-insertion/paste-handler pair, five cycles each, unchanged app on the development Mac. Full explicit-GC snapshots are local; published summaries show one shortest non-weak path per detached node name and path-group counts, not dominators or complete retained sizes. Synthetic paste invokes the existing handler without changing the OS clipboard; it is not real clipboard/IME/accessibility acceptance. Source, PDFs, geometry and links match. Input-path sensitivity is evidence for this workload, not a production memory fix or proof about all long-session growth. Original CPU failures remain open."
+}
