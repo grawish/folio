@@ -253,7 +253,7 @@ Independent checks recompute all 375 native snapshots, 62 phase markers, ten CPU
 
 Correctness checks pass all 462 source tests, native file/chat/diagnostic/watcher workflows and the packaged file workflow. They exercise repeated Chat/Code switches, per-file undo/redo, selected text, both scroll axes, theme changes, rename/Save As, snippets from Chat, build-output navigation, AI edits while hidden, and outside-source reloads before Code first opens. The preserved source-test failures were test-path mistakes: waiting for a new PDF without pressing Compile while automatic compilation was off, and trying to click a Code-only diagnostic while Chat hid its panel. Both corrected complete workflows pass. [Local/package evidence](releases/editor-lifecycle-native-verification.json) records these failures and successful reruns.
 
-This is one candidate on the development M4 Pro, compared with the earlier diagnostic. It is not a randomized timing comparison or a normal-collection long-session bound. A session that stays in Code still exhibits the native-input retention group. Full hosted qualification of this new candidate, ordinary character/composition and physical accessibility acceptance, the original long-session repeat, upper-bound inputs and the earlier CPU failures remain open.
+This is one candidate on the development M4 Pro, compared with the earlier diagnostic. It is not a randomized timing comparison or a normal-collection long-session bound. A session that stays in Code still exhibits the native-input retention group. Full hosted qualification of this new candidate, ordinary-session resource measurements and physical input/accessibility acceptance, the original long-session repeat, upper-bound inputs and the earlier CPU failures remain open. The separate input-correctness checks below do not close those resource or physical-device requirements.
 
 ```sh
 FOLIO_PYTHON=/path/to/python3 node scripts/profile-v8-resources.mjs /path/to/candidate/Folio.app/Contents/MacOS/Folio /path/to/process-profile-SEED 5 --retention-disposed-editor
@@ -264,3 +264,21 @@ python3 scripts/verify-editor-lifecycle.py /path/to/v8-profile-NATIVE-BASELINE t
 ```
 
 Run from the matching candidate source, with pypdf installed for the verifiers. Full heaps, PDFs, app binaries and copied profiles stay local; the public archive preserves compact raw measurements/profiles. Keep other local native suites, builds and benchmarks stopped during the measurement.
+
+### Typing and composition across Chat
+
+A separate sequential correctness pair checks the exact lifecycle candidate and the unchanged baseline package on the development M4 Pro. Each app passes five cases: ordinary character keys, committed browser composition, switching to Chat during composition, cancelling composition, and replacing selected text with composed text. Each case preserves the expected source through Chat/Code and one undo/redo step. Compilation, normal close, restart recovery and further typing also pass. An independent verifier reads the actual recovery and saved-version files and parses both final PDFs; their body text and page boxes match.
+
+The harness uses keyboard events for ordinary ASCII typing and Chromium's [Input protocol](https://github.com/ChromeDevTools/devtools-protocol/blob/master/types/protocol-proxy-api.d.ts) for composition. Both packages report trusted composition start/update/input events and an untrusted composition-end event on this path. The first observer incorrectly required that end event to be trusted and failed on both packages after source and undo checks passed. Both original failures are retained. The corrected observer keeps every trust flag and checks the resulting text, cancellation, selection replacement and recovery. This evidence does not identify the origin of the untrusted end event.
+
+The exact final harness was committed as `cb92308` after collection; each run copied its own harness before launch and checked its hash again at completion. Both snapshots match that commit. See [verification, identities and scope](releases/editor-input-verification.json) and [four retained reports with their harnesses](performance/editor-input-traces.tar.gz).
+
+These are automated browser-level composition checks on one development Mac, not a physical Mac input-source/candidate-window, every language or VoiceOver qualification. Unicode text is in TeX comments, so the PDFs check build continuity rather than font glyph coverage. No explicit collection is requested, but six observations per run do not establish natural-collection retention, timing or memory budgets. The harness is a local supplementary check, outside the twenty-three hosted native suites.
+
+```sh
+node scripts/test-editor-input.mjs /path/to/candidate/Folio.app/Contents/MacOS/Folio disposed
+node scripts/test-editor-input.mjs /path/to/baseline/Folio.app/Contents/MacOS/Folio mounted
+python3 scripts/verify-editor-input.py /path/to/final-candidate /path/to/final-baseline /path/to/initial-candidate /path/to/initial-baseline
+```
+
+The verifier is specific to the retained package identities and original failed pair. New measurements must preserve their own inputs and update the verification scope rather than overwriting this evidence.
