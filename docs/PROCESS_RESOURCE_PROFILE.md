@@ -146,3 +146,20 @@ The `builds` group remains at 24,451,466 bytes and `runtimes` at 396,845,472 byt
 The host was not isolated: normal desktop, browser, documentation and downloaded-evidence verification work continued. No other local Folio build, native suite or benchmark ran during sampling. Website browser checks began after the profiler exited. The observer consumes 27.740 CPU-seconds and the automation harness 30.817 CPU-seconds outside the measured app tree. The longest sample gap is 778.5 ms, maximum collection is 578.5 ms, and six processes disappear during snapshot reads. Short-lived work and between-sample peaks may therefore be missed. RSS and footprint remain sampled accounting sums, not unique physical RAM or enforced quotas.
 
 See [all raw observations](performance/process-tree-long-session.json.gz), [summary](performance/process-tree-long-session-summary.json), [phase/memory/storage analysis](performance/process-tree-long-session-analysis.json), [process attribution and history comparison](performance/process-tree-long-session-followup.json), and [independent verification](releases/long-session-profile-verification.json). Earlier raw baselines and the preliminary one-cycle instrument smoke remain preserved. This experiment advances repeated-use evidence; upper-bound inputs, supported-device coverage, CPU outliers, memory retention and final product budgets remain open.
+
+
+## Diagnostic V8 traces
+
+Use the optional diagnostic tool only with a completed synthetic 120-cycle fixture. It copies the closed profile into a new ignored directory, compares every source/copy file hash and verifies that the original profile remains unchanged after the run. It never opens that historical profile for app writes.
+
+```sh
+FOLIO_PYTHON=/path/to/python3 node scripts/profile-v8-resources.mjs \
+  /path/to/Folio.app/Contents/MacOS/Folio \
+  test-results/process-profile-YOUR_COMPLETED_RUN 20
+```
+
+The explicit limit is 1–20 cycles. Each cycle retains main and renderer V8 CPU profiles at a requested 1 ms sampling interval, while the renderer allocation sampler uses a requested 64 KiB interval. Periodic heap/DOM observations and the existing native process observer provide additional context. Three current PDFs are exported and checked per cycle. Source/app hashes, embedded Node/Electron/Chromium/V8 versions, the original profile hash and every trace hash are retained with the result. No heap snapshot or explicit garbage collection is requested.
+
+These are diagnostic runs with additional overhead. New processes restore the saved history, not the preceding session's live heap. V8 CPU profiles describe selected isolates rather than total native-thread or subprocess CPU; allocation sampling estimates selected live allocations since sampling started, not the full retained heap, PDF-worker heaps or GPU/native memory. Do not compare these timings directly with normal-run acceptance thresholds or call an allocation sample a leak. Use call stacks and source maps to propose a narrow change, then test that change with ordinary instrumentation and preserved correctness checks.
+
+Protocol references: [Node Inspector CPU profiling](https://nodejs.org/api/inspector.html#cpu-profiler) and [V8 HeapProfiler methods](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler/). Actual method support is checked against the packaged application's embedded versions during the instrument smoke. The first one-cycle smoke captures both CPU profiles and renderer allocations, verifies all three exported PDFs, and leaves the historical profile and packaged inputs unchanged. A longer result remains pending; the existing CPU-threshold failures are not closed by adding this tool.
