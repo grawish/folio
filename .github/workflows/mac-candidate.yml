@@ -115,9 +115,13 @@ jobs:
             test-results/history-storage-*/result.json
             test-results/history-storage-*/history-removal-*.png
             test-results/history-storage-*/failure.png
+            test-results/git-*/result.json
+            test-results/git-*/committed.png
+            test-results/git-*/failure.png
             test-results/files-*/result.json
             test-results/files-*/restored-editor-selection.png
             test-results/files-*/failure.png
+            test-results/files-*/failure-recovery.json
             test-results/watch-*/result.json
             test-results/watch-*/failure.png
             test-results/diagnostics-*/result.json

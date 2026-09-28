@@ -48,7 +48,7 @@ export const LatexEditor = forwardRef<
       insert(text) {
         const view = editor.current;
         if (view) {
-          view.dispatch(view.state.replaceSelection(text));
+          view.dispatch({ ...view.state.replaceSelection(text), scrollIntoView: true });
           view.focus();
         }
       },
@@ -113,7 +113,13 @@ export const LatexEditor = forwardRef<
     editor.current = view;
     if (previous)
       requestAnimationFrame(() => {
-        if (editor.current === view) {
+        // A section insertion or diagnostic jump can happen in the same frame
+        // as opening Code. Its new cursor must win over the cached viewport.
+        if (
+          editor.current === view &&
+          view.state.doc === state.doc &&
+          view.state.selection.eq(state.selection)
+        ) {
           view.scrollDOM.scrollTop = previous.top;
           view.scrollDOM.scrollLeft = previous.left;
         }

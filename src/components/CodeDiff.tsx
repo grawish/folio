@@ -35,9 +35,7 @@ export function CodeDiff({
             >
               {closed ? <ChevronRight size={14} /> : <ChevronDown size={14} />}
               <FileDiff size={14} />
-              <span>
-                {file.oldPath ? `${file.oldPath} → ${file.path}` : file.path}
-              </span>
+              <span>{file.oldPath ? `${file.oldPath} → ${file.path}` : file.path}</span>
               <span className={`code-diff-kind ${file.kind}`}>{file.kind}</span>
             </button>
             {!closed && (

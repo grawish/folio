@@ -41,7 +41,12 @@ function safeArg(value: unknown, label = 'value'): string {
   return value;
 }
 function safeText(value: unknown, label = 'value', max = 10_000): string {
-  if (typeof value !== 'string' || !value || value.length > max || /[\x00-\x08\x0b-\x1f]/.test(value))
+  if (
+    typeof value !== 'string' ||
+    !value ||
+    value.length > max ||
+    /[\x00-\x08\x0b-\x1f]/.test(value)
+  )
     throw new Error(`Invalid ${label}.`);
   return value;
 }
@@ -62,7 +67,8 @@ function gitPath(value: unknown): string {
   return value;
 }
 function stashRef(index: unknown): string {
-  if (!Number.isSafeInteger(index) || (index as number) < 0) throw new Error('Invalid stash index.');
+  if (!Number.isSafeInteger(index) || (index as number) < 0)
+    throw new Error('Invalid stash index.');
   return `stash@{${index}}`;
 }
 
@@ -139,7 +145,11 @@ function run(cwd: string, args: string[], options: RunOptions = {}): Promise<Run
         return reject(
           new Error(`Git operation exceeded the ${Math.ceil(timeoutMs / 1000)}-second time limit.`),
         );
-      const result = { code: code ?? -1, stdout: Buffer.concat(stdoutChunks).toString('utf8'), stderr };
+      const result = {
+        code: code ?? -1,
+        stdout: Buffer.concat(stdoutChunks).toString('utf8'),
+        stderr,
+      };
       if (result.code !== 0 && !options.allowFailure)
         return reject(new Error(stderr.trim() || `git ${args[0]} failed.`));
       resolve(result);
@@ -206,7 +216,11 @@ function parseDiff(text: string): GitDiffFile[] {
       let oldCounter = oldStart;
       let newCounter = newStart;
       i++;
-      while (i < lines.length && !lines[i].startsWith('@@') && !lines[i].startsWith('diff --git ')) {
+      while (
+        i < lines.length &&
+        !lines[i].startsWith('@@') &&
+        !lines[i].startsWith('diff --git ')
+      ) {
         const line = lines[i];
         if (line === '' && i === lines.length - 1) {
           i++;
@@ -219,9 +233,17 @@ function parseDiff(text: string): GitDiffFile[] {
         }
         const marker = line[0];
         const text_ = line.slice(1);
-        if (marker === ' ') diffLines.push({ kind: 'context', text: text_, oldLine: oldCounter++, newLine: newCounter++ });
-        else if (marker === '+') diffLines.push({ kind: 'added', text: text_, newLine: newCounter++ });
-        else if (marker === '-') diffLines.push({ kind: 'removed', text: text_, oldLine: oldCounter++ });
+        if (marker === ' ')
+          diffLines.push({
+            kind: 'context',
+            text: text_,
+            oldLine: oldCounter++,
+            newLine: newCounter++,
+          });
+        else if (marker === '+')
+          diffLines.push({ kind: 'added', text: text_, newLine: newCounter++ });
+        else if (marker === '-')
+          diffLines.push({ kind: 'removed', text: text_, oldLine: oldCounter++ });
         i++;
       }
       const patch = [...headerLines, ...bodyLines].join('\n') + '\n';
@@ -265,7 +287,8 @@ export class GitService {
     let version: string | undefined;
     try {
       const result = await run(process.cwd(), ['--version'], { allowFailure: true });
-      if (result.code !== 0) return { installed: false, message: result.stderr.trim() || 'Git is not available.' };
+      if (result.code !== 0)
+        return { installed: false, message: result.stderr.trim() || 'Git is not available.' };
       version = result.stdout.trim().replace(/^git version /, '');
     } catch {
       return { installed: false, message: 'Git is not installed or not on PATH.' };
@@ -301,7 +324,8 @@ export class GitService {
             detached = true;
             branch = null;
           } else branch = head;
-        } else if (rest.startsWith('branch.upstream ')) upstream = rest.slice('branch.upstream '.length);
+        } else if (rest.startsWith('branch.upstream '))
+          upstream = rest.slice('branch.upstream '.length);
         else if (rest.startsWith('branch.ab ')) {
           const m = rest.match(/\+(\d+) -(\d+)/);
           if (m) {
@@ -314,7 +338,12 @@ export class GitService {
       if (token.startsWith('1 ')) {
         const m = token.match(/^1 (.)(.) \S+ \S+ \S+ \S+ \S+ \S+ (.+)$/);
         if (!m) continue;
-        files.push({ path: m[3], staged: changeKind(m[1]), unstaged: changeKind(m[2]), conflicted: false });
+        files.push({
+          path: m[3],
+          staged: changeKind(m[1]),
+          unstaged: changeKind(m[2]),
+          conflicted: false,
+        });
       } else if (token.startsWith('2 ')) {
         const m = token.match(/^2 (.)(.) \S+ \S+ \S+ \S+ \S+ \S+ \S+ (.+)$/);
         if (!m) continue;
@@ -331,7 +360,12 @@ export class GitService {
         if (!m) continue;
         files.push({ path: m[3], staged: null, unstaged: null, conflicted: true });
       } else if (token.startsWith('? ')) {
-        files.push({ path: token.slice(2), staged: null, unstaged: 'untracked', conflicted: false });
+        files.push({
+          path: token.slice(2),
+          staged: null,
+          unstaged: 'untracked',
+          conflicted: false,
+        });
       }
     }
     const state = await this.repoState(root);
@@ -361,9 +395,13 @@ export class GitService {
         (f) => f.unstaged === 'untracked' && (!target.path || f.path === target.path),
       );
       for (const entry of untracked) {
-        const result = await run(root, ['diff', '--no-color', '--no-index', '--', '/dev/null', entry.path], {
-          allowFailure: true,
-        });
+        const result = await run(
+          root,
+          ['diff', '--no-color', '--no-index', '--', '/dev/null', entry.path],
+          {
+            allowFailure: true,
+          },
+        );
         const parsed = parseDiff(result.stdout);
         for (const file of parsed) file.kind = 'untracked';
         files.push(...parsed);
@@ -484,9 +522,11 @@ export class GitService {
     });
     if (result.code === 0) return { merged: true, conflicts: [] };
     const status = await this.status(root);
-    if (status.state !== 'reverting')
-      throw new Error(result.stderr.trim() || 'Revert failed.');
-    return { merged: false, conflicts: status.files.filter((f) => f.conflicted).map((f) => f.path) };
+    if (status.state !== 'reverting') throw new Error(result.stderr.trim() || 'Revert failed.');
+    return {
+      merged: false,
+      conflicts: status.files.filter((f) => f.conflicted).map((f) => f.path),
+    };
   }
 
   async gitBranches(projectId: string): Promise<GitBranch[]> {
@@ -495,7 +535,7 @@ export class GitService {
       root,
       [
         'for-each-ref',
-        "--format=%(refname:short)%00%(HEAD)%00%(upstream:short)%00%(upstream:track)",
+        '--format=%(refname:short)%00%(HEAD)%00%(upstream:short)%00%(upstream:track)',
         'refs/heads/',
       ],
       { allowFailure: true },
@@ -541,11 +581,7 @@ export class GitService {
     return this.status(root);
   }
 
-  async gitDeleteBranch(
-    projectId: string,
-    name: string,
-    force: boolean,
-  ): Promise<GitRepoStatus> {
+  async gitDeleteBranch(projectId: string, name: string, force: boolean): Promise<GitRepoStatus> {
     const root = this.resolveRoot(projectId);
     await run(root, ['branch', force ? '-D' : '-d', safeArg(name, 'branch name')]);
     return this.status(root);
@@ -562,7 +598,11 @@ export class GitService {
       allowFailure: true,
     });
     if (result.code === 0)
-      return { merged: true, fastForward: /(?:^|\n)Fast-forward/.test(result.stdout), conflicts: [] };
+      return {
+        merged: true,
+        fastForward: /(?:^|\n)Fast-forward/.test(result.stdout),
+        conflicts: [],
+      };
     const conflicts = await this.mergeConflicts(root);
     if (!conflicts.length) throw new Error(result.stderr.trim() || 'Merge failed.');
     return { merged: false, conflicts };
@@ -603,7 +643,13 @@ export class GitService {
       this.showBlob(root, `:3:${relative}`),
     ]);
     const binary = !!(base?.binary || ours?.binary || theirs?.binary);
-    return { path: relative, binary, base: base?.content, ours: ours?.content, theirs: theirs?.content };
+    return {
+      path: relative,
+      binary,
+      base: base?.content,
+      ours: ours?.content,
+      theirs: theirs?.content,
+    };
   }
 
   async gitResolveConflict(
@@ -678,7 +724,12 @@ export class GitService {
 
   async gitAddRemote(projectId: string, name: string, url: string): Promise<GitRemote[]> {
     const root = this.resolveRoot(projectId);
-    await run(root, ['remote', 'add', safeArg(name, 'remote name'), safeText(url, 'remote URL', 2000)]);
+    await run(root, [
+      'remote',
+      'add',
+      safeArg(name, 'remote name'),
+      safeText(url, 'remote URL', 2000),
+    ]);
     return this.gitRemotes(projectId);
   }
 
@@ -698,7 +749,13 @@ export class GitService {
   private emitProgress(id: string, operation: GitOperationProgress['operation'], line: string) {
     const parsed = parseProgressLine(line.replace(/^remote: /, ''));
     if (!parsed) return;
-    this.deps.progress({ id, operation, message: parsed.message, percent: parsed.percent, done: false });
+    this.deps.progress({
+      id,
+      operation,
+      message: parsed.message,
+      percent: parsed.percent,
+      done: false,
+    });
   }
 
   private async runWithProgress(
@@ -757,8 +814,16 @@ export class GitService {
     safeId(id);
     const root = this.resolveRoot(projectId);
     try {
-      const result = await this.runWithProgress(id, 'pull', root, ['pull', '--progress', '--ff-only']);
-      return { merged: true, fastForward: /(?:^|\n)Fast-forward/.test(result.stdout), conflicts: [] };
+      const result = await this.runWithProgress(id, 'pull', root, [
+        'pull',
+        '--progress',
+        '--ff-only',
+      ]);
+      return {
+        merged: true,
+        fastForward: /(?:^|\n)Fast-forward/.test(result.stdout),
+        conflicts: [],
+      };
     } catch (error) {
       // A fetch that succeeds but can't fast-forward leaves the working tree and
       // remote-tracking ref updated with no local changes and no conflicts, so the

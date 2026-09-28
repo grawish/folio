@@ -112,6 +112,7 @@ try {
   await expect(editor()).not.toContainText('Main edit');
   await editor().press('ControlOrMeta+Shift+z');
   await expect(editor()).toContainText('Main edit');
+  await app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0].setSize(1040, 680));
   await select('scroll.txt');
   await editor().press('ControlOrMeta+End');
   for (let i = 0; i < 5; i++) await editor().press('Shift+ArrowLeft');
@@ -127,7 +128,7 @@ try {
   await expect.poll(async () => (await scroll()).left).toBeGreaterThan(100);
   const previousScroll = await scroll();
   for (let i = 0; i < 3; i++) {
-    await page.getByRole('tab', { name: 'Chat', exact: true }).click();
+    await page.getByRole('tab', { name: i === 1 ? 'Git' : 'Chat', exact: true }).click();
     await expect(page.locator('.cm-editor')).toHaveCount(0);
     if (i === 0) await page.getByRole('button', { name: /Switch to .* mode/ }).click();
     await code();
@@ -148,14 +149,26 @@ try {
     .getByRole('button', { name: 'Skills Your tools and capabilities', exact: true })
     .click();
   await expect(editor()).toBeFocused();
-  await expect(editor()).toContainText('Skill one, skill two, skill three');
+  await expect
+    .poll(async () => {
+      const recovery = JSON.parse(await fs.readFile(path.join(dataRoot, 'recovery.json'), 'utf8'));
+      return recovery.project.files.find((file) => file.path === 'scroll.txt').content;
+    })
+    .toBe(
+      longNotes.slice(0, -5) +
+        '\n\\section{Skills}\n\\textbf{Skills} \\enspace Skill one, skill two, skill three\n',
+    );
+  await expect(
+    editor().locator('.cm-line').filter({ hasText: 'Skill one, skill two, skill three' }),
+  ).toBeInViewport();
   await editor().press('ControlOrMeta+z');
   await expect(editor()).not.toContainText('Skill one, skill two, skill three');
   await expect.poll(selection).toBe('12345');
   await page.screenshot({ path: path.join(root, 'restored-editor-selection.png') });
   await select('main.tex');
+  await app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0].setSize(1480, 980));
   console.log(
-    'PASS: Chat has no editor DOM; reopening restores selection and both scroll axes; inserting a section from Chat is focused and undoable.',
+    'PASS: Chat/Git have no editor DOM; reopening restores selection and both scroll axes; inserting a section from Chat saves the exact source, is visible, focused and undoable.',
   );
   await manage('main.tex');
   await page.getByLabel('New filename', { exact: true }).fill('notes.txt');
@@ -338,6 +351,9 @@ try {
   console.log(`Evidence: ${root}`);
 } catch (error) {
   await page?.screenshot({ path: path.join(root, 'failure.png') }).catch(() => {});
+  await fs
+    .copyFile(path.join(dataRoot, 'recovery.json'), path.join(root, 'failure-recovery.json'))
+    .catch(() => {});
   await fs.writeFile(
     path.join(root, 'result.json'),
     JSON.stringify({ passed: false, error: error.message, errors }, null, 2),

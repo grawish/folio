@@ -325,7 +325,11 @@ export function GitPanel({ projectId }: { projectId: string }) {
             disabled={busy || !!netOp || !cloneUrl.trim() || !cloneDirectory.trim()}
             onClick={() =>
               runNetwork('clone', async (id) => {
-                const newProjectId = await desktop.gitClone(id, cloneUrl.trim(), cloneDirectory.trim());
+                const newProjectId = await desktop.gitClone(
+                  id,
+                  cloneUrl.trim(),
+                  cloneDirectory.trim(),
+                );
                 setClonedProjectId(newProjectId);
               })
             }
@@ -365,9 +369,15 @@ export function GitPanel({ projectId }: { projectId: string }) {
         onClick={() => toggleDiff(kind, file.path)}
         title="View diff"
       >
-        {expanded === `${kind}:${file.path}` ? <ChevronDown size={13} /> : <ChevronRight size={13} />}
+        {expanded === `${kind}:${file.path}` ? (
+          <ChevronDown size={13} />
+        ) : (
+          <ChevronRight size={13} />
+        )}
         <span>{file.renamedFrom ? `${file.renamedFrom} → ${file.path}` : file.path}</span>
-        <span className={`git-file-kind ${(kind === 'staged' ? file.staged : file.unstaged) ?? ''}`}>
+        <span
+          className={`git-file-kind ${(kind === 'staged' ? file.staged : file.unstaged) ?? ''}`}
+        >
           {kind === 'staged' ? file.staged : file.unstaged}
         </span>
       </button>
@@ -378,7 +388,9 @@ export function GitPanel({ projectId }: { projectId: string }) {
             aria-label={`Unstage ${file.path}`}
             title="Unstage"
             disabled={busy}
-            onClick={() => void act(async () => setStatus(await desktop.gitUnstage(projectId, [file.path])))}
+            onClick={() =>
+              void act(async () => setStatus(await desktop.gitUnstage(projectId, [file.path])))
+            }
           >
             <ChevronDown size={14} />
           </button>
@@ -389,7 +401,9 @@ export function GitPanel({ projectId }: { projectId: string }) {
               aria-label={`Stage ${file.path}`}
               title="Stage"
               disabled={busy}
-              onClick={() => void act(async () => setStatus(await desktop.gitStage(projectId, [file.path])))}
+              onClick={() =>
+                void act(async () => setStatus(await desktop.gitStage(projectId, [file.path])))
+              }
             >
               <Plus size={14} />
             </button>
@@ -400,10 +414,12 @@ export function GitPanel({ projectId }: { projectId: string }) {
                 title="Discard changes"
                 disabled={busy}
                 onClick={() =>
-                  confirm(`discard:${file.path}`, () =>
-                    void act(async () =>
-                      setStatus(await desktop.gitRestoreFiles(projectId, 'HEAD', [file.path])),
-                    ),
+                  confirm(
+                    `discard:${file.path}`,
+                    () =>
+                      void act(async () =>
+                        setStatus(await desktop.gitRestoreFiles(projectId, 'HEAD', [file.path])),
+                      ),
                   )
                 }
               >
@@ -447,7 +463,9 @@ export function GitPanel({ projectId }: { projectId: string }) {
       <div className="git-status-header">
         <span className="git-branch-name">
           <GitBranchIcon size={15} />
-          {status.detached ? `detached @ ${status.branch ?? '?'}` : status.branch ?? '(no branch)'}
+          {status.detached
+            ? `detached @ ${status.branch ?? '?'}`
+            : (status.branch ?? '(no branch)')}
         </span>
         {status.upstream && (
           <span className="git-ahead-behind">
@@ -486,7 +504,9 @@ export function GitPanel({ projectId }: { projectId: string }) {
             <button
               className="button secondary small"
               disabled={busy}
-              onClick={() => void act(async () => setStatus(await desktop.gitMergeAbort(projectId)))}
+              onClick={() =>
+                void act(async () => setStatus(await desktop.gitMergeAbort(projectId)))
+              }
             >
               Abort
             </button>
@@ -517,10 +537,16 @@ export function GitPanel({ projectId }: { projectId: string }) {
           {conflictVersions.binary ? (
             <div className="git-conflict-binary">
               <p>Binary file conflict — choose which version to keep.</p>
-              <button className="button secondary small" onClick={() => resolveConflict({ pick: 'ours' })}>
+              <button
+                className="button secondary small"
+                onClick={() => resolveConflict({ pick: 'ours' })}
+              >
                 Use mine
               </button>
-              <button className="button secondary small" onClick={() => resolveConflict({ pick: 'theirs' })}>
+              <button
+                className="button secondary small"
+                onClick={() => resolveConflict({ pick: 'theirs' })}
+              >
                 Use theirs
               </button>
             </div>
@@ -553,10 +579,16 @@ export function GitPanel({ projectId }: { projectId: string }) {
                 >
                   Save resolution
                 </button>
-                <button className="button secondary small" onClick={() => resolveConflict({ pick: 'ours' })}>
+                <button
+                  className="button secondary small"
+                  onClick={() => resolveConflict({ pick: 'ours' })}
+                >
                   Use mine
                 </button>
-                <button className="button secondary small" onClick={() => resolveConflict({ pick: 'theirs' })}>
+                <button
+                  className="button secondary small"
+                  onClick={() => resolveConflict({ pick: 'theirs' })}
+                >
                   Use theirs
                 </button>
                 <button
@@ -627,7 +659,9 @@ export function GitPanel({ projectId }: { projectId: string }) {
                 aria-label={`Stage ${file.path}`}
                 title="Stage"
                 disabled={busy}
-                onClick={() => void act(async () => setStatus(await desktop.gitStage(projectId, [file.path])))}
+                onClick={() =>
+                  void act(async () => setStatus(await desktop.gitStage(projectId, [file.path])))
+                }
               >
                 <Plus size={14} />
               </button>
@@ -648,7 +682,11 @@ export function GitPanel({ projectId }: { projectId: string }) {
                 className="git-log-heading"
                 onClick={() => toggleCommit(commit.hash)}
               >
-                {openCommit === commit.hash ? <ChevronDown size={13} /> : <ChevronRight size={13} />}
+                {openCommit === commit.hash ? (
+                  <ChevronDown size={13} />
+                ) : (
+                  <ChevronRight size={13} />
+                )}
                 <code>{commit.shortHash}</code>
                 <span>{commit.subject}</span>
                 <small>
@@ -662,10 +700,12 @@ export function GitPanel({ projectId }: { projectId: string }) {
                   title="Restore this commit's files into the working tree"
                   onClick={() =>
                     void act(async () => {
-                      const files = logDiffs[commit.hash] ??
+                      const files =
+                        logDiffs[commit.hash] ??
                         (await desktop.gitDiff(projectId, { kind: 'commit', hash: commit.hash }));
                       const paths = files.map((f) => f.path);
-                      if (paths.length) setStatus(await desktop.gitRestoreFiles(projectId, commit.hash, paths));
+                      if (paths.length)
+                        setStatus(await desktop.gitRestoreFiles(projectId, commit.hash, paths));
                     })
                   }
                 >
@@ -686,14 +726,16 @@ export function GitPanel({ projectId }: { projectId: string }) {
                   Revert
                 </button>
               </div>
-              {openCommit === commit.hash && (
-                <CodeDiff files={logDiffs[commit.hash] ?? []} />
-              )}
+              {openCommit === commit.hash && <CodeDiff files={logDiffs[commit.hash] ?? []} />}
             </div>
           ))
         )}
         {!logDone && (
-          <button className="button secondary small" disabled={busy} onClick={() => void act(() => loadLog(log.length))}>
+          <button
+            className="button secondary small"
+            disabled={busy}
+            onClick={() => void act(() => loadLog(log.length))}
+          >
             Load more
           </button>
         )}
@@ -742,7 +784,11 @@ export function GitPanel({ projectId }: { projectId: string }) {
                     <button
                       className="button secondary small"
                       disabled={busy}
-                      onClick={() => void act(async () => setStatus(await desktop.gitSwitchBranch(projectId, branch.name)))}
+                      onClick={() =>
+                        void act(async () =>
+                          setStatus(await desktop.gitSwitchBranch(projectId, branch.name)),
+                        )
+                      }
                     >
                       Switch
                     </button>
@@ -766,11 +812,13 @@ export function GitPanel({ projectId }: { projectId: string }) {
                       title="Delete branch"
                       disabled={busy}
                       onClick={() =>
-                        confirm(`delete-branch:${branch.name}`, () =>
-                          void act(async () => {
-                            await desktop.gitDeleteBranch(projectId, branch.name, true);
-                            await refreshAll();
-                          }),
+                        confirm(
+                          `delete-branch:${branch.name}`,
+                          () =>
+                            void act(async () => {
+                              await desktop.gitDeleteBranch(projectId, branch.name, true);
+                              await refreshAll();
+                            }),
                         )
                       }
                     >
@@ -806,7 +854,9 @@ export function GitPanel({ projectId }: { projectId: string }) {
             disabled={busy || !newBranch.trim()}
             onClick={() =>
               void act(async () => {
-                setStatus(await desktop.gitCreateBranch(projectId, newBranch.trim(), switchOnCreate));
+                setStatus(
+                  await desktop.gitCreateBranch(projectId, newBranch.trim(), switchOnCreate),
+                );
                 setNewBranch('');
                 await refreshAll();
               })
@@ -861,7 +911,11 @@ export function GitPanel({ projectId }: { projectId: string }) {
         ) : (
           stashes.map((stash) => (
             <div className="git-log-row" key={stash.index}>
-              <button type="button" className="git-log-heading" onClick={() => toggleStash(stash.index)}>
+              <button
+                type="button"
+                className="git-log-heading"
+                onClick={() => toggleStash(stash.index)}
+              >
                 {openStash === stash.index ? <ChevronDown size={13} /> : <ChevronRight size={13} />}
                 <span>{stash.message}</span>
                 <small>{new Date(stash.date).toLocaleString()}</small>
@@ -896,15 +950,21 @@ export function GitPanel({ projectId }: { projectId: string }) {
                   title="Drop"
                   disabled={busy}
                   onClick={() =>
-                    confirm(`drop-stash:${stash.index}`, () =>
-                      void act(async () => {
-                        await desktop.gitStashDrop(projectId, stash.index);
-                        await refreshAll();
-                      }),
+                    confirm(
+                      `drop-stash:${stash.index}`,
+                      () =>
+                        void act(async () => {
+                          await desktop.gitStashDrop(projectId, stash.index);
+                          await refreshAll();
+                        }),
                     )
                   }
                 >
-                  {confirmKey === `drop-stash:${stash.index}` ? <Check size={14} /> : <Trash2 size={14} />}
+                  {confirmKey === `drop-stash:${stash.index}` ? (
+                    <Check size={14} />
+                  ) : (
+                    <Trash2 size={14} />
+                  )}
                 </button>
               </div>
               {openStash === stash.index && <CodeDiff files={stashDiffs[stash.index] ?? []} />}
@@ -950,7 +1010,9 @@ export function GitPanel({ projectId }: { projectId: string }) {
                   aria-label={`Fetch ${remote.name}`}
                   title="Fetch"
                   disabled={busy || !!netOp}
-                  onClick={() => runNetwork('fetch', (id) => desktop.gitFetch(id, projectId, remote.name))}
+                  onClick={() =>
+                    runNetwork('fetch', (id) => desktop.gitFetch(id, projectId, remote.name))
+                  }
                 >
                   <Download size={14} />
                 </button>
@@ -960,14 +1022,20 @@ export function GitPanel({ projectId }: { projectId: string }) {
                   title="Remove"
                   disabled={busy}
                   onClick={() =>
-                    confirm(`remove-remote:${remote.name}`, () =>
-                      void act(async () => {
-                        setRemotes(await desktop.gitRemoveRemote(projectId, remote.name));
-                      }),
+                    confirm(
+                      `remove-remote:${remote.name}`,
+                      () =>
+                        void act(async () => {
+                          setRemotes(await desktop.gitRemoveRemote(projectId, remote.name));
+                        }),
                     )
                   }
                 >
-                  {confirmKey === `remove-remote:${remote.name}` ? <Check size={14} /> : <Trash2 size={14} />}
+                  {confirmKey === `remove-remote:${remote.name}` ? (
+                    <Check size={14} />
+                  ) : (
+                    <Trash2 size={14} />
+                  )}
                 </button>
               </div>
             </div>
@@ -991,7 +1059,9 @@ export function GitPanel({ projectId }: { projectId: string }) {
             disabled={busy || !remoteName.trim() || !remoteUrl.trim()}
             onClick={() =>
               void act(async () => {
-                setRemotes(await desktop.gitAddRemote(projectId, remoteName.trim(), remoteUrl.trim()));
+                setRemotes(
+                  await desktop.gitAddRemote(projectId, remoteName.trim(), remoteUrl.trim()),
+                );
                 setRemoteName('');
                 setRemoteUrl('');
               })
@@ -1023,7 +1093,10 @@ export function GitPanel({ projectId }: { projectId: string }) {
             </button>
           ) : (
             <>
-              <select value={upstreamRemote} onChange={(event) => setUpstreamRemote(event.target.value)}>
+              <select
+                value={upstreamRemote}
+                onChange={(event) => setUpstreamRemote(event.target.value)}
+              >
                 <option value="">Push to remote…</option>
                 {remotes.map((remote) => (
                   <option key={remote.name} value={remote.name}>
