@@ -123,18 +123,16 @@ let app, page;
 const ready = () => page.getByText('Up to date', { exact: true }).waitFor({ timeout: 60_000 });
 const showChanges = () => page.getByRole('button', { name: /^Show changes \(/ });
 const geometry = () =>
-  page
-    .locator('.pdf-change-region')
-    .evaluateAll((nodes) =>
-      nodes.map((node) => ({
-        page: Number(node.closest('.pdf-sheet').dataset.page),
-        left: node.style.left,
-        top: node.style.top,
-        width: node.style.width,
-        height: node.style.height,
-        kind: node.className,
-      })),
-    );
+  page.locator('.pdf-change-region').evaluateAll((nodes) =>
+    nodes.map((node) => ({
+      page: Number(node.closest('.pdf-sheet').dataset.page),
+      left: node.style.left,
+      top: node.style.top,
+      width: node.style.width,
+      height: node.style.height,
+      kind: node.className,
+    })),
+  );
 const pagesWithChanges = async () => [...new Set((await geometry()).map((r) => r.page))].sort();
 const releaseHeldRead = async () => app?.evaluate(() => globalThis.folioHighlightRead?.release?.());
 try {
