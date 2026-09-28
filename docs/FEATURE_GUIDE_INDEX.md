@@ -10,6 +10,7 @@ Each feature group listed below has a plain-language walkthrough and a real-app 
 | Work during compiler preparation | [Walkthrough](tutorials/first-resume.md#work-while-the-pdf-builder-gets-ready) | [Screenshot](images/startup-chat.png) · Current development source · recovered synthetic project |
 | Templates and paper size | [Walkthrough](tutorials/first-resume.md) | [Screenshot](images/templates.png) · Real app · synthetic project |
 | Chat and agent progress | [Walkthrough](tutorials/chat-and-feedback.md) | [Screenshot](images/chat-workspace.png) · Real app · scripted local AI fixture |
+| PDF change highlights after AI edits | [Walkthrough](tutorials/chat-and-feedback.md#see-what-the-ai-changed) | [Screenshot](images/pdf-change-highlights.png) · Current development source · scripted local AI fixture |
 | Codex subscription | [Walkthrough](tutorials/ai-connections.md) | [Screenshot](images/connection-codex.png) · Real form · no connected account |
 | Claude Code subscription setup | [Walkthrough](tutorials/ai-connections.md) | [Screenshot](images/connection-claude-code.png) · Real form · no connected account |
 | Live Claude PDF feedback | [Walkthrough](tutorials/ai-connections.md#try-a-pdf-note-with-claude-code) | [Screenshot](images/claude-live-completed.png) · Real subscription · synthetic document · source build |

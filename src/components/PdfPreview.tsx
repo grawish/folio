@@ -370,15 +370,19 @@ export const PdfPreview = forwardRef<
   // The flash only starts once the replacement PDF is the one actually
   // displayed, its visible pages are painted, and there is no load/render
   // error masking it — matching "wait until the PDF is visibly rendered".
-  const highlightActive =
-    !!changeHighlight && data === changeHighlight.after && visibleReady && !loading && !error;
+  // A different displayed PDF (manual rebuild, History restore, project
+  // switch) drops the comparison entirely so old marks and their controls
+  // can never appear over a document they do not describe.
+  const displayedHighlight =
+    changeHighlight && data === changeHighlight.after ? changeHighlight : undefined;
+  const highlightActive = !!displayedHighlight && visibleReady && !loading && !error;
   const {
     state: highlightState,
     stops: highlightStops,
     replay: replayHighlight,
     next: nextChangeRegion,
     previous: previousChangeRegion,
-  } = usePdfChangeHighlight(changeHighlight, highlightActive, visible.start, visible.end);
+  } = usePdfChangeHighlight(displayedHighlight, highlightActive, visible.start, visible.end);
   useEffect(() => {
     const element = scroll.current;
     if (!element) return;
@@ -433,9 +437,13 @@ export const PdfPreview = forwardRef<
     if (document) setPage((p) => Math.min(p, document.numPages));
   }, [document]);
   const navigate = (next: number) => {
-    setPage(next);
+    // Change stops may reference a page that no longer exists (content
+    // removed at the end of the document). Clamp to the displayed PDF so
+    // the page counter and scroll target stay valid.
+    const clamped = document ? Math.max(1, Math.min(next, document.numPages)) : next;
+    setPage(clamped);
     scroll.current
-      ?.querySelector(`[data-page="${next}"]`)
+      ?.querySelector(`[data-page="${clamped}"]`)
       ?.scrollIntoView({ block: 'start', behavior: 'instant' });
   };
   return (
@@ -605,7 +613,7 @@ export const PdfPreview = forwardRef<
                           : undefined
                       }
                       changeOverlay={
-                        changeHighlight && !highlightState.failed ? (
+                        displayedHighlight && !highlightState.failed ? (
                           <PdfChangeOverlay
                             comparison={highlightState.pages.get(i)}
                             phase={highlightState.phase}

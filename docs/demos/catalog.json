@@ -56,6 +56,20 @@
     "alt": "Chat and agent progress in the real Folio app"
   },
   {
+    "id": "pdf-change-highlights",
+    "title": "PDF change highlights after AI edits",
+    "image": "pdf-change-highlights.png",
+    "guide": "tutorials/chat-and-feedback.md#see-what-the-ai-changed",
+    "description": "Changed regions flash on the new PDF after an AI edit and can be replayed. Available in development source; the preview-4 installer predates this feature.",
+    "steps": [
+      "Send an edit request and wait for the finished PDF.",
+      "Watch the changed regions flash, then fade.",
+      "Use Show changes, Previous change, and Next change to revisit them."
+    ],
+    "kind": "Current development source · scripted local AI fixture",
+    "alt": "PDF change highlights after an AI edit in Folio"
+  },
+  {
     "id": "codex",
     "title": "Codex subscription",
     "image": "connection-codex.png",
