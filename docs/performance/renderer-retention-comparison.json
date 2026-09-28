@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "verifiedAt": "2026-09-28T03:28:03.825472+00:00",
+  "verifiedAt": "2026-09-28T03:34:32.659092+00:00",
   "sourceCommit": "bf980919786623a563f548e4894d2a4ff4ff6dc6",
   "appAsarSha256": "fbc69b9abcd714b69a35f139f7ac155a05458e5cefdc0bef3e29e861b932e91e",
   "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
@@ -1884,7 +1884,9 @@
               ]
             }
           ],
-          "sameDetachedIdsAsFirstSnapshot": 6766
+          "sameDetachedIdsAsFirstSnapshot": 6766,
+          "firstDetachedIdsPresentAnywhere": 6766,
+          "firstDetachedIdsWithChangedTypeOrName": 0
         },
         {
           "label": "chat-existing-editor",
@@ -3442,7 +3444,9 @@
               ]
             }
           ],
-          "sameDetachedIdsAsFirstSnapshot": 6766
+          "sameDetachedIdsAsFirstSnapshot": 6766,
+          "firstDetachedIdsPresentAnywhere": 6766,
+          "firstDetachedIdsWithChangedTypeOrName": 0
         },
         {
           "label": "new-project",
@@ -3668,13 +3672,15 @@
               ]
             }
           ],
-          "sameDetachedIdsAsFirstSnapshot": 0
+          "sameDetachedIdsAsFirstSnapshot": 0,
+          "firstDetachedIdsPresentAnywhere": 20,
+          "firstDetachedIdsWithChangedTypeOrName": 20
         }
       ],
       "retentionAnalysis": {
         "path": "test-results/v8-profile-ismP0o/retention-analysis.json",
-        "bytes": 122994,
-        "sha256": "a144c49f4dadf987bfe99e0735c0c646c3ce8a691038e063b3e343ee0ebb03ca"
+        "bytes": 123420,
+        "sha256": "b20f5bb5723758e7131e7d497f24d83b560a363a158292d934a2782c5685418f"
       }
     },
     {
@@ -4138,7 +4144,9 @@
               ]
             }
           ],
-          "sameDetachedIdsAsFirstSnapshot": 1
+          "sameDetachedIdsAsFirstSnapshot": 1,
+          "firstDetachedIdsPresentAnywhere": 1,
+          "firstDetachedIdsWithChangedTypeOrName": 0
         },
         {
           "label": "chat-existing-editor",
@@ -4384,7 +4392,9 @@
               ]
             }
           ],
-          "sameDetachedIdsAsFirstSnapshot": 1
+          "sameDetachedIdsAsFirstSnapshot": 1,
+          "firstDetachedIdsPresentAnywhere": 1,
+          "firstDetachedIdsWithChangedTypeOrName": 0
         },
         {
           "label": "new-project",
@@ -4610,13 +4620,15 @@
               ]
             }
           ],
-          "sameDetachedIdsAsFirstSnapshot": 0
+          "sameDetachedIdsAsFirstSnapshot": 0,
+          "firstDetachedIdsPresentAnywhere": 0,
+          "firstDetachedIdsWithChangedTypeOrName": 0
         }
       ],
       "retentionAnalysis": {
         "path": "test-results/v8-profile-vygPhz/retention-analysis.json",
-        "bytes": 25804,
-        "sha256": "15281e977800a4b86af31c2f538b2c4c7d17c534be0cd63e900974ad04387ec9"
+        "bytes": 26222,
+        "sha256": "e684a0d15102d52fd9e2de5042b8d87a6ce2a8479698aa53a144d1cb3952ef41"
       }
     }
   ],
@@ -4648,8 +4660,8 @@
   ],
   "analyzer": {
     "path": "scripts/analyze-renderer-retention.py",
-    "bytes": 6111,
-    "sha256": "937c80d0020c25c512b93fe9bb4fc875aeccb4e6e51ed27c993f506c67e770aa"
+    "bytes": 6767,
+    "sha256": "508c2ef4120170760626d248fae76bea9ecf05c2177a59d6b7f0e20bbac2f936"
   },
   "comparisonVerifier": {
     "path": "test-results/verify-renderer-retention-comparison.py",

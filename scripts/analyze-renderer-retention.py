@@ -10,6 +10,7 @@ report = json.loads((root / 'retention.json').read_bytes())
 assert report['snapshots'], 'No snapshots were captured.'
 results = []
 all_detached = []
+first_detached_descriptors = None
 for artifact in report['snapshots']:
     f = root / Path(artifact['file']).name
     raw = f.read_bytes()
@@ -93,6 +94,10 @@ for artifact in report['snapshots']:
         examples.append({'id': field(idx, 'id'), 'name': name(idx), 'selfBytes': field(idx, 'self_size'), 'reachableIgnoringWeakEdges': idx in parents, 'pathFromRoot': list(reversed(chain))})
     detached_ids = {field(idx, 'id') for idx in detached}
     all_detached.append(detached_ids)
+    if first_detached_descriptors is None:
+        first_detached_descriptors = {field(i, 'id'): (kind(i), name(i)) for i in detached}
+    repeated_ids = {field(i, 'id'): (kind(i), name(i)) for i in range(0, len(n), ns)
+                    if field(i, 'id') in first_detached_descriptors}
     results.append({
         'label': artifact['label'], 'sha256': artifact['sha256'], 'nodeFields': nf, 'edgeFields': ef,
         'nodes': len(n) // ns, 'edges': len(e) // es,
@@ -102,7 +107,9 @@ for artifact in report['snapshots']:
         'detachedReachableWithoutWeakEdges': sum(i in parents for i in detached),
         'representativePaths': examples,
         'sameDetachedIdsAsFirstSnapshot': len(detached_ids & all_detached[0]),
+        'firstDetachedIdsPresentAnywhere': len(repeated_ids),
+        'firstDetachedIdsWithChangedTypeOrName': sum(value != first_detached_descriptors[key] for key, value in repeated_ids.items()),
     })
     print(artifact['label'], 'nodes', len(n) // ns, 'detached', len(detached), 'bytes', sum(field(i, 'self_size') for i in detached), 'names', counts.most_common(6), flush=True)
-result = {'schemaVersion': 1, 'workflowCompleted': bool(report.get('completed')), 'analysisScriptSha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), 'retentionReportSha256': hashlib.sha256((root / 'retention.json').read_bytes()).hexdigest(), 'snapshots': results, 'scope': 'Post-collection local snapshots. Detachedness is V8 embedder state (0 unknown, 1 attached, 2 detached). One shortest non-weak graph path is shown for each detached node name; it is not a dominator, complete retained size, causal owner or proof of a leak. Compare with connected DOM, lifecycle, repeat checkpoints and harness roots.'}
+result = {'schemaVersion': 1, 'workflowCompleted': bool(report.get('completed')), 'analysisScriptSha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), 'retentionReportSha256': hashlib.sha256((root / 'retention.json').read_bytes()).hexdigest(), 'snapshots': results, 'scope': 'Post-collection local snapshots. Detachedness is V8 embedder state (0 unknown, 1 attached, 2 detached). One shortest non-weak graph path is shown for each detached node name; it is not a dominator, complete retained size, causal owner or proof of a leak. Snapshot identifiers can be reused for unrelated objects; cross-snapshot identifier counts do not establish object survival or release. Compare with connected DOM, lifecycle, repeat checkpoints and harness roots.'}
 (root / 'retention-analysis.json').write_text(json.dumps(result, indent=2) + '\n')

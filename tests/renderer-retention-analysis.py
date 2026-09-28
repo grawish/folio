@@ -50,6 +50,27 @@ class RetentionAnalysis(unittest.TestCase):
             self.assertFalse(paths['WeakOnly']['reachableIgnoringWeakEdges'])
             self.assertEqual(paths['WeakOnly']['pathFromRoot'], [])
 
+    def test_reused_snapshot_id_is_not_object_identity(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.fixture(root)
+            report = json.loads((root / 'retention.json').read_text())
+            data = json.loads((root / 'code.heapsnapshot').read_text())
+            data['nodes'][18 + 1] = 1  # Text id 7 now names a different object.
+            data['nodes'][18 + 5] = 0
+            raw = json.dumps(data).encode()
+            file = root / 'new-project.heapsnapshot'
+            file.write_bytes(raw)
+            report['snapshots'].append({**report['snapshots'][0], 'label': 'new-project',
+                'file': str(file), 'bytes': len(raw), 'sha256': hashlib.sha256(raw).hexdigest()})
+            (root / 'retention.json').write_text(json.dumps(report))
+            run = self.run_reader(root)
+            self.assertEqual(run.returncode, 0, run.stderr)
+            snapshot = json.loads((root / 'retention-analysis.json').read_text())['snapshots'][1]
+            self.assertEqual(snapshot['firstDetachedIdsPresentAnywhere'], 3)
+            self.assertEqual(snapshot['firstDetachedIdsWithChangedTypeOrName'], 1)
+            self.assertEqual(snapshot['sameDetachedIdsAsFirstSnapshot'], 2)
+
     def test_invalid_node_offset_is_rejected(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
