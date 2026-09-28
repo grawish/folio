@@ -32,7 +32,20 @@ A passing run proves the existing test corpus passed on the recorded hosted envi
 
 This workflow runs on developer images with build tools. It does not prove installation on a consumer Mac without a developer toolchain, signed Gatekeeper/notarization acceptance, a signed-to-signed update, VoiceOver usability or physical high-DPI behavior. Those release requirements remain open. The minimum remains proposed until compatibility evidence and the support decision are complete.
 
-## Verified hosted results — 28 September 2026
+## Editor integration results — 28 September 2026
+
+Source `0bee2713cff6eed7872984f73229fec7ef722ff3` passes the complete current 24-suite hosted qualification on both recorded Mac images. Each run also passes 486 source tests, 19 compiler integrations, twelve template-image comparisons with zero changed pixels, and final app/archive verification. The added checks cover file navigation and saved editor state, outside-file reloads and the local Git workflow. The repaired workspace check follows all three tabs; recovery retains the exact four accepted/96 rejected native write assertion.
+
+| Actual OS | Build | Run and independent evidence |
+| --- | --- | --- |
+| macOS 14.8.9 arm64 | `23J631` | [Run 36381748745](https://github.com/grawish/folio/actions/runs/36381748745), [verification](releases/editor-lifecycle-macos-14-hosted.json) |
+| macOS 27.0 arm64 | `26A428` | [Run 36381751031](https://github.com/grawish/folio/actions/runs/36381751031), [verification](releases/editor-lifecycle-macos-27-hosted.json) |
+
+Both environments report `VirtualMac2,1`, three logical CPUs and 7 GiB RAM. All 178 downloaded evidence files per run, source/script hashes, actual template pixels, generated PDFs, packaged notices, JavaScript reproduction and original publisher materials pass independent checks. The two 5,879-entry physical inventories are byte-identical, with SHA-256 `01cff0fb4b0b8eb3d7815aa30c0cde23ec6243a466fd6fa2babed79bd4fbf4c5`. Their ASAR is `7ab490486ba31a5a0b487231f7c176c756a22cff61869832c88bdd63373d99be`; the 3,982-file compiler runtime is unchanged. Comparison with the preserved local package differs only in explicitly recorded hosted updater metadata.
+
+The [initial viewport failures](releases/editor-navigation-initial-failures.json) and [later recovery/keyboard failures](releases/editor-integrated-hosted-failures.json) remain preserved. The latest qualification includes their fixes. This is coverage of the recorded test corpus on developer images. The merged PDF-change overlay still needs its separate native workflow check and tutorial; it is not asserted by these 24 suites. Clean consumer installation, physical input/accessibility, signing, full redistribution and application-wide resource acceptance remain open. The public preview-4 installer is unchanged.
+
+## Earlier icon-only results — 28 September 2026
 
 Both runs completed successfully at source `ae62d1ab1187241beb2537504f32bbf11917a147`. Each passed 460 source tests, 19 compiler integrations, twelve template-image comparisons with zero changed pixels, all twenty-one native suites and the final app/archive gates.
 

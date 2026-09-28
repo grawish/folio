@@ -4,6 +4,10 @@
 
 Git remembers changes to files in your saved project folder. A **commit** is a named checkpoint. This development feature is newer than the preview-4 download. Folio's PDF **History** remains a separate way to compare built PDFs and restore resume versions.
 
+## Before you start
+
+The Git tab uses a Git installation on your Mac; this preview does not bundle Git. If it is unavailable, the panel reports **Git isn’t installed**. Git also needs a commit name and email. These are separate from your AI connection. The basic demo below uses an installed Git and a private synthetic identity; it does not prove Git setup on a clean consumer Mac.
+
 ## Make your first commit
 
 1. Save your project to a folder. Save your latest edits before choosing files in Git: Git reads files on disk.
