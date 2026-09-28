@@ -83,3 +83,16 @@ FOLIO_PYTHON=/path/to/python3 node scripts/profile-process-resources.mjs \
 The native observer is compiled into the new ignored result directory. No observer binary is committed or installed into Folio. A preliminary one-cycle smoke run is retained separately; the recorded three-cycle run uses the final navigation-dwell workload.
 
 See the [summary and every phase](performance/process-tree-summary.json), [compressed raw snapshots](performance/process-tree-baseline.json.gz) and [verification record](releases/process-profile-verification.json). Every memory sum, CPU accumulation, phase boundary/peak, PDF hash and compressed-data round trip was independently recomputed. The raw data is gzip-compressed JSON and contains only this synthetic run's process metrics and artifact paths. These results are descriptive observations, not percentiles or complete production qualification.
+
+## Longer repeated-use measurements
+
+The profiler now offers an explicit `--long-session` mode with 1–120 cycles. The ordinary 1–5-cycle mode and original raw baselines remain available. Both modes use the same native observer and one-page → 100-page → navigation → one-page workload, with ordinary garbage collection and a fresh isolated synthetic app profile.
+
+```sh
+FOLIO_PYTHON=/path/to/python3 node scripts/profile-process-resources.mjs \
+  /path/to/Folio.app/Contents/MacOS/Folio 120 --long-session
+```
+
+In long-session mode, read-only storage observations run after startup, every ten cycles, at the final cycle and after the app closes. Each observation retains relative metadata entries and grouped logical file totals. Directory enumeration is bounded to 50,000 entries and depth 16; observed symbolic links are counted without traversal. The collector fails rather than publishing silently truncated totals. Scans have separate phase markers outside measured builds/navigation. This is a non-atomic observation of an owned synthetic profile, not a hostile-filesystem boundary or an allocated-disk-block measurement.
+
+The scan's filesystem I/O and the external measurement harness still add host load. PDF inspection runs after sampling. Earlier measurements retain their original script hashes and scope. A longer repetition of this small-text workload does not cover maximum image/history inputs, real AI-provider sessions, all supported devices or every source of retained data. Results must be independently recomputed before using them to adjust a resource policy or claim a leak or budget pass.
