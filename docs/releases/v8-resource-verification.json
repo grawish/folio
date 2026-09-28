@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-28T03:08:27.187789+00:00",
+  "sourceCommit": "7bc21040e9cca366247761437472e0917cabceab",
+  "appAsarSha256": "fbc69b9abcd714b69a35f139f7ac155a05458e5cefdc0bef3e29e861b932e91e",
+  "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+  "profiledAppExited": true,
+  "originalSeedMetadataAndAllFileHashesUnchanged": true,
+  "allExportedPdfsAndEveryPageIndependentlyParsed": true,
+  "allNativeMemorySumsMachCpuCountersAndPhaseMarkersRecomputed": true,
+  "allCpuTraceHashesSamplesLeafWeightsAndTotalsIndependentlyRecomputed": true,
+  "allHeapTraceHashesTreeAndSampleTotalsIndependentlyRecomputed": true,
+  "sourceMapMethod": "Analyzer verifies a packaged main map and exact-JavaScript-byte renderer replay, plus owned sources. This Python verifier checks their recorded source hashes and independent raw accounting; it does not independently implement source-map decoding.",
+  "sourceMapAnalyzer": {
+    "path": "scripts/analyze-v8-resources.mjs",
+    "bytes": 10227,
+    "sha256": "3a4b37caacdeb4ce6bcc42275732fa3d525474c4326385c0c362370fa59a0fbe"
+  },
+  "independentVerifier": {
+    "path": "scripts/verify-v8-resources.py",
+    "bytes": 13691,
+    "sha256": "9118c6243a440357d0d2a232684271c091eadfe87d8956934d5eeb7621069fde"
+  },
+  "rawArchive": {
+    "path": "docs/performance/v8-resource-traces.tar.gz",
+    "bytes": 1037049,
+    "sha256": "fd26d0ada0e06c1144fa1635fb78e12065459e49ae307e7c3f9d234064a2dbd3"
+  },
+  "summary": {
+    "path": "docs/performance/v8-resource-summary.json",
+    "bytes": 31441,
+    "sha256": "7fb27f68e864364e7d8fbec4b0dc453bc2b06c2f01df756dc48f29a384378606"
+  },
+  "retained": [
+    {
+      "path": "/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/v8-profile-KTVuSP/measurements.json",
+      "bytes": 2512430,
+      "sha256": "fd8b392d88b0dac1f1d24f1f9d8089979eece22b08e56ca8da1fd251bf75f8fd"
+    },
+    {
+      "path": "/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/v8-profile-KTVuSP/v8-analysis.json",
+      "bytes": 1063993,
+      "sha256": "4982b3e828595c46272661dcdcc96e8b43b5e15043414874d353edff7d467cb0"
+    },
+    {
+      "path": "test-results/v8-profile-20.log",
+      "bytes": 892,
+      "sha256": "d6b03be071a1f25bde4a623a903a8c3e6c0fe27ce59829de2010d0d9099d4b02"
+    },
+    {
+      "path": "test-results/v8-profile-analysis-final.log",
+      "bytes": 4232,
+      "sha256": "27aceed6a3c2e8ec83df939e9921c4158ec0a13a0a46ecbb2238a671dd8c1995"
+    }
+  ],
+  "scope": "Diagnostic validation, not an app speedup, root-cause proof, threshold pass or production resource acceptance. Original 120-cycle failures remain open."
+}
