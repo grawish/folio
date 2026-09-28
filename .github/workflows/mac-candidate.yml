@@ -1,25 +1,37 @@
 name: Qualify Apple silicon candidate
 on:
   workflow_dispatch:
+    inputs:
+      runner:
+        description: Apple silicon macOS image to qualify
+        type: choice
+        required: true
+        default: macos-15
+        options:
+          - macos-14
+          - macos-15
+          - macos-26
+          - xcode-27
 permissions:
   contents: read
 concurrency:
-  group: mac-candidate-${{ github.ref }}
+  group: mac-candidate-${{ github.ref }}-${{ inputs.runner || 'macos-15' }}
   cancel-in-progress: false
 jobs:
   qualify:
-    runs-on: macos-15
+    runs-on: ${{ inputs.runner || 'macos-15' }}
     timeout-minutes: 90
     env:
       CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+      QUALIFICATION_RUNNER: ${{ inputs.runner || 'macos-15' }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: '24'
           cache: npm
-      - name: Confirm native Apple silicon
-        run: test "$(uname -m)" = arm64
+      - name: Verify and record the selected Mac environment
+        run: node scripts/record-mac-runner.mjs "$QUALIFICATION_RUNNER"
       - run: npm ci
       - run: npm run setup
       - name: Verify the prepared compiler matches the public pack
@@ -50,9 +62,10 @@ jobs:
         if: always()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: apple-silicon-qualification-${{ github.sha }}
+          name: apple-silicon-qualification-${{ github.sha }}-${{ inputs.runner || 'macos-15' }}
           archive: true
           path: |
+            test-results/runner-environment.json
             release/native-tests.json
             release/verification.json
             release/SHA256SUMS

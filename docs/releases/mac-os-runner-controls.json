@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-28T01:34:06.158574+00:00",
+  "scope": "Local environment-recorder controls and workflow configuration review. No hosted macOS 14/27 qualification or clean-consumer-machine acceptance is claimed.",
+  "scriptSha256": "b3b902a7675c01b6918ff3f37e3d6925b2526fa177a1518a2911372f8a039692",
+  "workflowSha256": "3f947290d0788f822570c9878f2dac5b9bc0d74ffde564f7c9426e0cade1150e",
+  "actualMacOS": {
+    "productVersion": "27.0",
+    "productBuild": "26A428",
+    "kernelRelease": "27.0.0",
+    "architecture": "arm64",
+    "expectedMajor": 27
+  },
+  "nativeArchitecture": "arm64",
+  "matchingMajorAccepted": true,
+  "negativeControls": [
+    {
+      "control": "wrong-major",
+      "exit": 1,
+      "passed": true,
+      "error": "The actual architecture or macOS major version differs from the selected image."
+    },
+    {
+      "control": "unknown-label",
+      "exit": 1,
+      "passed": true,
+      "error": "Unknown Mac runner choice."
+    }
+  ],
+  "runnerChoices": [
+    "macos-14",
+    "macos-15",
+    "macos-26",
+    "xcode-27"
+  ],
+  "defaultRunner": "macos-15",
+  "sameQualificationGatesPreserved": true,
+  "formatPassed": true
+}

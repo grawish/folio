@@ -151,3 +151,7 @@ The final DMG command stores Apple’s job ID before waiting and resumes the sam
 Development builds use Folio’s existing navy mark in Finder and the Dock. The reviewed ICNS asset includes ten standard Mac image representations, rendered directly from `website/favicon.svg` at each pixel size. Packaging selects it through `build.mac.icon`; the final package verifier checks the plist’s icon selection and exact installed bytes. See [regeneration instructions](../resources/branding/README.md) and [local package evidence](releases/mac-app-icon-verification.json).
 
 The local package passes the existing startup, Settings, resume and Biber smoke check. Compared with the preceding Biber-notice package, only the icon file and the plist’s icon filename change; all 5,877 other physical entries, the ASAR, runtime and 39 compiled outputs are identical. This does not replace the public preview installer or claim a new complete native qualification or physical display acceptance.
+
+## Select the Mac OS for qualification
+
+The manual Mac candidate workflow offers `macos-14`, `macos-15` (default), `macos-26` and `xcode-27`, with the same full gates on each. It rejects an unexpected actual OS/architecture and retains an environment record with the exact source and image identifiers. Different OS choices can run independently without cancelling an existing attempt. See [OS qualification and remaining clean-install requirements](MAC_OS_QUALIFICATION.md).
