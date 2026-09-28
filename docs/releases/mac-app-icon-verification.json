@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-28T01:20:07.475406+00:00",
+  "baseCommit": "db6221a59eafe9ef0e7a8133587cc5360a276e24",
+  "sourceIcon": {
+    "file": "website/favicon.svg",
+    "bytes": 267,
+    "sha256": "123150c3a7260dbf6e6752c0ec500cf1b11328671da8152ee25279bc01595ede"
+  },
+  "icon": {
+    "file": "resources/branding/folio.icns",
+    "bytes": 88056,
+    "sha256": "0e31e2afff38e5e9597c79d1bf77f4ee183ff87c26c27ce613b99fee3aca64b6"
+  },
+  "preview": {
+    "file": "resources/branding/folio-1024.png",
+    "bytes": 39140,
+    "sha256": "0477f2c1dc9f753a774efd5c4e1f8ea9776b73b1536bcf0f08552684287e4f38"
+  },
+  "representations": {
+    "icon_32x32@2x.png": [
+      64,
+      64
+    ],
+    "icon_128x128.png": [
+      128,
+      128
+    ],
+    "icon_256x256@2x.png": [
+      512,
+      512
+    ],
+    "icon_32x32.png": [
+      32,
+      32
+    ],
+    "icon_512x512.png": [
+      512,
+      512
+    ],
+    "icon_16x16.png": [
+      16,
+      16
+    ],
+    "icon_16x16@2x.png": [
+      32,
+      32
+    ],
+    "icon_128x128@2x.png": [
+      256,
+      256
+    ],
+    "icon_512x512@2x.png": [
+      1024,
+      1024
+    ],
+    "icon_256x256.png": [
+      256,
+      256
+    ]
+  },
+  "packagedIconMatches": true,
+  "bundleIconFile": "icon.icns",
+  "physicalInventory": {
+    "file": "artifacts/license-materials/mac-app/ca380eaa54b34a3dd6083fde5e58f4a08f62276b4d903b89680866abcf258d58/bundle-inventory.json",
+    "bytes": 1406293,
+    "sha256": "ca380eaa54b34a3dd6083fde5e58f4a08f62276b4d903b89680866abcf258d58"
+  },
+  "baselineApp": "Biber notice candidate db6221a, retained local package",
+  "physicalComparison": {
+    "entries": 5879,
+    "added": [
+      "Contents/Resources/icon.icns"
+    ],
+    "removed": [
+      "Contents/Resources/electron.icns"
+    ],
+    "changed": [
+      "Contents/Info.plist"
+    ],
+    "remainingEntriesIdentical": 5877,
+    "plistOnlyChange": "CFBundleIconFile"
+  },
+  "appAsarSha256": "fbc69b9abcd714b69a35f139f7ac155a05458e5cefdc0bef3e29e861b932e91e",
+  "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+  "compiledOutputsIdentical": 39,
+  "formatTypecheckBuildPassed": true,
+  "nativeSmokePassed": true,
+  "nativeEvidence": "test-results/packaged-p1cd2M",
+  "logs": [
+    {
+      "file": "test-results/icon-generation.log",
+      "bytes": 94,
+      "sha256": "188b3b635119bbc0fba201736387e69955950d4b4db3dcd6ee633b88b7dfe052"
+    },
+    {
+      "file": "test-results/icon-format-check.log",
+      "bytes": 183,
+      "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+    },
+    {
+      "file": "test-results/icon-build.log",
+      "bytes": 1719,
+      "sha256": "aacfc2803bbbd5de435ae9b80d0e2868ec919ec1c8cbf48570b466a18ea9faea"
+    },
+    {
+      "file": "test-results/icon-package.log",
+      "bytes": 1239,
+      "sha256": "1e96504059e6a31c147906c23b5111b4ec4dff30f63d035d935e5a371edf511c"
+    },
+    {
+      "file": "test-results/icon-physical.log",
+      "bytes": 1702,
+      "sha256": "f99a288958f45a061d7b799b5fad968b505c4b9463972ab047bb92d0a88c043c"
+    },
+    {
+      "file": "test-results/icon-native.log",
+      "bytes": 250,
+      "sha256": "8c264b3eb4099d75ebd14ee33fdfd5c68c01922df7fb94b03610d21effd28713"
+    }
+  ],
+  "scope": "Local unsigned Mac package with Folio artwork. Exact icon bytes, ten icon representations, parsed plist and full physical inventory compared with the prior local Biber package. All other 5,877 entries, the ASAR, runtime and 39 compiled outputs are unchanged. Existing packaged startup, Settings, resume and Biber checks pass. This is not a new complete native qualification, signed release, physical high-DPI acceptance or replacement of the public preview installer."
+}

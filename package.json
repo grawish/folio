@@ -55,7 +55,8 @@
     "demo:capture": "node scripts/capture-tutorials.mjs",
     "website:build": "node scripts/build-website.mjs",
     "skill:build": "node scripts/build-skill.mjs",
-    "website:check": "npm run website:build && node scripts/check-website.mjs"
+    "website:check": "npm run website:build && node scripts/check-website.mjs",
+    "icon:build": "node scripts/build-mac-icon.mjs"
   },
   "build": {
     "appId": "app.folio.resume",
@@ -130,7 +131,8 @@
             "arm64"
           ]
         }
-      ]
+      ],
+      "icon": "resources/branding/folio.icns"
     },
     "artifactName": "Folio-${version}-${os}-${arch}.${ext}",
     "beforePack": "./scripts/prepare-electron-notices.mjs"
