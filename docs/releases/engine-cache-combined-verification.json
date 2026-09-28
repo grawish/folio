@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "verifiedAt": "2026-09-27T23:49:05.388435+00:00",
   "sourceCommit": "d511220772f85615f66961ad5f73d5464192b02b",
-  "status": "Combined local package checks passed; full twenty-one-suite hosted qualification pending",
+  "status": "Combined local package checks and full twenty-one-suite hosted qualification passed",
   "sourceTestsPassed": 452,
   "typecheckPassed": true,
   "formatPassed": true,
-  "fullCompilerIntegrationStatus": "The cache implementation passed all 19 before integration. The combined branch is scheduled for full hosted compiler/native qualification.",
+  "fullCompilerIntegrationStatus": "All 19 compiler integrations passed on the combined source in hosted qualification 36359954692.",
   "appAsar": {
     "file": "release/engine-cache-merged/mac-arm64/Folio.app/Contents/Resources/app.asar",
     "bytes": 7538108,
@@ -217,5 +217,13 @@
       "sha256": "411dbf930a279ec4878cdeefe79be75e2bff7169f13f897642ea0b5b8ec25d24"
     }
   ],
-  "scope": "Unsigned local Apple silicon package combines compiler-cache retention and the merged bounded recovery implementation. Tests use isolated synthetic profiles and scoped faults. This does not establish signing/notarization, real signed updates, clean supported-Mac acceptance, real BYOK, complete redistribution or whole-app resource budgets. The public installer is unchanged."
+  "scope": "Unsigned local Apple silicon package combines compiler-cache retention and the merged bounded recovery implementation. Tests use isolated synthetic profiles and scoped faults. This does not establish signing/notarization, real signed updates, clean supported-Mac acceptance, real BYOK, complete redistribution or whole-app resource budgets. The public installer is unchanged.",
+  "hostedQualification": {
+    "record": "docs/releases/mac-engine-cache-hosted.json",
+    "commit": "05f58fee56a0227e53c959d4073422a5141d8f7c",
+    "runId": 36359954692,
+    "independentlyVerified": true,
+    "screenshotsReviewed": true,
+    "scope": "Later profiler and documentation commits change no application, packaging or qualification input."
+  }
 }
