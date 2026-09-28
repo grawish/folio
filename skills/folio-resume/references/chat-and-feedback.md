@@ -43,6 +43,8 @@ Marks keep their position when you zoom. Notes belong to the PDF version you mar
 
 This feature is in current development source; the preview-4 download does not include it yet.
 
+After a successful AI edit, the app compares the new PDF with the one you had before and marks the changed regions.
+
 1. Send an edit request and wait for the reply and the finished PDF.
 2. Changed regions flash briefly as a translucent overlay, then fade so you can read the page.
 3. Choose **Show changes** above the PDF to replay the marks. The button shows how many changes were found.
@@ -51,7 +53,7 @@ This feature is in current development source; the preview-4 download does not i
 
 [Screenshot: Change highlights marking an AI edit on the PDF](https://github.com/grawish/folio/blob/main/docs/images/pdf-change-highlights.png)
 
-Marks belong to the displayed PDF only: manual edits, project switches and History restores do not trigger them, and a comparison that finishes after you switch projects or rebuild is discarded instead of marking the wrong PDF. If a comparison cannot finish, the PDF simply appears without highlights.
+This real app capture uses a synthetic resume, a deterministic local AI fixture and a real compiled PDF; no live model produced the edit. Marks belong to the displayed PDF only: manual edits, project switches and History restores do not trigger them, and a comparison that finishes after you switch projects or rebuild is discarded instead of marking the wrong PDF. If a comparison cannot finish, the PDF simply appears without highlights.
 
 **Demo:** `npm run test:pdf-highlight` builds the app and runs `scripts/test-pdf-highlight-smoke.mjs`, checking an ordinary edit and a deliberately delayed comparison end-to-end.
 
