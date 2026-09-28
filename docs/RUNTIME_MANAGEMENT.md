@@ -13,7 +13,7 @@ Folio now keeps a verified local copy of each compiler used by a project. Updati
 
 ## Identity and persistence
 
-`RuntimePin` records Tectonic version, resource bundle label, platform, optional Biber version and a SHA-256 identity over the canonical manifest inventory. Reusing a version label with different file hashes produces a different identity. Verification checks every locked file and refuses unexpected files, symlinks and invalid paths.
+`RuntimePin` records Tectonic version, resource bundle label, platform, optional Biber version and a SHA-256 identity over the canonical manifest inventory. Reusing a version label with different file hashes produces a different identity. Verification checks every locked file and refuses unexpected files, symlinks and invalid paths. Each build still rehashes every locked byte. Four concurrent readers use 128 KiB buffers instead of loading whole resources, while preserving individual and aggregate size limits. Verification waits for all readers to close after a failure and never reuses a cached success. See the [matched performance measurements](PERFORMANCE_IMPROVEMENT_PLAN.md#faster-full-runtime-verification).
 
 The project manifest includes `runtime` plus legacy `engine`/`bundle` labels derived from that same choice. A legacy labels-only project adopts the included complete identity only when the labels match; an incompatible recorded choice remains unavailable. Projects with no prior choice adopt the included version. Malformed compiler choices are rejected instead of discarded.
 
@@ -32,7 +32,7 @@ The first published pack also combines the original core notices into its signed
 Managed data lives under the application's `runtimes` directory, grouped by manifest identity. An atomic `active.json` pointer selects a generation in `copies`. Each ready generation contains a matching `ready.json` marker and its runtime directory.
 
 1. Verify the included files against the requested identity.
-2. Copy files into a new, separate generation with bounded copy concurrency.
+2. Check the [compiler storage and free-space admission policy](COMPILER_STORAGE.md), then copy files into a new, separate generation with bounded copy concurrency.
 3. Verify the complete copy and run an offline compiler self-test, including the bundled Biber helper.
 4. Flush a ready marker, atomically replace the active pointer, and flush its parent directory.
 5. Keep the previous generation and any generation leased by a running build. Remove other owned, unused generations.
@@ -73,3 +73,7 @@ Preparation now exercises both TeX and Biber before making the managed runtime a
 An explicit included-compiler migration with a backup and visible before/after PDFs is now implemented; see `COMPILER_MIGRATION.md`. The [signed pack workflow](MANAGED_PACKS.md) now includes the public catalog, resumable HTTPS downloads, reviewed offline import and Settings installation/preview. The first table pack is published with its source materials. Final packaged public-pack acceptance and signing-aware manifests; bounded retention across all historical identities; clean-machine, power-loss and reference-device performance acceptance remain open. The current local repair does not implement these requirements or fetch packages during compilation.
 
 Pins currently identify one OS/CPU build. Opening a project on a different platform preserves that pin and refuses compilation rather than guessing an equivalent compiler. Existing project files remain editable. Other operating systems and CPU targets are outside the user’s current Apple silicon Mac scope.
+
+## Review stored compilers
+
+[Settings → Storage](COMPILER_STORAGE.md) shows logical compiler-root use and allows confirmed removal of a recognized old identity. The included compiler, current project and live leases are protected. Saved resumes keep their exact compiler pins; closed projects can need a removed identity restored. Interrupted removals remain reviewable. Whole-profile retention and supported-device disk acceptance are still open.

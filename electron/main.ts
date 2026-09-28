@@ -21,6 +21,8 @@ import { ProjectStore, atomicWrite, validateProject, removedFileArchive } from '
 import { ProjectImporter } from './core/project-import';
 import { ProjectWatcher } from './core/project-scan';
 import { Compiler } from './core/compiler';
+import { BuildRequests } from './core/build-requests';
+import { PreferenceStore } from './core/preferences';
 import { RuntimeManager } from './core/runtime-manager';
 import { PackService } from './core/pack-service';
 import { packTrust } from './core/pack-trust';
@@ -66,6 +68,7 @@ let watcher: ProjectWatcher;
 let watchedDirectory: string | undefined;
 let importer: ProjectImporter;
 let compiler: Compiler;
+let buildRequests: BuildRequests;
 let runtimes: RuntimeManager;
 let packs: PackService;
 let agentCompiler: Compiler;
@@ -95,6 +98,7 @@ const support = new SupportBundles({
   write: atomicWrite,
 });
 let workspaces: WorkspaceStore;
+let preferences: PreferenceStore;
 type PdfInspection = import('../src/shared/ai').PdfInspection;
 let connections: ConnectionStore;
 let providers: ProviderService;
@@ -107,13 +111,12 @@ const renders = new Map<
     reject(error: Error): void;
   }
 >();
-let recoveryQueue = Promise.resolve();
-let requestGeneration = 0;
 let saveReviewId: string | undefined;
 let saveReviewStart: Promise<void> = Promise.resolve();
 let saveReviewApply: Promise<unknown> = Promise.resolve();
 let applyingSaveReview = false;
 let removingHistory = false;
+let compilerRemoval: Promise<boolean> | undefined;
 async function endSaveReview(id?: string) {
   if (id !== undefined && id !== saveReviewId) return;
   const currentId = saveReviewId;
@@ -197,7 +200,13 @@ async function openProject(directory: string, main?: string) {
   return project;
 }
 
+async function stopBuilds() {
+  const results = await Promise.allSettled([buildRequests.cancel(), agent.cancel()]);
+  for (const result of results) if (result.status === 'rejected') throw result.reason;
+}
+
 function requireProjectIdle() {
+  if (compilerRemoval) throw new Error('Finish reviewing compiler removal first.');
   if (removingHistory) throw new Error('Wait for history removal to finish.');
   if (saveReviewId) throw new Error('Close save recovery before changing the workspace.');
   migrations.requireIdle();
@@ -229,6 +238,8 @@ function handle(channel: string, callback: (...args: any[]) => unknown) {
 }
 
 function registerHandlers() {
+  handle('preferences:load', (legacy: unknown) => preferences.initialize(legacy));
+  handle('preferences:save', (patch: unknown) => preferences.update(patch));
   handle('support:prepare', (value: unknown) => support.prepare(value));
   handle('support:export', (id: string, selected: unknown) => support.export(id, selected));
   handle('support:cancel', (id?: string) => support.cancel(id));
@@ -254,10 +265,10 @@ function registerHandlers() {
     updateRestarting = true;
     try {
       return await updates.restart(async () => {
-        requestGeneration++;
-        await compiler.cancel();
-        await recoveryQueue;
+        await buildRequests.cancel();
+        await store.flushRecovery();
         await workspaces.flush();
+        await preferences.flush();
         await store.recover(project);
         await workspaces.save(workspace);
         await workspaces.flush();
@@ -277,10 +288,8 @@ function registerHandlers() {
     const project = value === undefined ? undefined : checkedProject(value);
     saveReviewId = safeId(id);
     saveReviewStart = (async () => {
-      requestGeneration++;
-      await agent.cancel();
-      await compiler.cancel();
-      await recoveryQueue.catch(() => {});
+      await stopBuilds();
+      await store.flushRecovery().catch(() => {});
       await workspaces.flush();
       if (project) await store.recover(project);
     })();
@@ -350,6 +359,44 @@ function registerHandlers() {
   handle('runtime:repair', (pin: unknown) => {
     requireProjectIdle();
     return runtimes.repair(validateRuntimePin(pin));
+  });
+  handle('runtime:storage', async () => {
+    await store.flushRecovery();
+    return runtimes.storage((await store.loadRecovery())?.runtime);
+  });
+  handle('runtime:remove-stored', async (key: string, token: string) => {
+    requireProjectIdle();
+    if (agent.busy || buildRequests.busy)
+      throw new Error('Finish the AI request and PDF build before removing a compiler.');
+    const operation = (async () => {
+      await store.flushRecovery();
+      const current = (await store.loadRecovery())?.runtime;
+      const entry = (await runtimes.storage(current)).entries.find((entry) => entry.key === key);
+      if (!entry || entry.token !== token)
+        throw new Error('Refresh storage and review this compiler again.');
+      if (entry.protectedReason) throw new Error(entry.protectedReason);
+      const choice = await dialog.showMessageBox(window!, {
+        type: 'warning',
+        buttons: ['Cancel', 'Remove compiler'],
+        defaultId: 0,
+        cancelId: 0,
+        title: 'Remove stored compiler?',
+        message: entry.unfinishedRemoval
+          ? 'Finish removing these compiler files?'
+          : `Remove Tectonic ${entry.pin!.version} · ${entry.pin!.bundle}?`,
+        detail: `${(entry.bytes / 1024 ** 2).toFixed(1)} MiB of compiler files. Identity: ${entry.pin?.id ?? entry.key}.\n\nYour resume files will stay. Other saved resumes may need this exact compiler. To build them again, restore the matching Folio version and any required resource pack. Their compiler choices will not change.`,
+        noLink: true,
+      });
+      if (choice.response !== 1) return false;
+      await runtimes.removeStoredCompiler(key, token, (await store.loadRecovery())?.runtime);
+      return true;
+    })();
+    compilerRemoval = operation;
+    try {
+      return await operation;
+    } finally {
+      compilerRemoval = undefined;
+    }
   });
   handle('packs:list', () => packs.list());
   handle('packs:refresh', (id: string) => {
@@ -473,7 +520,7 @@ function registerHandlers() {
     'workspace:remove-version',
     async (projectId: string, versionId: string, currentId?: string) => {
       requireProjectIdle();
-      if (agent.busy || compiler.busy)
+      if (agent.busy || buildRequests.busy)
         throw new Error('Finish building and stop the AI request before removing history.');
       removingHistory = true;
       try {
@@ -549,7 +596,7 @@ function registerHandlers() {
     // comparison (or wait for Apply) before restoring the recovered draft.
     await fonts.cancel();
     await migrations.cancel();
-    await recoveryQueue.catch(() => {});
+    await store.flushRecovery().catch(() => {});
     await runtimes.identify();
     const recovered = await store.loadRecovery();
     if (recovered && store.resolvedSaveCopies) {
@@ -650,7 +697,7 @@ function registerHandlers() {
   handle('project:changes', (id: string) => store.inspectChanges(safeId(id)));
   handle('project:use-disk-source', async (value: unknown, token: string, mainFile: string) => {
     requireProjectIdle();
-    await recoveryQueue.catch(() => {});
+    await store.flushRecovery().catch(() => {});
     const next = await store.useDiskSource(value, token, mainFile);
     void watcher.check();
     return next;
@@ -708,9 +755,8 @@ function registerHandlers() {
         );
       }
     }
-    recoveryQueue = recoveryQueue.catch(() => {}).then(() => store.recover(savedProject));
     try {
-      await recoveryQueue;
+      await store.recover(savedProject);
     } catch {
       warnings.push('Project saved, but local recovery could not be updated.');
     }
@@ -727,46 +773,18 @@ function registerHandlers() {
   handle('project:recover', (value: unknown) => {
     requireProjectIdle();
     const project = checkedProject(value);
-    recoveryQueue = recoveryQueue.catch(() => {}).then(() => store.recover(project));
-    return recoveryQueue;
+    return store.recover(project);
   });
   handle('project:clear-recovery', async () => {
     requireProjectIdle();
-    await recoveryQueue;
+    await store.flushRecovery();
     await store.clearRecovery();
   });
-  handle('build:compile', async (value: unknown) => {
+  handle('build:compile', (value: unknown) => {
     requireProjectIdle();
-    const project = checkedProject(value);
-    const generation = ++requestGeneration;
-    await store.requireReviewedDisk(project.id);
-    const assets = await store.assets(project);
-    if (generation !== requestGeneration)
-      return {
-        projectId: project.id,
-        revision: project.revision,
-        status: 'cancelled',
-        durationMs: 0,
-        diagnostics: [],
-        log: '',
-      };
-    const result = await compiler.compile(project, assets);
-    if (result.status === 'success' && result.pdf && generation === requestGeneration) {
-      const version = await workspaces.checkpoint(
-        project,
-        result.pdf,
-        'Built from source',
-        false,
-        result.buildFingerprint,
-      );
-      result.versionId = version.id;
-    }
-    return result;
+    return buildRequests.compile(checkedProject(value));
   });
-  handle('build:cancel', () => {
-    requestGeneration++;
-    return compiler.cancel();
-  });
+  handle('build:cancel', () => buildRequests.cancel());
   handle('project:export-pdf', async (value: unknown) => {
     requireProjectIdle();
     const project = checkedProject(value);
@@ -829,17 +847,18 @@ function registerHandlers() {
     await shell.openExternal(url.href);
   });
   handle('app:close', async () => {
+    await compilerRemoval?.catch(() => {});
     await updates.cancel();
     await packs.cancel();
     await endSaveReview();
     await support.cancel();
     await fonts.cancel();
     await migrations.cancel();
-    await recoveryQueue;
-    await agent.cancel();
+    await store.flushRecovery();
+    await stopBuilds();
     await providers.close();
     await workspaces.flush();
-    await compiler.cancel();
+    await preferences.flush();
     closing = true;
     window?.close();
   });
@@ -869,7 +888,7 @@ function createWindow() {
   window.webContents.setWindowOpenHandler(() => ({ action: 'deny' }));
   window.webContents.on('will-navigate', (event) => event.preventDefault());
   window.on('close', (event) => {
-    if (updateRestarting && !closing) {
+    if ((updateRestarting || compilerRemoval) && !closing) {
       event.preventDefault();
       return;
     }
@@ -889,6 +908,7 @@ function createWindow() {
 if (primaryInstance)
   void app.whenReady().then(async () => {
     const dataRoot = app.getPath('userData');
+    preferences = new PreferenceStore(dataRoot);
     await fs.mkdir(dataRoot, { recursive: true });
     const installReason = await installedUpdateSupport(updatePublisher.expectedTeamId);
     updates = new AppUpdates(
@@ -919,10 +939,8 @@ if (primaryInstance)
         return chosen.canceled ? undefined : chosen.filePaths[0];
       },
       start: async () => {
-        requestGeneration++;
-        await agent.cancel();
-        await compiler.cancel();
-        await recoveryQueue;
+        await stopBuilds();
+        await store.flushRecovery();
       },
       progress: (value) => {
         if (window && !window.isDestroyed()) window.webContents.send('packs:progress', value);
@@ -949,6 +967,22 @@ if (primaryInstance)
     compiler = new Compiler(runtimes, path.join(dataRoot, 'builds'));
     agentCompiler = new Compiler(runtimes, path.join(dataRoot, 'agent-builds'));
     workspaces = new WorkspaceStore(dataRoot);
+    buildRequests = new BuildRequests({
+      review: (project) => store.requireReviewedDisk(project.id),
+      assets: (project) => store.assets(project),
+      compile: (project, assets) => compiler.compile(project, assets),
+      cancelCompiler: () => compiler.cancel(),
+      checkpoint: async (project, result) =>
+        (
+          await workspaces.checkpoint(
+            project,
+            result.pdf!,
+            'Built from source',
+            false,
+            result.buildFingerprint,
+          )
+        ).id,
+    });
     migrationCompiler = new Compiler(runtimes, path.join(dataRoot, 'migration-builds'));
     migrations = new CompilerMigration(path.join(dataRoot, 'compiler-backups'), {
       target: () => runtimes.defaultPin,
@@ -961,10 +995,8 @@ if (primaryInstance)
           );
       },
       start: async () => {
-        requestGeneration++;
-        await agent.cancel();
-        await compiler.cancel();
-        await recoveryQueue;
+        await stopBuilds();
+        await store.flushRecovery();
       },
       assets: (project) => store.assets(project),
       checkDisk: async (project) => {
@@ -977,17 +1009,14 @@ if (primaryInstance)
       compile: (project, assets) => migrationCompiler.compile(project, assets),
       cancel: () => migrationCompiler.cancel(),
       recover: (project) => {
-        recoveryQueue = recoveryQueue.catch(() => {}).then(() => store.recover(project));
-        return recoveryQueue;
+        return store.recover(project);
       },
       workspace: workspaces,
     });
     fonts = new FontImport({
       start: async () => {
-        requestGeneration++;
-        await agent.cancel();
-        await compiler.cancel();
-        await recoveryQueue;
+        await stopBuilds();
+        await store.flushRecovery();
       },
       choose: async (style) => {
         const result = await dialog.showOpenDialog(window!, {
@@ -1039,9 +1068,8 @@ if (primaryInstance)
             'Fonts were saved, but the new PDF history could not be saved. Compile and save again.',
           );
         }
-        recoveryQueue = recoveryQueue.catch(() => {}).then(() => store.recover(next));
         try {
-          await recoveryQueue;
+          await store.recover(next);
         } catch {
           warnings.push(
             'Fonts were saved, but draft recovery could not be updated. Reopen the saved project if needed.',

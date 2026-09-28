@@ -1,0 +1,315 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T19:42:42.219215+00:00",
+  "commit": "909c0eec6285eee064c90fa1449703e61103e625",
+  "runId": 36343157418,
+  "url": "https://github.com/grawish/folio/actions/runs/36343157418",
+  "conclusion": "success",
+  "downloadedArtifact": {
+    "id": 10940188586,
+    "file": "test-results/compiler-parent-watch-hosted-evidence.zip",
+    "bytes": 6221675,
+    "sha256": "2736d8f9dc4e4911fcba7ac08a7717d35af648e7929ba028772d4fe5d244b24a",
+    "githubDigestMatches": true
+  },
+  "retainedArtifactFilesVerified": 146,
+  "sourceTestsPassed": 371,
+  "compilerIntegrationTestsPassed": 16,
+  "templateImagesPassed": 12,
+  "changedPixels": 0,
+  "nativeSuites": [
+    {
+      "suite": "import-recovery",
+      "script": "scripts/test-import-recovery.mjs",
+      "scriptSha256": "81967721e2258427a438e89a2b9a7d0fee3800136c2823f69c7c2575c8781366",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "import",
+      "script": "scripts/test-import.mjs",
+      "scriptSha256": "270b9fc55851f29cbc5c88346e2ba4efd6c0f46892ebfcda4ae649df4ade1233",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "pdf-viewer",
+      "script": "scripts/test-pdf-viewer.mjs",
+      "scriptSha256": "359ac20b7e751cf7bfd62fbf114ed9146868f9606645cb1415b8b8089daa22a8",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "pdf-lifecycle",
+      "script": "scripts/test-pdf-lifecycle.mjs",
+      "scriptSha256": "050ebba2f302310289760eeefdf7055ae62b3a680c278ae5b26fc6ed6d56a913",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "migration",
+      "script": "scripts/test-migration.mjs",
+      "scriptSha256": "5f4a33db8cbe3afc37578caec954421a15567b37e24db7098c42db3136b52f53",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "chat",
+      "script": "scripts/test-chat.mjs",
+      "scriptSha256": "ecc8c229f5792aefd47b860c7ff318c3bd60962972da2f57be4f9e7a454cd095",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "runtime",
+      "script": "scripts/test-runtime.mjs",
+      "scriptSha256": "e44b3e00eb4e5b9d67b66f551ff5c3b11509f076d9bffa975e61a78ad1b8fb06",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "workspace",
+      "script": "scripts/test-workspace.mjs",
+      "scriptSha256": "835dec1353889a7885c0c223673ccae0fbacbd34dc41153c75c6b30a643ec89a",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "history-storage",
+      "script": "scripts/test-history-storage.mjs",
+      "scriptSha256": "3878352c388634b90551412f547d0a54790cc5deb2a403b2144c3448be741f9b",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "diagnostics",
+      "script": "scripts/test-diagnostics.mjs",
+      "scriptSha256": "fabc3516d0f4bb634243b03639cad2d399bcb63ef607e689cf5a2846d3f4cf20",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "fonts",
+      "script": "scripts/test-fonts.mjs",
+      "scriptSha256": "ea22d1c8498963eb07ada2f996ac306a99b83b45a017dac20a02abd1c5259682",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "support",
+      "script": "scripts/test-support.mjs",
+      "scriptSha256": "f6fe2f4ca8072aba6b21c054e63a7158896900c1dc7dcf533e9b74b2035dfd72",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "updates",
+      "script": "scripts/test-updates.mjs",
+      "scriptSha256": "7649800e49652401aae941ac91e057be2bfce64f048d938027560e4fa5ecd5f4",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "save-recovery",
+      "script": "scripts/test-save-recovery.mjs",
+      "scriptSha256": "bdf3126f22a6b45b5583a689aa406e2a2ebde1f6db672a182102a44cbc704ee3",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "pack-catalog",
+      "script": "scripts/test-pack-catalog.mjs",
+      "scriptSha256": "bdaf2bac1235655ff6dcba1f77567021e9b623acc9afdb452e2fbb3b3a0c2ad4",
+      "passed": true,
+      "unchanged": true
+    },
+    {
+      "suite": "packaged",
+      "script": "scripts/test-packaged.mjs",
+      "scriptSha256": "be7b559a2cf786c3c1b5fa2ee04fc9381410f41a6fe8766ec0af2dc37d2cd5a3",
+      "passed": true,
+      "unchanged": true
+    }
+  ],
+  "allNativeScriptHashesMatchCommit": true,
+  "templateSourcePdfAndImageHashesVerified": true,
+  "transferInputHashesMatchCommit": true,
+  "transferPassed": true,
+  "transferScope": "No runnable app ZIP, Developer ID, notarization, public network, or native replacement is claimed.",
+  "fullAppIdentity": {
+    "schemaVersion": 1,
+    "bundleInventorySha256": "efdb4671f80d43beb8bed628d45635c255f8612595c7741e7605c342389809f9",
+    "asarSha256": "399877e66f3259d023a91ec2c6153715641a20016b200febbf6f4dcc08886bc3",
+    "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0"
+  },
+  "physicalInventory": {
+    "entries": 5199,
+    "regularFiles": 4420,
+    "directories": 765,
+    "symlinks": 14,
+    "logicalFileBytes": 682226436,
+    "runtimeFilesVerified": 3982,
+    "recordsVerified": [
+      {
+        "path": "bundle-inventory.json",
+        "bytes": 1217986,
+        "sha256": "efdb4671f80d43beb8bed628d45635c255f8612595c7741e7605c342389809f9"
+      },
+      {
+        "path": "bundle.cdx.json",
+        "bytes": 3524229,
+        "sha256": "03a2d1520a02253443e9aad06257a6070139c941453b0d9a1dc56eff573939f8"
+      }
+    ],
+    "componentMappingComplete": false
+  },
+  "packagedNoticeFilesMatchCommitAndAppInventory": {
+    "npmNotices": 44,
+    "texFontNotices": 16,
+    "texResourceNotices": 104,
+    "pdfjsNotices": 13
+  },
+  "originalNpmNotices": 42,
+  "indexedNpmPackages": 43,
+  "npmSourceIndexSha256": "ec21f5ef6a8761f6a5c97f13526ffda69580f48170a80a3c0720cf397fd1009d",
+  "compiledOutputFilesCompared": 39,
+  "runnerReportedArchives": {
+    "passed": true,
+    "bundleInventorySha256": "efdb4671f80d43beb8bed628d45635c255f8612595c7741e7605c342389809f9",
+    "dmg": {
+      "bytes": 303523318,
+      "sha256": "a36c8a678998307dcb54668ed4ac3cb85e2e12562f4d26ab7d484bb0482b6138",
+      "appMatches": true
+    },
+    "zip": {
+      "bytes": 306582454,
+      "sha256": "c27e1fc960fe743f1b95c67806d6611eb16c3dbd312b9dc71ff973c7b49dfa19",
+      "appMatches": true,
+      "matchedEntries": 5199,
+      "metadataEntries": 0,
+      "metadataBytes": 0
+    },
+    "distributionVerified": false,
+    "scope": "Exact app bytes, modes and internal links inside both archives. Apple checks run only in distribution mode; fresh-machine quarantined download/launch and updater acceptance remain separate."
+  },
+  "retainedNativeRecord": {
+    "file": "test-results/compiler-parent-watch-hosted-evidence/release/native-tests.json",
+    "bytes": 7583,
+    "sha256": "6f156fa7d59aef0bd4897da1b32ebc1c83b7df76e43b0b47239eef00cfb98880"
+  },
+  "retainedPackageRecord": {
+    "file": "test-results/compiler-parent-watch-hosted-evidence/release/verification.json",
+    "bytes": 32231,
+    "sha256": "a97498c7df232e68c209fbd7d0f323992cada807c6be9b72c0a57fcbd0cfda98"
+  },
+  "retainedRunLog": {
+    "file": "test-results/compiler-parent-watch-hosted-full.log",
+    "bytes": 327540,
+    "sha256": "1a8fc7e39a18f2ade51369b5a588655ecf34c4e6ac4a62b34ab98d6063f59368"
+  },
+  "productionReleaseQualified": false,
+  "scope": "Complete hosted qualification of unsigned source 909c0ee with compiler parent-death containment and unchanged runtime pins. All 146 evidence files, sixteen native script hashes, build inputs, physical app/runtime/notice identities, JavaScript replay reports and original-material records were independently checked. Downloaded evidence contains reports/screenshots; app ZIP/DMG results remain runner-reported gates. This does not qualify production signing/notarization, real signed updates, supported-Mac acceptance, real BYOK or complete binary redistribution/SBOM. The public preview-4 installer is unchanged.",
+  "javascript": {
+    "summary": {
+      "schemaVersion": 1,
+      "appAsarSha256": "399877e66f3259d023a91ec2c6153715641a20016b200febbf6f4dcc08886bc3",
+      "inventorySha256": "153e2e6c03adaf166fe94a50eaee6b8cce6d3cffb51a6c6a811948ffb0916758",
+      "bomSha256": "dd2973d9457652aed49725b2d3429d450205b9d868298e602e6ac34c8c6293c4",
+      "packagedJavaScriptAndMaps": 8,
+      "reproducedOutputs": 24,
+      "sourceModules": 402,
+      "runtimePackages": 35,
+      "generators": 3,
+      "completeBinarySbom": false
+    },
+    "folioSourceFilesMatchCommit": 105,
+    "allReplayInputsMatchCommit": true,
+    "allReproducedOutputsMatchLocalAppBuild": true,
+    "allFourReportsMatchPriorLocalReplay": true,
+    "publisherArchiveVerificationRepeatedLocally": true,
+    "publisherSources": {
+      "schemaVersion": 1,
+      "passed": true,
+      "inventorySha256": "153e2e6c03adaf166fe94a50eaee6b8cce6d3cffb51a6c6a811948ffb0916758",
+      "sourceIndexSha256": "ec21f5ef6a8761f6a5c97f13526ffda69580f48170a80a3c0720cf397fd1009d",
+      "npmInputFilesMatched": 249,
+      "embeddedOriginalSourcesMatched": 45,
+      "packageJsonFilesMatched": 38,
+      "originalArchivesChecked": 38,
+      "completeBinarySbom": false,
+      "scope": "Exact npm source bytes and published source-map contents from checksum-verified locked archives. Generated helpers are associated with their build tools, not assigned byte-level authorship. Nested vendored terms, native components and complete redistribution remain separate."
+    },
+    "retainedRecords": [
+      {
+        "file": "test-results/compiler-parent-watch-hosted-evidence/artifacts/license-materials/javascript/153e2e6c03adaf166fe94a50eaee6b8cce6d3cffb51a6c6a811948ffb0916758/inventory.json",
+        "bytes": 267347,
+        "sha256": "153e2e6c03adaf166fe94a50eaee6b8cce6d3cffb51a6c6a811948ffb0916758"
+      },
+      {
+        "file": "test-results/compiler-parent-watch-hosted-evidence/artifacts/license-materials/javascript/153e2e6c03adaf166fe94a50eaee6b8cce6d3cffb51a6c6a811948ffb0916758/javascript.cdx.json",
+        "bytes": 39099,
+        "sha256": "dd2973d9457652aed49725b2d3429d450205b9d868298e602e6ac34c8c6293c4"
+      },
+      {
+        "file": "test-results/compiler-parent-watch-hosted-evidence/artifacts/license-materials/javascript/153e2e6c03adaf166fe94a50eaee6b8cce6d3cffb51a6c6a811948ffb0916758/summary.json",
+        "bytes": 444,
+        "sha256": "02ba813a731491d37e8c5427329cdc0acfbb77b156a87936593fb38ee6d29fe3"
+      },
+      {
+        "file": "test-results/compiler-parent-watch-hosted-evidence/artifacts/license-materials/javascript/153e2e6c03adaf166fe94a50eaee6b8cce6d3cffb51a6c6a811948ffb0916758/publisher-sources.json",
+        "bytes": 9445,
+        "sha256": "e0ee2d1bafc45119798cf7eceb6d2dda11785fa97efe10a7d2e67fdc67cd0888"
+      }
+    ]
+  },
+  "originalMaterialCollections": {
+    "npm": {
+      "records": 85,
+      "bytes": 28959613,
+      "inventory": {
+        "file": "test-results/compiler-parent-watch-hosted-evidence/artifacts/license-materials/npm/inventory.json",
+        "bytes": 14420,
+        "sha256": "94688991e54f9a8c3da57058bd244df14645de211e9aae04d5f11502add56876"
+      },
+      "everyLocalOriginalFileMatchesHostedRecord": true
+    },
+    "pdfjs": {
+      "records": 38,
+      "bytes": 20688625,
+      "inventory": {
+        "file": "test-results/compiler-parent-watch-hosted-evidence/artifacts/license-materials/pdfjs/inventory.json",
+        "bytes": 7235,
+        "sha256": "ad49c58e74b2e436fd23b16d47b3695cd8102375906fe260acabe78e03cf7422"
+      },
+      "everyLocalOriginalFileMatchesHostedRecord": true
+    }
+  },
+  "verificationNote": "The hosted records match the previously retained and independently verified original npm/PDF.js materials and local JavaScript byte replay. No source collector was allowed to overwrite the downloaded reports.",
+  "pdfjsSourceIndexSha256": "6f0154cdb82715eb862d27e8616981c855e85209b16204b741cbf48d3707f78c",
+  "runAttempt": 1,
+  "localPackagedComparison": {
+    "localPhysicalInventorySha256": "50bde6bfe46cc3534ff991643e585bce746b84491bcf020641c695994f63776b",
+    "asarMatches": true,
+    "remainingEntriesMatch": 5198,
+    "differences": [
+      {
+        "path": "Contents/Resources/app-update.yml",
+        "local": {
+          "path": "Contents/Resources/app-update.yml",
+          "mode": 420,
+          "kind": "file",
+          "bytes": 39,
+          "sha256": "799ed86348a8ba2676768213bc72e39bc5fc280771614fc701b3b41b37845b56"
+        },
+        "hosted": {
+          "path": "Contents/Resources/app-update.yml",
+          "mode": 420,
+          "kind": "file",
+          "bytes": 92,
+          "sha256": "1d7ebe4b263a81d446f3d2817b9e6685bf4e421038165f5052899cf1e060160e"
+        }
+      }
+    ],
+    "scope": "Local --dir packaging copies the 39-byte updater-cache setting; hosted archive packaging generates the 92-byte updater metadata. Every other inventory entry, including Info.plist and ASAR, matches exactly."
+  }
+}

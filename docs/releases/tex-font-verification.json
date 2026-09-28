@@ -1,0 +1,245 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T12:10:21.539591+00:00",
+  "sourceBaseCommit": "b1bc0d11619fd02823a74bb1039e492decac3c44",
+  "summary": {
+    "bundledResources": 516,
+    "matchedResources": 111,
+    "fontBinaries": 63,
+    "unmatchedResources": 405,
+    "originalNoticeFiles": 15,
+    "sourceArchives": 11
+  },
+  "sourceArchiveBytes": 43011299,
+  "independentChecks": {
+    "retainedFilesVerified": 43,
+    "originalArchiveMaterialsVerified": 24,
+    "publisherSha512ChecksumsVerified": 10,
+    "exactSourceToPackagedResourceMatches": 111,
+    "packagedResourcesVerifiedAgainstLock": 516,
+    "originalNoticeCopiesVerified": 15
+  },
+  "byteIdenticalReplay": {
+    "files": 59,
+    "includesInventory": true
+  },
+  "localApp": {
+    "passed": true,
+    "architecture": "arm64",
+    "fontNotices": {
+      "originalNoticeFiles": 15,
+      "sourceLockSha256": "79ed91f2d8a1207ed72ba2f8016a47ecde316754c3dd874ba2f35b9683579d45",
+      "records": [
+        {
+          "path": "FontAwesome-publisher-LICENSE.txt",
+          "bytes": 1548,
+          "sha256": "e779748dfe75e84f974df3c7bc07f842011a100159158b0f1f49b2f2a5a515cb"
+        },
+        {
+          "path": "fontawesome5-README.md",
+          "bytes": 990,
+          "sha256": "bfe9f415cd5f2fd6bb8d97cb8baf58e2cb1ceee19c0fd1ce4a2e74b8dd9aee49"
+        },
+        {
+          "path": "lm-GUST-FONT-LICENSE.TXT",
+          "bytes": 1377,
+          "sha256": "49ea6cb9257bbee0a3979c48a774cd221550ac1c20c95549efe45fc99cc18050"
+        },
+        {
+          "path": "lm-MANIFEST-Latin-Modern.TXT",
+          "bytes": 52635,
+          "sha256": "402c79f4ede8548a6fe6f82f42f0288cb0243ba2403dfdeeaadf55d189a46fae"
+        },
+        {
+          "path": "lm-math-GUST-FONT-LICENSE.txt",
+          "bytes": 1456,
+          "sha256": "2bd69affc3da00715116f713f57eab9707e96daf3562ad0215987b15b9c16f73"
+        },
+        {
+          "path": "lm-math-MANIFEST-Latin-Modern-Math.txt",
+          "bytes": 2186,
+          "sha256": "1daa729f7922c42ba5ce8da7dfe4ecdc9e5c878ad86217fd6f32c4671505b007"
+        },
+        {
+          "path": "lm-math-README-Latin-Modern-Math.txt",
+          "bytes": 4588,
+          "sha256": "e6fdd5fb44b656146fa988d191f58901c09a347d3f4fbaa3b45b24a6ad7ec30b"
+        },
+        {
+          "path": "lm-README-Latin-Modern.TXT",
+          "bytes": 33548,
+          "sha256": "7cac4a4a78985ccb1ed429bb2eddf32eeb2e413c94493c7b268385bb7b525250"
+        },
+        {
+          "path": "LPPL-1.3c.txt",
+          "bytes": 19102,
+          "sha256": "3d262cdf34dafa6955f703c634a8c238ec44109bc8dd6ef34fb7aa54809f7e66"
+        },
+        {
+          "path": "OFL-1.1.txt",
+          "bytes": 4016,
+          "sha256": "8eea8287e5876b539670cadb82e99f9a7afddec6f6730811be1daf25d2e9bcfd"
+        },
+        {
+          "path": "README.md",
+          "bytes": 3950,
+          "sha256": "e37c1bc8472ceb1959fbdc64ee811233915bfd4a27a6cc4d8e22bad1a4e3f234"
+        },
+        {
+          "path": "roboto-COPYRIGHT.txt",
+          "bytes": 31,
+          "sha256": "13fa0c04b0315e03825a7aa3833be3aeb15dd0be0ed61dc16c3a25c1974e82e4"
+        },
+        {
+          "path": "roboto-LICENSE.txt",
+          "bytes": 11358,
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+        },
+        {
+          "path": "roboto-README",
+          "bytes": 3641,
+          "sha256": "3b5e2654cf42dbcba79543097d78b3072cd51af1235382a2442edff43285d291"
+        },
+        {
+          "path": "sourcesanspro-LICENSE.txt",
+          "bytes": 4529,
+          "sha256": "4a4a4179a96b5ef6786186d199f0d049b151352f460b8d2f3c00083792f37dd9"
+        },
+        {
+          "path": "sourcesanspro-README.md",
+          "bytes": 1120,
+          "sha256": "fa88e6abbdcde4bf00910f6c7a71aaca3efeb22dc71e895c12916b4fca564767"
+        }
+      ]
+    },
+    "comparedOutputFiles": 39,
+    "originalWorkAndThirdPartyNoticesVerified": true,
+    "runtimeFilesVerified": 3982,
+    "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+    "identity": {
+      "schemaVersion": 1,
+      "bundleInventorySha256": "d4336a01d257c88c68bb94c31d4a270b644de6551cdc5783fe6598e68072e73e",
+      "asarSha256": "e6f9b89ad39932979d153b9f3ae198508e182f957797305a6d3adaed47f285aa",
+      "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0"
+    },
+    "nativeSuitesRunForThisPackage": false,
+    "scope": "Exact local app notice, compiled-output and runtime byte verification only. No signed installer, native-suite or broad platform qualification is claimed."
+  },
+  "checks": {
+    "newPythonControls": 8,
+    "newNoticePackageControls": 2,
+    "allSourceTestsPassed": 335,
+    "formattingPassed": true,
+    "buildPassed": true,
+    "offlineRuntimeCorpusPassed": true
+  },
+  "tools": [
+    {
+      "path": "scripts/collect-tex-font-materials.py",
+      "bytes": 13175,
+      "sha256": "5cccde91f09d2aa86a48a58068e2f2f69ec2e6a379bdfb51ecc777dd059ca399"
+    },
+    {
+      "path": "scripts/verify-tex-font-notices.ts",
+      "bytes": 2412,
+      "sha256": "fa6642845f6a4da23396b5d05dfd3cb5dd1ecd3b05eaf3913afde550a7431fa3"
+    },
+    {
+      "path": "scripts/verify-mac-package.mjs",
+      "bytes": 6630,
+      "sha256": "1479a9f48d660fb33c387e9c74d8e6fbc1b2ab0d4cd0ef206ea5cb0b76e33017"
+    },
+    {
+      "path": "resources/tex-font-sources.lock.json",
+      "bytes": 44531,
+      "sha256": "79ed91f2d8a1207ed72ba2f8016a47ecde316754c3dd874ba2f35b9683579d45"
+    },
+    {
+      "path": "tests/tex-font-materials.py",
+      "bytes": 7028,
+      "sha256": "193cacbc6097c5659c6d865ec3ec8631592f0a3a51756dafd9d651cc3c26a5cd"
+    },
+    {
+      "path": "tests/tex-font-notices.test.ts",
+      "bytes": 2916,
+      "sha256": "06326a3e2a59d06b13cae440b835d233ce425135d4af3974483b0fdc374119b3"
+    },
+    {
+      "path": "test-results/verify-tex-font-materials.py",
+      "bytes": 8829,
+      "sha256": "1c542b1901528e62e8665560bb5e3501a0e09ee2ec194bec1a0b5b5794100984"
+    },
+    {
+      "path": "test-results/verify-tex-font-app.mjs",
+      "bytes": 2671,
+      "sha256": "349f22c3811d198a81d76f8b038c28d17c1fe2f08c5179617357f735a2bb1191"
+    }
+  ],
+  "retainedInventory": {
+    "path": "artifacts/license-materials/tex-fonts/inventory.json",
+    "bytes": 52398,
+    "sha256": "6c1f0d06b93531ff61c5b1f3846064855875de0a294fbe5cbe5d77b6577692f3"
+  },
+  "publishedInventory": {
+    "path": "docs/releases/tex-font-inventory.json.gz",
+    "bytes": 12179,
+    "sha256": "9655d6ce8ac6717f5dd622fd3e5973b0a751cc6f9b41dfabb35d04df55a67e39"
+  },
+  "logs": [
+    {
+      "path": "test-results/tex-font-tests.log",
+      "bytes": 106,
+      "sha256": "322e9bec5d6bbde47d6476008f309469c1e42048ed96320a3bae52af8811e27a"
+    },
+    {
+      "path": "test-results/tex-font-notice-tests.log",
+      "bytes": 304,
+      "sha256": "0fdf956b4fb66a129185e404483c7d924d99b6d5e768c1ad12e499d8e51bef5e"
+    },
+    {
+      "path": "test-results/tex-font-all-unit.log",
+      "bytes": 34607,
+      "sha256": "b512a767d7e528273f10ba4b651d1da0588c72b50de8a3baf979d76bcaf24723"
+    },
+    {
+      "path": "test-results/tex-font-format.log",
+      "bytes": 183,
+      "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+    },
+    {
+      "path": "test-results/tex-font-build.log",
+      "bytes": 1719,
+      "sha256": "05e167e5069937e7973eecdbda3980653a2a731efbf609ffcfbbb2376e4460cb"
+    },
+    {
+      "path": "test-results/tex-font-package.log",
+      "bytes": 1237,
+      "sha256": "f01be5dcb52461588cd346a0aea5c1e1d8f9aea7296018e375e369ed0a13cc1e"
+    },
+    {
+      "path": "test-results/tex-font-package-final.log",
+      "bytes": 1345,
+      "sha256": "840b5f990712e0cef092abb9ff3b0dc638eb0c155768be0eda47c3f72f379d7d"
+    },
+    {
+      "path": "test-results/tex-font-final.log",
+      "bytes": 161,
+      "sha256": "45a6b30d88a0a14020603ddfbf6548aa43f55c28718ae7fb70c51dbfb3cf75ab"
+    },
+    {
+      "path": "test-results/tex-font-replay.log",
+      "bytes": 161,
+      "sha256": "45a6b30d88a0a14020603ddfbf6548aa43f55c28718ae7fb70c51dbfb3cf75ab"
+    }
+  ],
+  "initialAttempts": "The first probe used an absent root package.json path in Font Awesome; the recorded package lives under js-packages. The first collector attempt rejected the bundle-generated SHA256SUM marker; it is now explicitly verified. The first cache test used the macOS /var symlink; its fixture now resolves the temporary root. Initial packaging passed the offline runtime corpus but type checking rejected an untyped verifier import; the typed verifier and final build pass.",
+  "applicationInputsChanged": true,
+  "runtimeInputsChanged": false,
+  "releaseAuditComplete": false,
+  "limits": [
+    "Packaged original font notices and exact TeX Live distribution mapping only; not font regeneration from editable design sources.",
+    "The supplemental Font Awesome publisher archive has different font bytes; it is not counted among exact font matches.",
+    "All 405 unmatched TeX resources, wider native/compiler terms, complete redistribution review and the final signed-app SBOM remain open.",
+    "This exact local app has notice/output/runtime byte checks; it has not yet run the complete hosted native qualification or production signing. Existing published installers were not changed."
+  ]
+}

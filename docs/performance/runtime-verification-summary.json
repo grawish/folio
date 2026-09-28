@@ -1,0 +1,506 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-27T18:11:15.553738+00:00",
+  "baseCommit": "6de12747ceb794296990c8dcbb94130239a62555",
+  "host": {
+    "cpu": "Apple M4 Pro",
+    "memoryBytes": 51539607552,
+    "osVersion": "Darwin Kernel Version 27.0.0: Tue Aug 11 21:05:48 PDT 2026; root:xnu-13432.1.9~1/RELEASE_ARM64_T6041",
+    "node": "v24.21.0"
+  },
+  "pin": {
+    "engine": "tectonic",
+    "version": "0.17.0",
+    "bundle": "folio-core-v1",
+    "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+    "platform": "darwin-arm64",
+    "biberVersion": "2.17"
+  },
+  "manifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+  "runtimeFilesIndependentlyHashed": 3982,
+  "rawSha256": "92f287e6573594430b438b96ac23c58566d17b7bc8acdacf3973fa99d94af87b",
+  "bundleReplay": {
+    "baseCommit": "6de12747ceb794296990c8dcbb94130239a62555",
+    "esbuild": "0.28.2",
+    "sources": [
+      {
+        "file": "src/shared/runtime.ts",
+        "baselineSha256": "ad69f2161a5de41985a52cffc1598eaef4a0e9b959d72322e1ab5a849ffd5bfe",
+        "candidateSha256": "ad69f2161a5de41985a52cffc1598eaef4a0e9b959d72322e1ab5a849ffd5bfe"
+      },
+      {
+        "file": "electron/core/runtime.ts",
+        "baselineSha256": "da0bc73d9042a08af5f7623a252e5f95be36a33313bc6372faed5def6944be1a",
+        "candidateSha256": "e6aa8fbbb5b4cf98f55045a24fad5292e15519367f9f9a94ee38d96008f43e4a"
+      },
+      {
+        "file": "electron/core/file-io.ts",
+        "baselineSha256": "4ff9bd00e81e69b717915bdbcb23418baed1ed9d84b43c5546ea1bad58896096",
+        "candidateSha256": "4ff9bd00e81e69b717915bdbcb23418baed1ed9d84b43c5546ea1bad58896096"
+      },
+      {
+        "file": "electron/core/save-io.ts",
+        "baselineSha256": "03357fef0d222d9a06b26a911901b7bdee76b71741d8b120df08f90bdab6d91c",
+        "candidateSha256": "03357fef0d222d9a06b26a911901b7bdee76b71741d8b120df08f90bdab6d91c"
+      },
+      {
+        "file": "electron/core/save-recovery.ts",
+        "baselineSha256": "9614d9bdbede3e030afd6929dd048597438c43f893b2792d04b2649786fe9592",
+        "candidateSha256": "9614d9bdbede3e030afd6929dd048597438c43f893b2792d04b2649786fe9592"
+      },
+      {
+        "file": "electron/core/save-transactions.ts",
+        "baselineSha256": "a36d4890865755efce7f4f0ca9bef47e22a07f64794f2e6d1fec98500534a18d",
+        "candidateSha256": "a36d4890865755efce7f4f0ca9bef47e22a07f64794f2e6d1fec98500534a18d"
+      },
+      {
+        "file": "src/shared/project-files.ts",
+        "baselineSha256": "ae1caf793abd012cb0e939743774ff08b8900ae5099388b1dfe27a448810a37a",
+        "candidateSha256": "ae1caf793abd012cb0e939743774ff08b8900ae5099388b1dfe27a448810a37a"
+      },
+      {
+        "file": "electron/core/project-scan.ts",
+        "baselineSha256": "708ab880748fd5e351c6188eb9774f5a5cf8ff7661b3cd7ccff8e1d5a262af20",
+        "candidateSha256": "708ab880748fd5e351c6188eb9774f5a5cf8ff7661b3cd7ccff8e1d5a262af20"
+      },
+      {
+        "file": "electron/core/project-manifest.ts",
+        "baselineSha256": "3a8018cf7332512473222abae43e838d44bfa8e1bcdc7152e4a8b9d8b2e661b7",
+        "candidateSha256": "3a8018cf7332512473222abae43e838d44bfa8e1bcdc7152e4a8b9d8b2e661b7"
+      },
+      {
+        "file": "resources/templates/catalog.json",
+        "baselineSha256": "62518f8802f12517c16a372f61f96eec5c7b3b5c212702fa53172d4a9ba79f07",
+        "candidateSha256": "62518f8802f12517c16a372f61f96eec5c7b3b5c212702fa53172d4a9ba79f07"
+      },
+      {
+        "file": "src/shared/template-catalog.ts",
+        "baselineSha256": "de72a3abe762b637c09d50724daa3ce91b47025029ea04d8fdc2f1c74aa648e4",
+        "candidateSha256": "de72a3abe762b637c09d50724daa3ce91b47025029ea04d8fdc2f1c74aa648e4"
+      },
+      {
+        "file": "electron/core/project.ts",
+        "baselineSha256": "64aacdf7e6bb64767d5043154b15c47e2169cc61a0a5f8fa92dd60134e017c4a",
+        "candidateSha256": "64aacdf7e6bb64767d5043154b15c47e2169cc61a0a5f8fa92dd60134e017c4a"
+      },
+      {
+        "file": "electron/core/diagnostics.ts",
+        "baselineSha256": "6e90c7709330917473ef8df1647a0cb6953ff7fc8760ba3a1e34bfd4c4bf054d",
+        "candidateSha256": "6e90c7709330917473ef8df1647a0cb6953ff7fc8760ba3a1e34bfd4c4bf054d"
+      },
+      {
+        "file": "electron/core/build-provenance.ts",
+        "baselineSha256": "1276c1e27d81f6fba8ea4861d4f3a07b1ff44e81367673c1cd88712376751767",
+        "candidateSha256": "1276c1e27d81f6fba8ea4861d4f3a07b1ff44e81367673c1cd88712376751767"
+      },
+      {
+        "file": "electron/core/compiler-limits.ts",
+        "baselineSha256": "03b6e2b15e075f773b9622a3b8cca9a93bcb1318262399e7974548339de99a3e",
+        "candidateSha256": "03b6e2b15e075f773b9622a3b8cca9a93bcb1318262399e7974548339de99a3e"
+      },
+      {
+        "file": "electron/core/compiler.ts",
+        "baselineSha256": "9106c2d8e753a313ad46b956ea581247a0e2d1854b101247ec14ca79f5dd6171",
+        "candidateSha256": "9106c2d8e753a313ad46b956ea581247a0e2d1854b101247ec14ca79f5dd6171"
+      },
+      {
+        "file": "test-results/runtime-verification-io/entry.ts",
+        "baselineSha256": "b222db3463f9761c1f4b82402132d28a6a1bb02ce794981f51e26bc7b7448451",
+        "candidateSha256": "b222db3463f9761c1f4b82402132d28a6a1bb02ce794981f51e26bc7b7448451"
+      }
+    ],
+    "records": [
+      {
+        "variant": "baseline",
+        "bytes": 20662,
+        "sha256": "29362f54a3971855d95f560f2bdbf618c95fbc439261cec52576f7c1b4cdd2d4"
+      },
+      {
+        "variant": "candidate",
+        "bytes": 21876,
+        "sha256": "220634594b24e3b3a472571648666ce22b4715d00757cd7c6357878741deeeba"
+      }
+    ],
+    "bothBundlesReproducedExactly": true
+  },
+  "pdfs": [
+    {
+      "file": "baseline-warmup.pdf",
+      "bytes": 6176,
+      "sha256": "591dc56e77e4b91c8faff92dc9451a7d9bf9b3132daef18174ffa9e2661fad93",
+      "pages": 1,
+      "textSha256": "26cdd63688c4ac2d2e64e0461de218b58c877338bdcb2024fdfd23e89217d48d",
+      "rasterSha256": "c69160fa759045bd2737f7442960c2d2efae0ed695a551f1b6c31f53a46cbee1"
+    },
+    {
+      "file": "candidate-warmup.pdf",
+      "bytes": 6176,
+      "sha256": "cbc1b44a78a571c407afa82c95784a917541d856e9e44a98992682fe1f704fdc",
+      "pages": 1,
+      "textSha256": "26cdd63688c4ac2d2e64e0461de218b58c877338bdcb2024fdfd23e89217d48d",
+      "rasterSha256": "c69160fa759045bd2737f7442960c2d2efae0ed695a551f1b6c31f53a46cbee1"
+    },
+    {
+      "file": "1-baseline.pdf",
+      "bytes": 6175,
+      "sha256": "7458876cdf3d3a18891566c1a6e1ad289c0dcf25d1440569bb890bb41e5e2d12",
+      "pages": 1,
+      "textSha256": "26cdd63688c4ac2d2e64e0461de218b58c877338bdcb2024fdfd23e89217d48d",
+      "rasterSha256": "c69160fa759045bd2737f7442960c2d2efae0ed695a551f1b6c31f53a46cbee1"
+    },
+    {
+      "file": "1-candidate.pdf",
+      "bytes": 6176,
+      "sha256": "fe8ef4afa08e3c6c8f89e55957517d88f944eb9d14ca2014fd6f1628b02ce178",
+      "pages": 1,
+      "textSha256": "26cdd63688c4ac2d2e64e0461de218b58c877338bdcb2024fdfd23e89217d48d",
+      "rasterSha256": "c69160fa759045bd2737f7442960c2d2efae0ed695a551f1b6c31f53a46cbee1"
+    },
+    {
+      "file": "2-candidate.pdf",
+      "bytes": 6176,
+      "sha256": "e55302ea52ca87df1b603a2c555f9f19e4bb229a9f5f897b8ba84c766aa62866",
+      "pages": 1,
+      "textSha256": "26cdd63688c4ac2d2e64e0461de218b58c877338bdcb2024fdfd23e89217d48d",
+      "rasterSha256": "c69160fa759045bd2737f7442960c2d2efae0ed695a551f1b6c31f53a46cbee1"
+    },
+    {
+      "file": "2-baseline.pdf",
+      "bytes": 6176,
+      "sha256": "3e795afede6e0d19b4c04159a7e11b77422c818fd661b1a8265c11419ff88837",
+      "pages": 1,
+      "textSha256": "26cdd63688c4ac2d2e64e0461de218b58c877338bdcb2024fdfd23e89217d48d",
+      "rasterSha256": "c69160fa759045bd2737f7442960c2d2efae0ed695a551f1b6c31f53a46cbee1"
+    },
+    {
+      "file": "3-baseline.pdf",
+      "bytes": 6176,
+      "sha256": "0ba7814751ad277d612a61796c49357d306832a451d359fbab16867118bc299a",
+      "pages": 1,
+      "textSha256": "26cdd63688c4ac2d2e64e0461de218b58c877338bdcb2024fdfd23e89217d48d",
+      "rasterSha256": "c69160fa759045bd2737f7442960c2d2efae0ed695a551f1b6c31f53a46cbee1"
+    },
+    {
+      "file": "3-candidate.pdf",
+      "bytes": 6176,
+      "sha256": "2d55fc160f13f2baa2f4038bcd2909ba3bf1e78ec8540265f9fdbc35fea49f4d",
+      "pages": 1,
+      "textSha256": "26cdd63688c4ac2d2e64e0461de218b58c877338bdcb2024fdfd23e89217d48d",
+      "rasterSha256": "c69160fa759045bd2737f7442960c2d2efae0ed695a551f1b6c31f53a46cbee1"
+    },
+    {
+      "file": "4-candidate.pdf",
+      "bytes": 6176,
+      "sha256": "9013edbca7f5193db3bafe803ea73f6648e9a2f46221228c87615637cca8f329",
+      "pages": 1,
+      "textSha256": "26cdd63688c4ac2d2e64e0461de218b58c877338bdcb2024fdfd23e89217d48d",
+      "rasterSha256": "c69160fa759045bd2737f7442960c2d2efae0ed695a551f1b6c31f53a46cbee1"
+    },
+    {
+      "file": "4-baseline.pdf",
+      "bytes": 6176,
+      "sha256": "3e1174bf6ab044cd0eec1e3ac9deca8223ea123a34ea5df1b8b2fce5b45e508a",
+      "pages": 1,
+      "textSha256": "26cdd63688c4ac2d2e64e0461de218b58c877338bdcb2024fdfd23e89217d48d",
+      "rasterSha256": "c69160fa759045bd2737f7442960c2d2efae0ed695a551f1b6c31f53a46cbee1"
+    },
+    {
+      "file": "5-baseline.pdf",
+      "bytes": 6175,
+      "sha256": "c3456ad90a7df746b81bea21b53787bb471d11690a8adeb8c0da96059f0b5a30",
+      "pages": 1,
+      "textSha256": "26cdd63688c4ac2d2e64e0461de218b58c877338bdcb2024fdfd23e89217d48d",
+      "rasterSha256": "c69160fa759045bd2737f7442960c2d2efae0ed695a551f1b6c31f53a46cbee1"
+    },
+    {
+      "file": "5-candidate.pdf",
+      "bytes": 6175,
+      "sha256": "c3456ad90a7df746b81bea21b53787bb471d11690a8adeb8c0da96059f0b5a30",
+      "pages": 1,
+      "textSha256": "26cdd63688c4ac2d2e64e0461de218b58c877338bdcb2024fdfd23e89217d48d",
+      "rasterSha256": "c69160fa759045bd2737f7442960c2d2efae0ed695a551f1b6c31f53a46cbee1"
+    }
+  ],
+  "allPdfTextAndRastersEqual": true,
+  "samples": [
+    {
+      "pair": 1,
+      "variant": "baseline",
+      "sourceSha256": "690b044e091ba18a8f942873e091755ebe408499f53481c41b86dacceece8bcf",
+      "verification": {
+        "elapsedMs": 670.9491670000002,
+        "cpuUserMs": 339.96,
+        "cpuSystemMs": 375.906,
+        "peakHostRssBytes": 314966016
+      },
+      "compile": {
+        "elapsedMs": 803.5330830000003,
+        "cpuUserMs": 349.998,
+        "cpuSystemMs": 377.91,
+        "peakHostRssBytes": 376995840
+      },
+      "pdf": {
+        "file": "1-baseline.pdf",
+        "bytes": 6175,
+        "sha256": "7458876cdf3d3a18891566c1a6e1ad289c0dcf25d1440569bb890bb41e5e2d12",
+        "buildFingerprint": "700f93663ebda7bf322e98a0c832a806ab0634f466f275e5c52b108812272bc7",
+        "log": "note: \"version 2\" Tectonic command-line interface activated\nnote: using only cached resource files\nnote: Running TeX ...\nnote: Rerunning TeX because \"main.aux\" changed ...\nnote: Running xdvipdfmx ...\nnote: Writing `/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/runtime-verification-pairs-Smw3y1/baseline/builds/build-h0nXwL/output/main.pdf` (6.0302734375 KiB)\nnote: Writing `/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/runtime-verification-pairs-Smw3y1/baseline/builds/build-h0nXwL/output/main.log` (3.443359375 KiB)\nnote: Skipped writing 1 intermediate files (use --keep-intermediates to keep them)\n"
+      }
+    },
+    {
+      "pair": 1,
+      "variant": "candidate",
+      "sourceSha256": "690b044e091ba18a8f942873e091755ebe408499f53481c41b86dacceece8bcf",
+      "verification": {
+        "elapsedMs": 369.71716599999945,
+        "cpuUserMs": 339.493,
+        "cpuSystemMs": 461.858,
+        "peakHostRssBytes": 377569280
+      },
+      "compile": {
+        "elapsedMs": 490.22199999999975,
+        "cpuUserMs": 321.732,
+        "cpuSystemMs": 444.122,
+        "peakHostRssBytes": 389808128
+      },
+      "pdf": {
+        "file": "1-candidate.pdf",
+        "bytes": 6176,
+        "sha256": "fe8ef4afa08e3c6c8f89e55957517d88f944eb9d14ca2014fd6f1628b02ce178",
+        "buildFingerprint": "700f93663ebda7bf322e98a0c832a806ab0634f466f275e5c52b108812272bc7",
+        "log": "note: \"version 2\" Tectonic command-line interface activated\nnote: using only cached resource files\nnote: Running TeX ...\nnote: Rerunning TeX because \"main.aux\" changed ...\nnote: Running xdvipdfmx ...\nnote: Writing `/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/runtime-verification-pairs-Smw3y1/candidate/builds/build-GTGdmZ/output/main.pdf` (6.03125 KiB)\nnote: Writing `/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/runtime-verification-pairs-Smw3y1/candidate/builds/build-GTGdmZ/output/main.log` (3.443359375 KiB)\nnote: Skipped writing 1 intermediate files (use --keep-intermediates to keep them)\n"
+      }
+    },
+    {
+      "pair": 2,
+      "variant": "candidate",
+      "sourceSha256": "598ebc28df0f74335943a7ebff44c08607d2b6c37fb40bdac5f8a1a4a47c3a26",
+      "verification": {
+        "elapsedMs": 356.02537500000017,
+        "cpuUserMs": 308.785,
+        "cpuSystemMs": 442.997,
+        "peakHostRssBytes": 391331840
+      },
+      "compile": {
+        "elapsedMs": 509.1091669999996,
+        "cpuUserMs": 324.505,
+        "cpuSystemMs": 469.313,
+        "peakHostRssBytes": 393019392
+      },
+      "pdf": {
+        "file": "2-candidate.pdf",
+        "bytes": 6176,
+        "sha256": "e55302ea52ca87df1b603a2c555f9f19e4bb229a9f5f897b8ba84c766aa62866",
+        "buildFingerprint": "81d6fac8e2477ef10bc531ec1557c6d08822487f212bc8881d611d40f5e69134",
+        "log": "note: \"version 2\" Tectonic command-line interface activated\nnote: using only cached resource files\nnote: Running TeX ...\nnote: Rerunning TeX because \"main.aux\" changed ...\nnote: Running xdvipdfmx ...\nnote: Writing `/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/runtime-verification-pairs-Smw3y1/candidate/builds/build-EI5uLI/output/main.pdf` (6.03125 KiB)\nnote: Writing `/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/runtime-verification-pairs-Smw3y1/candidate/builds/build-EI5uLI/output/main.log` (3.443359375 KiB)\nnote: Skipped writing 1 intermediate files (use --keep-intermediates to keep them)\n"
+      }
+    },
+    {
+      "pair": 2,
+      "variant": "baseline",
+      "sourceSha256": "598ebc28df0f74335943a7ebff44c08607d2b6c37fb40bdac5f8a1a4a47c3a26",
+      "verification": {
+        "elapsedMs": 668.081666,
+        "cpuUserMs": 345.771,
+        "cpuSystemMs": 372.635,
+        "peakHostRssBytes": 401293312
+      },
+      "compile": {
+        "elapsedMs": 802.8322089999992,
+        "cpuUserMs": 353.74,
+        "cpuSystemMs": 373.699,
+        "peakHostRssBytes": 405946368
+      },
+      "pdf": {
+        "file": "2-baseline.pdf",
+        "bytes": 6176,
+        "sha256": "3e795afede6e0d19b4c04159a7e11b77422c818fd661b1a8265c11419ff88837",
+        "buildFingerprint": "81d6fac8e2477ef10bc531ec1557c6d08822487f212bc8881d611d40f5e69134",
+        "log": "note: \"version 2\" Tectonic command-line interface activated\nnote: using only cached resource files\nnote: Running TeX ...\nnote: Rerunning TeX because \"main.aux\" changed ...\nnote: Running xdvipdfmx ...\nnote: Writing `/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/runtime-verification-pairs-Smw3y1/baseline/builds/build-FphTlg/output/main.log` (3.443359375 KiB)\nnote: Writing `/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/runtime-verification-pairs-Smw3y1/baseline/builds/build-FphTlg/output/main.pdf` (6.03125 KiB)\nnote: Skipped writing 1 intermediate files (use --keep-intermediates to keep them)\n"
+      }
+    },
+    {
+      "pair": 3,
+      "variant": "baseline",
+      "sourceSha256": "a5751828fca2917686505c1eabd188612281d1331d5535dfbf061ae2d6494044",
+      "verification": {
+        "elapsedMs": 677.1601659999997,
+        "cpuUserMs": 349.736,
+        "cpuSystemMs": 377.993,
+        "peakHostRssBytes": 406028288
+      },
+      "compile": {
+        "elapsedMs": 787.5290409999998,
+        "cpuUserMs": 349.291,
+        "cpuSystemMs": 364.622,
+        "peakHostRssBytes": 406601728
+      },
+      "pdf": {
+        "file": "3-baseline.pdf",
+        "bytes": 6176,
+        "sha256": "0ba7814751ad277d612a61796c49357d306832a451d359fbab16867118bc299a",
+        "buildFingerprint": "6a2e225478abb484f1c2e616010fe8f45afd42380e91099b285d5133458409a9",
+        "log": "note: \"version 2\" Tectonic command-line interface activated\nnote: using only cached resource files\nnote: Running TeX ...\nnote: Rerunning TeX because \"main.aux\" changed ...\nnote: Running xdvipdfmx ...\nnote: Writing `/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/runtime-verification-pairs-Smw3y1/baseline/builds/build-MOpTuy/output/main.log` (3.443359375 KiB)\nnote: Writing `/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/runtime-verification-pairs-Smw3y1/baseline/builds/build-MOpTuy/output/main.pdf` (6.03125 KiB)\nnote: Skipped writing 1 intermediate files (use --keep-intermediates to keep them)\n"
+      }
+    },
+    {
+      "pair": 3,
+      "variant": "candidate",
+      "sourceSha256": "a5751828fca2917686505c1eabd188612281d1331d5535dfbf061ae2d6494044",
+      "verification": {
+        "elapsedMs": 368.5879590000004,
+        "cpuUserMs": 321.014,
+        "cpuSystemMs": 474.41,
+        "peakHostRssBytes": 406650880
+      },
+      "compile": {
+        "elapsedMs": 484.99395800000093,
+        "cpuUserMs": 308.206,
+        "cpuSystemMs": 435.155,
+        "peakHostRssBytes": 406962176
+      },
+      "pdf": {
+        "file": "3-candidate.pdf",
+        "bytes": 6176,
+        "sha256": "2d55fc160f13f2baa2f4038bcd2909ba3bf1e78ec8540265f9fdbc35fea49f4d",
+        "buildFingerprint": "6a2e225478abb484f1c2e616010fe8f45afd42380e91099b285d5133458409a9",
+        "log": "note: \"version 2\" Tectonic command-line interface activated\nnote: using only cached resource files\nnote: Running TeX ...\nnote: Rerunning TeX because \"main.aux\" changed ...\nnote: Running xdvipdfmx ...\nnote: Writing `/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/runtime-verification-pairs-Smw3y1/candidate/builds/build-GTLMGY/output/main.pdf` (6.03125 KiB)\nnote: Writing `/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/runtime-verification-pairs-Smw3y1/candidate/builds/build-GTLMGY/output/main.log` (3.443359375 KiB)\nnote: Skipped writing 1 intermediate files (use --keep-intermediates to keep them)\n"
+      }
+    },
+    {
+      "pair": 4,
+      "variant": "candidate",
+      "sourceSha256": "918636bcfc43b86f44e148fd6a25e00387e77fc21b2ef81d3b1897a840b1d388",
+      "verification": {
+        "elapsedMs": 357.8925829999989,
+        "cpuUserMs": 313.037,
+        "cpuSystemMs": 451.919,
+        "peakHostRssBytes": 407224320
+      },
+      "compile": {
+        "elapsedMs": 512.8765409999996,
+        "cpuUserMs": 315.27,
+        "cpuSystemMs": 478.193,
+        "peakHostRssBytes": 408338432
+      },
+      "pdf": {
+        "file": "4-candidate.pdf",
+        "bytes": 6176,
+        "sha256": "9013edbca7f5193db3bafe803ea73f6648e9a2f46221228c87615637cca8f329",
+        "buildFingerprint": "5c64c0a2f3f33fdc039ff4436a3f6d81730fcf9572af3520e3de593400b89e9f",
+        "log": "note: \"version 2\" Tectonic command-line interface activated\nnote: using only cached resource files\nnote: Running TeX ...\nnote: Rerunning TeX because \"main.aux\" changed ...\nnote: Running xdvipdfmx ...\nnote: Writing `/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/runtime-verification-pairs-Smw3y1/candidate/builds/build-rNdhuv/output/main.pdf` (6.03125 KiB)\nnote: Writing `/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/runtime-verification-pairs-Smw3y1/candidate/builds/build-rNdhuv/output/main.log` (3.443359375 KiB)\nnote: Skipped writing 1 intermediate files (use --keep-intermediates to keep them)\n"
+      }
+    },
+    {
+      "pair": 4,
+      "variant": "baseline",
+      "sourceSha256": "918636bcfc43b86f44e148fd6a25e00387e77fc21b2ef81d3b1897a840b1d388",
+      "verification": {
+        "elapsedMs": 676.3123749999995,
+        "cpuUserMs": 337.149,
+        "cpuSystemMs": 377.977,
+        "peakHostRssBytes": 408928256
+      },
+      "compile": {
+        "elapsedMs": 790.7922500000004,
+        "cpuUserMs": 351.569,
+        "cpuSystemMs": 367.605,
+        "peakHostRssBytes": 408190976
+      },
+      "pdf": {
+        "file": "4-baseline.pdf",
+        "bytes": 6176,
+        "sha256": "3e1174bf6ab044cd0eec1e3ac9deca8223ea123a34ea5df1b8b2fce5b45e508a",
+        "buildFingerprint": "5c64c0a2f3f33fdc039ff4436a3f6d81730fcf9572af3520e3de593400b89e9f",
+        "log": "note: \"version 2\" Tectonic command-line interface activated\nnote: using only cached resource files\nnote: Running TeX ...\nnote: Rerunning TeX because \"main.aux\" changed ...\nnote: Running xdvipdfmx ...\nnote: Writing `/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/runtime-verification-pairs-Smw3y1/baseline/builds/build-7PAOgC/output/main.pdf` (6.03125 KiB)\nnote: Writing `/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/runtime-verification-pairs-Smw3y1/baseline/builds/build-7PAOgC/output/main.log` (3.443359375 KiB)\nnote: Skipped writing 1 intermediate files (use --keep-intermediates to keep them)\n"
+      }
+    },
+    {
+      "pair": 5,
+      "variant": "baseline",
+      "sourceSha256": "9a7015ba27901a5ff33a72f7d205a64e3e5c32a28e57fde6b7ce04a4e3e01fc1",
+      "verification": {
+        "elapsedMs": 680.3166669999991,
+        "cpuUserMs": 347.001,
+        "cpuSystemMs": 384.718,
+        "peakHostRssBytes": 432439296
+      },
+      "compile": {
+        "elapsedMs": 777.5516659999994,
+        "cpuUserMs": 345.923,
+        "cpuSystemMs": 366.923,
+        "peakHostRssBytes": 433618944
+      },
+      "pdf": {
+        "file": "5-baseline.pdf",
+        "bytes": 6175,
+        "sha256": "c3456ad90a7df746b81bea21b53787bb471d11690a8adeb8c0da96059f0b5a30",
+        "buildFingerprint": "447ccf5eb5e08f1ebff7797415e9f0357db20b621ac73222a115de664dac0381",
+        "log": "note: \"version 2\" Tectonic command-line interface activated\nnote: using only cached resource files\nnote: Running TeX ...\nnote: Rerunning TeX because \"main.aux\" changed ...\nnote: Running xdvipdfmx ...\nnote: Writing `/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/runtime-verification-pairs-Smw3y1/baseline/builds/build-XuOdJa/output/main.log` (3.443359375 KiB)\nnote: Writing `/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/runtime-verification-pairs-Smw3y1/baseline/builds/build-XuOdJa/output/main.pdf` (6.0302734375 KiB)\nnote: Skipped writing 1 intermediate files (use --keep-intermediates to keep them)\n"
+      }
+    },
+    {
+      "pair": 5,
+      "variant": "candidate",
+      "sourceSha256": "9a7015ba27901a5ff33a72f7d205a64e3e5c32a28e57fde6b7ce04a4e3e01fc1",
+      "verification": {
+        "elapsedMs": 368.31183399999827,
+        "cpuUserMs": 317.731,
+        "cpuSystemMs": 483.5,
+        "peakHostRssBytes": 434061312
+      },
+      "compile": {
+        "elapsedMs": 491.8475419999995,
+        "cpuUserMs": 313.552,
+        "cpuSystemMs": 447.074,
+        "peakHostRssBytes": 434536448
+      },
+      "pdf": {
+        "file": "5-candidate.pdf",
+        "bytes": 6175,
+        "sha256": "c3456ad90a7df746b81bea21b53787bb471d11690a8adeb8c0da96059f0b5a30",
+        "buildFingerprint": "447ccf5eb5e08f1ebff7797415e9f0357db20b621ac73222a115de664dac0381",
+        "log": "note: \"version 2\" Tectonic command-line interface activated\nnote: using only cached resource files\nnote: Running TeX ...\nnote: Rerunning TeX because \"main.aux\" changed ...\nnote: Running xdvipdfmx ...\nnote: Writing `/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/runtime-verification-pairs-Smw3y1/candidate/builds/build-roCQCy/output/main.pdf` (6.0302734375 KiB)\nnote: Writing `/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/runtime-verification-pairs-Smw3y1/candidate/builds/build-roCQCy/output/main.log` (3.443359375 KiB)\nnote: Skipped writing 1 intermediate files (use --keep-intermediates to keep them)\n"
+      }
+    }
+  ],
+  "statistics": {
+    "baseline": {
+      "verification": {
+        "minMs": 668.081666,
+        "medianMs": 676.3123749999995,
+        "maxMs": 680.3166669999991
+      },
+      "compile": {
+        "minMs": 777.5516659999994,
+        "medianMs": 790.7922500000004,
+        "maxMs": 803.5330830000003
+      }
+    },
+    "candidate": {
+      "verification": {
+        "minMs": 356.02537500000017,
+        "medianMs": 368.31183399999827,
+        "maxMs": 369.71716599999945
+      },
+      "compile": {
+        "minMs": 484.99395800000093,
+        "medianMs": 491.8475419999995,
+        "maxMs": 512.8765409999996
+      }
+    }
+  },
+  "limits": [
+    "Five default alternating pairs on one development Mac; not a supported-device or population p95 claim.",
+    "Both implementations run in one Node host. Sampled host RSS is not isolated variant memory or whole-app/native-tree memory.",
+    "One real warmup compile per variant precedes measurement. Separate work folders retain each variant\u2019s TeX cache; OS caches are not purged.",
+    "Each standalone verification rehashes the runtime. Each compile also does its own full verification, so these stage times must not be added as a single build duration.",
+    "Complete production compiler/verifier bundles are supplied explicitly. Retain their source identities and build commands alongside this report."
+  ],
+  "medianReductionPercent": {
+    "verification": 45.54116594421349,
+    "compile": 37.80319141974403
+  },
+  "candidateImplementationCommit": "f252b0d219ac02d3f4b34a1e538881400e870ad0",
+  "rasterRenderer": "pdftoppm version 26.05.0\nCopyright 2005-2026 The Poppler Developers - http://poppler.freedesktop.org\nCopyright 1996-2011, 2022 Glyph & Cog, LLC"
+}

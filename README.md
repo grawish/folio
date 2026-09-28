@@ -16,7 +16,7 @@ Download the **[Apple silicon DMG preview](https://github.com/grawish/folio/rele
 
 ## Development preview
 
-Folio is under active development; a signed, notarized installer and live automatic updates are not available yet. The current source includes [app-update Settings and authentication](docs/APP_UPDATES.md); publisher enrollment and a real signed upgrade remain required. The fully qualified unsigned source at `aa40c6b` passes 293 source tests, 16 compiler integrations and all fifteen native Mac suites; [the verification record](docs/releases/mac-archives-hosted-verification.json) binds those checks to its exact source and app. See the [preview release notes](docs/releases/v0.1.0-preview.4.md) for the packaged build and the [release audit](docs/RELEASE_GAP_AUDIT.md) for remaining production requirements. These results do not establish compatibility with every macOS version.
+Folio is under active development; a signed, notarized installer and live automatic updates are not available yet. The current source includes [app-update Settings and authentication](docs/APP_UPDATES.md); publisher enrollment and a real signed upgrade remain required. The fully qualified unsigned source at `ae62d1a` passes 460 source tests, 19 compiler integrations and all twenty-one native Mac suites on hosted macOS 14.8.9 and 27.0. [OS qualification records](docs/MAC_OS_QUALIFICATION.md) bind those checks to identical app inventories and explain the remaining clean-install and physical-device checks. See the [preview release notes](docs/releases/v0.1.0-preview.4.md) for the packaged build and the [release audit](docs/RELEASE_GAP_AUDIT.md) for remaining production requirements. These results do not establish compatibility with every macOS version.
 
 Windows, Linux and Intel Macs are outside this release's scope. Read the [remaining release requirements](docs/RELEASE_GAP_AUDIT.md) before relying on the preview for important documents.
 
@@ -34,7 +34,7 @@ Windows, Linux and Intel Macs are outside this release's scope. Read the [remain
 - Use dark, light, or system appearance and resize the writing and PDF panes.
 - Review a support summary, leave out sections, and save a ZIP without resume text or raw logs.
 
-**Choose models in Chat.** Use Auto, the connection default, or a specific model beside Send. Auto stays within your selected connection and uses faster models for small changes, escalating when validation fails. Add and select an installed Codex or Claude Code connection, use your own OpenAI or Anthropic API key, or configure a compatible endpoint. Account access and model image support depend on your provider. API use is billed separately by that provider. Live Claude/BYOK account acceptance remains on the release checklist.
+**Choose models in Chat.** Use Auto, the connection default, or a specific model beside Send. Auto stays within your selected connection and uses faster models for small changes, escalating when validation fails. Add and select an installed Codex or Claude Code connection, use your own OpenAI or Anthropic API key, or configure a compatible endpoint. Account access and model image support depend on your provider. API use is billed separately by that provider. A [real Claude PDF-note workflow](docs/tutorials/ai-connections.md#try-a-pdf-note-with-claude-code) now passes in the source build with a synthetic document. Real BYOK and broader account/model acceptance remain on the release checklist.
 
 The compiler works locally without AI. AI requests send relevant source and PDF images to your selected provider; local compilation does not mean that cloud AI requests stay on your Mac. Keys are kept in protected local storage and excluded from project exports.
 
@@ -63,12 +63,12 @@ The [release pipeline](docs/RELEASE_PIPELINE.md) covers source checks, source pr
 
 ## Learn and contribute
 
-Start with [your first resume](docs/tutorials/first-resume.md). The [feature matrix](docs/FEATURE_GUIDE_INDEX.md) links 33 screenshot walkthroughs and reproducible demos. A [reusable Folio skill](docs/DOCUMENTATION_SKILL.md) packages the guides for your assistant. The [performance investigation](docs/PERFORMANCE_IMPROVEMENT_PLAN.md) includes raw measurements and ranked optimization experiments.
+Start with [your first resume](docs/tutorials/first-resume.md). The [feature matrix](docs/FEATURE_GUIDE_INDEX.md) links 37 screenshot walkthroughs and reproducible demos. A [reusable Folio skill](docs/DOCUMENTATION_SKILL.md) packages the guides for your assistant. The [performance investigation](docs/PERFORMANCE_IMPROVEMENT_PLAN.md) includes raw measurements and ranked optimization experiments.
 
 Bug reports should describe what happened, what you expected, and your macOS/app version. Use a small synthetic example and remove personal details from logs and screenshots. See [security reporting](SECURITY.md) for sensitive issues.
 
 ## License
 
-Folio's original code, documentation, and examples use [PolyForm Noncommercial 1.0.0](LICENSE). Keep the [required notice](NOTICE). This is a **noncommercial, source-available community project**, rather than OSI open source. The full license defines permitted use.
+Folio's original application code, documentation, and examples use [PolyForm Noncommercial 1.0.0](LICENSE). Keep the [required notice](NOTICE). This is a **noncommercial, source-available community project**, rather than OSI open source. The full license defines permitted use.
 
-Your resume remains yours. Third-party libraries, fonts, compiler components, and TeX resources retain their own licenses. See [licensing](docs/LICENSING.md) and [third-party notices](THIRD_PARTY_NOTICES.md). The complete binary redistribution audit remains a release requirement.
+Your resume remains yours. Third-party libraries, fonts, compiler components, and TeX resources retain their own licenses. The standalone [TeX replay developer tool and its tests](THIRD_PARTY_NOTICES.md#separately-licensed-tex-replay-developer-tool) use GPL-2.0-or-later. See [licensing](docs/LICENSING.md) and [third-party notices](THIRD_PARTY_NOTICES.md). The complete binary redistribution audit remains a release requirement.

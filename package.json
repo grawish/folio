@@ -57,7 +57,8 @@
     "demo:capture": "node scripts/capture-tutorials.mjs",
     "website:build": "node scripts/build-website.mjs",
     "skill:build": "node scripts/build-skill.mjs",
-    "website:check": "npm run website:build && node scripts/check-website.mjs"
+    "website:check": "npm run website:build && node scripts/check-website.mjs",
+    "icon:build": "node scripts/build-mac-icon.mjs"
   },
   "build": {
     "appId": "app.folio.resume",
@@ -84,8 +85,36 @@
         "to": "app-update-notices.txt"
       },
       {
+        "from": "resources/tex-font-notices",
+        "to": "tex-font-notices"
+      },
+      {
+        "from": "resources/tex-resource-notices",
+        "to": "tex-resource-notices"
+      },
+      {
         "from": "resources/runtime/${os}-${arch}",
         "to": "runtime"
+      },
+      {
+        "from": "resources/npm-notices",
+        "to": "npm-notices"
+      },
+      {
+        "from": "resources/pdfjs-notices",
+        "to": "pdfjs-notices"
+      },
+      {
+        "from": "artifacts/electron-notices",
+        "to": "electron-notices"
+      },
+      {
+        "from": "artifacts/tectonic-notices",
+        "to": "tectonic-notices"
+      },
+      {
+        "from": "artifacts/biber-notices",
+        "to": "biber-notices"
       }
     ],
     "mac": {
@@ -104,9 +133,11 @@
             "arm64"
           ]
         }
-      ]
+      ],
+      "icon": "resources/branding/folio.icns"
     },
-    "artifactName": "Folio-${version}-${os}-${arch}.${ext}"
+    "artifactName": "Folio-${version}-${os}-${arch}.${ext}",
+    "beforePack": "./scripts/prepare-electron-notices.mjs"
   },
   "dependencies": {
     "@codemirror/autocomplete": "6.20.3",

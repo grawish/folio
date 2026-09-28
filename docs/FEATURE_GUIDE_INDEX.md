@@ -1,15 +1,18 @@
 # Feature tutorials and screenshot demos
 
-Every currently implemented feature group below has a plain-language walkthrough and a real-app screenshot demo. Use the linked native suites for reproducible behavior checks. The demos identify scripted AI and synthetic failure states; they do not claim live subscription/API acceptance or completion of planned features.
+Every currently implemented feature group below has a plain-language walkthrough and a real-app screenshot demo. Use the linked native suites for reproducible behavior checks. Each demo identifies whether it uses scripted AI, an empty connection form or a real subscription. The Claude PDF-note demo verifies one live workflow with a synthetic resume; other screenshots do not imply live account acceptance or completion of planned features.
 
 | Feature | Tutorial | Screenshot demo |
 | --- | --- | --- |
+| Compiler cache limits | [Walkthrough](tutorials/settings-and-compiler.md#if-compiler-helper-files-reach-their-limit) | [Screenshot](images/cache-limit.png) · Development app · simulated oversized-cache reading |
+| Retry local recovery | [Walkthrough](tutorials/save-and-recover.md#if-recovery-cannot-be-saved) | [Screenshot](images/recovery-retry.png) · Development app · simulated write failures |
 | Your first resume | [Walkthrough](tutorials/first-resume.md) | [Screenshot](images/workspace.png) · Real app · synthetic project |
 | Work during compiler preparation | [Walkthrough](tutorials/first-resume.md#work-while-the-pdf-builder-gets-ready) | [Screenshot](images/startup-chat.png) · Current development source · recovered synthetic project |
 | Templates and paper size | [Walkthrough](tutorials/first-resume.md) | [Screenshot](images/templates.png) · Real app · synthetic project |
 | Chat and agent progress | [Walkthrough](tutorials/chat-and-feedback.md) | [Screenshot](images/chat-workspace.png) · Real app · scripted local AI fixture |
 | Codex subscription | [Walkthrough](tutorials/ai-connections.md) | [Screenshot](images/connection-codex.png) · Real form · no connected account |
-| Claude Code subscription | [Walkthrough](tutorials/ai-connections.md) | [Screenshot](images/connection-claude-code.png) · Real form · no connected account |
+| Claude Code subscription setup | [Walkthrough](tutorials/ai-connections.md) | [Screenshot](images/connection-claude-code.png) · Real form · no connected account |
+| Live Claude PDF feedback | [Walkthrough](tutorials/ai-connections.md#try-a-pdf-note-with-claude-code) | [Screenshot](images/claude-live-completed.png) · Real subscription · synthetic document · source build |
 | OpenAI API key | [Walkthrough](tutorials/ai-connections.md) | [Screenshot](images/connection-openai.png) · Real form · no connected account |
 | Anthropic API key | [Walkthrough](tutorials/ai-connections.md) | [Screenshot](images/connection-anthropic.png) · Real form · no connected account |
 | Custom AI endpoint | [Walkthrough](tutorials/ai-connections.md) | [Screenshot](images/connection-custom.png) · Real form · no connected account |
@@ -29,6 +32,7 @@ Every currently implemented feature group below has a plain-language walkthrough
 | Themes and workspace layout | [Walkthrough](tutorials/settings-and-compiler.md) | [Screenshot](images/general.png) · Real app · synthetic project |
 | Editor and PDF preferences | [Walkthrough](tutorials/settings-and-compiler.md) | [Screenshot](images/editor-settings.png) · Real app · synthetic project |
 | Offline compiler repair | [Walkthrough](tutorials/settings-and-compiler.md) | [Screenshot](images/compiler-repair.png) · Real app · isolated damaged-runtime fixture |
+| Review old compiler storage | [Walkthrough](tutorials/settings-and-compiler.md#make-room-for-compiler-files) | [Screenshot](images/compiler-storage.png) · Development source · inert old-compiler fixture |
 | Compare compiler versions | [Walkthrough](tutorials/settings-and-compiler.md) | [Screenshot](images/compiler-comparison.png) · Real app · synthetic compiler identity |
 | Import a signed resource pack | [Walkthrough](tutorials/resource-packs.md) | [Screenshot](images/pack-import-review.png) · Real source app · published table pack |
 | Install and retry a pack offline | [Walkthrough](tutorials/resource-packs.md) | [Screenshot](images/pack-installed-light.png) · Real source app/compiler · public HTTPS catalog |
@@ -36,9 +40,11 @@ Every currently implemented feature group below has a plain-language walkthrough
 | Reviewable support ZIP | [Walkthrough](tutorials/settings-and-compiler.md#make-a-support-bundle) | [Screenshot](images/support-bundle.png) · Real app · synthetic privacy fixture |
 | Privacy and support | [Walkthrough](tutorials/settings-and-compiler.md) | [Screenshot](images/privacy.png) · Real app · synthetic project |
 | App update preferences | [Walkthrough](tutorials/app-updates.md) | [Screenshot](images/app-updates-dark.png) · Development source · publisher not configured |
+| Keyboard navigation and dialog focus | [Walkthrough](tutorials/first-resume.md#move-around-with-the-keyboard) | [Screenshot](images/keyboard-navigation.png) · Real app · automated keys |
+| Low space during an app update | [Walkthrough](tutorials/app-updates.md#if-your-disk-needs-more-space) | [Screenshot](images/app-updates-disk-space.png) · Real Settings · simulated low space |
 | Return to work after update preparation fails | [Walkthrough](tutorials/app-updates.md#if-preparing-an-update-takes-too-long) | [Screenshot](images/app-updates-recovery.png) · Real Settings · simulated timeout |
 
-See [demo reproduction](demos/README.md) for commands and capture provenance. Pack workflows are demonstrated with the public catalog and published table resources. See [the release audit](RELEASE_GAP_AUDIT.md) for package qualification and remaining release requirements. Automatic updates have no working-feature demo yet. Wider OS, physical accessibility and live AI acceptance also remain open.
+See [demo reproduction](demos/README.md) for commands and capture provenance. Pack workflows are demonstrated with the public catalog and published table resources. See [the release audit](RELEASE_GAP_AUDIT.md) for package qualification and remaining release requirements. Automatic updates have no working-feature demo yet. Wider OS, physical accessibility, real BYOK and broader live account/model acceptance also remain open.
 
 ## App update settings
 

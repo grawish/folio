@@ -1,0 +1,460 @@
+{
+  "schemaVersion": 2,
+  "sourceCommit": "2d3968d23e48d86eb12d121ba4c148449ea78d91",
+  "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+  "templateSourceSha256": "1f0b21921a6ca62d39a3424719885c56e5dd6c0d332ad615043671f3e6a4dcd0",
+  "recordedAt": "2026-09-27T16:02:31.822Z",
+  "appAsarSha256": "b3101633e1a7c78fe37789efe98a94ed442e0f927da03709959a17eff9cfbe3a",
+  "scriptSha256": "8d05df7fd47dc890fb881d27f5a6258ab0fd22effa4a4956c350d183fcefb9b9",
+  "host": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "os": "27.0.0",
+    "macos": "27.0",
+    "cpu": "Apple M4 Pro",
+    "logicalCpus": 14,
+    "ramBytes": 51539607552,
+    "node": "v24.21.0"
+  },
+  "limits": [
+    "Fresh app profile and managed runtime per pair; operating-system disk/execution caches are not purged.",
+    "Prepared launch uses the same profile after a normal window close. Its recovered source and chat draft must match the fresh launch.",
+    "Each launch verifies a short synthetic chat draft. Draft writing and sampling are part of this workload; no AI request is sent.",
+    "Paint entries are Chromium first-paint/contentful-paint relative to renderer navigation. They are not launch-relative, complete-workspace paint or physical-display timestamps.",
+    "Electron app metrics exclude compiler/Biber subprocesses. Summed working sets may count shared pages more than once.",
+    "End-to-end observations include automation overhead; these are not a reference-device p95 or an OS resource limit."
+  ],
+  "completedAt": "2026-09-27T16:07:15.166Z",
+  "runs": [
+    {
+      "sample": 1,
+      "state": "fresh",
+      "errors": [],
+      "passed": true,
+      "launchConnectedMs": 618.82975,
+      "firstWindowMs": 619.2242090000001,
+      "workspaceReadyMs": 819.9344590000001,
+      "compilerPreparingWhenWorkspaceReady": true,
+      "chatInputVerifiedMs": 834.8948750000001,
+      "chatInputObservationMs": 9.179333000000042,
+      "firstPdfMs": 52619.84425,
+      "rendererPaint": [
+        {
+          "name": "first-paint",
+          "navigationRelativeMs": 108
+        },
+        {
+          "name": "first-contentful-paint",
+          "navigationRelativeMs": 208
+        }
+      ],
+      "peakSummedElectronWorkingSetKiB": 652304,
+      "windowCloseMs": 212.17829199999687,
+      "recovery": {
+        "sha256": "13a7b6ee0709fb3c6b8fc985f6325621f424b53ebd4817b82172484444f014f3",
+        "projectId": "bc721974-7577-4fb5-86cb-0e6f7201d202",
+        "exactTemplateSource": true,
+        "runtime": {
+          "engine": "tectonic",
+          "version": "0.17.0",
+          "bundle": "folio-core-v1",
+          "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+          "platform": "darwin-arm64",
+          "biberVersion": "2.17"
+        }
+      }
+    },
+    {
+      "sample": 1,
+      "state": "prepared",
+      "errors": [],
+      "passed": true,
+      "launchConnectedMs": 298.40216599999985,
+      "firstWindowMs": 298.7656659999993,
+      "workspaceReadyMs": 415.7138750000013,
+      "compilerPreparingWhenWorkspaceReady": true,
+      "chatInputVerifiedMs": 427.7507079999996,
+      "chatInputObservationMs": 7.913583000001381,
+      "firstPdfMs": 4250.895040999996,
+      "rendererPaint": [
+        {
+          "name": "first-paint",
+          "navigationRelativeMs": 72
+        },
+        {
+          "name": "first-contentful-paint",
+          "navigationRelativeMs": 156
+        }
+      ],
+      "peakSummedElectronWorkingSetKiB": 582928,
+      "windowCloseMs": 220.89250000000175,
+      "recovery": {
+        "sha256": "13a7b6ee0709fb3c6b8fc985f6325621f424b53ebd4817b82172484444f014f3",
+        "projectId": "bc721974-7577-4fb5-86cb-0e6f7201d202",
+        "exactTemplateSource": true,
+        "runtime": {
+          "engine": "tectonic",
+          "version": "0.17.0",
+          "bundle": "folio-core-v1",
+          "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+          "platform": "darwin-arm64",
+          "biberVersion": "2.17"
+        }
+      }
+    },
+    {
+      "sample": 2,
+      "state": "fresh",
+      "errors": [],
+      "passed": true,
+      "launchConnectedMs": 259.1757080000025,
+      "firstWindowMs": 259.3396670000002,
+      "workspaceReadyMs": 426.22487500000716,
+      "compilerPreparingWhenWorkspaceReady": true,
+      "chatInputVerifiedMs": 456.9004170000044,
+      "chatInputObservationMs": 6.642749999999069,
+      "firstPdfMs": 34035.376000000004,
+      "rendererPaint": [
+        {
+          "name": "first-paint",
+          "navigationRelativeMs": 32
+        },
+        {
+          "name": "first-contentful-paint",
+          "navigationRelativeMs": 152
+        }
+      ],
+      "peakSummedElectronWorkingSetKiB": 654352,
+      "windowCloseMs": 218.5336249999964,
+      "recovery": {
+        "sha256": "7345a60eb781737458fa061938a5ffc0e4d6f7a0cc3951e308074a2fca3fcbe8",
+        "projectId": "198ec973-2b22-415e-93c3-5cd06b26954f",
+        "exactTemplateSource": true,
+        "runtime": {
+          "engine": "tectonic",
+          "version": "0.17.0",
+          "bundle": "folio-core-v1",
+          "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+          "platform": "darwin-arm64",
+          "biberVersion": "2.17"
+        }
+      }
+    },
+    {
+      "sample": 2,
+      "state": "prepared",
+      "errors": [],
+      "passed": true,
+      "launchConnectedMs": 281.0660409999982,
+      "firstWindowMs": 281.19645799999125,
+      "workspaceReadyMs": 414.35112500000105,
+      "compilerPreparingWhenWorkspaceReady": true,
+      "chatInputVerifiedMs": 425.4556659999944,
+      "chatInputObservationMs": 7.665124999999534,
+      "firstPdfMs": 6750.5745409999945,
+      "rendererPaint": [
+        {
+          "name": "first-paint",
+          "navigationRelativeMs": 36
+        },
+        {
+          "name": "first-contentful-paint",
+          "navigationRelativeMs": 144
+        }
+      ],
+      "peakSummedElectronWorkingSetKiB": 582512,
+      "windowCloseMs": 337.4467500000028,
+      "recovery": {
+        "sha256": "7345a60eb781737458fa061938a5ffc0e4d6f7a0cc3951e308074a2fca3fcbe8",
+        "projectId": "198ec973-2b22-415e-93c3-5cd06b26954f",
+        "exactTemplateSource": true,
+        "runtime": {
+          "engine": "tectonic",
+          "version": "0.17.0",
+          "bundle": "folio-core-v1",
+          "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+          "platform": "darwin-arm64",
+          "biberVersion": "2.17"
+        }
+      }
+    },
+    {
+      "sample": 3,
+      "state": "fresh",
+      "errors": [],
+      "passed": true,
+      "launchConnectedMs": 354.0095419999998,
+      "firstWindowMs": 354.1435000000056,
+      "workspaceReadyMs": 497.36954200000037,
+      "compilerPreparingWhenWorkspaceReady": true,
+      "chatInputVerifiedMs": 507.8379589999968,
+      "chatInputObservationMs": 6.280459000001429,
+      "firstPdfMs": 52190.66945900001,
+      "rendererPaint": [
+        {
+          "name": "first-paint",
+          "navigationRelativeMs": 60
+        },
+        {
+          "name": "first-contentful-paint",
+          "navigationRelativeMs": 180
+        }
+      ],
+      "peakSummedElectronWorkingSetKiB": 660944,
+      "windowCloseMs": 234.11808300000848,
+      "recovery": {
+        "sha256": "60aa55ed8bff63b2a9d2da51a1a07b959629764c23924be553cf9ad02cd8d59a",
+        "projectId": "e5d376b7-5ecd-4130-aa69-4c697bf54cb0",
+        "exactTemplateSource": true,
+        "runtime": {
+          "engine": "tectonic",
+          "version": "0.17.0",
+          "bundle": "folio-core-v1",
+          "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+          "platform": "darwin-arm64",
+          "biberVersion": "2.17"
+        }
+      }
+    },
+    {
+      "sample": 3,
+      "state": "prepared",
+      "errors": [],
+      "passed": true,
+      "launchConnectedMs": 360.7737919999927,
+      "firstWindowMs": 361.0328750000044,
+      "workspaceReadyMs": 593.883708999987,
+      "compilerPreparingWhenWorkspaceReady": true,
+      "chatInputVerifiedMs": 604.4835000000021,
+      "chatInputObservationMs": 6.696958000015002,
+      "firstPdfMs": 6938.894624999986,
+      "rendererPaint": [
+        {
+          "name": "first-paint",
+          "navigationRelativeMs": 68
+        },
+        {
+          "name": "first-contentful-paint",
+          "navigationRelativeMs": 168
+        }
+      ],
+      "peakSummedElectronWorkingSetKiB": 650672,
+      "windowCloseMs": 216.36787499999627,
+      "recovery": {
+        "sha256": "60aa55ed8bff63b2a9d2da51a1a07b959629764c23924be553cf9ad02cd8d59a",
+        "projectId": "e5d376b7-5ecd-4130-aa69-4c697bf54cb0",
+        "exactTemplateSource": true,
+        "runtime": {
+          "engine": "tectonic",
+          "version": "0.17.0",
+          "bundle": "folio-core-v1",
+          "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+          "platform": "darwin-arm64",
+          "biberVersion": "2.17"
+        }
+      }
+    },
+    {
+      "sample": 4,
+      "state": "fresh",
+      "errors": [],
+      "passed": true,
+      "launchConnectedMs": 316.10999999998603,
+      "firstWindowMs": 316.32287499998347,
+      "workspaceReadyMs": 433.8269169999985,
+      "compilerPreparingWhenWorkspaceReady": true,
+      "chatInputVerifiedMs": 460.8809579999943,
+      "chatInputObservationMs": 21.969084000011208,
+      "firstPdfMs": 56238.62737499998,
+      "rendererPaint": [
+        {
+          "name": "first-paint",
+          "navigationRelativeMs": 64
+        },
+        {
+          "name": "first-contentful-paint",
+          "navigationRelativeMs": 144
+        }
+      ],
+      "peakSummedElectronWorkingSetKiB": 640608,
+      "windowCloseMs": 414.8102910000016,
+      "recovery": {
+        "sha256": "5358bf84f40bc3e582772b7a7ff182bcb85b2490fddd878c71dcf83a7e011c66",
+        "projectId": "54531d8f-cc70-4717-8301-6134ab10dad8",
+        "exactTemplateSource": true,
+        "runtime": {
+          "engine": "tectonic",
+          "version": "0.17.0",
+          "bundle": "folio-core-v1",
+          "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+          "platform": "darwin-arm64",
+          "biberVersion": "2.17"
+        }
+      }
+    },
+    {
+      "sample": 4,
+      "state": "prepared",
+      "errors": [],
+      "passed": true,
+      "launchConnectedMs": 370.3819590000203,
+      "firstWindowMs": 370.50358400002006,
+      "workspaceReadyMs": 515.3077090000152,
+      "compilerPreparingWhenWorkspaceReady": true,
+      "chatInputVerifiedMs": 524.5777500000258,
+      "chatInputObservationMs": 6.147667000012007,
+      "firstPdfMs": 5846.213959000015,
+      "rendererPaint": [
+        {
+          "name": "first-paint",
+          "navigationRelativeMs": 44
+        },
+        {
+          "name": "first-contentful-paint",
+          "navigationRelativeMs": 164
+        }
+      ],
+      "peakSummedElectronWorkingSetKiB": 589328,
+      "windowCloseMs": 210.4849169999943,
+      "recovery": {
+        "sha256": "5358bf84f40bc3e582772b7a7ff182bcb85b2490fddd878c71dcf83a7e011c66",
+        "projectId": "54531d8f-cc70-4717-8301-6134ab10dad8",
+        "exactTemplateSource": true,
+        "runtime": {
+          "engine": "tectonic",
+          "version": "0.17.0",
+          "bundle": "folio-core-v1",
+          "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+          "platform": "darwin-arm64",
+          "biberVersion": "2.17"
+        }
+      }
+    },
+    {
+      "sample": 5,
+      "state": "fresh",
+      "errors": [],
+      "passed": true,
+      "launchConnectedMs": 276.51887499997974,
+      "firstWindowMs": 276.658334000007,
+      "workspaceReadyMs": 385.90983399999095,
+      "compilerPreparingWhenWorkspaceReady": true,
+      "chatInputVerifiedMs": 396.58833400000003,
+      "chatInputObservationMs": 6.891500000027008,
+      "firstPdfMs": 34474.227249999996,
+      "rendererPaint": [
+        {
+          "name": "first-paint",
+          "navigationRelativeMs": 32
+        },
+        {
+          "name": "first-contentful-paint",
+          "navigationRelativeMs": 156
+        }
+      ],
+      "peakSummedElectronWorkingSetKiB": 637536,
+      "windowCloseMs": 215.29570900002727,
+      "recovery": {
+        "sha256": "c637834ebac8e2fa0761a470c4262fb04a73271ad58bff72043c3c9594c51903",
+        "projectId": "510c5059-0d7e-4e34-8675-2f3d2860f49a",
+        "exactTemplateSource": true,
+        "runtime": {
+          "engine": "tectonic",
+          "version": "0.17.0",
+          "bundle": "folio-core-v1",
+          "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+          "platform": "darwin-arm64",
+          "biberVersion": "2.17"
+        }
+      }
+    },
+    {
+      "sample": 5,
+      "state": "prepared",
+      "errors": [],
+      "passed": true,
+      "launchConnectedMs": 301.28008300001966,
+      "firstWindowMs": 301.4392499999958,
+      "workspaceReadyMs": 467.1742920000106,
+      "compilerPreparingWhenWorkspaceReady": true,
+      "chatInputVerifiedMs": 476.5320000000065,
+      "chatInputObservationMs": 6.378792000003159,
+      "firstPdfMs": 5304.011791999976,
+      "rendererPaint": [
+        {
+          "name": "first-paint",
+          "navigationRelativeMs": 68
+        },
+        {
+          "name": "first-contentful-paint",
+          "navigationRelativeMs": 152
+        }
+      ],
+      "peakSummedElectronWorkingSetKiB": 646752,
+      "windowCloseMs": 218.65641699999105,
+      "recovery": {
+        "sha256": "c637834ebac8e2fa0761a470c4262fb04a73271ad58bff72043c3c9594c51903",
+        "projectId": "510c5059-0d7e-4e34-8675-2f3d2860f49a",
+        "exactTemplateSource": true,
+        "runtime": {
+          "engine": "tectonic",
+          "version": "0.17.0",
+          "bundle": "folio-core-v1",
+          "id": "67627693e8bc1d0b237459517c50b661a72b33f3cb93ad08ff0fb07259a0b059",
+          "platform": "darwin-arm64",
+          "biberVersion": "2.17"
+        }
+      }
+    }
+  ],
+  "statistics": {
+    "fresh": {
+      "workspaceReadyMs": {
+        "minimum": 385.90983399999095,
+        "median": 433.8269169999985,
+        "maximum": 819.9344590000001
+      },
+      "chatInputVerifiedMs": {
+        "minimum": 396.58833400000003,
+        "median": 460.8809579999943,
+        "maximum": 834.8948750000001
+      },
+      "firstPdfMs": {
+        "minimum": 34035.376000000004,
+        "median": 52190.66945900001,
+        "maximum": 56238.62737499998
+      },
+      "peakSummedElectronWorkingSetKiB": {
+        "minimum": 637536,
+        "median": 652304,
+        "maximum": 660944
+      },
+      "samples": 5,
+      "metricSnapshots": 939
+    },
+    "prepared": {
+      "workspaceReadyMs": {
+        "minimum": 414.35112500000105,
+        "median": 467.1742920000106,
+        "maximum": 593.883708999987
+      },
+      "chatInputVerifiedMs": {
+        "minimum": 425.4556659999944,
+        "median": 476.5320000000065,
+        "maximum": 604.4835000000021
+      },
+      "firstPdfMs": {
+        "minimum": 4250.895040999996,
+        "median": 5846.213959000015,
+        "maximum": 6938.894624999986
+      },
+      "peakSummedElectronWorkingSetKiB": {
+        "minimum": 582512,
+        "median": 589328,
+        "maximum": 650672
+      },
+      "samples": 5,
+      "metricSnapshots": 150
+    }
+  }
+}

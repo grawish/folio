@@ -6,7 +6,17 @@ The first reviewed source commit was pushed to `grawish/folio` before these work
 
 ## Current hosting state
 
-The latest fully qualified unsigned Mac source is `10f8060`: [run 36307515386](https://github.com/grawish/folio/actions/runs/36307515386) passed 309 source tests, 16 compiler integrations, twelve unchanged images, the isolated Electron update-transfer fixture, all sixteen native suites and the final app/archive gates. The evidence ZIP, all 134 retained files and exact source hashes were independently checked. See [verification](releases/mac-update-download-hosted-verification.json). Later notarization-finalizer and staging-timeout changes need their own qualification; no new installer or live update feed was published from this run.
+The latest fully qualified unsigned Mac source is `ae62d1a`. Full hosted runs pass on **macOS 14.8.9** and **macOS 27.0**, with 460 source tests, 19 compiler integrations, twelve unchanged template images, all twenty-one native suites and final app/archive gates on each OS. All 170 retained evidence files per run were independently checked. The two 5,879-entry physical app inventories are identical, including the application archive, runtime, icon and collected original notices. See [OS qualification and limits](MAC_OS_QUALIFICATION.md), [macOS 14 evidence](releases/macos-14-hosted.json) and [macOS 27 evidence](releases/macos-27-hosted.json).
+
+The website and main domain load over HTTPS after the owner-approved repair. The public preview-4 installer is unchanged. Hosted developer-image compatibility does not complete clean consumer installation, signing/notarization, physical accessibility/display acceptance, real BYOK or the complete redistribution/SBOM audit. Earlier milestones below preserve their results and limitations.
+
+## Earlier publication and qualification milestones
+
+At the Node 24 milestone, unsigned Mac source `6ffce75` completed qualification: the second attempt of [run 36333234164](https://github.com/grawish/folio/actions/runs/36333234164) passed 347 source tests, 16 compiler integrations, twelve unchanged template images, the isolated Electron transfer fixture, all sixteen native suites, final app/archive gates and JavaScript/source-association checks. All 146 evidence files and exact source/input hashes were independently verified. The complete 5,199-entry app inventory is byte-identical to the earlier `c51bad7` package, including all 3,982 compiler files and packaged notices; the JavaScript reports and original materials also match. This qualifies the Node 24 action revision and scoped runtime-operation test waits. See [verification](releases/mac-node24-hosted-verification.json).
+
+The first attempt stopped when SourceForge's selected Biber mirror connection timed out; its failed log is retained. At that point, the subsequent compiler-download repair at `91979f3` had passed source checks and its [Mac qualification](https://github.com/grawish/folio/actions/runs/36336082310) was still in progress. Later completed qualifications include that repair. Neither run publishes a new installer or closes production signing, supported-Mac acceptance or the full binary redistribution/SBOM audit. The earlier [c51bad7 evidence](releases/mac-pdfjs-hosted-verification.json) remains historical.
+
+Developer runtime setup now retries temporary archive-transfer failures up to three times, with bounded per-attempt time and bytes. Checksum, certificate and permanent HTTP failures still stop setup. See [setup behavior](../CONTRIBUTING.md#development) and the [download verification](releases/runtime-download-verification.json). This changes setup for Tectonic and Biber; it does not change application inputs or qualify a new packaged app.
 
 Source, guides, screenshots and the skill are published on main. The owner approved the missing workflow scope, and all four workflows were pushed in b25952e. [Hosted source checks](https://github.com/grawish/folio/actions/runs/36194553795) passed: npm clean install, formatting, all 123 unit tests, typecheck/build, site build and generated-skill consistency. The [custom Pages deployment](https://github.com/grawish/folio/actions/runs/36194553881) also passed.
 
@@ -37,11 +47,26 @@ New workflow revisions also create a [physical app inventory and CycloneDX recor
 | Check source | Main pushes, pull requests, manual | Formatting, unit tests, offline Rust source/notices, Cargo graph and compiler-provenance controls, typecheck/build, website build and generated-skill consistency |
 | Publish website | Relevant main changes or manual | Static site deployment to GitHub Pages |
 | Release source preview | `source-v*` tag | Tested source/docs/skill archives, checksums and provenance in a public prerelease |
-| Qualify Apple silicon candidate | Manual | Fresh runtime setup, sequential real compiler integration, twelve rendered-PDF comparisons, the isolated Electron updater transfer fixture, arm64 packaging, sixteen native suites (including app-update Settings, history storage, compiler help, local fonts, support export, save recovery and the public resource-pack catalog), artifact verification and an exact physical-app inventory |
+| Qualify Apple silicon candidate | Manual | Fresh runtime setup, sequential real compiler integration, twelve rendered-PDF comparisons, the isolated Electron updater transfer fixture, arm64 packaging, twenty-one native suites (including app-update Settings, history storage, compiler help, local fonts, support export, save recovery and the public resource-pack catalog), artifact verification and an exact physical-app inventory |
 
-Official actions are pinned to immutable revisions. Jobs have bounded timeouts. Pull requests use read-only repository permissions and receive no provider keys or signing credentials. Native suites run sequentially. Qualification publishes test metadata/logs, not a downloadable compiler bundle or installer while the binary redistribution audit remains unfinished.
+Official actions are pinned to immutable revisions. The workflow actions now use their declared Node 24 runtime instead of relying on GitHub's forced upgrade of older Node 20 actions. This is separate from `node-version: '24'`, which selects the Node version used to build Folio.
 
-The Mac jobs use the standard `macos-15` arm64 runner listed in [GitHub's runner documentation](https://docs.github.com/en/actions/reference/runners/github-hosted-runners). Pages uses the dedicated permissions and environment described in [GitHub's Pages workflow documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
+| Action | Reviewed release | Used for |
+| --- | --- | --- |
+| Checkout | [v7.0.1](https://github.com/actions/checkout/releases/tag/v7.0.1) | All five workflows |
+| Set up Node | [v7.0.0](https://github.com/actions/setup-node/releases/tag/v7.0.0) | All five workflows |
+| Upload artifact | [v7.0.1](https://github.com/actions/upload-artifact/releases/tag/v7.0.1) | Mac qualification evidence |
+| Configure Pages | [v6.0.0](https://github.com/actions/configure-pages/releases/tag/v6.0.0) | Website configuration |
+| Upload Pages artifact | [v5.0.0](https://github.com/actions/upload-pages-artifact/releases/tag/v5.0.0) | Website archive; its pinned nested uploader also uses Node 24 |
+| Deploy Pages | [v5.0.1](https://github.com/actions/deploy-pages/releases/tag/v5.0.1) | Website publication |
+
+The existing Python action already uses Node 24 and retains its pin. Use the exact full commit identifiers in `.github/workflows/`; release tags in this table explain provenance and are not floating workflow inputs. The actions require a compatible runner; these jobs use GitHub-hosted runners. No Docker action or privileged pull-request trigger is involved.
+
+The update preserves the workflow triggers, permissions, native-runner labels, commands, concurrency, timeouts, secret handling and artifact paths/retention. Node setup keeps the existing explicit npm caches; the website job explicitly disables automatic package-manager caching because it builds without dependency installation. Mac evidence explicitly keeps `archive: true`, so it remains a ZIP containing the selected reports/screenshots and retains the existing artifact-download verification procedure. The Pages composite retains its own reviewed archive/upload sequence. Updated pins require actual hosted runs; reviewing their YAML does not establish production installer acceptance.
+
+Jobs have bounded timeouts. Pull requests use read-only repository permissions and receive no provider keys or signing credentials. Native suites run sequentially. Qualification publishes test metadata/logs, not a downloadable compiler bundle or installer while the binary redistribution audit remains unfinished.
+
+The Mac qualification job defaults to `macos-15` arm64 and accepts explicit `macos-14`, `macos-26` and `xcode-27` choices. The source-preview job continues to use `macos-15`. See [OS selection and qualification](MAC_OS_QUALIFICATION.md) and [GitHub's runner documentation](https://docs.github.com/en/actions/reference/runners/github-hosted-runners). Pages uses the dedicated permissions and environment described in [GitHub's Pages workflow documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
 
 ## Publish a source preview
 
@@ -120,3 +145,13 @@ The Mac candidate workflow also runs `npm run test:update-download` against the 
 The `9bfd2bc` [Mac candidate](https://github.com/grawish/folio/actions/runs/36294203873) stopped after the update Settings script printed a successful result without the standalone `Evidence:` line required by the release runner. Its process exited zero, its app inventory stayed unchanged, and its retained Settings result passed; the runner correctly refused to count missing evidence. Twelve preceding native suites passed. The script now uses the same evidence-line format as the other suites. Save recovery, public-pack and packaged smoke suites, followed by final archive verification, did not run in that attempt. The downloaded artifact checksum and all thirteen invoked script hashes match the exact source; see [transfer and qualification record](releases/update-download-verification.json). A fresh complete qualification is required for the changed transfer implementation.
 
 The final DMG command stores Apple’s job ID before waiting and resumes the same submission. Pending processing exits with code 2 and prevents the subsequent native/production-verification steps in an `&&` command chain. It rejects changed artifacts and accepted logs for different bytes, then requires real Apple policy/ticket checks. Its source tests simulate Apple responses; real notarization is still open. See [the signing guide](MAC_SIGNING.md#finalize-and-resume-dmg-notarization) and [verification scope](releases/dmg-finalization-verification.json).
+
+## Mac application icon
+
+Development builds use Folio’s existing navy mark in Finder and the Dock. The reviewed ICNS asset includes ten standard Mac image representations, rendered directly from `website/favicon.svg` at each pixel size. Packaging selects it through `build.mac.icon`; the final package verifier checks the plist’s icon selection and exact installed bytes. See [regeneration instructions](../resources/branding/README.md) and [local package evidence](releases/mac-app-icon-verification.json).
+
+The local package passes the existing startup, Settings, resume and Biber smoke check. Compared with the preceding Biber-notice package, only the icon file and the plist’s icon filename change; all 5,877 other physical entries, the ASAR, runtime and 39 compiled outputs are identical. This does not replace the public preview installer or claim a new complete native qualification or physical display acceptance.
+
+## Select the Mac OS for qualification
+
+The manual Mac candidate workflow offers `macos-14`, `macos-15` (default), `macos-26` and `xcode-27`, with the same full gates on each. It rejects an unexpected actual OS/architecture and retains an environment record with the exact source and image identifiers. Different OS choices can run independently without cancelling an existing attempt. See [OS qualification and remaining clean-install requirements](MAC_OS_QUALIFICATION.md).

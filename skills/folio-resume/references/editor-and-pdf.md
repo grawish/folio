@@ -14,6 +14,8 @@
 
 For a small exercise, rename `Alex Morgan` in the Classic template, build, then undo the edit and build again. Do not change a command such as `\bfseries` when you only intend to change the name.
 
+Current development builds keep only your newest waiting build when you edit again. Older waiting builds are cancelled. Stop also waits for any file-reading or history-writing step already in progress. Your source stays available. This queue improvement is not included in preview 4; see [build scheduling](https://github.com/grawish/folio/blob/main/docs/BUILD_REQUESTS.md).
+
 ## Find a build error
 
 Try removing a closing brace in a disposable sample. The new build should fail and keep the last successful PDF visible. Open the error count at the bottom, select a source-linked diagnostic, and inspect the indicated line. **Raw log** gives more compiler detail. Fix the brace and build again.

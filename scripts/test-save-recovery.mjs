@@ -230,7 +230,7 @@ try {
     ).toBe(true);
   }
   await page.screenshot({ path: path.join(root, 'review-dark-small.png') });
-  await page.evaluate(() => localStorage.setItem('folio:appearance', 'light'));
+  await page.evaluate(() => window.folio.savePreferences({ 'folio:appearance': 'light' }));
   await page.reload();
   await startupReview();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');

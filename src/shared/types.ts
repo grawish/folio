@@ -104,6 +104,10 @@ export type ProjectDiskChanges = {
 };
 
 export interface DesktopAPI extends GitAPI {
+  loadPreferences(
+    legacy: import('./preferences').Preferences,
+  ): Promise<import('./preferences').Preferences>;
+  savePreferences(patch: import('./preferences').PreferencePatch): Promise<void>;
   appUpdateStatus(): Promise<import('./updates').AppUpdateStatus>;
   configureAppUpdates(
     value: import('./updates').UpdatePreferences,
@@ -162,6 +166,8 @@ export interface DesktopAPI extends GitAPI {
   bootstrap(): Promise<Bootstrap>;
   inspectRuntime(pin?: import('./runtime').RuntimePin): Promise<RuntimeStatus>;
   repairRuntime(pin?: import('./runtime').RuntimePin): Promise<RuntimeStatus>;
+  compilerStorage(): Promise<import('./compiler-storage').CompilerStorage>;
+  removeStoredCompiler(key: string, token: string): Promise<boolean>;
   listPacks(): Promise<import('./packs').PackLibrary>;
   refreshPacks(id: string): Promise<import('./packs').PackLibrary>;
   preparePackImport(id: string): Promise<import('./packs').PackImportPreview | null>;

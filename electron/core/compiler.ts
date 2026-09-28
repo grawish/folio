@@ -1,4 +1,5 @@
 import { spawn } from 'node:child_process';
+import type { Duplex } from 'node:stream';
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { performance } from 'node:perf_hooks';
@@ -8,27 +9,34 @@ import { inspectRuntime, macSandboxProfile } from './runtime';
 import { parseDiagnostics } from './diagnostics';
 import { buildFingerprint } from './build-provenance';
 import { compilerLimits, limitedCompilerLaunch } from './compiler-limits';
+import { BuildWorkspaces } from './build-workspaces';
+import { LatestWorkQueue } from './latest-work-queue';
+import { acquireEngineCache, engineCachePolicy } from './engine-cache';
 import type { RuntimeLease, RuntimeSource } from './runtime-manager';
 
 export class Compiler {
   get busy() {
-    return !!this.running;
+    return this.queue.busy;
   }
+  private readonly workspaces: BuildWorkspaces;
   private generation = 0;
   private abort: AbortController | undefined;
-  private running: Promise<BuildResult> | undefined;
+  private readonly queue = new LatestWorkQueue<BuildResult>();
   private last: { projectId: string; fingerprint: string; result: BuildResult } | undefined;
 
   constructor(
     readonly runtimeRoot: string | RuntimeSource,
     readonly workRoot: string,
     readonly timeoutMs = 30_000,
-  ) {}
+  ) {
+    this.workspaces = new BuildWorkspaces(workRoot);
+  }
 
   async cancel() {
     this.generation++;
     this.abort?.abort();
-    await this.running;
+    this.queue.cancelPending();
+    await this.queue.running;
   }
 
   currentPdf(project: Project): Uint8Array | undefined {
@@ -42,7 +50,6 @@ export class Compiler {
   compile(project: Project, assets = new Map<string, Buffer>()): Promise<BuildResult> {
     const generation = ++this.generation;
     this.abort?.abort();
-    const previous = this.running;
     const cancelled = (): BuildResult => ({
       projectId: project.id,
       revision: project.revision,
@@ -52,13 +59,14 @@ export class Compiler {
       log: '',
     });
     const operation = async () => {
-      await previous;
       if (generation !== this.generation) return cancelled();
       const controller = new AbortController();
       this.abort = controller;
       const start = performance.now();
       let job: string | undefined;
+      let workspace: Awaited<ReturnType<BuildWorkspaces['create']>> | undefined;
       let lease: RuntimeLease | undefined;
+      let cacheLease: Awaited<ReturnType<typeof acquireEngineCache>> | undefined;
       let runtimeReady = false;
       try {
         lease =
@@ -70,16 +78,14 @@ export class Compiler {
         if (!runtime.ready) throw new Error(runtime.message);
         runtimeReady = true;
         if (generation !== this.generation) return cancelled();
-        await fs.mkdir(this.workRoot, { recursive: true });
-        job = await fs.mkdtemp(path.join(this.workRoot, 'build-'));
-        job = await fs.realpath(job);
+        workspace = await this.workspaces.create();
+        job = workspace.path;
         const source = path.join(job, 'source');
         const output = path.join(job, 'output');
-        const cache = path.join(this.workRoot, 'engine-cache', runtime.pin!.id!);
+        cacheLease = await acquireEngineCache(this.workRoot, runtime.pin!.id!);
+        const cache = cacheLease.path;
         await Promise.all(
-          [source, output, cache, path.join(job, 'home')].map((p) =>
-            fs.mkdir(p, { recursive: true }),
-          ),
+          [source, output, path.join(job, 'home')].map((p) => fs.mkdir(p, { recursive: true })),
         );
         for (const [name, data] of [
           ...assets,
@@ -133,7 +139,11 @@ export class Compiler {
           cache,
           controller.signal,
           runtimePath,
+          () => cacheLease!.check(),
         );
+        await cacheLease.check();
+        await cacheLease.release();
+        cacheLease = undefined;
         if (generation !== this.generation) return cancelled();
         const diagnostics = parseDiagnostics(execution.log);
         const result: BuildResult = {
@@ -152,6 +162,7 @@ export class Compiler {
           const pdf = await fs.readFile(pdfPath);
           if (!pdf.subarray(0, 5).equals(Buffer.from('%PDF-')))
             throw new Error('The compiler did not produce a valid PDF.');
+          if (generation !== this.generation) return cancelled();
           result.pdf = new Uint8Array(pdf);
           result.buildFingerprint = buildFingerprint(project, assets, runtime.pin);
           this.last = { projectId: project.id, fingerprint: fingerprint(project), result };
@@ -175,18 +186,16 @@ export class Compiler {
           runtimeUnavailable: !runtimeReady,
         };
       } finally {
-        if (job) await fs.rm(job, { recursive: true, force: true }).catch(() => {});
+        await cacheLease?.release().catch(() => {});
+        await workspace?.release().catch(() => {});
         await lease?.release();
         if (generation === this.generation) this.abort = undefined;
       }
     };
-    const running = operation();
-    this.running = running;
-    const finished = () => {
-      if (this.running === running) this.running = undefined;
-    };
-    void running.then(finished, finished);
-    return running;
+    return this.queue.enqueue(async () => {
+      const result = await operation();
+      return generation === this.generation ? result : cancelled();
+    }, cancelled);
   }
 
   private run(
@@ -197,16 +206,17 @@ export class Compiler {
     cache: string,
     signal: AbortSignal,
     runtimePath: string,
+    checkCache?: () => Promise<void>,
   ): Promise<{
     code: number;
     log: string;
   }> {
     return new Promise((resolve, reject) => {
-      const launch = limitedCompilerLaunch(command, args, this.timeoutMs);
+      const launch = limitedCompilerLaunch(command, args, this.timeoutMs, true);
       const child = spawn(launch.command, launch.args, {
         cwd,
         detached: true,
-        stdio: ['ignore', 'pipe', 'pipe'],
+        stdio: ['ignore', 'pipe', 'pipe', 'pipe'],
         env: {
           PATH: `${runtimePath}${path.delimiter}/usr/bin${path.delimiter}/bin`,
           PAR_GLOBAL_TEMP: path.join(home, 'biber-cache'),
@@ -218,6 +228,7 @@ export class Compiler {
           LANG: 'en_US.UTF-8',
         },
       });
+      const parentWatch = child.stdio[3] as Duplex;
       let log = '';
       let failure: string | undefined;
       const stop = () => {
@@ -229,6 +240,10 @@ export class Compiler {
           }
         }
       };
+      parentWatch.once('error', () => {
+        failure = 'The compiler parent connection failed.';
+        stop();
+      });
       const cancel = () => {
         failure = 'Compilation cancelled.';
         stop();
@@ -245,25 +260,47 @@ export class Compiler {
           stop();
         }
       };
-      child.stdout.on('data', append);
-      child.stderr.on('data', append);
+      child.stdout!.on('data', append);
+      child.stderr!.on('data', append);
       signal.addEventListener('abort', cancel, { once: true });
       if (signal.aborted) cancel();
+      let cacheCheck: Promise<void> | undefined;
+      let nativeClosed = false;
+      const cacheTimer = checkCache
+        ? setInterval(() => {
+            if (cacheCheck) return;
+            cacheCheck = checkCache()
+              .catch((error) => {
+                failure = (error as Error).message;
+                if (!nativeClosed) stop();
+              })
+              .finally(() => {
+                cacheCheck = undefined;
+              });
+          }, engineCachePolicy.pollMs)
+        : undefined;
       const cleanup = () => {
         clearTimeout(timer);
+        clearInterval(cacheTimer);
         signal.removeEventListener('abort', cancel);
       };
       child.once('error', (error) => {
+        nativeClosed = true;
+        parentWatch.destroy();
         cleanup();
         reject(error);
       });
-      // A kernel resource signal can stop the compiler before its children.
-      // Reap the whole group promptly instead of leaving a helper holding pipes.
+      // Close on exit, not close: descendants may still hold the log pipes.
+      // The watcher kills remaining helpers on successful exits too. A dead
+      // application closes this connection automatically in the kernel.
       child.once('exit', (code, exitSignal) => {
+        parentWatch.destroy();
         if (exitSignal || code !== 0) stop();
       });
-      child.once('close', (code, exitSignal) => {
+      child.once('close', async (code, exitSignal) => {
+        nativeClosed = true;
         cleanup();
+        await cacheCheck;
         if (!failure && exitSignal) {
           if (exitSignal === 'SIGXCPU')
             failure = `Compilation reached the ${Math.ceil(this.timeoutMs / 1000)}-second CPU-time limit. Simplify the document and try again.`;

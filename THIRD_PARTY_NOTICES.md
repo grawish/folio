@@ -33,6 +33,14 @@ runtime.
 - **Electron**: https://github.com/electron/electron (MIT and licenses of bundled Chromium/Node.js components).
 - **fflate**: https://github.com/101arrowz/fflate (MIT).
 
+Current development packages also include `Contents/Resources/pdfjs-notices/`: seven complete original licenses and four unchanged source copyright headers from PDF.js 6.3.289. These preserve the separate Brotli, qcms, OpenJPEG and JBIG2 terms and Google, Mozilla, Glyph & Cog and Opera attribution. Exact publisher source maps bind the inspected files to the published PDF.js commit. Native codec WASM files and fallback scripts are not shipped. See [PDF.js component notices and provenance](docs/LICENSING.md#preserve-pdfjs-component-notices); this does not complete the broader binary redistribution review.
+
+Current development packages include `Contents/Resources/npm-notices/`: 42 unchanged original JavaScript dependency and build-support notices, the exact npm archive/source index and a guide. All 38 installed production packages and five additional bundled-code/build-support packages are indexed, including optional or potentially unused packages; their publisher archives are verified against the dependency lock. The additional originals cover has-flag, supports-color, esbuild, Vite and Rolldown, including Rolldown’s third-party notice. The original-text gaps for lazy-val and the optional Apple silicon canvas package remain explicit. See [npm notice collection and limits](docs/LICENSING.md#bundle-original-javascript-dependency-notices). These third-party materials retain their own terms; this is not a complete linked-component or binary redistribution audit.
+
+Current development packages also include `Contents/Resources/tex-font-notices/`: fifteen unchanged font copyright, license, README and manifest files, plus a source guide. All 63 included compiler font binaries and 48 matching support files map exactly to retained TeX Live distributions. The collector verifies the publisher’s archive checksums; full original archives remain available at the pinned source URLs. See [font materials and verification](docs/LICENSING.md#collect-and-bundle-compiler-font-notices). This does not complete the remaining TeX/native application audit or alter the older preview-4 download.
+
+Current development packages include `Contents/Resources/tex-resource-notices/` with 102 unchanged TeX notice, license, README, author and manifest files, plus source guides. 402 non-font resources match verified original distribution files, including Tectonic's two patched LaTeX files. Together with the font mapping, 513 of 516 resources have exact source matches. Original per-file terms remain in the runtime bundle. Three generated configuration files, full source distribution and the wider release audit remain open; see [TeX resource materials](docs/LICENSING.md#collect-and-bundle-tex-resource-notices).
+
 The six resume templates are original sample content for this project. All names, organizations, achievements, and
 contact details in them are illustrative.
 
@@ -61,3 +69,29 @@ The [Apple silicon Cargo audit](docs/LICENSING.md#resolve-the-apple-silicon-comp
 Use `python3 scripts/collect-rust-standard-library.py` for the matching official Rust 1.97.1 source and Apple silicon standard-library components. It retains 79 unmodified notice files and the original archives, checks 1,161 vendored source files, and maps all 27 prebuilt `.rlib` libraries to source manifests. These libraries include compiler/test support and are not all claimed to be linked into Tectonic. See [standard-library materials and scope](docs/LICENSING.md#collect-rust-standard-library-materials). The separate historical `resources/runtime-core-v1-notices.md` remains unchanged to preserve existing compiler/pack identities.
 
 Use `python3 scripts/collect-biber-build-evidence.py` for byte provenance of Biber's arm64 executable and all 3,979 prepared cache files, matching Biber source files, and original Perl 5.32.1, PAR 1.017 and PAR::Packer 1.055 source archives and selected notice/build materials. Additional embedded CPAN/native components and final redistribution review remain open. See [Biber evidence and scope](docs/LICENSING.md#collect-biber-payload-and-foundation-sources).
+
+
+## Separately licensed TeX replay developer tool
+
+`scripts/collect-tex-generated-materials.py` and `tests/tex-generated-materials.py` use GPL-2.0-or-later, as stated in their headers. The standalone replay adapts the original TeX Live `updmap.pl`, `TLUtils.pm` and `TLPOBJ.pm` generation rules, preserves upstream attribution, and uses only Python's standard library and curl. The full GPL version 2 text is retained in `resources/tex-resource-notices/pgf.doc--gnu-public-license-2.txt`. These developer files are not included in the application package; Folio's original app keeps its noncommercial license. Original source-map files retain their own terms.
+
+The [generated-resource replay](docs/LICENSING.md#reproduce-generated-tex-resources) reproduces three generated files from the exact TeX Live commit recorded by the upstream bundle. Together with the 513 direct distribution matches, all 516 resource files now have verified provenance. This does not complete individual redistribution conditions, corresponding-source publication or the full binary SBOM.
+
+
+## Biber compiled-module source associations
+
+The offline [compiled-module collector](docs/LICENSING.md#collect-biber-compiled-module-materials) associates all 99 packaged Perl-module files with matching Perl source files and retained upstream archives. Original XS declarations, notices and build materials are preserved; six source-version ambiguities and ten generated-XS cases remain explicit. This evidence does not establish exact native rebuilds, resolve the unbundled X11/MySQL references or complete final redistribution review. Upstream materials retain their original terms.
+
+
+## Bundled Tectonic original notices
+
+Development packages include `Contents/Resources/tectonic-notices/` with 255 unchanged original texts, a readable component index and exact source archive records. These cover 657 notice references from Tectonic source families, the resolved executable Rust build closure, matching Rust toolchain distributions and eleven native build ports. Every selected archive and original text was rechecked; identical texts are stored once. Build/toolchain supersets include tools and potentially unused code, so this is not a final linked-component SBOM.
+
+The packaging hook expands the lossless originals and rejects missing, altered, linked, extra or mismatched files. This does not replace their original grants, complete the Biber/Perl review or satisfy every corresponding-source obligation. See `resources/tectonic-notices/README.md` and the licensing guide for source locations and reproduction. Existing compiler identities and historical downloads remain unchanged.
+
+
+## Bundled Biber original notice documents
+
+Development packages include `Contents/Resources/biber-notices/` with 414 unchanged original documents, a component guide and exact source index. The collection covers 441 document references from Biber 2.17, Perl/PAR, 123 CPAN distributions and nine native-library source archives. Full source modules and READMEs preserve embedded statements where no separate license file exists. Identical original bytes are stored once.
+
+The package guard checks the Biber identity, source locks and complete original text set. These documents keep their upstream terms. Native version/build ambiguities, individual grant review, corresponding-source obligations and the final app SBOM remain separate requirements. See [coverage and reproduction](docs/BIBER_NOTICES.md). Historical installers are unchanged.

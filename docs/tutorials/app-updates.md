@@ -39,3 +39,13 @@ Save your latest changes, quit Folio and open it again before trying another upd
 ![Settings after a simulated update preparation timeout](../images/app-updates-recovery.png)
 
 This screenshot uses the real Settings screen with a simulated failure. It demonstrates returning to work; it does not show a real signed update. The test also edits the project name and chat draft afterward, then verifies both survive closing and reopening Folio.
+
+## If your disk needs more space
+
+An update needs room for the downloaded file and the new app. Folio checks before downloading and again before preparing the restart. If there is not enough room, it tells you roughly how much free space it needs. Free some space, then choose **Check for updates** again. You can keep working on your resume.
+
+![Settings with a simulated low-disk message](../images/app-updates-disk-space.png)
+
+This is a real Settings screen with a simulated low-disk message. The test does not fill your Mac's disk or install a new app.
+
+Folio removes recognized old and unfinished app downloads when you try a new download. It keeps one matching download for retry. If it finds unexpected files or links in that cache, it stops and leaves them alone. Use **Downloads on GitHub** for the manual installation instructions. Do not delete your resume or recovery folder to make an update work.

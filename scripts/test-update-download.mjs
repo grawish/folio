@@ -33,6 +33,8 @@ for (const file of [
   'electron/core/update-download.ts',
   'electron/core/update-request.ts',
   'electron/core/update-staging.ts',
+  'electron/core/update-storage.ts',
+  'electron/core/pack-io.ts',
   'package-lock.json',
 ])
   inputs[file] = createHash('sha256')

@@ -1,0 +1,360 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T23:00:02.301360+00:00",
+  "implementationCommit": "aca6af8d829818fc19d92ff1b6e49632f8684d62",
+  "sourceBaseCommit": "1d9a71291a35d0ef6b01ad527541aeaefd2fb9ed",
+  "status": "Local checks and complete hosted Apple silicon qualification passed; production release requirements remain open",
+  "sourceTestsPassed": 442,
+  "focusedTestsPassed": 15,
+  "typecheckPassed": true,
+  "publishedInstallerChanged": false,
+  "nativeRecovery": {
+    "sourceCommit": "1d9a71291a35d0ef6b01ad527541aeaefd2fb9ed",
+    "scriptSha256": "ca60ec2cab99532f07b3e1f6b065a52486f43b48eacb59d0045280f9ebf8d354",
+    "sourceHashes": {
+      "electron/core/project.ts": "495351408a61191adf13baff04783e401e729a0f18c9a95ef4ba35d2e83bd5b9",
+      "electron/main.ts": "c9a30b6af92f15197a7705654552967708c9331d828fc1cf0179f964fb1eca21",
+      "src/shared/recovery-writes.ts": "2ab7b36bd0fafee0e097cd3470092a7fdeceb4f6f303b5b4e549dfa70d961831",
+      "src/App.tsx": "4ce7132a12225bee71403e2b2a7d8e6be54594d97e43192e73f6418796d30cf7",
+      "src/chat.css": "c0c4ea35e3ee5598bc7bbaf90da1cdca0b61b6533b132e18937c22787993076a"
+    },
+    "appAsarSha256": "05fb8ceb6fe7adf40c56455daca40542c42fd0c23841106c50410250bcfca929",
+    "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+    "scope": "Synthetic native profile, real UI/preload/IPC/recovery and normal restarts. Scoped rename delays/failures expose queue behavior. No AI call, real user document, performance percentile or physical power-loss claim.",
+    "checks": [
+      "Eight debounce-separated UI snapshots become only the active and newest writes; exact newest source survives normal close and restart.",
+      "A failed rename preserves the previous recovery file, retains newer editor changes without repeated writes, and Retry saves the newest source. Independent recovery/settings errors remain visible and clickable without overlapping.",
+      "Native IPC admits four writes, rejects excess requests before acknowledgement, and accepts a later retry. Normal close flushes the actual visible editor snapshot before restart."
+    ],
+    "errors": [],
+    "passed": true,
+    "automaticWrites": [
+      {
+        "revision": 2,
+        "id": "964b8a12-445b-42c5-9ab8-44e87342653d",
+        "source": "\\documentclass{article}\n\\begin{document}\nRecovery snapshot 1.\n\\end{document}"
+      },
+      {
+        "revision": 9,
+        "id": "964b8a12-445b-42c5-9ab8-44e87342653d",
+        "source": "\\documentclass{article}\n\\begin{document}\nRecovery snapshot 8.\n\\end{document}"
+      }
+    ],
+    "nativeAdmission": {
+      "requests": 100,
+      "rejectedWhileHeld": 96,
+      "acknowledgedWhileHeld": 0,
+      "accepted": 4,
+      "newestRetrySaved": true
+    }
+  },
+  "nativeEvidence": {
+    "file": "test-results/recovery-writes-PjxTKj/result.json",
+    "bytes": 2232,
+    "sha256": "842439517a0d22fcf28f73c0e13b4c02626d266ca09a813249d46c5221578ad3"
+  },
+  "captureSourceCommitNote": "The native fixture ran with then-uncommitted recovery changes. Every recorded application source hash and current replay input was verified against implementationCommit; sourceBaseCommit alone does not contain the fix.",
+  "baselineControl": {
+    "appAsarSha256": "fe66b721212c7fa761564ed6fb0b852414b0d699aa8e59fdc5119b2a335d4877",
+    "sameNativeScript": true,
+    "evidence": {
+      "file": "test-results/recovery-writes-BAbeBV/result.json",
+      "bytes": 5099,
+      "sha256": "725e03f7d2eb0a6c926e6f0afd8dd7c2cb0bc231bb7f52e99de79bd9c7853875"
+    },
+    "expectedFailure": "Eight writes were observed where the fixed behavior requires only the active and newest snapshots.",
+    "automaticWrites": 8,
+    "rendererErrors": []
+  },
+  "earlierBackendDiagnostic": {
+    "projectStoreSha256": "64aacdf7e6bb64767d5043154b15c47e2169cc61a0a5f8fa92dd60134e017c4a",
+    "requests": 5001,
+    "settledWhileHeld": 0,
+    "unsettledWhileHeld": 5001,
+    "writesStartedWhileHeld": 1,
+    "scope": "Production ProjectStore serialization with a held synthetic disk sink. Not a complete IPC or memory benchmark.",
+    "totalWrites": 5001
+  },
+  "packagedRegressions": [
+    {
+      "suite": "workspace",
+      "passed": true,
+      "evidence": "test-results/workspace-hpKW0s",
+      "script": {
+        "file": "scripts/test-workspace.mjs",
+        "bytes": 22494,
+        "sha256": "835dec1353889a7885c0c223673ccae0fbacbd34dc41153c75c6b30a643ec89a"
+      },
+      "log": {
+        "file": "test-results/recovery-writes-workspace.log",
+        "bytes": 830,
+        "sha256": "8d0d3462858b7248d753e53925ca2855784048d267e4a409e53ffe5f54129439"
+      },
+      "result": {
+        "file": "test-results/workspace-hpKW0s/result.json",
+        "bytes": 503,
+        "sha256": "6f96e906aee78581cc64cc0bb5f50ed596635a895dd945902205cda1019d6832"
+      }
+    },
+    {
+      "suite": "chat",
+      "passed": true,
+      "evidence": "test-results/chat-yx84KU",
+      "script": {
+        "file": "scripts/test-chat.mjs",
+        "bytes": 37115,
+        "sha256": "e71ba2a1a28cfee73a6b2f4c04d500470fb8ea3ba13f75bae54a26b6950cd39a"
+      },
+      "log": {
+        "file": "test-results/recovery-writes-chat-final.log",
+        "bytes": 1558,
+        "sha256": "935eea1dad64da3a8314c98ed97563f58469a38e256f5a97ada0f43e06e59fb6"
+      }
+    },
+    {
+      "suite": "save-recovery",
+      "passed": true,
+      "evidence": "test-results/save-recovery-VhOQd6",
+      "script": {
+        "file": "scripts/test-save-recovery.mjs",
+        "bytes": 20865,
+        "sha256": "51a376ee35310182258bd6a4fac2f037737630a852717eb946a60eb912e1ba46"
+      },
+      "log": {
+        "file": "test-results/recovery-writes-save-recovery-final.log",
+        "bytes": 1000,
+        "sha256": "978fce0e8c6145c5af051547a9ff8e729507bdd2290e8e9ba41ebc5b6f62c00f"
+      },
+      "result": {
+        "file": "test-results/save-recovery-VhOQd6/result.json",
+        "bytes": 948,
+        "sha256": "7cff45d418c7a8e7ef8bebaa3a9503d2a30b34a610dad698f873336f549e4412"
+      }
+    },
+    {
+      "suite": "preferences",
+      "passed": true,
+      "evidence": "test-results/preferences-mT052X",
+      "script": {
+        "file": "scripts/test-preferences.mjs",
+        "bytes": 12302,
+        "sha256": "a907c37a9e570186c0336b919a9f66302287d9a07bbaf800fab78c56d0abbc05"
+      },
+      "log": {
+        "file": "test-results/recovery-writes-preferences-final.log",
+        "bytes": 110,
+        "sha256": "a158ffe2f977f4a8452a43e437e7de612674381b1357cc6b344426dd6b7e2c3a"
+      },
+      "result": {
+        "file": "test-results/preferences-mT052X/result.json",
+        "bytes": 2556,
+        "sha256": "8f11449836bbe3a0f4363aedd9ac0c3955508b23df4602c4d4b5975abbd15c56"
+      }
+    },
+    {
+      "suite": "import-recovery",
+      "passed": true,
+      "evidence": "test-results/import-recovery-gOqeXi",
+      "script": {
+        "file": "scripts/test-import-recovery.mjs",
+        "bytes": 16374,
+        "sha256": "81967721e2258427a438e89a2b9a7d0fee3800136c2823f69c7c2575c8781366"
+      },
+      "log": {
+        "file": "test-results/recovery-writes-import-recovery-final.log",
+        "bytes": 690,
+        "sha256": "48f345d5a03bcefdca7149cb9e1bba30ed351ef36761bc29ea49da10a4626508"
+      },
+      "result": {
+        "file": "test-results/import-recovery-gOqeXi/result.json",
+        "bytes": 173,
+        "sha256": "0ec6de3fc5b43adcaa524e200b9d846ecb95e8f665e29d1ce64e74c2ac62a4f8"
+      }
+    },
+    {
+      "suite": "import",
+      "passed": true,
+      "evidence": "test-results/import-zlksNr",
+      "script": {
+        "file": "scripts/test-import.mjs",
+        "bytes": 12888,
+        "sha256": "270b9fc55851f29cbc5c88346e2ba4efd6c0f46892ebfcda4ae649df4ade1233"
+      },
+      "log": {
+        "file": "test-results/recovery-writes-import-final.log",
+        "bytes": 760,
+        "sha256": "1c051af350f5ef4ca43bd2897e9b5e9c1dbc9d88ed8a7422e28b305e435e86cb"
+      }
+    }
+  ],
+  "javascript": {
+    "summary": {
+      "schemaVersion": 1,
+      "appAsarSha256": "05fb8ceb6fe7adf40c56455daca40542c42fd0c23841106c50410250bcfca929",
+      "inventorySha256": "edb1a4bff902d987f995e63549f8e792e09263d99da3b9d61d470e9e0a3588aa",
+      "bomSha256": "966c19012edd016c025dc3f0c1d21da6937f93ba691d6b9ee9674f06bace4c97",
+      "packagedJavaScriptAndMaps": 8,
+      "reproducedOutputs": 24,
+      "sourceModules": 410,
+      "runtimePackages": 35,
+      "generators": 3,
+      "completeBinarySbom": false
+    },
+    "allFolioModulesMatchImplementationCommit": true,
+    "allReplayInputsMatchImplementationCommit": true,
+    "allReproducedOutputsMatchLocalBuild": true,
+    "publisherSources": {
+      "schemaVersion": 1,
+      "passed": true,
+      "inventorySha256": "edb1a4bff902d987f995e63549f8e792e09263d99da3b9d61d470e9e0a3588aa",
+      "sourceIndexSha256": "ec21f5ef6a8761f6a5c97f13526ffda69580f48170a80a3c0720cf397fd1009d",
+      "npmInputFilesMatched": 249,
+      "embeddedOriginalSourcesMatched": 45,
+      "packageJsonFilesMatched": 38,
+      "originalArchivesChecked": 38,
+      "completeBinarySbom": false,
+      "scope": "Exact npm source bytes and published source-map contents from checksum-verified locked archives. Generated helpers are associated with their build tools, not assigned byte-level authorship. Nested vendored terms, native components and complete redistribution remain separate."
+    }
+  },
+  "screenshots": [
+    {
+      "file": "docs/images/recovery-retry.png",
+      "bytes": 98088,
+      "sha256": "d1df29a5b26268c1312ac2f2ce00e3dd500ba53a22560845b313e4492afc44a2"
+    },
+    {
+      "file": "docs/images/recovery-retried.png",
+      "bytes": 73735,
+      "sha256": "29923561369d4720e67cd37f79a95c8e25f5ae7ac7cf04dbd2d4079e71ade5f7"
+    }
+  ],
+  "website": {
+    "passed": true,
+    "widths": [1440, 390],
+    "screenshotDemos": 38,
+    "errors": []
+  },
+  "documentationSkillValid": true,
+  "retainedLogs": [
+    {
+      "file": "test-results/recovery-writes-flush-focused.log",
+      "bytes": 1642,
+      "sha256": "3e014c95c1dcac5e2b028efa02acb6594cfc77cc8a08e8ccd8a801f880e2db60"
+    },
+    {
+      "file": "test-results/recovery-writes-flush-source.log",
+      "bytes": 44415,
+      "sha256": "e79ecc5626cb7742e54e1fd373d6fea3de2786a67ee9e3d2ed6e649df4b40eec"
+    },
+    {
+      "file": "test-results/recovery-writes-flush-typecheck.log",
+      "bytes": 64,
+      "sha256": "5e0497e27df921e099efd62066b397df0bfe0eb796edd626db840b92aaa1ccec"
+    },
+    {
+      "file": "test-results/recovery-writes-docs-format.log",
+      "bytes": 183,
+      "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+    },
+    {
+      "file": "test-results/recovery-writes-flush-build.log",
+      "bytes": 1719,
+      "sha256": "d4ab52c0dc623f76f9f578b53da9131e1608d4d3c19bf24e30e8caf67f4a312f"
+    },
+    {
+      "file": "test-results/recovery-writes-flush-package.log",
+      "bytes": 1367,
+      "sha256": "1dce07c1797bd451d9c7594370b59dc86f5776bda6db88431b7b33c96eef3d8a"
+    },
+    {
+      "file": "test-results/recovery-writes-native.log",
+      "bytes": 234,
+      "sha256": "5242fa0fb0d0c40d21b7fe5862b6f158373a4470305b075f63c9eba10f491869"
+    },
+    {
+      "file": "test-results/recovery-writes-native-baseline.log",
+      "bytes": 4347,
+      "sha256": "6367ad1e372ab4da1f05886422a0c7d9b6c466b28040eeb2167e447c63818fea"
+    },
+    {
+      "file": "test-results/recovery-writes-workspace.log",
+      "bytes": 830,
+      "sha256": "8d0d3462858b7248d753e53925ca2855784048d267e4a409e53ffe5f54129439"
+    },
+    {
+      "file": "test-results/recovery-writes-chat.log",
+      "bytes": 4183,
+      "sha256": "548ed757132bb3e9c18d9395c650da770a6e1e48a69fb4adc1ed7f45eefaed9c"
+    },
+    {
+      "file": "test-results/recovery-writes-chat-final.log",
+      "bytes": 1558,
+      "sha256": "935eea1dad64da3a8314c98ed97563f58469a38e256f5a97ada0f43e06e59fb6"
+    },
+    {
+      "file": "test-results/recovery-writes-save-recovery-final.log",
+      "bytes": 1000,
+      "sha256": "978fce0e8c6145c5af051547a9ff8e729507bdd2290e8e9ba41ebc5b6f62c00f"
+    },
+    {
+      "file": "test-results/recovery-writes-preferences-final.log",
+      "bytes": 110,
+      "sha256": "a158ffe2f977f4a8452a43e437e7de612674381b1357cc6b344426dd6b7e2c3a"
+    },
+    {
+      "file": "test-results/recovery-writes-import-recovery-final.log",
+      "bytes": 690,
+      "sha256": "48f345d5a03bcefdca7149cb9e1bba30ed351ef36761bc29ea49da10a4626508"
+    },
+    {
+      "file": "test-results/recovery-writes-import-final.log",
+      "bytes": 760,
+      "sha256": "1c051af350f5ef4ca43bd2897e9b5e9c1dbc9d88ed8a7422e28b305e435e86cb"
+    },
+    {
+      "file": "test-results/recovery-writes-javascript-replay.log",
+      "bytes": 7754,
+      "sha256": "8f2e5b5c5b475cad9b939a1e8b9a9f4cac527a1d1d21b6464d1adc52dc1ffb1b"
+    },
+    {
+      "file": "test-results/recovery-writes-publisher-replay-final.log",
+      "bytes": 681,
+      "sha256": "e194d17cc08b06a88e49a11bab6b5764132b792cb23d918c4ebba54b74ce471b"
+    },
+    {
+      "file": "test-results/recovery-writes-website.log",
+      "bytes": 821,
+      "sha256": "3b152bcca6e0fbb5660d1ddf0370a50bd71f6781a62e9d2ad39cefcc89e4c21f"
+    },
+    {
+      "file": "test-results/recovery-writes-skill-validation.log",
+      "bytes": 16,
+      "sha256": "db349825903d66adffea3ecf1bd8e1803043e8a71cf1a051235dabc5371f5bb0"
+    }
+  ],
+  "retainedFailures": [
+    {
+      "evidence": "test-results/chat-2ZQm3D",
+      "log": "test-results/recovery-writes-chat.log",
+      "finding": "The chat fixture sent a Playwright fill after copied manifest publication while Save As could still make the workspace inert. It observed the prior draft.",
+      "correction": "Wait for the workspace aria-busy=false and enabled composer before editing; assert the typed value. The same packaged application then passes the complete chat workflow, including Save As identity, independent drafts and close during Save As. No application change was made for this rerun."
+    },
+    {
+      "log": "test-results/recovery-writes-javascript-replay.log",
+      "finding": "JavaScript byte replay passed; publisher verification rejected an invalid archive in the local B cache.",
+      "correction": "Reused the previously verified original cache in the other managed worktree. All 38 original archive checks pass without modifying either cache."
+    }
+  ],
+  "scope": "Request-count bounds, retry and native acknowledgement ordering on one development Apple silicon Mac. Real UI/preload/IPC/files with scoped synthetic rename delays and failures, normal restart and existing settings app-crash checks. No AI call, whole-app resource budget, physical power-loss guarantee, signed release or supported-device acceptance.",
+  "hostedQualification": {
+    "commit": "5b7b288547576a92b79d66441fdbe80bba6363ce",
+    "runId": 36357345971,
+    "url": "https://github.com/grawish/folio/actions/runs/36357345971",
+    "independentRecord": "mac-recovery-writes-hosted.json",
+    "retainedArtifactFilesVerified": 165,
+    "sourceTestsPassed": 442,
+    "compilerIntegrationTestsPassed": 18,
+    "nativeSuitesPassed": 20,
+    "templateImagesPassed": 12
+  }
+}

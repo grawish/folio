@@ -1,5 +1,6 @@
 import { app, autoUpdater as nativeUpdater } from 'electron';
 import { MacUpdater } from 'electron-updater';
+import { DownloadedUpdateHelper } from 'electron-updater/out/DownloadedUpdateHelper';
 import { CancellationToken } from 'builder-util-runtime';
 import { homedir } from 'node:os';
 import { execFile } from 'node:child_process';
@@ -12,6 +13,7 @@ import { verifyUpdateArchive, discardUpdateArchive } from './update-archive';
 import { requireVerifiedUpdate, type UpdateFeed } from './update-manifest';
 import { signedUpdateProvider } from './update-provider';
 import { NativeUpdateStaging } from './update-staging';
+import { prepareUpdateCache, checkUpdateSpace } from './update-storage';
 import type { AppUpdateInstaller } from './update-service';
 
 const execute = promisify(execFile);
@@ -40,8 +42,20 @@ export async function installedUpdateSupport(teamId: string | null) {
   }
 }
 
+// The pinned updater's in-memory shortcut compares publication dates/notes and
+// can re-download identical bytes after a feed renewal. Start with its normal
+// on-disk checksum validation on every download, using our inspected cache.
+class FolioMacUpdater extends MacUpdater {
+  useInspectedCache(pending: string) {
+    const helper = new DownloadedUpdateHelper(path.dirname(pending));
+    if (helper.cacheDirForPendingUpdate !== pending)
+      throw new Error('The updater cache layout is unsupported.');
+    this.downloadedUpdateHelper = helper;
+  }
+}
+
 export class MacAppInstaller implements AppUpdateInstaller {
-  private readonly updater = new MacUpdater();
+  private readonly updater = new FolioMacUpdater();
   private readonly staging = new NativeUpdateStaging(nativeUpdater);
   private readonly cacheRoot = path.join(
     homedir(),
@@ -52,6 +66,13 @@ export class MacAppInstaller implements AppUpdateInstaller {
   );
   private downloaded?: { feed: UpdateFeed; file: string };
   private currentFile?: string;
+  private spaceLocations() {
+    return {
+      cache: this.cacheRoot,
+      application: path.resolve(process.execPath, '../../../..'),
+      temporary: app.getPath('temp'),
+    };
+  }
   constructor() {
     this.updater.autoDownload = false;
     this.updater.autoInstallOnAppQuit = false;
@@ -86,8 +107,12 @@ export class MacAppInstaller implements AppUpdateInstaller {
     requireVerifiedUpdate(feed);
     if (!feed.release) throw new Error('There is no approved app update.');
     signal.throwIfAborted();
+    const cache = await prepareUpdateCache(this.cacheRoot, feed, signal);
+    await checkUpdateSpace(feed, this.spaceLocations(), !cache.cached);
+    signal.throwIfAborted();
     this.downloaded = undefined;
     this.currentFile = undefined;
+    this.updater.useInspectedCache(this.cacheRoot);
     this.updater.setFeedURL({
       provider: 'custom',
       updateProvider: signedUpdateProvider(feed, Date.now, (url, destination, options) =>
@@ -149,6 +174,7 @@ export class MacAppInstaller implements AppUpdateInstaller {
     this.staging.assertAvailable();
     if (!this.downloaded) throw new Error('Download and verify an app update first.');
     await this.verify(this.downloaded.feed);
+    await checkUpdateSpace(this.downloaded.feed, this.spaceLocations(), false);
     // With autoInstallOnAppQuit=false the native updater has not staged a new
     // app yet. Only the explicit restart action can reach this point.
     await this.staging.install(() => this.updater.quitAndInstall());

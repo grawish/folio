@@ -1,0 +1,11 @@
+{
+  "verifiedAt": "2026-09-27T11:10:02.310101+00:00",
+  "commit": "ee9b1794b72f0393639d8ff98a6b77b832f68af4",
+  "websiteRun": 36314787878,
+  "url": "https://grawish.com/folio/demos.html#compiler-storage",
+  "demoCards": 36,
+  "demoPageSha256": "e2b7d83109ceb26d180c86acce529582d4a84e6284286fdd1148b3d808291ed5",
+  "imageSha256": "04b32ebb7b698b9c332c9ed60cc5b8b50dca18d4429431ab50427e1b62b37e0a",
+  "tlsVerificationEnabled": true,
+  "matchesLocalVerifiedBuild": true
+}

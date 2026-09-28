@@ -9,6 +9,7 @@ import {
   ShieldCheck,
   Package,
   RefreshCw,
+  HardDrive,
 } from 'lucide-react';
 import type { CompilerBackup } from '../shared/migration';
 import type { AISettings } from '../shared/ai';
@@ -17,6 +18,7 @@ import { version } from '../../package.json';
 import { Modal } from './Modal';
 import { AIConnections } from './AIConnections';
 import { ResourcePacks } from './ResourcePacks';
+import { CompilerStorage } from './CompilerStorage';
 import { AppUpdates } from './AppUpdates';
 import type { RuntimePin } from '../shared/runtime';
 
@@ -72,10 +74,11 @@ export function SettingsModal({
     [repairError, setRepairError] = useState('');
   const [backups, setBackups] = useState<CompilerBackup[]>([]);
   const [packBusy, setPackBusy] = useState(false);
+  const [storageBusy, setStorageBusy] = useState(false);
   const [closing, setClosing] = useState(false);
   const [restarting, setRestarting] = useState(false);
   const close = () => {
-    if (closing || restarting) return;
+    if (closing || restarting || storageBusy) return;
     setClosing(true);
     void (window.folio?.cancelPackOperation() ?? Promise.resolve())
       .then(onClose)
@@ -97,7 +100,12 @@ export function SettingsModal({
     };
   }, [projectId]);
   return (
-    <Modal wide title="Settings" onClose={close} dismissible={!closing && !restarting}>
+    <Modal
+      wide
+      title="Settings"
+      onClose={close}
+      dismissible={!closing && !restarting && !storageBusy}
+    >
       <div className="settings-layout">
         <nav className="settings-navigation" aria-label="Settings sections">
           {[
@@ -105,6 +113,7 @@ export function SettingsModal({
             ['ai', 'AI connections', Network],
             ['editor', 'Editor & PDF', FileText],
             ['resources', 'LaTeX resources', Package],
+            ['storage', 'Storage', HardDrive],
             ['updates', 'App updates', RefreshCw],
             ['privacy', 'Privacy', ShieldCheck],
             ['about', 'About', Info],
@@ -112,7 +121,8 @@ export function SettingsModal({
             <button
               key={id as string}
               className={tab === id ? 'active' : ''}
-              disabled={packBusy || closing || restarting}
+              aria-current={tab === id ? 'true' : undefined}
+              disabled={packBusy || storageBusy || closing || restarting}
               onClick={() => setTab(id as string)}
             >
               <Icon size={17} />
@@ -124,6 +134,15 @@ export function SettingsModal({
           <AIConnections settings={connections} onChange={onConnections} />
         ) : (
           <div className="settings-content">
+            {tab === 'storage' && (
+              <CompilerStorage
+                onBegin={onPackBegin}
+                onBusy={(busy) => {
+                  setStorageBusy(busy);
+                  onPackBusy(busy);
+                }}
+              />
+            )}
             {tab === 'updates' && (
               <AppUpdates onRestart={onUpdateRestart} onRestarting={setRestarting} />
             )}
@@ -412,7 +431,11 @@ export function SettingsModal({
         )}
       </div>
       <div className="modal-actions">
-        <button className="button primary" onClick={close} disabled={closing || restarting}>
+        <button
+          className="button primary"
+          onClick={close}
+          disabled={closing || restarting || storageBusy}
+        >
           {closing ? 'Finishing…' : 'Done'}
         </button>
       </div>

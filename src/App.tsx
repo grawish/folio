@@ -1,3 +1,9 @@
+import {
+  readPreference,
+  writePreference,
+  flushPreferences,
+  usePreferenceError,
+} from './preferences';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { flushSync } from 'react-dom';
 import {
@@ -78,6 +84,7 @@ import { SupportBundle } from './components/SupportBundle';
 import { supportSnapshot } from './shared/support';
 import { SaveRecovery } from './components/SaveRecovery';
 import type { SaveRecoveryResult } from './shared/save-recovery';
+import { RecoveryWrites } from './shared/recovery-writes';
 
 type Dialog =
   | 'templates'
@@ -124,6 +131,16 @@ const snippets = [
 ];
 
 export default function App() {
+  const preferenceError = usePreferenceError();
+  const [recoveryError, setRecoveryError] = useState('');
+  const [retryingRecovery, setRetryingRecovery] = useState(false);
+  const [recoveryWrites] = useState(
+    () =>
+      new RecoveryWrites(
+        (project) => window.folio?.recover(project) ?? Promise.resolve(),
+        setRecoveryError,
+      ),
+  );
   const { appearance, setAppearance, theme } = useAppearance();
   const [project, setProject] = useState<Project>(() => createProject());
   const current = useRef(project);
@@ -141,10 +158,8 @@ export default function App() {
   const [lastGood, setLastGood] = useState<BuildResult | null>(null);
   const [changeHighlight, setChangeHighlight] = useState<ChangeHighlightRequest>();
   const pdfPreview = useRef<PdfPreviewHandle>(null);
-  const [autoCompile, setAutoCompile] = useState(
-    () => localStorage.getItem('folio:auto') !== 'false',
-  );
-  const [fontSize, setFontSize] = useState(() => Number(localStorage.getItem('folio:font')) || 14);
+  const [autoCompile, setAutoCompile] = useState(() => readPreference('folio:auto') !== 'false');
+  const [fontSize, setFontSize] = useState(() => Number(readPreference('folio:font')) || 14);
   const [dialog, setDialog] = useState<Dialog>(null);
   const saveReview = useRef<{ id: string; preparation?: Promise<void> } | null>(null);
   const [pendingImport, setPendingImport] = useState<ProjectImportPreview | null>(null);
@@ -156,7 +171,7 @@ export default function App() {
   const [rawLog, setRawLog] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const panes = usePaneLayout(sidebarOpen);
-  const [autoSave, setAutoSave] = useState(() => localStorage.getItem('folio:autosave') === 'true');
+  const [autoSave, setAutoSave] = useState(() => readPreference('folio:autosave') === 'true');
   const [autoSaveError, setAutoSaveError] = useState('');
   const [saveActive, setSaveActive] = useState(false);
   const [savedWorkspace, setSavedWorkspace] = useState<WorkspaceState | null>(null);
@@ -296,6 +311,7 @@ export default function App() {
       buildToken.current++;
       void window.folio?.cancelBuild();
       current.current = next;
+      recoveryWrites.replacePending(next);
       setEditorSession(crypto.randomUUID());
       setProject(next);
       setActiveFile(next.mainFile);
@@ -306,7 +322,7 @@ export default function App() {
       setLogsOpen(false);
       setSavedKey(next.directory ? keyOf(next) : '');
     },
-    [message, updateWorkspace, workspaceRef],
+    [message, updateWorkspace, workspaceRef, recoveryWrites],
   );
 
   const receiveDiskChanges = useCallback((report: ProjectDiskChanges | null) => {
@@ -518,26 +534,24 @@ export default function App() {
     )
       return;
     const timer = setTimeout(() => {
-      if (saving.current || closing.current) return;
-      void window.folio
-        ?.recover(project)
-        .catch((e) => message(`Recovery could not be saved: ${e.message}`));
+      if (saving.current || closing.current || switchingProject.current) return;
+      recoveryWrites.set(project);
     }, 500);
     return () => clearTimeout(timer);
-  }, [project, initialized, message, saveActive, dialog, packBusy]);
+  }, [project, initialized, recoveryWrites, saveActive, dialog, packBusy]);
   useEffect(() => {
     if (!toast) return;
     const timer = setTimeout(() => setToast(''), 6500);
     return () => clearTimeout(timer);
   }, [toast]);
   useEffect(() => {
-    localStorage.setItem('folio:auto', String(autoCompile));
+    writePreference('folio:auto', String(autoCompile));
   }, [autoCompile]);
   useEffect(() => {
-    localStorage.setItem('folio:font', String(fontSize));
+    writePreference('folio:font', String(fontSize));
   }, [fontSize]);
   useEffect(() => {
-    localStorage.setItem('folio:autosave', String(autoSave));
+    writePreference('folio:autosave', String(autoSave));
   }, [autoSave]);
 
   const save = async (saveAs = false, automatic = false): Promise<boolean> => {
@@ -571,6 +585,7 @@ export default function App() {
       finishSave = resolve;
     });
     try {
+      await recoveryWrites.flush().catch(() => {});
       await flushWorkspace();
       const saved = automatic
         ? await desktop.autosaveProject(snapshot)
@@ -596,6 +611,7 @@ export default function App() {
             ],
           }));
         });
+        recoveryWrites.replacePending(current.current);
         if (!automatic || saved.warning)
           message(saved.warning ?? 'Project saved. Your LaTeX files are ready to take anywhere.');
       } else if (automatic && snapshot.id === current.current.id) {
@@ -676,6 +692,7 @@ export default function App() {
       finish = resolve;
     });
     try {
+      await recoveryWrites.flush(snapshot);
       const next = await window.folio.useDiskSource(snapshot, token, mainFile);
       flushSync(() => {
         current.current = next;
@@ -717,7 +734,7 @@ export default function App() {
           : await desktop.openProject();
       if (next) {
         loadProject(next);
-        await desktop.recover(next);
+        await recoveryWrites.flush(next);
         setRecent(await desktop.recentProjects());
         if (folder && next.files.filter((file) => file.path.endsWith('.tex')).length > 1)
           setDialog('main-file');
@@ -755,7 +772,7 @@ export default function App() {
       let warning = '';
       let recovered = false;
       try {
-        await window.folio.recover(next);
+        await recoveryWrites.flush(next);
         setRecent(await window.folio.recentProjects());
         recovered = true;
       } catch {
@@ -796,7 +813,7 @@ export default function App() {
     try {
       if (action === 'resume') {
         const next = await window.folio.resumeImport(id);
-        await window.folio.recover(next);
+        await recoveryWrites.flush(next);
         setRecent(await window.folio.recentProjects());
         flushSync(() => {
           loadProject(next);
@@ -924,8 +941,9 @@ export default function App() {
           await window.folio?.cancelPackOperation();
           if (migrationId.current) await window.folio?.cancelCompilerMigration(migrationId.current);
           if (fontImport.current) await window.folio?.cancelFontImport(fontImport.current.id);
-          await window.folio?.recover(current.current);
+          await recoveryWrites.flush(current.current);
           await flushWorkspace();
+          await flushPreferences();
           await window.folio?.closeWindow();
         } catch (e) {
           closing.current = false;
@@ -948,7 +966,10 @@ export default function App() {
     const session = saveReview.current!;
     session.preparation ??= (async () => {
       await savingFinished.current;
-      if (initialized) await flushWorkspace();
+      if (initialized) {
+        await recoveryWrites.flush().catch(() => {});
+        await flushWorkspace();
+      }
       buildToken.current++;
       setBuilding(false);
       await window.folio!.beginSaveRecovery(session.id, initialized ? current.current : undefined);
@@ -1198,7 +1219,7 @@ export default function App() {
       finish = resolve;
     });
     try {
-      await window.folio.recover(current.current);
+      await recoveryWrites.flush(current.current);
       await flushWorkspace();
       const next = await window.folio.removeHistoryVersion(id, versionId, lastGood?.versionId);
       if (current.current.id === id) {
@@ -1369,7 +1390,7 @@ export default function App() {
       setBuilding(false);
       await flushWorkspace();
       if (fontImport.current !== session) throw new Error('Font setup was closed.');
-      await window.folio!.recover(current.current);
+      await recoveryWrites.flush(current.current);
       if (fontImport.current !== session) throw new Error('Font setup was closed.');
       await window.folio!.beginFontImport(session.id, current.current);
       if (fontImport.current !== session) {
@@ -1695,7 +1716,7 @@ export default function App() {
             aria-label="Resume workspace"
             key="editor"
           >
-            <div className="workspace-tabs" role="tablist" aria-label="Workspace view">
+            <div className="workspace-tabs">
               {!sidebarOpen && (
                 <button
                   className="icon-button"
@@ -1705,18 +1726,69 @@ export default function App() {
                   <PanelLeftOpen size={16} />
                 </button>
               )}
-              <button role="tab" aria-selected={view === 'chat'} onClick={() => setView('chat')}>
-                <MessageSquare size={16} />
-                Chat
-              </button>
-              <button role="tab" aria-selected={view === 'code'} onClick={() => setView('code')}>
-                <Code2 size={16} />
-                Code
-              </button>
-              <button role="tab" aria-selected={view === 'git'} onClick={() => setView('git')}>
-                <GitBranch size={16} />
-                Git
-              </button>
+              <div
+                className="workspace-view-tabs"
+                role="tablist"
+                aria-label="Workspace view"
+                onKeyDown={(event) => {
+                  if (
+                    event.altKey ||
+                    event.ctrlKey ||
+                    event.metaKey ||
+                    !['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)
+                  )
+                    return;
+                  const items = [
+                    ...event.currentTarget.querySelectorAll<HTMLButtonElement>('[role="tab"]'),
+                  ];
+                  const index = items.indexOf(event.target as HTMLButtonElement);
+                  if (index < 0) return;
+                  event.preventDefault();
+                  const next =
+                    event.key === 'Home'
+                      ? 0
+                      : event.key === 'End'
+                        ? items.length - 1
+                        : (index + (event.key === 'ArrowRight' ? 1 : -1) + items.length) %
+                          items.length;
+                  setView(next === 0 ? 'chat' : next === 1 ? 'code' : 'git');
+                  items[next].focus();
+                }}
+              >
+                <button
+                  id="workspace-chat-tab"
+                  role="tab"
+                  aria-controls="workspace-chat-panel"
+                  aria-selected={view === 'chat'}
+                  tabIndex={view === 'chat' ? 0 : -1}
+                  onClick={() => setView('chat')}
+                >
+                  <MessageSquare size={16} />
+                  Chat
+                </button>
+                <button
+                  id="workspace-code-tab"
+                  role="tab"
+                  aria-controls="workspace-code-panel"
+                  aria-selected={view === 'code'}
+                  tabIndex={view === 'code' ? 0 : -1}
+                  onClick={() => setView('code')}
+                >
+                  <Code2 size={16} />
+                  Code
+                </button>
+                <button
+                  id="workspace-git-tab"
+                  role="tab"
+                  aria-controls="workspace-git-panel"
+                  aria-selected={view === 'git'}
+                  tabIndex={view === 'git' ? 0 : -1}
+                  onClick={() => setView('git')}
+                >
+                  <GitBranch size={16} />
+                  Git
+                </button>
+              </div>
               <button
                 className="history-button"
                 role="button"
@@ -1730,39 +1802,55 @@ export default function App() {
                 History
               </button>
             </div>
-            {view === 'chat' && (
-              <ChatPanel
-                workspace={workspace}
-                update={updateWorkspace}
-                ready={workspaceReady}
-                canSend={!!runtime?.ready}
-                progress={agentProgress}
-                connected={!!connections.activeId}
-                connections={connections}
-                onConnections={setConnections}
-                onSend={() => void sendToAgent()}
-                onStop={() => {
-                  if (activeRun.current)
-                    void window.folio
-                      ?.cancelAgent(activeRun.current.id)
-                      .catch((error) => message(error.message));
-                }}
-                onSettings={() => {
-                  setSettingsTab('ai');
-                  setDialog('settings');
-                }}
-                onTemplates={() => setDialog('templates')}
-                onHistory={(id) => {
-                  const index = workspace.versions.findIndex((v) => v.id === id);
-                  setHistoryId(index > 0 ? workspace.versions[index - 1].id : id);
-                  setHistoryNote(undefined);
-                  setDialog('history');
-                }}
-                onUndo={(id) => void undoVersion(id)}
-                onNote={showNote}
-              />
-            )}
-            <div className="code-view" hidden={view !== 'code'}>
+            <div
+              className="chat-view"
+              id="workspace-chat-panel"
+              role="tabpanel"
+              aria-labelledby="workspace-chat-tab"
+              hidden={view !== 'chat'}
+              tabIndex={0}
+            >
+              {view === 'chat' && (
+                <ChatPanel
+                  workspace={workspace}
+                  update={updateWorkspace}
+                  ready={workspaceReady}
+                  canSend={!!runtime?.ready}
+                  progress={agentProgress}
+                  connected={!!connections.activeId}
+                  connections={connections}
+                  onConnections={setConnections}
+                  onSend={() => void sendToAgent()}
+                  onStop={() => {
+                    if (activeRun.current)
+                      void window.folio
+                        ?.cancelAgent(activeRun.current.id)
+                        .catch((error) => message(error.message));
+                  }}
+                  onSettings={() => {
+                    setSettingsTab('ai');
+                    setDialog('settings');
+                  }}
+                  onTemplates={() => setDialog('templates')}
+                  onHistory={(id) => {
+                    const index = workspace.versions.findIndex((v) => v.id === id);
+                    setHistoryId(index > 0 ? workspace.versions[index - 1].id : id);
+                    setHistoryNote(undefined);
+                    setDialog('history');
+                  }}
+                  onUndo={(id) => void undoVersion(id)}
+                  onNote={showNote}
+                />
+              )}
+            </div>
+            <div
+              className="code-view"
+              id="workspace-code-panel"
+              role="tabpanel"
+              aria-labelledby="workspace-code-tab"
+              hidden={view !== 'code'}
+              tabIndex={0}
+            >
               <div className="editor-toolbar">
                 <div className="editor-tabs" ref={tabs} aria-label="Source files">
                   {project.files.map((file) => (
@@ -1996,18 +2084,6 @@ export default function App() {
             )}
           </span>
         </footer>
-        {toast && !savingCopy && (
-          <div className="toast" role="status">
-            <span>{toast}</span>
-            <button
-              className="icon-button"
-              aria-label="Dismiss notification"
-              onClick={() => setToast('')}
-            >
-              <X size={15} />
-            </button>
-          </div>
-        )}
         {pendingImport && (
           <ImportProjectDialog
             preview={pendingImport}
@@ -2250,12 +2326,14 @@ export default function App() {
             }}
             onPackBegin={async () => {
               if (saving.current || agentBusy || !workspaceReady || closing.current)
-                throw new Error('Finish saving or the AI request before managing packs.');
+                throw new Error(
+                  'Finish saving or the AI request before managing compiler resources.',
+                );
               buildToken.current++;
               setBuilding(false);
               await flushWorkspace();
-              await window.folio?.recover(current.current);
-              if (closing.current) throw new Error('Pack operation cancelled while closing.');
+              await recoveryWrites.flush(current.current);
+              if (closing.current) throw new Error('Resource operation cancelled while closing.');
             }}
             onCompareCompiler={(target) => {
               if (saving.current || agentBusy || !workspaceReady || needsDiskReview) {
@@ -2304,6 +2382,8 @@ export default function App() {
                 );
               closing.current = true;
               try {
+                await recoveryWrites.flush(current.current);
+                await flushPreferences();
                 await window.folio.restartForAppUpdate(current.current, workspaceRef.current);
               } catch (error) {
                 closing.current = false;
@@ -2355,7 +2435,7 @@ export default function App() {
               buildToken.current++;
               setBuilding(false);
               await flushWorkspace();
-              await desktop.recover(current.current);
+              await recoveryWrites.flush(current.current);
               return desktop.prepareCompilerMigration(
                 migrationId.current!,
                 current.current,
@@ -2591,9 +2671,70 @@ export default function App() {
           )}
         </div>
       )}
-      {savingCopy && (
-        <div className="toast" role="status">
-          Saving a copy…
+      {(toast || savingCopy || preferenceError || recoveryError) && (
+        <div className="notifications">
+          {recoveryError && (
+            <div className="toast recovery-error" role="alert">
+              <span>
+                Recovery could not be saved. Your edits are still open. Retry to save a recovery
+                copy.
+              </span>
+              <button
+                className="button secondary"
+                disabled={
+                  retryingRecovery ||
+                  !initialized ||
+                  saveActive ||
+                  packBusy ||
+                  dialog === 'save-recovery' ||
+                  dialog === 'fonts' ||
+                  dialog === 'compiler-migration'
+                }
+                onClick={() => {
+                  setRetryingRecovery(true);
+                  void recoveryWrites
+                    .flush(current.current)
+                    .catch(() => {})
+                    .finally(() => setRetryingRecovery(false));
+                }}
+              >
+                {retryingRecovery ? 'Saving recovery…' : 'Retry recovery'}
+              </button>
+            </div>
+          )}
+          {preferenceError && (
+            <div className="toast preference-error" role="alert">
+              <span>
+                Settings could not be saved. Your previous saved settings are kept. Check free space
+                and folder access, then retry.
+              </span>
+              <button
+                className="button secondary"
+                onClick={() => {
+                  void flushPreferences().catch(() => {});
+                }}
+              >
+                Retry settings save
+              </button>
+            </div>
+          )}
+          {toast && !savingCopy && (
+            <div className="toast" role="status">
+              <span>{toast}</span>
+              <button
+                className="icon-button"
+                aria-label="Dismiss notification"
+                onClick={() => setToast('')}
+              >
+                <X size={15} />
+              </button>
+            </div>
+          )}
+          {savingCopy && (
+            <div className="toast" role="status">
+              Saving a copy…
+            </div>
+          )}
         </div>
       )}
     </>

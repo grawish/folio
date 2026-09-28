@@ -136,6 +136,8 @@ if (plan.version !== null) {
     version,
     notes: plan.notes,
     minimumSystemVersion: plan.minimumSystemVersion,
+    // Taken from the freshly verified physical app, never from the release plan.
+    unpackedBytes: report.appBytes,
     rollout: plan.rollout,
     dataEpoch: plan.dataEpoch,
     zip: {

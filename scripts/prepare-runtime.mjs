@@ -6,6 +6,7 @@ import { unzipSync, strToU8 } from 'fflate';
 import { version, releases, bundleUrl, upstreamBundleDigest, biber } from './runtime-config.mjs';
 import { templateInputs } from './template-inputs.mjs';
 import { createRuntimeBundle } from './lib/runtime-bundle.mjs';
+import { downloadRuntimeArchive } from './lib/runtime-download.mjs';
 
 const platform = `${process.platform}-${process.arch}`;
 const spec = releases[platform];
@@ -15,6 +16,12 @@ const cache = path.resolve('.cache/tectonic-cache');
 const output = path.resolve('.cache/template-build');
 const executable = process.platform === 'win32' ? 'tectonic.exe' : 'tectonic';
 const hash = (data) => createHash('sha256').update(data).digest('hex');
+const downloadOptions = {
+  onRetry: ({ attempt, maxAttempts, delayMs, reason }) =>
+    console.log(
+      `Runtime download: ${reason} Retrying ${attempt}/${maxAttempts} in ${delayMs / 1000}s…`,
+    ),
+};
 
 async function run(command, args, env = {}) {
   await new Promise((resolve, reject) => {
@@ -61,13 +68,11 @@ try {
 }
 if (!data || hash(data) !== spec.hash) {
   console.log(`Downloading official Tectonic ${version} for ${platform}…`);
-  const response = await fetch(
+  data = await downloadRuntimeArchive(
     `https://github.com/tectonic-typesetting/tectonic/releases/download/tectonic%40${version}/${name}`,
+    spec.hash,
+    downloadOptions,
   );
-  if (!response.ok) throw new Error(`Compiler download failed: ${response.status}`);
-  data = Buffer.from(await response.arrayBuffer());
-  if (hash(data) !== spec.hash)
-    throw new Error('Compiler archive checksum mismatch. Nothing has been installed.');
   await fs.writeFile(archive, data);
 }
 if (extension === 'zip') {
@@ -92,10 +97,7 @@ if (process.platform === 'darwin') {
   }
   if (!bytes || hash(bytes) !== biber.hash) {
     console.log(`Downloading official Biber ${biber.version} for macOS…`);
-    const response = await fetch(biber.url);
-    if (!response.ok) throw new Error(`Biber download failed: ${response.status}`);
-    bytes = Buffer.from(await response.arrayBuffer());
-    if (hash(bytes) !== biber.hash) throw new Error('Biber archive checksum mismatch.');
+    bytes = await downloadRuntimeArchive(biber.url, biber.hash, downloadOptions);
     await fs.writeFile(biberArchive, bytes);
   }
   const unpack = await fs.mkdtemp(path.resolve('.cache/biber-unpack-'));

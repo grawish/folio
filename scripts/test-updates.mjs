@@ -142,6 +142,23 @@ try {
   // Wait for AppUpdates' initial status request and event subscription, not
   // just the heading rendered before its effect runs.
   await expect(page.getByText(status.message, { exact: true })).toBeVisible();
+  // This is a controlled UI state; native transfer/storage controls run in the
+  // separate Electron adapter fixture without filling the developer's disk.
+  await app.evaluate(({ BrowserWindow }, status) => {
+    BrowserWindow.getAllWindows()[0].webContents.send('updates:status', {
+      ...status,
+      phase: 'error',
+      canInstall: true,
+      installReason: undefined,
+      message:
+        'This app update needs about 3.5 GB free on the update-cache disk. Free some space and check for updates again. Your documents are kept.',
+    });
+  }, status);
+  await expect(page.getByRole('alert')).toContainText('Free some space');
+  await expect(page.getByRole('button', { name: 'Check for updates', exact: true })).toBeEnabled();
+  await expect(page.getByRole('button', { name: 'Done', exact: true })).toBeEnabled();
+  await page.screenshot({ path: path.join(root, 'updates-disk-space.png') });
+  checks.push('A simulated low-disk status shows space/retry guidance and leaves Settings usable.');
   const failureMessage =
     'App update preparation took longer than two minutes. You can keep working. Save your changes, then quit and reopen Folio before retrying. macOS may finish this update when Folio closes.';
   await app.evaluate(
@@ -221,6 +238,7 @@ try {
         nativeInstallationTested: false,
         productionTrustConfigured: !preview,
         stagingFailureSimulated: true,
+        diskSpaceFailureSimulated: true,
       },
       null,
       2,

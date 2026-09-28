@@ -2,6 +2,26 @@
 
 Measured 26–27 September 2026. The largest measured delays are first-time runtime preparation and repeated runtime verification. This report contains backend and packaged-app measurements with a prioritized plan. It does not claim that every app workflow or the plan's reference-device budgets have passed.
 
+## One live Claude edit with PDF review
+
+The [27 September live verification](releases/claude-live-verification.json) measures a real subscription request in the source-built app at `6bd235f`. A box and note on page two ask to change only “Projects” to “Selected Projects.” The compiler is already prepared, and the initial document has already been built. Claude Code 2.1.282 uses the `sonnet` alias and returns `claude-sonnet-5`.
+
+| Stage reported by the app | Time |
+| --- | ---: |
+| Agent setup | 0.112 s |
+| Provider edit request | 3.981 s |
+| Local compilation | 2.006 s |
+| Candidate PDF rendering | 0.129 s |
+| Provider visual review | 4.043 s |
+| Complete recorded agent execution | 10.361 s |
+| Send through the test's verified result observation | 11.109 s |
+
+The recorded stage sum is 10.273 s; the total also includes about 0.088 s outside those stage timers. The test observation includes UI/IPC work and a one-second polling interval, so its extra time is not an isolated UI-latency measurement. Saving, export, reopening, first-time compiler preparation and the separate Settings image check are outside that chat interval.
+
+The two provider calls account for about 77% of this execution. Measure them separately across repeated requests before changing the routing policy; check that any faster model still preserves exact edits and completes PDF review. Local compilation is the next largest measured stage. Keep the integrity checks and investigate the runtime-verification experiments below. Do not skip visual review for PDF notes to meet a speed target.
+
+This is one successful complete workflow on one development Mac/account, not a median, p95, model comparison or performance guarantee. Two earlier attempts completed the live edit but failed test-harness restart assertions; they are retained separately and excluded from this complete-workflow result. No production code changed for this measurement.
+
 ## Reproduce the baseline
 
 ```sh
@@ -43,6 +63,65 @@ This supports prioritizing the durable-copy path. It does not prove that droppin
 ### Self-test uncertainty
 
 The measured self-test runs an app-owned TeX document with Biber and bibliography output. It includes compiler-side verification and native execution. The current profile measures the whole probe, not TeX and Biber separately. Disk cache, first execution and OS executable validation may contribute to the first sample's extra delay; those are hypotheses requiring subprocess/event profiling, not established causes.
+
+### Self-test subprocess observations
+
+The enhanced `node --import tsx scripts/profile-runtime.mjs 5` records bounded stdout/stderr chunks with parent-process receipt times. Each trace must reproduce the compiler's returned log byte for byte and match its exit status. The final five fresh-profile measurements use unchanged application code at `91979f3` on the M4 Pro/48 GiB development Mac. All 25 native subprocess traces and all 3,982 files in each of the five prepared compiler copies were independently checked.
+
+| Observed interval, five samples | Minimum | Median | Maximum |
+| --- | ---: | ---: | ---: |
+| Complete fresh preparation | 26.649 s | 27.108 s | 44.562 s |
+| Initialization through the durable staged checkpoint | 17.941 s | 18.155 s | 18.487 s |
+| Offline self-test, including its runtime check and cleanup | 7.964 s | 8.000 s | 25.673 s |
+| Biber start message to the next TeX message | 4.849 s | 4.868 s | 22.189 s |
+| Other time within the self-test | 3.106 s | 3.132 s | 3.484 s |
+
+These intervals overlap; do not add the rows. The slow third sample's self-test contains a 22.189-second Biber-to-TeX interval. Copying stays comparatively stable, so the trace locates most of this run's variation around bibliography execution. The messages are observed at the parent: buffering, scheduling, native startup and surrounding engine work can contribute. This does not prove that Biber computation, macOS executable validation or archive unpacking is the cause.
+
+The paired runtime comparison below now adds native CPU observations and checks every generated PDF. Preserve exact runtime identities, real Biber execution, sandbox restrictions and integrity checks while investigating the remaining delay. Do not remove the bibliography self-test or cache a successful verification indefinitely to hide it. Repeat any improvement in the complete app on supported Macs before changing a release claim.
+
+The initial observer validation is retained separately: fresh preparation took 44.979 seconds and the self-test 25.354 seconds, including a 21.820-second Biber-to-TeX interval. A subsequent trial was stopped after a recorder bookkeeping fault was discovered; its console results are retained locally and excluded from the final five-sample dataset because it lacked the raw stage records. The corrected profiler retains incomplete samples and rejects missing samples. No application source changed during these trials.
+
+OS caches were not purged; the validation and abandoned trial ran first. No other local Folio native suite or benchmark ran concurrently; ordinary desktop work, documentation and read-only hosted-artifact verification continued. Five samples are not a population p95, physical cold-start result or supported-device budget pass. These are backend observations, not full-window startup or an optimization speedup.
+
+See the [summary and per-sample events](performance/runtime-stages-summary.json), [five raw samples](performance/runtime-stages.json.gz), [initial observer validation](performance/runtime-stage-observer-check.json.gz) and [verification](releases/runtime-stages-verification.json).
+
+### Paired Biber runtime comparison
+
+Five alternating pairs compare the default runtime with a fresh private copy made by the existing ad-hoc signing pipeline. The candidate uses the fixed-entry Biber launcher, relocated libraries and ad-hoc signatures. It changes 158 native files and the runtime identity; every non-code file remains identical. This measures complete runtime variants, not the launcher alone. The default compiler and application code were unchanged.
+
+Run `node --import tsx scripts/profile-runtime.mjs 5 '/absolute/path/to/candidate-runtime'` on an Apple silicon Mac after preparing and verifying a separate candidate. The pairs run AB, BA, AB, BA, AB, with a new managed runtime and TeX cache for each sample. The profiler observes native descendants every 100 ms and retains five synthetic PDFs per sample. Sources correspond to base `2bda16c` with the measured profiler committed as `16dd089`; its exact hash is recorded separately because the collection started before that commit. Later report-wording changes do not change these retained measurements.
+
+| Pair | Default fresh preparation | Candidate fresh preparation |
+| --- | ---: | ---: |
+| 1 | 26.227 s | 24.194 s |
+| 2 | 45.674 s | 23.923 s |
+| 3 | 27.787 s | 38.395 s |
+| 4 | 27.648 s | 25.082 s |
+| 5 | 28.072 s | 25.832 s |
+
+| Interval or counter | Default median (range) | Candidate median (range) |
+| --- | ---: | ---: |
+| Complete fresh preparation | 27.787 s (26.227–45.674) | 25.082 s (23.923–38.395) |
+| Through durable staged checkpoint | 18.032 s (17.009–18.451) | 17.886 s (16.773–18.761) |
+| Offline self-test | 8.870 s (8.581–27.902) | 6.474 s (6.374–18.893) |
+| Biber message to next TeX message | 5.679 s (5.375–24.435) | 3.398 s (3.282–15.463) |
+| Observed Biber CPU | 0.710 s (0.661–0.749) | 0.415 s (0.396–0.465) |
+
+The candidate is faster in four pairs, but 10.608 seconds slower in pair three. Its group median is 9.7% lower, which does not establish a consistent improvement or explain the large variation. Durable staging remains about 18 seconds despite the smaller candidate. These intervals overlap and must not be added together.
+
+The sampled Biber CPU counters are much smaller than the elapsed marker intervals. Counters were recomputed independently using process ID, birth time and the kernel timebase; the profiling host and observer are excluded from the Biber total. These are lower-bound observations: short-lived work, final CPU after the last sample and system services outside the descendant tree can be missed. They support investigating startup, loading and waiting, rather than assuming the whole gap is bibliography computation.
+
+A separate diagnostic pair ran Apple's `sample` for one second per observed Biber process. The default report contains 48 `_dyld_start` observations out of 49; the candidate report contains 66 `__fcntl` observations in library-loading stacks, including Perl module loading, and 18 `_dyld_start` observations. Some frames involve debugger notifications, which the sampling tool itself can affect. Neither report has a binary image list. These short, instrumented windows do not explain the entire delay or prove a code-signing service is responsible. The diagnostic pair is excluded from all five-pair timing statistics.
+
+Independent checks verified all 50 compiler logs, 39,820 installed runtime file hashes and 3,306 native process snapshots. All 50 one-page PDFs have matching authored sources, extracted text and 100-DPI Poppler raster bytes for their document/revision group. The two source runtime manifests contain the same 3,982 keys, and only the 158 native files differ.
+
+Next investigate library loading and waiting with longer, separate diagnostic observations and a controlled repeated-execution fixture; then repeat a justified change in the complete app. Keep the actual bibliography self-test and every integrity/durability check. Changing the default runtime also requires resource-pack compatibility and release qualification for the new pin, so this experiment does not change the shipped compiler.
+
+These results come from one M4 Pro/48 GiB development Mac. OS caches were not purged, and a separate observer-validation pair ran first. No local Folio native suite or benchmark ran alongside the final pairs; ordinary desktop and light documentation/status work continued. This is not a population p95, production signing result, supported-device pass or complete-app speedup.
+
+See [summary, PDF checks and per-pair statistics](performance/biber-runtime-comparison-summary.json), [raw measurements](performance/biber-runtime-comparison.json.gz), [candidate preparation](performance/biber-runtime-preparation.json.gz), [separate diagnostic records](performance/biber-runtime-diagnostic.json.gz) and [verification](releases/biber-runtime-comparison-verification.json).
+
 
 ### Resource observations
 
@@ -99,11 +178,37 @@ Maximum renderer timer lateness per edit ranges from 9.8 to 26.6 ms, and the lar
 
 ## Actual packaged app startup
 
-### Current source: editing before compiler readiness
+### Workspace opening before compiler readiness
 
-The next source change removes compiler preparation from workspace bootstrap. Bootstrap reads the compiler identity and restores the actual project; full preparation and inspection continue separately. The workspace can accept source edits, saves and chat drafts while Send, Compile and Export PDF remain blocked. All execution still obtains the ordinary verified runtime lease.
+The current implementation removes compiler preparation from workspace bootstrap. Bootstrap reads the compiler identity and restores the actual project; full preparation and inspection continue separately. The workspace can accept source edits, saves and chat drafts while Send, Compile and Export PDF remain blocked. All execution still obtains the ordinary verified runtime lease.
 
-The first native source observation reaches recovered editing in **409 ms** with no active compiler pointer yet. The test edits source, drafts a message and saves the exact compiler pin before preparation finishes, then closes, reopens and verifies the saved draft/source and eventual PDF. It also retains the early-close-before-recovery and failed-recovery protections. This sample has a synthetic recovered project and an early interruption, unlike the complete fresh/prepared package pairs below; it does not establish a speedup percentage, p95 or supported-device budget. A repeated final-package comparison remains required. The [walkthrough and screenshot](tutorials/first-resume.md#work-while-the-pdf-builder-gets-ready) identify this as development-source behavior, not the published preview-4 flow.
+The first native source observation reaches recovered editing in **409 ms** with no active compiler pointer yet. The test edits source, drafts a message and saves the exact compiler pin before preparation finishes, then closes, reopens and verifies the saved draft/source and eventual PDF. It also retains the early-close-before-recovery and failed-recovery protections. This sample has a synthetic recovered project and an early interruption, unlike the complete fresh/prepared package pairs below; it does not establish a speedup percentage, p95 or supported-device budget. The current unsigned-package launch pairs below add repeated observations; controlled before/after and supported-device comparisons remain required. The [walkthrough and screenshot](tutorials/first-resume.md#work-while-the-pdf-builder-gets-ready) identify this as development-source behavior, not the published preview-4 flow.
+
+### Current package: chat drafting before the first PDF
+
+The 27 September measurement uses the unchanged PDF.js-notice development app, app.asar SHA-256 `b3101633e1a7c78fe37789efe98a94ed442e0f927da03709959a17eff9cfbe3a`. Five new isolated profiles each launch twice: first with no prepared compiler, then after a normal close. The enhanced profiler types a short synthetic chat draft, checks it survives reopening, and verifies the exact Classic A4 source and compiler selection after both closes. No AI request is sent.
+
+```sh
+node scripts/profile-app.mjs /absolute/path/to/Folio.app/Contents/MacOS/Folio 5
+```
+
+| Pair | Fresh: draft accepted | Fresh: current PDF | Prepared: draft accepted | Prepared: current PDF |
+| --- | ---: | ---: | ---: | ---: |
+| 1 | 0.835 s | 52.620 s | 0.428 s | 4.251 s |
+| 2 | 0.457 s | 34.035 s | 0.425 s | 6.751 s |
+| 3 | 0.508 s | 52.191 s | 0.604 s | 6.939 s |
+| 4 | 0.461 s | 56.239 s | 0.525 s | 5.846 s |
+| 5 | 0.397 s | 34.474 s | 0.477 s | 5.304 s |
+
+The composer becomes enabled in **0.386–0.820 seconds** across all ten launches; a real draft is filled and checked in **0.397–0.835 seconds**. The compiler progress notice is still visible at workspace readiness in every case. All ten current PDFs render with the expected text and no renderer or sampler errors. Every pair retains the same source and exact compiler selection, and the prepared draft remains on disk. These observations support the separation of workspace readiness from compiler preparation on this Mac.
+
+The median fresh first-PDF observation is **52.191 seconds**; the prepared median is **5.846 seconds**. First-PDF time remains material and variable. These end-to-end times do not isolate preparation, runtime verification, TeX, recovery or rendering, so they do not establish the cause of the spread. The earlier backend evidence still supports profiling preparation and runtime verification first. No application speed change was made for this measurement, and the older runs used different app inputs and did not type a draft; do not calculate a before/after improvement from these tables.
+
+The profiler also reads Chromium's buffered paint entries. First contentful paint is **144–208 ms after renderer navigation**. This is a different clock origin from launch and can describe the loading screen; it is not complete workspace readiness or a physical-display measurement. The 1,089 Electron metric snapshots have peak summed working sets of **622.6–645.5 MiB** on fresh launches and **568.9–635.4 MiB** on prepared launches. Those sums exclude compiler children and can double-count shared pages.
+
+The host is an M4 Pro with 48 GiB RAM on macOS 27.0. OS caches were not purged; ordinary desktop activity and light documentation/status work continued. No other local Folio benchmark or native test ran concurrently; the hosted qualification used a separate machine. Five pairs are descriptive observations, not a population p95, supported-device acceptance, cold-disk result or production signed-installer measurement. The historical preview-4 download is unchanged.
+
+The [summary](performance/current-package-startup-summary.json), [all raw samples](performance/current-package-startup.json.gz) and [independent verification](releases/current-package-startup-verification.json) retain the exact source base, profiler/app/runtime/template hashes, host, timings and checks. The verifier recomputes every working-set sum, checks sample/time ordering, compares each final recovery/workspace file, and confirms the gzip round trip. All 39 compiled outputs and 3,982 compiler files match before and after the run. Event-level recovery/compile/render tracing, broader fixtures, supported Macs and whole-app resource budgets remain required.
 
 ### Earlier package baseline
 
@@ -128,7 +233,7 @@ All six launches reached the real Classic template PDF with no renderer or sampl
 
 Working-set numbers sum Electron's reported processes and may double-count shared pages. They exclude Tectonic/Biber children and are not a physical-memory or process-tree budget pass. CPU percentages are Electron's interval averages. Timing includes Playwright polling and instrumentation; three paired samples are not a reliable p95. `firstWindowMs` means the first window became available to automation, not a hardware measurement of its first painted pixel.
 
-### Current guided-recovery package: five launch pairs
+### Earlier guided-recovery package: five launch pairs
 
 A later [five-pair run](performance/save-recovery-app-baseline.json) measures the guided-recovery package, app.asar SHA-256 `dd9b1edd74789abe7b5f2da19fb6a1c8139f036304170f5685840ec01bb2ccf5`, with the same profiling script and M4 Pro host. The app hash and script hash were unchanged throughout. Run:
 
@@ -246,6 +351,33 @@ The unchanged `349d6ce` package now has a native process-tree measurement across
 
 A fresh synthetic profile ends at 409.4 MiB of regular-file sizes, mostly its 378.5 MiB retained runtime. Memory decreases during the third repeated cycle, but this is not a long-session leak or retention guarantee. Provisional investigation thresholds and the next upper-bound/device experiments are in [the process resource report](PROCESS_RESOURCE_PROFILE.md), with [raw snapshots and independent verification](releases/process-profile-verification.json). The observer does not alter application code or impose whole-app quotas.
 
+## Faster full runtime verification
+
+Every build still verifies the selected compiler's entire locked inventory. Inspection found one full check in the warm build path, rather than a duplicate check that could be removed. The verifier previously read and hashed one complete resource at a time. It now overlaps up to four file readers and hashes 128 KiB chunks, using at most 512 KiB for their read buffers. It does not retain a whole resource or cache a prior verification result. Other objects and the application still use memory beyond these buffers.
+
+Manifest identity, complete directory inventory, unexpected-file rejection, parent-folder checks, no-follow file opens, regular-file checks and every SHA-256 remain required. The 256 MiB individual-file and 1 GiB aggregate read limits still apply; a file that grows after its initial size check is rejected too. Failed verification stops assigning new files and waits for all in-flight readers to close before returning an error.
+
+A matched development-host experiment uses production `verifyRuntime` and `Compiler` bundles from base `6de1274` and the changed source. Both bundles reproduce byte for byte from the retained source identities. Five pairs alternate AB, BA, AB, BA, AB on the same unchanged runtime. Each variant receives its own work directory and one real warmup compile. All twelve PDFs, including warmups, have identical extracted text and 100-DPI raster bytes. An independent reader also verifies all 3,982 runtime file hashes.
+
+| Backend measurement, five samples per implementation | Before min / median / max | After min / median / max |
+| --- | ---: | ---: |
+| Full runtime verification | 668.1 / 676.3 / 680.3 ms | 356.0 / 368.3 / 369.7 ms |
+| Complete warm one-page compile, including its own verification | 777.6 / 790.8 / 803.5 ms | 485.0 / 491.8 / 512.9 ms |
+
+The candidate is faster in all five pairs. Median verification is 45.5% lower and median compilation is 37.8% lower for this synthetic fixture. The standalone verification and compile rows are separate operations; do not add them into one build time. The median compile reaches the fixture's 0.5-second investigation target, while the under-0.2-second verification target remains open. Neither result measures complete UI latency, first-time installation or a supported-device percentile.
+
+Reproduce with retained baseline/candidate modules exporting `verifyRuntime` and `Compiler`:
+
+```sh
+node scripts/profile-runtime-verification.mjs /absolute/path/baseline.mjs /absolute/path/candidate.mjs /absolute/path/verified-runtime 5
+```
+
+The measured entry module exports those implementations from `electron/core/runtime.ts` and `electron/core/compiler.ts`; build each revision with the repository's pinned esbuild using `--bundle --platform=node --format=esm --packages=external`. Retain the modules, entry, metafiles and exact input hashes. The published summary records the exact before/after inputs and bundle hashes; raw observations retain PDF hashes and compile logs. This source experiment ran before the implementation commit, so the report's `sourceCommit` is the base and the candidate source hash identifies the change.
+
+Five new controls cover bounded readers/buffers, complete hashing, same-size corruption with preserved timestamps, failure cleanup, resource growth and aggregate size admission. The allocation control rejects the original whole-file implementation. Existing corruption, pin, symlink, repair, resource-pack and migration controls also pass. These preserve per-build verification rather than introducing metadata-only or indefinitely cached trust.
+
+OS caches were not purged. Both variants ran in one Node host; sampled host RSS cannot isolate their memory use and excludes native child processes. No other local Folio native test or benchmark ran during these ten samples. See [summary, source identities and PDF checks](performance/runtime-verification-summary.json), [raw observations](performance/runtime-verification-pairs.json.gz) and [verification](releases/runtime-verification-io-verification.json). Complete packaged-app and broader-device measurements remain separate gates.
+
 ## Prioritized changes
 
 Workspace draft/history writes now admit at most four pending operations per project and eight across the store, including active writes. They release settled queue records rather than retaining a promise for every previously opened project. Excess requests fail visibly before storage work and can be retried; accepted changes retain their order. Regression controls and two packaged workflows verify the behavior in [the queue record](releases/workspace-queue-verification.json). This is an admission bound, not a measured speedup or a whole-app memory/disk budget. Active saved snapshots now have the separately measured 64 MiB admission policy and explicit older-version removal above. Whole-profile retention and the remaining queues/caches still need work.
@@ -255,9 +387,9 @@ Targets below are acceptance targets for experiments, not achieved results.
 | Priority | Change to investigate | Why | Experiment target | Required protection |
 | --- | --- | --- | --- | --- |
 | 1 | Batch directory durability work within the unpublished runtime generation; first implementation achieves 36.1%, so the target remains open | About 31 s in verify/copy; nearly 4,000 directory syncs | At least 40% lower median preparation/copy time across five fresh profiles | Sync every required file and directory before publishing readiness; force-kill at every publication boundary; failed install preserves the previous compiler |
-| 1 | Recovery, editing, saves and chat drafting now open before compiler preparation in development source; finish repeated packaged/device measurements | The previous bootstrap waited for preparation; first source-native observation is 409 ms to recovered editing | Usable recovered project within the original plan's startup budget; progress remains visible until builds are ready | Load the real recovery project first; early close must preserve it; no compilation, export or AI apply may assume an unverified compiler |
-| 2 | Eliminate duplicate verification within one tightly scoped operation/verified lease, and assess safe reuse between requests | About 0.70–0.85 s of each small warm build precedes native execution | Median changed-source warm build below 0.5 s for this fixture, with runtime-acquire work below 0.2 s | No global forever-valid cache; changed/corrupt files, replacement paths and compiler pins must still fail before execution; mutation/replacement tests must defeat stale reuse |
-| 2 | Profile the self-test's TeX/Biber subprocess stages and first-execution behavior | Probe varies from 8.7 to 24.9 s | Attribute the variance first; target stable fresh preparation without first-user bibliography timeouts | Keep an actual offline bibliography self-test, immutable runtime files, restricted native execution and bounded timeouts |
+| 1 | Recovery, editing, saves and chat drafting now open before compiler preparation; extend the repeated package evidence to supported devices | Ten current-package launches accept chat drafts in 0.397–0.835 s; their first PDFs still take 4.25–56.24 s | Usable recovered project within the original plan's startup budget; progress remains visible until builds are ready | Load the real recovery project first; early close must preserve it; no compilation, export or AI apply may assume an unverified compiler |
+| 2 | Bounded full-inventory hashing now lowers median backend verification by 45.5%; extend the matched result to the packaged UI and supported devices | The warm path has one full verification. Five pairs measure 368 ms median verification and 492 ms complete synthetic compilation after the change | Keep median changed-source compilation below 0.5 s for this fixture; verification below 0.2 s remains open | Rehash every file for every build; retain complete inventory, path, pin, size and failure-cleanup checks; avoid metadata-only or indefinitely cached trust |
+| 2 | Investigate native startup/library-loading waits using the completed five-pair runtime comparison | Candidate is faster in four pairs but slower in one; sampled Biber CPU remains below 0.75 s while elapsed marker gaps reach 24.44 s | Explain the variation and demonstrate consistent improvement before changing the default runtime or first-PDF claim | Keep the offline bibliography self-test, exact pins, PDF comparisons, sandbox and integrity checks; sampled CPU and short stack windows do not establish the complete cause |
 | 3 | Evaluate APFS clone/copy strategies and per-generation directory creation | Hundreds of megabytes and thousands of small files | Reduce I/O/metadata overhead without exceeding memory/disk budgets | Verify the resulting bytes and modes; retain independent versions through app replacement; handle non-APFS destinations explicitly |
 | 3 | Consider packaging the bibliography helper's cache differently | It is 3,979 files and about 236 MiB | Smaller installation work and measurable startup/storage benefit | Preserve Biber compatibility, offline operation, read-only dependencies, complete licenses and exact runtime identity |
 | 3 | Background compression passes the small-history timer target; measure the new quota/journal at maximum admitted history and extend whole-profile retention | With 100 small versions, history compression takes 46.8–50.1 ms and observed Node timer lateness reaches 30.3 ms; save rearchives history | Below 10 ms observed main-process timer lateness during a repeat of this fixture, with no material save-time regression | Retain exact version/source/PDF validation, immutable export snapshots, complete history round-trip and journaled save recovery; establish worker memory/cancellation limits |
@@ -266,7 +398,7 @@ Avoid treating the 700 ms source-edit debounce as compiler execution time. Measu
 
 ## Measurements still needed for the complete app report
 
-1. Add event-level recovery/compile/render timing and an actual first-paint marker to the five current-package launch pairs above. Expand sample count/device coverage for statistical performance claims, retaining failures.
+1. The ten current-package launches above now include buffered Chromium paint entries, verified draft input and close/reopen preservation. Add event-level recovery/compile/render timing and physical-display observations; extend the fixtures, sample count and supported-device coverage, retaining failures.
 2. The sixty warm edit-to-preview samples above now separate the visible debounce, compiler duration, other native handling and completed rendering. Break down the native self-test/build interval further into snapshot creation, runtime verification, TeX, Biber and PDF reading. Extend worker loading, first visible page and export readiness measurements to multi-file, bibliography and 100-page fixtures and cold caches.
 3. Measure AI edit requests, input-page rendering, candidate compilation, candidate-page rendering/review, retry and apply separately. Keep local protocol fixtures distinct from real-provider network latency.
 4. Extend the nine backend save/history cases above to autosave, Save As, source ZIP import/export, recovery and supported upper bounds, including larger PDFs/assets/chat images. Record actual UI responsiveness while checksums/inflation/history work runs.
@@ -284,3 +416,142 @@ The full documentation/public-release goal remains open; this baseline is the fi
 The private ad-hoc signing candidate replaces Biber’s self-extracting launcher with a small native entrypoint that uses the already expanded, verified Perl files. Its measured app regular-file total is 618,910,787 bytes, compared with 679,309,937 bytes in the preceding history package, a difference of 60,399,150 bytes. Both packages contain the same 39 application build outputs and the same ASAR hash. This is an artifact-size observation, not a startup-speed, unique disk-allocation or production-installer claim. Signing also changes library bytes and app metadata. See [Mac signing](MAC_SIGNING.md) for the verified build/render checks and [exact artifact evidence](releases/runtime-signing-verification.json).
 
 Before setting a startup target for the production signed build, measure repeated cold preparation and warm startup on the supported Macs using the final Developer ID artifact. Keep existing runtime-copy, journal and whole-profile measurements separate; this size reduction does not establish those performance budgets.
+
+## Reusing app downloads after signed feed renewal
+
+The deterministic Electron updater fixture reproduced a repeated-transfer problem in the pinned updater: changing a signed manifest's publication time while retaining the same version and ZIP made its in-memory cache comparison reject reusable bytes. With the test transport offline, renewal made another ZIP request and failed. Starting a fresh on-disk cache helper keeps the matching updater path, rechecks SHA-512 and reuses the same ZIP without another request. The final fixture covers both an identical snapshot and a renewed signed snapshot.
+
+This is a request-count control with an inert 256 KiB payload and an Electron protocol handler, not a public-network latency measurement or a production signed installation. Cached files are still read and hashed; no main-thread or wall-clock speedup is claimed. The new download/staging headroom formula is a conservative admission policy, not measured peak usage. Measure actual signed Squirrel cache/temporary/replacement peaks and shared/separate APFS volumes before treating it as a complete release disk budget. See [storage policy](APP_UPDATES.md#disk-space-and-cached-downloads) and [exact evidence](releases/update-storage-verification.json).
+
+## Compiler storage admission and review
+
+The [compiler storage policy](COMPILER_STORAGE.md) adds a bounded metadata scan before staging another compiler copy, and a Settings review for old identities. It deliberately measures logical lengths rather than APFS allocated blocks. The 16 GiB admission budget, 256 MiB preparation allowance and 1 GiB free-space margin are initial policy choices, not measured release peaks or speed improvements.
+
+The native runtime fixture records time until the storage rows appear and byte totals before/after removal. A single workflow observation, especially with concurrent tests, does not establish a latency budget or population percentile. Next measure repeated metadata scans with many retained compiler identities, fresh/prepared OS caches and supported Mac storage; compare main-thread responsiveness before considering a verified inventory cache. Preserve stale-review and file-identity checks if caching is introduced. Whole-profile disk growth and real full-volume recovery remain open.
+
+## Compiler work after an application crash
+
+A process-kill diagnostic found a real bibliography compiler group still present 500 ms after its owning Node process died. The diagnostic explicitly stopped that owned group. Two separate kills during source staging left 262,318 bytes of synthetic source in temporary build folders; a later successful build did not remove those older folders. These observations are bounded backend checks, not a complete Electron crash or power-loss simulation.
+
+The development compiler now connects an idle group watcher to a private parent pipe. Abrupt parent death closes that pipe independently of JavaScript cleanup; the watcher stops its own group. Regression controls exercise parent death, successful leader exit with a leftover helper, cancellation and timeout. See [compiler crash containment](COMPILER_RESOURCE_LIMITS.md#if-the-app-crashes).
+
+New builds now use a private ownership record outside the compiler-writable snapshot. Startup scans recognized jobs, retains any live or uncertain process owner, and resumes interrupted removal after a crash. Twenty-one focused controls include real killed staging/cleanup processes, outside-file preservation, malformed records, allocation failure and an actual sandbox write check. The original Compiler fails the new startup-recovery control. See [build recovery](BUILD_RECOVERY.md).
+
+The packaged-app crash gate now exercises actual Electron main-process death during a real UI compile, followed by draft/history recovery, cleanup and a new PDF export. The prior packaged app fails startup cleanup; the recovery app passes locally. The final local observation finds the native process group absent about 53 ms after SIGKILL, which is one observation rather than a percentile or supported-device bound. The test also found that a recently changed Auto-compile preference can reset after a crash. The current native preference change separately restores saved values before the workspace opens, coalesces renderer updates to one active write and at most five pending values, and waits on settings saves during ordinary close/restart. Fifteen focused controls and actual packaged crash/migration/error-retry workflows pass; this is a correctness change, without a startup-speed or physical power-loss claim. See [native preference evidence](releases/workspace-preferences-verification.json). See [exact evidence](releases/packaged-build-crash-verification.json).
+
+The development-host backlog measurements below now cover large payloads and many abandoned jobs; supported-Mac coverage remains open. Older unmarked folders and unrecognized data require separate review; the new ownership format does not justify deleting them. Engine-cache retention, historical versions, aggregate disk/memory/CPU limits and whole-app supported-device acceptance remain open. Measure the additional watcher and cleanup scan as part of those process-tree budgets.
+
+## Startup with many abandoned builds
+
+Twelve launches of the unchanged, qualified recovery app compare four synthetic backlogs on one Apple M4 Pro with 48 GiB RAM. Each fixture runs three times in rotating order. The isolated profile is prepared once through the real app; preparation takes 31.708 seconds and is excluded from the table. Later launches reuse that profile and its compiler cache after normal closes. OS caches are not purged.
+
+A separate process uses the production `BuildWorkspaces` manager to create valid ownership records and source/payload files. The harness kills that process after staging, then launches the actual packaged app. It never invents a dead owner PID. Each small job has one short source and four 16 KiB payload files. The large job has four 16 MiB payload files. Sizes below exclude ownership records, short source files and filesystem overhead.
+
+| Abandoned jobs | Synthetic payload | Chat draft verified | Source saved | Original jobs absent | New PDF verified |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| None | 0 | 0.420 s | 0.609 s | Not applicable | 2.741 s |
+| 100 small jobs | 6.25 MiB | 0.427 s | 0.618 s | 0.768 s | 2.279 s |
+| 1,000 small jobs | 62.5 MiB | 0.410 s | 0.603 s | 2.722 s | 3.232 s |
+| One large job | 64 MiB | 0.427 s | 0.609 s | 0.310 s | 2.741 s |
+
+Every table value is the median of three launch-relative observations, not a stage duration. The harness edits and saves source before requesting a build about 1.39–1.47 seconds after launch. An external directory poll every 50 ms observes removal of the original job IDs. Do not subtract these observations to claim exact cleanup or compiler execution time. The new PDF row includes the preceding UI actions and polling overhead.
+
+With 1,000 jobs, chat input is verified in 0.396–0.431 seconds and source saving in 0.577–0.635 seconds, while cleanup is still running. Cleanup finishes within the observation window at 2.706–2.752 seconds; the next PDF is verified at 3.206–3.262 seconds. All twelve actual PDF exports contain the expected one-page text when read independently. Source and chat drafts survive normal reopen, and unmarked/unknown guard files remain unchanged. No AI request is sent.
+
+The observed main-process 20 ms timer has at most 8.94 ms of lateness across these samples. Observation begins after automation connects and spans UI work, compilation and export; it misses earlier startup and does not measure renderer frames or full-process CPU/memory. This is a small descriptive experiment on one development host, not a population percentile, clean-machine result, whole-profile disk budget or optimization speedup.
+
+These observations support keeping chat, editing and saving independent of startup cleanup. The many-small-file case delays the next PDF more than the similarly sized large-payload fixture here. Investigate directory/file operation counts and bounded cleanup concurrency before assuming payload bytes explain the delay. Any experiment must retain ownership/inode checks, live-owner protection, interrupted-removal recovery and unknown-file preservation. Extend the same workload to supported Macs, longer queues and full process-tree resource measurements before setting a release-wide target.
+
+Reproduce after other Folio native tests and benchmarks finish:
+
+```sh
+FOLIO_PYTHON=/absolute/path/to/python-with-pypdf node scripts/profile-build-recovery.mjs /absolute/path/to/Folio.app/Contents/MacOS/Folio 3
+```
+
+The profiler creates only isolated synthetic data under `test-results/`. Retain that folder, the exact app and the script/source identities. The published [summary](performance/build-recovery-summary.json), [raw observations](performance/build-recovery.json.gz) and [independent verification](releases/build-recovery-profile-verification.json) include all twelve runs and the excluded pilot records. The first pilot failed in its file-appearance wait; the corrected four-case pilot passes and remains separate from the final measurements. Application and runtime inputs are unchanged.
+
+![Actual packaged Folio after cleaning 1,000 synthetic abandoned jobs and exporting the new PDF](images/build-recovery-backlog.png)
+
+The screenshot shows the successful result after cleanup, with the unsent synthetic chat draft and new PDF. It is not a screenshot of the measured startup interval.
+
+
+## Bound obsolete compiler requests
+
+The controlled build-queue fixture holds runtime acquisition and issues 5,000 newer requests. The original promise chain leaves all 5,001 unsettled until the first acquisition finishes. The new active/newest scheduler settles 4,999 obsolete requests while that first request remains held, leaving two. Disk review, asset reads and history are bounded by an outer editor-build coordinator as well, so requests cannot accumulate file-read work before reaching the compiler.
+
+The sixteen focused controls include 10,000-request bursts at each asynchronous stage, cancellation while cleanup is held, and progress after an active failure. A native compiler integration additionally requires only the newest of 1,000 waiting requests to produce a PDF and checkpoint. See [implementation and reproduction](BUILD_REQUESTS.md), [before](performance/build-request-backlog-before.json), [after](performance/build-request-backlog-after.json) and [verification](releases/build-requests-verification.json).
+
+These are request-count and correctness observations. The raw diagnostic includes one enqueue interval and Node heap readings, which do not isolate retained memory or establish an app speedup. Next measure longer real editing sessions and the whole Electron/compiler process tree on supported Macs. Recovery queues, engine caches and aggregate profile retention remain separate work; this change does not satisfy the complete resource-budget requirement.
+
+
+### Bound retained compiler caches
+
+The former Compiler made one persistent `engine-cache/<runtime-id>` folder for each selected runtime, without eviction. Existing native fixture profiles contain a 24,451,466-byte LaTeX format in each warmed editor, agent or runtime self-test context. These are observed file sizes, not a complete app disk budget.
+
+A controlled before/after Compiler lifecycle diagnostic uses five synthetic runtime identities and a substituted 256-byte cache writer. The old implementation retains five directories (1,280 bytes); the new implementation retains two (512 bytes). Actual format reuse and the native growth guard are checked separately. No speedup is inferred from these tiny synthetic files.
+
+The [cache policy](ENGINE_CACHE.md) retains two runtimes, 128 MiB and 4,096 descendant entries per context, with a depth limit and non-overlapping 500 ms active-cache checks. The retained-byte ceiling leaves room above the observed 24 MB format while preventing accumulation across runtime changes. It is an initial engineering bound, not a measured whole-app resource budget. Next measure scan overhead, warm/cold latency after eviction and process-tree resources with the supported corpus and larger imported documents on supported Macs. Keep original source, current PDF protection and offline rebuilding intact.
+
+
+### Measured cost of cache checks
+
+Five repetitions of the production cache lease measured admission, one active-cache check and release across five cache shapes. The order rotates each repetition, and all 75 operations—including the first—are retained. Ordinary fixtures copy an actual 24,451,466-byte LaTeX format from the packaged cache workflow. The boundary fixtures use one-byte files, empty folders or a sparse file at the logical byte ceiling; they do not fill a real disk.
+
+| Cache shape | One check elapsed, min / median / max (ms) | Node CPU for that check, min / median / max (ms) | Median admission / release (ms) |
+| --- | ---: | ---: | ---: |
+| One actual format; 2 entries | 0.158 / 0.175 / 0.249 | 0.183 / 0.204 / 0.258 | 0.377 / 0.246 |
+| Two actual formats; 4 entries total | 0.146 / 0.148 / 0.176 | 0.151 / 0.154 / 0.182 | 0.563 / 0.374 |
+| 4,096 one-byte files | 41.651 / 43.055 / 49.812 | 42.400 / 44.060 / 51.014 | 44.154 / 42.236 |
+| 4,096 empty folders | 246.408 / 249.676 / 263.746 | 263.951 / 267.400 / 280.648 | 252.790 / 251.690 |
+| One sparse 128 MiB file | 0.086 / 0.090 / 0.146 | 0.088 / 0.094 / 0.264 | 0.434 / 0.176 |
+
+The active check scans only the selected runtime; admission and release inspect retained caches. Ordinary checks take under 0.25 ms in this fixture. The 128 MiB file costs little to inspect because the guard reads metadata, not payload bytes. Many directories cost more: each empty folder requires another directory traversal as well as its entry check. This identifies metadata entry count and shape as the next concern, rather than treating cache bytes alone as a cost predictor.
+
+The 4,096-folder case takes about a quarter second per scan and up to 280.648 ms of this Node process's CPU. Treat that as an investigation trigger for the admitted boundary. Before changing the policy, measure the actual Electron/compiler combination with this cache shape and inspect real cache directory counts. If many folders occur in supported workloads, compare a separate directory-count limit or a bounded worker implementation. Preserve complete checks, directory-identity validation, native-writer termination and cleanup ordering; do not skip checks to make a benchmark pass.
+
+This is metadata-operation cost on one M4 Pro/48 GiB development Mac running macOS 27.0, without a native writer. Fixture creation and independent payload hashing happen outside timing; final hashing uses 128 KiB buffers. OS caches are not purged, normal desktop work continues, and no other local Folio build, native suite or benchmark runs concurrently. The observation does not establish UI delay, periodic guard CPU duty, a population p95 or a whole-app resource budget. The initial instrument trial used whole-file hashing outside timing; it is retained separately and excluded from this final summary.
+
+Reproduce with a test-generated format file and isolated developer output:
+
+```sh
+node --import tsx scripts/profile-engine-cache.mjs /path/to/test-generated-latex.fmt 5
+```
+
+The script creates only a new directory under `test-results/`; it never edits the supplied format or an existing app cache. See [every observation](performance/engine-cache-cost.json) and [independent source/payload verification](releases/engine-cache-profile-verification.json). Every fixture's contents are unchanged after measurement, and the exact profiler and production cache module are identified by SHA-256 and source commits.
+
+### Bound pending recovery writes
+
+A held synthetic disk sink in the prior `ProjectStore` left all 5,001 recovery requests unsettled. Automatic renderer calls also accumulated during eight real, debounce-separated edits in the previous packaged app: all eight snapshots were written after the first write was released.
+
+The current renderer keeps one active and one newest waiting snapshot; the identical packaged check writes only snapshots 1 and 8. Native admission separately permits four unfinished recovery calls and rejects excess calls before queueing them. A real preload/IPC burst of 100 calls produced four accepted calls and 96 busy rejections while the first write was held, with no early save acknowledgement. Fifteen focused controls also exercise 10,000-request bursts and file/directory-flush failures. See [recovery design](RECOVERY_WRITES.md) and [exact verification](releases/recovery-writes-verification.json).
+
+This removes an unbounded pending-write list. It is not a speedup or retained-memory measurement; recovery now explicitly flushes files and directories, which adds durability work. Next measure recovery latency with large admitted projects and storage contention on supported Macs. Complete process-tree budgets and retention of recovery copies remain open. Compiler-cache retention now has the separate bounds described above, with [combined hosted qualification](releases/mac-engine-cache-hosted.json) passing all twenty-one native suites.
+
+
+## Current resource recheck
+
+The qualified cache/recovery app now passes the same three-cycle one-page/100-page process-tree workload. All nine PDFs and 443 sampled memory/CPU records were independently checked. Peak summed RSS is 910.2 MiB, peak summed footprint 726.1 MiB, and ordinary builds use 1.205–1.767 observed CPU-seconds; all four existing fixture investigation thresholds pass. These are sampled accounting metrics on one development Mac, not unique RAM or app-wide enforced budgets.
+
+Fresh compiler preparation still takes 44.380 seconds in this run. The earlier baseline took 34.190 seconds, but the runs were not paired and span many changes, so this difference does not isolate a cause. Repeat paired preparation/subprocess measurements before choosing another runtime or changing a first-PDF claim. Upper-bound image/history workloads, longer sessions, cache-boundary scans and supported-device acceptance remain open. See [the full current report](PROCESS_RESOURCE_PROFILE.md#qualified-cacherecovery-app-28-september) and [verification](releases/current-process-profile-verification.json).
+
+
+## Extended preview and history session
+
+A 120-cycle one-page → 100-page → navigation → one-page run now provides 8,910 process observations and 360 independently checked PDF exports over about 28 minutes. Peak summed RSS is 1,094.7 MiB and footprint 876.1 MiB, both within the existing fixture thresholds. One of 360 builds exceeds 3 observed CPU-seconds, and one of 361 idle intervals exceeds 10% of one core. Both failures are retained; the complete resource target is still open. See [the extended report](PROCESS_RESOURCE_PROFILE.md#120-cycle-result--28-september-2026) and [verification](releases/long-session-profile-verification.json).
+
+The slow build is mostly main-process work (3.290 of 3.735 CPU-seconds); the idle spike is mostly renderer work (0.302 of 0.333). Late return-idle memory also exceeds early memory, especially in the renderer. These observations justify targeted profiling rather than attributing the delay to the compiler or claiming a leak. Prioritize the following investigations:
+
+1. Capture main-process CPU traces around repeated builds as retained history grows. Separate checkpoint inventory/serialization, runtime verification and garbage collection. Keep the same fixture and existing thresholds; a change must remove the observed cause while preserving current-PDF/history correctness.
+2. Capture renderer CPU/allocation traces around repeated PDF replacement and navigation, distinguishing PDF objects/workers, editor undo and version-list state. Keep ordinary garbage collection for acceptance; any forced-collection diagnostic must be labeled separately. Verify a stable retained-object pattern before claiming the memory growth is fixed.
+3. Repeat the affected checks with maximum admitted image/history inputs and supported reference Macs. Small text across 100 pages exercises page count, not maximum PDF complexity or image memory.
+
+The logical profile grows by about 9.9 MiB, attributable to its 361 retained source/PDF versions. All 360 exports match those history PDFs. Build-cache and runtime totals stay unchanged across every recorded storage scan. Preserve history and its explicit review/removal workflow; this experiment gives no reason to discard it automatically. Runtime repair/upgrade churn and multi-project retention need separate fixtures. These are measured investigation priorities, not an optimization speedup or a completed release-wide budget.
+
+
+## Follow-up from the V8 diagnostic
+
+Twenty instrumented cycles now separate selected main/renderer JavaScript stacks on the unchanged app. Every exported page and all native/sample accounting were independently checked. See [the complete diagnostic](PROCESS_RESOURCE_PROFILE.md#completed-20-cycle-diagnostic) for its source-map proof, raw data and limits. These traces select the next experiments; they do not close the earlier CPU failures or establish a speedup.
+
+1. **Keep integrity checks and measure their main-thread cost.** Runtime verification is the largest mapped main-isolate context, with 16.081 seconds of sample weight across 60 builds, well above save/history code in these traces. Measure event-loop stalls and native filesystem/worker activity during verification. Compare the current implementation with moving the same complete verifier to a bounded worker, if the stalls justify that change. Preserve every-file hashing, link/size/pin checks, failure propagation and complete reader shutdown. Require corruption/symlink/failure tests, responsive cancellation, exact PDFs and paired full-app measurements; a worker cannot be called a total CPU improvement merely because work moves off the main thread. Do not introduce a trust cache or skip verification.
+2. **Find retaining paths before changing the editor or PDF viewer.** The renderer DOM counter rises from 897 to 33,723, while used JS heap varies and falls to 13.53 MiB at the end. CodeMirror contributes the largest named allocation contexts, but sampling does not show owners or prove detached-node retention. Use separate synthetic checkpoints to count connected nodes, switch from Code to Chat, replace the PDF and open a fresh project. Take explicitly labeled heap snapshots/collection diagnostics to identify paths that survive disposal; keep ordinary collection for acceptance. Check whether the diagnostic harness itself retains objects. Preserve source undo, per-file state, PDF selection/links, annotations and version history in any repair.
+3. **Retest a justified change without V8 profiling.** Repeat the original 120-cycle workload with the same app inputs and thresholds, preserving all failures and comparing early/late return-idle memory. Then cover maximum admitted image/history inputs and supported reference Macs. A short post-change run, smaller JS heap or a relocated stack is insufficient evidence that the original resource problem is solved.

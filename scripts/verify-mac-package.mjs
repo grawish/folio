@@ -1,4 +1,5 @@
 import { promises as fs } from 'node:fs';
+import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { extractFile } from '@electron/asar';
@@ -24,6 +25,44 @@ await fs.writeFile(
 );
 const app = path.join(release, 'mac-arm64/Folio.app');
 const asar = path.join(app, 'Contents/Resources/app.asar');
+const iconName = execFileSync(
+  '/usr/bin/plutil',
+  ['-extract', 'CFBundleIconFile', 'raw', '-o', '-', path.join(app, 'Contents/Info.plist')],
+  { encoding: 'utf8' },
+).trim();
+if (iconName !== 'icon.icns') throw new Error('The Mac app does not select the Folio icon.');
+const iconBytes = await fs.readFile(path.join(app, 'Contents/Resources', iconName));
+if (!iconBytes.equals(await fs.readFile('resources/branding/folio.icns')))
+  throw new Error('The packaged Folio icon differs from the reviewed source.');
+const appIcon = {
+  file: iconName,
+  bytes: iconBytes.length,
+  sha256: createHash('sha256').update(iconBytes).digest('hex'),
+};
+const { verifyTexFontNotices, verifyTexResourceNotices } = await tsImport(
+  './verify-tex-font-notices.ts',
+  import.meta.url,
+);
+const texFontNotices = await verifyTexFontNotices(
+  path.join(app, 'Contents/Resources/tex-font-notices'),
+);
+const texResourceNotices = await verifyTexResourceNotices(
+  path.join(app, 'Contents/Resources/tex-resource-notices'),
+);
+const { verifyNpmNotices } = await tsImport('./verify-npm-notices.ts', import.meta.url);
+const npmNotices = await verifyNpmNotices(path.join(app, 'Contents/Resources/npm-notices'));
+const { verifyPdfjsNotices } = await tsImport('./verify-pdfjs-notices.ts', import.meta.url);
+const pdfjsNotices = await verifyPdfjsNotices(path.join(app, 'Contents/Resources/pdfjs-notices'));
+const { verifyElectronNotices } = await tsImport('./electron-notices.ts', import.meta.url);
+const electronNotices = await verifyElectronNotices(
+  path.join(app, 'Contents/Resources/electron-notices'),
+);
+const { verifyTectonicNotices } = await tsImport('./tectonic-notices.ts', import.meta.url);
+const tectonicNotices = await verifyTectonicNotices(
+  path.join(app, 'Contents/Resources/tectonic-notices'),
+);
+const { verifyBiberNotices } = await tsImport('./biber-notices.ts', import.meta.url);
+const biberNotices = await verifyBiberNotices(path.join(app, 'Contents/Resources/biber-notices'));
 const architecture = execFileSync(
   '/usr/bin/lipo',
   ['-archs', path.join(app, 'Contents/MacOS/Folio')],
@@ -137,8 +176,16 @@ const result = {
   passed: true,
   checkedAt: new Date().toISOString(),
   architecture,
+  appIcon,
   comparedOutputFiles: outputs.length,
   runtimeManifestMatches,
+  texFontNotices,
+  texResourceNotices,
+  npmNotices,
+  pdfjsNotices,
+  electronNotices,
+  tectonicNotices,
+  biberNotices,
   ...(signing ? { signing } : {}),
   appBytes,
   hashes,

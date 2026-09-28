@@ -3,6 +3,8 @@ import type { DesktopAPI } from '../src/shared/types';
 import type { GitDiffTarget, GitOperationProgress } from '../src/shared/git';
 
 const api: DesktopAPI = {
+  loadPreferences: (legacy) => ipcRenderer.invoke('preferences:load', legacy),
+  savePreferences: (patch) => ipcRenderer.invoke('preferences:save', patch),
   appUpdateStatus: () => ipcRenderer.invoke('updates:status'),
   configureAppUpdates: (value) => ipcRenderer.invoke('updates:configure', value),
   checkAppUpdates: () => ipcRenderer.invoke('updates:check'),
@@ -37,6 +39,8 @@ const api: DesktopAPI = {
   cancelFontImport: (id) => ipcRenderer.invoke('fonts:cancel', id),
   bootstrap: () => ipcRenderer.invoke('app:bootstrap'),
   inspectRuntime: (pin) => ipcRenderer.invoke('runtime:inspect', pin),
+  compilerStorage: () => ipcRenderer.invoke('runtime:storage'),
+  removeStoredCompiler: (key, token) => ipcRenderer.invoke('runtime:remove-stored', key, token),
   repairRuntime: (pin) => ipcRenderer.invoke('runtime:repair', pin),
   listPacks: () => ipcRenderer.invoke('packs:list'),
   refreshPacks: (id) => ipcRenderer.invoke('packs:refresh', id),

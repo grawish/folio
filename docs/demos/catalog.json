@@ -84,6 +84,20 @@
     "alt": "Claude Code subscription in the real Folio app"
   },
   {
+    "id": "claude-live-pdf-note",
+    "title": "Change a PDF with a real Claude subscription",
+    "image": "claude-live-completed.png",
+    "guide": "tutorials/ai-connections.md#try-a-pdf-note-with-claude-code",
+    "description": "One live source-build workflow follows a note on page two, changes only the heading, reviews the PDF, and verifies save, export and reopen. It uses a made-up document and no API key.",
+    "steps": [
+      "Select Claude Code in Settings and test image support.",
+      "Box the heading, write a note, attach it to Chat and send.",
+      "Review the changed PDF, save the project, and export a clean PDF."
+    ],
+    "kind": "Real Claude subscription \u00b7 synthetic document \u00b7 source build",
+    "alt": "Folio showing the real Claude reply, Visually checked status and changed Selected Projects heading on page two"
+  },
+  {
     "id": "openai",
     "title": "OpenAI API key",
     "image": "connection-openai.png",
@@ -460,5 +474,75 @@
     ],
     "kind": "Real source Settings \u00b7 simulated timeout",
     "alt": "Folio update Settings after a simulated preparation timeout, with recovery guidance and an enabled Done button"
+  },
+  {
+    "id": "app-update-disk-space",
+    "title": "Make room for an app update",
+    "image": "app-updates-disk-space.png",
+    "guide": "tutorials/app-updates.md#if-your-disk-needs-more-space",
+    "description": "A simulated low-space message in the real Settings screen explains how to retry. Your documents stay in place.",
+    "steps": [
+      "Read the amount of free space requested.",
+      "Free some space on that disk.",
+      "Check for updates again, or return to your document."
+    ],
+    "kind": "Real source Settings \u00b7 simulated low space",
+    "alt": "Folio Settings showing free-space guidance and enabled Check for updates and Done buttons"
+  },
+  {
+    "id": "keyboard-navigation",
+    "title": "Move around with the keyboard",
+    "image": "keyboard-navigation.png",
+    "guide": "tutorials/first-resume.md#move-around-with-the-keyboard",
+    "description": "Switch Chat and Code with arrow keys, open Settings, and return to work without losing your place.",
+    "steps": [
+      "Use Tab to reach the selected Chat or Code tab.",
+      "Use Left/Right to switch views; Tab moves onward.",
+      "Open Settings with Enter, then close it with Escape to return focus."
+    ],
+    "kind": "Real app \u00b7 automated keyboard input",
+    "alt": "Folio with a visible keyboard focus ring on the selected Code tab and a compiled synthetic resume beside it"
+  },
+  {
+    "id": "compiler-storage",
+    "title": "Review old compiler files",
+    "image": "compiler-storage.png",
+    "guide": "tutorials/settings-and-compiler.md#make-room-for-compiler-files",
+    "description": "See local compiler sizes and review an old version before removal. Other saved resumes may still need that exact version.",
+    "steps": [
+      "Open Settings \u2192 Storage after finishing a PDF build.",
+      "Check the size and protected compiler rows.",
+      "Review Remove\u2026 and the Mac confirmation, or choose Cancel."
+    ],
+    "kind": "Real source Settings \u00b7 inert old-compiler fixture",
+    "alt": "Folio storage Settings showing the protected current compiler and an explicitly removable synthetic old compiler"
+  },
+  {
+    "id": "compiler-cache",
+    "title": "Recover after a compiler cache limit",
+    "image": "cache-limit.png",
+    "guide": "tutorials/settings-and-compiler.md#if-compiler-helper-files-reach-their-limit",
+    "description": "Read a cache-limit message while the last successful PDF stays visible, then rebuild after fixing the cause.",
+    "steps": [
+      "Keep your source open and read the build message.",
+      "Simplify the document if it keeps creating large helper files.",
+      "Click Compile and check that the current PDF appears."
+    ],
+    "kind": "Real development app \u00b7 simulated oversized-cache reading",
+    "alt": "Folio showing a compiler-cache limit message and the prior successful PDF beside the current source"
+  },
+  {
+    "id": "recovery-retry",
+    "title": "Retry a recovery save",
+    "image": "recovery-retry.png",
+    "guide": "tutorials/save-and-recover.md#if-recovery-cannot-be-saved",
+    "description": "Keep your edits open while fixing a local recovery-save problem, then save the newest draft with one retry.",
+    "steps": [
+      "Keep Folio open and check free space and folder access.",
+      "Click Retry recovery to save your latest draft.",
+      "Wait for the warning to disappear; retry Settings separately if needed."
+    ],
+    "kind": "Real development app \u00b7 simulated write failures",
+    "alt": "Folio showing separate Retry recovery and Retry settings save buttons above a synthetic source document"
   }
 ]

@@ -18,7 +18,7 @@ AI setup and the active connection live in Settings. The chat composer exposes A
 | --- | --- |
 | Workspace and project lifecycle | `src/App.tsx`, `src/useWorkspace.ts` |
 | Chat, notes and history | `src/components/ChatPanel.tsx`, `PdfAnnotations.tsx`, `VersionHistory.tsx` |
-| Local compiler and isolation | `electron/core/compiler.ts`, `runtime.ts` |
+| Local compiler, build scheduling and isolation | `electron/core/compiler.ts`, `build-requests.ts`, `latest-work-queue.ts`, `runtime.ts` |
 | Managed compiler copies | `electron/core/runtime-manager.ts`, `compiler-migration.ts` |
 | Signed resource packs and Settings | `electron/core/pack-service.ts`, `pack-catalog.ts`, `pack-download.ts`, `resource-pack.ts`, `src/components/ResourcePacks.tsx` |
 | Background history ZIPs | `electron/core/history-archive.ts`, `history-zip-worker.cjs`, `history-archive-limits.json` |
@@ -41,13 +41,19 @@ PDF build provenance includes source, asset bytes and the exact compiler pin. Ol
 
 See [harness measurements](HARNESS_PERFORMANCE.md) for the synthetic benchmark and its limits.
 
+Editor builds now keep one active request and one newest waiting request across disk review, asset reads, compilation and history. Each compiler instance has the same active/pending bound. Superseded waiting requests resolve as cancelled immediately, while active cleanup retains its ordering. Stop and operations that must stop editor builds wait for disk/history work as well as the native compiler. This request-count bound does not establish a whole-app resource budget. See [build request scheduling](BUILD_REQUESTS.md).
+
+Compiler helper caches now keep two recent runtime identities and bounded retained bytes/entries per work root. A root lease protects active work; periodic checks stop an oversized native writer, and final cleanup restores retention limits. See [engine-cache policy](ENGINE_CACHE.md) for the sampled-guard and whole-app limits.
+
 ## Stored data
 
 A saved project uses ordinary TeX files and assets plus `resume.project.json` for identity/compiler metadata and `resume.folio` for conversations and history. Save As creates an independent project. Source ZIPs include project metadata and conversation/history; API credentials and build caches are excluded.
 
 Folder and ZIP opening use the same bounded manifest reader. Numeric project formats 1 and 2 are supported; newer, malformed or unversioned manifests are rejected without silently downgrading them. A folder with no manifest remains supported. Opening format 1 is read-only; its next normal journaled save upgrades metadata to format 2 while preserving identity, compiler selection and history. Process-kill coverage is described in [save reliability](SAVE_RELIABILITY.md#project-format-upgrades).
 
-App storage holds preferences, connection settings, protected keys, recovery data, and managed compiler generations. `FOLIO_USER_DATA` selects a separate data directory for development and tests. Never point destructive test fixtures at a real user's data.
+App storage holds preferences, connection settings, protected keys, recovery data, and managed compiler generations. The development workspace preferences use `electron/core/preferences.ts`: a bounded, validated record loaded before the renderer opens the workspace, one-time migration from valid browser preferences, atomic native replacement and serialized patches. `src/shared/preference-writes.ts` coalesces pending renderer changes and retains the newest values after a failed write; normal close/restart flushes them. Unknown records are preserved with a retryable startup error. See [preference recovery](WORKSPACE_PREFERENCES.md#remember-settings-after-an-unexpected-quit). `FOLIO_USER_DATA` selects a separate data directory for development and tests. Never point destructive test fixtures at a real user's data.
+
+Automatic project recovery uses one active renderer write and one newest pending snapshot. Native `ProjectStore.recover` admits at most four unfinished calls, preserving acknowledgement of every accepted write. Recovery uses flushed file replacement; failure retains the latest renderer draft and exposes **Retry recovery**. Normal close and dependent project operations flush pending work. See [recovery writes](RECOVERY_WRITES.md).
 
 Save transactions journal changes before modifying a project. Import transactions stage and hash archive contents before creating the destination copy. Recovery checks ownership and outside edits before finishing or removing files. Guided save recovery retains drafts and file versions, publishes durable choices, and blocks old recovery buffers until the selected files/history are reopened. See [guided recovery](SAVE_RECOVERY_IMPLEMENTATION.md). The detailed protocols and limitations are in [save reliability](SAVE_RELIABILITY.md) and [ZIP import](ZIP_IMPORT.md).
 
@@ -72,3 +78,8 @@ PDF viewing is bounded to 100 pages and 25 MiB; AI visual review has a separate 
 ## App update boundary
 
 Settings talks to a main-process update service through constrained IPC. Separate stable/beta manifests bind the official ZIP, SHA-512, version, rollout and data compatibility with Ed25519 signatures. A custom electron-updater provider consumes the verified snapshot. Explicit restart first saves and flushes project/conversation recovery; competing operations are rejected. App-update publisher trust remains unconfigured until production signing and actual two-version acceptance. See [implementation, protocol and limits](APP_UPDATES.md).
+
+The packaging hook expands and verifies original Tectonic notices before copying app resources; the final package gate checks their exact installed bytes. Source archives and build-closure records remain separately reproducible. See [compiler notice packaging](TECTONIC_NOTICES.md).
+
+
+Biber's original license/declaration documents are also expanded before packaging and checked by the final package gate. Tectonic and Biber share `scripts/original-notice-bundle.ts`, with separate identity and source-lock definitions. Full source documents preserve embedded statements where standalone license files are absent; this packaging code is not part of the application runtime. See [Biber notice coverage](BIBER_NOTICES.md).

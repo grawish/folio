@@ -13,6 +13,15 @@ import {
 } from './runtime';
 import { Compiler } from './compiler';
 import { packDirectory } from './pack-io';
+import type { CompilerStorage } from '../../src/shared/compiler-storage';
+import {
+  admitCompilerCopy,
+  compilerInstallationBudget,
+  compilerStorageTree,
+  compilerStorageKey,
+  describeCompilerStorage,
+  removeCompilerStorage,
+} from './compiler-storage';
 import { syncDirectory } from './save-io';
 import {
   assembleResourcePack,
@@ -290,8 +299,6 @@ export class RuntimeManager implements RuntimeSource {
       generation = randomUUID();
     const copy = path.join(base, 'copies', generation),
       runtime = path.join(copy, 'runtime');
-    await directory(copy);
-    await directory(runtime);
     try {
       const names = new Set([...Object.keys(manifest.files), 'manifest.json']);
       for (const optional of ['bundle.lock.json', 'THIRD_PARTY_NOTICES.md']) {
@@ -302,6 +309,12 @@ export class RuntimeManager implements RuntimeSource {
           if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
         }
       }
+      let copyBytes = 0;
+      for (const name of names)
+        copyBytes += overrides.get(name)?.length ?? (await fs.lstat(path.join(source, name))).size;
+      await admitCompilerCopy(this.root, copyBytes);
+      await directory(copy);
+      await directory(runtime);
       // Bound concurrent reads/writes; engine files can be much larger than a font.
       let next = 0;
       const files = [...names];
@@ -460,6 +473,65 @@ export class RuntimeManager implements RuntimeSource {
       }
     }
     return undefined;
+  }
+
+  private async storageEntry(key: string, current?: RuntimePin) {
+    const entry = await describeCompilerStorage(this.root, key);
+    if (!entry.unfinishedRemoval) {
+      if (key === this.defaultPin?.id) entry.protectedReason = 'Included with this Folio version.';
+      else if (key === adoptRuntime(current, this.defaultPin)?.id)
+        entry.protectedReason = 'Used by the current project.';
+      else if (
+        [...this.leases.keys()].some((root) =>
+          root.startsWith(path.join(this.root, key) + path.sep),
+        )
+      )
+        entry.protectedReason = 'A PDF build is using this compiler.';
+      // A labels-only pin is deliberately not migrated or interpreted as a different version.
+      else if (
+        current &&
+        !current.id &&
+        entry.pin?.version === current.version &&
+        entry.pin.bundle === current.bundle
+      )
+        entry.protectedReason = 'Matches the current project’s recorded compiler.';
+    }
+    return entry;
+  }
+
+  async storage(value?: RuntimePin): Promise<CompilerStorage> {
+    const current = validateRuntimePin(value);
+    await this.initialize();
+    return this.serial(async () => {
+      const tree = await compilerStorageTree(this.root);
+      const entries = [];
+      for (const item of tree.items.filter(
+        (item) => item.name && !item.name.includes('/') && item.stat.isDirectory(),
+      )) {
+        try {
+          compilerStorageKey(item.name);
+        } catch {
+          continue;
+        }
+        entries.push(await this.storageEntry(item.name, current));
+      }
+      return { bytes: tree.bytes, installationBudgetBytes: compilerInstallationBudget, entries };
+    });
+  }
+
+  async removeStoredCompiler(key: string, token: string, value?: RuntimePin) {
+    compilerStorageKey(key);
+    if (typeof token !== 'string' || !/^[a-f0-9]{64}$/.test(token))
+      throw new Error('Refresh storage before removing a compiler.');
+    const current = validateRuntimePin(value);
+    await this.initialize();
+    await this.serial(async () => {
+      const entry = await this.storageEntry(key, current);
+      if (entry.protectedReason) throw new Error(entry.protectedReason);
+      if (entry.token !== token)
+        throw new Error('Compiler files changed. Refresh storage and review again.');
+      await removeCompilerStorage(this.root, key, token);
+    });
   }
 
   async status(value?: RuntimePin): Promise<RuntimeStatus> {

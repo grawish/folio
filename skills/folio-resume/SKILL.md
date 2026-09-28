@@ -16,6 +16,7 @@ Read only what the task needs:
 - Chat, PDF marks, attachments, stop/retry, compare, undo and restore: [chat-and-feedback](references/chat-and-feedback.md).
 - Source files, main document, ZIP import, Save As and source export: [files-and-import](references/files-and-import.md).
 - Autosave, recovery, outside-file changes and conflicts: [save-and-recover](references/save-and-recover.md).
+- Temporary compiler files after a crash, automatic cleanup and preserved unknown folders: [build recovery](references/BUILD_RECOVERY.md).
 - Interrupted ZIP copies and keeping outside edits: [recover-an-import](references/recover-an-import.md).
 - TeX edits, local font files, search, diagnostics, page navigation and viewer limits: [editor-and-pdf](references/editor-and-pdf.md).
 - Appearance, panes, privacy, reviewable support ZIPs, help, compiler repair/comparison: [settings-and-compiler](references/settings-and-compiler.md).

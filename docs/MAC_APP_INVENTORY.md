@@ -35,3 +35,35 @@ Download the [compressed inventory](releases/mac-app-inventory/bundle-inventory.
 The physical inventory must still be connected to the contents of ASAR/ZIP/PAR archives, linked native code, component versions and source/license obligations. Existing [source and license evidence](LICENSING.md) provides inputs for that work. The current record does not inherit Folio's noncommercial terms onto third-party files.
 
 Extended attributes, ACLs, resource forks, code-signature/notarization validity and DMG contents are outside this inventory. Re-run it for the final signed app and verify the actual distribution artifact separately. Schema validity and matching hashes do not by themselves prove complete SBOM or license coverage.
+
+## Reproduce and attribute application JavaScript
+
+Use the exact source checkout and installed locked dependencies that produced the app:
+
+```sh
+node scripts/inventory-javascript.mjs /absolute/path/to/Folio.app
+python3 scripts/collect-npm-license-materials.py
+python3 scripts/verify-javascript-sources.py
+```
+
+The first command replays esbuild and Vite in memory with disk writes disabled. Every emitted output must match the selected app’s bytes. Every JavaScript file and distributed source map in `app.asar` must be covered. Changed output, omitted files, unknown generated helper IDs and unresolved static imports fail the check. Known Node/Electron imports are listed separately. The selected app is read, not launched or changed.
+
+Records go under `artifacts/license-materials/javascript/<inventory hash>/`: `inventory.json` has source/contribution hashes, package lock identities, original source-map locations and exact output hashes; `javascript.cdx.json` is a schema-validated CycloneDX 1.6 record; `summary.json` has counts and record hashes. `test-results/javascript-inventory-location.json` identifies the last successful output. A failed replay exits unsuccessfully and does not make an older record current evidence.
+
+The collector retains the full locked npm archives and original notices. Use `--offline` after the verified archives are cached. The final command verifies every contributing package’s metadata and source bytes against those archives and writes `publisher-sources.json` beside the inventory. Sources embedded in publisher maps must match the exact map path, digest, source index and text. Missing original notices remain disclosed in the source index; a declared license is not proof of complete license compliance.
+
+The local [verification record](releases/javascript-bundle-verification.json) covers eight packaged JavaScript/maps and 24 reproduced outputs: 402 modules from 35 contributing npm packages, three build tools and Folio’s own sources. It detects `has-flag` and `supports-color` despite their npm development flags. Three generated helpers are associated with reviewed Vite/Rolldown generator IDs; this does not assign every helper byte to an individual author. The added notices bring the packaged collection to 42 originals from 43 indexed packages. The broader notice collection deliberately includes optional or potentially unused packages.
+
+The exact [contribution inventory](releases/javascript-bundle-inventory.json.gz), [CycloneDX record](releases/javascript-bundle.cdx.json.gz) and [publisher-source checks](releases/javascript-publisher-sources.json.gz) are published as small gzip files; their compressed and uncompressed hashes are in the verification record.
+
+Future Mac qualification runs execute these checks after native and package gates and retain the reports with the evidence artifact. These are application-JavaScript records, not a complete binary SBOM: nested vendored components, dynamic discovery, native/compiler/TeX materials, Electron/Chromium and full redistribution remain separate. The generator executes the repository’s trusted build configuration and is not a sandbox for untrusted projects or an atomic filesystem snapshot.
+
+## PDF.js component source and notice associations
+
+The application JavaScript record traces `pdfjs-dist` to the exact publisher archive. The [PDF.js component collector](LICENSING.md#preserve-pdfjs-component-notices) adds original source-map associations for Brotli and the qcms, OpenJPEG and JBIG2 helpers, plus the Flate stream and MurmurHash copyright headers. It retains the original inputs and binds the added packaged notices by SHA-256. These associations do not by themselves subdivide the minified worker into byte-exact component boundaries; the application CycloneDX composition remains incomplete.
+
+## Preserve Electron's original notices
+
+The [Electron notice repair](LICENSING.md#include-electron-and-chromium-notices) adds the complete upstream license and Chromium notices to the actual package. Its first local inventory contains 5,204 entries: all 5,199 prior entries are identical, plus the notice directory and four original/guide/index files. The app ASAR and all 39 compiled outputs remain unchanged. The Mac package gate now binds these notice bytes to the pinned dependency version and source index. These checks preserve attribution; the Electron/Chromium source and full binary component audit remain separate.
+
+Full hosted qualification of the expanded package passes at `99cbb97`. The [downloaded evidence verification](releases/mac-electron-notices-hosted.json) confirms all 5,204 physical inventory entries against the local package except the expected archive-generated updater metadata, and independently checks the original release/archive notices and framework. The complete binary SBOM remains open.

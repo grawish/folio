@@ -15,9 +15,17 @@ These limits apply to the current development source. The published preview 4 pr
 | Core dumps | Disabled | Both inherited core-file limits are zero. |
 | Captured compiler log | 1,048,576 JavaScript string characters | The existing application log bound stops the process group and retains a truncated log. |
 
-The OS limits are set before the existing macOS sandbox launches Tectonic. Biber and other permitted child processes inherit them. Both soft and hard values are set; if setup fails, the compiler is not launched. A signal or unsuccessful compiler exit also kills remaining members of its process group so a helper cannot keep the build's pipes open.
+The OS limits are set before the existing macOS sandbox launches Tectonic. Biber and other permitted child processes inherit them. Both soft and hard values are set; if setup fails, the compiler is not launched. Every compiler exit also stops remaining members of its process group so a helper cannot keep the build's pipes open, even after a successful build.
 
 CPU-limit and oversized-file signals get specific messages in Build output. CPU-limit errors use the existing “This build took too long” advice. If a process handles a signal itself and reports a normal error, that original output remains available.
+
+## If the app crashes
+
+The development source gives each build an idle watcher connected to the app by a private pipe. macOS closes the pipe when the app exits, including an abrupt process kill. The watcher then stops its own compiler group, including helpers such as Biber. The native compiler closes its copy of the pipe before starting, so a helper cannot accidentally keep the app connection open.
+
+On normal compiler exit, the app closes the same connection immediately. The watcher also stops leftover helpers after a successful result. It does not share the build's output pipes, and it stays in the group it can stop; no saved or guessed process ID is used after that group has disappeared. The ordinary cancellation, elapsed-time limit and macOS resource limits remain in place.
+
+This adds one idle shell process and one parent pipe per active build. It is process-crash containment, not a whole-app resource budget. The development source also records ownership of new temporary build folders and removes recognized abandoned jobs when its compiler starts. Editing and saving can open while that scan runs; the next build waits for it. See [temporary build recovery](BUILD_RECOVERY.md) for preserved data and recovery limits.
 
 ## Implementation
 
@@ -30,6 +38,8 @@ The wrapper preserves the existing offline sandbox, immutable source snapshot, c
 ## Verification and remaining work
 
 `tests/compiler-limits.test.ts` checks all inherited values, failure before launch when a hard limit cannot be set, literal shell-metacharacter arguments, actual oversized writes, descriptor exhaustion, CPU-signal delivery, the elapsed-time stop after a caught CPU signal, and cleanup of a surviving helper. These tests use real macOS processes, not mocked OS calls. Other platforms skip the native controls.
+
+`tests/compiler-parent-death.test.ts` kills a real owning Node process three times and requires its compiler group and log-holding helper to disappear within two seconds. It also covers successful exits with a leftover helper, cancellation, elapsed timeout and exclusion of the parent pipe from the native executable. The parent-death control fails against the original launcher; failed controls explicitly stop their owned test processes. These are backend process tests, not a complete Electron crash or physical power-loss check. The [watchdog verification record](releases/compiler-parent-watch-verification.json) also records the real bibliography crash, all 371 source tests, 16 compiler integrations and both exact packaged runtime/chat workflows. Full hosted qualification at `909c0ee` passes all 371 source tests, 16 compiler integrations, twelve unchanged template images and all sixteen native suites. The [hosted evidence](releases/mac-compiler-parent-watch-hosted.json) independently checks all 146 downloaded files, exact source/package records, JavaScript replay and original dependency materials.
 
 The compiler integration suite exercises fresh offline template caches, imported packages/fonts/bibliography, isolation, cancellation, timeout and PDF freshness under the production launch path. Exact results and package checks are recorded in [the verification record](releases/compiler-limits-verification.json).
 

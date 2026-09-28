@@ -1,25 +1,37 @@
 name: Qualify Apple silicon candidate
 on:
   workflow_dispatch:
+    inputs:
+      runner:
+        description: Apple silicon macOS image to qualify
+        type: choice
+        required: true
+        default: macos-15
+        options:
+          - macos-14
+          - macos-15
+          - macos-26
+          - xcode-27
 permissions:
   contents: read
 concurrency:
-  group: mac-candidate-${{ github.ref }}
+  group: mac-candidate-${{ github.ref }}-${{ inputs.runner || 'macos-15' }}
   cancel-in-progress: false
 jobs:
   qualify:
-    runs-on: macos-15
+    runs-on: ${{ inputs.runner || 'macos-15' }}
     timeout-minutes: 90
     env:
       CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+      QUALIFICATION_RUNNER: ${{ inputs.runner || 'macos-15' }}
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: '24'
           cache: npm
-      - name: Confirm native Apple silicon
-        run: test "$(uname -m)" = arm64
+      - name: Verify and record the selected Mac environment
+        run: node scripts/record-mac-runner.mjs "$QUALIFICATION_RUNNER"
       - run: npm ci
       - run: npm run setup
       - name: Verify the prepared compiler matches the public pack
@@ -40,28 +52,64 @@ jobs:
       - run: node scripts/verify-mac-package.mjs release
       - name: Inventory the exact qualified app
         run: node --import tsx scripts/inventory-mac-app.ts release/mac-arm64/Folio.app
+      - name: Reproduce packaged JavaScript and verify publisher sources
+        run: |
+          node scripts/inventory-javascript.mjs release/mac-arm64/Folio.app
+          python3 scripts/collect-npm-license-materials.py
+          python3 scripts/verify-javascript-sources.py
+          python3 scripts/collect-pdfjs-license-materials.py
       - name: Preserve qualification evidence
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: apple-silicon-qualification-${{ github.sha }}
+          name: apple-silicon-qualification-${{ github.sha }}-${{ inputs.runner || 'macos-15' }}
+          archive: true
           path: |
+            test-results/runner-environment.json
             release/native-tests.json
             release/verification.json
             release/SHA256SUMS
             release/disk-image-verification.log
             release/mac-arm64/runtime-signing.json
             artifacts/license-materials/mac-app/
+            artifacts/license-materials/javascript/
+            artifacts/license-materials/npm/inventory.json
+            artifacts/license-materials/pdfjs/inventory.json
             test-results/*-final.log
             test-results/published-pack-base.json
             test-results/chat-*/failure.png
             test-results/chat-*/lifecycle.json
             test-results/chat-*/native-output.log
+            test-results/runtime-*/compiler-storage*.png
             test-results/runtime-*/result.json
             test-results/runtime-*/startup-chat.png
             test-results/runtime-*/startup-editing.png
             test-results/runtime-*/failure.png
+            test-results/engine-cache-native-*/result.json
+            test-results/engine-cache-native-*/cache-limit.png
+            test-results/engine-cache-native-*/cache-rebuilt.png
+            test-results/engine-cache-native-*/failure.png
+            test-results/build-requests-*/result.json
+            test-results/build-requests-*/newest.pdf
+            test-results/build-requests-*/failure.png
+            test-results/build-crash-*/result.json
+            test-results/build-crash-*/native-output.log
+            test-results/build-crash-*/during-compile.png
+            test-results/build-crash-*/recovered-chat.png
+            test-results/build-crash-*/recovered.pdf
+            test-results/build-crash-*/failure.png
+            test-results/recovery-writes-*/result.json
+            test-results/recovery-writes-*/recovery-retry.png
+            test-results/recovery-writes-*/recovery-retried.png
+            test-results/recovery-writes-*/failure.png
+            test-results/preferences-*/result.json
+            test-results/preferences-*/native-output.log
+            test-results/preferences-*/save-error.png
+            test-results/preferences-*/startup-error.png
+            test-results/preferences-*/recovered-settings.png
+            test-results/preferences-*/failure.png
             test-results/workspace-*/layout-measurements.json
+            test-results/workspace-*/keyboard-*.png
             test-results/workspace-*/failure.png
             test-results/workspace-*/result.json
             test-results/history-storage-*/result.json

@@ -1,0 +1,371 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T19:37:16.745336+00:00",
+  "implementationCommit": "3a1ffef4f8554b71953c60740f21cb27329b181d",
+  "baseCommit": "3c0167ed7325aeb0c0f0d41f16ef5e1b43ae7afc",
+  "sources": [
+    {
+      "file": "electron/core/compiler.ts",
+      "bytes": 11048,
+      "sha256": "5938b73a42f1c06edc7ce293d5ba8ad9b73e545bc100689b2e2616fa70c9190d"
+    },
+    {
+      "file": "electron/core/build-workspaces.ts",
+      "bytes": 8731,
+      "sha256": "9f08aa63dcd3aecb14ff4bd756901b958bfb775ba87b16c5e6a4933ebb23cb60"
+    },
+    {
+      "file": "tests/build-workspaces.test.ts",
+      "bytes": 12487,
+      "sha256": "3cdd8d00fc9b5c694f24b1dab946cd55744e115f9820247c640879eb9fa80f28"
+    },
+    {
+      "file": "tests/fixtures/build-workspace-worker.ts",
+      "bytes": 1932,
+      "sha256": "62f795a5a01107412612b0f50cdc7027fe5c08632fe43a2e9483c797795ae854"
+    },
+    {
+      "file": "tests/integration/build-recovery.test.ts",
+      "bytes": 4630,
+      "sha256": "e5ed290050c018bec6d953b971e446a8dc70660c6b0c19012e22b183bfed8497"
+    }
+  ],
+  "validation": {
+    "sourceTestsPassed": 392,
+    "focusedRecoveryTestsPassed": 21,
+    "existingCompilerIntegrationTestsPassed": 16,
+    "newRealCompilerRecoveryIntegrationPassed": 1,
+    "originalCompilerFailsStartupRecoveryControl": true,
+    "productionBuildPassed": true,
+    "formatPassed": true,
+    "packagedRuntimePassed": true,
+    "packagedChatPassed": true,
+    "rendererErrors": 0,
+    "fixtureScope": "The 392-test source run preceded addition of the real-compile branch to its shared fixture. All 21 affected source controls were rerun after that addition, and the new real compiler integration passed separately. The hosted run executes all 17 integrations together.",
+    "logs": [
+      {
+        "file": "test-results/build-workspace-source-tests.log",
+        "bytes": 39738,
+        "sha256": "36ab7d73be22e73c8049874ecd5ce115d6b99dd07c50f06606cd89d498e65373"
+      },
+      {
+        "file": "test-results/build-workspace-tests-final.log",
+        "bytes": 1665,
+        "sha256": "f09f3010a69ecec8f49967fec19afc22b632cddf7228a5e05cb3a94cf4782638"
+      },
+      {
+        "file": "test-results/build-workspace-integrations.log",
+        "bytes": 2307,
+        "sha256": "c2c49463b94d8535830ef7fe4eab4282d6931db72337a110b11ef30bca33eb86"
+      },
+      {
+        "file": "test-results/build-workspace-real-recovery.log",
+        "bytes": 427,
+        "sha256": "7eab296dc4ac322f7bf5e1df91519975863359ba1d2f77eff49ea6e3d0404b34"
+      },
+      {
+        "file": "test-results/build-workspace-baseline.log",
+        "bytes": 950,
+        "sha256": "299cbc0920d17d0d61b97823a49190588489845f610556383d9105f1d4a321bd"
+      },
+      {
+        "file": "test-results/build-workspace-build.log",
+        "bytes": 1719,
+        "sha256": "52331e8be7e1e9a74f8d96c1d84b0f51abcf5a7314815df0250392389ad94a1c"
+      },
+      {
+        "file": "test-results/build-workspace-format-final.log",
+        "bytes": 183,
+        "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+      },
+      {
+        "file": "test-results/build-workspace-package.log",
+        "bytes": 1341,
+        "sha256": "ad20e72f86163df5f9b716cc39759781903405e834d88c079c757c3176032931"
+      },
+      {
+        "file": "test-results/build-workspace-runtime.log",
+        "bytes": 883,
+        "sha256": "874112b71494f2b68b5cef34aab3785cf02ecc49e3f48c7ad4c7fbb2c1b805f7"
+      },
+      {
+        "file": "test-results/build-workspace-chat.log",
+        "bytes": 1554,
+        "sha256": "7d4f79fb93f7c4162b7f1c23bfd64643a856d035f59faa59a3753117a6de906e"
+      }
+    ]
+  },
+  "crashRecovery": {
+    "killedProductionSnapshotOwners": 2,
+    "sourceBytesReclaimed": 262286,
+    "originalSourcePreserved": true,
+    "unmarkedFolderPreserved": true,
+    "engineCacheGuardPreserved": true,
+    "freshOfflinePdfBuilt": true,
+    "newJobReleased": true,
+    "cleanupKillCheckpoints": [
+      "before payload removal",
+      "after payload removal",
+      "after ownership-record removal"
+    ],
+    "scope": "Actual Node process kills during production source staging and ownership-based deletion. Native execution is held only for the two killed staging processes; the restarted Compiler runs the real offline engine. This does not claim a complete Electron crash or physical power-loss simulation."
+  },
+  "package": {
+    "app": "release/build-recovery/mac-arm64/Folio.app",
+    "asarSha256": "09d7f516815c03084f0069ed29c709701d19e85139b0bfeeb0e357bc5f636ed8",
+    "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+    "outputs": [
+      {
+        "file": "dist/assets/index-BQANPEwY.js",
+        "bytes": 1207317,
+        "sha256": "4a0c9113d3fc899e662612ecbe71a6408c14332657e1e8b8df0730c0fc2dfe5f"
+      },
+      {
+        "file": "dist/assets/index-Dr0quaB-.css",
+        "bytes": 65441,
+        "sha256": "c472afb89d685671b5e0940202b28b45dcd1e65ab95ac6fa20d695789992e489"
+      },
+      {
+        "file": "dist/assets/jetbrains-mono-italic-cyrillic-CY-YXjkl.woff2",
+        "bytes": 5920,
+        "sha256": "a79035476e5f8408e7f2b2599dfd50b7262862ecb853e028ba7b4a00bed16e73"
+      },
+      {
+        "file": "dist/assets/jetbrains-mono-italic-greek-CoTSRNcy.woff2",
+        "bytes": 4416,
+        "sha256": "44ca7e27fef33e684d50e1009d0b886b83d4783e383223e7b13e173a623db0d3"
+      },
+      {
+        "file": "dist/assets/jetbrains-mono-italic-latin-BW896jpM.woff2",
+        "bytes": 22228,
+        "sha256": "00ba27973ba2965d3e7e03ee0f2c66491956cda2ecf8cc6066c969696577f47b"
+      },
+      {
+        "file": "dist/assets/jetbrains-mono-italic-latin-ext-C5V3_1R8.woff2",
+        "bytes": 8032,
+        "sha256": "31434d4924e83d1c6bf10136077f96d0c541226301ba98a583b14bded0576a75"
+      },
+      {
+        "file": "dist/assets/jetbrains-mono-italic-vietnamese-DP5VCyMl.woff2",
+        "bytes": 4164,
+        "sha256": "9c54e21b500492314341e2041e23cf141d43a0c102bca07a7fe281f487eec5f6"
+      },
+      {
+        "file": "dist/assets/jetbrains-mono-normal-cyrillic-D0W76x1T.woff2",
+        "bytes": 5324,
+        "sha256": "4188276a58108d04eb0c6f5b8c9e4b5ac2d9e31e81b2b4fa7da263b92f1b35c3"
+      },
+      {
+        "file": "dist/assets/jetbrains-mono-normal-greek-FADJ2lFV.woff2",
+        "bytes": 4300,
+        "sha256": "0164d0c055dced93435b1d6c2986db2fb7d068ce21950c85b776695f56238b8a"
+      },
+      {
+        "file": "dist/assets/jetbrains-mono-normal-latin-RruCX7RW.woff2",
+        "bytes": 21212,
+        "sha256": "d3dcdccdaba31643defe2317942155d4af3ee03951d058adbe8bc02b13e61b0a"
+      },
+      {
+        "file": "dist/assets/jetbrains-mono-normal-latin-ext-e2G1hK0J.woff2",
+        "bytes": 7368,
+        "sha256": "d5f407e28185790518c49ec8738fa89916ddc99f793010d249165d0e2c2452cc"
+      },
+      {
+        "file": "dist/assets/manrope-normal-cyrillic-DJ9PYDpy.woff2",
+        "bytes": 14544,
+        "sha256": "95a493061fe0a8d0d027c2892747134ba747141112d3be4d5022e70ab7d3a1a6"
+      },
+      {
+        "file": "dist/assets/manrope-normal-greek-vbHvg7sP.woff2",
+        "bytes": 9360,
+        "sha256": "40af11327fe5308166c6cb5787808b042db6da889abf602f0a4876c49675d87e"
+      },
+      {
+        "file": "dist/assets/manrope-normal-latin-C46ZzDBF.woff2",
+        "bytes": 24576,
+        "sha256": "e310b55a7fd9677f5e3555e6c6c4d064fa1f1d24393f0ddbe217cea12a8c432f"
+      },
+      {
+        "file": "dist/assets/manrope-normal-latin-ext-CDracvZH.woff2",
+        "bytes": 15240,
+        "sha256": "ce093b341d9c10658ee1eaa85c5f8042ff3307bc6ccfc5f405616eb437f0009e"
+      },
+      {
+        "file": "dist/assets/manrope-normal-vietnamese-C9-d800b.woff2",
+        "bytes": 8492,
+        "sha256": "bab757f8a0a1bc04055ee98cb5777f3254aab11f6d222366e1f40a36f390506a"
+      },
+      {
+        "file": "dist/assets/pdf.worker.min-Dswkl-cV.mjs",
+        "bytes": 1265413,
+        "sha256": "8ab0e5e30031b4a06ecfddd5ae9562f0227f830ee7ec9ed1a968b134243d2386"
+      },
+      {
+        "file": "dist/index.html",
+        "bytes": 711,
+        "sha256": "b00611694c1f5d9008d4b814fe26ce7bac4b8fda8ded7f139edf15938714e93e"
+      },
+      {
+        "file": "dist/licenses/JetBrains-Mono-OFL.txt",
+        "bytes": 4399,
+        "sha256": "b2fe5e8987594e9ffd1d2ca52a2f5d73eb8335243893c5d6254b5ad69269591d"
+      },
+      {
+        "file": "dist/licenses/Manrope-OFL.txt",
+        "bytes": 4387,
+        "sha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b"
+      },
+      {
+        "file": "dist/templates/academic-a4.png",
+        "bytes": 119388,
+        "sha256": "e149b33dc14f9bb99469b5dc9b39cf0f698de720894af8f9ef2bd74d31f1115d"
+      },
+      {
+        "file": "dist/templates/academic-letter.png",
+        "bytes": 137223,
+        "sha256": "1fb69ee0e825acb916781022f7bb5e65576f7911b7fb08d34009aa21b60964e0"
+      },
+      {
+        "file": "dist/templates/classic-a4.png",
+        "bytes": 149297,
+        "sha256": "38f95f3b25a51669105de7efdba08fe5b2633e7f7fde5ee15c3057862551fee3"
+      },
+      {
+        "file": "dist/templates/classic-letter.png",
+        "bytes": 160209,
+        "sha256": "5e3ef1114cd3c728118e01c4161722b5c2a3a5e27a058f43f6bb5b825023c8ee"
+      },
+      {
+        "file": "dist/templates/compact-technical-a4.png",
+        "bytes": 142247,
+        "sha256": "5878085cef410ee1b1463c0b71de8ebb48fc845899aed90d7b52c16ee577fc51"
+      },
+      {
+        "file": "dist/templates/compact-technical-letter.png",
+        "bytes": 146627,
+        "sha256": "9fcc6a929547407948a5a23fe9d481bb197f20e195c7bbae2af125fb75e34a3a"
+      },
+      {
+        "file": "dist/templates/manifest.json",
+        "bytes": 9229,
+        "sha256": "db231613ba3b1a69e01ffd5a111422874736d51d9b8f6509de7c71511b4a4a86"
+      },
+      {
+        "file": "dist/templates/minimal-a4.png",
+        "bytes": 107643,
+        "sha256": "9bb702aae1e721255a0632010a22a82bcb283a49b16b6ce8bfbe74a99ef48353"
+      },
+      {
+        "file": "dist/templates/minimal-letter.png",
+        "bytes": 123606,
+        "sha256": "10bfd6c692eac97a9e25bc2361d0113d43584069a05c3af4fbef64ad78cfb368"
+      },
+      {
+        "file": "dist/templates/modern-a4.png",
+        "bytes": 96543,
+        "sha256": "bd6a55401f8642fcf375c18fe952d7ff2185635c7fa4ece24c7be3e157515b41"
+      },
+      {
+        "file": "dist/templates/modern-letter.png",
+        "bytes": 101419,
+        "sha256": "99062be87eabf30184d937ea0ceef3768387beb81cd850110ce335819d5474a0"
+      },
+      {
+        "file": "dist/templates/two-column-a4.png",
+        "bytes": 100386,
+        "sha256": "b7cca2c36d149da1af024d1095801051817084c536724f2f5c7d68f75e3cc348"
+      },
+      {
+        "file": "dist/templates/two-column-letter.png",
+        "bytes": 104351,
+        "sha256": "d23fb748c48033f314d40fac502c42953d9003e478ec2360144e55da68c19802"
+      },
+      {
+        "file": "dist-electron/history-zip-worker.cjs",
+        "bytes": 75678,
+        "sha256": "55ff7d812d2eafe2e725dd48f45cbd815ed610bec2168bd449627c76359f7694"
+      },
+      {
+        "file": "dist-electron/history-zip-worker.cjs.map",
+        "bytes": 161918,
+        "sha256": "57f93bf7d08246dc3dd4d5adb013da67ed95acb53aca46f127f5e913cc965bee"
+      },
+      {
+        "file": "dist-electron/main.cjs",
+        "bytes": 1050117,
+        "sha256": "f2c13ba91dc74673d97b6727b4b29ea1eaaba76d074dfc8d2f2dc9c8495ed9db"
+      },
+      {
+        "file": "dist-electron/main.cjs.map",
+        "bytes": 1944945,
+        "sha256": "a14ff8e74909f178406b3bda273b72d979d5bf066c66d634546ea82e3a625167"
+      },
+      {
+        "file": "dist-electron/preload.cjs",
+        "bytes": 9375,
+        "sha256": "3b7e957f0143c2bf9df760f8614a154f0499fceecbdb9a2d2b52d8c9f27306fa"
+      },
+      {
+        "file": "dist-electron/preload.cjs.map",
+        "bytes": 13695,
+        "sha256": "6a4af797f70656319fdd158c186b8df53fe0f2f7b7812ca9fb27468ae1f02d61"
+      }
+    ],
+    "scripts": [
+      {
+        "file": "scripts/test-chat.mjs",
+        "bytes": 36762,
+        "sha256": "ecc8c229f5792aefd47b860c7ff318c3bd60962972da2f57be4f9e7a454cd095"
+      },
+      {
+        "file": "scripts/test-runtime.mjs",
+        "bytes": 24029,
+        "sha256": "e44b3e00eb4e5b9d67b66f551ff5c3b11509f076d9bffa975e61a78ad1b8fb06"
+      }
+    ]
+  },
+  "nativeEvidence": {
+    "runtime": {
+      "file": "/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/runtime-AB07sT/result.json",
+      "bytes": 2864,
+      "sha256": "a5e8a80cd44ce4b1675f755db72daf5b6a654019084f1dd8e03d813e50eea38a"
+    },
+    "chatLifecycle": {
+      "file": "/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/chat-o6pxUv/lifecycle.json",
+      "bytes": 3698,
+      "sha256": "6a980aca6c461d672c98497ff2b8996a9d9cadc9a215ba9793e31e565709a475"
+    }
+  },
+  "fullHostedQualification": {
+    "runId": 36344771325,
+    "url": "https://github.com/grawish/folio/actions/runs/36344771325",
+    "commit": "3a1ffef4f8554b71953c60740f21cb27329b181d",
+    "statusAtPublication": "success",
+    "runAttempt": 1,
+    "independentVerification": "docs/releases/mac-build-recovery-hosted.json"
+  },
+  "remaining": [
+    "Older unmarked folders and unrecognized data are retained and require separate review.",
+    "Large-backlog responsiveness, whole-profile disk/CPU/memory quotas and engine-cache/history retention.",
+    "Complete Electron and power-loss recovery, broader supported-Mac acceptance, production signing/notarization, real BYOK and complete binary redistribution."
+  ],
+  "productionReleaseQualified": false,
+  "publicPreviewInstallerChanged": false,
+  "documentation": {
+    "skillReferences": 15,
+    "skillValidated": true,
+    "websiteValidated": true,
+    "records": [
+      {
+        "file": "test-results/build-workspace-skill.log",
+        "bytes": 16,
+        "sha256": "db349825903d66adffea3ecf1bd8e1803043e8a71cf1a051235dabc5371f5bb0"
+      },
+      {
+        "file": "test-results/build-workspace-website.log",
+        "bytes": 821,
+        "sha256": "f071f86862805faca63a6a8a30b980e120e7674c9d1598e23a8c13802212a91f"
+      }
+    ]
+  }
+}

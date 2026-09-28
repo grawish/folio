@@ -1,6 +1,6 @@
 # Folio licensing
 
-Folio's original code and accompanying original documentation and examples use the [PolyForm Noncommercial License 1.0.0](../LICENSE). Keep the [required notice](../NOTICE) and license with redistributed copies. The license's full terms govern permitted use, modification and distribution.
+Folio's original application code and accompanying original documentation and examples use the [PolyForm Noncommercial License 1.0.0](../LICENSE). Keep the [required notice](../NOTICE) and license with redistributed copies. The license's full terms govern permitted use, modification and distribution.
 
 The project is intended for noncommercial community use. It is **source-available**, not OSI open source: the [Open Source Definition](https://opensource.org/osd) permits business use and does not allow a general commercial-use restriction. The repository, README and release descriptions must use the accurate wording.
 
@@ -22,6 +22,124 @@ The first local inventory collected 22 installed npm production packages and Ele
 
 The [packaged Mac app inventory](MAC_APP_INVENTORY.md) now records every physical file, directory and internal link in one exact development app, verifies its runtime manifest and emits a schema-validated CycloneDX record with explicitly incomplete component coverage. It provides the artifact inventory to connect with the source evidence below. Embedded archives, linked components, complete license mapping and the final signed-app SBOM remain open. Its vendored CycloneDX schemas retain their original Apache 2.0 license under `resources/sbom-schema/`; the schema validators are developer dependencies.
 
+## Bundle original JavaScript dependency notices
+
+Current development packages include `Contents/Resources/npm-notices/`: 42 unchanged original notice files plus a source index and guide. The index covers all 38 installed npm production packages on Apple silicon, including optional or potentially unused dependencies, and five additional bundled-code/build-support packages. It records the exact package versions, publisher archives, npm SHA-512 integrity values and notice SHA-256 digests. All 43 complete publisher archives (28,776,392 bytes) were checked against `package-lock.json`; every copied notice matches its archive bytes.
+
+```sh
+python3 scripts/collect-npm-license-materials.py
+python3 scripts/collect-npm-license-materials.py --offline
+```
+
+The collector retains the original archives and texts under ignored `artifacts/license-materials/npm/`. It reads archive members without extracting paths, installing packages or running their code. Nine offline controls cover interrupted downloads, changed archives/notices, wrong identities/declarations, missing extra notices, duplicate or unsafe paths, links, destination names and npm integrity mismatches. The actual Mac package gate rejects missing, changed, linked or extra bundled files, including altered source documentation.
+
+`lazy-val` 1.0.5 and `@napi-rs/canvas-darwin-arm64` 1.0.9 declare MIT but have no separate notice file in their npm archives. Both remain explicit gaps; no copyright statement is invented. The older `app-update-notices.txt` remains included. This broader source collection does not assert that optional native canvas is shipped, close the linked-component SBOM, or replace the Electron/Chromium and compiler audits. See [source index](../resources/npm-notices/SOURCES.json) and [verification](releases/npm-notices-verification.json).
+
+## Attribute the packaged JavaScript
+
+A byte-for-byte replay of the actual application bundles identified code from `has-flag` and `supports-color`, although npm marks both as development dependencies. The collection now includes their original notices and those for esbuild, Vite and Rolldown, including Rolldown’s original third-party notice. The earlier [36-notice verification](releases/npm-notices-verification.json) keeps its historical scope.
+
+The replay matches all eight application JavaScript/source-map files in `app.asar` and 24 total emitted outputs. Its 402 module records distinguish 105 Folio files, 249 npm source files, 45 original sources embedded in publisher source maps and three generated helpers. Thirty-five packages contribute source/code; three packages are recorded as generators. All 38 package metadata files and all 294 npm source contributions match the checksum-verified original archives. A separate CycloneDX record links each packaged JavaScript/map file to its actual contributing packages. Build tools are recorded separately from runtime dependencies.
+
+See [commands, evidence and scope](MAC_APP_INVENTORY.md#reproduce-and-attribute-application-javascript) and [verification](releases/javascript-bundle-verification.json). These records cover application JavaScript and distributed source maps. They do not finish attribution of vendored code inside npm packages, dynamic runtime discovery, Electron/Chromium, native/compiler components or all redistribution conditions. The composition remains explicitly incomplete.
+
+## Preserve PDF.js component notices
+
+PDF.js’s top-level Apache 2.0 license does not replace the separate terms of its embedded Brotli decoder and generated codec helpers. The development app now includes `Contents/Resources/pdfjs-notices/`: seven complete original license files and four unchanged initial source-comment blocks. These include Brotli’s MIT license, qcms and its wrapper’s MIT terms, OpenJPEG and its wrapper’s BSD terms, the JBIG2 upstream/wrapper terms, and Google, Mozilla, Glyph & Cog and Opera copyright attribution. Folio’s noncommercial terms do not replace any of these grants.
+
+```sh
+python3 scripts/collect-pdfjs-license-materials.py
+python3 scripts/collect-pdfjs-license-materials.py --offline
+```
+
+The [source index](../resources/pdfjs-notices/SOURCES.json) binds the exact npm archive and its integrity value to PDF.js commit `1c8020a7d4e43668ac287a3ecf9a8dbea17e4c56`, identified in both publisher metadata and build headers. All seven inspected original source files match eight entries in the publisher’s original API/worker source maps. Twenty exact-commit files, the original maps, the complete npm archive and copied notices are retained under ignored `artifacts/license-materials/pdfjs/`; no downloaded code runs. The collector preserves complete license files or complete initial comment blocks, including their original spacing, and rejects changed source/text, wrong paths or indices, mismatched publisher metadata and incomplete downloads. The package gate separately rejects omitted, altered, linked or extra notices.
+
+The PDF.js API input and copied minified worker are bound to the same npm archive by the application JavaScript inventory. Source-map associations identify the inspected upstream components; this does not independently reconstruct every byte of each minified component or its native codec build. Folio disables WASM and worker fetching; the codec WASM payloads and fallback scripts are not packaged. See [verification](releases/pdfjs-notices-verification.json) and the compact [retained-material inventory](releases/pdfjs-materials-inventory.json.gz). The existing `lazy-val` and optional canvas original-text gaps, other nested dependencies, native/compiler/TeX components and complete redistribution review remain separate. The public preview-4 installer predates this collection.
+
+## Include Electron and Chromium notices
+
+The current development package now includes Electron's complete original `LICENSE` and `LICENSES.chromium.html` under **Contents → Resources → electron-notices**. The preceding package contained the framework but neither notice file. The new folder also has a source index and a short reading guide. The older public preview-4 installer remains unchanged.
+
+Both notices come from the official [Electron 44.4.5 Apple silicon release](https://github.com/electron/electron/releases/tag/v44.4.5). The 130,418,529-byte ZIP matches its GitHub release-asset digest, the publisher's `SHASUMS256.txt` and the checksum entry inside the exact npm archive pinned by Folio's SHA-512 lock. The framework and both notice files also match the installed Electron distribution byte for byte. Original component terms remain intact; Folio's noncommercial license does not replace them.
+
+The repository keeps lossless gzip copies to avoid storing about 20 MB of plain HTML in Git. The compressed originals total 2,074,746 bytes. A `beforePack` hook expands and validates them offline before electron-builder copies resources. The readable installed notices, source index and guide add 20,116,322 logical bytes; compressed installer size and allocated filesystem size are separate measurements. No upstream code runs during this preparation.
+
+The package verifier requires all four files, their exact lengths and SHA-256 values, and the matching locked Electron version. Missing, altered, linked or unexpected files fail. An actual builder override selecting Electron 44.4.6 is rejected before runtime extraction; the pinned 44.4.5 build succeeds. Four focused controls cover complete copies, tampering/removal/links, corrupted compressed input preserving previous output, and dependency-version or malformed-index rejection. All 411 source tests pass. The actual packaging hook was exercised in a fresh Apple silicon package: all 39 compiled outputs, its ASAR, compiler manifest and all 5,199 earlier physical inventory entries remain identical to the qualified native-preference app. The only additions are the new directory and its four files. See [exact verification](releases/electron-notices-verification.json).
+
+To repeat the upstream check, retain the release ZIP and `SHASUMS256.txt` from the linked release and `electron-44.4.5.tgz` from the npm URL in [the source index](../resources/electron-notices/SOURCES.json), then run:
+
+```sh
+python3 scripts/verify-electron-upstream.py /absolute/path/to/retained-archives
+```
+
+The offline verifier checks the locked npm SHA-512, both publisher checksum entries, complete release members, the framework hash and the lossless notice copies. It reads named regular files without extracting or executing archive entries. Full original archives remain in ignored `artifacts/license-materials/electron-upstream/`; only necessary notices, the source index, tooling and verification are committed.
+
+This repairs a specific notice omission. It does not independently rebuild Electron/Chromium, finish corresponding-source obligations, resolve the remaining compiler/native materials or complete the binary SBOM. Full hosted qualification of the expanded package now passes at `99cbb97`: 411 source tests, 17 compiler integrations, twelve unchanged template images and all eighteen native suites. The [independent hosted verification](releases/mac-electron-notices-hosted.json) checks every retained artifact file and original archive against exact source/package identities. Production signing and the complete redistribution audit remain separate release gates.
+
+## Collect and bundle compiler-font notices
+
+Current development packages include fifteen unchanged original notice files and a source guide in `Folio.app/Contents/Resources/tex-font-notices/`. These cover all **63 font binaries** in the included compiler bundle: Latin Modern, Latin Modern Math, Roboto/Condensed/Slab, Source Sans Pro and Font Awesome 5 Free. Their original terms remain separate from Folio's noncommercial license. The older preview-4 download predates this addition.
+
+The audit maps **111 of the 516 resource files** exactly to original TeX Live distribution archives: the 63 fonts and 48 support files. It reads the actual prepared `bundle.zip`, verifies its runtime-manifest hash, checks every resource against `bundle.lock.json`, and separately verifies the bundle's generated identity marker. The ten TeX Live run/documentation archives match the historical publisher database's byte counts and SHA-512 checksums as well as the reviewed SHA-256 lock.
+
+| Distribution | TeX Live revision | Matched resources |
+| --- | --- | --- |
+| Latin Modern | 61719 | 72 |
+| Latin Modern Math | 36915 | 1 |
+| Roboto | 54512 | 19 |
+| Source Sans Pro | 54892 | 13 |
+| Font Awesome 5 | 59462 | 6 |
+
+The full original GUST, Apache and OFL notices, copyright statements, READMEs and manifests are retained without editing their text. Complete LPPL 1.3c and OFL 1.1 texts accompany the original grants. Font Awesome's upstream 5.15.3 source archive supplies a supplemental publisher notice; its font binaries differ from the matching TeX Live copies and are **not** counted as exact upstream matches. The source guide preserves this distinction. Original version differences between font metadata and distribution documentation are also preserved.
+
+```sh
+python3 scripts/collect-tex-font-materials.py
+python3 scripts/collect-tex-font-materials.py --offline
+python3 scripts/collect-tex-font-materials.py --offline --write-notices
+python3 tests/tex-font-materials.py
+node --import tsx --test tests/tex-font-notices.test.ts
+```
+
+The Python 3.11+ collector uses `resources/tex-font-sources.lock.json`. It retains eleven complete archives (43,011,299 bytes), the original compressed TeX Live package database, selected metadata/notices and the matched-file inventory under ignored `artifacts/license-materials/tex-fonts/`. It reads bounded archive members without extracting paths, executing source code or installing fonts. Downloads use reviewed HTTPS endpoints, exact sizes/digests and deadlines; redirects and corrupt cached inputs fail. `--write-notices` copies only the verified original notice bytes to the tracked app-notice folder. The explanatory README is maintained separately.
+
+The Mac package verifier checks the actual app's notice directory against the reviewed originals and source guide. Missing, altered, linked or unexpected files fail verification. Eight offline collection controls and two notice/package controls cover archive paths, links, collisions, publisher metadata, altered fonts and notice failures. See [verification](releases/tex-font-verification.json) and the [compressed inventory](releases/tex-font-inventory.json.gz).
+
+The exact font-notice package at source `662c411` also passes the full hosted Apple silicon qualification: all sixteen native suites, twelve unchanged template images and final ZIP/DMG app comparisons. The [independent evidence audit](releases/mac-font-notices-hosted-verification.json) checks every retained file and binds the notice hashes to the same physical app inventory. It does not qualify the later resource-notice package or production signing.
+
+This closes the collection and app-copying gap for these font notices. It does not reproduce fonts from editable design sources, approve every redistribution condition or complete the final signed-app SBOM. The separate collection below now maps 402 of the other 405 TeX resource files. The three generated files now have the separate generation evidence below. Individual redistribution conditions, compiler/native dependencies and complete release materials still need review. Retaining full distribution sources and license text is evidence for that review, not an assertion that the overall release audit is complete.
+
+
+## Collect and bundle TeX resource notices
+
+Current development packages also include `Folio.app/Contents/Resources/tex-resource-notices/`: **102 unchanged original material files**, a readable README and `SOURCES.json`. These include copyright/license texts, READMEs, author lists and manifests. Original per-file grants remain in the unchanged `runtime/bundle.zip`. This addition is not present in the older preview-4 download.
+
+`python3 scripts/collect-tex-resource-materials.py --write-notices` collects the sources and refreshes these verified copies. Use Python 3.11 or later; add `--offline` to require previously retained inputs. `resources/tex-resource-sources.lock.json` pins **246 complete archives, totaling 110,489,548 bytes**. Of these, 245 TeX Live run, documentation and editable-source archives match the historical publisher database's size and SHA-512 records; all inputs also have reviewed SHA-256 digests. The other archive is the official Tectonic bundle repository at commit `dfed7aa15e17b9c93bc2606020a98ef32c8da61e`.
+
+The collector verifies **402 non-font resources** against their exact original archive bytes. `latex.ltx` and `l3backend-xetex.def` match Tectonic's upstream patched copies, and `tectonic-format-latex.tex` matches its format entry point. The remaining matches include LaTeX packages, math/graphics support, font metrics and individual hyphenation patterns. They combine with the 111 separately mapped font-family resources for **513 of 516** files. `kanjix.map`, `language.dat` and `pdftex.map` are generated upstream configuration files; they are listed as unmatched by that direct-distribution collector. The separate replay below now verifies their generation inputs and exact output; individual redistribution terms remain under review.
+
+The package catalogue's labels are recorded as provenance, not treated as per-file license decisions. For example, the Italian and Serbian pattern headers differ from their historical catalogue labels. The original `url.sty` header states “version 2 or later”; that wording is retained for review rather than silently changed to a different LPPL version. Supplemental full license texts do not alter any original grant. Full corresponding-source distribution, individual redistribution conditions and the complete signed-app SBOM remain open.
+
+Collection reads bounded archive members without executing source code or extracting archive paths. It rejects corrupt caches, changed publisher records, duplicate mappings, path traversal, archive links and missing resources. Original archives, selected notice/source files, package records and the inventory stay under ignored `artifacts/license-materials/tex-resources/`. The installed source index preserves the source links and hashes; the full 110 MB archive set is not copied into the app or automatically published by this change.
+
+The package gate checks all 102 original files and both guides inside the actual app, rejecting missing, altered, linked or extra files. The new offline controls exercise editable-source checksums, absent catalogue labels, duplicate/overlapping mappings and explicit unresolved coverage; package controls also reject altered source guides. See [verification](releases/tex-resource-verification.json) and [the retained inventory](releases/tex-resource-inventory.json.gz).
+
+
+## Reproduce generated TeX resources
+
+All **516 included TeX resources** now have a verified source trail: the prior collectors match 513 distribution files directly, and this separate tool reproduces the remaining `kanjix.map`, `language.dat` and `pdftex.map` files exactly. This closes file-provenance coverage, not the full license or binary redistribution audit.
+
+Run `python3 scripts/collect-tex-generated-materials.py` using Python 3.11+ and curl, or add `--offline` after the inputs are retained. The lock is `resources/tex-generated-sources.lock.json`. Output stays under ignored `artifacts/license-materials/tex-generated/`; source contents are not executed and the runtime is not modified.
+
+The upstream bundle's indexed `GITHASH` and `SVNREV` identify TeX Live commit `082081a375be008c2e049cd7cf1137314f888b18`, revision 62885. The collector retains the original compressed index and eight selected tar members, validates their exact ranges, tar headers and contents, and checks the bundle's recorded identity against Folio's runtime lock. The `SHA256SUM` entry is Tectonic’s bundle identity, not the raw tar archive’s SHA-256. This tool does **not** download or rehash the entire 2.8 GB bundle.
+
+The original bundle-builder profile and package list select 3,843 TeX Live package records through their dependencies. From those records, the tool reproduces the intermediate `updmap.cfg` exactly. It then reads **374 original map files from 283 packages** and the original language base plus **61 language package records** to regenerate the three included outputs. Every generated byte matches both the retained upstream member and the actual packaged runtime bundle. There are no conflicting font definitions across the selected map files; the tool rejects such ambiguity instead of choosing a definition from the expected output.
+
+This is a reviewed Python replay of the pinned upstream text-generation rules. The historical Linux command name, local date strings and installation path are recorded parameters, because those values appear in generated comments. It is not execution of the original Linux installation, independent recovery of its clock/environment, or a rebuild of font binaries. Seven offline controls cover download bounds/status, corrupt or linked caches, index/tar disagreement, package selection, language directives, preserved PostScript spacing, ambiguous fonts and changed runtime bytes. See [verification](releases/tex-generated-verification.json) and [inventory](releases/tex-generated-inventory.json.gz).
+
+The standalone replay tool and its tests adapt GPL-covered TeX Live generation rules, so those two files explicitly use **GPL-2.0-or-later** and retain upstream attribution. The full GPL version 2 text is already preserved in `resources/tex-resource-notices/pgf.doc--gnu-public-license-2.txt` and is copied into the retained replay materials. They do not import Folio application code and are not packaged in the app. This separate developer-tool license does not change Folio's original application's noncommercial license. Original map/source files keep their own terms; the catalogue labels and successful replay do not approve all 283 packages' redistribution conditions.
+
+The earlier resource collector's installed index and historical reports retain their direct-match scope: they list these three generated files separately. Use this replay record alongside them. Full corresponding-source publication, individual notices and terms, Biber/native/compiler attribution, production signing and the complete app SBOM remain required.
+
 ## Collect compiler source materials
 
 `node scripts/collect-runtime-license-materials.mjs` collects four upstream source archives: Tectonic 0.17.0, its pinned reference-source and HarfBuzz submodules, and Biber 2.17. Their exact commits, archive sizes, SHA-256 digests and selected notice/build files are reviewed in `resources/runtime-license-sources.lock.json`. The script refuses changed compiler versions, corrupt cached archives and oversized downloads. It reads named archive members without extracting filesystem paths or executing upstream code.
@@ -36,7 +154,7 @@ The verified source inventory contains 437 registry crates (82,289,482 archive b
 
 Two crates in the full lockfile still lack verified notice text: `rustls-platform-verifier-android@0.1.1` has no packaged VCS commit metadata, and `seahash@4.1.0` needs its exact-commit upstream notice. The Apple silicon build audit below excludes both from its resolved units and original build log. Their missing notices remain recorded for other targets/features; a declared license string does not supply the missing text. Cargo documents the difference between [license declarations and license files](https://doc.rust-lang.org/cargo/reference/manifest.html#the-license-and-license-file-fields), and the registry's [archive checksum](https://doc.rust-lang.org/cargo/reference/registry-index.html#json-schema).
 
-This inventory deliberately covers the entire upstream lockfile, including development, optional and non-Mac packages. It is **not** the exact dependency graph of the distributed Apple silicon compiler or the final app SBOM. Matching build features and targets to the binary, reviewing workspace and native components, Biber's embedded Perl libraries, TeX/fonts, corresponding-source requirements and the final signed app remain required. Generated archives and notices are not automatically published or bundled into the app. A failure during crate or supplemental-notice collection exits unsuccessfully and records `incomplete-inventory.json`; an older `inventory.json`, if present, remains the last successful collection rather than evidence that the failed attempt completed.
+This inventory deliberately covers the entire upstream lockfile, including development, optional and non-Mac packages. It is **not** the exact dependency graph of the distributed Apple silicon compiler or the final app SBOM. Matching build features and targets to the binary, reviewing workspace and native components, Biber's embedded Perl libraries, TeX/fonts, corresponding-source requirements and the final signed app remain required. Full source archives stay in the collected materials. The selected original texts now have a separate reviewed [Tectonic notice bundle](TECTONIC_NOTICES.md) for development packaging; that bundle does not satisfy every source-distribution obligation. A failure during crate or supplemental-notice collection exits unsuccessfully and records `incomplete-inventory.json`; an older `inventory.json`, if present, remains the last successful collection rather than evidence that the failed attempt completed.
 
 ## Resolve the Apple silicon compiler build graph
 
@@ -151,9 +269,36 @@ python3 tests/biber-autosplit-evidence.py
 
 All 200 paths and complete bytes match, including 187 `.al` files and thirteen `autosplit.ix` files. A separate check compares every output with the prepared runtime and its manifest, checks all thirteen inputs directly against their source archives, and verifies the retained generator. The five original archives total 25,616,032 bytes. All 222 retained files, including the inventory, are identical on replay. Six new offline controls and the sixteen existing CPAN/Unicode controls pass. CI runs the new controls without executing upstream generation.
 
-Combined source/generated coverage is now **3,796 of 3,932 payload files**, leaving **136 explicit gaps**. This is source attribution, not complete license acceptance or a reproducible native rebuild. Remaining files include native modules/libraries, other generated configuration and the Unicode index. Original source terms still apply; no third-party file acquires Folio's noncommercial license through this audit.
+At this AutoSplit milestone, combined source/generated coverage reached **3,796 of 3,932 payload files**, leaving **136 explicit gaps**. The next audit below adds nine more exact matches. This is source attribution, not complete license acceptance or a reproducible native rebuild. Remaining files include native modules/libraries, other generated configuration and the Unicode index. Original source terms still apply; no third-party file acquires Folio's noncommercial license through this audit.
 
 The collector retains full source archives, unmodified inputs/generator, exact outputs and hashed records under ignored `artifacts/license-materials/biber-autosplit/`. The [compressed match list](releases/biber-autosplit-matches.json.gz) and [verification record](releases/biber-autosplit-verification.json) provide compact public evidence. Failed runs preserve previous successful inventory and write a separate failure marker; a successful rerun clears that marker. No app code, runtime bytes, installer or existing release asset changes.
+
+## Reproduce other Biber generated text
+
+`python3 scripts/collect-biber-generated-evidence.py` reproduces nine more bundled text files using pinned, unchanged upstream generators. It requires Python 3.11+, macOS, the prepared Biber runtime and the existing foundation/CPAN source caches. It runs offline; no source downloads, app changes or native builds occur.
+
+| Original source | Generated output | Exact payload matches |
+| --- | --- | --- |
+| Perl 5.32.1 | `DynaLoader.pm`, `lib.pm`, `Config_git.pl` | Five files, including separate loader copies |
+| Lingua::Translit 0.28 | `Lingua/Translit/Tables.pm` | One file |
+| PAR::Packer 1.055 | Entry script, `MANIFEST`, `META.yml` | Three files |
+
+The Perl and transliteration generators run unchanged with their original inputs. For PAR packaging, a retained harness calls four verbatim upstream methods with reviewed options and an in-memory ZIP substitute. Its member names come from the independently parsed embedded ZIP; the two repeated names must match the existing duplicate lock. It does not copy the generated manifest as an input. This reconstructs matching text, not the complete original packaging process.
+
+The Mac's system Perl is 5.34.1, so its support modules differ from the original 5.32.1 build. The XSLoader generator produces a different loader-call argument, even after the reviewed PAR compatibility patch. Both resulting targets remain unmatched; the collector retains that difference without changing the source or normalizing output. Only complete byte matches count.
+
+```sh
+python3 scripts/collect-biber-generated-evidence.py
+python3 tests/biber-generated-evidence.py
+```
+
+The existing macOS generation sandbox denies networking and permits writes only in a unique temporary run directory and `/dev/null`. Allowed-write, denied-write and denied-network controls must pass first. Reads remain permitted. The cases share a 180-second generation deadline; timeouts kill and reap the process group. Input files are limited to sixteen and 4 MiB per case; each case accepts up to eight specified regular output files of at most 4 MiB each. These are audit bounds, not full memory or CPU quotas.
+
+Independent checks compare all nine matches with prepared runtime files and their manifest hashes, verify the nine selected inputs against the complete original source archives, and compare the three packaging outputs with the embedded ZIP. The three retained source archives total 18,355,927 bytes. All 31 retained files, including the inventory, are identical on replay. Eight new controls and sixteen related CPAN/Unicode controls pass. CI runs those controls without running upstream generators.
+
+Combined source/generated attribution now covers **3,805 of 3,932 payload files**, leaving **127 explicit gaps**. Full source archives, original inputs, the harness, logs and generated candidates are retained under ignored `artifacts/license-materials/biber-generated/`. A failed run writes a separate failure marker; the older successful inventory remains a record of its earlier run. Compact public evidence is in the [match list](releases/biber-generated-matches.json.gz) and [verification record](releases/biber-generated-verification.json).
+
+This is source attribution only. Other generated files, native source/build mapping, original third-party terms, complete redistribution review and the signed-app SBOM remain open. The collector does not change application code, runtime files, installers or previously published assets.
 
 ## Collect Biber native-library materials
 
@@ -190,7 +335,28 @@ Collection reads bounded archive entries without extracting archive paths or exe
 
 An independent comparison checks all fourteen identities/dependency lists with Apple's `otool`, all arm64 slices with `lipo`, eight exported version variables with `nm` and `otool`, and all 58 material files against their original archives. Seven new offline controls and eight related foundation controls pass. Source CI runs the controls without downloading or executing the native libraries. See the [compressed inventory](releases/biber-native-inventory.json.gz) and [verification record](releases/biber-native-verification.json).
 
-This is complementary version/source evidence, not a native binary reproduction. Source/generated byte coverage remains **3,796 of 3,932 payload files**, with **136 gaps**, including these fourteen libraries. Exact vendor builds, the unresolved versions above, native Perl modules, other generated files, complete redistribution review and the final signed-app SBOM remain open. No app, runtime, installer or existing release asset changes.
+This is complementary version/source evidence, not a native binary reproduction. This native-library collection adds no byte matches. Including the separate text-generation audit above, source/generated byte coverage is **3,805 of 3,932 payload files**, with **127 gaps**, including these fourteen libraries. Exact vendor builds, the unresolved versions above, native Perl modules, other generated files, complete redistribution review and the final signed-app SBOM remain open. No app, runtime, installer or existing release asset changes.
+
+## Collect Biber compiled-module materials
+
+`python3 scripts/collect-biber-module-materials.py` inspects all **99 compiled Perl-module files**, representing **88 distinct binaries**, in the prepared Biber ZIP and loader. It reads their arm64 Mach-O entry points and library references without loading or executing them. Every binary and prepared cache file must match the locked runtime.
+
+For each module, the collector compares its paired Perl file with complete original source bytes, including only the previously reviewed PAR compatibility changes. Full module names are required: `DBI` cannot be associated with `Log::Log4perl::Appender::DBI` merely because their filenames end alike. It then verifies original XS `MODULE` declarations against the exported entry points where available.
+
+The collector retains **41 complete source archives (38,610,746 bytes)** and **352 original source, notice and build files**. Seventy-eight distinct modules have matching original XS declarations. Ten Encode modules use generated XS code; their matching Perl files and complete source archives are retained, but the generated XS inputs still need review. Six of those modules have identical paired Perl files in both Perl 5.32.1 and Encode 3.16. Both candidates remain explicit; matching shared text does not select a native build version.
+
+The dependency report preserves the original library paths and lists bundled files with matching basenames. Those candidates do not prove dynamic-loader resolution. Two non-system references have no bundled candidate: `/opt/local/lib/libX11.6.dylib` and `/opt/local/lib/mysql57/mysql/libmysqlclient.20.dylib`. This static finding does not establish whether an ordinary Biber operation loads the affected optional modules. Their dependency and redistribution treatment remains open.
+
+This command is offline and requires the prepared runtime plus the previously collected foundation and CPAN source caches:
+
+```sh
+python3 scripts/collect-biber-module-materials.py
+python3 tests/biber-module-materials.py
+```
+
+`resources/biber-module-sources.lock.json` records complete module identities, source associations and original declarations. Output stays under ignored `artifacts/license-materials/biber-modules/`. Nine offline controls cover malformed native entry points, missing or changed modules, full namespace matching, exact source declarations, approved packager changes, ambiguous candidates and unresolved library references. The existing seven native-library controls also pass. An independent check compares all 88 binaries with Apple's `nm` and `otool`, checks all 352 selected materials directly against their original archives, and confirms the earlier fourteen-library inspection is unchanged. See [verification](releases/biber-module-verification.json) and [inventory](releases/biber-module-inventory.json.gz).
+
+These are source associations, not byte-identical native rebuilds or proof of vendor patches. The previous exact source/generated-byte coverage remains **3,805 of 3,932 payload files**, with **127 gaps**. Static or vendored native dependencies, generated inputs, per-file license obligations, full corresponding-source publication, production signing and the final app SBOM remain required. No application code, runtime bytes, installer or existing release asset changes.
 
 ## Collect native build-port sources and notices
 
@@ -213,3 +379,15 @@ This is a source inventory of selected installed **build ports**, including a bu
 The [compiler build provenance check](COMPILER_PROVENANCE.md) connects the bundled Tectonic executable byte for byte to its retained original upstream build artifact. It also verifies the build's 20 installed native port versions and preserves 139 recipe/patch/manifest and root notice files. The native collector above now retains 11 payload archives and 33 notices. Final linkage and remaining materials still need review; installed build dependencies are not automatically shipped libraries.
 
 The root LICENSE is copied without modifications from the [official PolyForm license repository at tag 1.0.0](https://github.com/polyformproject/polyform-licenses/blob/1.0.0/PolyForm-Noncommercial-1.0.0.md). The original project copyright notice is separate in NOTICE. The [PolyForm project](https://polyformproject.org/licenses/noncommercial/1.0.0) publishes the same standard terms.
+
+
+## Bundle the verified Tectonic notices
+
+The development app now carries 657 notice references as 255 unchanged original texts, with a component guide and exact source index. The source collector rechecks 319 original archives, the selected Rust build graph and the retained original bytes. The packaging hook expands the lossless originals offline, binds the result to compiler/source pins, and the final package gate rejects incomplete or altered notice sets. See [coverage and reproduction](TECTONIC_NOTICES.md). This includes explicitly labeled build/toolchain supersets; Biber/Perl, individual grants, complete corresponding-source distribution and the final app SBOM remain separate. Historical installers are unchanged.
+
+
+## Include Biber and Perl original notice documents
+
+Development packages now include 414 unchanged original documents representing 441 source references across Biber, Perl/PAR, 123 CPAN distributions and nine native-library source archives. The offline collector rechecks all 136 original archives and published material records. Complete source modules and READMEs preserve embedded license statements for the 44 distributions without a separate notice file. The app carries these texts, a component guide and exact source index in `Contents/Resources/biber-notices/`.
+
+See [coverage, reproduction and limits](BIBER_NOTICES.md). The shared Biber/Tectonic packaging guard binds each collection to its own compiler identity and source locks. This closes the packaging gap for the collected documents, not the remaining individual grant review, exact native source/build ambiguities, corresponding-source publication or final SBOM. Historical installers retain their original contents.

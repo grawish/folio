@@ -2,6 +2,8 @@ import { _electron as electron, expect } from '@playwright/test';
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { unzipSync } from 'fflate';
+import { createHash, randomUUID } from 'node:crypto';
+import { tsImport } from 'tsx/esm/api';
 
 const root = await fs.mkdtemp(path.resolve('test-results/runtime-'));
 const data = path.join(root, 'data'),
@@ -178,6 +180,142 @@ try {
     'PASS: damaged compiler blocks builds; Settings repairs it offline, keeps source and pin, and rebuilds a real PDF.',
   );
 
+  // A tiny, inert old compiler lives only in this disposable profile. The
+  // current compiler continues to be the real packaged engine used above.
+  const { runtimePin } = await tsImport('../electron/core/runtime.ts', import.meta.url);
+  const oldManifest = {
+    schemaVersion: 1,
+    version: '0.16.0',
+    bundle: 'storage-demo',
+    platform: 'darwin-arm64',
+    files: {
+      tectonic: createHash('sha256').update('Inert test engine').digest('hex'),
+      'bundle.zip': createHash('sha256').update('Inert test resources').digest('hex'),
+    },
+  };
+  const oldPin = runtimePin(oldManifest),
+    oldGeneration = randomUUID();
+  const oldRoot = path.join(data, 'runtimes', oldPin.id),
+    oldCopy = path.join(oldRoot, 'copies', oldGeneration);
+  await fs.mkdir(path.join(oldCopy, 'runtime'), { recursive: true });
+  await fs.writeFile(path.join(oldCopy, 'runtime/tectonic'), 'Inert test engine');
+  await fs.writeFile(path.join(oldCopy, 'runtime/bundle.zip'), 'Inert test resources');
+  await fs.writeFile(path.join(oldCopy, 'runtime/manifest.json'), JSON.stringify(oldManifest));
+  await fs.writeFile(path.join(oldCopy, 'ready.json'), JSON.stringify({ pin: oldPin }));
+  await fs.writeFile(
+    path.join(oldRoot, 'active.json'),
+    JSON.stringify({ generation: oldGeneration }),
+  );
+  const savedBeforeStorage = await fs.readFile(manifestPath);
+  const sourceBeforeStorage = await fs.readFile(path.join(folder, 'main.tex'));
+  await settings();
+  await page.getByRole('button', { name: 'Storage', exact: true }).click();
+  const storageStarted = Date.now();
+  // Each action rechecks native storage and refreshes the inventory. These
+  // operations have their own bounded completion window, independent of the
+  // short default matcher timeout used for immediate UI state.
+  const storageActionWait = { timeout: 60_000 };
+  const includedRow = page.locator(`[data-compiler-key="${status.pin.id}"]`);
+  const oldRow = page.locator(`[data-compiler-key="${oldPin.id}"]`);
+  await expect(includedRow).toContainText('Included with this Folio version', { timeout: 60_000 });
+  const storageReviewMs = Date.now() - storageStarted;
+  await expect(includedRow.getByRole('button', { name: 'Remove…', exact: true })).toBeDisabled();
+  await expect(oldRow.getByRole('button', { name: 'Remove…', exact: true })).toBeEnabled(
+    storageActionWait,
+  );
+  const compilerStorageBefore = await page.evaluate(() => window.folio.compilerStorage());
+  await page.screenshot({ path: path.join(root, 'compiler-storage.png') });
+  const storageCancellationDelayMs = 6000;
+  await app.evaluate(({ dialog }, delayMs) => {
+    globalThis.folioOriginalMessageBox = dialog.showMessageBox;
+    dialog.showMessageBox = async (_window, options) => {
+      globalThis.folioStorageConfirmation = options;
+      await new Promise((resolve) => setTimeout(resolve, delayMs));
+      return { response: 0, checkboxChecked: false };
+    };
+  }, storageCancellationDelayMs);
+  const storageCancellationStarted = Date.now();
+  await oldRow.getByRole('button', { name: 'Remove…', exact: true }).click();
+  await expect(oldRow.getByRole('button', { name: 'Remove…', exact: true })).toBeEnabled(
+    storageActionWait,
+  );
+  const storageCancellationMs = Date.now() - storageCancellationStarted;
+  await fs.access(oldRoot);
+  const confirmation = await app.evaluate(() => globalThis.folioStorageConfirmation);
+  expect(confirmation.defaultId).toBe(0);
+  expect(confirmation.cancelId).toBe(0);
+  expect(confirmation.detail).toContain(oldPin.id);
+  expect(confirmation.detail).toContain('Other saved resumes may need this exact compiler');
+  await app.evaluate(({ dialog }) => {
+    dialog.showMessageBox = () =>
+      new Promise((resolve) => {
+        globalThis.folioResolveStorageConfirmation = resolve;
+      });
+  });
+  await oldRow.getByRole('button', { name: 'Remove…', exact: true }).click();
+  await expect
+    .poll(
+      () => app.evaluate(() => typeof globalThis.folioResolveStorageConfirmation),
+      storageActionWait,
+    )
+    .toBe('function');
+  await expect(page.getByRole('button', { name: 'Done', exact: true })).toBeDisabled();
+  await expect(page.getByRole('button', { name: 'General', exact: true })).toBeDisabled();
+  await page.keyboard.press('Escape');
+  await app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0].close());
+  await expect(page.getByRole('dialog', { name: 'Settings', exact: true })).toBeVisible();
+  await app.evaluate(() =>
+    globalThis.folioResolveStorageConfirmation({ response: 0, checkboxChecked: false }),
+  );
+  await expect(page.getByRole('button', { name: 'Done', exact: true })).toBeEnabled(
+    storageActionWait,
+  );
+  // Change the reviewed files while confirmation is pending; native IPC must
+  // reject the stale token instead of accepting an old renderer decision.
+  await app.evaluate(
+    ({ dialog }, filename) => {
+      dialog.showMessageBox = async () => {
+        await process
+          .getBuiltinModule('node:fs')
+          .promises.appendFile(filename, 'Changed during review');
+        return { response: 1, checkboxChecked: false };
+      };
+    },
+    path.join(oldCopy, 'runtime/bundle.zip'),
+  );
+  await oldRow.getByRole('button', { name: 'Remove…', exact: true }).click();
+  await expect(page.getByRole('alert')).toContainText('Compiler files changed', storageActionWait);
+  await fs.access(oldRoot);
+  // A user confirmation and the subsequent inventory refresh are asynchronous.
+  // Keep the confirmation open beyond Playwright's default five-second matcher
+  // timeout, then require the real removal and refreshed UI to finish.
+  const storageConfirmationDelayMs = 6000;
+  await app.evaluate(({ dialog }, delayMs) => {
+    dialog.showMessageBox = async () => {
+      await new Promise((resolve) => setTimeout(resolve, delayMs));
+      return { response: 1, checkboxChecked: false };
+    };
+  }, storageConfirmationDelayMs);
+  await oldRow.getByRole('button', { name: 'Remove…', exact: true }).click();
+  await expect(oldRow).toHaveCount(0, storageActionWait);
+  await expect(page.getByRole('status')).toContainText('Compiler files removed');
+  await expect(fs.access(oldRoot)).rejects.toThrow();
+  await expect(includedRow.getByRole('button', { name: 'Remove…', exact: true })).toBeDisabled();
+  const compilerStorageAfter = await page.evaluate(() => window.folio.compilerStorage());
+  expect(compilerStorageAfter.bytes).toBeLessThan(compilerStorageBefore.bytes);
+  expect(await fs.readFile(manifestPath)).toEqual(savedBeforeStorage);
+  expect(await fs.readFile(path.join(folder, 'main.tex'))).toEqual(sourceBeforeStorage);
+  await page.screenshot({ path: path.join(root, 'compiler-storage-removed.png') });
+  await app.evaluate(({ dialog }) => {
+    dialog.showMessageBox = globalThis.folioOriginalMessageBox;
+  });
+  await page.getByRole('button', { name: 'Done', exact: true }).click();
+  await page.getByRole('button', { name: 'Compile', exact: true }).click();
+  await page.getByText('Up to date', { exact: true }).waitFor({ timeout: 60_000 });
+  console.log(
+    'PASS: compiler storage protects the included compiler, cancels removal, rejects changed files, removes an old version and preserves source/pin/PDF building.',
+  );
+
   const zip = path.join(root, 'source.zip');
   await app.evaluate(({ dialog }, filePath) => {
     dialog.showSaveDialog = async () => ({ canceled: false, filePath });
@@ -309,6 +447,20 @@ try {
         editingReadyMs,
         earlySave: true,
         retainedDraft: true,
+        compilerStorage: {
+          storageReviewMs,
+          storageConfirmationDelayMs,
+          storageCancellationDelayMs,
+          storageCancellationMs,
+          before: compilerStorageBefore,
+          after: compilerStorageAfter,
+          cancelledRemoval: true,
+          pendingConfirmationPreventsClose: true,
+          changedDuringConfirmationRejected: true,
+          sourceAndPinPreserved: true,
+          realCompilerStillBuilds: true,
+          confirmation: 'Native dialog call intercepted for deterministic choices',
+        },
       },
       null,
       2,
