@@ -19,6 +19,7 @@ Read only what the task needs:
 - Temporary compiler files after a crash, automatic cleanup and preserved unknown folders: [build recovery](references/BUILD_RECOVERY.md).
 - Interrupted ZIP copies and keeping outside edits: [recover-an-import](references/recover-an-import.md).
 - TeX edits, local font files, search, diagnostics, page navigation and viewer limits: [editor-and-pdf](references/editor-and-pdf.md).
+- Git setup, saved-file staging, commits, branches and the distinction from PDF History: [git-history](references/git-history.md).
 - Appearance, panes, privacy, reviewable support ZIPs, help, compiler repair/comparison: [settings-and-compiler](references/settings-and-compiler.md).
 - Pack import, downloads, offline retry and explicit compiler selection: [resource-packs](references/resource-packs.md). The current source build includes the public table-pack publisher and catalog. Keep final signed-installer status separate from source/native pack checks.
 - App update channels, checks and the manual-download fallback: [app-updates](references/app-updates.md). The source has the Settings and authenticated updater implementation; the public unsigned preview cannot update itself, and the production publisher is not configured. For release engineering use [app update implementation](references/APP_UPDATES.md).

@@ -1,0 +1,97 @@
+{
+  "verifiedAt": "2026-09-28T05:30:20.305164+00:00",
+  "hostedFailures": [
+    {
+      "runner": "macos-14",
+      "runId": 36378982229,
+      "url": "https://github.com/grawish/folio/actions/runs/36378982229",
+      "conclusion": "failure",
+      "source": "d042c50356eb8644e3adf5db473eb515b0a18186",
+      "appAsarSha256": "52a2d038ad90da72682ccc05ba4aab688ce471a1609011312f48f307d4eefd4f",
+      "artifactId": 10953095051,
+      "artifactDigest": "sha256:58f50d6a87c0e47d68f6c0680f405e7cc121569ee85cdffbddfc4e71ff331419",
+      "completedNativeSuites": 14,
+      "failedSuite": "recovery-writes"
+    },
+    {
+      "runner": "macos-27",
+      "runId": 36378984198,
+      "url": "https://github.com/grawish/folio/actions/runs/36378984198",
+      "conclusion": "failure",
+      "source": "d042c50356eb8644e3adf5db473eb515b0a18186",
+      "appAsarSha256": "52a2d038ad90da72682ccc05ba4aab688ce471a1609011312f48f307d4eefd4f",
+      "artifactId": 10952149796,
+      "artifactDigest": "sha256:ef6eecf79a3932ad92713a24b121aa50ebe779a84c361e2d5fe725dd67b85f4a",
+      "completedNativeSuites": 15,
+      "failedSuite": "workspace"
+    }
+  ],
+  "findings": {
+    "recovery": "The admission test counted 97 rejections rather than 96. The prior harness read the renamed recovery file without waiting for the native durability acknowledgment. One earlier operation occupying a slot is a hypothesis, not directly captured in this artifact. The fix waits for a real FIFO recovery acknowledgment before holding the next write; the exact four accepted/96 rejected assertion is unchanged. Failed future attempts retain individual outcomes.",
+    "workspace": "The test expected ArrowRight from Code to focus Chat, but the merged workspace also has a Git tab. The fixed harness follows all three tabs, tests wrapping/Home/End/Tab/Shift-Tab, and checks their panels. Code inspection additionally found missing target IDs and tabpanel semantics on Git; all five Git root states now expose the proper panel.",
+    "validationStatus": "Source CI passes at 0bee271; fresh hosted runs 36381748745 and 36381751031 are in progress. These failures do not establish complete release qualification."
+  },
+  "fixSource": "0bee2713cff6eed7872984f73229fec7ef722ff3",
+  "archive": {
+    "path": "docs/performance/editor-integrated-hosted-failures.tar.gz",
+    "bytes": 163717,
+    "sha256": "b2ed756d8e53c3f193047ff9f4e1f3401bdaa0f9e0bb851cccf1e4ab0ee160a1",
+    "files": [
+      {
+        "path": "macos-14/failed.log",
+        "bytes": 4420,
+        "sha256": "5419e1be5db78c6b4b97868d6adaf36b6c66e91f24a8d2340f812c6640a16da0"
+      },
+      {
+        "path": "macos-14/release/native-tests.json",
+        "bytes": 7148,
+        "sha256": "1b4990e95d9d09b8307b1f654076674bbcf42b2f5d879cd8e337dd6a5c79a243"
+      },
+      {
+        "path": "macos-14/test-results/recovery-writes-wYrKIf/failure.png",
+        "bytes": 67027,
+        "sha256": "8844d37e57f479685c94ac3e96fa91506c8851d6bd1ccf2c8de85b18417dedc6"
+      },
+      {
+        "path": "macos-14/test-results/recovery-writes-wYrKIf/result.json",
+        "bytes": 2675,
+        "sha256": "29e89694778b7a0b934e997c277404c5499c5689169ff5a425b0720ea0afe69a"
+      },
+      {
+        "path": "macos-14/test-results/release-recovery-writes-final.log",
+        "bytes": 1038,
+        "sha256": "70b97dbcdebe8f9c81c4af55fef29d49ca105d8c56774bae3dd8768bb1dfb180"
+      },
+      {
+        "path": "macos-27/failed.log",
+        "bytes": 4582,
+        "sha256": "709fb81bb9bbce5bef07906f768872dd9fb40fe3d86d0fddfd88d3e3cdaab7c0"
+      },
+      {
+        "path": "macos-27/release/native-tests.json",
+        "bytes": 7580,
+        "sha256": "991851c5ca72711968798cb6ef2c3076c6ee58a154527770cdf01b86fc41e5a9"
+      },
+      {
+        "path": "macos-27/test-results/recovery-writes-eQbIVv/result.json",
+        "bytes": 2232,
+        "sha256": "ed0e23b337d8d0d886276866f3c933f0552ead80d4f526595af1adc2262dc8f4"
+      },
+      {
+        "path": "macos-27/test-results/release-recovery-writes-final.log",
+        "bytes": 197,
+        "sha256": "bdcbac24c951b277b9d2b33beeaa21b5c31217a29bb8704360f3adbf3a8c8b90"
+      },
+      {
+        "path": "macos-27/test-results/release-workspace-final.log",
+        "bytes": 2341,
+        "sha256": "8089259bf962088040704218d6d67b3283722d175a5d692fd98e3112b44489c6"
+      },
+      {
+        "path": "macos-27/test-results/workspace-C83RNs/failure.png",
+        "bytes": 98440,
+        "sha256": "3b9cfc0c0dc1f87f07344cc2673052ccf4beea4b0e9801c57d91429045ed48db"
+      }
+    ]
+  }
+}

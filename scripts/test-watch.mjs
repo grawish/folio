@@ -67,8 +67,28 @@ try {
   await expect(page.locator('.preview-pane .textLayer')).toContainText('Baseline Candidate', {
     timeout: 60_000,
   });
+  // Reload before opening Code even once: its state must track outside changes
+  // without constructing a view, including the undo record for the replacement.
+  await expect(page.locator('.cm-editor')).toHaveCount(0);
+  await fs.writeFile(
+    path.join(directory, 'main.tex'),
+    source.replace('Baseline Candidate', 'Hidden Disk Candidate'),
+  );
+  await expect(notice()).toBeVisible();
+  await review();
+  await page.getByRole('button', { name: 'Reload source from disk', exact: true }).click();
+  await expect(notice()).toHaveCount(0);
+  await expect(page.locator('.cm-editor')).toHaveCount(0);
   await code();
   await page.getByRole('checkbox', { name: 'Auto-compile', exact: true }).uncheck();
+  await expect(editor()).toContainText('Hidden Disk Candidate');
+  await editor().press('ControlOrMeta+z');
+  await expect(editor()).toContainText('Baseline Candidate');
+  await editor().press('ControlOrMeta+Shift+z');
+  await expect(editor()).toContainText('Hidden Disk Candidate');
+  console.log(
+    'PASS: source reloads in Chat before Code is opened; its first editor view preserves undo/redo.',
+  );
   await editor().fill(source.replace('Baseline Candidate', 'Editor Candidate'));
   await page
     .getByRole('navigation', { name: 'Project files' })
@@ -243,6 +263,14 @@ try {
     'PASS: changed project data stays visible and is never silently acknowledged. No renderer errors.',
   );
   console.log(`Evidence: ${root}`);
+} catch (error) {
+  await page?.screenshot({ path: path.join(root, 'failure.png') }).catch(() => {});
+  await fs.writeFile(
+    path.join(root, 'result.json'),
+    JSON.stringify({ passed: false, error: error.message, errors }, null, 2),
+  );
+  console.error(`Evidence: ${root}`);
+  throw error;
 } finally {
   await app?.evaluate(({ app }) => app.exit(0)).catch(() => {});
   await app?.close().catch(() => {});

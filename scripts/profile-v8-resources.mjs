@@ -10,7 +10,10 @@ import { captureRendererRetention } from './capture-renderer-retention.mjs';
 const { profileStorage } = await tsImport('./profile-directory-storage.ts', import.meta.url);
 
 const [executableArg, seedArg, cycleArg = '10', diagnosticArg] = process.argv.slice(2);
-const retention = ['--retention', '--retention-paste'].includes(diagnosticArg);
+const disposedEditor = diagnosticArg === '--retention-disposed-editor';
+const retention = ['--retention', '--retention-paste', '--retention-disposed-editor'].includes(
+  diagnosticArg,
+);
 const pasteInput = diagnosticArg === '--retention-paste';
 const cycles = Number(cycleArg);
 if (
@@ -25,7 +28,7 @@ if (
   cycles > 20
 )
   throw new Error(
-    'Provide a packaged Folio executable, a completed synthetic process-profile directory and 1–20 cycles, optionally followed by --retention or --retention-paste.',
+    'Provide a packaged Folio executable, a completed synthetic process-profile directory and 1–20 cycles, optionally followed by --retention, --retention-paste or --retention-disposed-editor.',
   );
 const executablePath = path.resolve(executableArg),
   seedRoot = path.resolve(seedArg);
@@ -73,7 +76,11 @@ const copied = await profileStorage(dataRoot);
 expect(copied.entries).toEqual(before.entries);
 expect(await manifest(dataRoot, copied.entries)).toBe(seedHash);
 const asar = path.resolve(path.dirname(executablePath), '../Resources/app.asar');
-expect(await hash(asar)).toBe(seed.appAsarSha256);
+const appAsarSha256 = await hash(asar);
+// A changed application is allowed only in the explicit lifecycle experiment.
+// Ordinary and paste-control runs retain the historical exact-app requirement.
+if (disposedEditor) expect(appAsarSha256).not.toBe(seed.appAsarSha256);
+else expect(appAsarSha256).toBe(seed.appAsarSha256);
 const runtimeManifest = path.resolve(path.dirname(asar), 'runtime/manifest.json');
 expect(await hash(runtimeManifest)).toBe(seed.runtimeManifestSha256);
 const scripts = [
@@ -88,9 +95,12 @@ const report = {
   startedAt: new Date().toISOString(),
   sourceCommit: execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(),
   scripts: Object.fromEntries(await Promise.all(scripts.map(async (f) => [f, await hash(f)]))),
-  appAsarSha256: seed.appAsarSha256,
+  appAsarSha256,
+  applicationMode: disposedEditor ? 'changed app with disposed Chat editor' : 'unchanged seed app',
   runtimeManifestSha256: seed.runtimeManifestSha256,
   seed: {
+    appAsarSha256: seed.appAsarSha256,
+    runtimeManifestSha256: seed.runtimeManifestSha256,
     report: path.join(seedRoot, 'measurements.json'),
     reportSha256: await hash(path.join(seedRoot, 'measurements.json')),
     profileInventorySha256: seedHash,
@@ -313,6 +323,7 @@ try {
       session: rendererSession,
       root,
       cycles,
+      editorLifecycle: disposedEditor ? 'disposed' : 'mounted',
     });
   await rendererSession.send('Profiler.disable');
   await rendererSession.detach();

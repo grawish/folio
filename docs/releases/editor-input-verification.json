@@ -1,0 +1,387 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-28T04:26:42.705542+00:00",
+  "harnessCommitContainingExactRunBytes": "cb92308a33813a46f1cfd50fa9bd7ad8a622ff3c",
+  "harness": {
+    "path": "scripts/test-editor-input.mjs",
+    "bytes": 12322,
+    "sha256": "942ef220e4f015d567e32412ff1cb0b25fd8d289115011625e027cfe4c4bf092"
+  },
+  "checkoutHeadAtRun": "aed7933f0c7bb5d174165dd71ebb1c7b1e5119e1",
+  "provenanceNote": "The harness was committed after these runs. Each run copied its own source before launching and checked its hash again at completion. Both final snapshots match the committed file byte for byte.",
+  "sameInputsAndExpectedSources": true,
+  "allTenCasesPass": true,
+  "allCasesUndoAndRedoInOneStep": true,
+  "actualRecoveryFilesMatchExpectedFinalSource": true,
+  "bothFinalVersionSourceFilesMatch": true,
+  "bothFinalPdfsIndependentlyParsedAndMatch": true,
+  "explicitGcRequested": false,
+  "runs": [
+    {
+      "editorLifecycle": "disposed",
+      "result": {
+        "path": "/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/editor-input-XdRT7Y/result.json",
+        "bytes": 45600,
+        "sha256": "aef5d87f46173695b2afb69e6535cefc76fb49b969309b650191015538037740"
+      },
+      "harnessSnapshot": {
+        "path": "/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/editor-input-XdRT7Y/harness.mjs",
+        "bytes": 12322,
+        "sha256": "942ef220e4f015d567e32412ff1cb0b25fd8d289115011625e027cfe4c4bf092"
+      },
+      "appAsarSha256": "2cd68ead966a0701c11b74727504220ee039534cf50d9226991627a3a6d66687",
+      "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+      "host": {
+        "platform": "darwin",
+        "arch": "arm64",
+        "os": "27.0.0",
+        "cpu": "Apple M4 Pro",
+        "node": "v24.21.0"
+      },
+      "applicationVersions": {
+        "node": "24.21.0",
+        "acorn": "8.18.0",
+        "ada": "4.0.0",
+        "amaro": "1.1.11",
+        "ares": "1.34.8",
+        "brotli": "1.2.0",
+        "cldr": "48.0",
+        "icu": "78.2",
+        "llhttp": "9.4.3",
+        "merve": "1.2.2",
+        "modules": "149",
+        "napi": "10",
+        "nbytes": "0.1.4",
+        "ncrypto": "0.0.1",
+        "nghttp2": "1.70.0",
+        "nghttp3": "",
+        "ngtcp2": "",
+        "openssl": "0.0.0",
+        "simdjson": "4.6.7",
+        "simdutf": "7.7.0",
+        "sqlite": "3.53.4",
+        "tz": "2025c",
+        "undici": "7.29.1",
+        "unicode": "17.0",
+        "uv": "1.52.1",
+        "uvwasi": "0.0.23",
+        "v8": "15.2.124.28-electron.0",
+        "zlib": "1.3.2.1-motley",
+        "zstd": "1.6.0",
+        "electron": "44.4.5",
+        "chrome": "152.0.7977.130"
+      },
+      "cases": [
+        {
+          "name": "ordinary character keys",
+          "initial": "\\documentclass{article}\n\\begin{document}\nEditor input fixture.\n\\end{document}\n% ordinary character keys: ",
+          "final": "\\documentclass{article}\n\\begin{document}\nEditor input fixture.\n\\end{document}\n% ordinary character keys: alpha beta gamma",
+          "sourceSha256": "88e62eb98c096e6935a610e18a7af870481ea9156a05ebcc251b1e685d658916",
+          "undos": 1,
+          "eventCounts": {
+            "keydown": 21,
+            "keyup": 21,
+            "input": 16,
+            "compositionstart": 0,
+            "compositionupdate": 0,
+            "compositionend": 0
+          },
+          "compositionEndTrustFlags": []
+        },
+        {
+          "name": "committed composition",
+          "initial": "\\documentclass{article}\n\\begin{document}\nEditor input fixture.\n\\end{document}\n% committed composition: ",
+          "final": "\\documentclass{article}\n\\begin{document}\nEditor input fixture.\n\\end{document}\n% committed composition: \u65e5\u672c\u8a9e",
+          "sourceSha256": "ea66fb4690c6cd7564d2eb5930cc309a59c165f8763fc392920b10500e15c77e",
+          "undos": 1,
+          "eventCounts": {
+            "keydown": 6,
+            "keyup": 5,
+            "input": 3,
+            "compositionstart": 1,
+            "compositionupdate": 3,
+            "compositionend": 1
+          },
+          "compositionEndTrustFlags": [
+            false
+          ]
+        },
+        {
+          "name": "composition interrupted by Chat",
+          "initial": "\\documentclass{article}\n\\begin{document}\nEditor input fixture.\n\\end{document}\n% composition interrupted by Chat: ",
+          "final": "\\documentclass{article}\n\\begin{document}\nEditor input fixture.\n\\end{document}\n% composition interrupted by Chat: \u6771\u4eac",
+          "sourceSha256": "4d3d54d022efc411520bf21bb9c25ef7e7ce14a0d644eaf8ab80da03a1861dbd",
+          "undos": 1,
+          "eventCounts": {
+            "keydown": 5,
+            "keyup": 5,
+            "input": 2,
+            "compositionstart": 1,
+            "compositionupdate": 2,
+            "compositionend": 1
+          },
+          "compositionEndTrustFlags": [
+            false
+          ]
+        },
+        {
+          "name": "cancelled composition",
+          "initial": "\\documentclass{article}\n\\begin{document}\nEditor input fixture.\n\\end{document}\n% cancelled composition: ",
+          "final": "\\documentclass{article}\n\\begin{document}\nEditor input fixture.\n\\end{document}\n% cancelled composition: kept",
+          "sourceSha256": "834b3fdd2018af2dc0771b5a8b6e460d7fae95a51bd08be37b2acf4630c4486e",
+          "undos": 1,
+          "eventCounts": {
+            "keydown": 9,
+            "keyup": 9,
+            "input": 6,
+            "compositionstart": 1,
+            "compositionupdate": 2,
+            "compositionend": 1
+          },
+          "compositionEndTrustFlags": [
+            false
+          ]
+        },
+        {
+          "name": "composition replaces selection",
+          "initial": "\\documentclass{article}\n\\begin{document}\nEditor input fixture.\n\\end{document}\n% composition replaces selection: old value",
+          "final": "\\documentclass{article}\n\\begin{document}\nEditor input fixture.\n\\end{document}\n% composition replaces selection: \u65e5\u672c\u8a9e",
+          "sourceSha256": "cd83256b083c4c062c4733b53b59a59e1f4cac484ac22349db8e263392ff89c5",
+          "undos": 1,
+          "eventCounts": {
+            "keydown": 23,
+            "keyup": 23,
+            "input": 3,
+            "compositionstart": 1,
+            "compositionupdate": 3,
+            "compositionend": 1
+          },
+          "compositionEndTrustFlags": [
+            false
+          ]
+        }
+      ],
+      "recoveredSourceSha256": "d20308b711f3bcf06419cb39f2fdaa693e14c9c2d487ecd4982751095dfbefbd",
+      "pdf": {
+        "path": "/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/editor-input-XdRT7Y/app-data/workspaces/cbb62e46-735f-462c-a0ca-2a3018139b7e/versions/7d3ff2ed-8969-4b85-95ef-5c86dd8cb5e0/resume.pdf",
+        "bytes": 3554,
+        "sha256": "1f3c1e098920ce00afda7959a6e5287caea3d9dbd2c835472659899be190e377"
+      },
+      "parsedPdf": {
+        "text": "Editor input fixture.\n1",
+        "mediaBox": [
+          0,
+          0,
+          612,
+          792
+        ],
+        "cropBox": [
+          0,
+          0,
+          612,
+          792
+        ]
+      },
+      "screenshot": {
+        "path": "/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/editor-input-XdRT7Y/composition-restored.png",
+        "bytes": 62169,
+        "sha256": "94c56db7864734aba8a2a5ef0c6756d4559fdf576f788cc626db7a95549a5c4b"
+      }
+    },
+    {
+      "editorLifecycle": "mounted",
+      "result": {
+        "path": "/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/editor-input-tT1R63/result.json",
+        "bytes": 45413,
+        "sha256": "4176f40df7af3f64c7fed6fe965630ed1d5a631ccdb87e74836290ea9b25b327"
+      },
+      "harnessSnapshot": {
+        "path": "/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/editor-input-tT1R63/harness.mjs",
+        "bytes": 12322,
+        "sha256": "942ef220e4f015d567e32412ff1cb0b25fd8d289115011625e027cfe4c4bf092"
+      },
+      "appAsarSha256": "fbc69b9abcd714b69a35f139f7ac155a05458e5cefdc0bef3e29e861b932e91e",
+      "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+      "host": {
+        "platform": "darwin",
+        "arch": "arm64",
+        "os": "27.0.0",
+        "cpu": "Apple M4 Pro",
+        "node": "v24.21.0"
+      },
+      "applicationVersions": {
+        "node": "24.21.0",
+        "acorn": "8.18.0",
+        "ada": "4.0.0",
+        "amaro": "1.1.11",
+        "ares": "1.34.8",
+        "brotli": "1.2.0",
+        "cldr": "48.0",
+        "icu": "78.2",
+        "llhttp": "9.4.3",
+        "merve": "1.2.2",
+        "modules": "149",
+        "napi": "10",
+        "nbytes": "0.1.4",
+        "ncrypto": "0.0.1",
+        "nghttp2": "1.70.0",
+        "nghttp3": "",
+        "ngtcp2": "",
+        "openssl": "0.0.0",
+        "simdjson": "4.6.7",
+        "simdutf": "7.7.0",
+        "sqlite": "3.53.4",
+        "tz": "2025c",
+        "undici": "7.29.1",
+        "unicode": "17.0",
+        "uv": "1.52.1",
+        "uvwasi": "0.0.23",
+        "v8": "15.2.124.28-electron.0",
+        "zlib": "1.3.2.1-motley",
+        "zstd": "1.6.0",
+        "electron": "44.4.5",
+        "chrome": "152.0.7977.130"
+      },
+      "cases": [
+        {
+          "name": "ordinary character keys",
+          "initial": "\\documentclass{article}\n\\begin{document}\nEditor input fixture.\n\\end{document}\n% ordinary character keys: ",
+          "final": "\\documentclass{article}\n\\begin{document}\nEditor input fixture.\n\\end{document}\n% ordinary character keys: alpha beta gamma",
+          "sourceSha256": "88e62eb98c096e6935a610e18a7af870481ea9156a05ebcc251b1e685d658916",
+          "undos": 1,
+          "eventCounts": {
+            "keydown": 21,
+            "keyup": 21,
+            "input": 16,
+            "compositionstart": 0,
+            "compositionupdate": 0,
+            "compositionend": 0
+          },
+          "compositionEndTrustFlags": []
+        },
+        {
+          "name": "committed composition",
+          "initial": "\\documentclass{article}\n\\begin{document}\nEditor input fixture.\n\\end{document}\n% committed composition: ",
+          "final": "\\documentclass{article}\n\\begin{document}\nEditor input fixture.\n\\end{document}\n% committed composition: \u65e5\u672c\u8a9e",
+          "sourceSha256": "ea66fb4690c6cd7564d2eb5930cc309a59c165f8763fc392920b10500e15c77e",
+          "undos": 1,
+          "eventCounts": {
+            "keydown": 5,
+            "keyup": 5,
+            "input": 3,
+            "compositionstart": 1,
+            "compositionupdate": 3,
+            "compositionend": 1
+          },
+          "compositionEndTrustFlags": [
+            false
+          ]
+        },
+        {
+          "name": "composition interrupted by Chat",
+          "initial": "\\documentclass{article}\n\\begin{document}\nEditor input fixture.\n\\end{document}\n% composition interrupted by Chat: ",
+          "final": "\\documentclass{article}\n\\begin{document}\nEditor input fixture.\n\\end{document}\n% composition interrupted by Chat: \u6771\u4eac",
+          "sourceSha256": "4d3d54d022efc411520bf21bb9c25ef7e7ce14a0d644eaf8ab80da03a1861dbd",
+          "undos": 1,
+          "eventCounts": {
+            "keydown": 5,
+            "keyup": 5,
+            "input": 2,
+            "compositionstart": 1,
+            "compositionupdate": 2,
+            "compositionend": 1
+          },
+          "compositionEndTrustFlags": [
+            false
+          ]
+        },
+        {
+          "name": "cancelled composition",
+          "initial": "\\documentclass{article}\n\\begin{document}\nEditor input fixture.\n\\end{document}\n% cancelled composition: ",
+          "final": "\\documentclass{article}\n\\begin{document}\nEditor input fixture.\n\\end{document}\n% cancelled composition: kept",
+          "sourceSha256": "834b3fdd2018af2dc0771b5a8b6e460d7fae95a51bd08be37b2acf4630c4486e",
+          "undos": 1,
+          "eventCounts": {
+            "keydown": 9,
+            "keyup": 9,
+            "input": 6,
+            "compositionstart": 1,
+            "compositionupdate": 2,
+            "compositionend": 1
+          },
+          "compositionEndTrustFlags": [
+            false
+          ]
+        },
+        {
+          "name": "composition replaces selection",
+          "initial": "\\documentclass{article}\n\\begin{document}\nEditor input fixture.\n\\end{document}\n% composition replaces selection: old value",
+          "final": "\\documentclass{article}\n\\begin{document}\nEditor input fixture.\n\\end{document}\n% composition replaces selection: \u65e5\u672c\u8a9e",
+          "sourceSha256": "cd83256b083c4c062c4733b53b59a59e1f4cac484ac22349db8e263392ff89c5",
+          "undos": 1,
+          "eventCounts": {
+            "keydown": 23,
+            "keyup": 23,
+            "input": 3,
+            "compositionstart": 1,
+            "compositionupdate": 3,
+            "compositionend": 1
+          },
+          "compositionEndTrustFlags": [
+            false
+          ]
+        }
+      ],
+      "recoveredSourceSha256": "d20308b711f3bcf06419cb39f2fdaa693e14c9c2d487ecd4982751095dfbefbd",
+      "pdf": {
+        "path": "/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/editor-input-tT1R63/app-data/workspaces/c23f051c-19e4-40a4-b4ee-cd65fa8f55ae/versions/9b0dfb6a-d236-48d8-807c-898a4cb17da6/resume.pdf",
+        "bytes": 3554,
+        "sha256": "1a9d301795984b9b21f59890e5d2193c72ccfa95e5ad49d854dfbe891fa3ece2"
+      },
+      "parsedPdf": {
+        "text": "Editor input fixture.\n1",
+        "mediaBox": [
+          0,
+          0,
+          612,
+          792
+        ],
+        "cropBox": [
+          0,
+          0,
+          612,
+          792
+        ]
+      },
+      "screenshot": {
+        "path": "/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/editor-input-tT1R63/composition-restored.png",
+        "bytes": 62169,
+        "sha256": "94c56db7864734aba8a2a5ef0c6756d4559fdf576f788cc626db7a95549a5c4b"
+      }
+    }
+  ],
+  "initialFailures": [
+    {
+      "path": "/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/editor-input-G2YlyM/result.json",
+      "bytes": 20506,
+      "sha256": "045a1a45b23bb9f0424e88e36985abb26336f36df5577c4f7e6597438620e5ae"
+    },
+    {
+      "path": "/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/editor-input-sjXk0O/result.json",
+      "bytes": 20508,
+      "sha256": "b8ae96b2e74164f8c94ee451d2e7b1ee53ab07debcc8fb741d7bee5db97f5bfc"
+    }
+  ],
+  "initialFailureReason": "Both apps preserved the text and undo/redo but the first observer incorrectly required compositionend to be trusted. Both record trusted composition start/update/input events and an untrusted end event through this CDP path. The corrected observer retains all trust flags, requires native input, and checks exact source, selection replacement, cancellation, undo/redo and restart recovery.",
+  "rawTraces": {
+    "path": "docs/performance/editor-input-traces.tar.gz",
+    "bytes": 20917,
+    "sha256": "fc4ac221dfa8d913e2effb483bdb4a6101a8bd373975706e19bd72aa74067d07"
+  },
+  "verifier": {
+    "path": "/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/scripts/verify-editor-input.py",
+    "bytes": 9116,
+    "sha256": "539be345b002ee5ad7e1206f9cb1373cc00c97fde3dccf38c108dfca6b48cd7f"
+  },
+  "scope": "One sequential candidate/baseline correctness pair on the development Mac, five input cases each and a restart. Keyboard and browser-composition paths are automated. This does not exercise a physical Mac input source/candidate window, every language or VoiceOver. Unicode is in comments; the PDF check is source/build continuity, not glyph/font coverage. No timing, ordinary-GC retention or memory-budget claim is made."
+}

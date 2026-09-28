@@ -10,14 +10,14 @@
       "Change sample details in Code or use your selected AI.",
       "Save the project, read the PDF, and export it."
     ],
-    "kind": "Real app \u00b7 synthetic project",
+    "kind": "Real app · synthetic project",
     "alt": "Your first resume in the real Folio app"
   },
   {
     "id": "early-workspace",
     "image": "startup-chat.png",
     "alt": "Recovered synthetic resume and a retained message draft while Folio prepares its local compiler.",
-    "kind": "Development source \u00b7 synthetic resume \u00b7 no AI account",
+    "kind": "Development source · synthetic resume · no AI account",
     "title": "Start before the PDF builder is ready",
     "description": "Current source opens recovered work while the compiler prepares. The preview-4 installer predates this improvement.",
     "steps": [
@@ -38,7 +38,7 @@
       "Choose a paper size and inspect the thumbnail.",
       "Select a style and replace the sample facts."
     ],
-    "kind": "Real app \u00b7 synthetic project",
+    "kind": "Real app · synthetic project",
     "alt": "Templates and paper size in the real Folio app"
   },
   {
@@ -52,7 +52,7 @@
       "Watch reading, editing, building, and PDF review progress.",
       "Inspect the result; use Stop or Retry when needed."
     ],
-    "kind": "Real app \u00b7 scripted local AI fixture",
+    "kind": "Real app · scripted local AI fixture",
     "alt": "Chat and agent progress in the real Folio app"
   },
   {
@@ -62,11 +62,11 @@
     "guide": "tutorials/ai-connections.md",
     "description": "Setup is shown with empty credentials. This does not prove live account compatibility.",
     "steps": [
-      "Open Settings \u2192 AI connections \u2192 Add connection.",
+      "Open Settings → AI connections → Add connection.",
       "Fill your own connection details and save.",
       "Select the connection, check it, and test image support."
     ],
-    "kind": "Real form \u00b7 no connected account",
+    "kind": "Real form · no connected account",
     "alt": "Codex subscription in the real Folio app"
   },
   {
@@ -76,11 +76,11 @@
     "guide": "tutorials/ai-connections.md",
     "description": "Setup is shown with empty credentials. This does not prove live account compatibility.",
     "steps": [
-      "Open Settings \u2192 AI connections \u2192 Add connection.",
+      "Open Settings → AI connections → Add connection.",
       "Fill your own connection details and save.",
       "Select the connection, check it, and test image support."
     ],
-    "kind": "Real form \u00b7 no connected account",
+    "kind": "Real form · no connected account",
     "alt": "Claude Code subscription in the real Folio app"
   },
   {
@@ -94,7 +94,7 @@
       "Box the heading, write a note, attach it to Chat and send.",
       "Review the changed PDF, save the project, and export a clean PDF."
     ],
-    "kind": "Real Claude subscription \u00b7 synthetic document \u00b7 source build",
+    "kind": "Real Claude subscription · synthetic document · source build",
     "alt": "Folio showing the real Claude reply, Visually checked status and changed Selected Projects heading on page two"
   },
   {
@@ -104,11 +104,11 @@
     "guide": "tutorials/ai-connections.md",
     "description": "Setup is shown with empty credentials. This does not prove live account compatibility.",
     "steps": [
-      "Open Settings \u2192 AI connections \u2192 Add connection.",
+      "Open Settings → AI connections → Add connection.",
       "Fill your own connection details and save.",
       "Select the connection, check it, and test image support."
     ],
-    "kind": "Real form \u00b7 no connected account",
+    "kind": "Real form · no connected account",
     "alt": "OpenAI API key in the real Folio app"
   },
   {
@@ -118,11 +118,11 @@
     "guide": "tutorials/ai-connections.md",
     "description": "Setup is shown with empty credentials. This does not prove live account compatibility.",
     "steps": [
-      "Open Settings \u2192 AI connections \u2192 Add connection.",
+      "Open Settings → AI connections → Add connection.",
       "Fill your own connection details and save.",
       "Select the connection, check it, and test image support."
     ],
-    "kind": "Real form \u00b7 no connected account",
+    "kind": "Real form · no connected account",
     "alt": "Anthropic API key in the real Folio app"
   },
   {
@@ -132,11 +132,11 @@
     "guide": "tutorials/ai-connections.md",
     "description": "Setup is shown with empty credentials. This does not prove live account compatibility.",
     "steps": [
-      "Open Settings \u2192 AI connections \u2192 Add connection.",
+      "Open Settings → AI connections → Add connection.",
       "Fill your own connection details and save.",
       "Select the connection, check it, and test image support."
     ],
-    "kind": "Real form \u00b7 no connected account",
+    "kind": "Real form · no connected account",
     "alt": "Custom AI endpoint in the real Folio app"
   },
   {
@@ -150,7 +150,7 @@
       "Write an instruction and save the note.",
       "Select notes, attach them to Chat, and send."
     ],
-    "kind": "Real app \u00b7 scripted local AI fixture",
+    "kind": "Real app · scripted local AI fixture",
     "alt": "Visual PDF feedback in the real Folio app"
   },
   {
@@ -164,7 +164,7 @@
       "Select an earlier version and read both PDFs.",
       "Restore the selected version or use Undo for a recent edit."
     ],
-    "kind": "Real app \u00b7 scripted local AI fixture",
+    "kind": "Real app · scripted local AI fixture",
     "alt": "Compare, undo and restore in the real Folio app"
   },
   {
@@ -178,7 +178,7 @@
       "Choose an older version, select Remove selected version, and read the confirmation.",
       "Remove that version, then Save to update the history inside the project folder."
     ],
-    "kind": "Development source \u00b7 synthetic resume \u00b7 no AI account",
+    "kind": "Development source · synthetic resume · no AI account",
     "alt": "Real Folio History dialog comparing two synthetic PDFs and asking before removing an older version."
   },
   {
@@ -192,7 +192,7 @@
       "Compile and inspect diagnostics if the build fails.",
       "Fix the source, rebuild, and check Up to date."
     ],
-    "kind": "Real app \u00b7 synthetic project",
+    "kind": "Real app · synthetic project",
     "alt": "Code and build errors in the real Folio app"
   },
   {
@@ -206,7 +206,7 @@
       "Select a source-linked error or open Raw log for detail.",
       "Apply the supported fix, compile again, and wait for Up to date."
     ],
-    "kind": "Real compiler \u00b7 synthetic missing font",
+    "kind": "Real compiler · synthetic missing font",
     "alt": "Missing-font guidance beside the last successful PDF in Folio"
   },
   {
@@ -216,11 +216,11 @@
     "guide": "tutorials/editor-and-pdf.md#use-your-own-font-files",
     "description": "Choose font files, review the real PDF, then save them with your resume.",
     "steps": [
-      "Open More project actions \u2192 Add local fonts\u2026.",
+      "Open More project actions → Add local fonts….",
       "Choose regular and optional style files; build the preview.",
       "Review every page, then choose Use fonts & save or Cancel."
     ],
-    "kind": "Real app \u00b7 synthetic project",
+    "kind": "Real app · synthetic project",
     "alt": "Local OTF font selections beside a real Folio resume preview before saving"
   },
   {
@@ -234,7 +234,7 @@
       "Use its menu to rename or remove it, then save.",
       "Open Removed files & saved copies to restore text."
     ],
-    "kind": "Real app \u00b7 synthetic project",
+    "kind": "Real app · synthetic project",
     "alt": "Files and retained copies in the real Folio app"
   },
   {
@@ -248,7 +248,7 @@
       "Review skipped files and choose the main TeX document.",
       "Pick a location; inspect the PDF and export source when needed."
     ],
-    "kind": "Real app \u00b7 synthetic project",
+    "kind": "Real app · synthetic project",
     "alt": "Open, import and export source in the real Folio app"
   },
   {
@@ -262,7 +262,7 @@
       "Finish or reopen a verified copy.",
       "Keep outside edits; dismiss recovery only when you intend to."
     ],
-    "kind": "Real app \u00b7 controlled interruption fixture",
+    "kind": "Real app · controlled interruption fixture",
     "alt": "Recover an import in the real Folio app"
   },
   {
@@ -276,7 +276,7 @@
       "Enable Autosave project in General settings.",
       "Review any outside-change or error message before continuing."
     ],
-    "kind": "Real app \u00b7 synthetic project",
+    "kind": "Real app · synthetic project",
     "alt": "Save and autosave in the real Folio app"
   },
   {
@@ -290,7 +290,7 @@
       "Keep editing, save a copy, or reload disk files.",
       "Find preserved editor text in Removed files & saved copies."
     ],
-    "kind": "Real app \u00b7 synthetic project",
+    "kind": "Real app · synthetic project",
     "alt": "Review outside changes in the real Folio app"
   },
   {
@@ -304,7 +304,7 @@
       "Use selection mode for text and links, or a mark tool for notes.",
       "Check Up to date, then export without feedback marks."
     ],
-    "kind": "Real app \u00b7 synthetic project",
+    "kind": "Real app · synthetic project",
     "alt": "Read and export the PDF in the real Folio app"
   },
   {
@@ -318,7 +318,7 @@
       "Drag a divider or use Tab and arrow keys to resize.",
       "Reset pane sizes in General when needed."
     ],
-    "kind": "Real app \u00b7 synthetic project",
+    "kind": "Real app · synthetic project",
     "alt": "Themes and workspace layout in the real Folio app"
   },
   {
@@ -328,11 +328,11 @@
     "guide": "tutorials/settings-and-compiler.md",
     "description": "Text size and automatic preview are separate from the resume typography.",
     "steps": [
-      "Open Settings \u2192 Editor & PDF.",
+      "Open Settings → Editor & PDF.",
       "Choose a comfortable editor size.",
       "Turn automatic preview on or compile manually."
     ],
-    "kind": "Real app \u00b7 synthetic project",
+    "kind": "Real app · synthetic project",
     "alt": "Editor and PDF preferences in the real Folio app"
   },
   {
@@ -342,11 +342,11 @@
     "guide": "tutorials/settings-and-compiler.md",
     "description": "A deliberate test corruption demonstrates the repair flow.",
     "steps": [
-      "Read the message in Settings \u2192 About.",
+      "Read the message in Settings → About.",
       "Repair from a matching local compiler copy.",
       "Wait for ready, rebuild, and inspect the PDF."
     ],
-    "kind": "Real app \u00b7 isolated damaged-runtime fixture",
+    "kind": "Real app · isolated damaged-runtime fixture",
     "alt": "Offline compiler repair in the real Folio app"
   },
   {
@@ -360,7 +360,7 @@
       "Inspect both PDFs and the retained backup.",
       "Keep the recorded compiler or explicitly apply the included one."
     ],
-    "kind": "Real app \u00b7 synthetic compiler identity",
+    "kind": "Real app · synthetic compiler identity",
     "alt": "Compare compiler versions in the real Folio app"
   },
   {
@@ -370,11 +370,11 @@
     "guide": "tutorials/settings-and-compiler.md",
     "description": "Understand what stays local and what leaves when you send a chat.",
     "steps": [
-      "Read Settings \u2192 Privacy.",
+      "Read Settings → Privacy.",
       "Check source ZIP contents before sharing.",
       "Use Help for shortcuts and About for the app version."
     ],
-    "kind": "Real app \u00b7 synthetic project",
+    "kind": "Real app · synthetic project",
     "alt": "Privacy and support in the real Folio app"
   },
   {
@@ -384,11 +384,11 @@
     "guide": "tutorials/settings-and-compiler.md#make-a-support-bundle",
     "description": "Share a small diagnostic summary after reviewing exactly what it contains.",
     "steps": [
-      "Open Settings \u2192 Privacy \u2192 Review support bundle.",
+      "Open Settings → Privacy → Review support bundle.",
       "Read each file and untick any section to leave it out.",
       "Save the support ZIP locally; share it yourself when ready."
     ],
-    "kind": "Real app \u00b7 synthetic private markers and compiler failure",
+    "kind": "Real app · synthetic private markers and compiler failure",
     "alt": "Folio support bundle preview with compiler status and no raw log or source text"
   },
   {
@@ -402,7 +402,7 @@
       "Choose the current, before-save or attempted version of each file.",
       "Review your choices, apply with backups, then check the rebuilt PDF."
     ],
-    "kind": "Real app \u00b7 controlled interruption and outside-edit fixture",
+    "kind": "Real app · controlled interruption and outside-edit fixture",
     "alt": "Folio interrupted-save review showing current, before-save and attempted copies of a synthetic resume"
   },
   {
@@ -412,11 +412,11 @@
     "guide": "tutorials/resource-packs.md#import-a-file-from-another-computer",
     "description": "Review the published table pack and its upstream notices before installing the selected file.",
     "steps": [
-      "Open Settings \u2192 LaTeX resources.",
+      "Open Settings → LaTeX resources.",
       "Choose Import pack file and read its name, requirements and notices.",
       "Install the reviewed bytes or discard the import."
     ],
-    "kind": "Real source app \u00b7 public table pack",
+    "kind": "Real source app · public table pack",
     "alt": "The published Multirow table pack and its notices in the dark Folio Settings window"
   },
   {
@@ -424,13 +424,13 @@
     "title": "Install a published resource pack",
     "image": "pack-installed-light.png",
     "guide": "tutorials/resource-packs.md#get-a-pack",
-    "description": "The normal app downloads from the public HTTPS catalog and checks the compiler. Installing keeps the project\u2019s compiler choice unchanged.",
+    "description": "The normal app downloads from the public HTTPS catalog and checks the compiler. Installing keeps the project’s compiler choice unchanged.",
     "steps": [
       "Open LaTeX resources in Settings and check for packs.",
       "Download the table pack and wait for copying and offline checks.",
       "Preview it for the project before choosing to use it."
     ],
-    "kind": "Real source app/compiler \u00b7 public HTTPS catalog",
+    "kind": "Real source app/compiler · public HTTPS catalog",
     "alt": "The published table pack installed in the compact light Folio Settings window"
   },
   {
@@ -444,8 +444,8 @@
       "Read the new PDF and the explanation for an unavailable before PDF.",
       "Choose Use this pack only when ready, then save."
     ],
-    "kind": "Real public pack/compiler \u00b7 synthetic table document",
-    "alt": "A real PDF beside an honest unavailable-before message in Folio\u2019s compiler comparison"
+    "kind": "Real public pack/compiler · synthetic table document",
+    "alt": "A real PDF beside an honest unavailable-before message in Folio’s compiler comparison"
   },
   {
     "id": "app-updates",
@@ -454,11 +454,11 @@
     "guide": "tutorials/app-updates.md",
     "description": "Choose Stable or Beta and opt into update checks. This source preview clearly reports that production app updates are not configured yet.",
     "steps": [
-      "Open Settings \u2192 App updates.",
+      "Open Settings → App updates.",
       "Choose a channel and optional automatic checks.",
       "Check release status or open Downloads on GitHub."
     ],
-    "kind": "Real source app \u00b7 unconfigured production publisher",
+    "kind": "Real source app · unconfigured production publisher",
     "alt": "Folio app update Settings with Beta selected and an honest preview availability message"
   },
   {
@@ -472,7 +472,7 @@
       "Return to the document and save your latest changes.",
       "Quit and reopen Folio before trying another update."
     ],
-    "kind": "Real source Settings \u00b7 simulated timeout",
+    "kind": "Real source Settings · simulated timeout",
     "alt": "Folio update Settings after a simulated preparation timeout, with recovery guidance and an enabled Done button"
   },
   {
@@ -486,7 +486,7 @@
       "Free some space on that disk.",
       "Check for updates again, or return to your document."
     ],
-    "kind": "Real source Settings \u00b7 simulated low space",
+    "kind": "Real source Settings · simulated low space",
     "alt": "Folio Settings showing free-space guidance and enabled Check for updates and Done buttons"
   },
   {
@@ -500,7 +500,7 @@
       "Use Left/Right to switch views; Tab moves onward.",
       "Open Settings with Enter, then close it with Escape to return focus."
     ],
-    "kind": "Real app \u00b7 automated keyboard input",
+    "kind": "Real app · automated keyboard input",
     "alt": "Folio with a visible keyboard focus ring on the selected Code tab and a compiled synthetic resume beside it"
   },
   {
@@ -510,11 +510,11 @@
     "guide": "tutorials/settings-and-compiler.md#make-room-for-compiler-files",
     "description": "See local compiler sizes and review an old version before removal. Other saved resumes may still need that exact version.",
     "steps": [
-      "Open Settings \u2192 Storage after finishing a PDF build.",
+      "Open Settings → Storage after finishing a PDF build.",
       "Check the size and protected compiler rows.",
-      "Review Remove\u2026 and the Mac confirmation, or choose Cancel."
+      "Review Remove… and the Mac confirmation, or choose Cancel."
     ],
-    "kind": "Real source Settings \u00b7 inert old-compiler fixture",
+    "kind": "Real source Settings · inert old-compiler fixture",
     "alt": "Folio storage Settings showing the protected current compiler and an explicitly removable synthetic old compiler"
   },
   {
@@ -528,7 +528,7 @@
       "Simplify the document if it keeps creating large helper files.",
       "Click Compile and check that the current PDF appears."
     ],
-    "kind": "Real development app \u00b7 simulated oversized-cache reading",
+    "kind": "Real development app · simulated oversized-cache reading",
     "alt": "Folio showing a compiler-cache limit message and the prior successful PDF beside the current source"
   },
   {
@@ -542,7 +542,21 @@
       "Click Retry recovery to save your latest draft.",
       "Wait for the warning to disappear; retry Settings separately if needed."
     ],
-    "kind": "Real development app \u00b7 simulated write failures",
+    "kind": "Real development app · simulated write failures",
     "alt": "Folio showing separate Retry recovery and Retry settings save buttons above a synthetic source document"
+  },
+  {
+    "id": "git-history",
+    "title": "Keep file versions with Git",
+    "image": "git-history.png",
+    "guide": "tutorials/git-history.md",
+    "description": "Development source can make local Git checkpoints of your saved files. The preview-4 download predates this feature.",
+    "steps": [
+      "Save the project and open Git.",
+      "Stage the files you want to keep in the checkpoint.",
+      "Enter a commit message and inspect it under History."
+    ],
+    "kind": "Development source · real local Git · synthetic identity · PDF not built",
+    "alt": "Folio Git panel showing a real local synthetic commit and one untracked project file."
   }
 ]

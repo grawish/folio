@@ -1,0 +1,282 @@
+{
+  "verifiedAt": "2026-09-28T04:52:16.902542+00:00",
+  "applicationAndHarnessSource": "d042c50356eb8644e3adf5db473eb515b0a18186",
+  "scripts": {
+    "files": {
+      "path": "scripts/test-files.mjs",
+      "bytes": 17608,
+      "sha256": "8af271fa5d446958f401ac55482c1c05aaad99b9ae8097021aefd83f0d64acfd"
+    },
+    "editor-input": {
+      "path": "scripts/test-editor-input.mjs",
+      "bytes": 12322,
+      "sha256": "942ef220e4f015d567e32412ff1cb0b25fd8d289115011625e027cfe4c4bf092"
+    },
+    "git": {
+      "path": "scripts/test-git.mjs",
+      "bytes": 7840,
+      "sha256": "94ccede6abcbe265d9c5d05009d6d6ddde1c74559bc48427cc31c2b13b3922f1"
+    },
+    "chat": {
+      "path": "scripts/test-chat.mjs",
+      "bytes": 37773,
+      "sha256": "feedd69e89bd0818659df414ec4bb9722088a567f2d1b8a5a463266294ecc7c5"
+    },
+    "diagnostics": {
+      "path": "scripts/test-diagnostics.mjs",
+      "bytes": 7180,
+      "sha256": "55893884cc7a107df0cba31e0c1e178cfdf110353a83d159f29c3ed8828b1854"
+    },
+    "watch": {
+      "path": "scripts/test-watch.mjs",
+      "bytes": 12660,
+      "sha256": "fb1c7f8078558e9f0f05d9ddebfad1ca41a36481e0212c463f2b78c1e59d4d13"
+    }
+  },
+  "package": {
+    "app": "/Users/grawish/.codex/worktrees/compiler-crash-cleanup/resume-maker/release/editor-view-lifecycle-git/mac-arm64/Folio.app",
+    "asarSha256": "52a2d038ad90da72682ccc05ba4aab688ce471a1609011312f48f307d4eefd4f",
+    "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+    "architecture": "arm64",
+    "outputs": [
+      {
+        "path": "dist/assets/index-Bbw9YYTP.js",
+        "sha256": "f226829cc502f864c5ab3147822400f6ce3ed74bc1d0f4d63229de89f7a72bb6"
+      },
+      {
+        "path": "dist/assets/index-CZF0MGEA.css",
+        "sha256": "08958cf6a870b80f169c45c463b6bb120d4d63a49376fc3d41e4dfd930fc1ea6"
+      },
+      {
+        "path": "dist/assets/jetbrains-mono-italic-cyrillic-CY-YXjkl.woff2",
+        "sha256": "a79035476e5f8408e7f2b2599dfd50b7262862ecb853e028ba7b4a00bed16e73"
+      },
+      {
+        "path": "dist/assets/jetbrains-mono-italic-greek-CoTSRNcy.woff2",
+        "sha256": "44ca7e27fef33e684d50e1009d0b886b83d4783e383223e7b13e173a623db0d3"
+      },
+      {
+        "path": "dist/assets/jetbrains-mono-italic-latin-BW896jpM.woff2",
+        "sha256": "00ba27973ba2965d3e7e03ee0f2c66491956cda2ecf8cc6066c969696577f47b"
+      },
+      {
+        "path": "dist/assets/jetbrains-mono-italic-latin-ext-C5V3_1R8.woff2",
+        "sha256": "31434d4924e83d1c6bf10136077f96d0c541226301ba98a583b14bded0576a75"
+      },
+      {
+        "path": "dist/assets/jetbrains-mono-italic-vietnamese-DP5VCyMl.woff2",
+        "sha256": "9c54e21b500492314341e2041e23cf141d43a0c102bca07a7fe281f487eec5f6"
+      },
+      {
+        "path": "dist/assets/jetbrains-mono-normal-cyrillic-D0W76x1T.woff2",
+        "sha256": "4188276a58108d04eb0c6f5b8c9e4b5ac2d9e31e81b2b4fa7da263b92f1b35c3"
+      },
+      {
+        "path": "dist/assets/jetbrains-mono-normal-greek-FADJ2lFV.woff2",
+        "sha256": "0164d0c055dced93435b1d6c2986db2fb7d068ce21950c85b776695f56238b8a"
+      },
+      {
+        "path": "dist/assets/jetbrains-mono-normal-latin-RruCX7RW.woff2",
+        "sha256": "d3dcdccdaba31643defe2317942155d4af3ee03951d058adbe8bc02b13e61b0a"
+      },
+      {
+        "path": "dist/assets/jetbrains-mono-normal-latin-ext-e2G1hK0J.woff2",
+        "sha256": "d5f407e28185790518c49ec8738fa89916ddc99f793010d249165d0e2c2452cc"
+      },
+      {
+        "path": "dist/assets/manrope-normal-cyrillic-DJ9PYDpy.woff2",
+        "sha256": "95a493061fe0a8d0d027c2892747134ba747141112d3be4d5022e70ab7d3a1a6"
+      },
+      {
+        "path": "dist/assets/manrope-normal-greek-vbHvg7sP.woff2",
+        "sha256": "40af11327fe5308166c6cb5787808b042db6da889abf602f0a4876c49675d87e"
+      },
+      {
+        "path": "dist/assets/manrope-normal-latin-C46ZzDBF.woff2",
+        "sha256": "e310b55a7fd9677f5e3555e6c6c4d064fa1f1d24393f0ddbe217cea12a8c432f"
+      },
+      {
+        "path": "dist/assets/manrope-normal-latin-ext-CDracvZH.woff2",
+        "sha256": "ce093b341d9c10658ee1eaa85c5f8042ff3307bc6ccfc5f405616eb437f0009e"
+      },
+      {
+        "path": "dist/assets/manrope-normal-vietnamese-C9-d800b.woff2",
+        "sha256": "bab757f8a0a1bc04055ee98cb5777f3254aab11f6d222366e1f40a36f390506a"
+      },
+      {
+        "path": "dist/assets/pdf.worker.min-Dswkl-cV.mjs",
+        "sha256": "8ab0e5e30031b4a06ecfddd5ae9562f0227f830ee7ec9ed1a968b134243d2386"
+      },
+      {
+        "path": "dist/index.html",
+        "sha256": "f9b35aed812a20a0dceac7dc58cf494dad9be82cfb0d61754009cd09a406952e"
+      },
+      {
+        "path": "dist/licenses/JetBrains-Mono-OFL.txt",
+        "sha256": "b2fe5e8987594e9ffd1d2ca52a2f5d73eb8335243893c5d6254b5ad69269591d"
+      },
+      {
+        "path": "dist/licenses/Manrope-OFL.txt",
+        "sha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b"
+      },
+      {
+        "path": "dist/templates/academic-a4.png",
+        "sha256": "e149b33dc14f9bb99469b5dc9b39cf0f698de720894af8f9ef2bd74d31f1115d"
+      },
+      {
+        "path": "dist/templates/academic-letter.png",
+        "sha256": "1fb69ee0e825acb916781022f7bb5e65576f7911b7fb08d34009aa21b60964e0"
+      },
+      {
+        "path": "dist/templates/classic-a4.png",
+        "sha256": "38f95f3b25a51669105de7efdba08fe5b2633e7f7fde5ee15c3057862551fee3"
+      },
+      {
+        "path": "dist/templates/classic-letter.png",
+        "sha256": "5e3ef1114cd3c728118e01c4161722b5c2a3a5e27a058f43f6bb5b825023c8ee"
+      },
+      {
+        "path": "dist/templates/compact-technical-a4.png",
+        "sha256": "5878085cef410ee1b1463c0b71de8ebb48fc845899aed90d7b52c16ee577fc51"
+      },
+      {
+        "path": "dist/templates/compact-technical-letter.png",
+        "sha256": "9fcc6a929547407948a5a23fe9d481bb197f20e195c7bbae2af125fb75e34a3a"
+      },
+      {
+        "path": "dist/templates/manifest.json",
+        "sha256": "db231613ba3b1a69e01ffd5a111422874736d51d9b8f6509de7c71511b4a4a86"
+      },
+      {
+        "path": "dist/templates/minimal-a4.png",
+        "sha256": "9bb702aae1e721255a0632010a22a82bcb283a49b16b6ce8bfbe74a99ef48353"
+      },
+      {
+        "path": "dist/templates/minimal-letter.png",
+        "sha256": "10bfd6c692eac97a9e25bc2361d0113d43584069a05c3af4fbef64ad78cfb368"
+      },
+      {
+        "path": "dist/templates/modern-a4.png",
+        "sha256": "bd6a55401f8642fcf375c18fe952d7ff2185635c7fa4ece24c7be3e157515b41"
+      },
+      {
+        "path": "dist/templates/modern-letter.png",
+        "sha256": "99062be87eabf30184d937ea0ceef3768387beb81cd850110ce335819d5474a0"
+      },
+      {
+        "path": "dist/templates/two-column-a4.png",
+        "sha256": "b7cca2c36d149da1af024d1095801051817084c536724f2f5c7d68f75e3cc348"
+      },
+      {
+        "path": "dist/templates/two-column-letter.png",
+        "sha256": "d23fb748c48033f314d40fac502c42953d9003e478ec2360144e55da68c19802"
+      },
+      {
+        "path": "dist-electron/history-zip-worker.cjs",
+        "sha256": "55ff7d812d2eafe2e725dd48f45cbd815ed610bec2168bd449627c76359f7694"
+      },
+      {
+        "path": "dist-electron/history-zip-worker.cjs.map",
+        "sha256": "57f93bf7d08246dc3dd4d5adb013da67ed95acb53aca46f127f5e913cc965bee"
+      },
+      {
+        "path": "dist-electron/main.cjs",
+        "sha256": "c9c0800c89f921d30318bfd9d8e4d66de66ccb95453008f48a212ac3acf97122"
+      },
+      {
+        "path": "dist-electron/main.cjs.map",
+        "sha256": "9121e15377cf765b5875f56c0de5779523d7358d7b0381952ad7d1061f8020ff"
+      },
+      {
+        "path": "dist-electron/preload.cjs",
+        "sha256": "7f722537fb8c76a94c8cb67ef1b221586eb99454e80c8c13bc2f48c3f8897911"
+      },
+      {
+        "path": "dist-electron/preload.cjs.map",
+        "sha256": "ab3974022ac69e0a3136751b13fb2eec82606d06b78aa44f8279f568c68f3381"
+      }
+    ],
+    "allPackagedOutputsMatch": true,
+    "productionSigningVerified": false
+  },
+  "packagedFilesPassed": true,
+  "fivePackagedInputCasesPassed": true,
+  "inputMatchesRetainedBaseline": true,
+  "actualRecoveryAndSavedVersionChecked": true,
+  "inputPdf": {
+    "path": "/Users/grawish/.codex/worktrees/compiler-crash-cleanup/resume-maker/test-results/editor-input-dvxUSV/app-data/workspaces/bee43b52-10c5-496a-84ad-b7ee03a70654/versions/d2e13e4c-8d29-4eff-ae35-8c41e7cf4b0c/resume.pdf",
+    "bytes": 3554,
+    "sha256": "f27646195dc70083551fd048ef0af939001f3e205520feb81aafb83bc5acc0b8"
+  },
+  "parsedPdf": {
+    "text": "Editor input fixture.\n1",
+    "mediaBox": [
+      0,
+      0,
+      612,
+      792
+    ],
+    "cropBox": [
+      0,
+      0,
+      612,
+      792
+    ]
+  },
+  "gitUiPassed": true,
+  "gitCommit": "92877065559e6efabc7556f3038502c491c2272a",
+  "actualCommittedSourceSha256": "311cf90daa08abd30a020d56ddc5e27a8063564cbf545c13869ed378fc5b72d8",
+  "sourceTests": {
+    "passed": 486,
+    "failed": 0,
+    "log": {
+      "path": "test-results/editor-lifecycle-merged-source-tests.log",
+      "bytes": 48468,
+      "sha256": "36cac6449b4e346e5c4091dc40a61acbb38445e6bb042c20720bd22ae8c778fa"
+    }
+  },
+  "website": {
+    "checks": [
+      {
+        "width": 1440,
+        "route": "/",
+        "images": 10,
+        "overflow": false,
+        "themePersistence": true
+      },
+      {
+        "width": 1440,
+        "route": "/demos.html",
+        "images": 40,
+        "overflow": false,
+        "themePersistence": true
+      },
+      {
+        "width": 390,
+        "route": "/",
+        "images": 10,
+        "overflow": false,
+        "themePersistence": true
+      },
+      {
+        "width": 390,
+        "route": "/demos.html",
+        "images": 40,
+        "overflow": false,
+        "themePersistence": true
+      }
+    ],
+    "errors": []
+  },
+  "archive": {
+    "path": "docs/performance/editor-lifecycle-integration-traces.tar.gz",
+    "bytes": 9785,
+    "sha256": "dae48ba765f0840edfc6c7e2a7430bdd836b9c2dac2668d885df8fa0e85bc443"
+  },
+  "verifier": {
+    "path": "/Users/grawish/.codex/worktrees/compiler-crash-cleanup/resume-maker/scripts/verify-editor-lifecycle-integration.py",
+    "bytes": 7672,
+    "sha256": "91ec74b6eae4051f2ff80066705400a9bf391d2c7183eed3fdf7181c7229eaa6"
+  },
+  "scope": "Local source-built and ad-hoc packaged Apple silicon checks on the development Mac. Browser composition is not a physical Mac input method; Unicode is in TeX comments, so the PDF proves build continuity rather than glyph coverage. The baseline input run is retained from earlier collection, not a new timing pair. Git checks local initialization/staging/commit only. Hosted qualification, production signing, ordinary-session resource budgets, long-session CPU failures and physical accessibility remain open."
+}

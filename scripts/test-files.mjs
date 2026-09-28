@@ -18,6 +18,11 @@ A document for testing source file management.
 await fs.writeFile(path.join(directory, 'main.tex'), main);
 await fs.writeFile(path.join(directory, 'notes.txt'), 'Original notes');
 await fs.writeFile(path.join(directory, 'details.txt'), 'Original details');
+const longNotes = Array.from(
+  { length: 120 },
+  (_, i) => `Line ${i + 1}: ${'scrollable source '.repeat(20)}12345`,
+).join('\n');
+await fs.writeFile(path.join(directory, 'scroll.txt'), longNotes);
 await fs.writeFile(
   path.join(otherDirectory, 'resume.tex'),
   main.replace('Synthetic File Test', 'Other Project'),
@@ -95,7 +100,9 @@ try {
   await expect(page.locator('.preview-pane .textLayer')).toContainText('Synthetic File Test', {
     timeout: 60_000,
   });
+  await expect(page.locator('.cm-editor')).toHaveCount(0);
   await code();
+  await expect(page.locator('.cm-editor')).toHaveCount(1);
   await page.getByRole('checkbox', { name: 'Auto-compile', exact: true }).uncheck();
   await append('\n% Main edit');
   await select('notes.txt');
@@ -105,9 +112,64 @@ try {
   await expect(editor()).not.toContainText('Main edit');
   await editor().press('ControlOrMeta+Shift+z');
   await expect(editor()).toContainText('Main edit');
-  await page.getByRole('button', { name: /Switch to .* mode/ }).click();
+  await app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0].setSize(1040, 680));
+  await select('scroll.txt');
+  await editor().press('ControlOrMeta+End');
+  for (let i = 0; i < 5; i++) await editor().press('Shift+ArrowLeft');
+  const selection = () => page.evaluate(() => window.getSelection()?.toString());
+  await expect.poll(selection).toBe('12345');
+  const position = await page.locator('.app-status').textContent();
+  const scroll = () =>
+    page.locator('.cm-scroller').evaluate((node) => ({
+      top: node.scrollTop,
+      left: node.scrollLeft,
+    }));
+  await expect.poll(async () => (await scroll()).top).toBeGreaterThan(100);
+  await expect.poll(async () => (await scroll()).left).toBeGreaterThan(100);
+  const previousScroll = await scroll();
+  for (let i = 0; i < 3; i++) {
+    await page.getByRole('tab', { name: i === 1 ? 'Git' : 'Chat', exact: true }).click();
+    await expect(page.locator('.cm-editor')).toHaveCount(0);
+    if (i === 0) await page.getByRole('button', { name: /Switch to .* mode/ }).click();
+    await code();
+    await expect(page.locator('.cm-editor')).toHaveCount(1);
+    await editor().focus();
+    await expect.poll(selection).toBe('12345');
+    await expect(page.locator('.app-status')).toHaveText(position);
+    await expect
+      .poll(async () => Math.abs((await scroll()).top - previousScroll.top))
+      .toBeLessThan(2);
+    await expect
+      .poll(async () => Math.abs((await scroll()).left - previousScroll.left))
+      .toBeLessThan(2);
+  }
   await page.getByRole('tab', { name: 'Chat', exact: true }).click();
-  await code();
+  await page.getByRole('button', { name: 'Insert a section', exact: true }).click();
+  await page
+    .getByRole('button', { name: 'Skills Your tools and capabilities', exact: true })
+    .click();
+  await expect(editor()).toBeFocused();
+  await expect
+    .poll(async () => {
+      const recovery = JSON.parse(await fs.readFile(path.join(dataRoot, 'recovery.json'), 'utf8'));
+      return recovery.project.files.find((file) => file.path === 'scroll.txt').content;
+    })
+    .toBe(
+      longNotes.slice(0, -5) +
+        '\n\\section{Skills}\n\\textbf{Skills} \\enspace Skill one, skill two, skill three\n',
+    );
+  await expect(
+    editor().locator('.cm-line').filter({ hasText: 'Skill one, skill two, skill three' }),
+  ).toBeInViewport();
+  await editor().press('ControlOrMeta+z');
+  await expect(editor()).not.toContainText('Skill one, skill two, skill three');
+  await expect.poll(selection).toBe('12345');
+  await page.screenshot({ path: path.join(root, 'restored-editor-selection.png') });
+  await select('main.tex');
+  await app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0].setSize(1480, 980));
+  console.log(
+    'PASS: Chat/Git have no editor DOM; reopening restores selection and both scroll axes; inserting a section from Chat saves the exact source, is visible, focused and undoable.',
+  );
   await manage('main.tex');
   await page.getByLabel('New filename', { exact: true }).fill('notes.txt');
   await page.getByRole('button', { name: 'Rename file', exact: true }).click();
@@ -287,6 +349,17 @@ try {
     JSON.stringify({ passed: true, errors }, null, 2),
   );
   console.log(`Evidence: ${root}`);
+} catch (error) {
+  await page?.screenshot({ path: path.join(root, 'failure.png') }).catch(() => {});
+  await fs
+    .copyFile(path.join(dataRoot, 'recovery.json'), path.join(root, 'failure-recovery.json'))
+    .catch(() => {});
+  await fs.writeFile(
+    path.join(root, 'result.json'),
+    JSON.stringify({ passed: false, error: error.message, errors }, null, 2),
+  );
+  console.error(`Evidence: ${root}`);
+  throw error;
 } finally {
   await app?.evaluate(({ app }) => app.exit(0)).catch(() => {});
   await app?.close().catch(() => {});

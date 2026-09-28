@@ -1,0 +1,108 @@
+{
+  "checkedAt": "2026-09-28T04:50:01.266057+00:00",
+  "hostedFailures": [
+    {
+      "runner": "macos-14",
+      "run": 36376441468,
+      "url": "https://github.com/grawish/folio/actions/runs/36376441468",
+      "conclusion": "failure",
+      "failedSuite": "files",
+      "source": "aed7933f0c7bb5d174165dd71ebb1c7b1e5119e1",
+      "artifactDigest": "sha256:887c7053ca8c902005f0aa3ac3612e0dc8ad185c9b17b0d43d11f9a556644b60"
+    },
+    {
+      "runner": "macos-27",
+      "run": 36376443410,
+      "url": "https://github.com/grawish/folio/actions/runs/36376443410",
+      "conclusion": "failure",
+      "failedSuite": "files",
+      "source": "aed7933f0c7bb5d174165dd71ebb1c7b1e5119e1",
+      "artifactDigest": "sha256:4cc30829c480b8104e8a9fbfe386832cc479d1cdbfbffd9e8519ed55acee19fb"
+    }
+  ],
+  "localControl": {
+    "appAsarSha256": "2cd68ead966a0701c11b74727504220ee039534cf50d9226991627a3a6d66687",
+    "exactInsertedSourceSaved": true,
+    "visibleTextCheckFailed": true,
+    "sourceSha256": "551790dfb0919ef8cb3f091be361f96ca3a550f95ee97ad6658cccecb9f71553",
+    "harnessScope": "Same strengthened files harness at a 1040x680 window, with the new Git-tab visit changed to Chat because this preserved package predates Git."
+  },
+  "gitFixtureFailure": "The first isolated Git test removed the normal identity but expected Initialize repository. The app correctly showed Set your Git identity. The corrected harness checks that prompt and writes only its private synthetic configuration.",
+  "archive": {
+    "path": "docs/performance/editor-navigation-initial-failures.tar.gz",
+    "bytes": 599160,
+    "sha256": "136e07a2d6a87c1d36d7d786892144cc178df4f27f4b7e89b8a9c3be9b5717e5",
+    "members": [
+      {
+        "path": "macos-14/failed.log",
+        "bytes": 3105,
+        "sha256": "2f07d68c8d978444aea3712b89e84262497a5fe9a9d3864fc89e353f642a7b91"
+      },
+      {
+        "path": "macos-14/release-files-final.log",
+        "bytes": 65603,
+        "sha256": "583ca8a17fb22c9a6878705bdfec9e4e20238e4c6c185798f4f367a22483f570"
+      },
+      {
+        "path": "macos-14/result.json",
+        "bytes": 46338,
+        "sha256": "a895843d4a7d08fb642de4db95d938e317b3b20d36d66cace88138a396014644"
+      },
+      {
+        "path": "macos-14/failure.png",
+        "bytes": 292018,
+        "sha256": "726f16f81e3171525950c91643167ef68535148eb51a1691e7cbc6040fc22e68"
+      },
+      {
+        "path": "macos-27/failed.log",
+        "bytes": 3105,
+        "sha256": "d33808259ea2970c3ade6a5274ec17cfd00fd8f49f35dd595768214f6820725e"
+      },
+      {
+        "path": "macos-27/release-files-final.log",
+        "bytes": 58948,
+        "sha256": "b9a99573bf77f4ab8548269c35c0b864afa714692db68733307350e24d5607b5"
+      },
+      {
+        "path": "macos-27/result.json",
+        "bytes": 27638,
+        "sha256": "cc54057309b10ca4ed8b8343cbdc47ed71df77155db0e176c16317446e2b0499"
+      },
+      {
+        "path": "macos-27/failure.png",
+        "bytes": 175653,
+        "sha256": "df3ed7837bb743b41b1d2de906d648ec70e14e72f1400e8204dbb4ae28b97690"
+      },
+      {
+        "path": "local-control/result.json",
+        "bytes": 668,
+        "sha256": "eea0887757b2cc3b5ab790db4da06d59d9b34c1a266bd31fd26f44a5af46c094"
+      },
+      {
+        "path": "local-control/failure-recovery.json",
+        "bytes": 46333,
+        "sha256": "ef890c0358176704c5c6c72368c83705ee42a8a18d7ea625a90cf38efca802fb"
+      },
+      {
+        "path": "local-control/failure.png",
+        "bytes": 176274,
+        "sha256": "ea7d7c3e27ff34500a51a53dba4a288a3e00ce03e417274038dcfed4a167612a"
+      },
+      {
+        "path": "local-control/editor-navigation-old-control.mjs",
+        "bytes": 17569,
+        "sha256": "b522bf674c64075886c844291eb69d57803fe3992399f8637d00e92856f7d246"
+      },
+      {
+        "path": "git-identity-fixture/result.json",
+        "bytes": 301,
+        "sha256": "01d73ee2af32cb76c5e67ee99f0185f2ecb9f9ff5018bbd5e22dda1e0924b649"
+      },
+      {
+        "path": "git-identity-fixture/failure.png",
+        "bytes": 60928,
+        "sha256": "8603042eca0ac42137c5ad179bf65e6d35a97de2c4566d9234a2dbfa17ead0c8"
+      }
+    ]
+  }
+}

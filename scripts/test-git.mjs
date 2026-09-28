@@ -1,14 +1,17 @@
 import { _electron as electron, expect } from '@playwright/test';
 import { promises as fs } from 'node:fs';
+import { execFileSync } from 'node:child_process';
 import os from 'node:os';
 import path from 'node:path';
 
-// Drives the same git:* IPC channels the renderer uses (via window.folio),
+// Drives Git panel controls and verifies their git:* IPC results (via window.folio),
 // against a synthetic project directory. No network, no user files/accounts.
 // Uses the OS temp dir (not test-results/, which lives inside this repo's own
 // .git worktree) so `git rev-parse` inside the fixture can't walk up into it.
-const root = await fs.mkdtemp(path.join(os.tmpdir(), 'folio-git-smoke-'));
-const directory = path.join(root, 'project');
+await fs.mkdir('test-results', { recursive: true });
+const root = await fs.mkdtemp(path.resolve('test-results/git-'));
+const fixtureRoot = await fs.mkdtemp(path.join(os.tmpdir(), 'folio-git-smoke-'));
+const directory = path.join(fixtureRoot, 'project');
 const dataRoot = path.join(root, 'app-data');
 await fs.mkdir(directory, { recursive: true });
 const projectId = 'git-smoke-project';
@@ -22,9 +25,19 @@ await fs.writeFile(path.join(directory, 'main.tex'), main);
 // without first scraping renderer state for whatever id ProjectStore assigned.
 await fs.writeFile(
   path.join(directory, 'resume.project.json'),
-  JSON.stringify({ schemaVersion: 2, id: projectId, revision: 0, name: 'Git Smoke', mainFile: 'main.tex' }, null, 2),
+  JSON.stringify(
+    { schemaVersion: 2, id: projectId, revision: 0, name: 'Git Smoke', mainFile: 'main.tex' },
+    null,
+    2,
+  ),
 );
-const env = { ...process.env, FOLIO_USER_DATA: dataRoot };
+const env = {
+  ...process.env,
+  FOLIO_USER_DATA: dataRoot,
+  GIT_CONFIG_GLOBAL: path.join(root, 'gitconfig'),
+  GIT_CONFIG_NOSYSTEM: '1',
+};
+await fs.writeFile(env.GIT_CONFIG_GLOBAL, '');
 delete env.ELECTRON_RUN_AS_NODE;
 let app, page;
 const errors = [];
@@ -55,10 +68,7 @@ const action = async (label) => {
 };
 // Runs an IPC call in the renderer, the same surface GitPanel uses.
 const gitCall = (method, ...args) =>
-  page.evaluate(
-    ({ method, args }) => window.folio[method](...args),
-    { method, args },
-  );
+  page.evaluate(({ method, args }) => window.folio[method](...args), { method, args });
 
 try {
   await launch();
@@ -75,10 +85,26 @@ try {
   console.log('PASS: git availability reports an installed git binary.');
 
   expect(await gitCall('gitStatus', projectId)).toBeNull();
-  const initStatus = await gitCall('gitInit', projectId);
+  await page.getByRole('tab', { name: 'Git', exact: true }).click();
+  await expect(page.locator('.cm-editor')).toHaveCount(0);
+  await expect(page.getByText('Set your Git identity', { exact: true })).toBeVisible();
+  await fs.writeFile(
+    env.GIT_CONFIG_GLOBAL,
+    '[user]\n  name = Folio Test\n  email = test@folio.local\n[commit]\n  gpgsign = false\n',
+  );
+  await page.getByRole('tab', { name: 'Chat', exact: true }).click();
+  await page.getByRole('tab', { name: 'Git', exact: true }).click();
+  await page.getByRole('button', { name: 'Initialize repository', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Refresh status', exact: true })).toBeEnabled();
+  const initStatus = await gitCall('gitStatus', projectId);
   expect(initStatus.state).toBe('clean');
   expect(await fs.stat(path.join(directory, '.git')).then((s) => s.isDirectory())).toBe(true);
-  console.log('PASS: gitInit creates a real .git directory and status reflects a clean repo.');
+  console.log(
+    'PASS: the Git panel initializes a real repository without keeping the Code editor mounted.',
+  );
+  execFileSync('git', ['-C', directory, 'config', 'user.name', 'Folio Test'], { env });
+  execFileSync('git', ['-C', directory, 'config', 'user.email', 'test@folio.local'], { env });
+  execFileSync('git', ['-C', directory, 'config', 'commit.gpgsign', 'false'], { env });
 
   await fs.writeFile(path.join(directory, 'main.tex'), main + '\n% tracked change\n');
   const dirtyStatus = await gitCall('gitStatus', projectId);
@@ -86,23 +112,61 @@ try {
   expect(trackedRow).toMatchObject({ staged: null, unstaged: 'untracked' });
   console.log('PASS: an on-disk edit under a fresh repo shows up as untracked via git:status.');
 
-  const stagedStatus = await gitCall('gitStage', projectId, ['main.tex']);
+  await page.getByRole('button', { name: 'Refresh status', exact: true }).click();
+  await page.getByRole('button', { name: 'Stage main.tex', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Unstage main.tex', exact: true })).toBeVisible();
+  const stagedStatus = await gitCall('gitStatus', projectId);
   expect(stagedStatus.files.find((f) => f.path === 'main.tex')).toMatchObject({
     staged: 'added',
     unstaged: null,
   });
   console.log('PASS: git:stage stages the working-tree file.');
 
-  const commitStatus = await gitCall('gitCommit', projectId, 'Initial commit from smoke test');
+  await page
+    .getByPlaceholder('Commit message', { exact: true })
+    .fill('Initial commit from smoke test');
+  await page.getByRole('button', { name: 'Commit', exact: true }).click();
+  await expect(page.locator('.git-log-heading')).toContainText('Initial commit from smoke test');
+  const commitStatus = await gitCall('gitStatus', projectId);
   expect(commitStatus.files.find((f) => f.path === 'main.tex')).toBeUndefined();
   const log = await gitCall('gitLog', projectId, { limit: 10 });
   expect(log).toHaveLength(1);
   expect(log[0].subject).toBe('Initial commit from smoke test');
   console.log('PASS: git:commit records the message and git:log returns it newest-first.');
 
+  expect(
+    execFileSync('git', ['-C', directory, 'show', 'HEAD:main.tex'], { env, encoding: 'utf8' }),
+  ).toBe(main + '\n% tracked change\n');
+  await page.screenshot({ path: path.join(root, 'committed.png') });
+  await page.getByRole('tab', { name: 'Code', exact: true }).click();
+  await expect(page.locator('.cm-editor')).toHaveCount(1);
+  await expect(page.locator('.cm-content')).toContainText('Git Smoke Test');
   expect(errors, errors.join('\n')).toEqual([]);
-  await fs.writeFile(path.join(root, 'result.json'), JSON.stringify({ passed: true, errors }, null, 2));
+  await fs.writeFile(
+    path.join(root, 'result.json'),
+    JSON.stringify(
+      {
+        passed: true,
+        errors,
+        fixtureRoot,
+        commit: log[0],
+        sourceMatches: true,
+        uiInitializeStageCommit: true,
+        codeViewRestored: true,
+      },
+      null,
+      2,
+    ),
+  );
   console.log(`Evidence: ${root}`);
+} catch (error) {
+  await page?.screenshot({ path: path.join(root, 'failure.png') }).catch(() => {});
+  await fs.writeFile(
+    path.join(root, 'result.json'),
+    JSON.stringify({ passed: false, error: error.message, errors, fixtureRoot }, null, 2),
+  );
+  console.error(`Evidence: ${root}`);
+  throw error;
 } finally {
   await app?.evaluate(({ app }) => app.exit(0)).catch(() => {});
   await app?.close().catch(() => {});

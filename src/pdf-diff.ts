@@ -27,11 +27,7 @@ function contentFraction(frame: RasterFrame, x0: number, y0: number, x1: number,
       total++;
       // Resume PDFs render on a white page background; distance from white
       // is a cheap, domain-appropriate proxy for "has content here".
-      if (
-        255 - frame.data[i] > 20 ||
-        255 - frame.data[i + 1] > 20 ||
-        255 - frame.data[i + 2] > 20
-      )
+      if (255 - frame.data[i] > 20 || 255 - frame.data[i + 1] > 20 || 255 - frame.data[i + 2] > 20)
         content++;
     }
   }
@@ -159,7 +155,13 @@ export function diffRasterRegions(
       afterContent = contentFraction(after, bx0, by0, bx1, by1);
     const kind: ChangeRegion['kind'] =
       beforeContent > 0.02 && afterContent < beforeContent * 0.5 ? 'removed' : 'changed';
-    return { x: bx0 / width, y: by0 / height, width: (bx1 - bx0) / width, height: (by1 - by0) / height, kind };
+    return {
+      x: bx0 / width,
+      y: by0 / height,
+      width: (bx1 - bx0) / width,
+      height: (by1 - by0) / height,
+      kind,
+    };
   });
   // A final merge pass: text snapping above can make two originally distinct
   // boxes overlap once expanded to word/line boundaries.

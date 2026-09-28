@@ -234,3 +234,61 @@ python3 scripts/verify-v8-resources.py test-results/v8-profile-RUN /path/to/Foli
 Full heap snapshots are bounded to 128 MiB each and remain local. Published [comparison and representative paths](performance/renderer-retention-comparison.json), [native-input summary](performance/renderer-retention-native-summary.json), [paste-control summary](performance/renderer-retention-paste-summary.json), and their [native](releases/renderer-retention-native-verification.json) / [paste](releases/renderer-retention-paste-verification.json) verification records retain exact identities and limits. Compact [native traces](performance/renderer-retention-native-traces.tar.gz) and [paste traces](performance/renderer-retention-paste-traces.tar.gz) exclude full heaps and profile copies. The initial five-cycle trial completed two snapshots, then failed because its template selector omitted “The”; that failed report, log and snapshots remain retained and excluded from the completed comparison. Its original top-level no-GC wording applied to the sampled workload; the added post-workload diagnostic did request collection. The completed runs explicitly describe that separation.
 
 The snapshot detachedness values follow [V8's embedder-graph states](https://chromium.googlesource.com/v8/v8.git/+/refs/heads/13.1.95/include/v8-profiler.h). The analyzer reads the actual snapshot's field/type tables, checks every node/edge and retains its source hash. This is a diagnosis with an input control, not a shipped optimization or completed resource acceptance.
+
+### Disposing the hidden editor view
+
+The development candidate at `c8a57fa` keeps CodeMirror's document, undo history, selection and scroll offsets while destroying its `EditorView` in Chat. Returning to Code recreates the view from that state. Source changes received in Chat update the cached state, including before the first Code visit. State extensions are created outside the view effect so their callbacks cannot capture the effect's view/cleanup closure. The product does not clear undo or request garbage collection.
+
+The packaged candidate has ASAR SHA-256 `2cd68ead966a0701c11b74727504220ee039534cf50d9226991627a3a6d66687`. Its embedded runtime manifest matches the earlier baseline. Comparing all 43 ASAR members finds only the renderer JavaScript and its HTML reference changed; main/preload/worker outputs and other members match. The five-cycle native-input workload uses another exact copy of the same 120-cycle seed. It retains the original native replacement stress method, all three builds/exports per cycle and ordinary collection during CPU/allocation sampling. The new explicit diagnostic mode permits the changed app identity and requires zero editor views in Chat; baseline modes still require the original ASAR.
+
+| Post-workload checkpoint | Candidate DOM counter after explicit GC | Candidate detached snapshot nodes | Earlier native baseline detached nodes |
+| --- | ---: | ---: | ---: |
+| Code after five cycles | 8,771 | 6,766 | 6,766 |
+| Chat | 394 | 1 | 6,766 |
+| New project, then Chat | 595 | 22 | 22 |
+
+Code still has 6,345 detached nodes with a shortest non-weak path through native undo and 420 through the native typing command. After disposing the view and diagnostic collection, those detached editor/path groups are absent. The remaining Chat node is a PDF text span; the new-project snapshot contains 22 PDF text spans. These counts describe captured graphs, not individual object identities, complete retained bytes or exclusive owners. The Chat counter was still 8,820 **before** the explicit collection: this is evidence that the hidden editor's nodes can be collected, not a promise of immediate memory reduction after every tab switch.
+
+Independent checks recompute all 375 native snapshots, 62 phase markers, ten CPU profiles and three ordinary heap observations. All 15 exports/510 pages verify. Comparing with the earlier native-input baseline finds identical intended and actual saved source, page text, page boxes and link targets/rectangles across all 510 page pairs. Each export matches its retained history PDF. All 361 prior version metadata records and every file in those version directories match the original seed, which also remains unchanged in full. See [comparison and retaining paths](performance/editor-lifecycle-comparison.json), [summary](performance/editor-lifecycle-summary.json), [compact traces](performance/editor-lifecycle-traces.tar.gz) and [independent verification](releases/editor-lifecycle-verification.json).
+
+Correctness checks pass all 462 source tests, native file/chat/diagnostic/watcher workflows and the packaged file workflow. They exercise repeated Chat/Code switches, per-file undo/redo, selected text, both scroll axes, theme changes, rename/Save As, snippets from Chat, build-output navigation, AI edits while hidden, and outside-source reloads before Code first opens. The preserved source-test failures were test-path mistakes: waiting for a new PDF without pressing Compile while automatic compilation was off, and trying to click a Code-only diagnostic while Chat hid its panel. Both corrected complete workflows pass. [Local/package evidence](releases/editor-lifecycle-native-verification.json) records these failures and successful reruns.
+
+This is one candidate on the development M4 Pro, compared with the earlier diagnostic. It is not a randomized timing comparison or a normal-collection long-session bound. A session that stays in Code still exhibits the native-input retention group. Full hosted qualification of this new candidate, ordinary-session resource measurements and physical input/accessibility acceptance, the original long-session repeat, upper-bound inputs and the earlier CPU failures remain open. The separate input-correctness checks below do not close those resource or physical-device requirements.
+
+```sh
+FOLIO_PYTHON=/path/to/python3 node scripts/profile-v8-resources.mjs /path/to/candidate/Folio.app/Contents/MacOS/Folio /path/to/process-profile-SEED 5 --retention-disposed-editor
+python3 scripts/analyze-renderer-retention.py test-results/v8-profile-CANDIDATE
+node scripts/analyze-v8-resources.mjs test-results/v8-profile-CANDIDATE /path/to/candidate/Folio.app
+python3 scripts/verify-v8-resources.py test-results/v8-profile-CANDIDATE /path/to/candidate/Folio.app editor-lifecycle
+python3 scripts/verify-editor-lifecycle.py /path/to/v8-profile-NATIVE-BASELINE test-results/v8-profile-CANDIDATE
+```
+
+Run from the matching candidate source, with pypdf installed for the verifiers. Full heaps, PDFs, app binaries and copied profiles stay local; the public archive preserves compact raw measurements/profiles. Keep other local native suites, builds and benchmarks stopped during the measurement.
+
+### Typing and composition across Chat
+
+A separate sequential correctness pair checks the exact lifecycle candidate and the unchanged baseline package on the development M4 Pro. Each app passes five cases: ordinary character keys, committed browser composition, switching to Chat during composition, cancelling composition, and replacing selected text with composed text. Each case preserves the expected source through Chat/Code and one undo/redo step. Compilation, normal close, restart recovery and further typing also pass. An independent verifier reads the actual recovery and saved-version files and parses both final PDFs; their body text and page boxes match.
+
+The harness uses keyboard events for ordinary ASCII typing and Chromium's [Input protocol](https://github.com/ChromeDevTools/devtools-protocol/blob/master/types/protocol-proxy-api.d.ts) for composition. Both packages report trusted composition start/update/input events and an untrusted composition-end event on this path. The first observer incorrectly required that end event to be trusted and failed on both packages after source and undo checks passed. Both original failures are retained. The corrected observer keeps every trust flag and checks the resulting text, cancellation, selection replacement and recovery. This evidence does not identify the origin of the untrusted end event.
+
+The exact final harness was committed as `cb92308` after collection; each run copied its own harness before launch and checked its hash again at completion. Both snapshots match that commit. See [verification, identities and scope](releases/editor-input-verification.json) and [four retained reports with their harnesses](performance/editor-input-traces.tar.gz).
+
+These are automated browser-level composition checks on one development Mac, not a physical Mac input-source/candidate-window, every language or VoiceOver qualification. Unicode text is in TeX comments, so the PDFs check build continuity rather than font glyph coverage. No explicit collection is requested, but six observations per run do not establish natural-collection retention, timing or memory budgets. The harness is a local supplementary check, outside the hosted native suite set.
+
+```sh
+node scripts/test-editor-input.mjs /path/to/candidate/Folio.app/Contents/MacOS/Folio disposed
+node scripts/test-editor-input.mjs /path/to/baseline/Folio.app/Contents/MacOS/Folio mounted
+python3 scripts/verify-editor-input.py /path/to/final-candidate /path/to/final-baseline /path/to/initial-candidate /path/to/initial-baseline
+```
+
+The verifier is specific to the retained package identities and original failed pair. New measurements must preserve their own inputs and update the verification scope rather than overwriting this evidence.
+
+### Integration with the Git workspace
+
+The later candidate at `d042c50` includes the published Git/PDF-highlight work from `6eebe47` and a section-navigation correction. Both earlier hosted attempts at `aed7933` stopped in the file suite after six native suites passed: inserting a section from Chat left its text outside the visible editor. A local check of the unchanged package independently confirms that the exact inserted source was saved while the viewport assertion failed. The fix requests scrolling after insertion and prevents deferred restoration of an old viewport when the document or selection has changed. It also repairs an unclosed CSS block in the merged Git styles. The original failed reports, screenshots, artifact digests and local control are [preserved together](releases/editor-navigation-initial-failures.json).
+
+All 486 source tests, type checking/build and local file, Git, chat, diagnostic and watcher workflows pass. The exact new Apple silicon package separately passes the complete file workflow, all five input cases with restart, and visible Git initialization/staging/commit controls. Independent checks compare the actual input recovery and saved version with the retained baseline, parse the final PDF, and read the actual Git commit. All 39 packaged build outputs match; the compiler manifest is unchanged. See [integration verification](releases/editor-lifecycle-integration-verification.json) and [compact raw reports](performance/editor-lifecycle-integration-traces.tar.gz).
+
+The native qualification set now also checks Git, for twenty-four suites. The first isolated Git harness attempt expected initialization without an identity; the app correctly showed its setup prompt. The corrected harness checks that prompt and uses its own synthetic Git configuration, without changing the user's account. The new [Git walkthrough](tutorials/git-history.md) contains a real local-commit screenshot. Forty website demos pass desktop/mobile image, layout and theme checks.
+
+Hosted qualification of this integrated candidate remains pending. The earlier five-cycle heap results describe the earlier package; they are not a performance result for the merged Git/PDF-highlight app. Physical input/accessibility, natural-collection long sessions, upper-bound fixtures and the two earlier CPU failures remain open. These checks do not establish production signing or complete release acceptance.

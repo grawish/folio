@@ -77,10 +77,7 @@ export function usePdfChangeHighlight(
     // transition-duration to ~0, so the opacity transition below just becomes
     // an instant hide instead of needing a separate JS timing branch.
     timers.current = [
-      window.setTimeout(
-        () => setState((previous) => ({ ...previous, phase: 'fading' })),
-        HOLD_MS,
-      ),
+      window.setTimeout(() => setState((previous) => ({ ...previous, phase: 'fading' })), HOLD_MS),
       window.setTimeout(
         () => setState((previous) => ({ ...previous, phase: 'hidden' })),
         HOLD_MS + FADE_MS,
@@ -149,5 +146,12 @@ export function usePdfChangeHighlight(
     return stops[next];
   };
 
-  return { state, stops, cursor: stops[cursor], replay, next: () => step(1), previous: () => step(-1) };
+  return {
+    state,
+    stops,
+    cursor: stops[cursor],
+    replay,
+    next: () => step(1),
+    previous: () => step(-1),
+  };
 }

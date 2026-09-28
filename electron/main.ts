@@ -442,7 +442,9 @@ function registerHandlers() {
   handle('git:availability', () => git.gitAvailability());
   handle('git:status', (projectId: string) => git.gitStatus(projectId));
   handle('git:init', (projectId: string) => git.gitInit(projectId));
-  handle('git:clone', (id: string, url: string, directory: string) => git.gitClone(id, url, directory));
+  handle('git:clone', (id: string, url: string, directory: string) =>
+    git.gitClone(id, url, directory),
+  );
   handle('git:diff', (projectId: string, target: GitDiffTarget) => git.gitDiff(projectId, target));
   handle('git:stage', (projectId: string, paths: string[]) => git.gitStage(projectId, paths));
   handle('git:unstage', (projectId: string, paths: string[]) => git.gitUnstage(projectId, paths));
@@ -458,12 +460,16 @@ function registerHandlers() {
   handle('git:restore-files', (projectId: string, hash: string, paths: string[]) =>
     git.gitRestoreFiles(projectId, hash, paths),
   );
-  handle('git:revert-commit', (projectId: string, hash: string) => git.gitRevertCommit(projectId, hash));
+  handle('git:revert-commit', (projectId: string, hash: string) =>
+    git.gitRevertCommit(projectId, hash),
+  );
   handle('git:branches', (projectId: string) => git.gitBranches(projectId));
   handle('git:create-branch', (projectId: string, name: string, switchTo: boolean) =>
     git.gitCreateBranch(projectId, name, switchTo),
   );
-  handle('git:switch-branch', (projectId: string, name: string) => git.gitSwitchBranch(projectId, name));
+  handle('git:switch-branch', (projectId: string, name: string) =>
+    git.gitSwitchBranch(projectId, name),
+  );
   handle('git:rename-branch', (projectId: string, from: string, to: string) =>
     git.gitRenameBranch(projectId, from, to),
   );
@@ -483,17 +489,25 @@ function registerHandlers() {
     ) => git.gitResolveConflict(projectId, path, resolution),
   );
   handle('git:stashes', (projectId: string) => git.gitStashes(projectId));
-  handle('git:stash-save', (projectId: string, message: string) => git.gitStashSave(projectId, message));
-  handle('git:stash-show', (projectId: string, index: number) => git.gitStashShow(projectId, index));
+  handle('git:stash-save', (projectId: string, message: string) =>
+    git.gitStashSave(projectId, message),
+  );
+  handle('git:stash-show', (projectId: string, index: number) =>
+    git.gitStashShow(projectId, index),
+  );
   handle('git:stash-apply', (projectId: string, index: number, pop: boolean) =>
     git.gitStashApply(projectId, index, pop),
   );
-  handle('git:stash-drop', (projectId: string, index: number) => git.gitStashDrop(projectId, index));
+  handle('git:stash-drop', (projectId: string, index: number) =>
+    git.gitStashDrop(projectId, index),
+  );
   handle('git:remotes', (projectId: string) => git.gitRemotes(projectId));
   handle('git:add-remote', (projectId: string, name: string, url: string) =>
     git.gitAddRemote(projectId, name, url),
   );
-  handle('git:remove-remote', (projectId: string, name: string) => git.gitRemoveRemote(projectId, name));
+  handle('git:remove-remote', (projectId: string, name: string) =>
+    git.gitRemoveRemote(projectId, name),
+  );
   handle('git:fetch', (id: string, projectId: string, remote?: string) =>
     git.gitFetch(id, projectId, remote),
   );

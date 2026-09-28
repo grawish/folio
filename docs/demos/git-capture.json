@@ -1,0 +1,26 @@
+{
+  "sourceCommit": "d042c50356eb8644e3adf5db473eb515b0a18186",
+  "harness": "scripts/test-git.mjs",
+  "harnessSha256": "94ccede6abcbe265d9c5d05009d6d6ddde1c74559bc48427cc31c2b13b3922f1",
+  "screenshot": "docs/images/git-history.png",
+  "screenshotSha256": "4b986bc55d23a687ebbc0ae41dd87348eeebcfcc8e045a0b4bd266c50e8748d0",
+  "sourceScreenshot": "/Users/grawish/.codex/worktrees/compiler-crash-cleanup/resume-maker/test-results/git-BmT67n/committed.png",
+  "result": {
+    "passed": true,
+    "errors": [],
+    "fixtureRoot": "/var/folders/ly/czcg6f_51sjbmyp0h3hb139r0000gn/T/folio-git-smoke-5fFfzH",
+    "commit": {
+      "hash": "5682ae5b31c50e5a4b10593f3287cbd341495555",
+      "shortHash": "5682ae5",
+      "subject": "Initial commit from smoke test",
+      "author": "Folio Test",
+      "email": "test@folio.local",
+      "date": "2026-09-28T10:13:32+05:30",
+      "parents": []
+    },
+    "sourceMatches": true,
+    "uiInitializeStageCommit": true,
+    "codeViewRestored": true
+  },
+  "scope": "Source-built native app; synthetic project and private Git identity; local UI initialize/stage/commit and exact committed source. No PDF build, network remote, real account, full branch/conflict or supported-Mac claim."
+}

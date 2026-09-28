@@ -1,6 +1,6 @@
 # Feature tutorials and screenshot demos
 
-Every currently implemented feature group below has a plain-language walkthrough and a real-app screenshot demo. Use the linked native suites for reproducible behavior checks. Each demo identifies whether it uses scripted AI, an empty connection form or a real subscription. The Claude PDF-note demo verifies one live workflow with a synthetic resume; other screenshots do not imply live account acceptance or completion of planned features.
+Each feature group listed below has a plain-language walkthrough and a real-app screenshot demo. Use the linked native suites for reproducible behavior checks. Each demo identifies whether it uses scripted AI, an empty connection form or a real subscription. The Claude PDF-note demo verifies one live workflow with a synthetic resume; other screenshots do not imply live account acceptance or completion of planned features.
 
 | Feature | Tutorial | Screenshot demo |
 | --- | --- | --- |
@@ -19,6 +19,7 @@ Every currently implemented feature group below has a plain-language walkthrough
 | Visual PDF feedback | [Walkthrough](tutorials/chat-and-feedback.md) | [Screenshot](images/annotations.png) · Real app · scripted local AI fixture |
 | Compare, undo and restore | [Walkthrough](tutorials/chat-and-feedback.md) | [Screenshot](images/history.png) · Real app · scripted local AI fixture |
 | Make room in History | [Walkthrough](tutorials/chat-and-feedback.md#make-room-in-history) | [Screenshot](images/history-removal-dark.png) · Development source · synthetic resume and real PDF |
+| Local Git checkpoints | [Walkthrough](tutorials/git-history.md) | [Screenshot](images/git-history.png) · Development source · real local Git · synthetic identity |
 | Code and build errors | [Walkthrough](tutorials/editor-and-pdf.md) | [Screenshot](images/code.png) · Real app · synthetic project |
 | Missing files, fonts and engine help | [Walkthrough](tutorials/editor-and-pdf.md#fix-a-missing-file-font-or-package) | [Screenshot](images/build-help-font.png) · Real compiler · synthetic missing font |
 | Local font files | [Walkthrough](tutorials/editor-and-pdf.md#use-your-own-font-files) | [Screenshot](images/local-fonts.png) · Real app/compiler · synthetic project |
@@ -43,6 +44,8 @@ Every currently implemented feature group below has a plain-language walkthrough
 | Keyboard navigation and dialog focus | [Walkthrough](tutorials/first-resume.md#move-around-with-the-keyboard) | [Screenshot](images/keyboard-navigation.png) · Real app · automated keys |
 | Low space during an app update | [Walkthrough](tutorials/app-updates.md#if-your-disk-needs-more-space) | [Screenshot](images/app-updates-disk-space.png) · Real Settings · simulated low space |
 | Return to work after update preparation fails | [Walkthrough](tutorials/app-updates.md#if-preparing-an-update-takes-too-long) | [Screenshot](images/app-updates-recovery.png) · Real Settings · simulated timeout |
+
+The merged PDF-change overlay is not yet included in this demo set; its native workflow check and walkthrough remain open.
 
 See [demo reproduction](demos/README.md) for commands and capture provenance. Pack workflows are demonstrated with the public catalog and published table resources. See [the release audit](RELEASE_GAP_AUDIT.md) for package qualification and remaining release requirements. Automatic updates have no working-feature demo yet. Wider OS, physical accessibility, real BYOK and broader live account/model acceptance also remain open.
 

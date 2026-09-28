@@ -10,6 +10,7 @@ A desktop workspace where you can chat about your resume, mark changes on its PD
 - PDF highlights, boxes, freehand marks, and notes. Attach selected marked areas to a message, including their page and source context.
 - Persistent conversations, drafts, notes, and matching source/PDF versions; compare, restore, undo, stop, and protection for newer manual edits.
 - Six original templates: Classic, Modern, Academic, Minimal, Compact Technical, and Two Column. Each supports A4 and US Letter, with real PDF thumbnails and bundled-font details.
+- The development Git tab stages saved files, makes local commits and displays repository history. Its [walkthrough](tutorials/git-history.md) distinguishes Git from PDF History; this feature is newer than the preview-4 download.
 - CodeMirror editing, syntax highlighting, command completions, search, per-file undo/redo across tabs, and section snippets.
 - Dark and light themes, a header toggle, and a saved System appearance option in Settings.
 - Compact workspace with resizable file/writing/PDF panes, remembered proportions, keyboard dividers, a collapsible sidebar and narrow PDF gutters. Project menus retain all secondary actions.

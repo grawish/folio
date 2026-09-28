@@ -160,7 +160,8 @@ const api: DesktopAPI = {
     ipcRenderer.invoke('git:stash-apply', projectId, index, pop),
   gitStashDrop: (projectId, index) => ipcRenderer.invoke('git:stash-drop', projectId, index),
   gitRemotes: (projectId) => ipcRenderer.invoke('git:remotes', projectId),
-  gitAddRemote: (projectId, name, url) => ipcRenderer.invoke('git:add-remote', projectId, name, url),
+  gitAddRemote: (projectId, name, url) =>
+    ipcRenderer.invoke('git:add-remote', projectId, name, url),
   gitRemoveRemote: (projectId, name) => ipcRenderer.invoke('git:remove-remote', projectId, name),
   gitFetch: (id, projectId, remote) => ipcRenderer.invoke('git:fetch', id, projectId, remote),
   gitPull: (id, projectId) => ipcRenderer.invoke('git:pull', id, projectId),

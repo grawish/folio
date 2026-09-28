@@ -61,6 +61,20 @@ seed_report = Path(r['seed']['report'])
 assert file_hash(seed_report) == r['seed']['reportSha256']
 seed = json.loads(seed_report.read_bytes())
 assert r['instrumentation']['nativeObserverSha256'] == seed['observer']['sha256']
+assert r['runtimeManifestSha256'] == seed['runtimeManifestSha256']
+if r.get('applicationMode') == 'changed app with disposed Chat editor':
+    assert r['appAsarSha256'] != seed['appAsarSha256']
+    assert r['seed']['appAsarSha256'] == seed['appAsarSha256']
+    assert r['seed']['runtimeManifestSha256'] == seed['runtimeManifestSha256']
+    assert r['retention']['editorLifecycle'] == 'disposed'
+    assert r['retention']['expectedHiddenEditors'] == 0
+    assert r['inputMethod'] == 'native keyboard.insertText'
+    assert [s['label'] for s in r['retention']['snapshots']] == ['code', 'chat-disposed-editor', 'new-project']
+    for observation in r['retention']['observations']:
+        assert observation['connected']['editors'] == (1 if observation['label'].startswith('code-') else 0)
+else:
+    assert r.get('applicationMode', 'unchanged seed app') == 'unchanged seed app'
+    assert r['appAsarSha256'] == seed['appAsarSha256']
 seed_data = seed_report.parent / 'app-data'
 entries = []
 for base, folders, files in os.walk(seed_data, followlinks=False):

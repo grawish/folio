@@ -1,35 +1,7 @@
-import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
-import { Annotation, Compartment, EditorState } from '@codemirror/state';
-import {
-  EditorView,
-  lineNumbers,
-  highlightActiveLine,
-  highlightActiveLineGutter,
-  keymap,
-  drawSelection,
-} from '@codemirror/view';
-import { defaultKeymap, history, historyKeymap, indentWithTab } from '@codemirror/commands';
-import {
-  StreamLanguage,
-  bracketMatching,
-  syntaxHighlighting,
-  HighlightStyle,
-} from '@codemirror/language';
-import { tags } from '@lezer/highlight';
-import { searchKeymap, highlightSelectionMatches } from '@codemirror/search';
-import { autocompletion, completionKeymap } from '@codemirror/autocomplete';
-import { stex } from '@codemirror/legacy-modes/mode/stex';
-
-const latexHighlighting = HighlightStyle.define([
-  { tag: [tags.tagName, tags.keyword], color: 'var(--syntax-command)' },
-  { tag: [tags.atom, tags.number, tags.bool], color: 'var(--syntax-atom)' },
-  { tag: [tags.string, tags.special(tags.string)], color: 'var(--syntax-string)' },
-  { tag: [tags.variableName, tags.standard(tags.variableName)], color: 'var(--syntax-variable)' },
-  { tag: tags.comment, color: 'var(--syntax-comment)', fontStyle: 'italic' },
-  { tag: [tags.bracket, tags.punctuation], color: 'var(--syntax-punctuation)' },
-  { tag: tags.invalid, color: 'var(--error)', textDecoration: 'underline wavy' },
-]);
-const externalChange = Annotation.define<boolean>();
+import { forwardRef, useEffect, useLayoutEffect, useImperativeHandle, useRef } from 'react';
+import { Compartment, type EditorState } from '@codemirror/state';
+import { EditorView } from '@codemirror/view';
+import { createLatexEditorState, externalChange } from '../editor-state';
 
 export type EditorHandle = {
   insert(text: string): void;
@@ -39,6 +11,7 @@ export type EditorHandle = {
 export const LatexEditor = forwardRef<
   EditorHandle,
   {
+    visible: boolean;
     value: string;
     filename: string;
     sessionId: string;
@@ -49,7 +22,7 @@ export const LatexEditor = forwardRef<
     dark: boolean;
   }
 >(function LatexEditor(
-  { value, filename, sessionId, filenames, onChange, onCursor, fontSize, dark },
+  { visible, value, filename, sessionId, filenames, onChange, onCursor, fontSize, dark },
   ref,
 ) {
   const host = useRef<HTMLDivElement>(null);
@@ -75,7 +48,7 @@ export const LatexEditor = forwardRef<
       insert(text) {
         const view = editor.current;
         if (view) {
-          view.dispatch(view.state.replaceSelection(text));
+          view.dispatch({ ...view.state.replaceSelection(text), scrollIntoView: true });
           view.focus();
         }
       },
@@ -93,7 +66,7 @@ export const LatexEditor = forwardRef<
     }),
     [],
   );
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!host.current) return;
     if (currentSession.current !== sessionId) {
       cached.current.clear();
@@ -101,158 +74,52 @@ export const LatexEditor = forwardRef<
     }
     shownKey.current = filename;
     const previous = cached.current.get(filename);
-    const view = new EditorView({
-      parent: host.current,
-      state: previous
-        ? previous.state.update({
-            annotations: externalChange.of(true),
-            changes:
-              previous.state.doc.toString() === value
-                ? undefined
-                : { from: 0, to: previous.state.doc.length, insert: value },
-            effects: [
-              appearance.current.reconfigure(EditorView.theme({}, { dark })),
-              attributes.current.reconfigure(
-                EditorView.contentAttributes.of({
-                  'aria-label': `LaTeX source: ${filename}`,
-                  spellcheck: 'false',
-                }),
-              ),
-            ],
-          }).state
-        : EditorState.create({
-            doc: value,
-            extensions: [
-              lineNumbers(),
-              history(),
-              drawSelection(),
-              highlightActiveLine(),
-              highlightActiveLineGutter(),
-              StreamLanguage.define(stex),
-              syntaxHighlighting(latexHighlighting),
-              appearance.current.of(EditorView.theme({}, { dark })),
-              bracketMatching(),
-              highlightSelectionMatches(),
-              keymap.of([
-                ...defaultKeymap,
-                ...historyKeymap,
-                ...searchKeymap,
-                ...completionKeymap,
-                indentWithTab,
-              ]),
-              autocompletion({
-                override: [
-                  (context) => {
-                    const word = context.matchBefore(/\\[a-zA-Z]*/);
-                    if (!word) return null;
-                    return {
-                      from: word.from,
-                      options: [
-                        { label: '\\section', type: 'keyword', apply: '\\section{Section title}' },
-                        { label: '\\textbf', type: 'keyword', apply: '\\textbf{Bold text}' },
-                        { label: '\\textit', type: 'keyword', apply: '\\textit{Italic text}' },
-                        {
-                          label: '\\href',
-                          type: 'keyword',
-                          apply: '\\href{https://example.com}{Link text}',
-                        },
-                        {
-                          label: '\\begin',
-                          type: 'keyword',
-                          apply: '\\begin{itemize}\n  \\item Your achievement\n\\end{itemize}',
-                        },
-                        { label: '\\item', type: 'keyword' },
-                        { label: '\\hfill', type: 'keyword' },
-                      ],
-                    };
-                  },
-                ],
+    const state = previous
+      ? previous.state.update({
+          annotations: externalChange.of(true),
+          changes:
+            previous.state.doc.toString() === value
+              ? undefined
+              : { from: 0, to: previous.state.doc.length, insert: value },
+          effects: [
+            appearance.current.reconfigure(EditorView.theme({}, { dark })),
+            attributes.current.reconfigure(
+              EditorView.contentAttributes.of({
+                'aria-label': `LaTeX source: ${filename}`,
+                spellcheck: 'false',
               }),
-              attributes.current.of(
-                EditorView.contentAttributes.of({
-                  'aria-label': `LaTeX source: ${filename}`,
-                  spellcheck: 'false',
-                }),
-              ),
-              EditorView.updateListener.of((update) => {
-                if (
-                  update.docChanged &&
-                  !update.transactions.some((transaction) => transaction.annotation(externalChange))
-                )
-                  callbacks.current.onChange(update.state.doc.toString());
-                if (update.selectionSet || update.docChanged) {
-                  const pos = update.state.selection.main.head;
-                  const line = update.state.doc.lineAt(pos);
-                  callbacks.current.onCursor(line.number, pos - line.from + 1);
-                }
-              }),
-              EditorView.theme({
-                '&': { height: '100%', color: 'var(--ink)', backgroundColor: 'var(--surface)' },
-                '.cm-scroller': {
-                  fontFamily: 'var(--font-mono)',
-                  lineHeight: '1.55',
-                  overflow: 'auto',
-                },
-                '.cm-content': { padding: '6px 0 24px', caretColor: 'var(--accent)' },
-                '.cm-cursor, .cm-dropCursor': { borderLeftColor: 'var(--accent)' },
-                '.cm-line': { padding: '0 10px 0 8px' },
-                '.cm-gutters': {
-                  background: 'var(--surface)',
-                  color: 'var(--faint)',
-                  border: 'none',
-                  paddingRight: '6px',
-                },
-                '.cm-lineNumbers .cm-gutterElement': { minWidth: '38px' },
-                '.cm-activeLine, .cm-activeLineGutter': { background: 'var(--editor-active-line)' },
-                '&.cm-focused': { outline: 'none' },
-                '.cm-selectionBackground, &.cm-focused .cm-selectionBackground': {
-                  background: 'var(--editor-selection)',
-                },
-                '.cm-searchMatch': { background: 'var(--editor-search)' },
-                '.cm-searchMatch.cm-searchMatch-selected': {
-                  background: 'var(--editor-search-selected)',
-                  outline: '1px solid var(--warning)',
-                },
-                '.cm-selectionMatch': { background: 'var(--editor-selection)' },
-                '&.cm-focused .cm-matchingBracket': {
-                  background: 'var(--editor-selection)',
-                  outline: '1px solid var(--accent)',
-                },
-                '.cm-panels': {
-                  background: 'var(--surface-soft)',
-                  color: 'var(--ink)',
-                  borderColor: 'var(--line)',
-                },
-                '.cm-textfield': {
-                  background: 'var(--surface)',
-                  color: 'var(--ink)',
-                  border: '1px solid var(--line)',
-                  borderRadius: '3px',
-                },
-                '.cm-button': {
-                  background: 'var(--surface-raised)',
-                  color: 'var(--ink)',
-                  border: '1px solid var(--line)',
-                  backgroundImage: 'none',
-                },
-                '.cm-tooltip': {
-                  border: '1px solid var(--line)',
-                  background: 'var(--surface-raised)',
-                  color: 'var(--ink)',
-                  borderRadius: '6px',
-                },
-                '.cm-tooltip-autocomplete > ul > li[aria-selected]': {
-                  background: 'var(--surface-selected)',
-                  color: 'var(--accent)',
-                },
-              }),
-            ],
-          }),
-    });
+            ),
+          ],
+        }).state
+      : createLatexEditorState({
+          value,
+          filename,
+          dark,
+          appearance: appearance.current,
+          attributes: attributes.current,
+          callbacks,
+        });
+    if (!visible) {
+      cached.current.delete(filename);
+      cached.current.set(filename, {
+        state,
+        top: previous?.top ?? 0,
+        left: previous?.left ?? 0,
+      });
+      if (cached.current.size > 100) cached.current.delete(cached.current.keys().next().value!);
+      return;
+    }
+    const view = new EditorView({ parent: host.current, state });
     editor.current = view;
     if (previous)
       requestAnimationFrame(() => {
-        if (editor.current === view) {
+        // A section insertion or diagnostic jump can happen in the same frame
+        // as opening Code. Its new cursor must win over the cached viewport.
+        if (
+          editor.current === view &&
+          view.state.doc === state.doc &&
+          view.state.selection.eq(state.selection)
+        ) {
           view.scrollDOM.scrollTop = previous.top;
           view.scrollDOM.scrollLeft = previous.left;
         }
@@ -273,7 +140,7 @@ export const LatexEditor = forwardRef<
       view.destroy();
       editor.current = null;
     };
-  }, [filename, sessionId]);
+  }, [filename, sessionId, visible]);
   useEffect(() => {
     for (const name of cached.current.keys())
       if (!filenames.includes(name)) cached.current.delete(name);
@@ -284,17 +151,17 @@ export const LatexEditor = forwardRef<
       effects: appearance.current.reconfigure(EditorView.theme({}, { dark })),
     });
   }, [dark]);
-  useEffect(() => {
+  useLayoutEffect(() => {
     const view = editor.current;
-    if (view && view.state.doc.toString() !== value)
-      view.dispatch({
-        annotations: externalChange.of(true),
-        changes: {
-          from: 0,
-          to: view.state.doc.length,
-          insert: value,
-        },
-      });
-  }, [value]);
+    const previous = cached.current.get(filename);
+    const state = view?.state ?? previous?.state;
+    if (!state || state.doc.toString() === value) return;
+    const transaction = state.update({
+      annotations: externalChange.of(true),
+      changes: { from: 0, to: state.doc.length, insert: value },
+    });
+    if (view) view.dispatch(transaction);
+    else if (previous) cached.current.set(filename, { ...previous, state: transaction.state });
+  }, [value, filename]);
   return <div className="editor-host" style={{ fontSize }} ref={host} />;
 });

@@ -180,6 +180,10 @@ try {
   );
 
   const current = await read();
+  // Reading the replaced file does not mean the preceding write has finished
+  // syncing its directory or released its admission slot. Await a real FIFO
+  // recovery acknowledgement before testing the capacity of an empty queue.
+  await page.evaluate((current) => window.folio.recover(current), current);
   await install('hold');
   await page.evaluate((current) => {
     window.folioRecoveryResults = [];
@@ -243,6 +247,9 @@ try {
   );
 } catch (error) {
   report.failure = { message: error.message, stack: error.stack };
+  report.nativeAdmissionAtFailure = await page
+    ?.evaluate(() => window.folioRecoveryResults ?? [])
+    .catch(() => undefined);
   await page?.screenshot({ path: path.join(root, 'failure.png') }).catch(() => {});
   throw error;
 } finally {

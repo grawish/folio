@@ -1900,6 +1900,7 @@ export default function App() {
               </div>
               <LatexEditor
                 ref={editor}
+                visible={view === 'code'}
                 value={active.content}
                 filename={active.path}
                 sessionId={editorSession}

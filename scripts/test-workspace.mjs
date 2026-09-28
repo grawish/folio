@@ -131,6 +131,7 @@ try {
   await launch();
   const chatTab = page.getByRole('tab', { name: 'Chat', exact: true });
   const codeTab = page.getByRole('tab', { name: 'Code', exact: true });
+  const gitTab = page.getByRole('tab', { name: 'Git', exact: true });
   const historyButton = page.getByRole('button', { name: 'History', exact: true });
   const composer = page.getByLabel('Message the resume agent');
   const chatDraft = 'Keyboard navigation keeps this unsent draft.';
@@ -158,18 +159,37 @@ try {
   await historyButton.press('Shift+Tab');
   await expect(codeTab).toBeFocused();
   await codeTab.press('ArrowRight');
+  await expect(gitTab).toBeFocused();
+  await expect(gitTab).toHaveAttribute('aria-selected', 'true');
+  await expect(gitTab).toHaveAttribute('tabindex', '0');
+  await expect(codeTab).toHaveAttribute('tabindex', '-1');
+  const gitPanel = page.getByRole('tabpanel', { name: 'Git', exact: true });
+  await expect(gitPanel).toBeVisible();
+  await expect(gitTab).toHaveAttribute('aria-controls', await gitPanel.getAttribute('id'));
+  await expect(page.getByRole('tabpanel')).toHaveCount(1);
+  await gitTab.press('Tab');
+  await expect(historyButton).toBeFocused();
+  await historyButton.press('Tab');
+  await expect(gitPanel).toBeFocused();
+  await gitPanel.press('Shift+Tab');
+  await expect(historyButton).toBeFocused();
+  await historyButton.press('Shift+Tab');
+  await expect(gitTab).toBeFocused();
+  await gitTab.press('ArrowRight');
   await expect(chatTab).toBeFocused();
   await expect(composer).toHaveValue(chatDraft);
   const chatPanel = page.getByRole('tabpanel', { name: 'Chat', exact: true });
   await expect(chatTab).toHaveAttribute('aria-controls', await chatPanel.getAttribute('id'));
   await chatTab.press('ArrowLeft');
+  await expect(gitTab).toBeFocused();
+  await gitTab.press('ArrowLeft');
   await expect(codeTab).toBeFocused();
   await codeTab.press('Home');
   await expect(chatTab).toBeFocused();
   await chatTab.press('End');
-  await expect(codeTab).toBeFocused();
+  await expect(gitTab).toBeFocused();
   keyboardChecks.push(
-    'Chat/Code arrows wrap, Home/End select, one tab participates in Tab order, named visible panels agree, and the unsent draft survives.',
+    'Chat/Code/Git arrows wrap, Home/End select, one tab participates in Tab order, every named visible panel agrees and is focusable after History, and the unsent draft survives.',
   );
 
   const settingsButton = page.getByRole('button', { name: 'Settings', exact: true });
