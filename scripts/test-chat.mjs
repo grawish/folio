@@ -216,7 +216,7 @@ try {
     'aria-selected',
     'true',
   );
-  await expect(editor()).toBeHidden();
+  await expect(page.locator('.cm-editor')).toHaveCount(0);
   await code();
   await editor().fill(source);
   await ready();
@@ -375,8 +375,18 @@ try {
     .poll(async () => (await readWorkspace()).versions.some((version) => version.verified))
     .toBe(true);
   await expect(page.locator('.preview-pane .pdf-note-marker')).toHaveCount(0);
+  await expect(page.locator('.cm-editor')).toHaveCount(0);
   await code();
   await expect(editor()).toContainText('Selected Projects');
+  // The AI changed the source while the view was absent. CodeMirror history
+  // still reverses and reapplies that exact source change on reopening.
+  await editor().press('ControlOrMeta+z');
+  await expect(editor()).toContainText('section*{Projects}');
+  await expect(editor()).not.toContainText('Selected Projects');
+  await editor().press('ControlOrMeta+Shift+z');
+  await expect(editor()).toContainText('Selected Projects');
+  // Auto-compile is still off; undo/redo creates a new source revision.
+  await page.getByRole('button', { name: 'Compile', exact: true }).click();
   await ready();
   await expect(page.locator('.stale-note')).toBeHidden();
   await page.getByRole('checkbox', { name: 'Auto-compile', exact: true }).check();

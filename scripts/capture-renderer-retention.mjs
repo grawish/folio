@@ -5,10 +5,20 @@ import { expect } from '@playwright/test';
 
 // Separate, explicitly collected diagnostics after normal sampling has stopped.
 // Only called by the synthetic-profile harness, never from the application.
-export async function captureRendererRetention({ page, session, root, cycles }) {
+export async function captureRendererRetention({
+  page,
+  session,
+  root,
+  cycles,
+  editorLifecycle = 'mounted',
+}) {
+  expect(['mounted', 'disposed']).toContain(editorLifecycle);
+  const hiddenEditors = editorLifecycle === 'disposed' ? 0 : 1;
   const result = {
     scope:
-      'Separate diagnostic after V8/native workload sampling. Explicit garbage collection and heap snapshots change collection behavior; these are not ordinary-session memory or timing acceptance measurements. Chat hides the mounted editor; creating a new synthetic project replaces its session and PDF. Full heap snapshots remain local.',
+      'Separate diagnostic after V8/native workload sampling. Explicit garbage collection and heap snapshots change collection behavior; these are not ordinary-session memory or timing acceptance measurements. Chat editor lifecycle and expected connected editor count are recorded explicitly; creating a new synthetic project replaces its session and PDF. Full heap snapshots remain local.',
+    editorLifecycle,
+    expectedHiddenEditors: hiddenEditors,
     observations: [],
     snapshots: [],
   };
@@ -83,12 +93,12 @@ export async function captureRendererRetention({ page, session, root, cycles }) 
     await expect(page.locator('.preview-pane .textLayer')).toContainText(
       `Trace ${cycles} return page 1`,
     );
+    await expect(page.locator('.cm-editor')).toHaveCount(1);
     await collect('code');
     await page.getByRole('tab', { name: 'Chat', exact: true }).click();
     await expect(page.locator('#workspace-code-panel')).toBeHidden();
-    // The app deliberately preserves CodeMirror and its undo state across tabs.
-    await expect(page.locator('.cm-editor')).toHaveCount(1);
-    await collect('chat-existing-editor');
+    await expect(page.locator('.cm-editor')).toHaveCount(hiddenEditors);
+    await collect(editorLifecycle === 'disposed' ? 'chat-disposed-editor' : 'chat-existing-editor');
     const recovery = JSON.parse(await fs.readFile(path.join(root, 'app-data/recovery.json')));
     result.originalSyntheticProjectId = recovery.project.id;
     await page.getByRole('button', { name: 'Explore templates', exact: true }).click();
@@ -106,6 +116,7 @@ export async function captureRendererRetention({ page, session, root, cycles }) 
       })
       .not.toBe(result.originalSyntheticProjectId);
     await page.getByRole('tab', { name: 'Chat', exact: true }).click();
+    await expect(page.locator('.cm-editor')).toHaveCount(hiddenEditors);
     await collect('new-project');
     result.completed = true;
     return result;

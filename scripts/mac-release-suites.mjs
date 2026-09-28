@@ -6,6 +6,8 @@ export const macReleaseSuites = [
   'pdf-lifecycle',
   'migration',
   'chat',
+  'files',
+  'watch',
   'runtime',
   'build-crash',
   'build-requests',

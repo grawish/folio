@@ -86,7 +86,14 @@ try {
       // follow its actual report rather than guess the offending command line.
       sourceLine = Number((await original.textContent()).match(/main\.tex:(\d+)/)[1]);
       expect(sourceLine).toBeGreaterThan(0);
+      await page.getByRole('button', { name: 'Close build output', exact: true }).click();
+      await page.getByRole('tab', { name: 'Chat', exact: true }).click();
+      await expect(page.locator('.cm-editor')).toHaveCount(0);
+      // Build output lives in Code; use the visible status control to reopen it.
+      await page.getByRole('button', { name: /^\d+ errors · \d+ warnings$/ }).click();
       await original.click();
+      await expect(page.locator('.cm-editor')).toHaveCount(1);
+      await expect(page.locator('.cm-content')).toBeFocused();
       await expect(page.locator('.app-status')).toContainText(`Ln ${sourceLine}, Col 1`);
     }
     await page.getByRole('button', { name: 'Raw log', exact: true }).click();
