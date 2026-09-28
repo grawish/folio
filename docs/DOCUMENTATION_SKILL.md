@@ -10,6 +10,7 @@ Example prompts:
 - “Use $folio-resume to explain how I can mark a PDF and ask for a change.”
 - “Use $folio-resume to help me keep my outside edits after an interrupted import.”
 - “Use $folio-resume to find why my PDF is out of date.”
+- “Use $folio-resume to explain what to stage for my first local Git commit.”
 
 The entrypoint loads only the reference needed for the task. The Mac signing reference explains developer packaging, exact compiler fingerprints, and why private ad-hoc tests do not prove production release readiness. It preserves Settings-only AI selection, local/cloud privacy distinctions, draft protection and release limitations.
 
