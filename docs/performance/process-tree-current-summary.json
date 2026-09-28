@@ -1,0 +1,584 @@
+{
+  "startedAt": "2026-09-28T00:37:02.518Z",
+  "sourceCommit": "1210ebab5b778f27b73fe43068d3e09ea8cde22e",
+  "appAsarSha256": "21deec45a0be129a63d3d8b14a71f555000b9b40a0dbf5c6e6ebcfe0ff8e5144",
+  "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+  "scripts": {
+    "scripts/profile-process-resources.mjs": "7ae0cf91d657a04dbcec65a05bacefbaef51b410efbccf1cfe08f65c04240897",
+    "scripts/mac-process-sampler.mjs": "9d25c0620ac495dce59f14cab8f98779d67c5e38a730b589569afb80029924d7",
+    "scripts/sample-mac-processes.c": "696294d13261a728ccae0b15d6e5446d49781571997f9e3ef1b254e0992ca67b"
+  },
+  "host": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "os": "27.0.0",
+    "cpu": "Apple M4 Pro",
+    "logicalCpus": 14,
+    "ramBytes": 51539607552,
+    "node": "v24.21.0"
+  },
+  "observer": {
+    "api": "proc_listchildpids and proc_pid_rusage RUSAGE_INFO_V0",
+    "intervalMs": 200,
+    "sha256": "8addb95700ef208fce5a0125f77864baca37f9e57db8b3292c2b93ad502ed4bd",
+    "pdfInspector": "6.10.0",
+    "samples": 443,
+    "totalCpuSeconds": 1.420743000000001,
+    "maxCollectionMs": 184.861625,
+    "maxSampleGapMs": 384.798125,
+    "vanishedDuringReads": 0
+  },
+  "cycles": 3,
+  "phases": [
+    {
+      "name": "startup",
+      "startMs": 0.047207999999955064,
+      "cpuAtStart": 0,
+      "endMs": 44379.960042,
+      "observedCpuSeconds": 18.059536749,
+      "samples": 214,
+      "peakSummedRssBytes": 954417152,
+      "peakSummedFootprintBytes": 594467056
+    },
+    {
+      "name": "ready-idle",
+      "startMs": 44379.960042,
+      "cpuAtStart": 18.059536749,
+      "endMs": 46990.799792000005,
+      "observedCpuSeconds": 0.08187233299999974,
+      "samples": 13,
+      "peakSummedRssBytes": 558317568,
+      "peakSummedFootprintBytes": 437998968
+    },
+    {
+      "name": "Cycle 1 small-build",
+      "startMs": 46990.799792000005,
+      "cpuAtStart": 18.141409082,
+      "endMs": 48418.379875,
+      "observedCpuSeconds": 1.4373117919999991,
+      "samples": 7,
+      "peakSummedRssBytes": 782516224,
+      "peakSummedFootprintBytes": 680532424
+    },
+    {
+      "name": "Cycle 1 small-export",
+      "startMs": 48418.379875,
+      "cpuAtStart": 19.578720874,
+      "endMs": 48440.546875,
+      "observedCpuSeconds": 0.010495583000000863,
+      "samples": 1,
+      "peakSummedRssBytes": 595410944,
+      "peakSummedFootprintBytes": 505828824
+    },
+    {
+      "name": "cycle-1-small-idle",
+      "startMs": 48440.546875,
+      "cpuAtStart": 19.589216457,
+      "endMs": 50943.46725,
+      "observedCpuSeconds": 0.04637187500000195,
+      "samples": 13,
+      "peakSummedRssBytes": 596983808,
+      "peakSummedFootprintBytes": 509990360
+    },
+    {
+      "name": "Cycle 1 long-build",
+      "startMs": 50943.46725,
+      "cpuAtStart": 19.635588332,
+      "endMs": 52504.006333000005,
+      "observedCpuSeconds": 1.7669592489999992,
+      "samples": 8,
+      "peakSummedRssBytes": 841793536,
+      "peakSummedFootprintBytes": 744561192
+    },
+    {
+      "name": "Cycle 1 long-export",
+      "startMs": 52504.006333000005,
+      "cpuAtStart": 21.402547581,
+      "endMs": 52542.513042,
+      "observedCpuSeconds": 0.011996957000000918,
+      "samples": 1,
+      "peakSummedRssBytes": 658800640,
+      "peakSummedFootprintBytes": 574903840
+    },
+    {
+      "name": "cycle-1-navigation",
+      "startMs": 52542.513042,
+      "cpuAtStart": 21.414544538,
+      "endMs": 54144.8375,
+      "observedCpuSeconds": 0.14625366799999995,
+      "samples": 8,
+      "peakSummedRssBytes": 664174592,
+      "peakSummedFootprintBytes": 591943200
+    },
+    {
+      "name": "cycle-1-long-idle",
+      "startMs": 54144.8375,
+      "cpuAtStart": 21.560798206,
+      "endMs": 56654.836208,
+      "observedCpuSeconds": 0.016386125000000362,
+      "samples": 13,
+      "peakSummedRssBytes": 660799488,
+      "peakSummedFootprintBytes": 584128032
+    },
+    {
+      "name": "Cycle 1 return-build",
+      "startMs": 56654.836208,
+      "cpuAtStart": 21.577184331,
+      "endMs": 58033.679708,
+      "observedCpuSeconds": 1.4560788739999992,
+      "samples": 7,
+      "peakSummedRssBytes": 864419840,
+      "peakSummedFootprintBytes": 755948072
+    },
+    {
+      "name": "Cycle 1 return-export",
+      "startMs": 58033.679708,
+      "cpuAtStart": 23.033263205,
+      "endMs": 58060.882542,
+      "observedCpuSeconds": 0.008217207999997811,
+      "samples": 1,
+      "peakSummedRssBytes": 656490496,
+      "peakSummedFootprintBytes": 563336760
+    },
+    {
+      "name": "cycle-1-return-idle",
+      "startMs": 58060.882542,
+      "cpuAtStart": 23.041480413,
+      "endMs": 60565.209792,
+      "observedCpuSeconds": 0.058452917000000326,
+      "samples": 13,
+      "peakSummedRssBytes": 656539648,
+      "peakSummedFootprintBytes": 563385912
+    },
+    {
+      "name": "Cycle 2 small-build",
+      "startMs": 60565.209792,
+      "cpuAtStart": 23.09993333,
+      "endMs": 61963.052500000005,
+      "observedCpuSeconds": 1.4672459149999995,
+      "samples": 7,
+      "peakSummedRssBytes": 856408064,
+      "peakSummedFootprintBytes": 732781120
+    },
+    {
+      "name": "Cycle 2 small-export",
+      "startMs": 61963.052500000005,
+      "cpuAtStart": 24.567179245,
+      "endMs": 61979.526583,
+      "observedCpuSeconds": 0.009166583000002504,
+      "samples": 1,
+      "peakSummedRssBytes": 659734528,
+      "peakSummedFootprintBytes": 550164000
+    },
+    {
+      "name": "cycle-2-small-idle",
+      "startMs": 61979.526583,
+      "cpuAtStart": 24.576345828,
+      "endMs": 64484.41912500001,
+      "observedCpuSeconds": 0.05315583399999824,
+      "samples": 13,
+      "peakSummedRssBytes": 659750912,
+      "peakSummedFootprintBytes": 550180384
+    },
+    {
+      "name": "Cycle 2 long-build",
+      "startMs": 64484.41912500001,
+      "cpuAtStart": 24.629501662,
+      "endMs": 66054.15075,
+      "observedCpuSeconds": 1.7007809159999994,
+      "samples": 8,
+      "peakSummedRssBytes": 856211456,
+      "peakSummedFootprintBytes": 742152744
+    },
+    {
+      "name": "Cycle 2 long-export",
+      "startMs": 66054.15075,
+      "cpuAtStart": 26.330282578,
+      "endMs": 66098.207875,
+      "observedCpuSeconds": 0.010429125000001704,
+      "samples": 1,
+      "peakSummedRssBytes": 672514048,
+      "peakSummedFootprintBytes": 582260280
+    },
+    {
+      "name": "cycle-2-navigation",
+      "startMs": 66098.207875,
+      "cpuAtStart": 26.340711703,
+      "endMs": 67679.504625,
+      "observedCpuSeconds": 0.15345533400000022,
+      "samples": 8,
+      "peakSummedRssBytes": 676888576,
+      "peakSummedFootprintBytes": 593958456
+    },
+    {
+      "name": "cycle-2-long-idle",
+      "startMs": 67679.504625,
+      "cpuAtStart": 26.494167037,
+      "endMs": 70188.733792,
+      "observedCpuSeconds": 0.004458541999998289,
+      "samples": 13,
+      "peakSummedRssBytes": 673251328,
+      "peakSummedFootprintBytes": 587994680
+    },
+    {
+      "name": "Cycle 2 return-build",
+      "startMs": 70188.733792,
+      "cpuAtStart": 26.498625579,
+      "endMs": 71579.790375,
+      "observedCpuSeconds": 1.493451290000003,
+      "samples": 7,
+      "peakSummedRssBytes": 874037248,
+      "peakSummedFootprintBytes": 754702912
+    },
+    {
+      "name": "Cycle 2 return-export",
+      "startMs": 71579.790375,
+      "cpuAtStart": 27.992076869,
+      "endMs": 71602.290125,
+      "observedCpuSeconds": 0.008673499999996892,
+      "samples": 1,
+      "peakSummedRssBytes": 667058176,
+      "peakSummedFootprintBytes": 562664992
+    },
+    {
+      "name": "cycle-2-return-idle",
+      "startMs": 71602.290125,
+      "cpuAtStart": 28.000750369,
+      "endMs": 74107.71762499999,
+      "observedCpuSeconds": 0.07030541700000015,
+      "samples": 13,
+      "peakSummedRssBytes": 667058176,
+      "peakSummedFootprintBytes": 562664992
+    },
+    {
+      "name": "Cycle 3 small-build",
+      "startMs": 74107.71762499999,
+      "cpuAtStart": 28.071055786,
+      "endMs": 75500.88458299999,
+      "observedCpuSeconds": 1.2050719590000014,
+      "samples": 7,
+      "peakSummedRssBytes": 675610624,
+      "peakSummedFootprintBytes": 554341920
+    },
+    {
+      "name": "Cycle 3 small-export",
+      "startMs": 75500.88458299999,
+      "cpuAtStart": 29.276127745,
+      "endMs": 75518.6425,
+      "observedCpuSeconds": 0.012960498999998293,
+      "samples": 1,
+      "peakSummedRssBytes": 669155328,
+      "peakSummedFootprintBytes": 554112544
+    },
+    {
+      "name": "cycle-3-small-idle",
+      "startMs": 75518.6425,
+      "cpuAtStart": 29.289088244,
+      "endMs": 78022.10616699999,
+      "observedCpuSeconds": 0.06125145900000106,
+      "samples": 13,
+      "peakSummedRssBytes": 669319168,
+      "peakSummedFootprintBytes": 554276384
+    },
+    {
+      "name": "Cycle 3 long-build",
+      "startMs": 78022.10616699999,
+      "cpuAtStart": 29.350339703,
+      "endMs": 79582.219958,
+      "observedCpuSeconds": 1.7372222080000022,
+      "samples": 8,
+      "peakSummedRssBytes": 867467264,
+      "peakSummedFootprintBytes": 740071976
+    },
+    {
+      "name": "Cycle 3 long-export",
+      "startMs": 79582.219958,
+      "cpuAtStart": 31.087561911,
+      "endMs": 79620.422542,
+      "observedCpuSeconds": 0.009113457999998076,
+      "samples": 1,
+      "peakSummedRssBytes": 682426368,
+      "peakSummedFootprintBytes": 576181792
+    },
+    {
+      "name": "cycle-3-navigation",
+      "startMs": 79620.422542,
+      "cpuAtStart": 31.096675369,
+      "endMs": 81202.045417,
+      "observedCpuSeconds": 0.16305233299999955,
+      "samples": 8,
+      "peakSummedRssBytes": 686604288,
+      "peakSummedFootprintBytes": 592516640
+    },
+    {
+      "name": "cycle-3-long-idle",
+      "startMs": 81202.045417,
+      "cpuAtStart": 31.259727702,
+      "endMs": 83705.431,
+      "observedCpuSeconds": 0.01724295800000064,
+      "samples": 13,
+      "peakSummedRssBytes": 682967040,
+      "peakSummedFootprintBytes": 588863008
+    },
+    {
+      "name": "Cycle 3 return-build",
+      "startMs": 83705.431,
+      "cpuAtStart": 31.27697066,
+      "endMs": 85101.15720799999,
+      "observedCpuSeconds": 1.4298494589999997,
+      "samples": 7,
+      "peakSummedRssBytes": 891600896,
+      "peakSummedFootprintBytes": 761322024
+    },
+    {
+      "name": "Cycle 3 return-export",
+      "startMs": 85101.15720799999,
+      "cpuAtStart": 32.706820119,
+      "endMs": 85122.999208,
+      "observedCpuSeconds": 0.009124499000002118,
+      "samples": 1,
+      "peakSummedRssBytes": 685326336,
+      "peakSummedFootprintBytes": 578557496
+    },
+    {
+      "name": "cycle-3-return-idle",
+      "startMs": 85122.999208,
+      "cpuAtStart": 32.715944618,
+      "endMs": 87627.69737499999,
+      "observedCpuSeconds": 0.05838250099999698,
+      "samples": 12,
+      "peakSummedRssBytes": 685621248,
+      "peakSummedFootprintBytes": 578704952
+    }
+  ],
+  "pdfs": [
+    {
+      "path": "/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/process-profile-W1B9DJ/Cycle 1 small.pdf",
+      "pages": 1,
+      "label": "Cycle 1 small",
+      "sourceSha256": "5a02d92f9e9f3a7655b1b7b7c3b60c3b70da5794aa1be401b7223e472a6de5df",
+      "sha256": "c9f0195eaa24dbacec6b514305362e5721fae52a0ee2a55716357950334f3e50",
+      "bytes": 7244,
+      "verified": true
+    },
+    {
+      "path": "/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/process-profile-W1B9DJ/Cycle 1 long.pdf",
+      "pages": 100,
+      "label": "Cycle 1 long",
+      "sourceSha256": "2a67398082b7b9350b57cbfdf289200a270462b12756b4d04e1ee51f3f2060d5",
+      "sha256": "40ce069197af29aad7b31f61a659c29cb265592a2139f9a5ad9523971f651ff4",
+      "bytes": 54506,
+      "verified": true
+    },
+    {
+      "path": "/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/process-profile-W1B9DJ/Cycle 1 return.pdf",
+      "pages": 1,
+      "label": "Cycle 1 return",
+      "sourceSha256": "2610f89ee3763fc372bb7077e12365b67894a5398ac320d829fc42efe737e838",
+      "sha256": "5d96c70d1094abab570eadb905c8b3fb489987ab7bff91b72d3a31273cdf7911",
+      "bytes": 7299,
+      "verified": true
+    },
+    {
+      "path": "/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/process-profile-W1B9DJ/Cycle 2 small.pdf",
+      "pages": 1,
+      "label": "Cycle 2 small",
+      "sourceSha256": "be75c236703b6f66e72403f3123b0ba5045e3b4cb3f1eb482db2e7b4388f476a",
+      "sha256": "5973fb4a8a680c561f1ffcbf02b9e51ff82fcc2364bd89956bea5d842701b2be",
+      "bytes": 7358,
+      "verified": true
+    },
+    {
+      "path": "/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/process-profile-W1B9DJ/Cycle 2 long.pdf",
+      "pages": 100,
+      "label": "Cycle 2 long",
+      "sourceSha256": "05f1d1a2c35b41db163dfff6e76d86b2a77936a6d18e99ff0c6d6f29cbd1216f",
+      "sha256": "ec196e34f9d443c6ca1015429c687b3f4df567751d7878e085ab07aad872fb79",
+      "bytes": 54535,
+      "verified": true
+    },
+    {
+      "path": "/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/process-profile-W1B9DJ/Cycle 2 return.pdf",
+      "pages": 1,
+      "label": "Cycle 2 return",
+      "sourceSha256": "8d02aff0c475f609fa499dfb65da881a8b8756d28db05193dd6c81a9721763e4",
+      "sha256": "bf074d60671209366725e5198fc16d8ba712ce047ad1c42488e4a1d6db492506",
+      "bytes": 7407,
+      "verified": true
+    },
+    {
+      "path": "/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/process-profile-W1B9DJ/Cycle 3 small.pdf",
+      "pages": 1,
+      "label": "Cycle 3 small",
+      "sourceSha256": "eb4391eecbf4819736c56d86e6ab847b6bfe5e59ca33f0d94ecb7da9d56b1131",
+      "sha256": "2e4d34d0f130918dd97329fa8d2bc705a7cf7594498c69ba8a50098f8eaf63ae",
+      "bytes": 7413,
+      "verified": true
+    },
+    {
+      "path": "/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/process-profile-W1B9DJ/Cycle 3 long.pdf",
+      "pages": 100,
+      "label": "Cycle 3 long",
+      "sourceSha256": "91325f2b492e33cba682b9b55f4e15b54de71ad1922ffbf3cc5f0663e5d1bb72",
+      "sha256": "802ce4cbebbba81272b75607c767b0e503256e986fa7863957e4d5e3d56fd7cf",
+      "bytes": 54628,
+      "verified": true
+    },
+    {
+      "path": "/Users/grawish/.codex/worktrees/mac-update-storage/resume-maker/test-results/process-profile-W1B9DJ/Cycle 3 return.pdf",
+      "pages": 1,
+      "label": "Cycle 3 return",
+      "sourceSha256": "7970e2e85f8d76abc00bf0680fe199c83ad955f8daa61efcfa1d1d38d8552bd0",
+      "sha256": "a56451a5047f4e666645c52d1a83769a57a497bc149ed2127083b53f0dd2619b",
+      "bytes": 7462,
+      "verified": true
+    }
+  ],
+  "canvases": [
+    {
+      "label": "Cycle 1 small",
+      "pages": 1,
+      "renderedPages": 1,
+      "canvasPixels": 904230
+    },
+    {
+      "label": "Cycle 1 long",
+      "pages": 100,
+      "renderedPages": 3,
+      "canvasPixels": 2712690
+    },
+    {
+      "label": "cycle-1-page-100",
+      "pages": 100,
+      "renderedPages": 3,
+      "canvasPixels": 2712690
+    },
+    {
+      "label": "cycle-1-page-50",
+      "pages": 100,
+      "renderedPages": 4,
+      "canvasPixels": 3616920
+    },
+    {
+      "label": "cycle-1-page-1",
+      "pages": 100,
+      "renderedPages": 3,
+      "canvasPixels": 2712690
+    },
+    {
+      "label": "Cycle 1 return",
+      "pages": 1,
+      "renderedPages": 1,
+      "canvasPixels": 904230
+    },
+    {
+      "label": "Cycle 2 small",
+      "pages": 1,
+      "renderedPages": 1,
+      "canvasPixels": 904230
+    },
+    {
+      "label": "Cycle 2 long",
+      "pages": 100,
+      "renderedPages": 3,
+      "canvasPixels": 2712690
+    },
+    {
+      "label": "cycle-2-page-100",
+      "pages": 100,
+      "renderedPages": 3,
+      "canvasPixels": 2712690
+    },
+    {
+      "label": "cycle-2-page-50",
+      "pages": 100,
+      "renderedPages": 4,
+      "canvasPixels": 3616920
+    },
+    {
+      "label": "cycle-2-page-1",
+      "pages": 100,
+      "renderedPages": 3,
+      "canvasPixels": 2712690
+    },
+    {
+      "label": "Cycle 2 return",
+      "pages": 1,
+      "renderedPages": 1,
+      "canvasPixels": 904230
+    },
+    {
+      "label": "Cycle 3 small",
+      "pages": 1,
+      "renderedPages": 1,
+      "canvasPixels": 904230
+    },
+    {
+      "label": "Cycle 3 long",
+      "pages": 100,
+      "renderedPages": 3,
+      "canvasPixels": 2712690
+    },
+    {
+      "label": "cycle-3-page-100",
+      "pages": 100,
+      "renderedPages": 3,
+      "canvasPixels": 2712690
+    },
+    {
+      "label": "cycle-3-page-50",
+      "pages": 100,
+      "renderedPages": 4,
+      "canvasPixels": 3616920
+    },
+    {
+      "label": "cycle-3-page-1",
+      "pages": 100,
+      "renderedPages": 3,
+      "canvasPixels": 2712690
+    },
+    {
+      "label": "Cycle 3 return",
+      "pages": 1,
+      "renderedPages": 1,
+      "canvasPixels": 904230
+    }
+  ],
+  "errors": [],
+  "passed": true,
+  "limits": [
+    "Sampling starts after Electron automation attaches; earliest process startup can be missed. Runtime preparation uses a fresh app profile; OS caches are not purged.",
+    "Root PID plus discovered descendants only. PDF workers are renderer threads, not separate sampled processes. Observed processes that exit retain their last CPU counters.",
+    "Read-only libproc snapshots are not atomic; short-lived children and peaks between samples can be missed. Reparented helpers may leave the observed tree. PID plus birth time distinguishes reuse.",
+    "Summed RSS and summed per-process physical footprint are accounting metrics, not unique physical memory. Shared pages and surfaces can be counted more than once.",
+    "CPU is observed per-process user plus system time, scaled from Mach ticks with the reported timebase. Initial counters of processes born before sampling are excluded. Child CPU fields are not added. Missing terminal samples undercount CPU.",
+    "The sampling helper and Playwright harness are outside the app tree but add host load. Their CPU cost and snapshot duration are reported separately; the desktop is not otherwise isolated.",
+    "Three repeated small-text 1/100-page workflows on one development Mac do not establish a leak, population percentiles, worst-case images, or supported-device memory/CPU budgets."
+  ],
+  "viewport": {
+    "width": 1480,
+    "height": 960,
+    "devicePixelRatio": 1
+  },
+  "harnessCpuSeconds": 1.45819,
+  "finishedAt": "2026-09-28T00:38:31.433Z",
+  "results": {
+    "samples": 443,
+    "phaseCount": 32,
+    "observedCpuSeconds": 32.774327119,
+    "sampledSpanSeconds": 87.62765016699998,
+    "peakSummedRssBytes": 954417152,
+    "peakSummedFootprintBytes": 761322024,
+    "maxProcessCount": 7
+  },
+  "provisionalThresholdChecks": {
+    "peakSummedRssUnder1_5GiB": true,
+    "peakSummedFootprintUnder1GiB": true,
+    "idleObservedCpuUnder10PercentOfOneCore": true,
+    "ordinaryBuildsUnder3ObservedCpuSeconds": true
+  },
+  "disk": {
+    "regularFiles": 4064,
+    "logicalFileBytes": 429258611
+  }
+}

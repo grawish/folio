@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-28T00:40:36.279634+00:00",
+  "sourceCommit": "1210ebab5b778f27b73fe43068d3e09ea8cde22e",
+  "qualifiedApplicationCommit": "05f58fee56a0227e53c959d4073422a5141d8f7c",
+  "qualifiedApplicationRun": 36359954692,
+  "appAsarSha256": "21deec45a0be129a63d3d8b14a71f555000b9b40a0dbf5c6e6ebcfe0ff8e5144",
+  "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+  "measurementAndSamplerSourcesUnchangedFromPublishedBaseline": true,
+  "samplerBinaryMatchesBaseline": true,
+  "appAndScriptHashesChecked": true,
+  "all443MemorySumsAndCpuCountersRecomputed": true,
+  "allPhaseBoundariesAndPeaksRecomputed": true,
+  "all9PdfsIndependentlyParsed": true,
+  "allRawBytesPreserved": true,
+  "raw": {
+    "file": "test-results/process-profile-W1B9DJ/measurements.json",
+    "bytes": 821217,
+    "sha256": "8098432b7796f61b67f82029330732787343c9dcea53ecac8705af506ad9cf98"
+  },
+  "compressed": {
+    "file": "docs/performance/process-tree-current.json.gz",
+    "bytes": 50721,
+    "sha256": "8b62197025bd4d0ac1cdf2d7d9924d885f37bfaa096059a8dcb655bb2b650e9f"
+  },
+  "summary": {
+    "file": "docs/performance/process-tree-current-summary.json",
+    "bytes": 18838,
+    "sha256": "58bd2a82c5b2d61518a651af6ab9a6d13d32cdb6f9e3c01ac57482abb78d9d0f"
+  },
+  "endProfileDisk": {
+    "file": "test-results/process-profile-W1B9DJ/disk-inventory.json",
+    "bytes": 868621,
+    "sha256": "1877948e902153c03d5d797feea05a951112355c6b64d17ef5d7b531653741e9"
+  },
+  "retainedLog": {
+    "file": "test-results/current-process-profile.log",
+    "bytes": 317,
+    "sha256": "1c7771dc643f6417ded387e81f7ca2eeb2defe117138f7991790a6e544b439e8"
+  },
+  "profiledAppExited": true,
+  "idleSnapshots": 129,
+  "idleCompilerOrWatchdogProcesses": 0,
+  "results": {
+    "samples": 443,
+    "phaseCount": 32,
+    "observedCpuSeconds": 32.774327119,
+    "sampledSpanSeconds": 87.62765016699998,
+    "peakSummedRssBytes": 954417152,
+    "peakSummedFootprintBytes": 761322024,
+    "maxProcessCount": 7
+  },
+  "provisionalThresholdChecks": {
+    "peakSummedRssUnder1_5GiB": true,
+    "peakSummedFootprintUnder1GiB": true,
+    "idleObservedCpuUnder10PercentOfOneCore": true,
+    "ordinaryBuildsUnder3ObservedCpuSeconds": true
+  },
+  "scope": "Unchanged published observer and 3-cycle small-text 1/100-page workload on the qualified cache/recovery app. One development Mac, OS caches not purged, earliest startup and between-sample work can be missed. Provisional fixture thresholds pass; this is not a paired speed comparison, a resource quota, worst-case image/history/long-session coverage or supported-device acceptance."
+}
