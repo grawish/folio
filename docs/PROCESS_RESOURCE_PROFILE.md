@@ -234,3 +234,33 @@ python3 scripts/verify-v8-resources.py test-results/v8-profile-RUN /path/to/Foli
 Full heap snapshots are bounded to 128 MiB each and remain local. Published [comparison and representative paths](performance/renderer-retention-comparison.json), [native-input summary](performance/renderer-retention-native-summary.json), [paste-control summary](performance/renderer-retention-paste-summary.json), and their [native](releases/renderer-retention-native-verification.json) / [paste](releases/renderer-retention-paste-verification.json) verification records retain exact identities and limits. Compact [native traces](performance/renderer-retention-native-traces.tar.gz) and [paste traces](performance/renderer-retention-paste-traces.tar.gz) exclude full heaps and profile copies. The initial five-cycle trial completed two snapshots, then failed because its template selector omitted “The”; that failed report, log and snapshots remain retained and excluded from the completed comparison. Its original top-level no-GC wording applied to the sampled workload; the added post-workload diagnostic did request collection. The completed runs explicitly describe that separation.
 
 The snapshot detachedness values follow [V8's embedder-graph states](https://chromium.googlesource.com/v8/v8.git/+/refs/heads/13.1.95/include/v8-profiler.h). The analyzer reads the actual snapshot's field/type tables, checks every node/edge and retains its source hash. This is a diagnosis with an input control, not a shipped optimization or completed resource acceptance.
+
+### Disposing the hidden editor view
+
+The development candidate at `c8a57fa` keeps CodeMirror's document, undo history, selection and scroll offsets while destroying its `EditorView` in Chat. Returning to Code recreates the view from that state. Source changes received in Chat update the cached state, including before the first Code visit. State extensions are created outside the view effect so their callbacks cannot capture the effect's view/cleanup closure. The product does not clear undo or request garbage collection.
+
+The packaged candidate has ASAR SHA-256 `2cd68ead966a0701c11b74727504220ee039534cf50d9226991627a3a6d66687`. Its embedded runtime manifest matches the earlier baseline. Comparing all 43 ASAR members finds only the renderer JavaScript and its HTML reference changed; main/preload/worker outputs and other members match. The five-cycle native-input workload uses another exact copy of the same 120-cycle seed. It retains the original native replacement stress method, all three builds/exports per cycle and ordinary collection during CPU/allocation sampling. The new explicit diagnostic mode permits the changed app identity and requires zero editor views in Chat; baseline modes still require the original ASAR.
+
+| Post-workload checkpoint | Candidate DOM counter after explicit GC | Candidate detached snapshot nodes | Earlier native baseline detached nodes |
+| --- | ---: | ---: | ---: |
+| Code after five cycles | 8,771 | 6,766 | 6,766 |
+| Chat | 394 | 1 | 6,766 |
+| New project, then Chat | 595 | 22 | 22 |
+
+Code still has 6,345 detached nodes with a shortest non-weak path through native undo and 420 through the native typing command. After disposing the view and diagnostic collection, those detached editor/path groups are absent. The remaining Chat node is a PDF text span; the new-project snapshot contains 22 PDF text spans. These counts describe captured graphs, not individual object identities, complete retained bytes or exclusive owners. The Chat counter was still 8,820 **before** the explicit collection: this is evidence that the hidden editor's nodes can be collected, not a promise of immediate memory reduction after every tab switch.
+
+Independent checks recompute all 375 native snapshots, 62 phase markers, ten CPU profiles and three ordinary heap observations. All 15 exports/510 pages verify. Comparing with the earlier native-input baseline finds identical intended and actual saved source, page text, page boxes and link targets/rectangles across all 510 page pairs. Each export matches its retained history PDF. All 361 prior version metadata records and every file in those version directories match the original seed, which also remains unchanged in full. See [comparison and retaining paths](performance/editor-lifecycle-comparison.json), [summary](performance/editor-lifecycle-summary.json), [compact traces](performance/editor-lifecycle-traces.tar.gz) and [independent verification](releases/editor-lifecycle-verification.json).
+
+Correctness checks pass all 462 source tests, native file/chat/diagnostic/watcher workflows and the packaged file workflow. They exercise repeated Chat/Code switches, per-file undo/redo, selected text, both scroll axes, theme changes, rename/Save As, snippets from Chat, build-output navigation, AI edits while hidden, and outside-source reloads before Code first opens. The preserved source-test failures were test-path mistakes: waiting for a new PDF without pressing Compile while automatic compilation was off, and trying to click a Code-only diagnostic while Chat hid its panel. Both corrected complete workflows pass. [Local/package evidence](releases/editor-lifecycle-native-verification.json) records these failures and successful reruns.
+
+This is one candidate on the development M4 Pro, compared with the earlier diagnostic. It is not a randomized timing comparison or a normal-collection long-session bound. A session that stays in Code still exhibits the native-input retention group. Full hosted qualification of this new candidate, ordinary character/composition and physical accessibility acceptance, the original long-session repeat, upper-bound inputs and the earlier CPU failures remain open.
+
+```sh
+FOLIO_PYTHON=/path/to/python3 node scripts/profile-v8-resources.mjs /path/to/candidate/Folio.app/Contents/MacOS/Folio /path/to/process-profile-SEED 5 --retention-disposed-editor
+python3 scripts/analyze-renderer-retention.py test-results/v8-profile-CANDIDATE
+node scripts/analyze-v8-resources.mjs test-results/v8-profile-CANDIDATE /path/to/candidate/Folio.app
+python3 scripts/verify-v8-resources.py test-results/v8-profile-CANDIDATE /path/to/candidate/Folio.app editor-lifecycle
+python3 scripts/verify-editor-lifecycle.py /path/to/v8-profile-NATIVE-BASELINE test-results/v8-profile-CANDIDATE
+```
+
+Run from the matching candidate source, with pypdf installed for the verifiers. Full heaps, PDFs, app binaries and copied profiles stay local; the public archive preserves compact raw measurements/profiles. Keep other local native suites, builds and benchmarks stopped during the measurement.

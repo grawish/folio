@@ -19,6 +19,7 @@ AI setup and the active connection live in Settings. The chat composer exposes A
 | Area | Main files |
 | --- | --- |
 | Workspace and project lifecycle | `src/App.tsx`, `src/useWorkspace.ts` |
+| Source editor state and visible view lifecycle | `src/editor-state.ts`, `src/components/LatexEditor.tsx` |
 | Chat, notes and history | `src/components/ChatPanel.tsx`, `PdfAnnotations.tsx`, `VersionHistory.tsx` |
 | Local compiler, build scheduling and isolation | `electron/core/compiler.ts`, `build-requests.ts`, `latest-work-queue.ts`, `runtime.ts` |
 | Managed compiler copies | `electron/core/runtime-manager.ts`, `compiler-migration.ts` |
@@ -85,3 +86,7 @@ The packaging hook expands and verifies original Tectonic notices before copying
 
 
 Biber's original license/declaration documents are also expanded before packaging and checked by the final package gate. Tectonic and Biber share `scripts/original-notice-bundle.ts`, with separate identity and source-lock definitions. Full source documents preserve embedded statements where standalone license files are absent; this packaging code is not part of the application runtime. See [Biber notice coverage](https://github.com/grawish/folio/blob/main/docs/BIBER_NOTICES.md).
+
+## Editor view lifetime
+
+Current development source creates an `EditorView` only in Code. Chat keeps the per-file `EditorState`, undo, selection and scroll offsets. AI edits and approved disk reloads update the state without a view, including before Code first opens. Layout effects restore the view before snippet and diagnostic actions run; changing projects clears the session cache. State extension callbacks are created outside the view effect. This lets obsolete editor DOM become collectible without clearing user undo or forcing collection. See [the measured scope](https://github.com/grawish/folio/blob/main/docs/PROCESS_RESOURCE_PROFILE.md#disposing-the-hidden-editor-view).

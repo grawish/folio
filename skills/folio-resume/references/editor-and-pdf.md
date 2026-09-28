@@ -12,6 +12,8 @@
 
 [Screenshot: The Code tab beside the real PDF](https://github.com/grawish/folio/blob/main/docs/images/code.png)
 
+You can return to **Chat** and reopen **Code** without losing your selection, scroll position or undo history. Current development builds close the hidden editor view while keeping that editing state. AI changes received in Chat appear when you reopen Code and can still be undone. This internal change is not included in preview 4.
+
 For a small exercise, rename `Alex Morgan` in the Classic template, build, then undo the edit and build again. Do not change a command such as `\bfseries` when you only intend to change the name.
 
 Current development builds keep only your newest waiting build when you edit again. Older waiting builds are cancelled. Stop also waits for any file-reading or history-writing step already in progress. Your source stays available. This queue improvement is not included in preview 4; see [build scheduling](https://github.com/grawish/folio/blob/main/docs/BUILD_REQUESTS.md).

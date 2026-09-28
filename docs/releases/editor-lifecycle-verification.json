@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-28T04:01:11.283890+00:00",
+  "sourceCommit": "c8a57faeb3ee4e2e425d9b91f5b1894b2c87794c",
+  "appAsarSha256": "2cd68ead966a0701c11b74727504220ee039534cf50d9226991627a3a6d66687",
+  "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+  "profiledAppExited": true,
+  "originalSeedMetadataAndAllFileHashesUnchanged": true,
+  "allExportedPdfsAndEveryPageIndependentlyParsed": true,
+  "allNativeMemorySumsMachCpuCountersAndPhaseMarkersRecomputed": true,
+  "allCpuTraceHashesSamplesLeafWeightsAndTotalsIndependentlyRecomputed": true,
+  "allHeapTraceHashesTreeAndSampleTotalsIndependentlyRecomputed": true,
+  "sourceMapMethod": "Analyzer verifies a packaged main map and exact-JavaScript-byte renderer replay, plus owned sources. This Python verifier checks their recorded source hashes and independent raw accounting; it does not independently implement source-map decoding.",
+  "sourceMapAnalyzer": {
+    "path": "scripts/analyze-v8-resources.mjs",
+    "bytes": 10227,
+    "sha256": "3a4b37caacdeb4ce6bcc42275732fa3d525474c4326385c0c362370fa59a0fbe"
+  },
+  "independentVerifier": {
+    "path": "scripts/verify-v8-resources.py",
+    "bytes": 15447,
+    "sha256": "03aad3e0362d9dae93933a6dc5e3e5d02c89bfefbbcdbf2c7fcd2902ceef2435"
+  },
+  "rawArchive": {
+    "path": "docs/performance/editor-lifecycle-traces.tar.gz",
+    "bytes": 256392,
+    "sha256": "0447933b5493fb6d3bb47277b261427685bffd67e38b73103fc0046ac0211e79"
+  },
+  "summary": {
+    "path": "docs/performance/editor-lifecycle-summary.json",
+    "bytes": 27432,
+    "sha256": "d3c142f079d98f4819011b05885fb707f426f4a4f331864705f19c00d0e1255c"
+  },
+  "retained": [
+    {
+      "path": "/Users/grawish/.codex/worktrees/compiler-crash-cleanup/resume-maker/test-results/v8-profile-O9lpzZ/measurements.json",
+      "bytes": 645888,
+      "sha256": "c9668f9332381fa97c491d6b3b9ce9e467fca3d4e7e85fed7c293a66ba56e83a"
+    },
+    {
+      "path": "/Users/grawish/.codex/worktrees/compiler-crash-cleanup/resume-maker/test-results/v8-profile-O9lpzZ/v8-analysis.json",
+      "bytes": 269736,
+      "sha256": "a0215d1e821508f523b5cc06fde8ecde4c0ba6eb5c313f569eacf69ac39d212e"
+    }
+  ],
+  "scope": "Diagnostic validation, not an app speedup, root-cause proof, threshold pass or production resource acceptance. Original 120-cycle failures remain open."
+}
