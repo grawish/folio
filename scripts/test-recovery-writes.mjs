@@ -247,6 +247,9 @@ try {
   );
 } catch (error) {
   report.failure = { message: error.message, stack: error.stack };
+  report.nativeAdmissionAtFailure = await page
+    ?.evaluate(() => window.folioRecoveryResults ?? [])
+    .catch(() => undefined);
   await page?.screenshot({ path: path.join(root, 'failure.png') }).catch(() => {});
   throw error;
 } finally {
