@@ -162,4 +162,40 @@ The explicit limit is 1–20 cycles. Each cycle retains main and renderer V8 CPU
 
 These are diagnostic runs with additional overhead. New processes restore the saved history, not the preceding session's live heap. V8 CPU profiles describe selected isolates rather than total native-thread or subprocess CPU; allocation sampling estimates selected live allocations since sampling started, not the full retained heap, PDF-worker heaps or GPU/native memory. Do not compare these timings directly with normal-run acceptance thresholds or call an allocation sample a leak. Use call stacks and source maps to propose a narrow change, then test that change with ordinary instrumentation and preserved correctness checks.
 
-Protocol references: [Node Inspector CPU profiling](https://nodejs.org/api/inspector.html#cpu-profiler) and [V8 HeapProfiler methods](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler/). Actual method support is checked against the packaged application's embedded versions during the instrument smoke. The first one-cycle smoke captures both CPU profiles and renderer allocations, verifies all three exported PDFs, and leaves the historical profile and packaged inputs unchanged. A longer result remains pending; the existing CPU-threshold failures are not closed by adding this tool.
+Protocol references: [Node Inspector CPU profiling](https://nodejs.org/api/inspector.html#cpu-profiler) and [V8 HeapProfiler methods](https://chromedevtools.github.io/devtools-protocol/tot/HeapProfiler/). Actual method support is checked against the packaged application's embedded versions during the instrument smoke. The first one-cycle smoke captures both CPU profiles and renderer allocations, verifies all three exported PDFs, and leaves the historical profile and packaged inputs unchanged. The completed 20-cycle result follows; the earlier CPU-threshold failures remain open.
+
+
+### Completed 20-cycle diagnostic
+
+The unchanged Folio-icon package ran 20 additional cycles from an exact copy of the closed 120-cycle synthetic profile. The copied history contains 361 versions at startup, but the app starts fresh processes and heaps. Instrument source `7bc21040e9cca366247761437472e0917cabceab` records 40 CPU profiles, six heap/allocation observations, 1,486 native snapshots and 242 phase markers. All 60 exports and all 2,040 PDF pages pass independent parsing; all 120 canvas observations stay within the existing limits. The original profile's 5,623 metadata entries and every file hash remain unchanged. The app exits after the run.
+
+The packaged main-process source map is present. The renderer map is reproduced with an in-memory Vite build, and accepted only when its JavaScript bytes exactly match the packaged renderer. Every mapped application source also matches the checked-out file. The analyzer never writes the app or historical `dist` output. The separate Python verifier recomputes every raw CPU sample's leaf weight, heap tree/sample totals, native memory sum, Mach CPU accumulation and phase marker. It verifies source hashes but does not independently implement source-map decoding.
+
+Across the 20 cycles, the largest named main-isolate context is `electron/core/runtime.ts`, at **16.081 seconds of V8 sample weight**. Save I/O accounts for 0.379 seconds, workspace code 0.330 seconds and garbage collection 0.185 seconds. Runtime verification therefore remains the strongest identifiable main-isolate optimization candidate in this diagnostic. It includes native hashing and filesystem calls under its stack; the current implementation deliberately verifies every file on each acquisition. This observation does not establish the cause of the earlier cycle-73 outlier.
+
+These values sum V8 sampling intervals assigned once to the nearest mapped stack ancestor. They include scheduling effects and are **not kernel CPU-seconds, precise function durations or percentages of whole-app CPU**. The main trace also has 250.740 seconds labeled idle and 2.963 seconds labeled program. Worker threads, compiler subprocesses and much native/GPU work are outside these isolate traces. Do not add these weights to the native process counters.
+
+The renderer's named contexts include React (0.426 seconds), CodeMirror view (0.407 seconds), PDF.js (0.375 seconds) and garbage collection (0.249 seconds). These relatively small named totals coexist with 7.030 seconds labeled program and 262.938 seconds idle. They do not explain the earlier renderer idle spike by themselves.
+
+| Observation | Renderer used JS heap | DOM node counter | JS event listeners | Sampled allocation tree estimate |
+| --- | ---: | ---: | ---: | ---: |
+| Ready | 8.54 MiB | 897 | 472 | 0.00 MiB |
+| Cycle 1 | 12.23 MiB | 2,293 | 428 | 1.63 MiB |
+| Cycle 5 | 16.89 MiB | 9,152 | 655 | 2.27 MiB |
+| Cycle 10 | 14.94 MiB | 17,269 | 463 | 3.06 MiB |
+| Cycle 15 | 19.30 MiB | 25,841 | 669 | 3.56 MiB |
+| Cycle 20 | 13.53 MiB | 33,723 | 245 | 4.48 MiB |
+
+DOM nodes rise while used JS heap falls after cycle 15. The final sampled allocation tree assigns about 1.13 MiB to CodeMirror view, 0.98 MiB to CodeMirror state, 0.38 MiB to React and 0.19 MiB to PDF.js; 1.43 MiB has no mapped source context. These are sampled estimates, not complete retained sizes or retaining paths. The DOM counter does not distinguish connected from detached nodes, and the initial sample starts after the existing document is loaded. Node counts cannot prove a leak or assign it to the PDF viewer. The next diagnostic must distinguish undo history, editor views, PDF text layers, ordinary collection and automation-held objects before changing ownership or retention.
+
+Run the analyzer and independent verifier from the matching source checkout after collection:
+
+```sh
+node scripts/analyze-v8-resources.mjs test-results/v8-profile-YOUR_RUN /path/to/Folio.app
+# Python with scripts/template-test-requirements.txt; also needs the original seed and exports.
+python3 scripts/verify-v8-resources.py test-results/v8-profile-YOUR_RUN /path/to/Folio.app
+```
+
+The verifier writes the public summary, compact raw archive and verification record. The archive preserves the report, all 46 CPU/allocation profiles and the full analysis byte for byte. It excludes the copied app profile, app binaries, PDFs and reproducible source maps. The synthetic PDFs and seed remain local for the full independent check. Embedded versions are Node 24.21.0, Electron 44.4.5, Chromium 152.0.7977.130 and V8 15.2.124.28-electron.0.
+
+See [summary and all context totals](performance/v8-resource-summary.json), [raw traces and analysis](performance/v8-resource-traces.tar.gz) and [independent verification](releases/v8-resource-verification.json). Ordinary desktop work continued on the same M4 Pro/48 GiB development Mac; the host was not isolated. Profiling overhead makes this a separate diagnosis, not a timing comparison, speedup, memory-retention fix or production budget pass. The original 120-cycle observations and failures remain unchanged.
