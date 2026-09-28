@@ -1,0 +1,728 @@
+{
+  "verifiedAt": "2026-09-28T05:44:22.987296+00:00",
+  "passed": true,
+  "source": "0bee2713cff6eed7872984f73229fec7ef722ff3",
+  "package": {
+    "app": "/Users/grawish/.codex/worktrees/compiler-crash-cleanup/resume-maker/release/editor-view-lifecycle-keyboard/mac-arm64/Folio.app",
+    "applicationSource": "0bee2713cff6eed7872984f73229fec7ef722ff3",
+    "asarSha256": "7ab490486ba31a5a0b487231f7c176c756a22cff61869832c88bdd63373d99be",
+    "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+    "architecture": "arm64",
+    "outputs": [
+      {
+        "path": "dist/assets/index-CZF0MGEA.css",
+        "sha256": "08958cf6a870b80f169c45c463b6bb120d4d63a49376fc3d41e4dfd930fc1ea6"
+      },
+      {
+        "path": "dist/assets/index-Clnsj-io.js",
+        "sha256": "564499a11df1e366f3b4ea1fb896da549c119ea5ca9cd9f32871dc5523548186"
+      },
+      {
+        "path": "dist/assets/jetbrains-mono-italic-cyrillic-CY-YXjkl.woff2",
+        "sha256": "a79035476e5f8408e7f2b2599dfd50b7262862ecb853e028ba7b4a00bed16e73"
+      },
+      {
+        "path": "dist/assets/jetbrains-mono-italic-greek-CoTSRNcy.woff2",
+        "sha256": "44ca7e27fef33e684d50e1009d0b886b83d4783e383223e7b13e173a623db0d3"
+      },
+      {
+        "path": "dist/assets/jetbrains-mono-italic-latin-BW896jpM.woff2",
+        "sha256": "00ba27973ba2965d3e7e03ee0f2c66491956cda2ecf8cc6066c969696577f47b"
+      },
+      {
+        "path": "dist/assets/jetbrains-mono-italic-latin-ext-C5V3_1R8.woff2",
+        "sha256": "31434d4924e83d1c6bf10136077f96d0c541226301ba98a583b14bded0576a75"
+      },
+      {
+        "path": "dist/assets/jetbrains-mono-italic-vietnamese-DP5VCyMl.woff2",
+        "sha256": "9c54e21b500492314341e2041e23cf141d43a0c102bca07a7fe281f487eec5f6"
+      },
+      {
+        "path": "dist/assets/jetbrains-mono-normal-cyrillic-D0W76x1T.woff2",
+        "sha256": "4188276a58108d04eb0c6f5b8c9e4b5ac2d9e31e81b2b4fa7da263b92f1b35c3"
+      },
+      {
+        "path": "dist/assets/jetbrains-mono-normal-greek-FADJ2lFV.woff2",
+        "sha256": "0164d0c055dced93435b1d6c2986db2fb7d068ce21950c85b776695f56238b8a"
+      },
+      {
+        "path": "dist/assets/jetbrains-mono-normal-latin-RruCX7RW.woff2",
+        "sha256": "d3dcdccdaba31643defe2317942155d4af3ee03951d058adbe8bc02b13e61b0a"
+      },
+      {
+        "path": "dist/assets/jetbrains-mono-normal-latin-ext-e2G1hK0J.woff2",
+        "sha256": "d5f407e28185790518c49ec8738fa89916ddc99f793010d249165d0e2c2452cc"
+      },
+      {
+        "path": "dist/assets/manrope-normal-cyrillic-DJ9PYDpy.woff2",
+        "sha256": "95a493061fe0a8d0d027c2892747134ba747141112d3be4d5022e70ab7d3a1a6"
+      },
+      {
+        "path": "dist/assets/manrope-normal-greek-vbHvg7sP.woff2",
+        "sha256": "40af11327fe5308166c6cb5787808b042db6da889abf602f0a4876c49675d87e"
+      },
+      {
+        "path": "dist/assets/manrope-normal-latin-C46ZzDBF.woff2",
+        "sha256": "e310b55a7fd9677f5e3555e6c6c4d064fa1f1d24393f0ddbe217cea12a8c432f"
+      },
+      {
+        "path": "dist/assets/manrope-normal-latin-ext-CDracvZH.woff2",
+        "sha256": "ce093b341d9c10658ee1eaa85c5f8042ff3307bc6ccfc5f405616eb437f0009e"
+      },
+      {
+        "path": "dist/assets/manrope-normal-vietnamese-C9-d800b.woff2",
+        "sha256": "bab757f8a0a1bc04055ee98cb5777f3254aab11f6d222366e1f40a36f390506a"
+      },
+      {
+        "path": "dist/assets/pdf.worker.min-Dswkl-cV.mjs",
+        "sha256": "8ab0e5e30031b4a06ecfddd5ae9562f0227f830ee7ec9ed1a968b134243d2386"
+      },
+      {
+        "path": "dist/index.html",
+        "sha256": "fdf3f6e9d3dafe5c25f77181cca9b8d49d786b7f68461506e68f5b042a76884d"
+      },
+      {
+        "path": "dist/licenses/JetBrains-Mono-OFL.txt",
+        "sha256": "b2fe5e8987594e9ffd1d2ca52a2f5d73eb8335243893c5d6254b5ad69269591d"
+      },
+      {
+        "path": "dist/licenses/Manrope-OFL.txt",
+        "sha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b"
+      },
+      {
+        "path": "dist/templates/academic-a4.png",
+        "sha256": "e149b33dc14f9bb99469b5dc9b39cf0f698de720894af8f9ef2bd74d31f1115d"
+      },
+      {
+        "path": "dist/templates/academic-letter.png",
+        "sha256": "1fb69ee0e825acb916781022f7bb5e65576f7911b7fb08d34009aa21b60964e0"
+      },
+      {
+        "path": "dist/templates/classic-a4.png",
+        "sha256": "38f95f3b25a51669105de7efdba08fe5b2633e7f7fde5ee15c3057862551fee3"
+      },
+      {
+        "path": "dist/templates/classic-letter.png",
+        "sha256": "5e3ef1114cd3c728118e01c4161722b5c2a3a5e27a058f43f6bb5b825023c8ee"
+      },
+      {
+        "path": "dist/templates/compact-technical-a4.png",
+        "sha256": "5878085cef410ee1b1463c0b71de8ebb48fc845899aed90d7b52c16ee577fc51"
+      },
+      {
+        "path": "dist/templates/compact-technical-letter.png",
+        "sha256": "9fcc6a929547407948a5a23fe9d481bb197f20e195c7bbae2af125fb75e34a3a"
+      },
+      {
+        "path": "dist/templates/manifest.json",
+        "sha256": "db231613ba3b1a69e01ffd5a111422874736d51d9b8f6509de7c71511b4a4a86"
+      },
+      {
+        "path": "dist/templates/minimal-a4.png",
+        "sha256": "9bb702aae1e721255a0632010a22a82bcb283a49b16b6ce8bfbe74a99ef48353"
+      },
+      {
+        "path": "dist/templates/minimal-letter.png",
+        "sha256": "10bfd6c692eac97a9e25bc2361d0113d43584069a05c3af4fbef64ad78cfb368"
+      },
+      {
+        "path": "dist/templates/modern-a4.png",
+        "sha256": "bd6a55401f8642fcf375c18fe952d7ff2185635c7fa4ece24c7be3e157515b41"
+      },
+      {
+        "path": "dist/templates/modern-letter.png",
+        "sha256": "99062be87eabf30184d937ea0ceef3768387beb81cd850110ce335819d5474a0"
+      },
+      {
+        "path": "dist/templates/two-column-a4.png",
+        "sha256": "b7cca2c36d149da1af024d1095801051817084c536724f2f5c7d68f75e3cc348"
+      },
+      {
+        "path": "dist/templates/two-column-letter.png",
+        "sha256": "d23fb748c48033f314d40fac502c42953d9003e478ec2360144e55da68c19802"
+      },
+      {
+        "path": "dist-electron/history-zip-worker.cjs",
+        "sha256": "55ff7d812d2eafe2e725dd48f45cbd815ed610bec2168bd449627c76359f7694"
+      },
+      {
+        "path": "dist-electron/history-zip-worker.cjs.map",
+        "sha256": "57f93bf7d08246dc3dd4d5adb013da67ed95acb53aca46f127f5e913cc965bee"
+      },
+      {
+        "path": "dist-electron/main.cjs",
+        "sha256": "c9c0800c89f921d30318bfd9d8e4d66de66ccb95453008f48a212ac3acf97122"
+      },
+      {
+        "path": "dist-electron/main.cjs.map",
+        "sha256": "9121e15377cf765b5875f56c0de5779523d7358d7b0381952ad7d1061f8020ff"
+      },
+      {
+        "path": "dist-electron/preload.cjs",
+        "sha256": "7f722537fb8c76a94c8cb67ef1b221586eb99454e80c8c13bc2f48c3f8897911"
+      },
+      {
+        "path": "dist-electron/preload.cjs.map",
+        "sha256": "ab3974022ac69e0a3136751b13fb2eec82606d06b78aa44f8279f568c68f3381"
+      }
+    ]
+  },
+  "nativeChecks": {
+    "workspace": {
+      "script": "scripts/test-workspace.mjs",
+      "scriptSha256": "182dc669103b82b74c837950f226aee555963f99122bda7a5496fcc1e97d8723",
+      "result": {
+        "passed": true,
+        "errors": [],
+        "keyboardChecks": [
+          "Chat/Code/Git arrows wrap, Home/End select, one tab participates in Tab order, every named visible panel agrees and is focusable after History, and the unsent draft survives.",
+          "Native Settings traps forward/backward Tab, rejects outside focus, identifies its current section, and returns focus to its opener after Escape."
+        ],
+        "accessibilityScope": "Actual Electron keyboard and DOM accessibility semantics; no physical VoiceOver or full accessibility-conformance claim."
+      }
+    },
+    "recovery-writes": {
+      "script": "scripts/test-recovery-writes.mjs",
+      "scriptSha256": "5c8e66f55831679b769dedf04cc07700b0097119eef73c1a18e125b699c4c108",
+      "result": {
+        "sourceCommit": "0bee2713cff6eed7872984f73229fec7ef722ff3",
+        "scriptSha256": "5c8e66f55831679b769dedf04cc07700b0097119eef73c1a18e125b699c4c108",
+        "sourceHashes": {
+          "electron/core/project.ts": "495351408a61191adf13baff04783e401e729a0f18c9a95ef4ba35d2e83bd5b9",
+          "electron/main.ts": "db56a29c827a97e18d0136a3709c5e1b3dfa5f781c2bf90f3dc9d4cd932b53c1",
+          "src/shared/recovery-writes.ts": "2ab7b36bd0fafee0e097cd3470092a7fdeceb4f6f303b5b4e549dfa70d961831",
+          "src/App.tsx": "07815a5edd20901e8592230bdc4ba8f35f2eed34dbdbeb3b96fd7cfadcf4f88d",
+          "src/chat.css": "461fb8cca8ebd7c8061927814c25d44bf110cb669113bb885b6d6f0eed77a2a5"
+        },
+        "appAsarSha256": "7ab490486ba31a5a0b487231f7c176c756a22cff61869832c88bdd63373d99be",
+        "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+        "scope": "Synthetic native profile, real UI/preload/IPC/recovery and normal restarts. Scoped rename delays/failures expose queue behavior. No AI call, real user document, performance percentile or physical power-loss claim.",
+        "checks": [
+          "Eight debounce-separated UI snapshots become only the active and newest writes; exact newest source survives normal close and restart.",
+          "A failed rename preserves the previous recovery file, retains newer editor changes without repeated writes, and Retry saves the newest source. Independent recovery/settings errors remain visible and clickable without overlapping.",
+          "Native IPC admits four writes, rejects excess requests before acknowledgement, and accepts a later retry. Normal close flushes the actual visible editor snapshot before restart."
+        ],
+        "errors": [],
+        "passed": true,
+        "automaticWrites": [
+          {
+            "revision": 2,
+            "id": "45fcd8af-be63-4b52-a8e3-ad35957b1609",
+            "source": "\\documentclass{article}\n\\begin{document}\nRecovery snapshot 1.\n\\end{document}"
+          },
+          {
+            "revision": 9,
+            "id": "45fcd8af-be63-4b52-a8e3-ad35957b1609",
+            "source": "\\documentclass{article}\n\\begin{document}\nRecovery snapshot 8.\n\\end{document}"
+          }
+        ],
+        "nativeAdmission": {
+          "requests": 100,
+          "rejectedWhileHeld": 96,
+          "acknowledgedWhileHeld": 0,
+          "accepted": 4,
+          "newestRetrySaved": true
+        }
+      }
+    },
+    "git": {
+      "script": "scripts/test-git.mjs",
+      "scriptSha256": "94ccede6abcbe265d9c5d05009d6d6ddde1c74559bc48427cc31c2b13b3922f1",
+      "result": {
+        "passed": true,
+        "errors": [],
+        "fixtureRoot": "/var/folders/ly/czcg6f_51sjbmyp0h3hb139r0000gn/T/folio-git-smoke-ygUBSs",
+        "commit": {
+          "hash": "3d2162c344c2279c837eabea3a4af385737e1ad5",
+          "shortHash": "3d2162c",
+          "subject": "Initial commit from smoke test",
+          "author": "Folio Test",
+          "email": "test@folio.local",
+          "date": "2026-09-28T11:07:09+05:30",
+          "parents": []
+        },
+        "sourceMatches": true,
+        "uiInitializeStageCommit": true,
+        "codeViewRestored": true
+      },
+      "actualCommitAndSourceIndependentlyChecked": true
+    }
+  },
+  "physicalInventory": {
+    "schemaVersion": 1,
+    "application": {
+      "name": "Folio",
+      "version": "0.1.0-preview.4",
+      "bundleIdentifier": "app.folio.resume",
+      "architecture": "arm64"
+    },
+    "appAsarSha256": "7ab490486ba31a5a0b487231f7c176c756a22cff61869832c88bdd63373d99be",
+    "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+    "runtimeFilesVerified": 3982,
+    "regularFiles": 5097,
+    "directories": 768,
+    "symlinks": 14,
+    "logicalFileBytes": 710582762,
+    "records": [
+      {
+        "path": "bundle-inventory.json",
+        "bytes": 1406293,
+        "sha256": "2bcdb04373ae82fbff35aafc922de318f77fdb9a4a6767d89c1a1902e18039a1"
+      },
+      {
+        "path": "bundle.cdx.json",
+        "bytes": 4091653,
+        "sha256": "9f10f30be738297a023fe2b961d8a02804f3a234c3d5e53163171ed6a65b2865"
+      }
+    ],
+    "schemaValidation": "Official pinned CycloneDX 1.6 JSON schema, including formats; offline.",
+    "componentMappingComplete": false,
+    "releaseAuditComplete": false,
+    "limits": [
+      "Inventory of physical regular files, directories, POSIX modes and internal symbolic links in this exact local app.",
+      "Embedded ASAR/ZIP/PAR members, linked dependencies and per-component license/source mappings remain incomplete.",
+      "No extended attributes, ACLs, resource forks, code-signature/notarization validation, disk image or unique physical disk-size claim.",
+      "Before/after metadata checks detect ordinary concurrent changes; this is not an atomic filesystem snapshot or a hostile-mutation sandbox."
+    ]
+  },
+  "javascriptSummary": {
+    "schemaVersion": 1,
+    "appAsarSha256": "7ab490486ba31a5a0b487231f7c176c756a22cff61869832c88bdd63373d99be",
+    "inventorySha256": "ab04c3f6d6f1dda458605e2e2daa1efc9769921381a028cfddbb6f45eaa193e1",
+    "bomSha256": "8ad2d13b755ef7d025ea46502c93839d6495d47ad7e556a5ad93ad68a8eea54c",
+    "packagedJavaScriptAndMaps": 8,
+    "reproducedOutputs": 24,
+    "sourceModules": 429,
+    "runtimePackages": 35,
+    "generators": 3,
+    "completeBinarySbom": false
+  },
+  "publisherSourceVerification": {
+    "schemaVersion": 1,
+    "passed": true,
+    "inventorySha256": "ab04c3f6d6f1dda458605e2e2daa1efc9769921381a028cfddbb6f45eaa193e1",
+    "sourceIndexSha256": "ec21f5ef6a8761f6a5c97f13526ffda69580f48170a80a3c0720cf397fd1009d",
+    "npmInputFilesMatched": 259,
+    "embeddedOriginalSourcesMatched": 45,
+    "packageJsonFilesMatched": 38,
+    "originalArchivesChecked": 38,
+    "packages": [
+      {
+        "location": "node_modules/@codemirror/autocomplete",
+        "name": "@codemirror/autocomplete",
+        "version": "6.20.3",
+        "archiveSha256": "0060be265a063bfd1a35adf59937217c2b9d1560abde4d717e15c3d1ffaf98de",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/@codemirror/commands",
+        "name": "@codemirror/commands",
+        "version": "6.11.1",
+        "archiveSha256": "f477f46d8c00278e1b387baebd53bd6556fd5f3c7401ebe2a05543600fcbff0f",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/@codemirror/language",
+        "name": "@codemirror/language",
+        "version": "6.12.4",
+        "archiveSha256": "5e49acf55fde65ce9848068f0f06478be9ec71f818e91de6eca00824e9152226",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/@codemirror/legacy-modes",
+        "name": "@codemirror/legacy-modes",
+        "version": "6.5.4",
+        "archiveSha256": "0f5a0e82d4926ae42c420251c0d554b51534285db41cea35d93d5a014db57aa2",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/@codemirror/search",
+        "name": "@codemirror/search",
+        "version": "6.7.2",
+        "archiveSha256": "cea9bcf62e34f89f2a49bc5e37bcf6d4f32049892f5a0b1cbd0b8160094dec97",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/@codemirror/state",
+        "name": "@codemirror/state",
+        "version": "6.7.6",
+        "archiveSha256": "91d75acc955ceeaf86af9396c11cda7694fe6222aac8427fa033d89eff5ac839",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/@codemirror/view",
+        "name": "@codemirror/view",
+        "version": "6.43.13",
+        "archiveSha256": "1246c9b6e1ad1d9d870b3e67672d3a8f8c9bc73af3b63c081c1549a94d5850db",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/@lezer/common",
+        "name": "@lezer/common",
+        "version": "1.5.3",
+        "archiveSha256": "a8854639c04adabe5e72c26fa2876475116dc099ae5aa02250a5a938bb5ea4ae",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/@lezer/highlight",
+        "name": "@lezer/highlight",
+        "version": "1.2.4",
+        "archiveSha256": "b1e29e6910c024280ba0eccb22557b2ace946f33091a5cd23173523088cc904d",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/@marijn/find-cluster-break",
+        "name": "@marijn/find-cluster-break",
+        "version": "1.0.4",
+        "archiveSha256": "5d12b770b64d46632c84fcd18e1d4c09f195ed0f5dbc71f94a41f0af333eaeae",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/builder-util-runtime",
+        "name": "builder-util-runtime",
+        "version": "9.7.0",
+        "archiveSha256": "6b1f079463c7ddb2992c10ceea45761ef9be63a8e2290105fea918d869c23498",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/crelt",
+        "name": "crelt",
+        "version": "1.0.7",
+        "archiveSha256": "3542299c0278fdc26aceb2b13d31bffbcb89d7367706bbc457130e3fd103c03e",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/debug",
+        "name": "debug",
+        "version": "4.4.3",
+        "archiveSha256": "89c1ac9c946ee8905a875837114528e97eeae35e03be3190584b2216af43e4a7",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/electron-updater",
+        "name": "electron-updater",
+        "version": "6.8.10",
+        "archiveSha256": "be54bb725e114d81c2e142e02ca017b5386b43511f11df925bc9adbd2b624413",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/esbuild",
+        "name": "esbuild",
+        "version": "0.28.2",
+        "archiveSha256": "e045f94c235c7adc50e77ba2a579c7bec41b496b6b47c3a7845f7c1e19959a88",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/fflate",
+        "name": "fflate",
+        "version": "0.8.3",
+        "archiveSha256": "38c2cd824402407b43153c782274aec2ea83ea688e4aa0b743c5f2c305857d92",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/fs-extra",
+        "name": "fs-extra",
+        "version": "10.1.0",
+        "archiveSha256": "50aa67852e866bb06b35c23f83fd07fc21b06c21ac96283956d0480922971fea",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/graceful-fs",
+        "name": "graceful-fs",
+        "version": "4.2.11",
+        "archiveSha256": "3961374aa161e6fed80d6f4b6aaf2fb7eafd2c9e5be34e865b375f0114dd099c",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/has-flag",
+        "name": "has-flag",
+        "version": "4.0.0",
+        "archiveSha256": "77a7eb1411d927bb8a5ca7069dbe168886d63c88f446f0b81500a2cf23ddb5b1",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/js-yaml",
+        "name": "js-yaml",
+        "version": "4.3.2",
+        "archiveSha256": "c7b241d2224cf9253ff53854aa4cee87da91bd889c4d0fa3a3ffd1041ecee5b1",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/jsonfile",
+        "name": "jsonfile",
+        "version": "6.2.1",
+        "archiveSha256": "6c1ae1dbfc6c518b10858d2e37c31d31e1fb39eaf32d77c10f1d84c573540d36",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/lazy-val",
+        "name": "lazy-val",
+        "version": "1.0.5",
+        "archiveSha256": "7d8602ad98db3d19fbd5b46fbf3831dd996197a013ef1ff7badc205e41435372",
+        "noticeFiles": 0
+      },
+      {
+        "location": "node_modules/lodash.escaperegexp",
+        "name": "lodash.escaperegexp",
+        "version": "4.1.2",
+        "archiveSha256": "17e49a4288031a39d917abaecd2ad41919240806799dbea7f26b72748a8c483a",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/lodash.isequal",
+        "name": "lodash.isequal",
+        "version": "4.5.0",
+        "archiveSha256": "a3b534a55485caad0c28ce56779eb4faea13d3c23a55691eaedca6a0b9834278",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/lucide-react",
+        "name": "lucide-react",
+        "version": "1.48.0",
+        "archiveSha256": "490f1166242c9964df275a1a0c958b56318db2670ceaf7b7cea4fc0e4e4feffc",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/ms",
+        "name": "ms",
+        "version": "2.1.3",
+        "archiveSha256": "f6616e15e530ed552f9daa2d3ce71963947c6bc7c98c9b64fd3e673fd02622c6",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/pdfjs-dist",
+        "name": "pdfjs-dist",
+        "version": "6.3.289",
+        "archiveSha256": "06f25e887adc6489f04c9fcb14198c77e4e5623a59a0bba5c4cea5838a4f1241",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/react",
+        "name": "react",
+        "version": "19.3.0",
+        "archiveSha256": "5a4024110c49476e1538a70fd65b9e59d038fcc280b78eb933c24e10453afbf9",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/react-dom",
+        "name": "react-dom",
+        "version": "19.3.0",
+        "archiveSha256": "dbeffb1e6cdbbbba07f799da4635333d0e20c210a32278dded85441ec4cb6a17",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/rolldown",
+        "name": "rolldown",
+        "version": "1.2.11",
+        "archiveSha256": "3acd96aab699f4936c223ebe60a52882a22aaa7dba22393f97b30729dd26516b",
+        "noticeFiles": 2
+      },
+      {
+        "location": "node_modules/sax",
+        "name": "sax",
+        "version": "1.6.1",
+        "archiveSha256": "6e9abf03478608b80894bb8b6421271a0e583504f785f749a700d6bb35be85bd",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/scheduler",
+        "name": "scheduler",
+        "version": "0.28.0",
+        "archiveSha256": "302995d590e3c0a11eeb40d1d0f299c1df1800135d599d85cdd5faeb614f32d6",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/semver",
+        "name": "semver",
+        "version": "7.7.3",
+        "archiveSha256": "b49572086d1e04c9a014cafc232685cc74570320d4e7091c2e30a7138c8522bd",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/style-mod",
+        "name": "style-mod",
+        "version": "4.1.4",
+        "archiveSha256": "769073434ab698eb035cbaa9df5d028231c25d95bc7b8676a46d603fb2e89e39",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/supports-color",
+        "name": "supports-color",
+        "version": "7.2.0",
+        "archiveSha256": "f16acafd1634624e60c24a5538004c4e168c82607f10dbe28395e9df3e7d5e4a",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/universalify",
+        "name": "universalify",
+        "version": "2.0.1",
+        "archiveSha256": "7d07313bb61836a12f0ba5485e67673334a3ee955e7aefb3c4b3fc5a1b7b7865",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/vite",
+        "name": "vite",
+        "version": "8.3.1",
+        "archiveSha256": "d1e2250c6eb956e84df6b5d4f8127d420efa9142f393652c77a06906e79d69c3",
+        "noticeFiles": 1
+      },
+      {
+        "location": "node_modules/w3c-keyname",
+        "name": "w3c-keyname",
+        "version": "2.2.8",
+        "archiveSha256": "05d21484026d1f2dd842c843181e391e66d60f1d5dff292d562c3f40302dab36",
+        "noticeFiles": 1
+      }
+    ],
+    "completeBinarySbom": false,
+    "scope": "Exact npm source bytes and published source-map contents from checksum-verified locked archives. Generated helpers are associated with their build tools, not assigned byte-level authorship. Nested vendored terms, native components and complete redistribution remain separate."
+  },
+  "archive": {
+    "path": "docs/performance/editor-keyboard-local-traces.tar.gz",
+    "bytes": 1318999,
+    "sha256": "294f26fbeabce8790dc8a09da02f64a1b93dbd0ee4cab08b7733e9739a7429d4",
+    "files": [
+      {
+        "path": "git/actual-committed-main.tex",
+        "bytes": 157,
+        "sha256": "311cf90daa08abd30a020d56ddc5e27a8063564cbf545c13869ed378fc5b72d8"
+      },
+      {
+        "path": "git/committed.png",
+        "bytes": 92994,
+        "sha256": "e341caa91bf5eb3a9ba7daff3c0e236330ca06a227dd37027e7c6c202b0b0061"
+      },
+      {
+        "path": "git/result.json",
+        "bytes": 488,
+        "sha256": "074fddee8c8fb07d807389453ca6d7033ddaf423778829c5f99a90af3d54a044"
+      },
+      {
+        "path": "javascript/publisher-sources.json",
+        "bytes": 9445,
+        "sha256": "00ce50bf0ad4a134edca7391cd6d80419210c9ee557e241aef08aa5088516172"
+      },
+      {
+        "path": "javascript/summary.json",
+        "bytes": 444,
+        "sha256": "83d4de12572fd91d804ba1158b91aeda8d27d298e4f54c3a95deadd85415daa3"
+      },
+      {
+        "path": "logs/editor-lifecycle-keyboard-git.log",
+        "bytes": 448,
+        "sha256": "4ce66731285b0be7bfcc2814ab58a7733afb51d3cedf2936c73c8c4441547ec5"
+      },
+      {
+        "path": "logs/editor-lifecycle-keyboard-javascript-inventory.log",
+        "bytes": 7095,
+        "sha256": "b725511a63b495e867a48ec762570687efcf5157442824a3c9d626fab337a838"
+      },
+      {
+        "path": "logs/editor-lifecycle-keyboard-package.log",
+        "bytes": 3850,
+        "sha256": "ea3827663509ca789150c89d7b7832f633d9982d2ef7dba83013e78d2ca33887"
+      },
+      {
+        "path": "logs/editor-lifecycle-keyboard-physical-inventory.log",
+        "bytes": 1712,
+        "sha256": "1354970f4708a47d47d36fc885a6e64b1ee32253af2d65c9300c9885ecab39de"
+      },
+      {
+        "path": "logs/editor-lifecycle-keyboard-publisher-verification.log",
+        "bytes": 659,
+        "sha256": "13a9c90402b24f5e6ae11026a84cd04d3094d286486de69f7cd20394ac595874"
+      },
+      {
+        "path": "logs/editor-lifecycle-keyboard-publisher-verified-cache.log",
+        "bytes": 681,
+        "sha256": "c7a7df4f54723897c4231b8f6ed55ffdc2437b636239ce8430ebd490f7a59c08"
+      },
+      {
+        "path": "logs/editor-lifecycle-keyboard-recovery.log",
+        "bytes": 234,
+        "sha256": "3a529b49d8c771b6cdfdddb3f484b5492a0185a929b1e76615aeed7872722ba3"
+      },
+      {
+        "path": "logs/editor-lifecycle-keyboard-workspace.log",
+        "bytes": 830,
+        "sha256": "1f7c2665143d9c7a8cba89fa9d6b0f08119b98d8a02d8e8506b891f839e50b23"
+      },
+      {
+        "path": "package-identity.json",
+        "bytes": 6414,
+        "sha256": "f2eac6a22fb2a7722548a52b208cdf0b6f02344b4f4d4f223271d356f30bd564"
+      },
+      {
+        "path": "physical/summary.json",
+        "bytes": 1528,
+        "sha256": "a2bcdd3d27878fa95736e91c0502654cecfe6f2b270165165c9a9bb7c659c640"
+      },
+      {
+        "path": "recovery-writes/final-recovery.json",
+        "bytes": 495,
+        "sha256": "596b8e4a0a8ebc541c0786e76406e1526ced79361d059bf80830bbead3257df6"
+      },
+      {
+        "path": "recovery-writes/recovery-retried.png",
+        "bytes": 74204,
+        "sha256": "91aca8e2738c37e046ca49be77f8cf6cd5c6efe511edb985a9759e602c60127f"
+      },
+      {
+        "path": "recovery-writes/recovery-retry.png",
+        "bytes": 98594,
+        "sha256": "fc0e31fa2b3e22d92197f600c1db9d87df10e8ac3fbc7af9e133ffd87145fd2b"
+      },
+      {
+        "path": "recovery-writes/result.json",
+        "bytes": 2232,
+        "sha256": "5658b6f48526641e2534eb6abdacc13a63ba044ed183fc5bbe88330ec1b1278f"
+      },
+      {
+        "path": "verify-editor-keyboard-local.py",
+        "bytes": 5584,
+        "sha256": "22a15a8892f7d7a05e4e4e6944fbcf5e55ca8fd950381f61edb65588ee6a38a1"
+      },
+      {
+        "path": "workspace/autosave-paused-dark.png",
+        "bytes": 173483,
+        "sha256": "eceef1c66f95704f7a6602363553a0623e0d5a548e713ef6284991e19ee8f8f4"
+      },
+      {
+        "path": "workspace/keyboard-settings.png",
+        "bytes": 131154,
+        "sha256": "c915dc853404c89991e87867e083abbdb464c210c76669656c292d10091e2b76"
+      },
+      {
+        "path": "workspace/keyboard-tabs.png",
+        "bytes": 336610,
+        "sha256": "642fa8371415ce2671db29f13fe2c1c4a285fa2c66d9c66bcbab21a3ac5b1195"
+      },
+      {
+        "path": "workspace/layout-measurements.json",
+        "bytes": 9358,
+        "sha256": "f6a44b08cd5785e26038e5f37383365582f43e185155f91f9d91d67e7baad203"
+      },
+      {
+        "path": "workspace/resized-small-dark.png",
+        "bytes": 128354,
+        "sha256": "ccec5626f3b020cf91c725209a97e0c5b5a396abf131e29b9c01391de776e1b3"
+      },
+      {
+        "path": "workspace/result.json",
+        "bytes": 544,
+        "sha256": "744c4a42bc995b77907994a3799c966dc84a4916040a4663dd7b5e07d44368b3"
+      },
+      {
+        "path": "workspace/settings-light.png",
+        "bytes": 206689,
+        "sha256": "b66abec9a79bb7f9deec037c676f147057254191b880468c9d349a07fe84ea6a"
+      },
+      {
+        "path": "workspace/settings-small-dark.png",
+        "bytes": 99994,
+        "sha256": "d18bd74bacb972cef47eaebaf91910c38cba974ca4b69a3087d82c05c24fb3bb"
+      }
+    ]
+  },
+  "scope": "Three affected native suites on a separate unsigned local Apple silicon package. Workspace keyboard coverage includes all three tabs and modal focus. Recovery retains the exact four accepted/96 rejected capacity assertion. Actual Git commit/source and final recovery source independently read. All 39 compiled outputs match the package; all 3,982 runtime files are inventoried. Publisher verification initially used an unavailable/invalid default archive cache; the retained verified cache passes all 38 archives. Full hosted qualification is still running. No physical VoiceOver/IME, signing, full binary redistribution or resource-budget claim."
+}
