@@ -1,0 +1,229 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-28T01:02:08.885020+00:00",
+  "implementationCommit": "fbb165fd4da09775f0ed36dcaf8df7733e4f7342",
+  "status": "Original materials, source tests, local package and bibliography smoke verified; full hosted combined qualification pending",
+  "sourceTestsPassed": 460,
+  "focusedControlsPassed": 8,
+  "typecheckAndFormatPassed": true,
+  "noticeSourceIndex": {
+    "file": "resources/biber-notices/SOURCES.json",
+    "bytes": 337021,
+    "sha256": "ec039b7dd98a81d628425456a0eb96881a65638cac8f89d1d40e6964a71d1fb3"
+  },
+  "collectorSha256": "4f67d349581f27b98d8d02ade7f53d83b19a696f95bba8fd6e84e9c63971ddcf",
+  "archivesVerified": 136,
+  "components": 136,
+  "originalDocumentReferences": 441,
+  "uniqueOriginalDocuments": 414,
+  "originalDocumentBytes": 6453696,
+  "packagedNoticeFiles": 416,
+  "originalCollectionReplayedExactly": true,
+  "allPackagedOriginalBytesIndependentlyCompared": true,
+  "distributionsWithoutStandaloneNotices": 44,
+  "compiledOutputsMatchTectonicNoticeCandidate": 39,
+  "physicalInventory": {
+    "schemaVersion": 1,
+    "application": {
+      "name": "Folio",
+      "version": "0.1.0-preview.4",
+      "bundleIdentifier": "app.folio.resume",
+      "architecture": "arm64"
+    },
+    "appAsarSha256": "fbc69b9abcd714b69a35f139f7ac155a05458e5cefdc0bef3e29e861b932e91e",
+    "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+    "runtimeFilesVerified": 3982,
+    "regularFiles": 5097,
+    "directories": 768,
+    "symlinks": 14,
+    "logicalFileBytes": 710630774,
+    "records": [
+      {
+        "path": "bundle-inventory.json",
+        "bytes": 1406298,
+        "sha256": "6baa9d793ef1217ebccae80affd0e792c50cb5128add043fff54c452d30ea0d2"
+      },
+      {
+        "path": "bundle.cdx.json",
+        "bytes": 4091662,
+        "sha256": "9048912c1bf67072f73bac50d9f77833cd854177d764df7815932a3f5e37c35a"
+      }
+    ],
+    "schemaValidation": "Official pinned CycloneDX 1.6 JSON schema, including formats; offline.",
+    "componentMappingComplete": false,
+    "releaseAuditComplete": false,
+    "limits": [
+      "Inventory of physical regular files, directories, POSIX modes and internal symbolic links in this exact local app.",
+      "Embedded ASAR/ZIP/PAR members, linked dependencies and per-component license/source mappings remain incomplete.",
+      "No extended attributes, ACLs, resource forks, code-signature/notarization validation, disk image or unique physical disk-size claim.",
+      "Before/after metadata checks detect ordinary concurrent changes; this is not an atomic filesystem snapshot or a hostile-mutation sandbox."
+    ]
+  },
+  "physicalComparison": {
+    "baselineAsar": "ed51b14685caad966c3859de9bc738a5ca183193d31cf5fefa5c1685023f37c0",
+    "baselineEntries": 5462,
+    "currentEntries": 5879,
+    "addedBiberNoticeEntries": 417,
+    "existingIdenticalEntries": 5460,
+    "differences": [
+      {
+        "path": "Contents/Info.plist",
+        "before": {
+          "path": "Contents/Info.plist",
+          "mode": 420,
+          "kind": "file",
+          "bytes": 3849,
+          "sha256": "967fb10f8a6b02c33b4502d192ff8535e50882e612510e5022f5754acb16bb4f"
+        },
+        "after": {
+          "path": "Contents/Info.plist",
+          "mode": 420,
+          "kind": "file",
+          "bytes": 3849,
+          "sha256": "7abc6e3492a1aa92a95b12d296e182315674b99997ea2cbbcdae4196674d8a18"
+        }
+      },
+      {
+        "path": "Contents/Resources/app.asar",
+        "before": {
+          "path": "Contents/Resources/app.asar",
+          "mode": 420,
+          "kind": "file",
+          "bytes": 7539114,
+          "sha256": "ed51b14685caad966c3859de9bc738a5ca183193d31cf5fefa5c1685023f37c0"
+        },
+        "after": {
+          "path": "Contents/Resources/app.asar",
+          "mode": 420,
+          "kind": "file",
+          "bytes": 7539957,
+          "sha256": "fbc69b9abcd714b69a35f139f7ac155a05458e5cefdc0bef3e29e861b932e91e"
+        }
+      }
+    ]
+  },
+  "unchangedRuntimeFiles": 3982,
+  "javascript": {
+    "summary": {
+      "schemaVersion": 1,
+      "appAsarSha256": "fbc69b9abcd714b69a35f139f7ac155a05458e5cefdc0bef3e29e861b932e91e",
+      "inventorySha256": "e056ba28c383befcb66b6b96c8ce36ef974bdd2919f0b82bab371dda293f0071",
+      "bomSha256": "790a089e81c8949775a75fd39a955d45e073b660c989e896b7327244e6438467",
+      "packagedJavaScriptAndMaps": 8,
+      "reproducedOutputs": 24,
+      "sourceModules": 411,
+      "runtimePackages": 35,
+      "generators": 3,
+      "completeBinarySbom": false
+    },
+    "folioSourcesMatchImplementation": 114,
+    "allReplayInputsMatchImplementation": true,
+    "publisherSources": {
+      "schemaVersion": 1,
+      "passed": true,
+      "inventorySha256": "e056ba28c383befcb66b6b96c8ce36ef974bdd2919f0b82bab371dda293f0071",
+      "sourceIndexSha256": "ec21f5ef6a8761f6a5c97f13526ffda69580f48170a80a3c0720cf397fd1009d",
+      "npmInputFilesMatched": 249,
+      "embeddedOriginalSourcesMatched": 45,
+      "packageJsonFilesMatched": 38,
+      "originalArchivesChecked": 38,
+      "completeBinarySbom": false,
+      "scope": "Exact npm source bytes and published source-map contents from checksum-verified locked archives. Generated helpers are associated with their build tools, not assigned byte-level authorship. Nested vendored terms, native components and complete redistribution remain separate."
+    }
+  },
+  "nativeSmoke": {
+    "script": {
+      "file": "scripts/test-packaged.mjs",
+      "bytes": 3176,
+      "sha256": "be7b559a2cf786c3c1b5fa2ee04fc9381410f41a6fe8766ec0af2dc37d2cd5a3"
+    },
+    "log": {
+      "file": "test-results/biber-notices-native.log",
+      "bytes": 256,
+      "sha256": "e02c874aa3feed787eafbbf61e5d67b99cda50f2fe2f9b6608eb9564c5a284f4"
+    },
+    "screenshot": {
+      "file": "test-results/biber-notices-packaged-workspace.png",
+      "bytes": 200040,
+      "sha256": "8a85176d858a022e326f2a135d2fd20306f38d11d859f880e788c49093fbf3af"
+    },
+    "appAndRuntimeHashesUnchanged": true,
+    "screenshotReviewed": true,
+    "checks": [
+      "Chat is primary, the sample resume compiles and its text renders.",
+      "Compiler-ready Settings is available.",
+      "Imported resume packages, fonts and the Biber bibliography example render without renderer errors."
+    ]
+  },
+  "documentationSkillValid": true,
+  "retainedLogs": [
+    {
+      "file": "test-results/biber-notices-pinned-collection.log",
+      "bytes": 366,
+      "sha256": "9f0ef1a0e94f973869c9931d98581bbe0a254da69962dc816769871d84f4a613"
+    },
+    {
+      "file": "test-results/biber-notices-replay.log",
+      "bytes": 366,
+      "sha256": "9f0ef1a0e94f973869c9931d98581bbe0a254da69962dc816769871d84f4a613"
+    },
+    {
+      "file": "test-results/biber-notices-focused.log",
+      "bytes": 909,
+      "sha256": "e6e1bb31bc27ed812e8583aa45907d012c2623876f5dcfdc9b36f534129fc7ff"
+    },
+    {
+      "file": "test-results/biber-notices-typecheck.log",
+      "bytes": 64,
+      "sha256": "5e0497e27df921e099efd62066b397df0bfe0eb796edd626db840b92aaa1ccec"
+    },
+    {
+      "file": "test-results/biber-notices-final-format.log",
+      "bytes": 183,
+      "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+    },
+    {
+      "file": "test-results/biber-notices-all-source.log",
+      "bytes": 46171,
+      "sha256": "44c7bce79e689ae8af9efc4d9a79883917f4b7b61d21f135448fa7de1879970e"
+    },
+    {
+      "file": "test-results/biber-notices-build.log",
+      "bytes": 1719,
+      "sha256": "e1291c443649ede5b64510b3eac201c487548c2af6fe9caa314799886a1b9872"
+    },
+    {
+      "file": "test-results/biber-notices-package.log",
+      "bytes": 1339,
+      "sha256": "543d1f9cddf86ff0579dd7ff3b52b81be9be23f8882d654938bbe8df5ec9cee6"
+    },
+    {
+      "file": "test-results/biber-notices-physical.log",
+      "bytes": 1708,
+      "sha256": "6958120b16818bf2a560d9ffaa4dc9c43b2bca37b1706b35854c72c9065862b0"
+    },
+    {
+      "file": "test-results/biber-notices-javascript.log",
+      "bytes": 7091,
+      "sha256": "1b79bf619299ea7d799eca437bfb88f71fd858739c5de930e2d71d11bf05fec2"
+    },
+    {
+      "file": "test-results/biber-notices-publisher.log",
+      "bytes": 681,
+      "sha256": "8d0bbdd99ef38fb66f9c023995e5f6ae48832258a4a3f8887ff07155a28dfaec"
+    },
+    {
+      "file": "test-results/biber-notices-package-payloads.json",
+      "bytes": 151111,
+      "sha256": "ffb8520c8ea851853a11b05bff44d640994e3cc6ddd5a854a8e118601f398770"
+    },
+    {
+      "file": "test-results/biber-notices-skill.log",
+      "bytes": 122,
+      "sha256": "16bbf68e1cbc129aae8ce9e352583e63ebbaa00f2bccda0578bf139b2bff76dc"
+    }
+  ],
+  "publicInstallerChanged": false,
+  "completeBinarySbom": false,
+  "scope": "Original Biber/Perl/PAR, CPAN and native source material documents, including explicit supersets and full embedded-declaration files. Shared packaging checks preserve the Tectonic set. Individual grants, Biber declaration discrepancy, exact native vendor builds/version ambiguities, optional external libraries, corresponding-source publication, complete linked-component SBOM, signed production release and full qualification of the combined candidate remain open."
+}

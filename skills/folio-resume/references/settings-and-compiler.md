@@ -150,3 +150,10 @@ If a build says the **compiler cache exceeded its storage limit**, your current 
 [Screenshot: Cache-limit message with the previous successful PDF still visible](https://github.com/grawish/folio/blob/main/docs/images/cache-limit.png)
 
 This demo uses a sample document and a deliberately oversized file-size reading. It does not fill a disk. The change is newer than preview 4. See [compiler cache limits](https://github.com/grawish/folio/blob/main/docs/ENGINE_CACHE.md) for the exact retention policy and verification scope.
+
+
+## Read bibliography-helper notices
+
+In current development builds, right-click **Folio.app** in Finder and choose **Show Package Contents**. Open **Contents → Resources → biber-notices → README.md**. The guide links the original documents for Biber, the tool that builds bibliographies, and its dependencies. Some license statements live inside a complete source file or README.
+
+Their original terms still apply. Folio's noncommercial license does not replace them. This folder is newer than the preview-4 installer. See [Biber notice coverage](https://github.com/grawish/folio/blob/main/docs/BIBER_NOTICES.md) for the included documents and remaining release work.

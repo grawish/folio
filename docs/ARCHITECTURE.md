@@ -80,3 +80,6 @@ PDF viewing is bounded to 100 pages and 25 MiB; AI visual review has a separate 
 Settings talks to a main-process update service through constrained IPC. Separate stable/beta manifests bind the official ZIP, SHA-512, version, rollout and data compatibility with Ed25519 signatures. A custom electron-updater provider consumes the verified snapshot. Explicit restart first saves and flushes project/conversation recovery; competing operations are rejected. App-update publisher trust remains unconfigured until production signing and actual two-version acceptance. See [implementation, protocol and limits](APP_UPDATES.md).
 
 The packaging hook expands and verifies original Tectonic notices before copying app resources; the final package gate checks their exact installed bytes. Source archives and build-closure records remain separately reproducible. See [compiler notice packaging](TECTONIC_NOTICES.md).
+
+
+Biber's original license/declaration documents are also expanded before packaging and checked by the final package gate. Tectonic and Biber share `scripts/original-notice-bundle.ts`, with separate identity and source-lock definitions. Full source documents preserve embedded statements where standalone license files are absent; this packaging code is not part of the application runtime. See [Biber notice coverage](BIBER_NOTICES.md).
