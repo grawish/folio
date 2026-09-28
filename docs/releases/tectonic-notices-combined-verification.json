@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-28T00:35:41.709401+00:00",
+  "sourceCommit": "13ece9c91c70869e1de7056ccefa92ec60df90f1",
+  "status": "Combined local build and package verified; full hosted qualification pending",
+  "sourceTestsPassed": 457,
+  "formatAndTypecheckPassed": true,
+  "appAsarSha256": "ed51b14685caad966c3859de9bc738a5ca183193d31cf5fefa5c1685023f37c0",
+  "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+  "noticeSourceIndex": {
+    "file": "resources/tectonic-notices/SOURCES.json",
+    "bytes": 377330,
+    "sha256": "60d4dd31e26b2c0516c250fa211c5ed40f55b653442ec7f329ecddf2edac1b3d"
+  },
+  "packagedNoticeFiles": 257,
+  "allOriginalTextsIndependentlyCompared": true,
+  "compiledOutputsMatchQualifiedCacheApp": 39,
+  "runtimeFilesVerified": 3982,
+  "physicalInventory": {
+    "schemaVersion": 1,
+    "application": {
+      "name": "Folio",
+      "version": "0.1.0-preview.4",
+      "bundleIdentifier": "app.folio.resume",
+      "architecture": "arm64"
+    },
+    "appAsarSha256": "ed51b14685caad966c3859de9bc738a5ca183193d31cf5fefa5c1685023f37c0",
+    "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+    "runtimeFilesVerified": 3982,
+    "regularFiles": 4681,
+    "directories": 767,
+    "symlinks": 14,
+    "logicalFileBytes": 703796456,
+    "records": [
+      {
+        "path": "bundle-inventory.json",
+        "bytes": 1290971,
+        "sha256": "591e5856f2c66e13a04e0e3e10e8f086cd7750dc9b918f8b4fbaa0164ec42922"
+      },
+      {
+        "path": "bundle.cdx.json",
+        "bytes": 3743598,
+        "sha256": "bf74d1c4065c3e6db1aa302fa8fa0d97639e65fcb58ea766d31f3815eb872c37"
+      }
+    ],
+    "schemaValidation": "Official pinned CycloneDX 1.6 JSON schema, including formats; offline.",
+    "componentMappingComplete": false,
+    "releaseAuditComplete": false,
+    "limits": [
+      "Inventory of physical regular files, directories, POSIX modes and internal symbolic links in this exact local app.",
+      "Embedded ASAR/ZIP/PAR members, linked dependencies and per-component license/source mappings remain incomplete.",
+      "No extended attributes, ACLs, resource forks, code-signature/notarization validation, disk image or unique physical disk-size claim.",
+      "Before/after metadata checks detect ordinary concurrent changes; this is not an atomic filesystem snapshot or a hostile-mutation sandbox."
+    ]
+  },
+  "physicalComparison": {
+    "baseline": "Qualified cache run 36359954692",
+    "previousEntries": 5204,
+    "currentEntries": 5462,
+    "added": 258,
+    "allAddedEntriesAreCompilerNotices": true,
+    "remainingIdenticalEntries": 5201,
+    "differences": [
+      {
+        "path": "Contents/Info.plist",
+        "previous": {
+          "path": "Contents/Info.plist",
+          "mode": 420,
+          "kind": "file",
+          "bytes": 3849,
+          "sha256": "f9f4b5237149cf65a7def5ccb546ad6c1d2fdd2661650d394f0a42dad900d720"
+        },
+        "current": {
+          "path": "Contents/Info.plist",
+          "mode": 420,
+          "kind": "file",
+          "bytes": 3849,
+          "sha256": "967fb10f8a6b02c33b4502d192ff8535e50882e612510e5022f5754acb16bb4f"
+        }
+      },
+      {
+        "path": "Contents/Resources/app-update.yml",
+        "previous": {
+          "path": "Contents/Resources/app-update.yml",
+          "mode": 420,
+          "kind": "file",
+          "bytes": 92,
+          "sha256": "1d7ebe4b263a81d446f3d2817b9e6685bf4e421038165f5052899cf1e060160e"
+        },
+        "current": {
+          "path": "Contents/Resources/app-update.yml",
+          "mode": 420,
+          "kind": "file",
+          "bytes": 39,
+          "sha256": "799ed86348a8ba2676768213bc72e39bc5fc280771614fc701b3b41b37845b56"
+        }
+      },
+      {
+        "path": "Contents/Resources/app.asar",
+        "previous": {
+          "path": "Contents/Resources/app.asar",
+          "mode": 420,
+          "kind": "file",
+          "bytes": 7538108,
+          "sha256": "21deec45a0be129a63d3d8b14a71f555000b9b40a0dbf5c6e6ebcfe0ff8e5144"
+        },
+        "current": {
+          "path": "Contents/Resources/app.asar",
+          "mode": 420,
+          "kind": "file",
+          "bytes": 7539114,
+          "sha256": "ed51b14685caad966c3859de9bc738a5ca183193d31cf5fefa5c1685023f37c0"
+        }
+      }
+    ]
+  },
+  "javascript": {
+    "summary": {
+      "schemaVersion": 1,
+      "appAsarSha256": "ed51b14685caad966c3859de9bc738a5ca183193d31cf5fefa5c1685023f37c0",
+      "inventorySha256": "35e877ac4502583ca9bcaa627dbeda0b62987c8437c6df85357aca48e0e7dad1",
+      "bomSha256": "9cfa8c21d4a30a9e35d23ab19111376ac48119854a0aad8ff436272671d635ff",
+      "packagedJavaScriptAndMaps": 8,
+      "reproducedOutputs": 24,
+      "sourceModules": 411,
+      "runtimePackages": 35,
+      "generators": 3,
+      "completeBinarySbom": false
+    },
+    "folioSourcesMatchCommit": 114,
+    "allInputsMatchCommit": true,
+    "publisherSources": {
+      "schemaVersion": 1,
+      "passed": true,
+      "inventorySha256": "35e877ac4502583ca9bcaa627dbeda0b62987c8437c6df85357aca48e0e7dad1",
+      "sourceIndexSha256": "ec21f5ef6a8761f6a5c97f13526ffda69580f48170a80a3c0720cf397fd1009d",
+      "npmInputFilesMatched": 249,
+      "embeddedOriginalSourcesMatched": 45,
+      "packageJsonFilesMatched": 38,
+      "originalArchivesChecked": 38,
+      "completeBinarySbom": false,
+      "scope": "Exact npm source bytes and published source-map contents from checksum-verified locked archives. Generated helpers are associated with their build tools, not assigned byte-level authorship. Nested vendored terms, native components and complete redistribution remain separate."
+    }
+  },
+  "retainedLogs": [
+    {
+      "file": "test-results/tectonic-notices-merged-format.log",
+      "bytes": 183,
+      "sha256": "4341e20141108a37a6f26b165940bc43d47c714d2d2645fa1e808c6aac7e9fd8"
+    },
+    {
+      "file": "test-results/tectonic-notices-merged-source.log",
+      "bytes": 45919,
+      "sha256": "62809bc8f8ebb557a2c2023600a4dafbfda0be4f55c9890c4bc0b72ba86f95f7"
+    },
+    {
+      "file": "test-results/tectonic-notices-merged-build.log",
+      "bytes": 1719,
+      "sha256": "62ba02a8eccdea53d7aca7ae6001466c45c395c0efd727badb9adde2db1136d6"
+    },
+    {
+      "file": "test-results/tectonic-notices-merged-package.log",
+      "bytes": 1371,
+      "sha256": "e3bfca5e00330f3a55090fff9946e34a53c38366e6daac67115f1d19d30e3a55"
+    },
+    {
+      "file": "test-results/tectonic-notices-merged-physical.log",
+      "bytes": 1712,
+      "sha256": "b6a5b6bb9ccf5a00eab97658cb21e3e10dd6cdbf3e4d936beedc756ff9956256"
+    },
+    {
+      "file": "test-results/tectonic-notices-merged-javascript.log",
+      "bytes": 7095,
+      "sha256": "62908bb2ac6c5f974e6255c051b771346a355b0f388e299528030bedf11e15fb"
+    },
+    {
+      "file": "test-results/tectonic-notices-merged-publisher.log",
+      "bytes": 681,
+      "sha256": "f1343c3284ba79e7fff48dd4ce1c445b4e83aa93c92c43e638662aa00403072e"
+    },
+    {
+      "file": "test-results/tectonic-notices-merged-payloads.json",
+      "bytes": 62088,
+      "sha256": "a65ca476535739691d6f92a6ebd671be50f66632b56fffa7dcf401be880881c2"
+    },
+    {
+      "file": "test-results/tectonic-notices-merged-skill.log",
+      "bytes": 122,
+      "sha256": "16bbf68e1cbc129aae8ce9e352583e63ebbaa00f2bccda0578bf139b2bff76dc"
+    }
+  ],
+  "scope": "Combined compiler-cache and Tectonic notice package. Local checks verify the built files and original texts; native suites and archive checks are reserved for the full hosted run. No signed production qualification, complete binary SBOM or public installer change is claimed."
+}
