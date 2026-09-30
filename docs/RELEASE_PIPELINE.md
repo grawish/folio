@@ -1,6 +1,6 @@
 # Publication and release pipeline
 
-The first downloadable app preview is [v0.1.0-preview.4](releases/v0.1.0-preview.4.md), an unsigned Apple silicon DMG and application ZIP. It includes the faster editing harness, chat model selection, collected third-party materials, checksums and package qualification records. This manual preview publication is separate from automated source previews. Production signing, notarization, updater and redistribution-audit requirements remain open; earlier milestones below describe their state at the time.
+The latest downloadable app preview is [v0.1.0-preview.5](releases/v0.1.0-preview.5.md), an unsigned Apple silicon DMG and application ZIP. It includes current source fixes, checksums and package qualification records. This manual preview publication is separate from automated source previews. Production signing, notarization, updater and redistribution-audit requirements remain open; earlier milestones below describe their state at the time.
 
 The first reviewed source commit was pushed to `grawish/folio` before these workflows were added, as requested. Only source, tests, docs, synthetic screenshots, templates and required static assets are tracked. Local profiles, private design captures, runtime downloads, old installers and caches stay ignored.
 
@@ -8,7 +8,7 @@ The first reviewed source commit was pushed to `grawish/folio` before these work
 
 The latest fully qualified unsigned Mac source is `ae62d1a`. Full hosted runs pass on **macOS 14.8.9** and **macOS 27.0**, with 460 source tests, 19 compiler integrations, twelve unchanged template images, all twenty-one native suites and final app/archive gates on each OS. All 170 retained evidence files per run were independently checked. The two 5,879-entry physical app inventories are identical, including the application archive, runtime, icon and collected original notices. See [OS qualification and limits](MAC_OS_QUALIFICATION.md), [macOS 14 evidence](releases/macos-14-hosted.json) and [macOS 27 evidence](releases/macos-27-hosted.json).
 
-The website and main domain load over HTTPS after the owner-approved repair. The public preview-4 installer is unchanged. Hosted developer-image compatibility does not complete clean consumer installation, signing/notarization, physical accessibility/display acceptance, real BYOK or the complete redistribution/SBOM audit. Earlier milestones below preserve their results and limitations.
+The website and main domain load over HTTPS after the owner-approved repair. Preview 5 remains unsigned because no Developer ID identity is available. Hosted developer-image compatibility does not complete clean consumer installation, signing/notarization, physical accessibility/display acceptance, real BYOK or the complete redistribution/SBOM audit. Earlier milestones below preserve their results and limitations.
 
 ## Earlier publication and qualification milestones
 

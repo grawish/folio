@@ -12,7 +12,7 @@ https://github.com/user-attachments/assets/7608504c-d77d-4bdb-aa9a-6e52cd03797a
 
 [Watch the 22-second Folio demo](docs/videos/folio-demo.mp4).
 
-Download the **[Apple silicon DMG preview](https://github.com/grawish/folio/releases/tag/v0.1.0-preview.4)**. This development build is unsigned and not notarized. Open the disk image and drag Folio to Applications. The release includes checksums, build provenance and collected third-party source/license materials. Explore the live [product website](https://grawish.com/folio/) and [screenshot demo gallery](https://grawish.com/folio/demos.html).
+Download the **[Apple silicon DMG preview](https://github.com/grawish/folio/releases/tag/v0.1.0-preview.5)**. This development build is unsigned and not notarized. Open the disk image and drag Folio to Applications. The release includes checksums, build provenance and collected third-party source/license materials. Explore the live [product website](https://grawish.com/folio/) and [screenshot demo gallery](https://grawish.com/folio/demos.html).
 
 ## Development preview
 

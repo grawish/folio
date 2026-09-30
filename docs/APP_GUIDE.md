@@ -48,7 +48,7 @@ Current development source also limits individual compiler files to 128 MiB and 
 
 Developer prerequisite: Node.js 24 with npm. End users of a packaged build do not need Node.js or a separate LaTeX installation.
 
-For a ready-made download, use the published [preview-4 release](https://github.com/grawish/folio/releases/tag/v0.1.0-preview.4) and read its [release notes and limitations](releases/v0.1.0-preview.4.md). It includes the compiler and template resources but is unsigned, not notarized, and older than current development source. Save your work and quit Folio before installing another build. Local milestone directories are developer evidence, not the public download location. [Package qualification](RELEASE_PIPELINE.md) records the tested source and artifacts; a newer source commit does not imply a new installer has been published.
+For a ready-made download, use the published [preview-5 release](https://github.com/grawish/folio/releases/tag/v0.1.0-preview.5) and read its [release notes and limitations](releases/v0.1.0-preview.5.md). It includes the compiler and template resources but is unsigned, not notarized, and older than future signed production work. Save your work and quit Folio before installing another build. Local milestone directories are developer evidence, not the public download location. [Package qualification](RELEASE_PIPELINE.md) explains the difference between the source tree and downloadable preview.
 
 ```sh
 npm ci
