@@ -5,6 +5,7 @@ import path from 'node:path';
 
 if (process.platform !== 'darwin' || process.arch !== 'arm64')
   throw new Error('This APFS low-storage control requires an Apple silicon Mac.');
+await fs.mkdir('test-results', { recursive: true });
 
 const root = await fs.mkdtemp(path.resolve('test-results/low-storage-save-'));
 const image = path.join(root, 'low-storage.sparsebundle');
