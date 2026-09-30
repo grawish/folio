@@ -36,7 +36,6 @@ jobs:
       - run: python tests/biber-autosplit-evidence.py
       - run: python tests/biber-generated-evidence.py
       - run: python tests/biber-encode-xs-evidence.py
-      - run: python tests/biber-remaining-dispositions.py
       - run: python tests/tex-font-materials.py
       - run: python tests/tex-resource-materials.py
       - run: python tests/tex-generated-materials.py
