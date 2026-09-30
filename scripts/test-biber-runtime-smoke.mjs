@@ -1,4 +1,4 @@
-import { mkdtemp, rm, writeFile, mkdir, readFile } from 'node:fs/promises';
+import { mkdtemp, rm, writeFile, mkdir, readFile, copyFile } from 'node:fs/promises';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import os from 'node:os';
@@ -8,26 +8,14 @@ import { createHash } from 'node:crypto';
 const run = promisify(execFile);
 const root = await mkdtemp(path.join(os.tmpdir(), 'folio-biber-runtime-'));
 const biber = path.resolve('resources/runtime/mac-arm64/biber');
-const source = path.resolve(
-  'artifacts/license-materials/compiler-sources/biber/biber-3091bee31a9706e3aa5e4afef81062856e14735a.tar.gz',
-);
+const fixture = path.resolve('resources/runtime-checks');
 const digest = (data) => createHash('sha256').update(data).digest('hex');
 try {
   await mkdir(path.join(root, 'out'));
   await mkdir(path.join(root, 'home'));
   await mkdir(path.join(root, 'config'));
-  await run(
-    'tar',
-    [
-      '-xzf',
-      source,
-      '--strip-components=3',
-      'biber-3091bee31a9706e3aa5e4afef81062856e14735a/t/tdata/basic-misc.bcf',
-      'biber-3091bee31a9706e3aa5e4afef81062856e14735a/t/tdata/examples.bib',
-    ],
-    { cwd: root },
-  );
-  await run('mv', ['basic-misc.bcf', 'normal.bcf'], { cwd: root });
+  await copyFile(path.join(fixture, 'biber-normal.bcf'), path.join(root, 'normal.bcf'));
+  await copyFile(path.join(fixture, 'biber-normal.bib'), path.join(root, 'examples.bib'));
   const env = {
     HOME: path.join(root, 'home'),
     XDG_CONFIG_HOME: path.join(root, 'config'),
@@ -60,7 +48,7 @@ try {
         biber: (await run(biber, ['--version'], { env })).stdout.trim(),
         normalBbl: { bytes: bbl.length, sha256: digest(bbl) },
         toolBib: { bytes: output.length, sha256: digest(output) },
-        sourceFixture: 'biber 2.17 t/tdata/basic-misc.bcf + examples.bib',
+        sourceFixture: 'tracked Biber normal bibliography fixture + tool-mode BibTeX fixture',
       },
       null,
       2,
