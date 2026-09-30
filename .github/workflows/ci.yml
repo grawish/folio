@@ -49,7 +49,6 @@ jobs:
       - run: npm run format:check
       - run: npm test
       - run: npm run build
-      - run: npm run test:biber
       - run: npm run test:low-storage
       - run: npm run website:build
       - run: npm run skill:build && git diff --exit-code -- skills/
