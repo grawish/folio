@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-29T18:16:11.966859+00:00",
+  "scope": "Source-reachable evidence that specific native-library version literals are code-referenced by name-matching defined functions inside Folio's packaged Tectonic arm64 executable, plus its full declared dynamic-dependency identity list. This is not a complete static-linkage inventory: absence of an anchor here does not mean a library is unlinked, and presence does not complete a build or redistribution audit. Anchors were located by direct, bounded Mach-O parsing (no otool/nm/execution dependency).",
+  "releaseAuditComplete": false,
+  "binary": {
+    "path": "resources/runtime/mac-arm64/tectonic",
+    "bytes": 53998928,
+    "sha256": "b52b5a730e2b0b33087304f7720f649603953f270a6b1c88bb031e1ae01f7f9c"
+  },
+  "collector": {
+    "path": "scripts/collect-tectonic-linkage-evidence.py",
+    "bytes": 15562,
+    "sha256": "43966430bea74a5acdd80e0971bc736f7c137a669dd9768cc70d03f1eab2d45d"
+  },
+  "lock": {
+    "path": "resources/tectonic-linkage-anchors.lock.json",
+    "bytes": 7255,
+    "sha256": "33ed1fbc86d810f8c43a1413971ffaad253fcbc67f1ba05d7b82f1a3fae610b2"
+  },
+  "test": {
+    "path": "tests/tectonic-linkage-evidence.py",
+    "bytes": 13564,
+    "sha256": "93e68a9df41cac1c68f0cc9ef6838100ff962dca3c7404f8554ccd5dd0bb3c00"
+  },
+  "compilerBuildProvenanceLockSha256": "e5993d9995414dd85d65f472509cb73acd8742d73fb473c71a9d21fd11e7ebe7",
+  "nativeLicenseSourcesLockSha256": "f22ee6c40185dc30cda1c041fdeb8e7a3e17451111f73e74c725d9ca2d73b709",
+  "declaredDynamicDependencies": [
+    {
+      "name": "/System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation",
+      "currentVersion": "5026.5.4",
+      "compatibilityVersion": "150.0.0"
+    },
+    {
+      "name": "/System/Library/Frameworks/CoreServices.framework/Versions/A/CoreServices",
+      "currentVersion": "1226.0.0",
+      "compatibilityVersion": "1.0.0"
+    },
+    {
+      "name": "/usr/lib/libc++.1.dylib",
+      "currentVersion": "2100.43.0",
+      "compatibilityVersion": "1.0.0"
+    },
+    {
+      "name": "/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation",
+      "currentVersion": "5026.5.4",
+      "compatibilityVersion": "300.0.0"
+    },
+    {
+      "name": "/System/Library/Frameworks/CoreGraphics.framework/Versions/A/CoreGraphics",
+      "currentVersion": "1965.5.1",
+      "compatibilityVersion": "64.0.0"
+    },
+    {
+      "name": "/System/Library/Frameworks/CoreText.framework/Versions/A/CoreText",
+      "currentVersion": "877.4.0",
+      "compatibilityVersion": "1.0.0"
+    },
+    {
+      "name": "/System/Library/Frameworks/AppKit.framework/Versions/C/AppKit",
+      "currentVersion": "2685.60.104",
+      "compatibilityVersion": "45.0.0"
+    },
+    {
+      "name": "/System/Library/Frameworks/Security.framework/Versions/A/Security",
+      "currentVersion": "61901.120.67",
+      "compatibilityVersion": "1.0.0"
+    },
+    {
+      "name": "/System/Library/Frameworks/SystemConfiguration.framework/Versions/A/SystemConfiguration",
+      "currentVersion": "1405.120.5",
+      "compatibilityVersion": "1.0.0"
+    },
+    {
+      "name": "/usr/lib/libiconv.2.dylib",
+      "currentVersion": "7.0.0",
+      "compatibilityVersion": "7.0.0"
+    },
+    {
+      "name": "/usr/lib/libSystem.B.dylib",
+      "currentVersion": "1356.0.0",
+      "compatibilityVersion": "1.0.0"
+    }
+  ],
+  "confirmedVersionStringAnchors": [
+    {
+      "family": "zlib",
+      "lockedPortVersion": "1.3.1",
+      "text": "1.3.1",
+      "textFileOffset": 45186241,
+      "codeReferences": 1
+    },
+    {
+      "family": "libpng",
+      "lockedPortVersion": "1.6.50",
+      "text": "1.6.50",
+      "textFileOffset": 44995403,
+      "codeReferences": 2
+    },
+    {
+      "family": "bzip2",
+      "lockedPortVersion": "1.0.8#6",
+      "text": "1.0.8, 13-Jul-2019",
+      "textFileOffset": 45193701,
+      "codeReferences": 1
+    },
+    {
+      "family": "icu",
+      "lockedPortVersion": "74.2#6",
+      "text": "icudt74l",
+      "textFileOffset": 45178010,
+      "codeReferences": 0
+    }
+  ],
+  "confirmedDefinedSymbolFamilies": [
+    {
+      "family": "brotli",
+      "lockedPortVersion": "1.1.0#1",
+      "symbols": 2
+    },
+    {
+      "family": "bzip2",
+      "lockedPortVersion": "1.0.8#6",
+      "symbols": 4
+    },
+    {
+      "family": "freetype",
+      "lockedPortVersion": "2.13.3",
+      "symbols": 3
+    },
+    {
+      "family": "graphite2",
+      "lockedPortVersion": "1.3.14#4",
+      "symbols": 2
+    },
+    {
+      "family": "harfbuzz",
+      "lockedPortVersion": "11.3.3",
+      "symbols": 2
+    },
+    {
+      "family": "icu",
+      "lockedPortVersion": "74.2#6",
+      "symbols": 4
+    },
+    {
+      "family": "libpng",
+      "lockedPortVersion": "1.6.50",
+      "symbols": 3
+    },
+    {
+      "family": "zlib",
+      "lockedPortVersion": "1.3.1",
+      "symbols": 3
+    }
+  ],
+  "unconfirmedNativePorts": [
+    {
+      "family": "expat",
+      "lockedPortVersion": "2.7.3",
+      "reason": "No exported XML_*-prefixed symbol and no embedded exact-version string were found by this collector's search; presence in the executable is not established either way."
+    },
+    {
+      "family": "fontconfig",
+      "lockedPortVersion": "2.15.0#4",
+      "reason": "No exported Fc*-prefixed symbol and no embedded exact-version string were found."
+    },
+    {
+      "family": "gperf",
+      "lockedPortVersion": "3.3",
+      "reason": "gperf is a build-time source generator; no runtime symbol or embedded version string is expected in the linked executable, and none was found."
+    }
+  ],
+  "summary": {
+    "versionStringAnchorsConfirmed": 4,
+    "codeReferencesConfirmed": 4,
+    "definedSymbolFamiliesConfirmed": 8,
+    "definedSymbolsConfirmed": 23,
+    "unconfirmedNativePorts": 3
+  },
+  "limits": "Confirms named-function/version-string code references and exact defined-symbol file offsets for eight of eleven native build ports at this exact binary revision. It does not confirm expat, fontconfig or gperf linkage (no runtime symbol or embedded version string was found for any of the three), does not distinguish static-library source/build patches from unmodified upstream code, and is not a complete SBOM, build reproduction or redistribution review."
+}

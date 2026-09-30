@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "scope": "120-cycle synthetic one-page/100-page/navigation packaged-app profile on one Apple M4 Pro development host. Not a reference-device, cold-cache, upper-bound-input or production-release acceptance result.",
+  "releaseAuditComplete": false,
+  "sourceProfile": {
+    "path": "test-results/process-profile-gR0Wyk/measurements.json",
+    "sha256": "dfe78190384c0093ca4c940e00666782e4f3efb88430fc7fb5611b5458bc6aca",
+    "appAsarSha256": "bf8d5aa0de647759cfedce9f90f1dd35752063b4e6f1e36ef5d65bdc55b0630c",
+    "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0"
+  },
+  "host": {"platform": "darwin", "arch": "arm64", "os": "27.0.0", "cpu": "Apple M4 Pro", "logicalCpus": 14, "ramBytes": 51539607552, "node": "v24.21.0"},
+  "workload": {"cycles": 120, "sequence": "one page → 100 pages → navigation → one page", "ordinaryGarbageCollection": true, "freshSyntheticProfile": true},
+  "result": {"passed": true, "errors": [], "phaseCount": 1215, "snapshots": 8902, "storageObservations": 14, "peakSummedRssMiB": 1122.8, "peakSummedFootprintMiB": 919.7},
+  "cpu": {
+    "ordinaryBuildMaxCpuSeconds": 2.5343,
+    "ordinaryBuildThresholdCpuSeconds": 3.0,
+    "ordinaryBuildThresholdPassed": true,
+    "highestIdleCoreFraction": 0.13567,
+    "idleThresholdCoreFraction": 0.10,
+    "idleThresholdPassed": false,
+    "highestIdlePhase": "cycle-118-return-idle",
+    "highestIdleAttribution": {"rendererCpuSeconds": 0.3092, "rendererCorePercent": 12.35, "mainCpuSeconds": 0.0047, "helperCpuSeconds": 0.0258},
+    "decision": "Keep the 10% idle threshold as an open renderer investigation. The former 3.735 CPU-second build outlier did not recur on this exact current package; no threshold is relaxed."
+  },
+  "memory": {
+    "firstTenReturnIdleMedianRssMiB": 676.5,
+    "lastTenReturnIdleMedianRssMiB": 897.5,
+    "firstTenReturnIdleMedianFootprintMiB": 564.7,
+    "lastTenReturnIdleMedianFootprintMiB": 689.4,
+    "decision": "Memory rises across the session; this run does not establish a plateau or a release-wide bound."
+  },
+  "storage": {"runtimesDeltaBytes": 0, "buildsDeltaBytes": 0, "workspaceDeltaBytes": 0, "decision": "This profile shows stable runtime/build groups only. It does not cover imports, pack upgrades, recovery copies or upper-bound history/images."},
+  "v8Diagnostic": {"path": "test-results/v8-profile-lLcihC", "cycles": 20, "verified": true, "exportsParsed": 60, "pagesParsed": 2040, "mainRuntimeSampleWeightMicroseconds": 15859021, "rendererCodeMirrorSampleWeightMicroseconds": 463324, "rendererPdfjsSampleWeightMicroseconds": 376658, "rendererDomNodesReady": 487, "rendererDomNodesCycle20": 33729, "decision": "Runtime verification remains the largest identifiable main-isolate context; renderer DOM growth remains the leading retention investigation. V8 profiles are diagnostics, not kernel CPU accounting."},
+  "limits": ["The app package differs from the historical profiler package, so comparisons are directional only.", "Host desktop activity and sampling overhead are not included in the app process tree.", "No forced GC, physical device matrix, cold-cache control, real provider or upper-bound attachment/image workload is included."]
+}

@@ -1,0 +1,300 @@
+{
+  "schemaVersion": 1,
+  "evidenceKind": "local-scripted-provider-fixture",
+  "scope": "Deduplicated per-message agent timing metadata extracted from a completed `npm run test:chat` result directory. Every model id matched the local scripted-provider fixture pattern; this is not a network or live-provider measurement.",
+  "sourceDirectory": "chat-wFgJfL",
+  "workspaces": [
+    {
+      "id": "1ef4730f-2664-4d6a-bd82-c13895a3d6a4",
+      "messageCount": 22,
+      "executionCount": 9
+    },
+    {
+      "id": "5aeb41e1-7bde-40b9-a95f-76336b0a8b52",
+      "messageCount": 22,
+      "executionCount": 9
+    },
+    {
+      "id": "b71b3687-39cb-4313-84dc-23977ad681f8",
+      "messageCount": 16,
+      "executionCount": 7
+    }
+  ],
+  "workspaceRelationships": [
+    {
+      "workspaces": [
+        "1ef4730f-2664-4d6a-bd82-c13895a3d6a4",
+        "5aeb41e1-7bde-40b9-a95f-76336b0a8b52"
+      ],
+      "sharedMessages": 22,
+      "relation": "identical"
+    },
+    {
+      "workspaces": [
+        "1ef4730f-2664-4d6a-bd82-c13895a3d6a4",
+        "b71b3687-39cb-4313-84dc-23977ad681f8"
+      ],
+      "sharedMessages": 16,
+      "relation": "subset"
+    },
+    {
+      "workspaces": [
+        "5aeb41e1-7bde-40b9-a95f-76336b0a8b52",
+        "b71b3687-39cb-4313-84dc-23977ad681f8"
+      ],
+      "sharedMessages": 16,
+      "relation": "subset"
+    }
+  ],
+  "executionCount": 9,
+  "executions": [
+    {
+      "id": "0a2b5cf5-7c69-490d-b195-f29c9c331fc5",
+      "createdAt": "2026-09-29T16:08:32.137Z",
+      "status": "complete",
+      "validation": "visual",
+      "models": [
+        "fixture-model"
+      ],
+      "escalated": false,
+      "workspaceIds": [
+        "1ef4730f-2664-4d6a-bd82-c13895a3d6a4",
+        "5aeb41e1-7bde-40b9-a95f-76336b0a8b52",
+        "b71b3687-39cb-4313-84dc-23977ad681f8"
+      ],
+      "timings": {
+        "setup": 0.37075000000186265,
+        "inference": 1.7449170000036247,
+        "compile": 1353.103833000001,
+        "render": 133.59700000000157,
+        "review": 1.5889580000002752,
+        "total": 1571.1237499999988
+      },
+      "knownStageMs": 1490.4055,
+      "uninstrumentedMs": 80.7183
+    },
+    {
+      "id": "2c6bbab3-dde8-482a-b803-2dc25e67a947",
+      "createdAt": "2026-09-29T16:08:38.161Z",
+      "status": "complete",
+      "validation": null,
+      "models": [
+        "fixture-model"
+      ],
+      "escalated": false,
+      "workspaceIds": [
+        "1ef4730f-2664-4d6a-bd82-c13895a3d6a4",
+        "5aeb41e1-7bde-40b9-a95f-76336b0a8b52",
+        "b71b3687-39cb-4313-84dc-23977ad681f8"
+      ],
+      "timings": {
+        "setup": 0.25258300000132294,
+        "inference": 1.7745839999988675,
+        "render": 65.24683299999742,
+        "total": 69.72512500000448
+      },
+      "knownStageMs": 67.274,
+      "uninstrumentedMs": 2.4511
+    },
+    {
+      "id": "5b04d2ac-6b9c-4237-8666-66c29f2e1029",
+      "createdAt": "2026-09-29T16:08:38.341Z",
+      "status": "cancelled",
+      "validation": null,
+      "models": [
+        "fixture-model"
+      ],
+      "escalated": false,
+      "workspaceIds": [
+        "1ef4730f-2664-4d6a-bd82-c13895a3d6a4",
+        "5aeb41e1-7bde-40b9-a95f-76336b0a8b52",
+        "b71b3687-39cb-4313-84dc-23977ad681f8"
+      ],
+      "timings": {
+        "setup": 0.23174999999901047,
+        "inference": 130.33370800000557,
+        "total": 132.55083299999387
+      },
+      "knownStageMs": 130.5655,
+      "uninstrumentedMs": 1.9854
+    },
+    {
+      "id": "dffc8830-b483-4bdc-9d13-de6e571f7c8d",
+      "createdAt": "2026-09-29T16:08:39.399Z",
+      "status": "complete",
+      "validation": "visual",
+      "models": [
+        "fixture-model"
+      ],
+      "escalated": false,
+      "workspaceIds": [
+        "1ef4730f-2664-4d6a-bd82-c13895a3d6a4",
+        "5aeb41e1-7bde-40b9-a95f-76336b0a8b52",
+        "b71b3687-39cb-4313-84dc-23977ad681f8"
+      ],
+      "timings": {
+        "setup": 0.19625000000087311,
+        "inference": 147.1837910000031,
+        "compile": 680.9127089999965,
+        "render": 72.42037499999424,
+        "review": 1.2136250000039581,
+        "total": 991.7806249999994
+      },
+      "knownStageMs": 901.9267,
+      "uninstrumentedMs": 89.8539
+    },
+    {
+      "id": "7cc2cbfb-172c-493f-a161-305f1e89ff6f",
+      "createdAt": "2026-09-29T16:08:41.914Z",
+      "status": "complete",
+      "validation": "visual",
+      "models": [
+        "fixture-model"
+      ],
+      "escalated": false,
+      "workspaceIds": [
+        "1ef4730f-2664-4d6a-bd82-c13895a3d6a4",
+        "5aeb41e1-7bde-40b9-a95f-76336b0a8b52",
+        "b71b3687-39cb-4313-84dc-23977ad681f8"
+      ],
+      "timings": {
+        "setup": 0.22083399999974063,
+        "inference": 298.17975000000297,
+        "compile": 1371.3959590000013,
+        "render": 70.6655000000028,
+        "review": 1.5892499999972642,
+        "total": 1920.5264580000003
+      },
+      "knownStageMs": 1742.0513,
+      "uninstrumentedMs": 178.4752
+    },
+    {
+      "id": "a411c00f-dcb0-4a23-b744-cf910c8d6eca",
+      "createdAt": "2026-09-29T16:08:50.720Z",
+      "status": "complete",
+      "validation": "visual",
+      "models": [
+        "fixture-model"
+      ],
+      "escalated": false,
+      "workspaceIds": [
+        "1ef4730f-2664-4d6a-bd82-c13895a3d6a4",
+        "5aeb41e1-7bde-40b9-a95f-76336b0a8b52",
+        "b71b3687-39cb-4313-84dc-23977ad681f8"
+      ],
+      "timings": {
+        "setup": 0.1897910000043339,
+        "inference": 107.35712500000227,
+        "compile": 1358.89158399999,
+        "render": 71.0767909999995,
+        "review": 6502.754375000004,
+        "total": 8206.084083000002
+      },
+      "knownStageMs": 8040.2697,
+      "uninstrumentedMs": 165.8144
+    },
+    {
+      "id": "4dd2c46a-b7e2-4cf0-a343-5c6cb1b31924",
+      "createdAt": "2026-09-29T16:08:51.134Z",
+      "status": "error",
+      "validation": null,
+      "models": [
+        "fixture-model"
+      ],
+      "escalated": false,
+      "workspaceIds": [
+        "1ef4730f-2664-4d6a-bd82-c13895a3d6a4",
+        "5aeb41e1-7bde-40b9-a95f-76336b0a8b52",
+        "b71b3687-39cb-4313-84dc-23977ad681f8"
+      ],
+      "timings": {
+        "setup": 0.2937090000050375,
+        "inference": 1.069707999995444,
+        "total": 3.1532920000026934
+      },
+      "knownStageMs": 1.3634,
+      "uninstrumentedMs": 1.7899
+    },
+    {
+      "id": "d2addf77-dbbd-47ca-89be-18808ae35af2",
+      "createdAt": "2026-09-29T16:09:02.384Z",
+      "status": "cancelled",
+      "validation": null,
+      "models": [
+        "fixture-model"
+      ],
+      "escalated": false,
+      "workspaceIds": [
+        "1ef4730f-2664-4d6a-bd82-c13895a3d6a4",
+        "5aeb41e1-7bde-40b9-a95f-76336b0a8b52"
+      ],
+      "timings": {
+        "setup": 0.48470799999995506,
+        "inference": 2882.870625,
+        "render": 60.987583000000086,
+        "total": 2947.2861250000005
+      },
+      "knownStageMs": 2944.3429,
+      "uninstrumentedMs": 2.9432
+    },
+    {
+      "id": "a81b39db-0083-4d0a-ae07-4da064444bf7",
+      "createdAt": "2026-09-29T16:09:10.832Z",
+      "status": "complete",
+      "validation": "compiled",
+      "models": [
+        "fixture-fast"
+      ],
+      "escalated": false,
+      "workspaceIds": [
+        "1ef4730f-2664-4d6a-bd82-c13895a3d6a4",
+        "5aeb41e1-7bde-40b9-a95f-76336b0a8b52"
+      ],
+      "timings": {
+        "setup": 0.4076669999999467,
+        "inference": 1.8512500000001637,
+        "compile": 705.786333,
+        "inspect": 58.45712599999979,
+        "total": 856.8001669999999
+      },
+      "knownStageMs": 766.5024,
+      "uninstrumentedMs": 90.2978
+    }
+  ],
+  "stageTotals": {
+    "setup": {
+      "count": 9,
+      "sumMs": 2.648
+    },
+    "inference": {
+      "count": 9,
+      "sumMs": 3572.3655
+    },
+    "compile": {
+      "count": 5,
+      "sumMs": 5470.0904
+    },
+    "render": {
+      "count": 6,
+      "sumMs": 473.9941
+    },
+    "inspect": {
+      "count": 1,
+      "sumMs": 58.4571
+    },
+    "review": {
+      "count": 4,
+      "sumMs": 6507.1462
+    }
+  },
+  "totals": {
+    "sumTotalMs": 16699.0305,
+    "sumKnownStageMs": 16084.7013,
+    "sumUninstrumentedMs": 614.3291
+  },
+  "limits": [
+    "Provider responses originate from the deterministic local test-chat fixture server, not a real OpenAI, Anthropic, compatible-endpoint, Codex or Claude account.",
+    "Uninstrumented per-execution time is attributed to documented checkpoint/apply work outside the measured setup/inference/compile/render/inspect/review stages, not a separate measured stage.",
+    "Deduplication assumes identical message ids carry byte-identical execution payloads across copied workspace states (e.g. Save As); a mismatch is treated as damaged fixture data."
+  ]
+}

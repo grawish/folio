@@ -27,6 +27,7 @@ jobs:
       - run: python tests/rust-license-materials.py
       - run: python tests/compiler-build-evidence.py
       - run: python tests/native-license-materials.py
+      - run: python tests/tectonic-linkage-evidence.py
       - run: python tests/compiler-rust-graph.py
       - run: python tests/rust-standard-library.py
       - run: python tests/biber-build-evidence.py
@@ -34,9 +35,13 @@ jobs:
       - run: python tests/biber-unicode-evidence.py
       - run: python tests/biber-autosplit-evidence.py
       - run: python tests/biber-generated-evidence.py
+      - run: python tests/biber-encode-xs-evidence.py
+      - run: python tests/biber-remaining-dispositions.py
       - run: python tests/tex-font-materials.py
       - run: python tests/tex-resource-materials.py
       - run: python tests/tex-generated-materials.py
+      - run: python tests/tex-grant-review-index.py
+      - run: node --import tsx --test tests/unsigned-candidate-sbom.test.ts
       - run: python tests/biber-native-materials.py
       - run: python tests/biber-module-materials.py
       - run: python tests/npm-license-materials.py
@@ -45,5 +50,7 @@ jobs:
       - run: npm run format:check
       - run: npm test
       - run: npm run build
+      - run: npm run test:biber
+      - run: npm run test:low-storage
       - run: npm run website:build
       - run: npm run skill:build && git diff --exit-code -- skills/

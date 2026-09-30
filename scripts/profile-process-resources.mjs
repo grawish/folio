@@ -12,12 +12,15 @@ if (process.platform !== 'darwin' || process.arch !== 'arm64' || !process.argv[2
   throw new Error('Provide a packaged Folio executable on an Apple silicon Mac.');
 const executablePath = path.resolve(process.argv[2]);
 const cycles = Number(process.argv[3] ?? 3);
-const longSession = process.argv.includes('--long-session');
+const options = new Set(process.argv.slice(4));
+const longSession = options.has('--long-session');
+const extendedIdle = options.has('--extended-idle');
 const maxCycles = longSession ? 120 : 5;
 if (!Number.isInteger(cycles) || cycles < 1 || cycles > maxCycles)
   throw new Error(`Choose 1–${maxCycles} cycles${longSession ? '' : ', or use --long-session'}.`);
-if (process.argv.slice(4).some((flag) => flag !== '--long-session'))
+if ([...options].some((flag) => !['--long-session', '--extended-idle'].includes(flag)))
   throw new Error('Unknown profiling option.');
+if (extendedIdle && !longSession) throw new Error('Use --extended-idle only with --long-session.');
 const python = process.env.FOLIO_PYTHON ?? 'python3';
 const pdfInspector = execFileSync(python, ['-c', 'import pypdf; print(pypdf.__version__)'], {
   encoding: 'utf8',
@@ -61,6 +64,7 @@ const report = {
   },
   cycles,
   longSession,
+  extendedIdle,
   storage: [],
   phases: [],
   pdfs: [],
@@ -76,6 +80,9 @@ const report = {
     'The sampling helper and Playwright harness are outside the app tree but add host load. Their CPU cost and snapshot duration are reported separately; the desktop is not otherwise isolated.',
     'Repeated small-text 1/100-page workflows on one development Mac do not establish a leak, population percentiles, worst-case images/history, or supported-device memory/CPU budgets.',
     'Long-session storage observations read logical file sizes without following observed symlinks. Scans are non-atomic and run in separately marked phases outside builds/navigation; their host I/O and harness overhead can still affect the desktop. The closed final profile is inventoried after sampling. No deletion or GC is forced.',
+    extendedIdle
+      ? 'Extended-idle mode replaces each 2.5-second dwell with 10 seconds for diagnosis; its timing is not comparable to the standard workload.'
+      : 'Standard idle dwell is 2.5 seconds.',
   ],
 };
 let app, page, sampler;
@@ -96,7 +103,7 @@ const begin = async (name) => {
 };
 const idle = async (name) => {
   await begin(name);
-  await new Promise((resolve) => setTimeout(resolve, 2500));
+  await new Promise((resolve) => setTimeout(resolve, extendedIdle ? 10_000 : 2500));
 };
 const storage = async (label, sampled = true) => {
   if (!longSession) return;

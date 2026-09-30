@@ -144,18 +144,19 @@ def collect(materials):
         if any(source[k] != ref[k] for k in ref):
             raise ValueError("Changed CPAN source")
         c = {"id": source["id"], "kind": "cpan-source-notice-documents", "version": source["version"], "declaredLicense": source["declaredLicense"], "source": ref, "standaloneNoticeFiles": source["standaloneNoticeFiles"], "notices": []}
-        anchors = {a["source"] for a in source["anchors"]}
+        anchors = {a["source"] for a in source.get("anchors", [])}
+        generators = {a["source"] for a in source.get("generatedAnchors", [])}
         with open_archive(materials / "biber-cpan/sources" / source["archive"], ref) as archive:
             for item in source["materials"]:
                 name = item["path"]
                 standalone = name in source["standaloneNoticeFiles"]
                 readme = "/" not in name and re.fullmatch(r"README(?:[._-].*)?", name, re.I)
-                if not (standalone or readme or name in anchors):
+                if not (standalone or readme or name in anchors or name in generators):
                     continue
                 content = checked(materials / "biber-cpan/materials" / source["id"] / name, item)
                 if content != member(archive, source["root"] + "/" + name):
                     raise ValueError("Changed CPAN notice document")
-                kind = "original-notice" if standalone else "complete-source-or-readme-document"
+                kind = "original-notice" if standalone else ("generator-source-document" if name in generators else "complete-source-or-readme-document")
                 add(c, name, content, item, kind)
         components.append(c)
 

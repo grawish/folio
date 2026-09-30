@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "scope": "Exact enc2xs source-to-symbol provenance for ten bundled Encode modules. Not a byte-identical native compiler rebuild or complete redistribution audit.",
+  "releaseAuditComplete": false,
+  "summary": {
+    "modules": 10,
+    "generatedGroups": 35,
+    "inputFiles": 119,
+    "symbolsMatched": 119
+  },
+  "verification": {
+    "generatedArtifactFiles": 231,
+    "cachedReplayByteIdentical": true,
+    "networkDenied": true,
+    "nativeModulesExecuted": false,
+    "nativeModulesCompiled": false
+  },
+  "inputs": [
+    {
+      "path": "resources/biber-encode-xs-sources.lock.json",
+      "bytes": 3470,
+      "sha256": "b36f159d690b6d5b27a84fcaa90e2a8ea3d874f0dd64f0c7cdff9d7ae426473b"
+    },
+    {
+      "path": "scripts/collect-biber-encode-xs-evidence.py",
+      "bytes": 8892,
+      "sha256": "990d282c37681b648bf0383c0eed67ab48606beafe53ad2e6cb3dd4573af2741"
+    },
+    {
+      "path": "tests/biber-encode-xs-evidence.py",
+      "bytes": 1144,
+      "sha256": "109b8c9d41bb29970893bfe1a55eff68e4d0fd7110c2c0fe47205f569b3bdad8"
+    },
+    {
+      "path": "resources/biber-module-sources.lock.json",
+      "bytes": 105193,
+      "sha256": "7f9a95a6e022ea36e1b0e8eb41da2b30df357155fd6b0bfaf0b134e27685f164"
+    },
+    {
+      "path": "scripts/collect-biber-module-materials.py",
+      "bytes": 18801,
+      "sha256": "69d377fc2a6dbebb3c2347905e3e95e7cbd633dea1d7956932a798ff2d9cca8b"
+    }
+  ],
+  "encodeXsInventory": {
+    "path": "artifacts/license-materials/biber-encode-xs/inventory.json",
+    "bytes": 43121,
+    "sha256": "e988c21dda046a57852c28a3a7bd05bb81570eb552553356e075542123acbe4e"
+  },
+  "moduleInventory": {
+    "path": "artifacts/license-materials/biber-modules/inventory.json",
+    "bytes": 324099,
+    "sha256": "c1d543b168db9e37d7d4bded047283e4f624fb30f96cfc618a04c3a76cbe2aea"
+  },
+  "observations": [
+    "The locked enc2xs 2.23 source runs in a temporary macOS sandbox against exactly 119 locked .ucm inputs. Its generated encode_t table names match every corresponding exported _encoding symbol in each shipped arm64 bundle.",
+    "Generated C files encode temporary absolute paths and are intentionally not retained. The collector retains deterministic per-group generated symbol manifests, all input bytes and logs; its full 231-file retained tree replays byte-identically.",
+    "The module collector binds its generatedXsReviewed status to this exact inventory hash and lock hash."
+  ],
+  "limits": [
+    "Table-symbol provenance does not reproduce compiler flags, object code, link inputs or vendor patches.",
+    "Native build/source provenance, redistribution terms and the exact signed-app SBOM remain open."
+  ]
+}

@@ -51,6 +51,25 @@ class CpanMaterials(unittest.TestCase):
             with self.assertRaises(ValueError): collector.verify_anchors(entry, matches, payload)
         with self.assertRaises(ValueError): collector.verify_anchors({"anchors": []}, matches, payload)
 
+    def test_generated_anchor_requires_exact_generator_source_and_payload(self):
+        source = b'generator script'
+        payload = b'generated output'
+        entry = {'anchors': [], 'generatedAnchors': [{
+            'payload': 'par/lib/common/sense.pm', 'sha256': collector.shared.digest(payload),
+            'source': 'sense.pm.PL', 'sourceSha256': collector.shared.digest(source),
+            'generator': 'perl-5.32.1-miniperl',
+        }]}
+        collector.verify_anchors(entry, [], {'par/lib/common/sense.pm': payload}, {'sense.pm.PL': source})
+        for mutation in [
+            {'generator': 'system-perl'}, {'sourceSha256': '0' * 64}, {'sha256': '0' * 64},
+            {'payload': 'par/lib/missing.pm'},
+        ]:
+            changed = copy.deepcopy(entry); changed['generatedAnchors'][0].update(mutation)
+            with self.assertRaises(ValueError):
+                collector.verify_anchors(changed, [], {'par/lib/common/sense.pm': payload}, {'sense.pm.PL': source})
+        self.assertEqual(collector.material_names({'LICENSE': b'notice', 'sense.pm.PL': source}, entry),
+                         ['LICENSE', 'sense.pm.PL'])
+
     def test_empty_files_cannot_establish_source_provenance(self):
         result = collector.match_sources({"empty": b""}, collector.payload_index({"par/empty": b""}), FILTER)
         self.assertEqual(result, [])

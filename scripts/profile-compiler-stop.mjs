@@ -25,7 +25,13 @@ const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 let active;
 childProcess.spawn = function (...args) {
   const child = originalSpawn.apply(this, args);
-  if (active && args[0] === '/usr/bin/sandbox-exec') {
+  if (
+    active &&
+    args[0] === '/bin/bash' &&
+    Array.isArray(args[1]) &&
+    args[1][0] === '--noprofile' &&
+    args[1][1] === '--norc'
+  ) {
     const sample = active;
     assert.equal(sample.group, undefined, 'Expected one compiler process per build.');
     sample.group = child.pid;

@@ -14,8 +14,12 @@
         "compatibilityVersion": "0.0.0"
       },
       "scalars": [],
-      "strings": [],
-      "versionBasis": "Unresolved: ABI version 0.0.0 does not identify a source release; Text-BibTeX materials are retained separately."
+      "strings": [
+        "btparse/src/bibtex.c",
+        "btparse/src/../pccts/ast.c",
+        "btparse/src/../pccts/err.h"
+      ],
+      "versionBasis": "Resolved: embedded assert()-macro compile paths (btparse/src/bibtex.c, btparse/pccts/ast.c, btparse/pccts/err.h) match Text-BibTeX 0.88's btparse/ tree exactly. Biber commit 3091bee31a9706e3aa5e4afef81062856e14735a (2022-01-25) predates Text-BibTeX 0.91 (released 2025-01-30), so 0.88 (released 2019-04-29) is the only CPAN release that could have been compiled into this binary."
     },
     {
       "path": "shlib/darwin-thread-multi-2level/libcrypto.3.dylib",
@@ -183,7 +187,8 @@
       },
       "scalars": [],
       "strings": [],
-      "versionBasis": "OpenSSL ABI 3.0.0 and co-packaged crypto 3.0.1; an independent SSL patch-version identifier is absent."
+      "linkedLibrary": "shlib/darwin-thread-multi-2level/libcrypto.3.dylib",
+      "versionBasis": "Resolved via co-packaged libcrypto: libssl.3.dylib and libcrypto.3.dylib are both installed from /opt/local/libexec/openssl3/lib/ with matching LC_BUILD_VERSION (minos/sdk 12.0), the MacPorts openssl3 port builds both from one source tree in one pass, and libssl's Mach-O dependency names exactly the co-packaged libcrypto verified below. libssl therefore shares libcrypto's confirmed patch level, OpenSSL 3.0.1 14 Dec 2021."
     },
     {
       "path": "shlib/darwin-thread-multi-2level/libxml2.2.dylib",
@@ -416,7 +421,6 @@
   ],
   "remaining": [
     "Exact vendor build commands, patches and features remain unproven; these are matching version declarations and original upstream materials.",
-    "libbtparse source revision and libssl patch-version evidence need further attribution.",
     "Native Perl modules, other generated payload files, license obligations and the complete signed-app SBOM remain open.",
     "No library is executed or modified, and no download or existing release asset is replaced."
   ]

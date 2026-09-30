@@ -34,6 +34,25 @@ class UnicodeEvidence(unittest.TestCase):
         self.assertFalse(by_name["par/lib/unicore/Scx/A.pl"]["unchangedSourceInput"])
         self.assertEqual([m["path"] for m in unmatched], ["par/lib/unicore/UCD.pl"])
 
+    def test_ucd_semantic_match_resolves_reordered_indices_and_known_aliases(self):
+        perl = "/usr/bin/perl"
+        def ucd(inline, entries):
+            body = "@Unicode::UCD::inline_definitions = (\n" + ",\n".join(f"'{v}'" for v in inline) + "\n);\n"
+            body += "%Unicode::UCD::loose_to_file_of = (\n"
+            body += ",\n".join(f"'{k}' => '{v}'" for k, v in entries) + "\n);\n"
+            body += "%Unicode::UCD::loose_property_name_of = ();\n"
+            body += "%Unicode::UCD::strict_property_name_of = ();\n"
+            body += "%Unicode::UCD::stricter_to_file_of = ();\n"
+            body += "1;\n"
+            return body.encode()
+        payload = ucd(["def-A", "def-B"], [("sc=x", "#/0"), ("scx=x", "Sc/X")])
+        reordered_same_values = ucd(["def-B", "def-A"], [("sc=x", "#/1"), ("scx=x", "Scx/X")])
+        with tempfile.TemporaryDirectory() as work:
+            self.assertTrue(collector.ucd_semantic_match(perl, payload, reordered_same_values, Path(work)))
+        changed_value = ucd(["def-B", "def-A"], [("sc=x", "#/1"), ("scx=x", "Scx/Y")])
+        with tempfile.TemporaryDirectory() as work:
+            self.assertFalse(collector.ucd_semantic_match(perl, payload, changed_value, Path(work)))
+
     def test_headers_whitespace_and_partial_contents_are_not_normalized(self):
         for candidate in [b"data", b"data\r\n", b"other header\ndata\n", b"prefixdata\n"]:
             matched, unmatched = collector.compare_outputs({"lib/unicore/a.pl": b"data\n"},

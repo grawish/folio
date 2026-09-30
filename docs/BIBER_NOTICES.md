@@ -10,14 +10,14 @@ To read them, right-click **Folio.app** in Finder, choose **Show Package Content
 | --- | --- |
 | Biber | Biber 2.17 README and build declaration, plus the complete Artistic 2.0 text from the pinned SPDX source |
 | Perl and packagers | Original notices from Perl 5.32.1, PAR 1.017 and PAR::Packer 1.055, including selected nested notices |
-| CPAN | Notices, complete reviewed source modules and root READMEs from 123 source distributions |
+| CPAN | Notices, complete reviewed source modules, generator source and root READMEs from 124 source distributions |
 | Native libraries | Notice and declaration documents from nine original source archives associated with the inspected Biber libraries |
 
-The collector verifies 136 original archives. Its 441 document references map to 414 distinct texts totaling 6,453,696 bytes. The package adds those texts, a guide and an index: 416 files in one directory. Identical bytes are stored once.
+The collector verifies 137 original archives. Its 444 document references map to 416 distinct texts totaling 6,472,682 bytes. The package adds those texts, a guide and an index: 418 files in one directory. Identical bytes are stored once.
 
-Forty-four CPAN distributions have no separate notice file in the collected set. Their complete reviewed source modules remain included so embedded license statements are preserved. A README or source module can contain more than its license paragraph; the collector does not rewrite or extract fragments from it.
+Forty-four CPAN distributions have no separate notice file in the collected set. Their complete reviewed source modules remain included so embedded license statements are preserved. `common::sense` 3.75 contributes its reviewed `sense.pm.PL` as a generator-source document because an exact Perl 5.32.1 miniperl replay produces the bundled `common/sense.pm`. A README or source module can contain more than its license paragraph; the collector does not rewrite or extract fragments from it.
 
-This collection preserves material for review. It does not settle Biber's differing README and Build.PL license declarations, prove exact native vendor builds or patches, identify libbtparse's source version, resolve optional external-library references, or complete corresponding-source obligations and the final app SBOM. Some original source sets contain build tools or unused code. See [the licensing guide](LICENSING.md) for those explicit limits.
+This collection preserves material for review. It does not settle Biber's differing README and Build.PL license declarations, prove exact native vendor builds or patches, resolve optional external-library references, or complete corresponding-source obligations and the final app SBOM. Some original source sets contain build tools or unused code. See [the licensing guide](LICENSING.md) for those explicit limits.
 
 ## Reproduce and package
 

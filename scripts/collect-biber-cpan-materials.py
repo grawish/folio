@@ -118,23 +118,38 @@ def match_sources(sources, by_hash, filter_source):
     return matches
 
 
-def verify_anchors(entry, matches, payload):
-    if not entry["anchors"]:
+def verify_anchors(entry, matches, payload, sources=None):
+    anchors = entry.get("anchors", [])
+    generated = entry.get("generatedAnchors", [])
+    if not anchors and not generated:
         raise ValueError("A CPAN source needs a reviewed anchor")
-    for anchor in entry["anchors"]:
+    if not isinstance(anchors, list) or not isinstance(generated, list):
+        raise ValueError("Invalid CPAN source anchor collection")
+    for anchor in anchors:
         name = anchor["payload"]
         if name not in payload or shared.digest(payload[name]) != anchor["sha256"]:
             raise ValueError("Anchor payload differs from reviewed identity")
         if not any(name in m["payload"] and m["source"] == anchor["source"] and
                    m["transformation"] == anchor["transformation"] for m in matches):
             raise ValueError("Anchor source bytes do not match the bundled module")
+    for anchor in generated:
+        if sources is None or anchor.get("generator") != "perl-5.32.1-miniperl":
+            raise ValueError("Invalid generated CPAN anchor")
+        name, source = anchor.get("payload"), anchor.get("source")
+        if not isinstance(name, str) or not isinstance(source, str) or name not in payload:
+            raise ValueError("Generated CPAN anchor path is invalid")
+        if shared.digest(payload[name]) != anchor.get("sha256"):
+            raise ValueError("Generated anchor payload differs from reviewed identity")
+        data = sources.get(source)
+        if data is None or shared.digest(data) != anchor.get("sourceSha256"):
+            raise ValueError("Generated anchor source differs from reviewed identity")
 
 
 def material_names(sources, entry):
     names = {n for n in sources if shared.NOTICE.fullmatch(PurePosixPath(n).name)}
     names.update(n for n in sources if "/" not in n and
                  (re.fullmatch(r"README(?:[._-].*)?", n, re.I) or n in {"Artistic", "META.json", "META.yml", "Makefile.PL", "Build.PL"}))
-    names.update(a["source"] for a in entry["anchors"])
+    names.update(a["source"] for a in entry.get("anchors", []) + entry.get("generatedAnchors", []))
     if not names.issubset(sources):
         raise ValueError("A reviewed source material is absent")
     if len({n.casefold() for n in names}) != len(names):
@@ -169,7 +184,7 @@ def collect(offline, output):
         archive = get_input(entry, offline)
         sources = biber.archive_sources(archive, entry["root"])
         matches = match_sources(sources, by_hash, patch_source)
-        verify_anchors(entry, matches, payload)
+        verify_anchors(entry, matches, payload, sources)
         names = material_names(sources, entry)
         materials = [biber.file_record(n, sources[n]) for n in names]
         shared.atomic_write(output / "sources" / entry["archive"], archive)

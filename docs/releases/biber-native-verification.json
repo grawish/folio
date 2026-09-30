@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "verifiedAt": "2026-09-27T01:08:20.002390+00:00",
+  "verifiedAt": "2026-09-28T19:50:56.490402+00:00",
   "sourceBaseCommit": "b30e7c0d5998e706fc7dbd459b82ef39a05a594a",
   "summary": {
     "librariesInspected": 14,
@@ -25,8 +25,8 @@
   "tools": [
     {
       "path": "scripts/collect-biber-native-materials.py",
-      "bytes": 13727,
-      "sha256": "ff1f1cf768d8f2613be81454fb0af9c45f0e6232fa3d756eac2a2fc40662f286"
+      "bytes": 15005,
+      "sha256": "17422e315c017ec60102b419e667e54a746cbbf57659a32a354029a80e96f419"
     },
     {
       "path": "tests/biber-native-materials.py",
@@ -35,19 +35,19 @@
     },
     {
       "path": "resources/biber-native-sources.lock.json",
-      "bytes": 15772,
-      "sha256": "e416ce4ce796d0ac1ea6d5946ada2645f6cdd243742a75d13e256f74b15a9893"
+      "bytes": 16458,
+      "sha256": "8f1f3e2df113ca4ec94b3415dedb3af4f1dd2d2e404dc5dcc1781079cba059f3"
     }
   ],
   "retainedInventory": {
     "path": "artifacts/license-materials/biber-native/inventory.json",
-    "bytes": 53046,
-    "sha256": "2d8b2f2bc97d7ac787e3d64898a2087aa759947c432ed1b00beb5457f0042a70"
+    "bytes": 53732,
+    "sha256": "e6b63a5deb8303d0a8ea354e698eb68a2c9a46d14516d2a91e7fe70cae37d0f8"
   },
   "publishedInventory": {
     "path": "docs/releases/biber-native-inventory.json.gz",
-    "bytes": 8614,
-    "sha256": "90b87f63cc5beb4dece56245ba480dc1451a3568266bdfd9245e0ba51c6e7038"
+    "bytes": 8905,
+    "sha256": "e93e751c19ba9acff9d7879a9305684de16566f704beea8b333c2331d43be529"
   },
   "publisherChecksumEvidence": [
     {
@@ -117,7 +117,7 @@
   "releaseAuditComplete": false,
   "limits": [
     "Matching binary/source version declarations and retained original materials are not a byte-identical native rebuild or proof of vendor patches, build commands and features.",
-    "libbtparse has no resolved source release; libssl exposes ABI 3.0.0 and links the co-packaged OpenSSL 3.0.1 crypto library, but its independent patch version remains unproven.",
+    "libbtparse identity is resolved to Text-BibTeX 0.88 via embedded compile-time paths and Biber build-date bracketing; libssl patch version is resolved to 3.0.1 via co-packaged libcrypto linkage from the same MacPorts openssl3 build. Neither is a byte-identical native rebuild or proof of vendor patches/build commands.",
     "The Mach-O reader inspects bounded arm64 data and is compared with Apple tools; it is not a complete executable or signature verifier. No native library or upstream source code is executed.",
     "Three publisher SHA-256 files and the historical XZ recipe were checked. PGP signatures were not verified.",
     "Complete original archives retain wider build/test/support sources. Selected notice files are not a final linked-component list or license compatibility decision.",

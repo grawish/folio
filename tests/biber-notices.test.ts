@@ -37,11 +37,11 @@ test('Biber packaging preserves full original license and embedded-declaration d
     result.originalCompilerSha256,
     'ec2e851a60a36ff9aa756120c728ffec7a8727e4a1a6094e504b0863f2bb7bd4',
   );
-  assert.equal(result.components, 136);
-  assert.equal(result.originalNoticeReferences, 441);
-  assert.equal(result.uniqueOriginalTexts, 414);
-  assert.equal(result.expandedTextBytes, 6453696);
-  assert.equal(result.records.length, 416);
+  assert.equal(result.components, 137);
+  assert.equal(result.originalNoticeReferences, 444);
+  assert.equal(result.uniqueOriginalTexts, 416);
+  assert.equal(result.expandedTextBytes, 6472682);
+  assert.equal(result.records.length, 418);
   assert.equal(result.completeBinarySbom, false);
   const index = JSON.parse(await fs.readFile(path.join(output, 'SOURCES.json'), 'utf8'));
   const noStandalone = index.components.filter(
@@ -55,6 +55,16 @@ test('Biber packaging preserves full original license and embedded-declaration d
       assert.equal(digest(await fs.readFile(path.join(output, ref.file))), ref.sha256);
     }
   }
+  type GeneratorNotice = { originalPath: string; kind: string };
+  type GeneratorComponent = { id: string; notices: GeneratorNotice[] };
+  const commonSense = (index.components as GeneratorComponent[]).find(
+    (component) => component.id === 'common-sense-3.75',
+  );
+  assert.ok(commonSense);
+  assert.equal(
+    commonSense.notices.find((notice) => notice.originalPath === 'sense.pm.PL')?.kind,
+    'generator-source-document',
+  );
   const lock = JSON.parse(await fs.readFile('resources/biber-cpan-sources.lock.json', 'utf8'));
   assert.equal(
     digest(await fs.readFile(path.join(output, lock.biberLicenseText.sha256 + '.txt'))),

@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-29T11:13:49.402288+00:00",
+  "sourceCommit": "a3c823e9bddb14363ac83afd4a3b9edf8391f3a7",
+  "appAsarSha256": "bf8d5aa0de647759cfedce9f90f1dd35752063b4e6f1e36ef5d65bdc55b0630c",
+  "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+  "profiledAppExited": true,
+  "originalSeedMetadataAndAllFileHashesUnchanged": true,
+  "allExportedPdfsAndEveryPageIndependentlyParsed": true,
+  "allNativeMemorySumsMachCpuCountersAndPhaseMarkersRecomputed": true,
+  "allCpuTraceHashesSamplesLeafWeightsAndTotalsIndependentlyRecomputed": true,
+  "allHeapTraceHashesTreeAndSampleTotalsIndependentlyRecomputed": true,
+  "sourceMapMethod": "Analyzer verifies a packaged main map and exact-JavaScript-byte renderer replay, plus owned sources. This Python verifier checks their recorded source hashes and independent raw accounting; it does not independently implement source-map decoding.",
+  "sourceMapAnalyzer": {
+    "path": "scripts/analyze-v8-resources.mjs",
+    "bytes": 10227,
+    "sha256": "3a4b37caacdeb4ce6bcc42275732fa3d525474c4326385c0c362370fa59a0fbe"
+  },
+  "independentVerifier": {
+    "path": "scripts/verify-v8-resources.py",
+    "bytes": 15447,
+    "sha256": "03aad3e0362d9dae93933a6dc5e3e5d02c89bfefbbcdbf2c7fcd2902ceef2435"
+  },
+  "rawArchive": {
+    "path": "docs/performance/current-v8-long-traces.tar.gz",
+    "bytes": 1008234,
+    "sha256": "c80e21a287ad2043b1489bad752d0687cf26c643d03e649c226dfcfcc10b5aaf"
+  },
+  "summary": {
+    "path": "docs/performance/current-v8-long-summary.json",
+    "bytes": 30706,
+    "sha256": "1ddb76ece5c44c20e89ff22c5e6391228afcdd4f0f20445607cc23c168dfce1e"
+  },
+  "retained": [
+    {
+      "path": "/Users/grawish/resume-maker/test-results/v8-profile-lLcihC/measurements.json",
+      "bytes": 2509565,
+      "sha256": "435d84fa371b2eb5ec695661d7adbba16553d29f485b4dde2e4669992758a0a3"
+    },
+    {
+      "path": "/Users/grawish/resume-maker/test-results/v8-profile-lLcihC/v8-analysis.json",
+      "bytes": 1024961,
+      "sha256": "b030ae92b0a8252db3b613a4ef2436765c1322434e6d513fba3ce5120f46c2ec"
+    }
+  ],
+  "scope": "Diagnostic validation, not an app speedup, root-cause proof, threshold pass or production resource acceptance. Original 120-cycle failures remain open."
+}

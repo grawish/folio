@@ -112,5 +112,14 @@ class NativeMaterials(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,"digest mismatch"):c.source_archive(entry,True)
             network.assert_not_called()
 
+    def test_name_suffix_collects_matching_exported_data_symbols(self):
+        data = library(symbol="_MacRoman_encoding")
+        thin, result = c.macho(data, [], name_suffix="_encoding")
+        self.assertEqual(result["suffixNames"], ["_MacRoman_encoding"])
+        thin, result = c.macho(data, [])
+        self.assertNotIn("suffixNames", result)
+        thin, result = c.macho(data, [], name_suffix="_nomatch")
+        self.assertEqual(result["suffixNames"], [])
+
 
 if __name__ == "__main__":unittest.main()

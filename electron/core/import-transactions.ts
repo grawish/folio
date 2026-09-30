@@ -6,6 +6,13 @@ import { fileDigest, readTarget } from './save-transactions';
 import type { InterruptedImport } from '../../src/shared/types';
 
 const MiB = 1024 * 1024;
+export const IMPORT_SPACE_MARGIN = 32 * MiB;
+export type ImportSpaceProbe = (directory: string) => Promise<bigint>;
+const availableImportBytes: ImportSpaceProbe = async (directory) => {
+  const stat = await fs.statfs(directory, { bigint: true });
+  if (stat.bavail < 0n || stat.bsize <= 0n) throw new Error('Invalid disk-space reading.');
+  return stat.bavail * stat.bsize;
+};
 const uuid = /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/;
 const missing = (error: unknown) => (error as NodeJS.ErrnoException).code === 'ENOENT';
 type Identity = { dev: number; ino: number; birthtimeMs: number };
@@ -98,6 +105,7 @@ export class ImportTransactions {
     private dataRoot: string,
     private write = writeImportFile,
     private hooks: ImportHooks = {},
+    private statSpace: ImportSpaceProbe = availableImportBytes,
   ) {}
   private async base() {
     await fs.mkdir(this.dataRoot, { recursive: true, mode: 0o700 });
@@ -194,8 +202,27 @@ export class ImportTransactions {
       bytes: bytes.length,
       digest: fileDigest(bytes),
     }));
-    if (stagedBytes + entries.reduce((total, entry) => total + entry.bytes, 0) > 512 * MiB)
+    const incomingBytes = entries.reduce((total, entry) => total + entry.bytes, 0);
+    if (stagedBytes + incomingBytes > 512 * MiB)
       throw new Error('Import recovery copies reached 512 MB. Review interrupted imports first.');
+    let available: bigint;
+    try {
+      available = await this.statSpace(base);
+    } catch (cause) {
+      throw new Error(
+        'Folio could not check free disk space before importing. Free some space and try again.',
+        {
+          cause,
+        },
+      );
+    }
+    const required = incomingBytes + IMPORT_SPACE_MARGIN;
+    if (available < BigInt(required)) {
+      const requiredMB = Math.ceil(required / MiB);
+      throw new Error(
+        `This import needs about ${requiredMB} MB free in Folio storage. Free some space, then try again.`,
+      );
+    }
     parent = await fs.realpath(parent);
     const journal: Journal = {
       schema: 1,

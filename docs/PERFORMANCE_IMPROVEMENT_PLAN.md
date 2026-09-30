@@ -176,6 +176,17 @@ The observed post-debounce 95th percentile is below the plan's three-second warm
 
 Maximum renderer timer lateness per edit ranges from 9.8 to 26.6 ms, and the largest observed animation-frame gap is 18.8 ms. The timing includes source replacement, mutation observation and automation. These observations do not establish a typing-latency or whole-process memory/CPU budget, physical high-DPI behavior, cold-cache performance or acceptance of larger/multi-file/bibliography documents. The slower first Classic edit remains in the statistics.
 
+### Current-package smoke — 29 September 2026
+
+The exact current package ASAR `bf8d5aa0de647759cfedce9f90f1dd35752063b4e6f1e36ef5d65bdc55b0630c` completed five Classic A4 warm edits in one isolated app/runtime session. Input to current PDF plus two frames: 1.708–1.757 s (median 1.724 s, empirical nearest-rank p95 1.757 s); after-debounce UI: 0.975–1.022 s; production compiler field: 810–854 ms; displayed compilation-end to readiness: 54.6–68.3 ms. All five PDFs and sources exactly matched; no errors occurred. Raw record: `test-results/preview-profile-7HivI6/measurements.json`, SHA-256 `ee9ef5229c4847b4f27735679c7ed36d7112efb07c8dc52c6dde987d85aabf0d`.
+
+This validates the changed package's measurement path only. Five warm single-template samples on one development host do not replace the retained 60-edit corpus, establish a supported-device p95 or meet the cold/cache and upper-bound acceptance requirements.
+
+### Local AI workflow timing — 29 September 2026
+
+The successful packaged chat fixture persists per-run agent timing metadata. A representative visual edit totals 1.571 s: setup 0.4 ms, local fixture inference 1.7 ms, compile 1.353 s, PDF render 133.6 ms and review 1.6 ms. A narrow compiled edit totals 856.8 ms, dominated by 705.8 ms compile plus 58.5 ms PDF inspection. The intentionally slow review branch totals 8.206 s, including its 6.503 s fixture review delay. `node scripts/verify-local-ai-timing.mjs test-results/chat-wFgJfL docs/releases/current-local-ai-timing-verified-2026-09-29.json` re-derives the nine deduplicated execution records, rejects malformed/copy-divergent/real-provider state and reports uninstrumented checkpoint/apply time explicitly. The [scoped record](releases/current-local-ai-timing-2026-09-29.json) preserves the fixture limits.
+
+Decision: local compilation dominates the normal local fixture; the slow branch demonstrates review waiting but says nothing about real provider latency. This is not a network/provider timing corpus, input-to-render timing, or optimization ranking for OpenAI/Anthropic/Codex/Claude. Authorized account measurements remain required before PERF-05 closes.
 ## Actual packaged app startup
 
 ### Workspace opening before compiler readiness
@@ -229,6 +240,11 @@ node scripts/profile-app.mjs /absolute/path/to/Folio.app/Contents/MacOS/Folio 3
 | 3 | fresh | 0.287 s | 43.038 s | 46.337 s | 622.5 MiB |
 | 3 | prepared | 0.283 s | 1.682 s | 5.499 s | 571.0 MiB |
 
+### Current development-host repeat — 29 September 2026
+
+The 29 September candidate package (ASAR `d394c28fade346f06a0743cd11110113a6bed7935608241ed8b4cd13acf20f78`) was profiled in five fresh/prepared pairs on an Apple M4 Pro / macOS 27.0 host. Fresh workspace readiness has a 369.2 ms median (364.5–421.9 ms), while the initial PDF median is 31.362 s (30.359–46.069 s). Prepared workspace readiness has a 404.3 ms median (387.0–424.4 ms), and the first PDF median is 2.722 s (2.695–3.215 s). Five isolated backend samples show fresh runtime initialization at 25.881 s median (25.122–43.548 s); repeated initialization is 6.8 ms median. The preserved measurements and scope are in [the current startup/runtime record](releases/current-startup-runtime-profile-2026-09-29.json).
+
+Decision: runtime preparation and first-PDF work remain the priority. The fresh first-sample and first-PDF outliers rule out a reproducible cold-start speed claim or a sub-0.2-second verification claim. No verification cache/lazy change is justified until it preserves exact runtime identity and offline self-test behavior. These are five development-host samples without cache purging or supported-device coverage, not release p95 evidence.
 All six launches reached the real Classic template PDF with no renderer or sampler errors. Fresh composer readiness is 42.5–58.4 seconds, and the first PDF takes 45.8–61.7 seconds. Prepared composer readiness is 1.61–2.13 seconds, while the first current PDF takes 5.44–5.50 seconds. This supports the priority of separating editing readiness from first-time runtime preparation. It also identifies a roughly 3.3–3.8 second interval between composer readiness and the visible current PDF that needs renderer/compile phase profiling; the present measurement does not assign that entire interval to TeX.
 
 Working-set numbers sum Electron's reported processes and may double-count shared pages. They exclude Tectonic/Biber children and are not a physical-memory or process-tree budget pass. CPU percentages are Electron's interval averages. Timing includes Playwright polling and instrumentation; three paired samples are not a reliable p95. `firstWindowMs` means the first window became available to automation, not a hardware measurement of its first painted pixel.
@@ -301,6 +317,18 @@ All nine cases preserve their source, PDF and complete history. Local workspace 
 The 100-version archive stage observes 28.0–30.3 ms maximum timer lateness, and saving observes 25.4–29.7 ms. `WorkspaceStore.archive()` uses synchronous ZIP compression, and `ProjectStore.save()` calls it again for the saved history. This supports investigating compression away from the main process, but the measurement does not isolate compression from every other synchronous operation or establish renderer frame loss. Save and archive measurements overlap in work; they cannot be added or subtracted to estimate independent costs.
 
 Peak sampled Node RSS across the run is 184.7 MiB. This includes allocations retained from prior cases, can miss short synchronous peaks, and excludes Electron and compiler children. OS caches were not purged. These observations establish neither a leak nor an application memory budget, and three samples do not establish p95. No optimization or storage-retention change was made for this measurement.
+### Current storage repeat — 29 September 2026
+
+The unchanged profiler reran three samples at 1, 25 and 100 histories using the passing Classic A4 corpus. At 100 histories, median checkpoint-one was 84.2 ms (83.9–96.5), archive-history 64.7 ms (56.1–69.1), project save with history 121.9 ms (121.5–123.5), reopen 2.8 ms (2.6–3.1), history import 64.8 ms (64.3–65.7), and latest-version read 0.7 ms. All retained source/PDF/version checks passed. The raw record is `test-results/storage-profile-wvW7pu/measurements.json`, SHA-256 `18e95012e77c3db8b3ed52810c797498401e8abc16e65a65b391d148523db4e8`.
+
+This covers small Classic source/PDF data through 100 histories only. It does not exercise maximum admitted history, images/attachments, ZIP import/export under low space, UI stall/cancellation, network filesystems or all retained stores; PERF-06 and PERF-07 remain open.
+### Maximum-count storage probe — 29 September 2026
+
+The opt-in `--maximum-count` profile completes one real small-Classic-A4 history at the current 1,000-version boundary: creating the 999 prior versions took 111.597 s; the final checkpoint 142.6 ms, archive 294.1 ms, project save including archive 424.1 ms, reopen 14.2 ms, history import 573.3 ms and latest-version read 1.4 ms. Workspace data was 26.90 MB / 2,001 files; the saved archive was 25.35 MB. Raw record: `test-results/storage-profile-OqBbRT/measurements.json`, SHA-256 `9ce98d7248faa6483c37d1bd9ed6c9708cebe6d1aa2b1f1dfc6feebee9417346`.
+
+This proves the maximum **count** admission path for a small source/PDF fixture, not the 64 MiB byte boundary, large images/attachments, renderer responsiveness, physical low-disk behavior or a user-wide quota. The longer save/import work reinforces that history count needs UI responsiveness evidence before PERF-06 can close.
+
+The [whole-profile retention matrix](PERF-07-DATA-RETENTION-MATRIX.md) inventories save/recovery journals, history, runtime identities, compiler caches, packs, app updates, build workspaces, provider sessions and preferences. Each has local bounds or explicit review/removal plus process-interruption evidence where applicable. There is no aggregate per-user quota across those stores, so that matrix documents accounted growth and the explicit gap rather than claiming PERF-07 complete.
 
 ## Background history compression
 

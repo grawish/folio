@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-29T21:46:34.472Z",
+  "passed": true,
+  "sourceBuild": true,
+  "liveAI": true,
+  "provider": "codex",
+  "configuredModel": "gpt-5.5",
+  "returnedModels": ["gpt-5.5"],
+  "apiKeyUsed": false,
+  "syntheticOnly": true,
+  "sourceSha256": "db3e3e66cc0c52e8f8601c71c8ee0f507f390f99c5a51428a0131b545c310cf3",
+  "expectedSourceSha256": "0e5bce5154a3a9043ee3ac3e4db48ac319c9ba0b2cd4f00448b75fc27efae618",
+  "exportPdfSha256": "1de02c5588870f8d0d7a611075f7fde51c35e388584267a8f93a2636b1679adf",
+  "execution": {
+    "escalated": false,
+    "validation": "visual",
+    "timingsMs": {
+      "setup": 791.6,
+      "inference": 5214.6,
+      "compile": 1401.5,
+      "render": 124.7,
+      "review": 4855.2,
+      "total": 12478
+    }
+  },
+  "workflow": [
+    "Fresh source build with isolated app data",
+    "Settings Codex connection and synthetic image-support check",
+    "Page-two PDF note attachment and exact requested edit",
+    "Local compilation and visual review",
+    "Matching PDF export, project save, close and reopen"
+  ],
+  "modelDefaultFinding": {
+    "blankModel": "Inherited a local gpt-6.1-sol CLI default that this ChatGPT account rejected.",
+    "resolution": "Pinned the image-capable gpt-5.5 model returned by the authenticated catalog.",
+    "scope": "Provider/account configuration behavior, not a Folio fallback or model-routing claim."
+  },
+  "scope": "One real Codex CLI subscription workflow against one signed-in ChatGPT account and gpt-5.5 from a source build. It does not establish every account/model, expired/signed-out behavior, network reliability, a signed installer, or production-release acceptance.",
+  "releaseAuditComplete": false
+}

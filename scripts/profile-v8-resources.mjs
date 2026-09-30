@@ -7,10 +7,12 @@ import os from 'node:os';
 import { tsImport } from 'tsx/esm/api';
 import { buildProcessSampler, ProcessSampler } from './mac-process-sampler.mjs';
 import { captureRendererRetention } from './capture-renderer-retention.mjs';
+import { projectSwitchRetentionInputs } from './verify-v8-retention-inputs.mjs';
 const { profileStorage } = await tsImport('./profile-directory-storage.ts', import.meta.url);
 
 const [executableArg, seedArg, cycleArg = '10', diagnosticArg] = process.argv.slice(2);
 const disposedEditor = diagnosticArg === '--retention-disposed-editor';
+const projectSwitch = diagnosticArg === '--retention-project-switch';
 const retention = ['--retention', '--retention-paste', '--retention-disposed-editor'].includes(
   diagnosticArg,
 );
@@ -22,13 +24,13 @@ if (
   !executableArg ||
   !seedArg ||
   process.argv.length > 6 ||
-  (diagnosticArg !== undefined && !retention) ||
+  (diagnosticArg !== undefined && !retention && !projectSwitch) ||
   !Number.isInteger(cycles) ||
   cycles < 1 ||
   cycles > 20
 )
   throw new Error(
-    'Provide a packaged Folio executable, a completed synthetic process-profile directory and 1–20 cycles, optionally followed by --retention, --retention-paste or --retention-disposed-editor.',
+    'Provide a packaged Folio executable, a completed synthetic process-profile directory and 1–20 cycles, optionally followed by --retention, --retention-paste, --retention-disposed-editor or --retention-project-switch.',
   );
 const executablePath = path.resolve(executableArg),
   seedRoot = path.resolve(seedArg);
@@ -78,9 +80,21 @@ expect(await manifest(dataRoot, copied.entries)).toBe(seedHash);
 const asar = path.resolve(path.dirname(executablePath), '../Resources/app.asar');
 const appAsarSha256 = await hash(asar);
 // A changed application is allowed only in the explicit lifecycle experiment.
-// Ordinary and paste-control runs retain the historical exact-app requirement.
+// Ordinary, paste-control and project-switch runs retain the historical exact-app requirement.
 if (disposedEditor) expect(appAsarSha256).not.toBe(seed.appAsarSha256);
 else expect(appAsarSha256).toBe(seed.appAsarSha256);
+if (projectSwitch)
+  projectSwitchRetentionInputs({
+    diagnosticArg,
+    cycles,
+    argvLength: process.argv.length,
+    platform: process.platform,
+    arch: process.arch,
+    executableArg,
+    seedArg,
+    seed,
+    appAsarSha256,
+  });
 const runtimeManifest = path.resolve(path.dirname(asar), 'runtime/manifest.json');
 expect(await hash(runtimeManifest)).toBe(seed.runtimeManifestSha256);
 const scripts = [
@@ -90,11 +104,13 @@ const scripts = [
   'scripts/sample-mac-processes.c',
 ];
 if (retention) scripts.push('scripts/capture-renderer-retention.mjs');
+if (projectSwitch) scripts.push('scripts/verify-v8-retention-inputs.mjs');
 const observer = await buildProcessSampler(root);
 const report = {
   startedAt: new Date().toISOString(),
   sourceCommit: execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(),
   scripts: Object.fromEntries(await Promise.all(scripts.map(async (f) => [f, await hash(f)]))),
+  scriptProvenance: projectSwitch ? 'working-tree-pinned' : 'source-commit-pinned',
   appAsarSha256,
   applicationMode: disposedEditor ? 'changed app with disposed Chat editor' : 'unchanged seed app',
   runtimeManifestSha256: seed.runtimeManifestSha256,
@@ -122,6 +138,7 @@ const report = {
     heapSamplingIntervalBytes: 65536,
     explicitGcRequested: false,
     postWorkloadRetentionDiagnostic: retention,
+    postWorkloadProjectSwitchDiagnostic: projectSwitch,
     nativeObserverSha256: await hash(observer),
   },
   scope:
@@ -172,6 +189,72 @@ const heap = async (label) => {
     mainMemory,
     profile: await saveArtifact(`${label}-renderer.heapprofile`, profile.profile),
   });
+};
+// Mounted-editor project-switch retention diagnostic (PERF-02). Compares DOM
+// node/heap counters for an unchanged, still-mounted Chat/Code editor across
+// an ordinary product project switch, under normal garbage collection. It
+// never disposes the editor view, never forces collection and never touches
+// the historical --retention/--retention-disposed-editor modes above.
+const projectSwitchRetention = async () => {
+  const observe = async (label) => {
+    const connected = await page.evaluate(() => ({
+      editors: document.querySelectorAll('.cm-editor').length,
+      codeHidden: document.querySelector('#workspace-code-panel')?.hidden,
+    }));
+    const observation = {
+      label,
+      at: new Date().toISOString(),
+      connected,
+      dom: await rendererSession.send('Memory.getDOMCounters'),
+      memory: await rendererSession.send('Runtime.getHeapUsage'),
+    };
+    result.observations.push(observation);
+    console.log(`Project-switch retention ${label}: ${JSON.stringify(observation)}`);
+  };
+  const result = {
+    scope:
+      'Mounted-editor project-switch diagnostic under normal product behavior and ordinary garbage collection. No explicit collection, heap snapshot or editor disposal is requested; both checkpoints observe an actively mounted, visible Code editor. The intervening chat-tab navigation and its editor unmount/remount are the existing product cutover, not a diagnostic override. Counters are DOM/heap accounting from Chrome DevTools Protocol, not a retained-size or leak proof.',
+    expectedMountedEditors: 1,
+    observations: [],
+  };
+  try {
+    await expect(page.locator('.cm-editor')).toHaveCount(1);
+    await observe('before-switch-mounted');
+    const recovery = JSON.parse(await fs.readFile(path.join(dataRoot, 'recovery.json')));
+    result.originalSyntheticProjectId = recovery.project.id;
+    await page.getByRole('button', { name: 'Explore templates', exact: true }).click();
+    await page.getByRole('button', { name: 'Create The Classic resume', exact: true }).click();
+    // Discard only the disposable synthetic draft in this diagnostic copy.
+    await page.getByRole('button', { name: 'Discard changes', exact: true }).click();
+    await expect
+      .poll(async () => {
+        const current = JSON.parse(await fs.readFile(path.join(dataRoot, 'recovery.json')));
+        return current.project.id;
+      })
+      .not.toBe(result.originalSyntheticProjectId);
+    // Ordinary product cutover: switching projects returns to Chat and hides
+    // Code, which unmounts the previous EditorView. Re-selecting Code mounts
+    // the new project's editor through the same normal navigation a user takes.
+    await page.getByRole('tab', { name: 'Code', exact: true }).click();
+    await expect(page.locator('.cm-editor')).toHaveCount(1);
+    await page.getByRole('button', { name: 'Compile', exact: true }).click();
+    await expect(page.locator('.preview-pane .textLayer')).toContainText('Alex Morgan');
+    await page.getByText('Up to date', { exact: true }).waitFor();
+    await observe('after-switch-mounted');
+    result.completed = true;
+  } catch (error) {
+    result.error = error.message;
+    await page
+      .screenshot({ path: path.join(root, 'project-switch-retention-failure.png') })
+      .catch(() => {});
+    throw error;
+  } finally {
+    await fs.writeFile(
+      path.join(root, 'project-switch-retention.json'),
+      JSON.stringify(result, null, 2) + '\n',
+    );
+  }
+  return result;
 };
 const source = (pages, label) =>
   String.raw`\documentclass[letterpaper]{article}
@@ -325,6 +408,7 @@ try {
       cycles,
       editorLifecycle: disposedEditor ? 'disposed' : 'mounted',
     });
+  if (projectSwitch) report.projectSwitchRetention = await projectSwitchRetention();
   await rendererSession.send('Profiler.disable');
   await rendererSession.detach();
   rendererSession = undefined;

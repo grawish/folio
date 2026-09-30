@@ -44,6 +44,34 @@ test('project validation rejects traversal, hidden files, collisions, and missin
     }),
   );
 });
+test('project validation rejects malformed, oversized and excessive IPC-style payloads', () => {
+  for (const value of [
+    null,
+    {},
+    { ...example(), revision: NaN },
+    { ...example(), id: 'x'.repeat(81) },
+  ])
+    assert.throws(() => validateProject(value));
+  assert.throws(() =>
+    validateProject({ ...example(), files: Array.from({ length: 101 }, () => example().files[0]) }),
+  );
+  assert.throws(() =>
+    validateProject({
+      ...example(),
+      files: [{ path: 'main.tex', content: 'x'.repeat(2 * 1024 * 1024 + 1) }],
+    }),
+  );
+  assert.throws(() =>
+    validateProject({
+      ...example(),
+      files: Array.from({ length: 3 }, (_, index) => ({
+        path: `section-${index}.tex`,
+        content: 'x'.repeat(2 * 1024 * 1024),
+      })),
+      mainFile: 'section-0.tex',
+    }),
+  );
+});
 test('fingerprint catches unsaved content and main-file changes even if revision is unchanged', () => {
   const p = example();
   assert.notEqual(

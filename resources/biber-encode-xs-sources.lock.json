@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "scope": "Exact enc2xs source-to-symbol reproduction for bundled Encode modules. Not a byte-identical compiler rebuild or complete redistribution audit.",
+  "biberModuleLockSha256": "7f9a95a6e022ea36e1b0e8eb41da2b30df357155fd6b0bfaf0b134e27685f164",
+  "cpanLockSha256": "1789fc28ea1961f3dd1953a13fb39bc9b9e565af11e76607ea714fcc056040ca",
+  "generatorSource": "Encode-3.16",
+  "generatorPath": "bin/enc2xs",
+  "modules": [
+    {"module":"Encode::Byte","inputSource":"Encode-3.16","inputGroups":[["ucm/nextstep.ucm","ucm/hp-roman8.ucm","ucm/viscii.ucm","ucm/adobeStdenc.ucm","ucm/koi8-f.ucm","ucm/koi8-r.ucm","ucm/koi8-u.ucm","ucm/macArabic.ucm","ucm/macCentEuro.ucm","ucm/macCroatian.ucm","ucm/macCyrillic.ucm","ucm/macFarsi.ucm","ucm/macGreek.ucm","ucm/macHebrew.ucm","ucm/macIceland.ucm","ucm/macRoman.ucm","ucm/macROMnn.ucm","ucm/macRUMnn.ucm","ucm/macSami.ucm","ucm/macThai.ucm","ucm/macTurkish.ucm","ucm/macUkraine.ucm","ucm/cp874.ucm","ucm/cp860.ucm","ucm/cp861.ucm","ucm/cp863.ucm","ucm/cp862.ucm","ucm/cp866.ucm","ucm/cp865.ucm","ucm/cp737.ucm","ucm/cp858.ucm","ucm/cp864.ucm","ucm/8859-15.ucm","ucm/cp1257.ucm","ucm/cp1256.ucm","ucm/8859-14.ucm","ucm/8859-16.ucm","ucm/cp1254.ucm","ucm/cp1255.ucm","ucm/cp424.ucm","ucm/8859-13.ucm","ucm/cp1251.ucm","ucm/cp1250.ucm","ucm/cp437.ucm","ucm/8859-10.ucm","ucm/8859-9.ucm","ucm/cp1253.ucm","ucm/8859-8.ucm","ucm/8859-11.ucm","ucm/8859-5.ucm","ucm/8859-4.ucm","ucm/8859-6.ucm","ucm/8859-7.ucm","ucm/8859-3.ucm","ucm/cp1258.ucm","ucm/8859-2.ucm","ucm/cp775.ucm","ucm/cp869.ucm","ucm/cp855.ucm","ucm/cp856.ucm","ucm/cp857.ucm","ucm/cp852.ucm","ucm/cp850.ucm","ucm/cp1006.ucm"]]},
+    {"module":"Encode::CN","inputSource":"Encode-3.16","inputGroups":[["ucm/cp936.ucm"],["ucm/euc-cn.ucm"],["ucm/gb12345.ucm"],["ucm/gb2312.ucm"],["ucm/ir-165.ucm"],["ucm/macChinsimp.ucm"]]},
+    {"module":"Encode::EBCDIC","inputSource":"Encode-3.16","inputGroups":[["ucm/posix-bc.ucm","ucm/cp037.ucm","ucm/cp1026.ucm","ucm/cp1047.ucm","ucm/cp500.ucm","ucm/cp875.ucm"]]},
+    {"module":"Encode::EUCJPASCII","inputSource":"Encode-EUCJPASCII-0.03","inputGroups":[["ucm/eucJP-ascii.ucm"]]},
+    {"module":"Encode::HanExtra","inputSource":"Encode-HanExtra-0.23","inputGroups":[["ucm/big5-1984.ucm","ucm/big5-2003.ucm","ucm/big5ext.ucm","ucm/big5plus.ucm"],["ucm/cccii.ucm"],["ucm/cns11643-1.ucm","ucm/cns11643-2.ucm","ucm/cns11643-3.ucm","ucm/cns11643-4.ucm","ucm/cns11643-5.ucm","ucm/cns11643-6.ucm","ucm/cns11643-7.ucm","ucm/cns11643-f.ucm"],["ucm/euc-tw.ucm"],["ucm/gb18030.ucm"],["ucm/unisys.ucm"]]},
+    {"module":"Encode::JIS2K","inputSource":"Encode-JIS2K-0.03","inputGroups":[["ucm/euc-jp2k.ucm"],["ucm/x0213-1.ucm","ucm/x0213-2.ucm"],["ucm/sjis-2k.ucm"]]},
+    {"module":"Encode::JP","inputSource":"Encode-3.16","inputGroups":[["ucm/cp932.ucm"],["ucm/euc-jp.ucm"],["ucm/jis0201.ucm"],["ucm/jis0208.ucm"],["ucm/jis0212.ucm"],["ucm/macJapanese.ucm"],["ucm/shiftjis.ucm"]]},
+    {"module":"Encode::KR","inputSource":"Encode-3.16","inputGroups":[["ucm/cp949.ucm"],["ucm/euc-kr.ucm"],["ucm/johab.ucm"],["ucm/ksc5601.ucm"],["ucm/macKorean.ucm"]]},
+    {"module":"Encode::Symbol","inputSource":"Encode-3.16","inputGroups":[["ucm/symbol.ucm","ucm/dingbats.ucm","ucm/adobeSymbol.ucm","ucm/adobeZdingbat.ucm","ucm/macSymbol.ucm","ucm/macDingbats.ucm"]]},
+    {"module":"Encode::TW","inputSource":"Encode-3.16","inputGroups":[["ucm/big5-eten.ucm"],["ucm/big5-hkscs.ucm"],["ucm/cp950.ucm"],["ucm/macChintrad.ucm"]]}
+  ]
+}

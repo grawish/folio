@@ -14,6 +14,16 @@ const strongETag = (value: unknown): value is string =>
   typeof value === 'string' && /^"[\x21\x23-\x7e]{1,200}"$/.test(value);
 const digest = (bytes: Uint8Array) => createHash('sha256').update(bytes).digest('hex');
 
+export const PACK_SPACE_MARGIN = 32 * 1024 ** 2;
+export type PackSpaceProbe = (root: string) => Promise<bigint>;
+// 32 MiB covers pack directory bookkeeping and the resume record; this is an
+// admission policy, not an OS disk reservation or a measured peak guarantee.
+const availablePackBytes: PackSpaceProbe = async (root) => {
+  const stat = await fs.statfs(root, { bigint: true });
+  if (stat.bavail < 0n || stat.bsize <= 0n) throw new Error('Invalid disk-space reading.');
+  return stat.bavail * stat.bsize;
+};
+
 export class PackDownloads {
   private readonly hosts: ReadonlySet<string>;
   constructor(
@@ -24,6 +34,7 @@ export class PackDownloads {
       timeoutMs?: number;
       now?: () => number;
       checkpoint?(phase: 'received' | 'verified' | 'published'): Promise<void>;
+      statSpace?: PackSpaceProbe;
     } = {},
   ) {
     this.hosts = new Set(hosts);
@@ -98,6 +109,30 @@ export class PackDownloads {
         throw new Error(
           'The partial pack record is damaged. Remove this download before trying again.',
         );
+      let retainedBytes = 0;
+      try {
+        const partial = await fs.lstat(packPath(root, 'payload.part'));
+        if (partial.isFile() && !partial.isSymbolicLink() && partial.nlink === 1)
+          retainedBytes = Math.min(partial.size, total);
+      } catch (error) {
+        if (!isMissing(error)) throw error;
+      }
+      let available: bigint;
+      try {
+        available = await (this.options.statSpace ?? availablePackBytes)(root);
+      } catch (cause) {
+        throw new Error(
+          'Folio could not check free disk space for this pack. Free some space and try again.',
+          { cause },
+        );
+      }
+      const remaining = total - retainedBytes;
+      if (available < BigInt(remaining) + BigInt(PACK_SPACE_MARGIN)) {
+        const requiredMB = Math.ceil((remaining + PACK_SPACE_MARGIN) / 1024 ** 2);
+        throw new Error(
+          `This pack needs about ${requiredMB} MB free on disk. Free some space in Settings → LaTeX resources, then try again.`,
+        );
+      }
       handle = await fs.open(
         packPath(root, 'payload.part'),
         constants.O_RDWR | constants.O_CREAT | constants.O_NOFOLLOW | constants.O_NONBLOCK,

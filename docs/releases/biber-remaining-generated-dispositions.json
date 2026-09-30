@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "scope": "Evidence-backed source/build disposition for the eleven remaining nonbinary Biber payload paths. Not an exact vendor rebuild or completed redistribution review.",
+  "releaseAuditComplete": false,
+  "summary": {
+    "totalExactSourceGeneratedMatches": 3808,
+    "totalPayloadFiles": 3932,
+    "remainingByteGaps": 124,
+    "compiledModulesWithSeparateSourceAssociation": 99,
+    "nativeLibrariesWithSeparateVersionSourceEvidence": 14,
+    "remainingNonbinaryPaths": 11
+  },
+  "dispositions": [
+    {
+      "paths": ["par/lib/Config.pm", "loader/47e46585/Config.pm", "par/lib/Config_heavy.pl", "loader/e2f75f62/Config_heavy.pl"],
+      "source": {"archive": "perl-5.32.1.tar.gz", "generator": "configpm", "path": "configpm", "sha256": "14497d3fbf3d484a81f26aee838ad19e5a72d3166f74c6265f0018c8a83db99c"},
+      "status": "exact-original-build-configuration-required",
+      "reason": "configpm requires the original Configure-generated config.sh and myconfig.SH. The shipped files identify a MacPorts Perl build on macOS 21.1.0 with /opt/local paths and the MacOSX12 SDK; rebuilding on the current macOS host produces different configuration bytes.",
+      "disposition": "Perl 5.32.1 generator and exact shipped bytes retained; original configuration inputs are unavailable, so this remains an explicit byte-level/build-environment gap."
+    },
+    {
+      "paths": ["par/lib/Errno.pm", "loader/f21cc28e/Errno.pm"],
+      "source": {"archive": "perl-5.32.1.tar.gz", "generator": "ext/Errno/Errno_pm.PL", "sha256": "3ecee219b50626cb0ffd1c1e723064be8f69502bddcba7d448b7e39568ec3725"},
+      "status": "exact-original-sdk-required",
+      "reason": "Errno_pm.PL invokes the configured C preprocessor over errno.h. The current host produces different errno constants and architecture guards from the original MacPorts macOS 21.1.0/SDK 12 build.",
+      "disposition": "Perl generator and shipped bytes retained; original SDK/header/compiler configuration is unavailable, so this remains an explicit byte-level/build-environment gap."
+    },
+    {
+      "paths": ["par/lib/AnyEvent/constants.pl"],
+      "source": {"archive": "AnyEvent-7.17.tar.gz", "generator": "constants.pl.PL", "sha256": "f4cf64429be6257aa1f6cdfdb80e5f5b89fb8403e9d1af5b2b234dbcb6369190"},
+      "status": "exact-original-perl-and-config-required",
+      "reason": "constants.pl.PL records Perl warning bits plus configured socket, fcntl, POSIX and architecture constants. Current Perl 5.32.1/miniperl with host configuration yields different values.",
+      "disposition": "Original generator and shipped bytes retained; original configured Perl/SDK values are unavailable, so this remains an explicit byte-level/build-environment gap."
+    },
+    {
+      "paths": ["par/lib/Tk/Config.pm"],
+      "source": {"archive": "Tk-804.036.tar.gz", "generator": "myConfig", "sha256": "c20f6469def253cd102352e59b2f6608afe10f6180d3f0cb4fb5f7aa660ce212"},
+      "status": "exact-original-tk-build-configuration-required",
+      "reason": "myConfig writes Perl, include, X11 and compiler settings. The shipped file records /opt/local include/lib paths and original compiler options, requiring the original MacPorts Tk/Perl configuration.",
+      "disposition": "Original generator and shipped bytes retained; original Tk build configuration is unavailable, so this remains an explicit byte-level/build-environment gap."
+    },
+    {
+      "paths": ["par/lib/auto/Params/Validate/XS/XS.bs"],
+      "source": {"archive": "Params-Validate-1.30.tar.gz", "xs": "lib/Params/Validate/XS.xs", "sha256": "4dec80410f3b90e6258bc1cc442e321f9ceb190e98ec2689e4c8d3e91e1ff239"},
+      "status": "empty-xs-bootstrap-stub",
+      "reason": "The shipped .bs file is empty (0 bytes; SHA-256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855), the standard XS build-system bootstrap stub form.",
+      "disposition": "No executable content. XS source and compiled module association are retained; the empty stub is treated as generated-by-design, not a missing source file."
+    },
+    {
+      "paths": ["par/lib/auto/Text/BibTeX/BibTeX.bs"],
+      "source": {"archive": "Text-BibTeX-0.88.tar.gz", "xs": "xscode/BibTeX.xs", "sha256": "ad0aa1e152621b8825039ec55152f49daed877401930ec5ce061bebfc62817bb"},
+      "status": "empty-xs-bootstrap-stub",
+      "reason": "The shipped .bs file is empty (0 bytes; SHA-256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855), the standard XS build-system bootstrap stub form.",
+      "disposition": "No executable content. XS source and compiled module association are retained; the empty stub is treated as generated-by-design, not a missing source file."
+    },
+    {
+      "paths": ["par/lib/unicore/UCD.pl"],
+      "source": {"archive": "perl-5.32.1.tar.gz", "generator": "lib/unicore/mktables", "sha256": "ee0dd174fd5b158d82dfea95d7d822ca0bfcd490182669353dca3ab39a8ee807"},
+      "status": "semantic-equivalence-proven-byte-order-unrecoverable",
+      "reason": "mktables builds inline definitions while iterating a hash. The original PERL_HASH_SEED is unavailable; reordered #/N indexes differ bytewise but every resolved table value is proven equivalent in biber-unicode-verification.json.",
+      "disposition": "Original generator/input archive and semantic equivalence proof retained; explicit unrecoverable byte-level ordering gap."
+    }
+  ],
+  "compiledBundleDisposition": {
+    "count": 99,
+    "evidence": "biber-module-verification.json",
+    "status": "source-associated-not-byte-rebuilt",
+    "disposition": "Every bundle has verified native entry points, paired Perl source, original archive and available XS declaration or generated-XS symbol provenance. Exact compiler/toolchain/vendor build inputs remain separate gaps."
+  },
+  "nativeLibraryDisposition": {
+    "count": 14,
+    "evidence": "biber-native-verification.json",
+    "status": "version-source-evidence-not-byte-rebuilt",
+    "disposition": "Every dylib has payload/manifest identity and retained original source/version evidence. Exact vendor commands, flags and patches remain separate gaps."
+  }
+}

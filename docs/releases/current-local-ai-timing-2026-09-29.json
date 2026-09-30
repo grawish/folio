@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "scope": "Local scripted-provider timing extraction from the successful packaged chat workflow on one Apple M4 Pro / macOS 27 development host. Provider inference is a local fixture, not a network or live-provider measurement.",
+  "releaseAuditComplete": false,
+  "evidence": {
+    "chatResult": "test-results/chat-wFgJfL",
+    "workspaceState": "test-results/chat-wFgJfL/app-data/workspaces/*/state.json",
+    "asarSha256": "bf8d5aa0de647759cfedce9f90f1dd35752063b4e6f1e36ef5d65bdc55b0630c"
+  },
+  "visualEdit": {"totalMs": 1571.1, "setupMs": 0.4, "inferenceMs": 1.7, "compileMs": 1353.1, "renderMs": 133.6, "reviewMs": 1.6},
+  "narrowCompiledEdit": {"totalMs": 856.8, "setupMs": 0.4, "inferenceMs": 1.9, "compileMs": 705.8, "inspectMs": 58.5},
+  "slowFixtureReviewCase": {"totalMs": 8206.1, "inferenceMs": 107.4, "compileMs": 1358.9, "renderMs": 71.1, "reviewMs": 6502.8},
+  "decision": "The normal visual fixture is dominated by local compilation; the deliberately slow review fixture is dominated by its fixture review delay. Neither value measures provider latency. Capture authorized network/provider timings separately before ranking network or model optimizations.",
+  "limits": ["Chat test executes many behavioral branches, not a statistically designed timing corpus.", "Timings omit input-event/renderer-compositor timestamps and do not isolate archive checkpoint work.", "No OpenAI, Anthropic, compatible endpoint, Codex, or Claude account was contacted."]
+}

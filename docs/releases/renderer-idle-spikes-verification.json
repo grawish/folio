@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "scope": "Developer-only 120-cycle renderer return-idle CPU diagnostic on one Apple M4 Pro / macOS 27 host. Native sampled CPU identifies threshold crossings; renderer CDP profiles are correlational and cannot establish their cause or a release budget.",
+  "releaseAuditComplete": false,
+  "app": {
+    "asarSha256": "d394c28fade346f06a0743cd11110113a6bed7935608241ed8b4cd13acf20f78",
+    "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0"
+  },
+  "seed": {
+    "path": "test-results/process-profile-ZGL9bW/measurements.json",
+    "sha256": "1e136c5f75c0d3dfa78cae27ca84bd37b517737b1cfe9fda2a705f2d44f0fb39",
+    "cycles": 120,
+    "sameAsar": true
+  },
+  "diagnostic": {
+    "path": "test-results/renderer-idle-spikes-Pn476d/measurements.json",
+    "sha256": "41dc972cc7cbb8b9f7900347a286c5d3d9368f5f8c99e19e47fa07118317b71f",
+    "analysis": {
+      "path": "test-results/renderer-idle-spikes-Pn476d/renderer-idle-spike-analysis.json",
+      "sha256": "0520a23d7001c5c66fd252159bb7870f61c932999bfa028f4a1d7e1169c2bae5"
+    },
+    "returnIdleWindows": 120,
+    "thresholdPercent": 10,
+    "spikesDetected": 8,
+    "spikeCycles": [37, 61, 74, 93, 103, 109, 114, 116],
+    "maxTotalCpuPercent": 18.12,
+    "maxRendererCpuPercent": 17.17
+  },
+  "finding": "Every captured threshold crossing is renderer-dominated in native process accounting. Each bracketed renderer V8 CPU profile spends 2.424–2.481 seconds of its approximately 2.53-second interval in V8 idle; its largest non-idle weights are 40.7–57.8 ms program and 7.5–52.8 ms garbage collection. This rules out a large sampled JavaScript stack within those flagged windows, but does not assign native renderer, compositor, PDF worker, GPU, operating-system scheduling, or unprofiled boundary work to a root cause.",
+  "decision": "Keep the 10% return-idle threshold open. Do not relax it or change undo/PDF policy based on this correlational result. Next diagnostic work must observe renderer-native/GPU/worker activity or reproduce the event with a relevant controlled change.",
+  "limits": [
+    "Fresh synthetic profile, not the seed run's live heap/history state.",
+    "Native libproc samples are periodic and CDP profiles only the renderer V8 isolate during the 2.5-second return-idle dwell.",
+    "No forced garbage collection, physical-device matrix, cold-cache control, or upper-bound attachment/image workload."
+  ]
+}

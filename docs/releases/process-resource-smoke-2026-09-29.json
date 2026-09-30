@@ -1,0 +1,151 @@
+{
+  "schemaVersion": 1,
+  "scope": "One-cycle packaged development-host process-resource smoke; not a long-session, cold-cache or supported-device acceptance result.",
+  "appAsarSha256": "3da0dad432f609926f2ccf0121ec69e907bbd91e5c27242f49f34fab27442121",
+  "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+  "host": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "os": "27.0.0",
+    "cpu": "Apple M4 Pro",
+    "logicalCpus": 14,
+    "ramBytes": 51539607552,
+    "node": "v24.21.0"
+  },
+  "cycles": 1,
+  "longSession": false,
+  "passed": true,
+  "errors": [],
+  "phases": [
+    {
+      "name": "startup",
+      "startMs": 0.0493340000000444,
+      "cpuAtStart": 0,
+      "endMs": 51760.733292,
+      "observedCpuSeconds": 18.616390331,
+      "samples": 248,
+      "peakSummedRssBytes": 861569024,
+      "peakSummedFootprintBytes": 493459864
+    },
+    {
+      "name": "ready-idle",
+      "startMs": 51760.733292,
+      "cpuAtStart": 18.616390331,
+      "endMs": 54355.90725,
+      "observedCpuSeconds": 0.0782658749999996,
+      "samples": 13,
+      "peakSummedRssBytes": 584056832,
+      "peakSummedFootprintBytes": 462017768
+    },
+    {
+      "name": "Cycle 1 small-build",
+      "startMs": 54355.90725,
+      "cpuAtStart": 18.694656206,
+      "endMs": 56287.185833999996,
+      "observedCpuSeconds": 1.867771501,
+      "samples": 10,
+      "peakSummedRssBytes": 808566784,
+      "peakSummedFootprintBytes": 604575720
+    },
+    {
+      "name": "Cycle 1 small-export",
+      "startMs": 56287.185833999996,
+      "cpuAtStart": 20.562427707,
+      "endMs": 56307.027834,
+      "observedCpuSeconds": 0.010928249999999196,
+      "samples": 1,
+      "peakSummedRssBytes": 620691456,
+      "peakSummedFootprintBytes": 516134168
+    },
+    {
+      "name": "cycle-1-small-idle",
+      "startMs": 56307.027834,
+      "cpuAtStart": 20.573355957,
+      "endMs": 58810.658125,
+      "observedCpuSeconds": 0.04876329200000029,
+      "samples": 13,
+      "peakSummedRssBytes": 622051328,
+      "peakSummedFootprintBytes": 518542616
+    },
+    {
+      "name": "Cycle 1 long-build",
+      "startMs": 58810.658125,
+      "cpuAtStart": 20.622119249,
+      "endMs": 60874.000042,
+      "observedCpuSeconds": 2.1579753319999995,
+      "samples": 11,
+      "peakSummedRssBytes": 864321536,
+      "peakSummedFootprintBytes": 714299416
+    },
+    {
+      "name": "Cycle 1 long-export",
+      "startMs": 60874.000042,
+      "cpuAtStart": 22.780094581,
+      "endMs": 60908.750334,
+      "observedCpuSeconds": 0.01145162499999941,
+      "samples": 1,
+      "peakSummedRssBytes": 677396480,
+      "peakSummedFootprintBytes": 587994488
+    },
+    {
+      "name": "cycle-1-navigation",
+      "startMs": 60908.750334,
+      "cpuAtStart": 22.791546206,
+      "endMs": 62468.664875,
+      "observedCpuSeconds": 0.1531777510000012,
+      "samples": 8,
+      "peakSummedRssBytes": 682508288,
+      "peakSummedFootprintBytes": 600905080
+    },
+    {
+      "name": "cycle-1-long-idle",
+      "startMs": 62468.664875,
+      "cpuAtStart": 22.944723957,
+      "endMs": 64977.982125,
+      "observedCpuSeconds": 0.01767387499999984,
+      "samples": 12,
+      "peakSummedRssBytes": 678920192,
+      "peakSummedFootprintBytes": 595039608
+    },
+    {
+      "name": "Cycle 1 return-build",
+      "startMs": 64977.982125,
+      "cpuAtStart": 22.962397832,
+      "endMs": 66890.699125,
+      "observedCpuSeconds": 1.8885718320000002,
+      "samples": 10,
+      "peakSummedRssBytes": 882688000,
+      "peakSummedFootprintBytes": 645125520
+    },
+    {
+      "name": "Cycle 1 return-export",
+      "startMs": 66890.699125,
+      "cpuAtStart": 24.850969664,
+      "endMs": 66911.52904200001,
+      "observedCpuSeconds": 0.011101958999997663,
+      "samples": 1,
+      "peakSummedRssBytes": 681541632,
+      "peakSummedFootprintBytes": 572675472
+    },
+    {
+      "name": "cycle-1-return-idle",
+      "startMs": 66911.52904200001,
+      "cpuAtStart": 24.862071623,
+      "endMs": 69418.442542,
+      "observedCpuSeconds": 0.0387375820000031,
+      "samples": 12,
+      "peakSummedRssBytes": 681541632,
+      "peakSummedFootprintBytes": 572937616
+    }
+  ],
+  "limits": [
+    "Sampling starts after Electron automation attaches; earliest process startup can be missed. Runtime preparation uses a fresh app profile; OS caches are not purged.",
+    "Root PID plus discovered descendants only. PDF workers are renderer threads, not separate sampled processes. Observed processes that exit retain their last CPU counters.",
+    "Read-only libproc snapshots are not atomic; short-lived children and peaks between samples can be missed. Reparented helpers may leave the observed tree. PID plus birth time distinguishes reuse.",
+    "Summed RSS and summed per-process physical footprint are accounting metrics, not unique physical memory. Shared pages and surfaces can be counted more than once.",
+    "CPU is observed per-process user plus system time, scaled from Mach ticks with the reported timebase. Initial counters of processes born before sampling are excluded. Child CPU fields are not added. Missing terminal samples undercount CPU.",
+    "The sampling helper and Playwright harness are outside the app tree but add host load. Their CPU cost and snapshot duration are reported separately; the desktop is not otherwise isolated.",
+    "Repeated small-text 1/100-page workflows on one development Mac do not establish a leak, population percentiles, worst-case images/history, or supported-device memory/CPU budgets.",
+    "Long-session storage observations read logical file sizes without following observed symlinks. Scans are non-atomic and run in separately marked phases outside builds/navigation; their host I/O and harness overhead can still affect the desktop. The closed final profile is inventoried after sampling. No deletion or GC is forced."
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "foundationLockSha256": "a7a53f3657ea2aeb98431edb89896bb8ff48ad79a2c342725d18c28c5a76c0d6",
-  "cpanLockSha256": "e000085cd45f2d475ddcd96426af92227178a5aa9d3e69860a022778fbf3b482",
+  "cpanLockSha256": "1789fc28ea1961f3dd1953a13fb39bc9b9e565af11e76607ea714fcc056040ca",
   "scope": "Static association of compiled Perl modules with matching packaged Perl source, original XS declarations and full upstream archives. Not exact native rebuilds, vendor-patch proof or completed redistribution acceptance.",
   "modules": [
     {
@@ -741,6 +741,72 @@
           ],
           "xsDeclarations": []
         }
+      ],
+      "expectedEncodingSymbols": [
+        "_AdobeStandardEncoding_encoding",
+        "_MacArabic_encoding",
+        "_MacCentralEurRoman_encoding",
+        "_MacCroatian_encoding",
+        "_MacCyrillic_encoding",
+        "_MacFarsi_encoding",
+        "_MacGreek_encoding",
+        "_MacHebrew_encoding",
+        "_MacIcelandic_encoding",
+        "_MacRoman_encoding",
+        "_MacRomanian_encoding",
+        "_MacRumanian_encoding",
+        "_MacSami_encoding",
+        "_MacThai_encoding",
+        "_MacTurkish_encoding",
+        "_MacUkrainian_encoding",
+        "_cp1006_encoding",
+        "_cp1250_encoding",
+        "_cp1251_encoding",
+        "_cp1253_encoding",
+        "_cp1254_encoding",
+        "_cp1255_encoding",
+        "_cp1256_encoding",
+        "_cp1257_encoding",
+        "_cp1258_encoding",
+        "_cp424_encoding",
+        "_cp437_encoding",
+        "_cp737_encoding",
+        "_cp775_encoding",
+        "_cp850_encoding",
+        "_cp852_encoding",
+        "_cp855_encoding",
+        "_cp856_encoding",
+        "_cp857_encoding",
+        "_cp858_encoding",
+        "_cp860_encoding",
+        "_cp861_encoding",
+        "_cp862_encoding",
+        "_cp863_encoding",
+        "_cp864_encoding",
+        "_cp865_encoding",
+        "_cp866_encoding",
+        "_cp869_encoding",
+        "_cp874_encoding",
+        "_hp_roman8_encoding",
+        "_iso_8859_10_encoding",
+        "_iso_8859_11_encoding",
+        "_iso_8859_13_encoding",
+        "_iso_8859_14_encoding",
+        "_iso_8859_15_encoding",
+        "_iso_8859_16_encoding",
+        "_iso_8859_2_encoding",
+        "_iso_8859_3_encoding",
+        "_iso_8859_4_encoding",
+        "_iso_8859_5_encoding",
+        "_iso_8859_6_encoding",
+        "_iso_8859_7_encoding",
+        "_iso_8859_8_encoding",
+        "_iso_8859_9_encoding",
+        "_koi8_f_encoding",
+        "_koi8_r_encoding",
+        "_koi8_u_encoding",
+        "_nextstep_encoding",
+        "_viscii_encoding"
       ]
     },
     {
@@ -784,6 +850,14 @@
           ],
           "xsDeclarations": []
         }
+      ],
+      "expectedEncodingSymbols": [
+        "_MacChineseSimp_encoding",
+        "_cp936_encoding",
+        "_euc_cn_encoding",
+        "_gb12345_raw_encoding",
+        "_gb2312_raw_encoding",
+        "_iso_ir_165_encoding"
       ]
     },
     {
@@ -827,6 +901,14 @@
           ],
           "xsDeclarations": []
         }
+      ],
+      "expectedEncodingSymbols": [
+        "_cp1026_encoding",
+        "_cp1047_encoding",
+        "_cp37_encoding",
+        "_cp500_encoding",
+        "_cp875_encoding",
+        "_posix_bc_encoding"
       ]
     },
     {
@@ -855,6 +937,9 @@
           ],
           "xsDeclarations": []
         }
+      ],
+      "expectedEncodingSymbols": [
+        "_eucJP_ascii_encoding"
       ]
     },
     {
@@ -883,6 +968,24 @@
           ],
           "xsDeclarations": []
         }
+      ],
+      "expectedEncodingSymbols": [
+        "_big5_1984_encoding",
+        "_big5_2003_encoding",
+        "_big5ext_encoding",
+        "_big5plus_encoding",
+        "_cccii_encoding",
+        "_cns11643_1_encoding",
+        "_cns11643_2_encoding",
+        "_cns11643_3_encoding",
+        "_cns11643_4_encoding",
+        "_cns11643_5_encoding",
+        "_cns11643_6_encoding",
+        "_cns11643_7_encoding",
+        "_cns11643_f_encoding",
+        "_euc_tw_encoding",
+        "_gb18030_encoding",
+        "_unisys_encoding"
       ]
     },
     {
@@ -911,6 +1014,12 @@
           ],
           "xsDeclarations": []
         }
+      ],
+      "expectedEncodingSymbols": [
+        "_euc_jisx0213_encoding",
+        "_jis0213_1_raw_encoding",
+        "_jis0213_2_raw_encoding",
+        "_shiftjisx0213_encoding"
       ]
     },
     {
@@ -939,6 +1048,15 @@
           ],
           "xsDeclarations": []
         }
+      ],
+      "expectedEncodingSymbols": [
+        "_MacJapanese_encoding",
+        "_cp932_encoding",
+        "_euc_jp_encoding",
+        "_jis0201_raw_encoding",
+        "_jis0208_raw_encoding",
+        "_jis0212_raw_encoding",
+        "_shiftjis_encoding"
       ]
     },
     {
@@ -982,6 +1100,13 @@
           ],
           "xsDeclarations": []
         }
+      ],
+      "expectedEncodingSymbols": [
+        "_MacKorean_encoding",
+        "_cp949_encoding",
+        "_euc_kr_encoding",
+        "_johab_encoding",
+        "_ksc5601_raw_encoding"
       ]
     },
     {
@@ -1025,6 +1150,14 @@
           ],
           "xsDeclarations": []
         }
+      ],
+      "expectedEncodingSymbols": [
+        "_AdobeSymbol_encoding",
+        "_AdobeZdingbat_encoding",
+        "_MacDingbats_encoding",
+        "_MacSymbol_encoding",
+        "_dingbats_encoding",
+        "_symbol_encoding"
       ]
     },
     {
@@ -1068,6 +1201,12 @@
           ],
           "xsDeclarations": []
         }
+      ],
+      "expectedEncodingSymbols": [
+        "_MacChineseTrad_encoding",
+        "_big5_eten_encoding",
+        "_big5_hkscs_encoding",
+        "_cp950_encoding"
       ]
     },
     {

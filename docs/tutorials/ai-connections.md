@@ -10,7 +10,7 @@ Set up and select connections in **Settings → AI connections**. Choose the mod
 2. In Folio, open **Settings → AI connections → Add connection**.
 3. Choose **Codex subscription**. Give the connection a name.
 4. Leave **App location** empty to let Folio find the command. If it is not found, enter the full path to your installed executable.
-5. Leave **Model** empty for the account default, or enter a model your account can use.
+5. For Codex, leave **Model** empty only when your configured Codex default is supported. Otherwise enter a model returned by **Check connection**; an unsupported personal CLI default can make image support fail.
 6. Choose **Save connection**, then select its radio button in the connections list.
 7. Use **Check connection**. If sign-in is needed, use **Sign in** and finish the provider's flow. **Cancel sign-in** stops a pending sign-in.
 8. Use **Test image support** before working with PDF feedback. This sends a small sample image and may use provider quota.
@@ -83,3 +83,13 @@ Select a different connection's radio button in Settings. The change applies to 
 If a check fails, read its message, confirm the command or endpoint, and check your provider account. Do not repeatedly send paid requests to diagnose a typo. A successful connection check is separate from a successful image-support test.
 
 **Demos:** `npm run demo:capture` captures the empty forms. `npm run test:chat` uses a local provider fixture. To repeat the separate live Claude test after building, run `node scripts/test-live-claude.mjs --live` on a Mac with Claude Code already signed in. This opt-in command sends its synthetic document and PDF images and consumes provider usage; it is not run in CI.
+
+### Repeat the live Codex check
+
+With an already signed-in Codex CLI account, build the source app and run:
+
+```sh
+node scripts/test-live-codex.mjs --live
+```
+
+The opt-in check sends only its synthetic two-page document and generated PDF images. It pins the account-supported `gpt-5.5` model rather than inheriting a personal Codex configuration default, then verifies image support, annotated edit, local compilation, visual review, exact export and reopen. It consumes account usage and is not CI. One source-build account/model workflow passed on 29 September 2026; it does not establish signed-release or every-account/model acceptance.

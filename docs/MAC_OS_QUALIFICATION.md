@@ -12,6 +12,7 @@ The manual **Qualify Apple silicon candidate** workflow now accepts an explicit 
 These names come from [GitHub's runner reference](https://docs.github.com/en/actions/reference/runners/github-hosted-runners) and [runner image inventory](https://github.com/actions/runner-images). Checked 28 September 2026. Apple lists [macOS 27 as the current major release](https://support.apple.com/en-ca/127255). GitHub still labels its `xcode-27` runner as public preview, so the workflow records and checks the actual OS rather than inferring it from the label.
 
 GitHub has [announced removal of macOS 14 runners on 2 November 2026](https://github.com/actions/runner-images/issues/13518). A future runner outage or retirement is not an app compatibility failure and must not silently raise Folio's proposed minimum. Continued minimum-version acceptance will need a maintained Apple silicon test environment and an explicit support decision.
+The recorded hosted result establishes test-corpus compatibility on macOS 14.8.9 and 27.0 only. Folio does not presently advertise a broader minimum-version or reference-device performance promise. Any release support statement must retain those exact observed versions until clean-machine and signed-candidate evidence expands it.
 
 ## Run a qualification
 

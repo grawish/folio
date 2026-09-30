@@ -74,6 +74,11 @@
       "sha256": "031a88d6b32a2d7c90ba7c00f50a3a48ae4132b73199c257622bce33e030d6e7"
     }
   ],
+  "ucdEquivalence": {
+    "path": "par/lib/unicore/UCD.pl",
+    "semanticallyEquivalent": true,
+    "explanation": "mktables builds @inline_definitions by pushing onto it while iterating a Perl hash; hash iteration order is PERL_HASH_SEED-randomized per process since Perl 5.18, so separate build runs reorder that array and every numeric #/N index into it without changing any resolved value. This check resolves every index in both files and compares sorted, fully-resolved (hash, key, value) records."
+  },
   "checks": {
     "newOfflineControls": 8,
     "allSourceCollectorControls": 63,
@@ -131,12 +136,12 @@
   "observations": [
     "The first flattened invocation changed the generated header because mktables records its invocation path. Invoking the unchanged script as lib/unicore/mktables with -C lib/unicore reproduces the original header; no output rewriting is used.",
     "Seventeen Scx payload files exactly match generated Sc files. Their path mappings are recorded rather than silently renamed.",
-    "UCD.pl has different ordering and references. It remains unmatched; semantic equivalence and its exact original generation environment are not established.",
+    "UCD.pl differs byte-for-byte in the ordering of its @inline_definitions array and every numeric #/N index into it, because mktables builds that array while iterating a Perl hash and hash iteration order is PERL_HASH_SEED-randomized per process since Perl 5.18. Resolving every index in both files and comparing sorted, fully-resolved (hash, key, value) records (applying the one documented Sc/Scx alias above) confirms semantic equivalence; see ucdEquivalence. It remains an unmatched byte, and its exact original generation environment/hash seed is not recoverable.",
     "The source is Perl 5.32.1 with Unicode 13.0.0 data; the developer interpreter is system Perl v5.34.1. This is successful byte reproduction for the matched subset, not a reproduction of the full original Biber build.",
     "Initial default-deny read-scoped profiles aborted during macOS dyld startup before Perl ran. The final developer-only profile permits reads and system operations, denies networking and limits file writes. Controls require real EPERM for outside writes and a loopback connection."
   ],
   "remaining": [
-    "Resolve the generated UCD index, other Perl/packager/autosplit output and native module/library build provenance.",
+    "Other Perl/packager/autosplit output and native module/library build provenance.",
     "Review all embedded notice grants, Unicode terms, conflicting source license metadata, corresponding-source requirements and the exact-app SBOM."
   ]
 }

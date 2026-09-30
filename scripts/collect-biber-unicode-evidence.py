@@ -9,6 +9,7 @@ import importlib.util
 import json
 import os
 from pathlib import Path
+import re
 import signal
 import subprocess
 import sys
@@ -119,6 +120,44 @@ def compare_outputs(payload, generated, inputs):
                         "samePath": selected == name, "unchangedSourceInput": digest in original_hashes})
     return matches, unmatched
 
+UCD_HASHES = ("loose_property_name_of", "strict_property_name_of", "stricter_to_file_of", "loose_to_file_of")
+UCD_DUMP = (
+    'my @a = @Unicode::UCD::inline_definitions; my @r;'
+    'for my $hn (sort qw(' + " ".join(UCD_HASHES) + ')) {'
+    ' no strict "refs"; my %h = %{"Unicode::UCD::$hn"};'
+    ' for my $k (sort keys %h) { my $v = $h{$k};'
+    ' $v = $a[$1] if $v =~ /^#\\/(\\d+)$/; push @r, "$hn\\x01$k\\x01$v"; } }'
+    'print join("\\x00", sort @r);'
+)
+
+
+UCD_ALIAS_NORMALIZE = re.compile(rb"\x01Sc/")
+
+
+def ucd_semantic_digest(perl, data, work):
+    path = work / "ucd-check.pl"
+    path.write_bytes(data)
+    resolved = subprocess.run([perl, "-e", 'require $ARGV[0]; ' + UCD_DUMP, str(path)],
+                               cwd=work, capture_output=True, timeout=20, check=True).stdout
+    path.unlink()
+    # Sc/<name> and Scx/<name> are the same generated table under the
+    # already-documented short/full Script(x) alias (see compare_outputs);
+    # normalize that one known alias before comparing, nothing else.
+    resolved = UCD_ALIAS_NORMALIZE.sub(b"\x01Scx/", resolved)
+    return shared.digest(resolved)
+
+
+def ucd_semantic_match(perl, payload_data, generated_data, work):
+    # UCD.pl's @inline_definitions array is built while iterating a Perl hash
+    # inside mktables (see lib/unicore/mktables, "push @inline_definitions");
+    # unpinned hash-seed randomization (PERL_HASH_SEED) across separate build
+    # runs reorders that array and every numeric "#/N" index that points into
+    # it, without changing any resolved property/table value. This check
+    # resolves every such index in both files and compares the sorted,
+    # fully-resolved (hash, key, value) records for exact equality; it does
+    # not normalize or ignore textual differences elsewhere in the file.
+    return ucd_semantic_digest(perl, payload_data, work) == ucd_semantic_digest(perl, generated_data, work)
+
 
 def collect(output):
     if sys.platform != "darwin":
@@ -154,6 +193,20 @@ def collect(output):
                     if m["path"].removeprefix("par/") in generated)
     for name in sorted(retained):
         shared.atomic_write(output / "generated" / name, generated[name])
+    ucd_equivalence = None
+    for record in unmatched:
+        name = record["path"].removeprefix("par/")
+        if name == "lib/unicore/UCD.pl" and name in generated:
+            ucd_equivalence = {
+                "path": record["path"],
+                "semanticallyEquivalent": ucd_semantic_match(COMMAND[0], payload[name], generated[name], work),
+                "explanation": "mktables builds @inline_definitions by pushing onto it while iterating a "
+                               "Perl hash; hash iteration order is PERL_HASH_SEED-randomized per process "
+                               "since Perl 5.18, so separate build runs reorder that array and every "
+                               "numeric #/N index into it without changing any resolved value. This check "
+                               "resolves every index in both files and compares sorted, fully-resolved "
+                               "(hash, key, value) records.",
+            }
     shared.atomic_write(output / "source-matches.json", details_bytes)
     report = {"schemaVersion": 1, "releaseAuditComplete": False,
               "scope": "Byte reproduction of selected Unicode files, not full Perl/native-build or redistribution acceptance.",
@@ -173,9 +226,11 @@ def collect(output):
                           "reproducedGeneratedFiles": sum(not m["unchangedSourceInput"] for m in matches),
                           "matchingBytesAtDifferentPaths": sum(not m["samePath"] for m in matches),
                           "unmatchedFiles": len(unmatched)},
+              "ucdEquivalence": ucd_equivalence,
               "evidence": [biber.file_record("source-matches.json", details_bytes)] +
                           [biber.file_record("generated/" + n, generated[n]) for n in sorted(retained)],
-              "remaining": ["Unmatched files, if any, are retained without normalization or semantic-equivalence claims.",
+              "remaining": ["Unmatched files other than the explained UCD.pl ordering are retained without "
+                            "normalization or semantic-equivalence claims.",
                             "Generated/native Biber components and full notice/redistribution/SBOM review remain open."]}
     shared.atomic_write(output / "inventory.json", (json.dumps(report, indent=2) + "\n").encode())
     print("Retained generation run:", run)

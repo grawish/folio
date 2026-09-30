@@ -48,8 +48,16 @@ cycles = r['cycles']
 assert r['passed'] and not r['errors'] and 1 <= cycles <= 20
 assert a['reportSha256'] == sha(raw) and a['cycles'] == cycles
 assert a['analysisScriptSha256'] == file_hash('scripts/analyze-v8-resources.mjs')
+# Diagnostics may be uncommitted working-tree scripts. The raw report pins
+# their exact bytes, but historical modes must continue matching the recorded
+# source commit as well.
+working_tree_pinned = r.get('scriptProvenance') == 'working-tree-pinned' or bool(
+    r.get('projectSwitchRetention')
+)
 for name, expected in r['scripts'].items():
-    assert file_hash(name) == expected == sha(subprocess.check_output(['git', 'show', r['sourceCommit'] + ':' + name]))
+    assert file_hash(name) == expected
+    if not working_tree_pinned:
+        assert expected == sha(subprocess.check_output(['git', 'show', r['sourceCommit'] + ':' + name]))
 assert file_hash(root / 'sample-mac-processes') == r['instrumentation']['nativeObserverSha256']
 assert file_hash(app / 'Contents/Resources/app.asar') == a['appAsarSha256'] == r['appAsarSha256']
 assert file_hash(app / 'Contents/Resources/runtime/manifest.json') == r['runtimeManifestSha256']
@@ -221,6 +229,15 @@ if 'retention' in r:
         file = root / Path(snapshot['file']).name
         assert file.stat().st_size == snapshot['bytes'] and file_hash(file) == snapshot['sha256']
     files.append(root / 'retention.json')
+if 'projectSwitchRetention' in r:
+    switch = r['projectSwitchRetention']
+    assert switch.get('completed') and switch.get('expectedMountedEditors') == 1
+    assert json.loads((root / 'project-switch-retention.json').read_bytes()) == switch
+    observations = switch['observations']
+    assert [o['label'] for o in observations] == ['before-switch-mounted', 'after-switch-mounted']
+    assert all(o['connected'] == {'editors': 1, 'codeHidden': False} for o in observations)
+    assert all(o['dom']['nodes'] > 0 for o in observations)
+    files.append(root / 'project-switch-retention.json')
 archive = Path(f'docs/performance/{prefix}-traces.tar.gz')
 with archive.open('wb') as target, gzip.GzipFile(fileobj=target, mode='wb', filename='', mtime=0) as compressed, tarfile.open(fileobj=compressed, mode='w') as tar:
     for file in sorted(files):
@@ -238,6 +255,7 @@ summary = {
     'host': r['host'], 'applicationVersions': r['applicationVersions'], 'instrumentation': r['instrumentation'],
     'inputMethod': r.get('inputMethod', 'native keyboard.insertText'),
     'postWorkloadRetentionDiagnostic': r.get('retention'),
+    'postWorkloadProjectSwitchDiagnostic': r.get('projectSwitchRetention'),
     'seed': r['seed'], 'cycles': cycles, 'pdfs': len(r['pdfs']), 'independentlyParsedPages': pages,
     'nativeSnapshots': len(r['samples']), 'phaseMarkers': len(r['phases']), 'canvasObservations': len(r['canvases']),
     'cpuProfiles': cycles * 2, 'heapObservations': len(a['heaps']),

@@ -123,6 +123,65 @@ def compare_outputs(recipe, generated, payload, patch):
     return matches, unmatched
 
 
+def build_miniperl(work, source, sandbox, env, deadline):
+    # sense.pm.PL records compile-time Perl hints. Rebuilding miniperl from the
+    # checksum-verified 5.32.1 source gives those exact core semantics without
+    # treating the host Perl as a substitute or retaining a host-built runtime.
+    if len(source) > 10_000 or sum(map(len, source.values())) > 128 * 1024 * 1024:
+        raise ValueError('Perl miniperl source exceeds audit bounds')
+    required = {'Configure', 'miniperlmain.c', 'lib/strict.pm', 'lib/warnings.pm'}
+    if not required.issubset(source) or any(not source[name] for name in required):
+        raise ValueError('Perl miniperl source is incomplete')
+    root = work / 'perl-5.32.1'
+    for name, data in source.items():
+        shared.safe_member('source/' + name, 'source')
+        shared.atomic_write(root / name, data)
+    configure = work.parent / 'miniperl-configure.log'
+    make = work.parent / 'miniperl-make.log'
+    remaining = deadline - time.monotonic()
+    if remaining <= 0:
+        raise TimeoutError('Text generation exceeded its deadline')
+    generation.bounded_run(sandbox + ['/bin/sh', 'Configure', '-des'], root, env, configure, remaining)
+    remaining = deadline - time.monotonic()
+    if remaining <= 0:
+        raise TimeoutError('Text generation exceeded its deadline')
+    generation.bounded_run(sandbox + ['/usr/bin/make', 'miniperl'], root, env, make, remaining)
+    configpm = work.parent / 'miniperl-configpm.log'
+    remaining = deadline - time.monotonic()
+    if remaining <= 0:
+        raise TimeoutError('Text generation exceeded its deadline')
+    generation.bounded_run(sandbox + [str(root / 'miniperl'), '-Ilib', 'configpm'], root, env, configpm, remaining)
+    executable = root / 'miniperl'
+    if executable.is_symlink() or not executable.is_file() or executable.stat().st_size > 32 * 1024 * 1024:
+        raise ValueError('Perl miniperl output is invalid')
+    version = subprocess.run(sandbox + [str(executable), '-Ilib', '-e', 'print "$^V"'], cwd=root, env=env,
+                             capture_output=True, timeout=20, check=True).stdout.decode()
+    if version != 'v5.32.1':
+        raise ValueError('Built miniperl version differs from reviewed source')
+    return root, {'version': version}
+
+
+
+def verify_miniperl_recipe(recipe, cpan_entries, foundation, payload):
+    inputs = {row['path']: row['sha256'] for row in recipe['inputs']}
+    targets = {target for rows in recipe['outputs'].values() for target in rows}
+    if len(inputs) != len(recipe['inputs']) or not inputs or not targets:
+        raise ValueError('Miniperl recipe inputs or outputs are invalid')
+    if recipe['source'] == 'perl-5.32.1':
+        if not any(entry['id'] == recipe['source'] for entry in foundation['foundationSources']):
+            raise ValueError('Miniperl recipe source is not a reviewed foundation archive')
+        return
+    entry = cpan_entries.get(recipe['source'])
+    if entry is None:
+        raise ValueError('Miniperl recipe source is not a reviewed CPAN archive')
+    authorized = [anchor for anchor in entry.get('generatedAnchors', []) if anchor.get('generator') == 'perl-5.32.1-miniperl'
+                  and anchor.get('source') in inputs and anchor.get('sourceSha256') == inputs[anchor.get('source')]
+                  and anchor.get('payload') in targets]
+    if len(authorized) != len(targets):
+        raise ValueError('Miniperl recipe is not authorized by a generated CPAN anchor')
+    for anchor in authorized:
+        if anchor['payload'] not in payload or shared.digest(payload[anchor['payload']]) != anchor['sha256']:
+            raise ValueError('Miniperl recipe anchor payload differs from reviewed identity')
 def collect(output):
     if sys.platform != 'darwin': raise ValueError('This generator audit requires macOS sandbox-exec')
     lock_bytes = (ROOT / 'resources/biber-generated-sources.lock.json').read_bytes(); lock = json.loads(lock_bytes)
@@ -140,6 +199,14 @@ def collect(output):
     cache = biber.map_cache(ROOT / 'resources/runtime/mac-arm64/biber-cache', expected, binary, loader, files, foundation)
     payload = {**{'par/' + n: d for n, d in files.items()}, **{'loader/' + n: d for n, d in loader.items()}}
     source_ids = {r['source'] for r in lock['recipes']} | {'PAR-Packer-1.055'}
+    miniperl_recipes = [r for r in lock['recipes'] if r.get('interpreter') == 'perl-5.32.1-miniperl']
+    if any(r.get('interpreter') not in (None, 'perl-5.32.1-miniperl') for r in lock['recipes']):
+        raise ValueError('Unknown generated-source interpreter')
+    if miniperl_recipes:
+        source_ids.add('perl-5.32.1')
+    cpan_entries = {entry['id']: entry for entry in cpan_lock['sources']}
+    for recipe in miniperl_recipes:
+        verify_miniperl_recipe(recipe, cpan_entries, foundation, payload)
     entries = [e for e in foundation['foundationSources'] + cpan_lock['sources'] if e['id'] in source_ids]
     if len(entries) != len(source_ids): raise ValueError('Missing or duplicate source archive')
     archives, sources = {}, {}
@@ -162,7 +229,11 @@ def collect(output):
     controls = generation.check_sandbox(prefix, run / 'controls', env, run.parent / (run.name + '-outside'))
     retained = {**archives, 'packager/PatchContent.pm': patch}
     matches, unmatched, commands = [], [], []
-    deadline = time.monotonic() + 180
+    deadline = time.monotonic() + 300
+    miniperl_root, miniperl = None, None
+    if miniperl_recipes:
+        miniperl_root, _ = build_miniperl(run / 'miniperl-build', sources['perl-5.32.1'], prefix[:-1], env, deadline)
+        miniperl = miniperl_root / 'miniperl'
     for recipe in lock['recipes']:
         work = run / recipe['id']; work.mkdir(); (work / 'lib').mkdir()
         inputs = inputs_for(recipe, sources[recipe['source']])
@@ -175,13 +246,14 @@ def collect(output):
         remaining = deadline - time.monotonic()
         if remaining <= 0: raise TimeoutError('Text generation exceeded its deadline')
         log = run / (recipe['id'] + '.log')
-        generation.bounded_run(prefix + recipe['arguments'], work, env, log, remaining)
+        interpreter = [str(miniperl), '-I' + str(miniperl_root / 'lib')] if recipe.get('interpreter') == 'perl-5.32.1-miniperl' else prefix
+        generation.bounded_run((prefix[:-1] + interpreter if miniperl is not None and interpreter[0] == str(miniperl) else interpreter) + recipe['arguments'], work, env, log, remaining)
         generated = outputs_for(work, recipe)
         good, different = compare_outputs(recipe, generated, payload, patch)
         matches.extend(good); unmatched.extend(different)
         retained.update({'generated/' + recipe['id'] + '/' + name: data for name, data in generated.items()})
         retained['logs/' + recipe['id'] + '.log'] = log.read_bytes()
-        commands.append({'cwd': recipe['id'], 'perlArguments': recipe['arguments']})
+        commands.append({'cwd': recipe['id'], 'perlArguments': recipe['arguments'], 'interpreter': recipe.get('interpreter', 'system-perl')})
     details = (json.dumps({'matches': matches, 'unmatched': unmatched}, indent=2) + '\n').encode()
     retained['source-matches.json'] = details
     for name, data in sorted(retained.items()): shared.atomic_write(output / name, data)
@@ -201,8 +273,7 @@ def collect(output):
               'summary': {'cases': len(commands), 'generatedFiles': sum(len(r['outputs']) for r in lock['recipes']),
                           'matchingPayloadFiles': len(matches), 'unmatchedTargets': len(unmatched)},
               'evidence': [biber.file_record(n, d) for n, d in sorted(retained.items())],
-              'remaining': ['Host Perl/support modules differ from the original build environment; only exact outputs count.',
-                            'The XSLoader output differs in its loader-call argument and is retained as unmatched, without normalization.',
+              'remaining': ['System-Perl recipes use host 5.34.1 support modules; miniperl recipes use the exact retained Perl 5.32.1 source.',
                             'Other generated files, native build/source provenance, redistribution terms and the exact signed-app SBOM remain open.']}
     shared.atomic_write(output / 'inventory.json', (json.dumps(report, indent=2) + '\n').encode())
     print('Retained generation run:', run)

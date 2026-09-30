@@ -27,6 +27,30 @@ async function fixture(t: TestContext) {
   await fs.writeFile(zip, zipSync(Object.fromEntries(originals)));
   return { root, data, parent, zip, originals, recovery: new ImportTransactions(data) };
 }
+
+test('low import storage is rejected before recovery staging mutates app data or the destination', async (t) => {
+  const f = await fixture(t);
+  const recovery = new ImportTransactions(f.data, writeImportFile, {}, async () => 0n);
+  await assert.rejects(
+    recovery.create(randomUUID(), 'Low space', 'main.tex', f.parent, f.originals),
+    /needs about .* MB free in Folio storage/,
+  );
+  assert.deepEqual(await fs.readdir(path.join(f.data, 'import-transactions')), []);
+  assert.deepEqual(await fs.readdir(f.parent), []);
+});
+
+test('an import storage probe failure is actionable and leaves no staged recovery state', async (t) => {
+  const f = await fixture(t);
+  const recovery = new ImportTransactions(f.data, writeImportFile, {}, async () => {
+    throw new Error('statfs unavailable');
+  });
+  await assert.rejects(
+    recovery.create(randomUUID(), 'Unknown space', 'main.tex', f.parent, f.originals),
+    /could not check free disk space/,
+  );
+  assert.deepEqual(await fs.readdir(path.join(f.data, 'import-transactions')), []);
+  assert.deepEqual(await fs.readdir(f.parent), []);
+});
 async function crash(f: Awaited<ReturnType<typeof fixture>>, boundary: string) {
   const child = spawn(
     process.execPath,

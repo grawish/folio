@@ -53,6 +53,18 @@ test(
     assert.match(availability.version ?? '', /^\d+\.\d+/);
   },
 );
+test('gitAvailability reports a clear missing-Git prerequisite', async (t) => {
+  const previous = process.env.PATH;
+  process.env.PATH = '';
+  t.after(() => {
+    if (previous === undefined) delete process.env.PATH;
+    else process.env.PATH = previous;
+  });
+  assert.deepEqual(await service.gitAvailability(), {
+    installed: false,
+    message: 'Git is not installed or not on PATH.',
+  });
+});
 
 test('unregistered projectId is rejected before touching git', { skip: !supported }, async () => {
   await assert.rejects(service.gitStatus('no-such-project'), /Save this project before using Git/);

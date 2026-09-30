@@ -1,11 +1,12 @@
 {
   "schemaVersion": 1,
   "foundationLockSha256": "a7a53f3657ea2aeb98431edb89896bb8ff48ad79a2c342725d18c28c5a76c0d6",
-  "cpanLockSha256": "e000085cd45f2d475ddcd96426af92227178a5aa9d3e69860a022778fbf3b482",
+  "cpanLockSha256": "1789fc28ea1961f3dd1953a13fb39bc9b9e565af11e76607ea714fcc056040ca",
   "recipes": [
     {
       "id": "dynaloader",
       "source": "perl-5.32.1",
+      "interpreter": "perl-5.32.1-miniperl",
       "inputs": [
         {
           "path": "ext/DynaLoader/DynaLoader_pm.PL",
@@ -26,6 +27,7 @@
     {
       "id": "xsloader",
       "source": "perl-5.32.1",
+      "interpreter": "perl-5.32.1-miniperl",
       "inputs": [
         {
           "path": "dist/XSLoader/XSLoader_pm.PL",
@@ -45,8 +47,30 @@
       "packagerPatch": "XSLoader.pm"
     },
     {
+      "id": "common-sense",
+      "source": "common-sense-3.75",
+      "interpreter": "perl-5.32.1-miniperl",
+      "inputs": [
+        {
+          "path": "sense.pm.PL",
+          "bytes": 1532,
+          "sha256": "8723968527659c40f3ad39edc348af42eb59f2548e49afb3cf6bb49d84e510f0"
+        }
+      ],
+      "arguments": [
+        "sense.pm.PL",
+        "sense.pm"
+      ],
+      "outputs": {
+        "sense.pm": [
+          "par/lib/common/sense.pm"
+        ]
+      }
+    },
+    {
       "id": "lib",
       "source": "perl-5.32.1",
+      "interpreter": "perl-5.32.1-miniperl",
       "inputs": [
         {
           "path": "dist/lib/lib_pm.PL",
@@ -66,6 +90,7 @@
     {
       "id": "git",
       "source": "perl-5.32.1",
+      "interpreter": "perl-5.32.1-miniperl",
       "inputs": [
         {
           "path": "make_patchnum.pl",

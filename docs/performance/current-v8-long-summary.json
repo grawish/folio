@@ -1,0 +1,1092 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "a3c823e9bddb14363ac83afd4a3b9edf8391f3a7",
+  "appAsarSha256": "bf8d5aa0de647759cfedce9f90f1dd35752063b4e6f1e36ef5d65bdc55b0630c",
+  "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+  "host": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "os": "27.0.0",
+    "cpu": "Apple M4 Pro",
+    "logicalCpus": 14,
+    "ramBytes": 51539607552,
+    "node": "v24.21.0"
+  },
+  "applicationVersions": {
+    "node": "24.21.0",
+    "electron": "44.4.5",
+    "chrome": "152.0.7977.130",
+    "v8": "15.2.124.28-electron.0"
+  },
+  "instrumentation": {
+    "cpuSamplingIntervalMicroseconds": 1000,
+    "heapSamplingIntervalBytes": 65536,
+    "explicitGcRequested": false,
+    "postWorkloadRetentionDiagnostic": false,
+    "nativeObserverSha256": "8addb95700ef208fce5a0125f77864baca37f9e57db8b3292c2b93ad502ed4bd"
+  },
+  "inputMethod": "native keyboard.insertText",
+  "postWorkloadRetentionDiagnostic": null,
+  "seed": {
+    "appAsarSha256": "bf8d5aa0de647759cfedce9f90f1dd35752063b4e6f1e36ef5d65bdc55b0630c",
+    "runtimeManifestSha256": "7dfac8918325ac30e1cccdf38511068f3af1b0e29f5c86b805ecd0c9c7cb7da0",
+    "report": "/Users/grawish/resume-maker/test-results/process-profile-gR0Wyk/measurements.json",
+    "reportSha256": "dfe78190384c0093ca4c940e00666782e4f3efb88430fc7fb5611b5458bc6aca",
+    "profileInventorySha256": "f0f2bddb6f1c3cd3651bb00491de1cae509757fa1a27817373f0cfb2f8b9ce51",
+    "entries": 5623,
+    "logicalFileBytes": 439367880,
+    "copiedExactly": true,
+    "preservedAfterRun": true
+  },
+  "cycles": 20,
+  "pdfs": 60,
+  "independentlyParsedPages": 2040,
+  "nativeSnapshots": 1486,
+  "phaseMarkers": 242,
+  "canvasObservations": 120,
+  "cpuProfiles": 40,
+  "heapObservations": 6,
+  "cpuContextSampleWeights": {
+    "main": [
+      {
+        "sourceOrLabel": "(idle)",
+        "sampleWeightMicroseconds": 250834178
+      },
+      {
+        "sourceOrLabel": "electron/core/runtime.ts",
+        "sampleWeightMicroseconds": 15859021
+      },
+      {
+        "sourceOrLabel": "(program)",
+        "sampleWeightMicroseconds": 2867819
+      },
+      {
+        "sourceOrLabel": "node:inspector",
+        "sampleWeightMicroseconds": 523845
+      },
+      {
+        "sourceOrLabel": "electron/core/save-io.ts",
+        "sampleWeightMicroseconds": 342423
+      },
+      {
+        "sourceOrLabel": "electron/core/workspace.ts",
+        "sampleWeightMicroseconds": 274454
+      },
+      {
+        "sourceOrLabel": "node:internal/fs/promises",
+        "sampleWeightMicroseconds": 206910
+      },
+      {
+        "sourceOrLabel": "(garbage collector)",
+        "sampleWeightMicroseconds": 177457
+      },
+      {
+        "sourceOrLabel": "node:internal/util",
+        "sampleWeightMicroseconds": 116103
+      },
+      {
+        "sourceOrLabel": "electron/core/compiler.ts",
+        "sampleWeightMicroseconds": 84479
+      },
+      {
+        "sourceOrLabel": "node:internal/fs/utils",
+        "sampleWeightMicroseconds": 77311
+      },
+      {
+        "sourceOrLabel": "electron/core/file-io.ts",
+        "sampleWeightMicroseconds": 34884
+      },
+      {
+        "sourceOrLabel": "node:events",
+        "sampleWeightMicroseconds": 26150
+      },
+      {
+        "sourceOrLabel": "node:fs",
+        "sampleWeightMicroseconds": 23106
+      },
+      {
+        "sourceOrLabel": "node:internal/per_context/primordials",
+        "sampleWeightMicroseconds": 17579
+      },
+      {
+        "sourceOrLabel": "electron/core/project.ts",
+        "sampleWeightMicroseconds": 17537
+      },
+      {
+        "sourceOrLabel": "node:internal/util/types",
+        "sampleWeightMicroseconds": 17307
+      },
+      {
+        "sourceOrLabel": "electron/core/engine-cache.ts",
+        "sampleWeightMicroseconds": 12497
+      },
+      {
+        "sourceOrLabel": "electron/main.ts",
+        "sampleWeightMicroseconds": 12286
+      },
+      {
+        "sourceOrLabel": "electron/core/save-transactions.ts",
+        "sampleWeightMicroseconds": 12167
+      },
+      {
+        "sourceOrLabel": "node:electron/js2c/node_init",
+        "sampleWeightMicroseconds": 11425
+      },
+      {
+        "sourceOrLabel": "node:buffer",
+        "sampleWeightMicroseconds": 9831
+      },
+      {
+        "sourceOrLabel": "(native/unmapped)",
+        "sampleWeightMicroseconds": 8644
+      },
+      {
+        "sourceOrLabel": "node:electron/js2c/browser_init",
+        "sampleWeightMicroseconds": 7434
+      },
+      {
+        "sourceOrLabel": "node:internal/worker/js_transferable",
+        "sampleWeightMicroseconds": 7285
+      },
+      {
+        "sourceOrLabel": "node:internal/fs/dir",
+        "sampleWeightMicroseconds": 6274
+      },
+      {
+        "sourceOrLabel": "node:internal/streams/readable",
+        "sampleWeightMicroseconds": 6269
+      },
+      {
+        "sourceOrLabel": "lstat",
+        "sampleWeightMicroseconds": 5040
+      },
+      {
+        "sourceOrLabel": "node:internal/buffer",
+        "sampleWeightMicroseconds": 5016
+      },
+      {
+        "sourceOrLabel": "sendReply",
+        "sampleWeightMicroseconds": 4924
+      },
+      {
+        "sourceOrLabel": "params",
+        "sampleWeightMicroseconds": 4876
+      },
+      {
+        "sourceOrLabel": "electron/core/build-workspaces.ts",
+        "sampleWeightMicroseconds": 4769
+      },
+      {
+        "sourceOrLabel": "createUnsafeArrayBuffer",
+        "sampleWeightMicroseconds": 3812
+      },
+      {
+        "sourceOrLabel": "electron/core/runtime-manager.ts",
+        "sampleWeightMicroseconds": 3804
+      },
+      {
+        "sourceOrLabel": "electron/core/pack-io.ts",
+        "sampleWeightMicroseconds": 3776
+      },
+      {
+        "sourceOrLabel": "node:path",
+        "sampleWeightMicroseconds": 3771
+      },
+      {
+        "sourceOrLabel": "node:internal/process/task_queues",
+        "sampleWeightMicroseconds": 3765
+      },
+      {
+        "sourceOrLabel": "unlink",
+        "sampleWeightMicroseconds": 2521
+      },
+      {
+        "sourceOrLabel": "src/shared/project-files.ts",
+        "sampleWeightMicroseconds": 2519
+      },
+      {
+        "sourceOrLabel": "close",
+        "sampleWeightMicroseconds": 2518
+      },
+      {
+        "sourceOrLabel": "node:internal/crypto/hash",
+        "sampleWeightMicroseconds": 2514
+      },
+      {
+        "sourceOrLabel": "node:internal/stream_base_commons",
+        "sampleWeightMicroseconds": 2503
+      },
+      {
+        "sourceOrLabel": "node:internal/fs/rimraf",
+        "sampleWeightMicroseconds": 2502
+      },
+      {
+        "sourceOrLabel": "node:net",
+        "sampleWeightMicroseconds": 2497
+      },
+      {
+        "sourceOrLabel": "node:internal/deps/undici/undici",
+        "sampleWeightMicroseconds": 2456
+      },
+      {
+        "sourceOrLabel": "hold",
+        "sampleWeightMicroseconds": 2368
+      },
+      {
+        "sourceOrLabel": "node:internal/streams/duplex",
+        "sampleWeightMicroseconds": 1284
+      },
+      {
+        "sourceOrLabel": "node:internal/async_hooks",
+        "sampleWeightMicroseconds": 1269
+      },
+      {
+        "sourceOrLabel": "node:internal/errors",
+        "sampleWeightMicroseconds": 1257
+      },
+      {
+        "sourceOrLabel": "electron/core/compiler-limits.ts",
+        "sampleWeightMicroseconds": 1254
+      },
+      {
+        "sourceOrLabel": "node:internal/fixed_queue",
+        "sampleWeightMicroseconds": 1252
+      },
+      {
+        "sourceOrLabel": "electron/core/diagnostics.ts",
+        "sampleWeightMicroseconds": 1252
+      },
+      {
+        "sourceOrLabel": "node:internal/webstreams/readablestream",
+        "sampleWeightMicroseconds": 1251
+      },
+      {
+        "sourceOrLabel": "FSReqCallback",
+        "sampleWeightMicroseconds": 1248
+      },
+      {
+        "sourceOrLabel": "node:internal/streams/end-of-stream",
+        "sampleWeightMicroseconds": 1247
+      },
+      {
+        "sourceOrLabel": "node:async_hooks",
+        "sampleWeightMicroseconds": 1198
+      }
+    ],
+    "renderer": [
+      {
+        "sourceOrLabel": "(idle)",
+        "sampleWeightMicroseconds": 263031827
+      },
+      {
+        "sourceOrLabel": "(program)",
+        "sampleWeightMicroseconds": 6782557
+      },
+      {
+        "sourceOrLabel": "node_modules/@codemirror/view/dist/index.js",
+        "sampleWeightMicroseconds": 463324
+      },
+      {
+        "sourceOrLabel": "node_modules/react-dom/cjs/react-dom-client.production.js",
+        "sampleWeightMicroseconds": 390210
+      },
+      {
+        "sourceOrLabel": "node_modules/pdfjs-dist/build/pdf.mjs",
+        "sampleWeightMicroseconds": 376658
+      },
+      {
+        "sourceOrLabel": "(garbage collector)",
+        "sampleWeightMicroseconds": 263289
+      },
+      {
+        "sourceOrLabel": "(native/unmapped)",
+        "sampleWeightMicroseconds": 129892
+      },
+      {
+        "sourceOrLabel": "query",
+        "sampleWeightMicroseconds": 108856
+      },
+      {
+        "sourceOrLabel": "src/components/PdfPreview.tsx",
+        "sampleWeightMicroseconds": 86846
+      },
+      {
+        "sourceOrLabel": "node_modules/lucide-react/dist/esm/shared/src/build/buildLucideIconNode.mjs",
+        "sampleWeightMicroseconds": 48431
+      },
+      {
+        "sourceOrLabel": "checkVisibility",
+        "sampleWeightMicroseconds": 46597
+      },
+      {
+        "sourceOrLabel": "node_modules/@codemirror/state/dist/index.js",
+        "sampleWeightMicroseconds": 46562
+      },
+      {
+        "sourceOrLabel": "elementsFromPoint",
+        "sampleWeightMicroseconds": 36917
+      },
+      {
+        "sourceOrLabel": "querySelectorAll",
+        "sampleWeightMicroseconds": 33277
+      },
+      {
+        "sourceOrLabel": "node_modules/lucide-react/dist/esm/Icon.mjs",
+        "sampleWeightMicroseconds": 30359
+      },
+      {
+        "sourceOrLabel": "src/pdf-job.ts",
+        "sampleWeightMicroseconds": 27423
+      },
+      {
+        "sourceOrLabel": "src/App.tsx",
+        "sampleWeightMicroseconds": 26734
+      },
+      {
+        "sourceOrLabel": "src/useWorkspace.ts",
+        "sampleWeightMicroseconds": 20244
+      },
+      {
+        "sourceOrLabel": "node_modules/@codemirror/language/dist/index.js",
+        "sampleWeightMicroseconds": 20149
+      },
+      {
+        "sourceOrLabel": "node_modules/scheduler/cjs/scheduler.production.js",
+        "sampleWeightMicroseconds": 20133
+      },
+      {
+        "sourceOrLabel": "computeBox",
+        "sampleWeightMicroseconds": 18205
+      },
+      {
+        "sourceOrLabel": "node_modules/react/cjs/react.production.js",
+        "sampleWeightMicroseconds": 17678
+      },
+      {
+        "sourceOrLabel": "parseEvaluationResultValue",
+        "sampleWeightMicroseconds": 17251
+      },
+      {
+        "sourceOrLabel": "previewNode",
+        "sampleWeightMicroseconds": 15939
+      },
+      {
+        "sourceOrLabel": "src/components/PdfAnnotations.tsx",
+        "sampleWeightMicroseconds": 13132
+      },
+      {
+        "sourceOrLabel": "getComputedStyle",
+        "sampleWeightMicroseconds": 12604
+      },
+      {
+        "sourceOrLabel": "node_modules/@codemirror/autocomplete/dist/index.js",
+        "sampleWeightMicroseconds": 11296
+      },
+      {
+        "sourceOrLabel": "normalizeWhiteSpace",
+        "sampleWeightMicroseconds": 11272
+      },
+      {
+        "sourceOrLabel": "node_modules/lucide-react/dist/esm/shared/src/utils/mergeClasses.mjs",
+        "sampleWeightMicroseconds": 10434
+      },
+      {
+        "sourceOrLabel": "node_modules/@codemirror/legacy-modes/mode/stex.js",
+        "sampleWeightMicroseconds": 9623
+      },
+      {
+        "sourceOrLabel": "_cached",
+        "sampleWeightMicroseconds": 8854
+      },
+      {
+        "sourceOrLabel": "elementText",
+        "sampleWeightMicroseconds": 8793
+      },
+      {
+        "sourceOrLabel": "innerSerialize",
+        "sampleWeightMicroseconds": 8610
+      },
+      {
+        "sourceOrLabel": "getAriaRole",
+        "sampleWeightMicroseconds": 8008
+      },
+      {
+        "sourceOrLabel": "node_modules/lucide-react/dist/esm/createLucideIcon.mjs",
+        "sampleWeightMicroseconds": 7384
+      },
+      {
+        "sourceOrLabel": "shouldSkipForTextMatching",
+        "sampleWeightMicroseconds": 7368
+      },
+      {
+        "sourceOrLabel": "node_modules/react/cjs/react-jsx-runtime.production.js",
+        "sampleWeightMicroseconds": 6750
+      },
+      {
+        "sourceOrLabel": "src/components/ActionMenu.tsx",
+        "sampleWeightMicroseconds": 6564
+      },
+      {
+        "sourceOrLabel": "match",
+        "sampleWeightMicroseconds": 6305
+      },
+      {
+        "sourceOrLabel": "getElementComputedStyle",
+        "sampleWeightMicroseconds": 6269
+      },
+      {
+        "sourceOrLabel": "src/pdf-policy.ts",
+        "sampleWeightMicroseconds": 6167
+      },
+      {
+        "sourceOrLabel": "getBoundingClientRect",
+        "sampleWeightMicroseconds": 6088
+      },
+      {
+        "sourceOrLabel": "scrollIntoView",
+        "sampleWeightMicroseconds": 6053
+      },
+      {
+        "sourceOrLabel": "evaluate",
+        "sampleWeightMicroseconds": 5353
+      },
+      {
+        "sourceOrLabel": "src/usePdfChangeHighlight.ts",
+        "sampleWeightMicroseconds": 5050
+      },
+      {
+        "sourceOrLabel": "elementSafeTagName",
+        "sampleWeightMicroseconds": 5030
+      },
+      {
+        "sourceOrLabel": "contains",
+        "sampleWeightMicroseconds": 5026
+      },
+      {
+        "sourceOrLabel": "getCSSContent",
+        "sampleWeightMicroseconds": 5022
+      },
+      {
+        "sourceOrLabel": "belongsToDisplayNoneOrAriaHiddenOrNonSlotted",
+        "sampleWeightMicroseconds": 5019
+      },
+      {
+        "sourceOrLabel": "getTextAlternativeInternal",
+        "sampleWeightMicroseconds": 4854
+      },
+      {
+        "sourceOrLabel": "src/usePaneLayout.ts",
+        "sampleWeightMicroseconds": 4850
+      },
+      {
+        "sourceOrLabel": "computeAriaRole",
+        "sampleWeightMicroseconds": 4748
+      },
+      {
+        "sourceOrLabel": "isElementHiddenForAria",
+        "sampleWeightMicroseconds": 4065
+      },
+      {
+        "sourceOrLabel": "node_modules/lucide-react/dist/esm/shared/src/build/buildLucideIconForReact.mjs",
+        "sampleWeightMicroseconds": 3835
+      },
+      {
+        "sourceOrLabel": "dispatchEvent",
+        "sampleWeightMicroseconds": 3784
+      },
+      {
+        "sourceOrLabel": "_promiseAwareJsonValueNoThrow",
+        "sampleWeightMicroseconds": 3778
+      },
+      {
+        "sourceOrLabel": "getAttribute",
+        "sampleWeightMicroseconds": 3771
+      },
+      {
+        "sourceOrLabel": "appendElement",
+        "sampleWeightMicroseconds": 3763
+      },
+      {
+        "sourceOrLabel": "node_modules/@lezer/common/dist/index.js",
+        "sampleWeightMicroseconds": 3761
+      },
+      {
+        "sourceOrLabel": "serialize",
+        "sampleWeightMicroseconds": 3672
+      },
+      {
+        "sourceOrLabel": "src/usePdfDocument.ts",
+        "sampleWeightMicroseconds": 3665
+      },
+      {
+        "sourceOrLabel": "isElementStyleVisibilityVisible",
+        "sampleWeightMicroseconds": 2541
+      },
+      {
+        "sourceOrLabel": "getImplicitAriaRole",
+        "sampleWeightMicroseconds": 2528
+      },
+      {
+        "sourceOrLabel": "src/components/ProjectFiles.tsx",
+        "sampleWeightMicroseconds": 2520
+      },
+      {
+        "sourceOrLabel": "CustomEvent",
+        "sampleWeightMicroseconds": 2516
+      },
+      {
+        "sourceOrLabel": "focusNode",
+        "sampleWeightMicroseconds": 2514
+      },
+      {
+        "sourceOrLabel": "_queryEngine",
+        "sampleWeightMicroseconds": 2512
+      },
+      {
+        "sourceOrLabel": "raf",
+        "sampleWeightMicroseconds": 2512
+      },
+      {
+        "sourceOrLabel": "expectSingleElement",
+        "sampleWeightMicroseconds": 2512
+      },
+      {
+        "sourceOrLabel": "StringValuedToken",
+        "sampleWeightMicroseconds": 2511
+      },
+      {
+        "sourceOrLabel": "getExplicitAriaRole",
+        "sampleWeightMicroseconds": 2421
+      },
+      {
+        "sourceOrLabel": "elementFromPoint",
+        "sampleWeightMicroseconds": 2364
+      },
+      {
+        "sourceOrLabel": "requestAnimationFrame",
+        "sampleWeightMicroseconds": 2346
+      },
+      {
+        "sourceOrLabel": "oneLine",
+        "sampleWeightMicroseconds": 1414
+      },
+      {
+        "sourceOrLabel": "eval",
+        "sampleWeightMicroseconds": 1309
+      },
+      {
+        "sourceOrLabel": "parseAttributeSelector",
+        "sampleWeightMicroseconds": 1266
+      },
+      {
+        "sourceOrLabel": "_matchesParents",
+        "sampleWeightMicroseconds": 1265
+      },
+      {
+        "sourceOrLabel": "listener",
+        "sampleWeightMicroseconds": 1264
+      },
+      {
+        "sourceOrLabel": "node_modules/lucide-react/dist/esm/context.mjs",
+        "sampleWeightMicroseconds": 1262
+      },
+      {
+        "sourceOrLabel": "parentElementOrShadowHostInContext",
+        "sampleWeightMicroseconds": 1262
+      },
+      {
+        "sourceOrLabel": "_queryEngineAll",
+        "sampleWeightMicroseconds": 1262
+      },
+      {
+        "sourceOrLabel": "parentElementOrShadowHost",
+        "sampleWeightMicroseconds": 1261
+      },
+      {
+        "sourceOrLabel": "retarget",
+        "sampleWeightMicroseconds": 1261
+      },
+      {
+        "sourceOrLabel": "generateAriaTree",
+        "sampleWeightMicroseconds": 1260
+      },
+      {
+        "sourceOrLabel": "queryAll",
+        "sampleWeightMicroseconds": 1259
+      },
+      {
+        "sourceOrLabel": "markTargetElements",
+        "sampleWeightMicroseconds": 1258
+      },
+      {
+        "sourceOrLabel": "isError",
+        "sampleWeightMicroseconds": 1258
+      },
+      {
+        "sourceOrLabel": "processElement",
+        "sampleWeightMicroseconds": 1258
+      },
+      {
+        "sourceOrLabel": "_hasScopeClause",
+        "sampleWeightMicroseconds": 1257
+      },
+      {
+        "sourceOrLabel": "checkElementStates",
+        "sampleWeightMicroseconds": 1257
+      },
+      {
+        "sourceOrLabel": "next",
+        "sampleWeightMicroseconds": 1256
+      },
+      {
+        "sourceOrLabel": "closest",
+        "sampleWeightMicroseconds": 1256
+      },
+      {
+        "sourceOrLabel": "elementState",
+        "sampleWeightMicroseconds": 1255
+      },
+      {
+        "sourceOrLabel": "HEADER",
+        "sampleWeightMicroseconds": 1254
+      },
+      {
+        "sourceOrLabel": "resolve",
+        "sampleWeightMicroseconds": 1254
+      },
+      {
+        "sourceOrLabel": "asFlatString",
+        "sampleWeightMicroseconds": 1254
+      },
+      {
+        "sourceOrLabel": "end",
+        "sampleWeightMicroseconds": 1253
+      },
+      {
+        "sourceOrLabel": "codepoint",
+        "sampleWeightMicroseconds": 1253
+      },
+      {
+        "sourceOrLabel": "hasGlobalAriaAttribute",
+        "sampleWeightMicroseconds": 1252
+      },
+      {
+        "sourceOrLabel": "trimStringWithEllipsis",
+        "sampleWeightMicroseconds": 1251
+      },
+      {
+        "sourceOrLabel": "_matchesSimple",
+        "sampleWeightMicroseconds": 1251
+      },
+      {
+        "sourceOrLabel": "isTypedArray",
+        "sampleWeightMicroseconds": 1245
+      },
+      {
+        "sourceOrLabel": "node_modules/@lezer/highlight/dist/index.js",
+        "sampleWeightMicroseconds": 1231
+      },
+      {
+        "sourceOrLabel": "_matchesCSS",
+        "sampleWeightMicroseconds": 1229
+      },
+      {
+        "sourceOrLabel": "traverse",
+        "sampleWeightMicroseconds": 1178
+      },
+      {
+        "sourceOrLabel": "src/appearance.ts",
+        "sampleWeightMicroseconds": 1048
+      },
+      {
+        "sourceOrLabel": "matches",
+        "sampleWeightMicroseconds": 1037
+      },
+      {
+        "sourceOrLabel": "ExpectedTextMatcher",
+        "sampleWeightMicroseconds": 1031
+      }
+    ]
+  },
+  "heap": [
+    {
+      "label": "ready",
+      "memory": {
+        "usedSize": 8959108,
+        "totalSize": 12304384,
+        "embedderHeapUsedSize": 3529128,
+        "backingStorageSize": 1381095
+      },
+      "dom": {
+        "documents": 2,
+        "nodes": 487,
+        "jsEventListeners": 431
+      },
+      "mainMemory": {
+        "rss": 204455936,
+        "heapTotal": 19103744,
+        "heapUsed": 12129532,
+        "external": 6618283,
+        "arrayBuffers": 0
+      },
+      "nodes": 1,
+      "treeReportedEstimatedBytes": 0,
+      "samplesReportedEstimatedBytes": 0,
+      "contextEstimatedBytes": [
+        {
+          "label": "",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "label": "cycle-1",
+      "memory": {
+        "usedSize": 12927656,
+        "totalSize": 19709952,
+        "embedderHeapUsedSize": 4867656,
+        "backingStorageSize": 1468307
+      },
+      "dom": {
+        "documents": 1,
+        "nodes": 2299,
+        "jsEventListeners": 434
+      },
+      "mainMemory": {
+        "rss": 237551616,
+        "heapTotal": 28278784,
+        "heapUsed": 13093144,
+        "external": 9388995,
+        "arrayBuffers": 0
+      },
+      "nodes": 72,
+      "treeReportedEstimatedBytes": 1774396,
+      "samplesReportedEstimatedBytes": 1774472,
+      "contextEstimatedBytes": [
+        {
+          "label": "",
+          "value": 1110276
+        },
+        {
+          "label": "node_modules/@codemirror/view/dist/index.js",
+          "value": 328292
+        },
+        {
+          "label": "node_modules/pdfjs-dist/build/pdf.mjs",
+          "value": 139100
+        },
+        {
+          "label": "node_modules/react-dom/cjs/react-dom-client.production.js",
+          "value": 65600
+        },
+        {
+          "label": "node_modules/react/cjs/react-jsx-runtime.production.js",
+          "value": 65568
+        },
+        {
+          "label": "node_modules/@codemirror/autocomplete/dist/index.js",
+          "value": 65560
+        },
+        {
+          "label": "node_modules/@codemirror/state/dist/index.js",
+          "value": 0
+        },
+        {
+          "label": "node_modules/scheduler/cjs/scheduler.production.js",
+          "value": 0
+        },
+        {
+          "label": "src/App.tsx",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "label": "cycle-5",
+      "memory": {
+        "usedSize": 13430516,
+        "totalSize": 22593536,
+        "embedderHeapUsedSize": 6618056,
+        "backingStorageSize": 1454634
+      },
+      "dom": {
+        "documents": 1,
+        "nodes": 8929,
+        "jsEventListeners": 370
+      },
+      "mainMemory": {
+        "rss": 268042240,
+        "heapTotal": 46694400,
+        "heapUsed": 19472032,
+        "external": 7510322,
+        "arrayBuffers": 0
+      },
+      "nodes": 92,
+      "treeReportedEstimatedBytes": 2148176,
+      "samplesReportedEstimatedBytes": 2148176,
+      "contextEstimatedBytes": [
+        {
+          "label": "",
+          "value": 933368
+        },
+        {
+          "label": "node_modules/@codemirror/view/dist/index.js",
+          "value": 525036
+        },
+        {
+          "label": "node_modules/@codemirror/state/dist/index.js",
+          "value": 222600
+        },
+        {
+          "label": "node_modules/pdfjs-dist/build/pdf.mjs",
+          "value": 139100
+        },
+        {
+          "label": "node_modules/react-dom/cjs/react-dom-client.production.js",
+          "value": 131144
+        },
+        {
+          "label": "src/pdf-job.ts",
+          "value": 65800
+        },
+        {
+          "label": "node_modules/lucide-react/dist/esm/Icon.mjs",
+          "value": 65568
+        },
+        {
+          "label": "node_modules/@codemirror/autocomplete/dist/index.js",
+          "value": 65560
+        },
+        {
+          "label": "node_modules/scheduler/cjs/scheduler.production.js",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "label": "cycle-10",
+      "memory": {
+        "usedSize": 15772648,
+        "totalSize": 18661376,
+        "embedderHeapUsedSize": 9419704,
+        "backingStorageSize": 1469546
+      },
+      "dom": {
+        "documents": 1,
+        "nodes": 17275,
+        "jsEventListeners": 469
+      },
+      "mainMemory": {
+        "rss": 289865728,
+        "heapTotal": 68714496,
+        "heapUsed": 39878972,
+        "external": 10118256,
+        "arrayBuffers": 0
+      },
+      "nodes": 101,
+      "treeReportedEstimatedBytes": 3271952,
+      "samplesReportedEstimatedBytes": 3270036,
+      "contextEstimatedBytes": [
+        {
+          "label": "",
+          "value": 1591760
+        },
+        {
+          "label": "node_modules/@codemirror/view/dist/index.js",
+          "value": 859288
+        },
+        {
+          "label": "node_modules/pdfjs-dist/build/pdf.mjs",
+          "value": 270208
+        },
+        {
+          "label": "node_modules/react-dom/cjs/react-dom-client.production.js",
+          "value": 196832
+        },
+        {
+          "label": "node_modules/@codemirror/state/dist/index.js",
+          "value": 156936
+        },
+        {
+          "label": "src/pdf-job.ts",
+          "value": 65800
+        },
+        {
+          "label": "node_modules/react/cjs/react-jsx-runtime.production.js",
+          "value": 65568
+        },
+        {
+          "label": "node_modules/@codemirror/autocomplete/dist/index.js",
+          "value": 65560
+        },
+        {
+          "label": "node_modules/react/cjs/react.production.js",
+          "value": 0
+        },
+        {
+          "label": "node_modules/scheduler/cjs/scheduler.production.js",
+          "value": 0
+        },
+        {
+          "label": "src/App.tsx",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "label": "cycle-15",
+      "memory": {
+        "usedSize": 13926732,
+        "totalSize": 27574272,
+        "embedderHeapUsedSize": 9847336,
+        "backingStorageSize": 1474546
+      },
+      "dom": {
+        "documents": 1,
+        "nodes": 25417,
+        "jsEventListeners": 247
+      },
+      "mainMemory": {
+        "rss": 293568512,
+        "heapTotal": 71024640,
+        "heapUsed": 22903392,
+        "external": 9543302,
+        "arrayBuffers": 0
+      },
+      "nodes": 119,
+      "treeReportedEstimatedBytes": 3771120,
+      "samplesReportedEstimatedBytes": 3769156,
+      "contextEstimatedBytes": [
+        {
+          "label": "",
+          "value": 1460464
+        },
+        {
+          "label": "node_modules/@codemirror/view/dist/index.js",
+          "value": 1252572
+        },
+        {
+          "label": "node_modules/@codemirror/state/dist/index.js",
+          "value": 394140
+        },
+        {
+          "label": "node_modules/pdfjs-dist/build/pdf.mjs",
+          "value": 204648
+        },
+        {
+          "label": "node_modules/react-dom/cjs/react-dom-client.production.js",
+          "value": 196832
+        },
+        {
+          "label": "src/components/PdfPreview.tsx",
+          "value": 131104
+        },
+        {
+          "label": "src/pdf-job.ts",
+          "value": 65800
+        },
+        {
+          "label": "node_modules/@codemirror/autocomplete/dist/index.js",
+          "value": 65560
+        },
+        {
+          "label": "node_modules/react/cjs/react.production.js",
+          "value": 0
+        },
+        {
+          "label": "node_modules/scheduler/cjs/scheduler.production.js",
+          "value": 0
+        },
+        {
+          "label": "src/components/ProjectFiles.tsx",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "label": "cycle-20",
+      "memory": {
+        "usedSize": 14271960,
+        "totalSize": 15990784,
+        "embedderHeapUsedSize": 12343816,
+        "backingStorageSize": 1444876
+      },
+      "dom": {
+        "documents": 1,
+        "nodes": 33729,
+        "jsEventListeners": 246
+      },
+      "mainMemory": {
+        "rss": 294649856,
+        "heapTotal": 71516160,
+        "heapUsed": 21339012,
+        "external": 8852899,
+        "arrayBuffers": 0
+      },
+      "nodes": 149,
+      "treeReportedEstimatedBytes": 4754616,
+      "samplesReportedEstimatedBytes": 4752744,
+      "contextEstimatedBytes": [
+        {
+          "label": "node_modules/@codemirror/view/dist/index.js",
+          "value": 1908192
+        },
+        {
+          "label": "",
+          "value": 1788280
+        },
+        {
+          "label": "node_modules/@codemirror/state/dist/index.js",
+          "value": 394140
+        },
+        {
+          "label": "node_modules/pdfjs-dist/build/pdf.mjs",
+          "value": 204648
+        },
+        {
+          "label": "node_modules/react-dom/cjs/react-dom-client.production.js",
+          "value": 196888
+        },
+        {
+          "label": "src/pdf-job.ts",
+          "value": 65800
+        },
+        {
+          "label": "node_modules/@codemirror/autocomplete/dist/index.js",
+          "value": 65560
+        },
+        {
+          "label": "node_modules/lucide-react/dist/esm/Icon.mjs",
+          "value": 65560
+        },
+        {
+          "label": "node_modules/lucide-react/dist/esm/createLucideIcon.mjs",
+          "value": 65548
+        },
+        {
+          "label": "node_modules/@codemirror/commands/dist/index.js",
+          "value": 0
+        },
+        {
+          "label": "node_modules/scheduler/cjs/scheduler.production.js",
+          "value": 0
+        }
+      ]
+    }
+  ],
+  "sourceMaps": [
+    {
+      "member": "dist-electron/main.cjs",
+      "kind": "packaged",
+      "bytes": 2033675,
+      "sha256": "9121e15377cf765b5875f56c0de5779523d7358d7b0381952ad7d1061f8020ff"
+    },
+    {
+      "member": "dist/assets/index-DUojE0oj.js",
+      "kind": "byte-identical in-memory replay",
+      "bytes": 4913855,
+      "sha256": "7e55b7d98bf73f945ea23a44d441cc44f95e292af0761312bf8409e1dfb6a712"
+    }
+  ],
+  "scope": "Diagnostic CPU and sampled JavaScript allocation profiles on a copied synthetic history. Profiling changes CPU/allocation behavior; these timings are not acceptance or optimization comparisons. Heap samples estimate selected live allocations since sampling began, not all retained objects or native/PDF-worker/GPU memory. No heap snapshot or explicit GC is requested during the sampled workload. The optional retention diagnostic requests both after sampling stops and is reported separately. Original profile and app are preserved. The app starts new processes from copied on-disk history; it does not restore the preceding session heap. CPU profiles cover the selected V8 isolates rather than all native threads or subprocess CPU. CPU weights sum V8 time deltas, not kernel CPU time or complete native-thread work. Context attribution assigns each sample once to its nearest mapped stack ancestor; it is call-stack context, not causal blame. Heap node selfSize and individual sample estimates are reported separately because rounding can differ. Allocation samples are not the full retained heap. All mappings require exact packaged JavaScript and matching owned source contents; no app files or dist outputs are changed."
+}

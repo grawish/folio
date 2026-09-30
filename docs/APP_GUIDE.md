@@ -102,13 +102,13 @@ Use the **…** menu beside the project name for folder opening, ZIP import, Sav
 
 Supported imported text files: `.tex`, `.sty`, `.cls`, `.bib`, `.txt`. Copied assets: PNG, JPEG, PDF, OTF, TTF, EPS. Symlinks and references outside the project folder are rejected. EPS-dependent external tools are not included merely because the asset can be copied.
 
-For a ZIP, choose **… → Import ZIP project…**, select its main TeX document, review any skipped files, and choose where to keep the new project folder. Existing projects and the original ZIP remain unchanged. Saved chat and PDF history come with Folio exports; each import receives a new identity. Cancellation creates no files. Imports accept ordinary stored/deflated ZIPs within explicit limits and reject unsafe paths, links, duplicate names and excessive expansion. See [ZIP import behavior and limits](ZIP_IMPORT.md).
+For a ZIP, choose **… → Import ZIP project…**, select its main TeX document, review any skipped files, and choose where to keep the new project folder. Existing projects and the original ZIP remain unchanged. Saved chat and PDF history come with Folio exports; each import receives a new identity. Cancellation creates no files. Imports accept ordinary stored/deflated ZIPs within explicit limits and reject unsafe paths, links, duplicate names and excessive expansion. Folio checks free space for staged import bytes plus a 32 MiB margin before it writes recovery data; a failed check leaves no staged import or destination folder. See [ZIP import behavior and limits](ZIP_IMPORT.md).
 
 ## Connect your AI
 
-All connection and model choices live in **Settings → AI connections**. Saving a connection does not select it automatically: choose its radio button to use it for your next message. Existing requests keep the connection with which they started.
+Configure connections, API keys, active connection and connection model defaults in **Settings → AI connections**. Saving a connection does not select it automatically: choose its radio button to use it for your next message. Existing requests keep the connection with which they started. In Chat, the selector beside **Send** chooses only **Auto**, the active connection's default, or a discovered/manual model for that same active connection; use its connection-name button to return to Settings for provider or connection changes.
 
-- **Codex subscription:** install the official Codex command and sign in with your subscription. Folio uses its app-server and an isolated, read-only conversation with tools disabled. Leave Model blank for the account default, or check the connection and choose an image-capable model. An optional absolute app location supports installations outside the usual command paths.
+- **Codex subscription:** install the official Codex command and sign in with your subscription. Folio uses its app-server and an isolated, read-only conversation with tools disabled. Leave Model blank only if your Codex account's configured default is supported; otherwise use **Check connection** and choose an image-capable model your account lists. An optional absolute app location supports installations outside the usual command paths.
 - **Claude Code subscription:** install the official Claude Code command and sign in to your Claude account. Folio uses its normal subscription sign-in and print mode with tools and customizations disabled. Folio does not extract subscription tokens.
 - **API keys:** choose OpenAI or Anthropic and enter your own key and image-capable model ID. API usage is billed separately by your provider.
 - **Custom connection:** enter a base URL, optional key, model, and supported format: OpenAI Responses, OpenAI Chat Completions, or Anthropic Messages. HTTPS is required except for local endpoints.
@@ -117,7 +117,7 @@ Use **Check connection** and **Test image support** after setup. The image test 
 
 When you send a message, the selected connection receives your message, source files, recent conversation context, PDF page images, and selected notes. Notes from earlier versions include the matching earlier source and PDF images. Projects and chat history are otherwise local and are not encrypted by Folio. Source ZIPs and the `resume.folio` file include chat and version history, so share those intentionally.
 
-The installed Codex connection and a real synthetic image request were verified on this development Mac. Claude Code's protocol is fixture-tested; the installed command reports signed out, so a live Claude subscription edit has not been verified. API formats have local protocol tests and the custom API path has a packaged desktop workflow test; live OpenAI/Anthropic API billing accounts were not used in tests.
+Current source-build live checks cover one Claude Code subscription workflow (Claude Code 2.1.282, `sonnet` alias, returned `claude-sonnet-5`) and one Codex CLI workflow (Codex 0.158.0, pinned `gpt-5.5`): each completed an annotated edit, compile/review, export and reopen against a synthetic two-page document. Both are one-account/one-model source-build results, not signed-release or broad subscription acceptance. API formats have local protocol tests and the custom API path has a packaged desktop workflow test; live OpenAI/Anthropic API billing accounts were not used in tests.
 
 ## Current chat limits
 
@@ -175,10 +175,12 @@ npm run test:fonts
 npm run test:support
 npm run test:updates
 npm run test:save-recovery
+npm run test:low-storage
 npm run test:pdf-lifecycle
 npm run test:pdf-viewer
 npm run test:pdf-highlight
 npm run test:runtime
+npm run test:biber
 npm run test:packs
 npm run test:pack-catalog
 npm run test:template-images
@@ -203,7 +205,9 @@ npm run pack
 - PDF viewer tests exercise real 35-/100-/101-page documents, distant-page notes, canvas budgets, mixed page geometry, rejected PDFs, stalled loads/renders, actual worker termination and export recovery. The lifecycle suite separately checks delayed replacement while resizing. See [bounds and evidence](PDF_VIEWER_LIMITS.md).
 - Isolation tests must run outside a parent sandbox that prohibits `sandbox-exec`.
 - Runtime tests check exact compiler selection, damaged-file rejection, offline repair, saved/source-export/history pins and restart using an isolated profile. Run against a packaged build with `node scripts/test-runtime.mjs /absolute/path/Folio.app/Contents/MacOS/Folio`.
+- `npm run test:biber` runs embedded Biber 2.17 in normal bibliography mode against its retained `basic-misc.bcf`/`examples.bib` fixture and in tool mode. It proves those modes run offline; it does not prove every optional module or workflow loads.
 - History-storage tests exercise a real PDF/note, current-version protection, compact dark/light removal confirmation, cancel, removal, unchanged current source/PDF, unsaved draft/source retention, portable save, and native close waiting for a held journal write. See [history storage](HISTORY_STORAGE.md).
+- `npm run test:low-storage` creates a disposable 32 MiB APFS sparse image, forces `ENOSPC` during a journaled save, verifies unchanged original source, then frees space and retries. It does not test power loss or network filesystems.
 - Diagnostic tests show real package, file, engine and font errors with specific advice, retaining the PDF and raw logs/source links; compact dark/light layouts scroll without horizontal overflow and the suggested bundled-font repair fixes the build.
 - Font tests cover local font import/preview/apply/remove, external reload during preview, and byte-for-byte source-ZIP round-tripping. Run against a packaged build with `node scripts/test-fonts.mjs /absolute/path/Folio.app/Contents/MacOS/Folio`. See [local fonts](LOCAL_FONTS.md).
 - Support-bundle tests cover reload creating a fresh review, a failed write preserving the previous ZIP, retry, and native close waiting for an atomic export. See [support bundles](SUPPORT_BUNDLES.md).

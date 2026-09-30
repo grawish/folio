@@ -111,4 +111,30 @@ class GeneratedEvidence(unittest.TestCase):
                 with self.assertRaises(ValueError): collector.outputs_for(root, {'outputs': {name: []}})
 
 
+    def test_miniperl_builder_requires_complete_bounded_source(self):
+        source = {'Configure': b'configure', 'miniperlmain.c': b'entry', 'lib/strict.pm': b'strict', 'lib/warnings.pm': b'warnings'}
+        with tempfile.TemporaryDirectory() as folder:
+            with self.assertRaisesRegex(ValueError, 'incomplete'):
+                collector.build_miniperl(Path(folder), {**source, 'lib/strict.pm': b''}, [], {}, float('inf'))
+            oversized = {str(i): b'x' for i in range(10_001)}
+            with self.assertRaisesRegex(ValueError, 'bounds'):
+                collector.build_miniperl(Path(folder), oversized, [], {}, float('inf'))
+
+    def test_miniperl_recipe_requires_exact_generated_cpan_anchor(self):
+        source = b'generator'
+        output = b'output'
+        recipe = {'source': 'common-sense-3.75', 'inputs': [{'path': 'sense.pm.PL', 'sha256': collector.shared.digest(source)}],
+                  'outputs': {'sense.pm': ['par/lib/common/sense.pm']}}
+        entries = {'common-sense-3.75': {'generatedAnchors': [{'generator': 'perl-5.32.1-miniperl',
+            'source': 'sense.pm.PL', 'sourceSha256': collector.shared.digest(source),
+            'payload': 'par/lib/common/sense.pm', 'sha256': collector.shared.digest(output)}]}}
+        foundation = {'foundationSources': []}
+        collector.verify_miniperl_recipe(recipe, entries, foundation, {'par/lib/common/sense.pm': output})
+        changed = copy.deepcopy(entries); changed['common-sense-3.75']['generatedAnchors'][0]['sha256'] = '0' * 64
+        with self.assertRaises(ValueError):
+            collector.verify_miniperl_recipe(recipe, changed, foundation, {'par/lib/common/sense.pm': output})
+        core_recipe = {'source': 'perl-5.32.1', 'inputs': [{'path': 'dist/XSLoader/XSLoader_pm.PL', 'sha256': 'a'}], 'outputs': {'XSLoader.pm': ['par/lib/XSLoader.pm']}}
+        collector.verify_miniperl_recipe(core_recipe, {}, {'foundationSources': [{'id': 'perl-5.32.1'}]}, {'par/lib/XSLoader.pm': output})
+
+
 if __name__ == '__main__': unittest.main()

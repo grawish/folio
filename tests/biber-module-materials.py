@@ -105,5 +105,45 @@ class ModuleMaterials(unittest.TestCase):
         self.assertTrue(rows[0]['macosSystemPath']);self.assertEqual(rows[1]['bundledBasenameCandidates'],['par/shlib/arch/libxml2.2.dylib']);self.assertTrue(rows[2]['unbundledNonSystemReference'])
         self.assertNotIn('resolved',rows[1])
 
+    def test_ambiguous_build_inputs_identical_requires_matching_makefile_and_ucm_bytes(self):
+        row = {'sources': [
+            {'id': 'a', 'anchors': [{'source': 'Byte/Byte.pm'}]},
+            {'id': 'b', 'anchors': [{'source': 'cpan/Encode/Byte/Byte.pm'}]},
+        ]}
+        matching = {
+            'a': {'Byte/Makefile.PL': b'makefile', 'ucm/x.ucm': b'table1', 'ucm/y.ucm': b'table2'},
+            'b': {'cpan/Encode/Byte/Makefile.PL': b'makefile', 'cpan/Encode/ucm/x.ucm': b'table1',
+                  'cpan/Encode/ucm/y.ucm': b'table2'},
+        }
+        self.assertTrue(c.ambiguous_build_inputs_identical(row, matching))
+        changed = copy.deepcopy(matching); changed['b']['cpan/Encode/ucm/y.ucm'] = b'different'
+        self.assertFalse(c.ambiguous_build_inputs_identical(row, changed))
+        missing = copy.deepcopy(matching); del missing['b']['cpan/Encode/Byte/Makefile.PL']
+        self.assertFalse(c.ambiguous_build_inputs_identical(row, missing))
+        single = {'sources': [row['sources'][0]]}
+        self.assertFalse(c.ambiguous_build_inputs_identical(single, matching))
+
+    def test_encoding_symbol_review_rejects_missing_or_changed_symbols(self):
+        data = bundle(); row = association(data)
+        row['expectedEncodingSymbols'] = []
+        self.assertEqual(c.check_native(data, row)['suffixNames'], [])
+        row['expectedEncodingSymbols'] = ['_unexpected_encoding']
+        with self.assertRaisesRegex(ValueError, 'encoding-table symbols'):
+            c.check_native(data, row)
+
+    def test_bundling_chain_evidence_requires_every_link_present_and_matching(self):
+        sources = {
+            'Log-Log4perl-1.54': {'lib/Log/Log4perl/Appender/DBI.pm': b'package Foo; use DBI; 1;'},
+            'DBI-1.643': {'lib/DBD/Gofer/Transport/corostream.pm': b'use AnyEvent; 1;'},
+            'AnyEvent-7.17': {'lib/AnyEvent/Impl/Tk.pm': b'package AnyEvent::Impl::Tk; 1;'},
+        }
+        self.assertTrue(c.bundling_chain_evidence(sources)['chainVerified'])
+        missing_pattern = copy.deepcopy(sources)
+        missing_pattern['DBI-1.643']['lib/DBD/Gofer/Transport/corostream.pm'] = b'no reference here'
+        self.assertFalse(c.bundling_chain_evidence(missing_pattern)['chainVerified'])
+        missing_file = copy.deepcopy(sources)
+        del missing_file['AnyEvent-7.17']['lib/AnyEvent/Impl/Tk.pm']
+        self.assertFalse(c.bundling_chain_evidence(missing_file)['chainVerified'])
+
 
 if __name__ == '__main__':unittest.main()

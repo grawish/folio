@@ -10,7 +10,7 @@ Scope: macOS on Apple silicon. This is an explicit project action in **Settings 
 4. Choose **Use included compiler** to apply the new choice to the local draft and recovery. Ordinary Save or autosave updates the project folder afterward.
 5. Find backups under **Settings → About → Compiler backups**. **Show backup** reveals the ZIP in Finder. Import it to restore the old source, assets, compiler choice and saved history as a separate project. Both comparison PDFs are stored beside it.
 
-Chat stays the main screen. Code is secondary, and all AI connection/model controls remain in Settings.
+Chat stays the main screen. Code is secondary. AI connection setup, active-connection selection and model-role defaults remain in Settings; the Chat composer can choose Auto, the active connection default, or a manual model for that already active connection.
 
 ## When the old compiler is unavailable
 

@@ -225,6 +225,43 @@ try {
   keyboardChecks.push(
     'Native Settings traps forward/backward Tab, rejects outside focus, identifies its current section, and returns focus to its opener after Escape.',
   );
+
+  await page.getByRole('button', { name: 'Add a PDF note', exact: true }).click();
+  const noteCanvas = page.locator('.preview-pane .pdf-annotation-layer canvas').first();
+  await noteCanvas.focus();
+  await expect(noteCanvas).toHaveAttribute('tabindex', '0');
+  await noteCanvas.press('Enter');
+  const noteEditor = page.getByRole('dialog', { name: 'Edit PDF note', exact: true });
+  await expect(noteEditor).toBeVisible();
+  const noteText = page.getByLabel('PDF note instructions', { exact: true });
+  await expect(noteText).toBeFocused();
+  await noteText.fill('Keyboard-created note');
+  await noteText.press('Tab');
+  await expect(
+    noteEditor.getByRole('button', { name: 'Delete PDF note', exact: true }),
+  ).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(noteEditor.getByRole('button', { name: 'Cancel', exact: true })).toBeFocused();
+  await page.keyboard.press('Tab');
+  const saveNoteButton = noteEditor.getByRole('button', { name: 'Save note', exact: true });
+  await expect(saveNoteButton).toBeFocused();
+  await page.keyboard.press('Enter');
+  await expect(noteEditor).toHaveCount(0);
+  const noteMarker = page.getByRole('button', {
+    name: /^Edit note 1 on page 1: Keyboard-created note$/,
+  });
+  await expect(noteMarker).toHaveCount(1);
+  await noteMarker.focus();
+  await noteMarker.press('Enter');
+  await expect(noteEditor).toBeVisible();
+  await noteEditor.getByRole('button', { name: 'Delete PDF note', exact: true }).focus();
+  await page.keyboard.press('Enter');
+  await expect(noteEditor).toHaveCount(0);
+  await expect(noteMarker).toHaveCount(0);
+  await page.getByRole('button', { name: 'Select text', exact: true }).click();
+  keyboardChecks.push(
+    'Focusing the PDF annotation canvas and pressing Enter creates a note; Tab reaches Delete/Cancel/Save in order, Enter reopens a saved marker, and Delete removes it.',
+  );
   await codeTab.focus();
   await codeTab.press('Home');
   await expect(composer).toHaveValue(chatDraft);

@@ -42,6 +42,7 @@ import { ResumeAgent, validateRenderedPdf, validatePdfInspection } from './core/
 import type { PdfAnnotation, RenderedPdf } from '../src/shared/ai';
 import { GitService } from './core/git';
 import type { GitDiffTarget } from '../src/shared/git';
+import { externalLink } from './core/external-link';
 
 protocol.registerSchemesAsPrivileged([
   {
@@ -854,11 +855,7 @@ function registerHandlers() {
     return true;
   });
   handle('app:external', async (value: unknown) => {
-    if (typeof value !== 'string' || value.length > 2048) throw new Error('Invalid link.');
-    const url = new URL(value);
-    if (!['https:', 'http:', 'mailto:'].includes(url.protocol))
-      throw new Error('This link type is not supported.');
-    await shell.openExternal(url.href);
+    await shell.openExternal(externalLink(value).href);
   });
   handle('app:close', async () => {
     await compilerRemoval?.catch(() => {});

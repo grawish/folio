@@ -472,3 +472,34 @@ test(
     }
   },
 );
+
+test('the resource cap admits exactly the maximum resource count and rejects one more', async (t) => {
+  const f = await fixture(t);
+  const many = (count: number) =>
+    new Map(Array.from({ length: count }, (_, i) => [`r${i}.sty`, Buffer.from(`Resource ${i}`)]));
+  const atLimit = await buildResourcePack({
+    ...f.options,
+    packages: ['r0.sty'],
+    resources: many(512),
+  });
+  const pack = f.verifier.read(atLimit.archive);
+  assert.equal(Object.keys(atLimit.description.files).length, 512);
+  assert.deepEqual(pack.packages, ['r0.sty']);
+  await assert.rejects(
+    buildResourcePack({ ...f.options, packages: ['r0.sty'], resources: many(513) }),
+    /bounds/,
+  );
+});
+
+test('the retained archive folder admits exactly its maximum count and rejects one more', async (t) => {
+  const f = await fixture(t);
+  const store = new ResourcePackStore(path.join(f.root, 'retained'), f.verifier);
+  await fs.mkdir(store.root, { recursive: true });
+  const name = (index: number) => `${index.toString(16).padStart(64, '0')}.foliopack`;
+  for (let i = 0; i < 128; i++) await fs.writeFile(path.join(store.root, name(i)), 'not a pack');
+  const { packs, warnings } = await store.list();
+  assert.equal(packs.length, 0);
+  assert.equal(warnings.length, 128);
+  await fs.writeFile(path.join(store.root, name(128)), 'not a pack');
+  await assert.rejects(store.list(), /Too many retained pack files/);
+});

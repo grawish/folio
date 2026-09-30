@@ -5,23 +5,25 @@
   "summary": {
     "compiledModulePayloadFiles": 99,
     "distinctCompiledModules": 88,
-    "sourceArchives": 41,
-    "sourceArchiveBytes": 38610746,
+    "sourceArchives": 43,
+    "sourceArchiveBytes": 39195592,
     "ambiguousSourceAssociations": 6,
-    "generatedXsReviewRequired": 10,
-    "sourceMaterialFiles": 352,
+    "ambiguousBuildInputsResolved": 6,
+    "generatedXsReviewed": 10,
+    "generatedXsReviewRequired": 0,
+    "sourceMaterialFiles": 363,
     "newExactNativeRebuilds": 0
   },
   "independentChecks": {
-    "retainedFilesVerified": 393,
-    "originalSourceMaterialsVerified": 352,
-    "sourceArchivesVerified": 41,
+    "retainedFilesVerified": 406,
+    "originalSourceMaterialsVerified": 363,
+    "sourceArchivesVerified": 43,
     "modulePayloadFilesVerified": 99,
     "independentlyInspectedBinaries": 88,
     "nmExportsMatched": true,
     "otoolDependenciesMatched": true,
     "existingDylibInspectionsUnchanged": 14,
-    "byteIdenticalReplayFiles": 394
+    "byteIdenticalReplayFiles": 407
   },
   "unbundledNonSystemReferences": [
     "/opt/local/lib/libX11.6.dylib",
@@ -35,7 +37,21 @@
     "Encode::Symbol",
     "Encode::TW"
   ],
-  "generatedXsReviewRequired": [
+  "ambiguousBuildInputsResolved": {
+    "modules": ["Encode::Byte", "Encode::CN", "Encode::EBCDIC", "Encode::KR", "Encode::Symbol", "Encode::TW"],
+    "count": 6,
+    "explanation": "Each module's sibling Makefile.PL and every .ucm table it references, plus the enc2xs generator itself, are byte-identical between Perl 5.32.1's bundled Encode 3.06 and standalone Encode 3.16. The version ambiguity cannot change the compiled output for these six modules."
+  },
+  "bundlingChainEvidence": {
+    "scanDepsRule": "DBI.pm bundles every installed DBD::* driver; any Tk.pm reference triggers recursive Tk bundling",
+    "chainVerified": true,
+    "steps": [
+      {"source": "Log-Log4perl-1.54", "path": "lib/Log/Log4perl/Appender/DBI.pm", "present": true, "patternFound": true},
+      {"source": "DBI-1.643", "path": "lib/DBD/Gofer/Transport/corostream.pm", "present": true, "patternFound": true},
+      {"source": "AnyEvent-7.17", "path": "lib/AnyEvent/Impl/Tk.pm", "present": true, "patternFound": true}
+    ]
+  },
+  "generatedXsReviewed": [
     "Encode::Byte",
     "Encode::CN",
     "Encode::EBCDIC",
@@ -60,18 +76,18 @@
   "tools": [
     {
       "path": "scripts/collect-biber-module-materials.py",
-      "bytes": 12227,
-      "sha256": "9350e711c7f4181d1d679b55d8654ec4b5b5f88a6901793f9d35ce8b05452864"
+      "bytes": 18801,
+      "sha256": "69d377fc2a6dbebb3c2347905e3e95e7cbd633dea1d7956932a798ff2d9cca8b"
     },
     {
       "path": "scripts/collect-biber-native-materials.py",
-      "bytes": 14246,
-      "sha256": "d8409aa0e0f2f7a8923f96da040c8ca019cc2e4540ed17998f864bde0454e34e"
+      "bytes": 15005,
+      "sha256": "17422e315c017ec60102b419e667e54a746cbbf57659a32a354029a80e96f419"
     },
     {
       "path": "scripts/collect-biber-cpan-materials.py",
-      "bytes": 12796,
-      "sha256": "f1554cf322ecfcda786589f33c48da23370f0f430b911d91be95d38fa96fd41c"
+      "bytes": 13845,
+      "sha256": "7efe53b79721771d030b22d37ea3b7615359a58e1dd03b8ac4234c2e5f6ef32a"
     },
     {
       "path": "scripts/collect-biber-build-evidence.py",
@@ -85,8 +101,23 @@
     },
     {
       "path": "resources/biber-module-sources.lock.json",
-      "bytes": 101152,
-      "sha256": "5d8378cfcdea944c548811c98f2e4a6d5b5cf63449f0e8b42efd096078143972"
+      "bytes": 105193,
+      "sha256": "7f9a95a6e022ea36e1b0e8eb41da2b30df357155fd6b0bfaf0b134e27685f164"
+    },
+    {
+      "path": "resources/biber-encode-xs-sources.lock.json",
+      "bytes": 3470,
+      "sha256": "b36f159d690b6d5b27a84fcaa90e2a8ea3d874f0dd64f0c7cdff9d7ae426473b"
+    },
+    {
+      "path": "scripts/collect-biber-encode-xs-evidence.py",
+      "bytes": 8892,
+      "sha256": "990d282c37681b648bf0383c0eed67ab48606beafe53ad2e6cb3dd4573af2741"
+    },
+    {
+      "path": "tests/biber-encode-xs-evidence.py",
+      "bytes": 1144,
+      "sha256": "109b8c9d41bb29970893bfe1a55eff68e4d0fd7110c2c0fe47205f569b3bdad8"
     },
     {
       "path": "resources/biber-build-provenance.lock.json",
@@ -121,13 +152,18 @@
   },
   "retainedInventory": {
     "path": "artifacts/license-materials/biber-modules/inventory.json",
-    "bytes": 300852,
-    "sha256": "2f50e0949095e26197c0991ba8a3a13c5dafcd206dbf78dd02b55dd7e1c25518"
+    "bytes": 324099,
+    "sha256": "c1d543b168db9e37d7d4bded047283e4f624fb30f96cfc618a04c3a76cbe2aea"
   },
   "publishedInventory": {
     "path": "docs/releases/biber-module-inventory.json.gz",
-    "bytes": 51627,
-    "sha256": "d94e3ae899f84c8680b7c6091dbbecc2a2a7cca45c1c7c1066d1f77e78d23d14"
+    "bytes": 54545,
+    "sha256": "f8d270b62bea3d29f188129991d1156c37ce87da70effd6253c8df52e9365674"
+  },
+  "encodeXsEvidence": {
+    "path": "artifacts/license-materials/biber-encode-xs/inventory.json",
+    "bytes": 43121,
+    "sha256": "e988c21dda046a57852c28a3a7bd05bb81570eb552553356e075542123acbe4e"
   },
   "logs": [
     {
@@ -174,10 +210,10 @@
   "limits": [
     "Exported entry points and exact paired Perl files establish source associations, not native build versions, vendor patches or byte-identical compiled binaries.",
     "All matching candidate archives are retained where paired source bytes are shared by multiple releases; no ambiguous version is silently selected.",
-    "Some Encode XS sources are generated. Their paired modules and full original archives are retained; their generated XS inputs still require review.",
-    "Dependency paths and basename candidates are static references, not proof of runtime resolution. X11 and MySQL client references have no bundled library candidate.",
+    "All ten generated Encode XS modules are reviewed by the separate bounded enc2xs symbol-reproduction collector. It proves table-symbol provenance, not compiler flags, object code or vendor build identity.",
+    "Dependency paths and basename candidates are static references, not proof of runtime resolution. X11 and MySQL client references have no bundled library candidate; bundlingChainEvidence explains why they got bundled at all (Module::ScanDeps heuristics via Log::Log4perl -> DBI -> DBD::Gofer::Transport::corostream -> AnyEvent -> AnyEvent::Impl::Tk) but does not prove runtime loading.",
     "Static/vendored native dependencies, complete license obligations, corresponding-source publication, production signing and the final app SBOM remain open.",
-    "No native binary was rebuilt; prior exact source/generated-byte coverage remains 3805 of 3932 payload files, leaving 127 gaps.",
+    "No native binary was rebuilt; exact source/generated coverage is 3808 of 3932 payload files, leaving 124 gaps.",
     "The existing unsigned font-notice package qualification at 662c411 does not qualify the current notice text or a production signed application."
   ]
 }

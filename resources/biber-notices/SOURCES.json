@@ -9,16 +9,16 @@
   "inputs": {
     "resources/biber-build-provenance.lock.json": "a7a53f3657ea2aeb98431edb89896bb8ff48ad79a2c342725d18c28c5a76c0d6",
     "resources/runtime-license-sources.lock.json": "2337891d37e5cbbcd28372273d3222e9af4cc814c246ec724cda9cc5ebf686d6",
-    "resources/biber-cpan-sources.lock.json": "e000085cd45f2d475ddcd96426af92227178a5aa9d3e69860a022778fbf3b482",
-    "resources/biber-native-sources.lock.json": "e416ce4ce796d0ac1ea6d5946ada2645f6cdd243742a75d13e256f74b15a9893",
+    "resources/biber-cpan-sources.lock.json": "1789fc28ea1961f3dd1953a13fb39bc9b9e565af11e76607ea714fcc056040ca",
+    "resources/biber-native-sources.lock.json": "8f1f3e2df113ca4ec94b3415dedb3af4f1dd2d2e404dc5dcc1781079cba059f3",
     "docs/releases/biber-build-verification.json": "ae015eab4aca33de8fe050c56748d41d45dd472131001c2844cb4a9bfaaa15c6",
     "biber-build/inventory.json": "e7597e52cd7a2676fceaefb34dabb4a17a565717052b3709f5e5d6b9ee897ff4",
-    "docs/releases/biber-cpan-verification.json": "ccedba40df9c27d1d0623b88ba18f9de6236914dc3ff6dbbc699d8561d480fb1",
-    "biber-cpan/inventory.json": "75d5a406a9b3a599d1cd5b45359392d5dd77cdd27908fe3c0833deba2ef425a2",
+    "docs/releases/biber-cpan-verification.json": "3add362fce8d76702748e4b105bb51cc60221b92dcddaa3fe9f6a7d614284f72",
+    "biber-cpan/inventory.json": "c1ba360c745eef676d9327ca198cd8ddbac584398999af090ff32cbc294b0be7",
     "biber-build/payload-inventory.json": "147275f6e303dbb0ad6163b99dfef7bfad4e5f45d44e3e95446a9156f9112658",
-    "biber-cpan/source-matches.json": "29da41cbd73591dd393e250040e252d779479f32bf4bac96a524d3d3ed695edf",
-    "biber-native/inventory.json": "2d8b2f2bc97d7ac787e3d64898a2087aa759947c432ed1b00beb5457f0042a70",
-    "docs/releases/biber-native-verification.json": "1817233c8f80aa95f01ac44a2ad498994100eb43b33295ea1b4d1af565233029",
+    "biber-cpan/source-matches.json": "76860a7b3b65ce06888ebb16768193aa71f46996440e1f0f93d82035319fe12b",
+    "biber-native/inventory.json": "e6b63a5deb8303d0a8ea354e698eb68a2c9a46d14516d2a91e7fe70cae37d0f8",
+    "docs/releases/biber-native-verification.json": "fa98a52147d612a54af9041f90c6d2844510e22493909f90f0c73faf91844dca",
     "compiler-sources/inventory.json": "347dcf124c00473d2e075a79b66e249dad5520280d46f5c116c35fe86eca3e85"
   },
   "components": [
@@ -1143,6 +1143,67 @@
           "bytes": 1207,
           "sha256": "9262798aaa363cd20758864b97e60cff8c1a9591b54d013098fbb4d7b1cc66d4",
           "file": "9262798aaa363cd20758864b97e60cff8c1a9591b54d013098fbb4d7b1cc66d4.txt"
+        }
+      ]
+    },
+    {
+      "id": "common-sense-3.75",
+      "kind": "cpan-source-notice-documents",
+      "version": "3.75",
+      "declaredLicense": [
+        "unknown"
+      ],
+      "source": {
+        "id": "common-sense-3.75",
+        "distribution": "common-sense",
+        "version": "3.75",
+        "archive": "common-sense-3.75.tar.gz",
+        "root": "common-sense-3.75",
+        "url": "https://cpan.metacpan.org/authors/id/M/ML/MLEHMANN/common-sense-3.75.tar.gz",
+        "bytes": 13516,
+        "sha256": "a86a1c4ca4f3006d7479064425a09fa5b6689e57261fcb994fe67d061cba0e7e",
+        "metadataUrl": "https://fastapi.metacpan.org/v1/release/MLEHMANN/common-sense-3.75",
+        "metadataResponseSha256": "09bdcf1e10cecdff1cf041b6146e747a06a2ab8abb990110f652c5325d5c5792",
+        "declaredLicense": [
+          "unknown"
+        ],
+        "anchors": [],
+        "generatedAnchors": [
+          {
+            "module": "common::sense",
+            "version": "3.75",
+            "payload": "par/lib/common/sense.pm",
+            "sha256": "c566b0da4f1c0caeb026a6f1e94dcdf22130400a3db2e8f4fd8bb2b664ab0b26",
+            "source": "sense.pm.PL",
+            "sourceSha256": "8723968527659c40f3ad39edc348af42eb59f2548e49afb3cf6bb49d84e510f0",
+            "generator": "perl-5.32.1-miniperl"
+          }
+        ]
+      },
+      "standaloneNoticeFiles": [
+        "LICENSE"
+      ],
+      "notices": [
+        {
+          "originalPath": "LICENSE",
+          "kind": "original-notice",
+          "bytes": 62,
+          "sha256": "8de3540a3cd7ecc9a9dcb48975fe852c082fe17d4462f87bb72aa7cc47f083ad",
+          "file": "8de3540a3cd7ecc9a9dcb48975fe852c082fe17d4462f87bb72aa7cc47f083ad.txt"
+        },
+        {
+          "originalPath": "README",
+          "kind": "complete-source-or-readme-document",
+          "bytes": 17454,
+          "sha256": "0ac89b755f9f71e47f812d72b7fa2e4d9556c5e9901775278a3312aaafca986e",
+          "file": "0ac89b755f9f71e47f812d72b7fa2e4d9556c5e9901775278a3312aaafca986e.txt"
+        },
+        {
+          "originalPath": "sense.pm.PL",
+          "kind": "generator-source-document",
+          "bytes": 1532,
+          "sha256": "8723968527659c40f3ad39edc348af42eb59f2548e49afb3cf6bb49d84e510f0",
+          "file": "8723968527659c40f3ad39edc348af42eb59f2548e49afb3cf6bb49d84e510f0.txt"
         }
       ]
     },
@@ -8122,15 +8183,15 @@
       ]
     }
   ],
-  "originalNoticeReferences": 441,
-  "uniqueOriginalTexts": 414,
-  "expandedTextBytes": 6453696,
+  "originalNoticeReferences": 444,
+  "uniqueOriginalTexts": 416,
+  "expandedTextBytes": 6472682,
   "payload": {
     "file": "ORIGINALS.json.gz",
-    "bytes": 2966126,
-    "sha256": "72a9593b9e6f585b755d80e6e6c64f23ce37e560eb39727524d8bf6e31393d4b",
-    "expandedJsonBytes": 8634525,
-    "expandedJsonSha256": "166d4fa7645103ec45f840259c82ee005601782a095724b36bdef0561c829a3c"
+    "bytes": 2976229,
+    "sha256": "0acf1750831232158bb205aae9c27596af5c6f887c1f4be28b2604e8c1d84213",
+    "expandedJsonBytes": 8659981,
+    "expandedJsonSha256": "583bd7b9eb8e44485a9edc5d7298e3bbd072e452b29ae962c885d13a752bc9cf"
   },
   "verifiedArchives": [
     {
@@ -8232,6 +8293,11 @@
       "file": "biber-cpan/sources/Coro-6.57.tar.gz",
       "bytes": 198128,
       "sha256": "1928e48033540e11ebf5506986dd101af78d2421d210f96599223b15d51714c6"
+    },
+    {
+      "file": "biber-cpan/sources/common-sense-3.75.tar.gz",
+      "bytes": 13516,
+      "sha256": "a86a1c4ca4f3006d7479064425a09fa5b6689e57261fcb994fe67d061cba0e7e"
     },
     {
       "file": "biber-cpan/sources/DBD-CSV-0.58.tgz",
@@ -8814,5 +8880,5 @@
       "sha256": "c3e5e9fdd5004dcb542feda5ee4f0ff0744628baf8ed2dd5d66f8ca1197cb1a1"
     }
   ],
-  "collectorSha256": "4f67d349581f27b98d8d02ade7f53d83b19a696f95bba8fd6e84e9c63971ddcf"
+  "collectorSha256": "48dbcf57eb7888adac3851fdbfcce1aadac4ae649acbadb5b32ec90ecbe1ebf1"
 }

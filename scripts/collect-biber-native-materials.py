@@ -24,7 +24,7 @@ HOSTS = {"github.com", "release-assets.githubusercontent.com", "download.gnome.o
          "ftp.gnu.org", "distfiles.macports.org", "zlib.net"}
 
 
-def macho(data, requested=(), file_type=6):
+def macho(data, requested=(), file_type=6, name_suffix=None):
     thin = biber.arm64_slice(data) if data[:4] == b"\xca\xfe\xba\xbe" else data
     if len(thin) < 32 or thin[:8] != b"\xcf\xfa\xed\xfe\x0c\x00\x00\x01" or file_type not in (6, 8) or struct.unpack_from("<I", thin, 12)[0] != file_type:
         raise ValueError("Expected the reviewed arm64 Mach-O file type")
@@ -69,7 +69,7 @@ def macho(data, requested=(), file_type=6):
         raise ValueError("Incomplete Mach-O identity or symbol table")
     if any(a < b + n and b < a + m for i, (_, a, m) in enumerate(segments) for _, b, n in segments[i+1:] if m and n):
         raise ValueError("Overlapping Mach-O file segments")
-    wanted, found, boot_symbols = dict(requested), {}, []
+    wanted, found, boot_symbols, suffix_names = dict(requested), {}, [], []
     if any(not isinstance(n, int) or not 1 <= n <= 16 for n in wanted.values()):
         raise ValueError("Invalid requested scalar size")
     table, number, strings, string_size = tables[0]
@@ -79,12 +79,14 @@ def macho(data, requested=(), file_type=6):
         if not index or kind & 0xE0 or kind & 0x0F != 0x0F: continue
         name = cstring(strings + index, strings + string_size)
         boot = file_type == 8 and name.startswith("_boot_")
-        if name not in wanted and not boot: continue
+        matches_suffix = name_suffix is not None and name.endswith(name_suffix)
+        if name not in wanted and not boot and not matches_suffix: continue
         mappings = [(file_offset + address - vm, length - (address - vm)) for vm, file_offset, length in segments if vm <= address < vm + length]
         width = wanted[name] * 4 if name in wanted else 1
         if len(mappings) != 1 or name in found or name in boot_symbols or mappings[0][1] < width or not section or (boot and section > section_count):
             raise ValueError("Invalid or ambiguous Mach-O scalar mapping")
         if boot: boot_symbols.append(name)
+        if matches_suffix: suffix_names.append(name)
         if name not in wanted: continue
         file_offset = mappings[0][0]
         found[name] = {"arm64FileOffset": file_offset, "values": list(struct.unpack_from("<" + str(wanted[name]) + "I", thin, file_offset))}
@@ -92,6 +94,7 @@ def macho(data, requested=(), file_type=6):
     result = {"arm64Bytes": len(thin), "arm64Sha256": shared.digest(thin),
               "identity": identities[0] if identities else None, "dependencies": dependencies, "scalars": found}
     if file_type == 8: result["bootSymbols"] = sorted(boot_symbols)
+    if name_suffix is not None: result["suffixNames"] = sorted(suffix_names)
     return thin, result
 
 
@@ -195,6 +198,19 @@ def collect(output, offline):
         if data != (ROOT / "resources/runtime/mac-arm64" / runtime_path).read_bytes() or shared.digest(data) != manifest["files"].get(runtime_path):
             raise ValueError("Prepared native library differs from Biber payload/manifest")
         libraries.append({**entry, "inspection": check_library(data, entry)})
+    by_path = {e["path"]: e for e in libraries}
+    for entry in libraries:
+        linked_path = entry.get("linkedLibrary")
+        if linked_path is None:
+            continue
+        linked = by_path.get(linked_path)
+        if linked is None:
+            raise ValueError("Native library linkedLibrary target is missing")
+        if not linked.get("strings"):
+            raise ValueError("Native library linkedLibrary target has no confirmed version string")
+        deps = entry["inspection"]["dependencies"]
+        if not any(d["name"] == linked["identity"]["name"] and d["currentVersion"] == linked["identity"]["currentVersion"] for d in deps):
+            raise ValueError("Native library does not link the declared linkedLibrary identity/version")
     if len({e["name"] for e in lock["sources"]}) != len(lock["sources"]):
         raise ValueError("Duplicate native source component")
     for entry in lock["sources"]:

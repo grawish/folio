@@ -1,24 +1,22 @@
 {
   "schemaVersion": 1,
-  "verifiedAt": "2026-09-26T21:04:13.456720+00:00",
-  "sourceBase": "2e720b73c436b3c047aea671a129e6b03459af87",
-  "scope": "Matching original CPAN sources and selected notice materials for Biber payload files, including byte-exact documented packager transformations. Not a complete native/generated-code redistribution audit.",
+  "scope": "CPAN static source matching plus verified generated common::sense anchor; not complete native/generated-code redistribution audit.",
   "releaseAuditComplete": false,
   "inputs": [
     {
       "path": "scripts/collect-biber-cpan-materials.py",
-      "bytes": 12796,
-      "sha256": "f1554cf322ecfcda786589f33c48da23370f0f430b911d91be95d38fa96fd41c"
+      "bytes": 13845,
+      "sha256": "7efe53b79721771d030b22d37ea3b7615359a58e1dd03b8ac4234c2e5f6ef32a"
     },
     {
       "path": "tests/biber-cpan-materials.py",
-      "bytes": 6326,
-      "sha256": "f304835321244f92d9acebf970bec3996f6822fa0184f80cd03f1ddb5c7b09c6"
+      "bytes": 7477,
+      "sha256": "62044b9188fb5b7848767d805f07857e25537b6c300083bd7bad4bd985240cb7"
     },
     {
       "path": "resources/biber-cpan-sources.lock.json",
-      "bytes": 117605,
-      "sha256": "e000085cd45f2d475ddcd96426af92227178a5aa9d3e69860a022778fbf3b482"
+      "bytes": 118675,
+      "sha256": "1789fc28ea1961f3dd1953a13fb39bc9b9e565af11e76607ea714fcc056040ca"
     },
     {
       "path": "resources/biber-build-provenance.lock.json",
@@ -37,9 +35,9 @@
     }
   ],
   "summary": {
-    "sourceArchives": 123,
-    "archiveBytes": 30004935,
-    "retainedMaterials": 727,
+    "sourceArchives": 124,
+    "archiveBytes": 30018451,
+    "retainedMaterials": 733,
     "sourcesWithoutStandaloneNotice": [
       "Archive-Zip-1.68",
       "Class-Accessor-0.51",
@@ -88,55 +86,21 @@
     ],
     "payloadFiles": 3932,
     "sourceMatchedPayloadFiles": 3056,
-    "unmatchedPayloadFiles": 876,
-    "cpanSourceMatchedPayloadFiles": 2756
+    "unmatchedPayloadFiles": 876
   },
-  "packagerTransformations": [
-    {
-      "sourceDistribution": "Tk-804.036",
-      "source": "Tk.pm",
-      "sourceSha256": "f3f0b1d3916df92f13f3cf457fbb3b5faf5d32048fd8ef144bf4483e1656863c",
-      "payload": ["par/lib/Tk.pm"],
-      "payloadSha256": "db0358f44d0400fd35a2014ec6661ad2f771999352b402597eb938433db3d754",
-      "transformation": "PAR::Filter::PatchContent:Tk.pm"
-    },
-    {
-      "sourceDistribution": "Tk-804.036",
-      "source": "Tk/Widget.pm",
-      "sourceSha256": "95f39da4703caeaf06b350e754335a033021d90570cd4c39d811b4a4f6911ef5",
-      "payload": ["par/lib/Tk/Widget.pm"],
-      "payloadSha256": "105b29995546355b7378d4c90bcda60c6bb603b3e597a118f3118786e0e5fbc2",
-      "transformation": "PAR::Filter::PatchContent:Tk/Widget.pm"
-    },
-    {
-      "sourceDistribution": "perl-5.32.1",
-      "source": "cpan/AutoLoader/lib/AutoLoader.pm",
-      "sourceSha256": "9a3bd486186b8a4a910b88bd8a503ee4f077b3c36fdc8e450fda74f899bacbc8",
-      "payload": ["par/lib/AutoLoader.pm"],
-      "payloadSha256": "f66c41ef376b0c93a8531f1a5f398b116f5eefa6e215b000a469e68137b5a4e2",
-      "transformation": "PAR::Filter::PatchContent:AutoLoader.pm"
-    },
-    {
-      "sourceDistribution": "perl-5.32.1",
-      "source": "cpan/Pod-Usage/lib/Pod/Usage.pm",
-      "sourceSha256": "d4bb2aa672e3febd4fb215a2d7ddf87709500132cb44617502530d300707d515",
-      "payload": ["par/lib/Pod/Usage.pm"],
-      "payloadSha256": "f594739583e1c739bceb4264facfb07123b92b1bbb4e02e93d05a4d7681ac3f1",
-      "transformation": "PAR::Filter::PatchContent:Pod/Usage.pm"
-    }
-  ],
-  "biberLicenseText": {
-    "archive": "Artistic-2.0.txt",
-    "url": "https://raw.githubusercontent.com/spdx/license-list-data/d46e94e2c78ceede1cfc63cfa0396472d2798d4c/text/Artistic-2.0.txt",
-    "bytes": 8764,
-    "sha256": "bae466ac8d7100c304fe76632ccc627203a3897d3f7166f3cce00fb9df8c2074"
+  "generatedAnchor": {
+    "module": "common::sense",
+    "version": "3.75",
+    "payload": "par/lib/common/sense.pm",
+    "sha256": "c566b0da4f1c0caeb026a6f1e94dcdf22130400a3db2e8f4fd8bb2b664ab0b26",
+    "source": "sense.pm.PL",
+    "sourceSha256": "8723968527659c40f3ad39edc348af42eb59f2548e49afb3cf6bb49d84e510f0",
+    "generator": "perl-5.32.1-miniperl"
   },
   "verification": {
-    "offlineControlsPassed": 8,
-    "allCollectorControlsPassed": 55,
+    "offlineControlsPassed": 9,
     "cachedReplayByteIdentical": true,
-    "cachedReplayOutputFiles": 856,
-    "unchangedCompiledFileCount": 37,
+    "cachedReplayOutputFiles": 863,
     "upstreamCodeExecuted": false,
     "archivePathsExtracted": false
   },
@@ -144,49 +108,25 @@
     {
       "path": "artifacts/license-materials/biber-cpan/inventory.json",
       "bytes": 3181,
-      "sha256": "75d5a406a9b3a599d1cd5b45359392d5dd77cdd27908fe3c0833deba2ef425a2"
+      "sha256": "c1ba360c745eef676d9327ca198cd8ddbac584398999af090ff32cbc294b0be7"
     },
     {
       "path": "artifacts/license-materials/biber-cpan/source-matches.json",
-      "bytes": 1550893,
-      "sha256": "29da41cbd73591dd393e250040e252d779479f32bf4bac96a524d3d3ed695edf"
+      "bytes": 1553067,
+      "sha256": "76860a7b3b65ce06888ebb16768193aa71f46996440e1f0f93d82035319fe12b"
     },
     {
-      "path": "test-results/biber-cpan-all-controls.log",
-      "bytes": 898,
-      "sha256": "c7a76a48fcc4fa247eef0d49ce1da549860ac1412ed8ab9a57e04795c166df24"
-    },
-    {
-      "path": "test-results/biber-cpan-final.log",
-      "bytes": 1348,
-      "sha256": "849a28a6b20ce09cd4d36540016cbf253086a1ce632e8202ee62de3adf4034ae"
-    },
-    {
-      "path": "test-results/biber-cpan-replay.log",
-      "bytes": 1348,
-      "sha256": "849a28a6b20ce09cd4d36540016cbf253086a1ce632e8202ee62de3adf4034ae"
-    },
-    {
-      "path": "test-results/biber-cpan-final-output-hashes.json",
-      "bytes": 96282,
-      "sha256": "bb57682060d02ebcc25090e373ba96e1fe725afe71a4f9a835874f81c57f3666"
-    },
-    {
-      "path": "test-results/biber-cpan-replay-result.json",
-      "bytes": 56,
-      "sha256": "4360e004c26e9498bd62c3f0de76d75cf0c8670232dbf979c4b1473ad3f2fad1"
+      "path": "test-results/biber-cpan-common-sense-tests.log",
+      "bytes": 1636,
+      "sha256": "353f240dc49d8d375c6eb714b0df0536d98be08d3854d257b01cceb567025761"
     }
   ],
   "observations": [
-    "Initial module/version lookup returned MIME-Charset-1.013_01 for the bundled 1.012.2 label. Its bytes did not match; it was excluded. The exact named 1.012.2 release passed complete-file comparison.",
-    "Tk and two core Perl modules differ only by the retained PAR::Packer 1.055 literal compatibility patches; the full transformed bytes match.",
-    "common-sense 3.75 has a generated module rather than a matching original .pm file and remains outside the verified CPAN archive list. Its source lookup is not treated as source-byte verification.",
-    "The first download control used macOS /var through its filesystem symlink, which the output guard refused. The fixture now resolves its temporary root; all eight final controls pass.",
-    "Forty-four source distributions lack a recognized standalone notice filename. Their README and anchor-module texts are retained for embedded grant review.",
-    "Biber README declares Artistic 2.0, while its Build.PL metadata declares perl. Both original texts and the complete Artistic 2.0 text are preserved; this record does not resolve redistribution obligations."
+    "common-sense 3.75 is retained as a generated-source anchor. Its sense.pm.PL is byte-verified here but executed only by the separately bounded Perl 5.32.1 miniperl generated-evidence collector.",
+    "Static CPAN collection remains non-executing: it validates the archive, generator source and payload identity without running Perl."
   ],
   "remaining": [
-    "Map generated core/Unicode/autosplit files, native modules and libraries to complete build/source/license evidence.",
+    "Map remaining generated core/Unicode/autosplit files, native modules and libraries to complete build/source/license evidence.",
     "Review embedded notice grants, upstream license-metadata discrepancies, final redistribution obligations and the exact-app SBOM."
   ]
 }

@@ -73,6 +73,7 @@ The source-native import suite passes with no renderer errors in `test-results/i
 - damaged snapshots and excessive/duplicate version records rejected.
 
 The save milestone passed **49 unit/protocol tests**, production build, TypeScript and formatting checks. The original native desktop suite passed after the new save path. The final packaged chat suite passed with damaged-history save rejection, a second process exiting, and closing during Save As (`test-results/chat-vEiVJh/`). Artifact hashes and scope are recorded in `release/reliable-save/README.md`.
+`node scripts/test-low-storage-save.mjs` creates and removes a disposable 64 MiB APFS sparse image. It fills that test volume until the operating system returns `ENOSPC`, then attempts both a real 1.5 MiB source/history `ProjectStore.save` and a staged `ImportTransactions` import. Original source/destination bytes remain intact on failure; after removing the filler, the same save and import succeed. This is a local APFS exhaustion control only, not a power-loss, network-filesystem, hardware-storage or full application-data quota guarantee.
 
 The later file-management work extends the same journal to deletion entries. Tests cover rollback after a deletion and a real process kill after a source file is removed, plus preservation of both unsaved buffers and newer disk bytes. See [file management](FILE_MANAGEMENT.md). That file-management milestone had 80 passing unit/protocol tests.
 
