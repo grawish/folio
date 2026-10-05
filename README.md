@@ -2,13 +2,11 @@
 
 **Talk about your resume. See the result.**
 
-Folio is a local LaTeX resume studio for **Apple silicon Macs**. Chat is the main screen, with your PDF alongside it. Mark a part of the PDF, attach your feedback, and ask your AI to change it. The Code tab is there when you want to edit the TeX yourself.
+Folio is a local LaTeX resume studio for **Apple silicon Macs**, with preview builds for **Windows and Linux (x64)**. Chat is the main screen, with your PDF alongside it. Mark a part of the PDF, attach your feedback, and ask your AI to change it. The Code tab is there when you want to edit the TeX yourself.
 
 [Website](https://grawish.github.io/folio/) · [Screenshot demos](https://grawish.github.io/folio/demos.html) · [Getting started](docs/tutorials/first-resume.md) · [User guide](docs/APP_GUIDE.md) · [Feature guides](docs/FEATURE_GUIDE_INDEX.md) · [Release status](docs/RELEASE_GAP_AUDIT.md) · [Remaining work](docs/REMAINING_WORK.md)
 
-
 https://github.com/user-attachments/assets/7608504c-d77d-4bdb-aa9a-6e52cd03797a
-
 
 [Watch the 22-second Folio demo](docs/videos/folio-demo.mp4).
 
@@ -18,7 +16,7 @@ Download the **[Apple silicon DMG preview](https://github.com/grawish/folio/rele
 
 Folio is under active development; a signed, notarized installer and live automatic updates are not available yet. The current source includes [app-update Settings and authentication](docs/APP_UPDATES.md); publisher enrollment and a real signed upgrade remain required. The fully qualified unsigned source at `ae62d1a` passes 460 source tests, 19 compiler integrations and all twenty-one native Mac suites on hosted macOS 14.8.9 and 27.0. [OS qualification records](docs/MAC_OS_QUALIFICATION.md) bind those checks to identical app inventories and explain the remaining clean-install and physical-device checks. See the [preview release notes](docs/releases/v0.1.0-preview.4.md) for the packaged build and the [release audit](docs/RELEASE_GAP_AUDIT.md) for remaining production requirements. These results do not establish compatibility with every macOS version.
 
-Windows, Linux and Intel Macs are outside this release's scope. Read the [remaining release requirements](docs/RELEASE_GAP_AUDIT.md) before relying on the preview for important documents.
+**Windows and Linux previews** (installer, ZIP, AppImage, .deb and tar.gz for x64) are published from [v0.1.0-preview.6](https://github.com/grawish/folio/releases/tag/v0.1.0-preview.6). They are unsigned and compile with the same pinned Tectonic + Biber and resource bundle as the Mac build; see [Windows and Linux](docs/WINDOWS_LINUX.md) for install steps and the differences in compiler isolation. Intel Macs remain outside this release's scope. Read the [remaining release requirements](docs/RELEASE_GAP_AUDIT.md) before relying on the preview for important documents.
 
 ## What you can do
 

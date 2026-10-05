@@ -5,7 +5,7 @@ import path from 'node:path';
 import { performance } from 'node:perf_hooks';
 import type { BuildResult, Project } from '../../src/shared/types';
 import { fingerprint, safeRelative } from './project';
-import { inspectRuntime, macSandboxProfile } from './runtime';
+import { compilerExecutable, inspectRuntime, macSandboxProfile } from './runtime';
 import { parseDiagnostics } from './diagnostics';
 import { buildFingerprint } from './build-provenance';
 import { compilerLimits, limitedCompilerLaunch } from './compiler-limits';
@@ -110,16 +110,8 @@ export class Compiler {
         } catch (error) {
           if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
         }
-        const binary = path.join(runtimePath, 'tectonic');
-        const profile = path.join(job, 'compiler.sb');
-        await fs.writeFile(
-          profile,
-          macSandboxProfile(binary, runtimePath, job, await fs.realpath(cache)),
-        );
-        const args = [
-          '-f',
-          profile,
-          binary,
+        const binary = path.join(runtimePath, compilerExecutable());
+        const compileArgs = [
           '-X',
           'compile',
           project.mainFile,
@@ -131,8 +123,26 @@ export class Compiler {
           '--outdir',
           output,
         ];
+        let command = binary,
+          args = compileArgs;
+        if (process.platform === 'darwin') {
+          const profile = path.join(job, 'compiler.sb');
+          await fs.writeFile(
+            profile,
+            macSandboxProfile(binary, runtimePath, job, await fs.realpath(cache)),
+          );
+          command = '/usr/bin/sandbox-exec';
+          args = ['-f', profile, binary, ...compileArgs];
+        }
+        // Windows and Linux runtimes carry no pre-expanded Biber archive. PAR
+        // expands it once per compiler identity into this persistent folder.
+        const parCache =
+          process.platform === 'darwin'
+            ? path.join(job, 'biber-cache')
+            : path.join(this.workRoot, 'biber-par', runtime.pin!.id!);
+        if (process.platform !== 'darwin') await fs.mkdir(parCache, { recursive: true });
         const execution = await this.run(
-          '/usr/bin/sandbox-exec',
+          command,
           args,
           source,
           job,
@@ -140,6 +150,7 @@ export class Compiler {
           controller.signal,
           runtimePath,
           () => cacheLease!.check(),
+          parCache,
         );
         await cacheLease.check();
         await cacheLease.release();
@@ -207,40 +218,41 @@ export class Compiler {
     signal: AbortSignal,
     runtimePath: string,
     checkCache?: () => Promise<void>,
+    parCache = path.join(home, 'biber-cache'),
   ): Promise<{
     code: number;
     log: string;
   }> {
     return new Promise((resolve, reject) => {
-      const launch = limitedCompilerLaunch(command, args, this.timeoutMs, true);
+      const windows = process.platform === 'win32';
+      const launch = limitedCompilerLaunch(command, args, this.timeoutMs, !windows);
       const child = spawn(launch.command, launch.args, {
         cwd,
-        detached: true,
-        stdio: ['ignore', 'pipe', 'pipe', 'pipe'],
-        env: {
-          PATH: `${runtimePath}${path.delimiter}/usr/bin${path.delimiter}/bin`,
-          PAR_GLOBAL_TEMP: path.join(home, 'biber-cache'),
-          HOME: path.join(home, 'home'),
-          TMPDIR: home,
-          TECTONIC_CACHE_DIR: cache,
-          TECTONIC_UNTRUSTED_MODE: '1',
-          XDG_CONFIG_HOME: path.join(home, 'home'),
-          LANG: 'en_US.UTF-8',
-        },
+        detached: launch.posixGroup,
+        windowsHide: true,
+        stdio: windows ? ['ignore', 'pipe', 'pipe'] : ['ignore', 'pipe', 'pipe', 'pipe'],
+        env: compilerEnvironment(runtimePath, home, cache, parCache),
       });
-      const parentWatch = child.stdio[3] as Duplex;
+      const parentWatch = windows ? undefined : (child.stdio[3] as Duplex);
       let log = '';
       let failure: string | undefined;
       const stop = () => {
-        if (child.pid) {
-          try {
-            process.kill(-child.pid, 'SIGKILL');
-          } catch {
-            child.kill('SIGKILL');
-          }
+        if (!child.pid) return;
+        if (windows) {
+          // Tectonic starts Biber as a child; end the whole tree.
+          spawn('taskkill', ['/pid', String(child.pid), '/T', '/F'], {
+            windowsHide: true,
+            stdio: 'ignore',
+          }).once('error', () => child.kill());
+          return;
+        }
+        try {
+          process.kill(-child.pid, 'SIGKILL');
+        } catch {
+          child.kill('SIGKILL');
         }
       };
-      parentWatch.once('error', () => {
+      parentWatch?.once('error', () => {
         failure = 'The compiler parent connection failed.';
         stop();
       });
@@ -286,7 +298,7 @@ export class Compiler {
       };
       child.once('error', (error) => {
         nativeClosed = true;
-        parentWatch.destroy();
+        parentWatch?.destroy();
         cleanup();
         reject(error);
       });
@@ -294,7 +306,7 @@ export class Compiler {
       // The watcher kills remaining helpers on successful exits too. A dead
       // application closes this connection automatically in the kernel.
       child.once('exit', (code, exitSignal) => {
-        parentWatch.destroy();
+        parentWatch?.destroy();
         if (exitSignal || code !== 0) stop();
       });
       child.once('close', async (code, exitSignal) => {
@@ -315,4 +327,41 @@ export class Compiler {
       });
     });
   }
+}
+
+export function compilerEnvironment(
+  runtimePath: string,
+  home: string,
+  cache: string,
+  parCache: string,
+  platform: NodeJS.Platform = process.platform,
+  host: NodeJS.ProcessEnv = process.env,
+): NodeJS.ProcessEnv {
+  const shared = {
+    PAR_GLOBAL_TEMP: parCache,
+    TECTONIC_CACHE_DIR: cache,
+    TECTONIC_UNTRUSTED_MODE: '1',
+    XDG_CONFIG_HOME: path.join(home, 'home'),
+    LANG: 'en_US.UTF-8',
+  };
+  if (platform !== 'win32')
+    return {
+      ...shared,
+      PATH: `${runtimePath}${path.delimiter}/usr/bin${path.delimiter}/bin`,
+      HOME: path.join(home, 'home'),
+      TMPDIR: home,
+    };
+  // Windows programs need SystemRoot to load system libraries.
+  const systemRoot = host.SystemRoot ?? host.SYSTEMROOT ?? 'C:\\Windows';
+  return {
+    ...shared,
+    PATH: [runtimePath, path.win32.join(systemRoot, 'System32'), systemRoot].join(';'),
+    SystemRoot: systemRoot,
+    windir: systemRoot,
+    TEMP: home,
+    TMP: home,
+    USERPROFILE: path.win32.join(home, 'home'),
+    APPDATA: path.win32.join(home, 'home'),
+    LOCALAPPDATA: path.win32.join(home, 'home'),
+  };
 }

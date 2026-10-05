@@ -58,6 +58,18 @@ export function projectRuntime(metadata: {
 
 export function adoptRuntime(pin: RuntimePin | undefined, bundled: RuntimePin | undefined) {
   if (!pin) return bundled;
+  // A project pinned on another OS keeps working when this installer bundles
+  // the same Tectonic version, resource bundle and Biber version: the locked
+  // bundle.zip is byte-identical across platforms, only executables differ.
+  if (
+    pin.id &&
+    bundled?.id &&
+    pin.platform !== bundled.platform &&
+    pin.version === bundled.version &&
+    pin.bundle === bundled.bundle &&
+    (pin.biberVersion ?? null) === (bundled.biberVersion ?? null)
+  )
+    return bundled;
   if (
     !pin.id &&
     bundled &&
