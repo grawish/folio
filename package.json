@@ -1,8 +1,8 @@
 {
   "name": "folio-resume-maker",
-  "version": "0.1.0-preview.5",
+  "version": "0.1.0-preview.6",
   "private": true,
-  "description": "A chat-first LaTeX resume studio for Apple silicon Macs.",
+  "description": "A chat-first LaTeX resume studio for macOS, Windows and Linux.",
   "author": "Folio contributors",
   "license": "PolyForm-Noncommercial-1.0.0",
   "homepage": "https://grawish.github.io/folio/",
@@ -53,6 +53,8 @@
     "runtime:verify": "node scripts/verify-runtime.mjs",
     "pack": "npm run runtime:verify && npm run build && electron-builder --mac --arm64 --dir",
     "dist": "npm run runtime:verify && npm run build && electron-builder --mac --arm64",
+    "dist:win": "npm run runtime:verify && npm run build && electron-builder --win --x64",
+    "dist:linux": "npm run runtime:verify && npm run build && electron-builder --linux --x64",
     "release:finalize-dmg": "node --import tsx scripts/finalize-mac-dmg.ts",
     "start": "electron .",
     "test:migration": "npm run build && node --import tsx scripts/test-migration.mjs",
@@ -137,6 +139,69 @@
         }
       ],
       "icon": "resources/branding/folio.icns"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "resources/branding/folio-1024.png",
+      "signAndEditExecutable": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "artifactName": "Folio-${version}-win-${arch}-setup.${ext}",
+      "license": "LICENSE"
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "deb",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "tar.gz",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "category": "Office",
+      "icon": "resources/branding/folio-1024.png",
+      "synopsis": "Chat-first LaTeX resume studio",
+      "maintainer": "Folio contributors <noreply@grawish.com>"
+    },
+    "deb": {
+      "depends": [
+        "libgtk-3-0",
+        "libnss3",
+        "libxss1",
+        "libxtst6",
+        "xdg-utils",
+        "libatspi2.0-0",
+        "libuuid1",
+        "libsecret-1-0"
+      ]
     },
     "artifactName": "Folio-${version}-${os}-${arch}.${ext}",
     "beforePack": "./scripts/prepare-electron-notices.mjs"

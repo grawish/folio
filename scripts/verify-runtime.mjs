@@ -15,7 +15,7 @@ for (const [name, expected] of Object.entries(manifest.files)) {
     .digest('hex');
   if (actual !== expected) throw new Error(`Runtime integrity check failed: ${name}`);
 }
-await fs.mkdir('.cache', { recursive: true });
+await fs.mkdir('.cache/biber-par', { recursive: true });
 const temporary = await fs.mkdtemp(path.resolve('.cache/offline-check-'));
 try {
   const sources = await templateInputs(path.join(temporary, 'templates'));
@@ -42,8 +42,14 @@ try {
         encoding: 'utf8',
         env: {
           ...process.env,
-          PATH: `${root}${path.delimiter}/usr/bin${path.delimiter}/bin`,
-          PAR_GLOBAL_TEMP: path.join(root, 'biber-cache'),
+          PATH:
+            process.platform === 'win32'
+              ? `${root};${process.env.PATH ?? ''}`
+              : `${root}${path.delimiter}/usr/bin${path.delimiter}/bin`,
+          PAR_GLOBAL_TEMP:
+            process.platform === 'darwin'
+              ? path.join(root, 'biber-cache')
+              : path.resolve('.cache/biber-par'),
           TECTONIC_CACHE_DIR: path.join(temporary, path.basename(source, '.tex') + '-cache'),
           XDG_CONFIG_HOME: path.join(temporary, 'config'),
         },

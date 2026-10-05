@@ -7,7 +7,7 @@ export type SupportSection = (typeof supportSections)[number];
 export type SupportContext = {
   compiler: {
     state: 'ready' | 'needs-attention' | 'not-checked';
-    isolation: 'macos-seatbelt' | 'unavailable';
+    isolation: 'macos-seatbelt' | 'posix-limits' | 'untrusted-mode' | 'unavailable';
     version: string | null;
     repairAvailable: boolean;
     includedCompiler: boolean | null;

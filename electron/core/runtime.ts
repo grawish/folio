@@ -52,10 +52,30 @@ export async function readRuntimeManifest(root: string): Promise<RuntimeManifest
   for (const name of [
     executable,
     'bundle.zip',
-    ...(value.biberVersion ? ['biber', 'biber-cache/biber'] : []),
+    ...(value.biberVersion ? biberFiles(value.platform) : []),
   ])
     if (!value.files[name]) throw new Error(`Runtime manifest is missing ${name}.`);
   return value;
+}
+
+// macOS pre-expands Biber's Perl archive so its sandbox keeps the runtime
+// read-only. Windows and Linux expand it once into a per-user cache instead.
+export function biberFiles(platform: string) {
+  if (platform.startsWith('darwin-')) return ['biber', 'biber-cache/biber'];
+  return [platform.startsWith('win32-') ? 'biber.exe' : 'biber'];
+}
+
+export function compilerExecutable(platform = `${process.platform}-${process.arch}`) {
+  return platform.startsWith('win32-') ? 'tectonic.exe' : 'tectonic';
+}
+
+export function compilerIsolation(
+  platform: NodeJS.Platform = process.platform,
+): RuntimeStatus['isolation'] {
+  if (platform === 'darwin') return 'macos-seatbelt';
+  if (platform === 'linux') return 'posix-limits';
+  if (platform === 'win32') return 'untrusted-mode';
+  return 'unavailable';
 }
 
 function runtimeName(name: string) {
@@ -200,7 +220,7 @@ export async function inspectRuntime(root: string, expected?: RuntimePin): Promi
     engine: 'Tectonic 0.17.0',
     bundle: 'folio-core-v1',
     platform: `${process.platform}-${process.arch}`,
-    isolation: process.platform === 'darwin' ? 'macos-seatbelt' : 'unavailable',
+    isolation: compilerIsolation(),
     message: '',
   };
   try {
@@ -208,11 +228,10 @@ export async function inspectRuntime(root: string, expected?: RuntimePin): Promi
     status.pin = pin;
     if (manifest.platform !== status.platform)
       throw new Error('This compiler was built for a different platform.');
-    if (process.platform !== 'darwin')
-      throw new Error(
-        'Compiler isolation for Windows and Linux is still in development. Editing and saving are available in this preview.',
-      );
-    await fs.access('/usr/bin/sandbox-exec');
+    if (process.platform === 'darwin') await fs.access('/usr/bin/sandbox-exec');
+    else if (process.platform === 'linux') await fs.access('/bin/bash');
+    else if (process.platform !== 'win32')
+      throw new Error('Compiling is not available on this system. You can still edit and save.');
     status.ready = true;
     status.engine = `Tectonic ${manifest.version}${manifest.biberVersion ? ` · Biber ${manifest.biberVersion}` : ''}`;
     status.bundle = manifest.bundle;

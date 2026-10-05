@@ -4,6 +4,7 @@ import path from 'node:path';
 import { adoptRuntime, validateRuntimePin, type RuntimePin } from '../../src/shared/runtime';
 import type { RuntimeStatus } from '../../src/shared/types';
 import {
+  compilerIsolation,
   inspectRuntime,
   readRuntimeManifest,
   runtimeFile,
@@ -114,7 +115,7 @@ export class RuntimeManager implements RuntimeSource {
       engine: `Tectonic ${pin?.version ?? 'unavailable'}`,
       bundle: pin?.bundle ?? 'Unavailable',
       platform: `${process.platform}-${process.arch}`,
-      isolation: process.platform === 'darwin' ? 'macos-seatbelt' : 'unavailable',
+      isolation: compilerIsolation(),
       pin,
       defaultPin: this.defaultPin,
       canRepair: false,
@@ -559,7 +560,7 @@ export class RuntimeManager implements RuntimeSource {
           engine: `Tectonic ${pin?.version ?? value?.version ?? 'unavailable'}`,
           bundle: pin?.bundle ?? value?.bundle ?? 'Unavailable',
           platform: `${process.platform}-${process.arch}`,
-          isolation: process.platform === 'darwin' ? 'macos-seatbelt' : 'unavailable',
+          isolation: compilerIsolation(),
           pin: pin ?? value,
           defaultPin: this.defaultPin,
           canRepair,

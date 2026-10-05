@@ -5,8 +5,12 @@ import { tsImport } from 'tsx/esm/api';
 // electron-builder runs this before copying extraResources, including direct
 // CLI builds. No network request or change to the installed Electron runtime.
 export default async function beforePack(context) {
-  if (context.electronPlatformName !== 'darwin' || context.arch !== Arch.arm64)
-    throw new Error('Folio packages only the pinned Apple silicon Electron notices.');
+  const target = `${context.electronPlatformName}-${Arch[context.arch]}`;
+  // The notice bundles are the complete upstream originals for the pinned
+  // Electron, Tectonic and Biber releases. Windows and Linux previews ship the
+  // same originals; their platform binary inventories are tracked separately.
+  if (!['darwin-arm64', 'win32-x64', 'linux-x64'].includes(target))
+    throw new Error(`Folio does not package ${target}.`);
   const root = context.packager.projectDir;
   const { prepareElectronNotices } = await tsImport('./electron-notices.ts', import.meta.url);
   const notices = await prepareElectronNotices(path.join(root, 'artifacts/electron-notices'), root);

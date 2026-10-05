@@ -424,7 +424,10 @@ export function SettingsModal({
                 <p className="settings-hint">
                   LaTeX builds locally. You can edit and build without an AI connection.
                 </p>
-                <p className="settings-hint">Folio is built for Macs with Apple silicon.</p>
+                <p className="settings-hint">
+                  Folio runs on Apple silicon Macs, Windows (x64) and Linux (x64). Windows and Linux
+                  builds are unsigned previews.
+                </p>
               </>
             )}
           </div>
