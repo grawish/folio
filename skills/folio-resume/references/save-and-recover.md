@@ -8,7 +8,7 @@ Click **Save** or press Command + S. The first save asks for a folder. Wait for 
 
 To turn on autosave, open **Settings → General → Autosave project**. Save once to choose a folder. After that, Folio saves source, chat and notes after a two-second pause. Autosave waits during AI work and other saves, and pauses for outside changes or errors.
 
-In development builds, Folio packs your PDF history in the background while saving. Keep waiting for **Saved locally** before treating the folder as saved. If saving reports an error, your earlier files stay available; fix the problem and try Save again. This improvement is not in the older preview-4 download.
+In development builds, Folio packs your PDF history in the background while saving. Keep waiting for **Saved locally** before treating the folder as saved. If saving reports an error, your earlier files stay available; fix the problem and try Save again. This improvement is included from preview 5, not the older preview-4 download.
 
 If Folio says it is **finishing other workspace saves**, let the current work finish, then try the action again. For a chat-recovery warning, click **Save** to retry with your current chat and notes. Wait for **Saved locally** before treating that retry as saved.
 
@@ -27,7 +27,7 @@ In current development builds, a recovery error stays on screen with a **Retry r
 
 [Screenshot: Recovery and Settings each have their own retry button](https://github.com/grawish/folio/blob/main/docs/images/recovery-retry.png)
 
-If there is also a Settings warning, click **Retry settings save** for that separate problem. Saving settings does not dismiss an unresolved recovery error. These screenshot errors were deliberately created with a sample document. This feature is newer than preview 4; see [recovery details and limits](https://github.com/grawish/folio/blob/main/docs/RECOVERY_WRITES.md).
+If there is also a Settings warning, click **Retry settings save** for that separate problem. Saving settings does not dismiss an unresolved recovery error. These screenshot errors were deliberately created with a sample document. This feature is included from preview 5, not preview 4; see [recovery details and limits](https://github.com/grawish/folio/blob/main/docs/RECOVERY_WRITES.md).
 
 ## When another app edits the folder
 

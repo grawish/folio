@@ -8,7 +8,7 @@ This walkthrough uses a built-in template and works without an AI account. Folio
 
 ## Move around with the keyboard
 
-This improved keyboard flow is in the current development source; it is not in the preview-4 installer.
+This improved keyboard flow is in preview 5 and current source; it is not in the older preview-4 installer.
 
 1. Press **Tab** to move between controls. **Shift + Tab** moves backward. A ring shows which control has focus.
 2. When **Chat** or **Code** has focus, press **Left Arrow** or **Right Arrow** to switch views. Your draft stays in place. **Home** chooses Chat; **End** chooses Code.
@@ -33,7 +33,7 @@ The sample person and achievements are examples. Replace them with your own fact
 
 ## Work while the PDF builder gets ready
 
-This faster opening flow is in the current development source. The published preview-4 installer still waits for compiler preparation before opening the workspace.
+This faster opening flow is in preview 5 and current source. The older preview-4 installer still waits for compiler preparation before opening the workspace.
 
 1. Wait for your saved resume to appear. Folio protects it while it loads.
 2. If the top bar says **Preparing your local compiler**, you can already change the source in **Code**, write a draft in **Chat**, choose a template, or **Save**.

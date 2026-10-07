@@ -22,7 +22,7 @@ If **Settings could not be saved** appears, check disk space and folder access, 
 
 ![Retrying a settings save](../images/preferences-save-error.png)
 
-See [workspace preference recovery](../WORKSPACE_PREFERENCES.md#remember-settings-after-an-unexpected-quit) for startup errors and the limits of crash recovery. This is development-source behavior, newer than the public preview 4.
+See [workspace preference recovery](../WORKSPACE_PREFERENCES.md#remember-settings-after-an-unexpected-quit) for startup errors and the limits of crash recovery. This behavior is included from preview 5, not the older preview 4.
 
 ## Understand privacy and help
 
@@ -84,7 +84,7 @@ The screenshot uses a synthetic previous compiler identity to exercise the flow;
 
 ## Make room for compiler files
 
-This feature is in the current development source. It is not in the older preview-4 download.
+This feature is in preview 5 and current source. It is not in the older preview-4 download.
 
 Each resume remembers the compiler that built it. An old compiler may still be useful, even after Folio gets an update.
 
@@ -109,7 +109,7 @@ Before preparing another compiler copy, Folio checks a 16 GiB installation budge
 
 ## Read the included font licenses
 
-Current development builds include the original font licenses inside the app. This folder is not in the older preview-4 download.
+Current development builds include the original font licenses inside the app. This folder is included from preview 5, not the older preview-4 download.
 
 1. In Finder, open **Applications**.
 2. Control-click **Folio**, then choose **Show Package Contents**.
@@ -120,7 +120,7 @@ The notice files keep their original wording. Folio's noncommercial license does
 
 ## Read the included TeX notices
 
-Current development builds also have a **tex-resource-notices** folder beside **tex-font-notices**. The older preview-4 download does not include this new folder.
+Current development builds also have a **tex-resource-notices** folder beside **tex-font-notices**. It is included from preview 5; the older preview-4 download does not include this folder.
 
 1. In Finder, right-click **Folio.app** and choose **Show Package Contents**.
 2. Open **Contents → Resources → tex-resource-notices**.
@@ -134,7 +134,7 @@ Developers can also check how the three generated TeX setup files were made. The
 
 ## Read Electron and Chromium notices
 
-In current development builds, right-click **Folio.app** in Finder and choose **Show Package Contents**. Open **Contents → Resources → electron-notices**. **LICENSE** contains Electron's license; **LICENSES.chromium.html** opens the complete Chromium notices in a browser. **README.md** explains where they came from. The older preview-4 download does not include this new folder.
+In current development builds, right-click **Folio.app** in Finder and choose **Show Package Contents**. Open **Contents → Resources → electron-notices**. **LICENSE** contains Electron's license; **LICENSES.chromium.html** opens the complete Chromium notices in a browser. **README.md** explains where they came from. It is included from preview 5; the older preview-4 download does not include this folder.
 
 These tools keep their own terms. Folio's noncommercial license does not replace them. See the [licensing guide](../LICENSING.md#include-electron-and-chromium-notices) for source details and remaining release work.
 
@@ -147,11 +147,11 @@ If a build says the **compiler cache exceeded its storage limit**, your current 
 
 ![Cache-limit message with the previous successful PDF still visible](../images/cache-limit.png)
 
-This demo uses a sample document and a deliberately oversized file-size reading. It does not fill a disk. The change is newer than preview 4. See [compiler cache limits](../ENGINE_CACHE.md) for the exact retention policy and verification scope.
+This demo uses a sample document and a deliberately oversized file-size reading. It does not fill a disk. The change is included from preview 5, not preview 4. See [compiler cache limits](../ENGINE_CACHE.md) for the exact retention policy and verification scope.
 
 
 ## Read bibliography-helper notices
 
 In current development builds, right-click **Folio.app** in Finder and choose **Show Package Contents**. Open **Contents → Resources → biber-notices → README.md**. The guide links the original documents for Biber, the tool that builds bibliographies, and its dependencies. Some license statements live inside a complete source file or README.
 
-Their original terms still apply. Folio's noncommercial license does not replace them. This folder is newer than the preview-4 installer. See [Biber notice coverage](../BIBER_NOTICES.md) for the included documents and remaining release work.
+Their original terms still apply. Folio's noncommercial license does not replace them. This folder is included from preview 5, not the older preview-4 installer. See [Biber notice coverage](../BIBER_NOTICES.md) for the included documents and remaining release work.

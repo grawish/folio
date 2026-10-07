@@ -1,6 +1,6 @@
 # Original bibliography-helper notices
 
-Biber helps Folio build bibliographies. New development packages now include the original license and declaration documents collected for Biber and its dependencies. This addition does not change the older preview-4 download.
+Biber helps Folio build bibliographies. Packages from preview 5 onward include the original license and declaration documents collected for Biber and its dependencies. The older preview-4 download does not include them.
 
 To read them, right-click **Folio.app** in Finder, choose **Show Package Contents**, then open **Contents → Resources → biber-notices → README.md**. The guide links each component and original filename to its unchanged text. `SOURCES.json` records the original source locations and checksums. These tools keep their own terms; Folio's noncommercial license does not replace them.
 

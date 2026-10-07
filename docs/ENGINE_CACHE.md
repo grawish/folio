@@ -1,6 +1,6 @@
 # Keep compiler helper files within a limit
 
-Folio saves helper files so later PDF builds can start faster. It now keeps the two most recently used compiler caches in each compiler context. Old helper files are removed automatically and can be made again when needed. This development-source change is newer than the preview-4 download.
+Folio saves helper files so later PDF builds can start faster. It now keeps the two most recently used compiler caches in each compiler context. Old helper files are removed automatically and can be made again when needed. This change is included from preview 5, not the older preview-4 download.
 
 ## If a build reaches the cache limit
 

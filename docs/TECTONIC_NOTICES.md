@@ -1,6 +1,6 @@
 # Original compiler license texts
 
-New development builds include the original license and notice texts collected for Tectonic, Folio's PDF compiler. The public preview-4 download is unchanged.
+Builds from preview 5 onward include the original license and notice texts collected for Tectonic, Folio's PDF compiler. The older preview-4 download does not include them.
 
 To find them in a built Mac app, right-click **Folio.app** in Finder, choose **Show Package Contents**, and open **Contents → Resources → tectonic-notices → README.md**. The guide maps each source component and original filename to its text. `SOURCES.json` records source URLs and checksums. Each third-party text keeps its original terms; Folio's noncommercial license applies to Folio's original work.
 
