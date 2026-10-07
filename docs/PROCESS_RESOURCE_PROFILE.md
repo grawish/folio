@@ -314,3 +314,20 @@ All 486 source tests, type checking/build and local file, Git, chat, diagnostic 
 The native qualification set now also checks Git, for twenty-four suites. The first isolated Git harness attempt expected initialization without an identity; the app correctly showed its setup prompt. The corrected harness checks that prompt and uses its own synthetic Git configuration, without changing the user's account. The new [Git walkthrough](tutorials/git-history.md) contains a real local-commit screenshot. Forty website demos pass desktop/mobile image, layout and theme checks.
 
 Hosted qualification of this integrated candidate remains pending. The earlier five-cycle heap results describe the earlier package; they are not a performance result for the merged Git/PDF-highlight app. Physical input/accessibility, natural-collection long sessions, upper-bound fixtures and the two earlier CPU failures remain open. These checks do not establish production signing or complete release acceptance.
+
+### Keeping typing out of Chromium's native undo stack — 7 October 2026
+
+The retaining-path diagnostic above located Code-mode detached nodes in `blink::UndoStack` and `blink::TypingCommand`: Chromium records each natively applied contenteditable insertion in the frame's own undo history, although CodeMirror's `history()` is the undo the user actually gets. The synthetic-paste control, which CodeMirror applies itself, retained one node.
+
+`managedTextInput` in `src/editor-state.ts` now applies a committed, non-composing `insertText` `beforeinput` the same way: when the editor is writable, has one selection and the live DOM selection equals that selection, it cancels the native insertion and dispatches a `replaceSelection` transaction tagged `input.type`, running any registered input handlers first. Composition, autocorrect/replacement input, multiple selections and any DOM/editor selection mismatch keep the native path. Backspace, Delete, Enter, paste, cut and drop were already handled by CodeMirror.
+
+`npm run test:editor-native-undo` bundles the real editor state into Electron 44.4.5 (Chromium 152.0.7977.130) and repeats the diagnostic workload, full-document `keyboard.insertText` followed by ordinary typing, for 20 cycles with explicit collection at the endpoints:
+
+| Case | Detached nodes after GC, start → cycle 20 | Growth per cycle |
+| --- | --- | --- |
+| Native-input control (`beforeinput` withheld from the editor) | 14 → 8,221 | 410.35 |
+| Ordinary typing with `managedTextInput` | 14 → 13 | −0.05 |
+
+Both cases produce the exact typed text, undo the last typing group, open autocompletion, commit IME composition and enter accented/emoji text. A separate Playwright Chromium 141 comparison against the unchanged `HEAD` editor state matched click-then-type placement, timed undo grouping, undo/redo, IME commit/cancel, Unicode cursor positions and selection replacement exactly, with 30 cycles staying flat.
+
+This was measured on Linux x86_64 in the development container, not on the packaged Apple silicon app. It removes the identified native-undo retention mechanism; it does not by itself establish an RSS/footprint bound, explain the late-session renderer idle spikes, or replace physical IME acceptance. Repeat the 120-cycle current-package profile and the packaged `test:editor-input` cases on macOS before treating PERF-01, PERF-02 or MAC-05 as changed. A plausible, untested link to PERF-01 is that a steadily larger retained renderer heap increases native collection work during idle; the earlier V8-only idle profiles could not observe that.
