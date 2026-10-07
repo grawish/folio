@@ -41,7 +41,7 @@ Marks keep their position when you zoom. Notes belong to the PDF version you mar
 
 ## See what the AI changed
 
-This feature is in current development source; the preview-4 download does not include it yet.
+This feature is in preview 5 and current source; the older preview-4 download does not include it.
 
 After a successful AI edit, the app compares the new PDF with the one you had before and marks the changed regions.
 
@@ -70,7 +70,7 @@ History keeps source and the matching PDF together. It is different from the Cod
 
 ## Make room in History
 
-This feature is in current development source; the preview-4 download does not include it yet.
+This feature is in preview 5 and current source; the older preview-4 download does not include it.
 
 History shows how many versions you have and how much space their source and PDFs use. New versions must fit within 1,000 versions and 64 MiB of these files for each project. Older projects already above that limit are kept. If History is full, your source and earlier PDFs stay safe while you choose what to remove.
 

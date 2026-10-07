@@ -1,6 +1,6 @@
 # Remaining work for Folio
 
-Updated: 29 September 2026. This is the current remaining-work checklist for the Apple silicon Mac release and its documentation, website, performance report and community distribution. It records work still needed; it does not restart the paused implementation goal or claim a production release is ready.
+Updated: 7 October 2026. This is the current remaining-work checklist for the Apple silicon Mac release and its documentation, website, performance report and community distribution. It records work still needed; it does not restart the paused implementation goal or claim a production release is ready.
 
 Use this checklist for the next actions. Use [the release audit](RELEASE_GAP_AUDIT.md) for historical evidence and [the original plan](../PROJECT_PLAN.md) for requirements. Older reports describe their own commits; a newer passing check can close an old test failure without closing all release requirements.
 
@@ -20,19 +20,19 @@ This is the starting point, not more unfinished work:
 
 | Area | Verified starting point | Limit of that evidence |
 | --- | --- | --- |
-| App and public download | Chat, PDF notes, local builds, templates, file/history recovery and an unsigned [preview-4 download](https://github.com/grawish/folio/releases/tag/v0.1.0-preview.4) exist. | The download predates newer source work and is not a signed production release. |
+| App and public download | Chat, PDF notes, local builds, templates, file/history recovery, Git and app-update Settings exist, with an unsigned [preview-5 download](https://github.com/grawish/folio/releases/tag/v0.1.0-preview.5) (tag `36f5615`, 30 September 2026). | Preview 5 passed source CI and packaged smoke checks, not the full hosted campaign below. It is not a signed production release. |
 | Latest full hosted app check | Source `0bee271` passed 486 source tests, 19 compiler checks, 12 unchanged template images and 24 native app suites on macOS 14.8.9 and 27.0. All 178 evidence files per OS and both app inventories were independently checked. | Developer machines in CI do not prove clean consumer installation, physical accessibility, every supported OS version or the separate PDF-highlight workflow. See [OS qualification](MAC_OS_QUALIFICATION.md). |
-| Editor changes | [PR #43](https://github.com/grawish/folio/pull/43), head `f234448`, is open and draft. Its latest source checks pass. | It still needs integration and publication. |
-| Ordinary typing measurements | [PR #44](https://github.com/grawish/folio/pull/44), head `e21fd2a`, is open and draft. Latest source checks pass; the stronger follow-up passes two 120-cycle sessions. | It is based on PR #43. Memory still grows during the measured sessions. See the [report at its recorded commit](https://github.com/grawish/folio/blob/e21fd2a40eab5f27fe1ebe08cb49feabacd4cb97/docs/EDITOR_TYPING_PROFILE.md). |
-| Documentation and website | Eleven walkthroughs and 40 screenshot demos are present on the lifecycle branch. Its local website checks pass. A documentation Skill exists. | The last recorded live gallery has 39 demos; publication of the new content and a final feature review remain open. The live site was not rechecked for this documentation-only update. |
-| Real AI use | One real Claude subscription PDF-note/edit/build/review/save/export/reopen workflow passed. Codex has a real synthetic-image connection check. | These are limited account/model observations, not complete live-provider or signed-app acceptance. |
+| Editor changes | [PR #43](https://github.com/grawish/folio/pull/43) merged as `2391f08` (INT-01). | Published in preview 5; physical-input acceptance remains under MAC-05. |
+| Ordinary typing measurements | [PR #44](https://github.com/grawish/folio/pull/44) merged as `573433b` (INT-02); the stronger follow-up passes two 120-cycle sessions. | Memory still grows during the measured sessions (PERF-02). See the [typing report](EDITOR_TYPING_PROFILE.md). |
+| Documentation and website | Eleven walkthroughs, 41 screenshot demos and the documentation Skill are on main; the live gallery showed all 41 on 28 September 2026 (WEB-01). | Final publication alongside a signed release remains PUB-01. The live site was not rechecked for this update. |
+| Real AI use | Real Claude Code and Codex subscription PDF-note/edit/build/review/save/export/reopen workflows passed with synthetic documents (AI-02). | These are limited account/model observations, not BYOK, complete live-provider or signed-app acceptance. |
 
-PR state was checked on 28 September 2026. Check the exact heads again before merging. No percentage-complete or finish-date estimate is implied.
+PR state was checked on 7 October 2026: the only open PR is an unrelated image-optimization bot PR. Check exact heads again before merging new work. No percentage-complete or finish-date estimate is implied.
 
 ## Suggested order
 
-1. Finish and merge the already qualified editor work and typing report.
-2. Fix the confirmed PDF-highlight timing bug; add the missing test and tutorial.
+1. ~~Finish and merge the already qualified editor work and typing report.~~ Done (INT-01–03).
+2. ~~Fix the confirmed PDF-highlight timing bug; add the missing test and tutorial.~~ Done (PDF-01–06).
 3. Work through resource limits, performance, licensing and broader functional checks.
 4. Complete clean-Mac, physical accessibility/input and real-provider checks when those environments are available.
 5. Qualify the final signed app and its real update path once signing credentials are available.

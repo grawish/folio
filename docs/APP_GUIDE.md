@@ -10,7 +10,7 @@ A desktop workspace where you can chat about your resume, mark changes on its PD
 - PDF highlights, boxes, freehand marks, and notes. Attach selected marked areas to a message, including their page and source context.
 - Persistent conversations, drafts, notes, and matching source/PDF versions; compare, restore, undo, stop, and protection for newer manual edits.
 - Six original templates: Classic, Modern, Academic, Minimal, Compact Technical, and Two Column. Each supports A4 and US Letter, with real PDF thumbnails and bundled-font details.
-- The development Git tab stages saved files, makes local commits and displays repository history. Its [walkthrough](tutorials/git-history.md) distinguishes Git from PDF History; this feature is newer than the preview-4 download.
+- The Git tab stages saved files, makes local commits and displays repository history. Its [walkthrough](tutorials/git-history.md) distinguishes Git from PDF History; this feature is included from preview 5, not the older preview-4 download.
 - CodeMirror editing, syntax highlighting, command completions, search, per-file undo/redo across tabs, and section snippets.
 - Dark and light themes, a header toggle, and a saved System appearance option in Settings.
 - Compact workspace with resizable file/writing/PDF panes, remembered proportions, keyboard dividers, a collapsible sidebar and narrow PDF gutters. Project menus retain all secondary actions.
@@ -30,7 +30,7 @@ A desktop workspace where you can chat about your resume, mark changes on its PD
 - Common imported XeLaTeX resume packages, Roboto/Source Sans Pro fonts, Font Awesome icons, and local Biber bibliography processing on macOS.
 - Signed resource-pack discovery, download/import, verification, cancellation/retry and explicit compiler preview/Apply in Settings. See [resource packs](tutorials/resource-packs.md).
 
-Current development source also allows editing and saving while the compiler prepares, and compresses PDF history in the background during saves. These improvements postdate the preview-4 download; the linked tutorials identify that difference.
+Current development source also allows editing and saving while the compiler prepares, and compresses PDF history in the background during saves. These improvements are included from preview 5, not the older preview-4 download; the linked tutorials identify that difference.
 
 ## Platform status
 
@@ -42,7 +42,7 @@ The requested release is **macOS Apple silicon only**. Windows, Linux and Intel 
 
 macOS compiler isolation currently uses `sandbox-exec`/Seatbelt. It must be reviewed against supported OS versions and the eventual signed-helper distribution design. There is no unsandboxed fallback.
 
-Current development source also limits individual compiler files to 128 MiB and open descriptors to 256, disables core dumps and sets a CPU-time limit. The existing elapsed-time stop remains essential because CPU signals can be caught. See [compiler resource limits](COMPILER_RESOURCE_LIMITS.md); these additions are not in preview 4.
+Current development source also limits individual compiler files to 128 MiB and open descriptors to 256, disables core dumps and sets a CPU-time limit. The existing elapsed-time stop remains essential because CPU signals can be caught. See [compiler resource limits](COMPILER_RESOURCE_LIMITS.md); these additions are included from preview 5, not preview 4.
 
 ## Run from source
 
