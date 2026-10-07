@@ -170,6 +170,7 @@ npm run test:watch
 npm run test:templates
 npm run test:workspace
 npm run test:editor-native-undo
+npm run test:pdf-retention
 npm run test:history-storage
 npm run test:diagnostics
 npm run test:fonts
@@ -204,6 +205,7 @@ npm run pack
 - Template tests create all six layouts at both paper sizes, inspect PDF text and exported dimensions, preserve origin metadata through save/restart/ZIP, and check keyboard selection and the compact picker. `npm run templates:build` regenerates actual thumbnails and runs text/font/layout checks; see [prerequisites and evidence](TEMPLATES.md).
 - Workspace tests exercise pointer/keyboard resizing, minimum widths, preference persistence, actual autosave writes, typing during a save, conflicts, rollback/retry, native project selection and close/restart recovery. The chat suite also verifies autosave deferral during AI work. Run native UI suites sequentially to avoid competing test-window focus.
 - Editor native-undo tests bundle the real Code editor state into an Electron window, compare a native-input control with ordinary typing, and require that typing leaves no growing detached DOM while text, undo, autocompletion, composition and Unicode input still match. They need no app build or compiler; results are written to `test-results/editor-native-undo/result.json`.
+- PDF retention tests mount the real PDF preview in Electron, repeat one-page/100-page replacements with full scrolling, and require one live PDF worker and blob URL, windowed canvases, no growing detached DOM and a flat collected JS heap. They also report renderer CPU across idle windows without gating on it. Results are written to `test-results/pdf-retention/result.json`.
 - PDF viewer tests exercise real 35-/100-/101-page documents, distant-page notes, canvas budgets, mixed page geometry, rejected PDFs, stalled loads/renders, actual worker termination and export recovery. The lifecycle suite separately checks delayed replacement while resizing. See [bounds and evidence](PDF_VIEWER_LIMITS.md).
 - Isolation tests must run outside a parent sandbox that prohibits `sandbox-exec`.
 - Runtime tests check exact compiler selection, damaged-file rejection, offline repair, saved/source-export/history pins and restart using an isolated profile. Run against a packaged build with `node scripts/test-runtime.mjs /absolute/path/Folio.app/Contents/MacOS/Folio`.

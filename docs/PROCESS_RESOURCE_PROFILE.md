@@ -330,4 +330,20 @@ The retaining-path diagnostic above located Code-mode detached nodes in `blink::
 
 Both cases produce the exact typed text, undo the last typing group, open autocompletion, commit IME composition and enter accented/emoji text. A separate Playwright Chromium 141 comparison against the unchanged `HEAD` editor state matched click-then-type placement, timed undo grouping, undo/redo, IME commit/cancel, Unicode cursor positions and selection replacement exactly, with 30 cycles staying flat.
 
-This was measured on Linux x86_64 in the development container, not on the packaged Apple silicon app. It removes the identified native-undo retention mechanism; it does not by itself establish an RSS/footprint bound, explain the late-session renderer idle spikes, or replace physical IME acceptance. Repeat the 120-cycle current-package profile and the packaged `test:editor-input` cases on macOS before treating PERF-01, PERF-02 or MAC-05 as changed. A plausible, untested link to PERF-01 is that a steadily larger retained renderer heap increases native collection work during idle; the earlier V8-only idle profiles could not observe that.
+The check first ran on Linux x86_64 in a development container. Source CI on the hosted Apple silicon macOS 15 runner then produced identical counts ([run 37599517223](https://github.com/grawish/folio/actions/runs/37599517223): native 14 → 8,221, managed 14 → 13), so the mechanism and the fix are the same in Electron on macOS. Neither run used the packaged app. It removes the identified native-undo retention mechanism; it does not by itself establish an RSS/footprint bound, explain the late-session renderer idle spikes, or replace physical IME acceptance. Repeat the 120-cycle current-package profile and the packaged `test:editor-input` cases on macOS before treating PERF-01, PERF-02 or MAC-05 as changed. A plausible, untested link to PERF-01 is that a steadily larger retained renderer heap increases native collection work during idle; the earlier V8-only idle profiles could not observe that.
+
+### Long-PDF viewer retention — 7 October 2026
+
+`npm run test:pdf-retention` mounts the real `PdfPreview` in Electron and repeats the PERF-02 long-PDF workload: a one-page PDF, a 100-page replacement scrolled top to bottom in ten steps, then another one-page replacement, with explicit collection at checkpoints. It counts live PDF workers and blob URLs by wrapping their constructors, and counts connected versus total DOM nodes.
+
+Linux x86_64, Electron 44.4.5, 20 cycles (a separate 40-cycle scratch run gave the same pattern):
+
+| Checkpoint | Collected JS heap | Detached nodes | Canvases | PDF workers / blob URLs | Renderer working set |
+| --- | --- | --- | --- | --- | --- |
+| Start | 3.65 MiB | 1 | 2 | 1 / 1 | 149 MiB |
+| Cycle 5 | 4.37 MiB | 1 | 1 | 1 / 1 | 164 MiB |
+| Cycle 20 | 4.51 MiB | 1 | 1 | 1 / 1 | 165 MiB |
+
+While the 100-page document is displayed, only the visible window is mounted (two canvases for 100 sheets in a 760 px viewport). Each replacement terminates the previous worker and revokes its blob URL. After the workload, six 2.5-second idle windows recorded 0–0.2% renderer CPU.
+
+Within this workload the viewer is bounded: it is not a source of the long-session growth or the late idle spikes. The small residual heap rise (0.14 MiB over 15 cycles after warm-up) is within the check's 2 MiB limit and is not attributed. This harness renders a synthetic text PDF without the rest of the app, so it does not cover image-heavy PDFs, annotations, PDF change highlights or GPU memory outside the renderer working set.

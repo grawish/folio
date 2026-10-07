@@ -49,6 +49,7 @@ jobs:
       - run: npm run format:check
       - run: npm test
       - run: npm run test:editor-native-undo
+      - run: npm run test:pdf-retention
       - run: npm run build
       - run: npm run test:low-storage
       - run: npm run website:build

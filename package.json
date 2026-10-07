@@ -32,6 +32,7 @@
     "test:templates": "npm run build && node scripts/test-templates.mjs",
     "test:workspace": "npm run build && node scripts/test-workspace.mjs",
     "test:editor-native-undo": "node scripts/test-editor-native-undo.mjs",
+    "test:pdf-retention": "node scripts/test-pdf-retention.mjs",
     "test:history-storage": "npm run build && node scripts/test-history-storage.mjs",
     "test:diagnostics": "npm run build && node scripts/test-diagnostics.mjs",
     "test:fonts": "npm run build && node scripts/test-fonts.mjs",
