@@ -2,7 +2,7 @@
 
 When you edit again during a build, Folio keeps the newest version waiting. It cancels older waiting requests instead of making them wait in a long line. The active build still finishes its cleanup before the next one starts. Your source is not deleted.
 
-This behavior applies to the development source. It is not included in the published preview 4 installer.
+This behavior is included from preview 5. It is not in the older preview-4 installer.
 
 ## What the app keeps
 

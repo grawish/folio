@@ -2,7 +2,7 @@
 
 When Folio builds a PDF, it works on a temporary copy of your source and images. After a normal build it removes that copy. In the development source, reopening Folio also cleans up recognized temporary copies left by a crashed app. Your project files, saved PDFs, conversation and History stay separate.
 
-This behavior applies to the current development source. The published preview 4 uses the older temporary-folder layout.
+This behavior is included from preview 5. The older preview 4 uses the older temporary-folder layout.
 
 ## What Folio keeps
 

@@ -2,7 +2,7 @@
 
 Signing adds a digital stamp to an app. That stamp changes the file's bytes. Folio also keeps a fingerprint of every compiler file, so it must record those new bytes **after** signing the compiler and **before** sealing the app.
 
-The build now follows that order. A private ad-hoc build verifies the mechanism on the development Mac. It is not a Developer ID or notarized release. The public preview-4 download is unchanged. The complete production release still needs the checks in [the release audit](RELEASE_GAP_AUDIT.md).
+The build now follows that order. A private ad-hoc build verifies the mechanism on the development Mac. It is not a Developer ID or notarized release. The public preview-5 download is unsigned. The complete production release still needs the checks in [the release audit](RELEASE_GAP_AUDIT.md).
 
 ## What the packaging hook does
 
