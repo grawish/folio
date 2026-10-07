@@ -48,6 +48,7 @@ jobs:
       - run: python tests/pdfjs-license-materials.py
       - run: npm run format:check
       - run: npm test
+      - run: npm run test:editor-native-undo
       - run: npm run build
       - run: npm run test:low-storage
       - run: npm run website:build
