@@ -5,7 +5,7 @@ import path from 'node:path';
 import { performance } from 'node:perf_hooks';
 import type { BuildResult, Project } from '../../src/shared/types';
 import { fingerprint, safeRelative } from './project';
-import { compilerExecutable, inspectRuntime, macSandboxProfile } from './runtime';
+import { bundleArgument, compilerExecutable, inspectRuntime, macSandboxProfile } from './runtime';
 import { parseDiagnostics } from './diagnostics';
 import { buildFingerprint } from './build-provenance';
 import { compilerLimits, limitedCompilerLaunch } from './compiler-limits';
@@ -116,7 +116,7 @@ export class Compiler {
           'compile',
           project.mainFile,
           '--bundle',
-          path.join(runtimePath, 'bundle.zip'),
+          bundleArgument(path.join(runtimePath, 'bundle.zip')),
           '--only-cached',
           '--untrusted',
           '--keep-logs',

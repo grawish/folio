@@ -1,7 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { adoptRuntime, type RuntimePin } from '../src/shared/runtime';
-import { biberFiles, compilerExecutable, compilerIsolation } from '../electron/core/runtime';
+import {
+  biberFiles,
+  bundleArgument,
+  compilerExecutable,
+  compilerIsolation,
+} from '../electron/core/runtime';
 import { limitedCompilerLaunch } from '../electron/core/compiler-limits';
 import { compilerEnvironment } from '../electron/core/compiler';
 
@@ -77,4 +82,20 @@ test('Windows compiler environment keeps system libraries reachable and nothing 
   });
   assert.equal(posix.HOME, '/job/home');
   assert.equal(posix.SECRET_TOKEN, undefined);
+});
+
+test('Tectonic gets a bundle argument it reads as a local file', () => {
+  assert.equal(
+    bundleArgument('/opt/folio/runtime/bundle.zip', 'linux'),
+    '/opt/folio/runtime/bundle.zip',
+  );
+  assert.equal(
+    bundleArgument('/opt/folio/runtime/bundle.zip', 'darwin'),
+    '/opt/folio/runtime/bundle.zip',
+  );
+  if (process.platform === 'win32')
+    assert.equal(
+      bundleArgument('D:\\Folio data\\runtime\\bundle.zip'),
+      'file:///D:/Folio%20data/runtime/bundle.zip',
+    );
 });

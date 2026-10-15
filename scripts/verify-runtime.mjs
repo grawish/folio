@@ -2,6 +2,7 @@ import { promises as fs } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { releases } from './runtime-config.mjs';
 import { templateInputs } from './template-inputs.mjs';
 
@@ -31,7 +32,10 @@ try {
         'compile',
         source,
         '--bundle',
-        path.join(root, 'bundle.zip'),
+        // Tectonic parses `D:\...` as a URL with scheme `d:`; use a file: URL.
+        process.platform === 'win32'
+          ? pathToFileURL(path.join(root, 'bundle.zip')).href
+          : path.join(root, 'bundle.zip'),
         '--only-cached',
         '--untrusted',
         '--outdir',

@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto';
 import { promises as fs, constants, type BigIntStats } from 'node:fs';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { performance } from 'node:perf_hooks';
 import type { RuntimeStatus } from '../../src/shared/types';
 import { validateRuntimePin, type RuntimePin } from '../../src/shared/runtime';
@@ -68,6 +69,12 @@ export function biberFiles(platform: string) {
 
 export function compilerExecutable(platform = `${process.platform}-${process.arch}`) {
   return platform.startsWith('win32-') ? 'tectonic.exe' : 'tectonic';
+}
+
+// Tectonic tries `--bundle` as a URL first, so `D:\...` reads as scheme `d:`
+// and is rejected. Windows gets a file: URL; other platforms keep the path.
+export function bundleArgument(file: string, platform = process.platform) {
+  return platform === 'win32' ? pathToFileURL(file).href : file;
 }
 
 export function compilerIsolation(
