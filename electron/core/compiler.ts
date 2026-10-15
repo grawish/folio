@@ -239,6 +239,8 @@ export class Compiler {
       const stop = () => {
         if (!child.pid) return;
         if (windows) {
+          // Never taskkill an exited PID: Windows reuses them quickly.
+          if (child.exitCode !== null || child.signalCode !== null) return;
           // Tectonic starts Biber as a child; end the whole tree.
           spawn('taskkill', ['/pid', String(child.pid), '/T', '/F'], {
             windowsHide: true,

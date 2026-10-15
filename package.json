@@ -156,7 +156,7 @@
         }
       ],
       "icon": "resources/branding/folio-1024.png",
-      "signAndEditExecutable": false
+      "signAndEditExecutable": true
     },
     "nsis": {
       "oneClick": false,

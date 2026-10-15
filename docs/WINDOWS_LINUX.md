@@ -33,9 +33,9 @@ npm run dist:win         # on Windows x64
 node --import tsx scripts/test-compile-native.ts   # production compiler smoke test
 ```
 
-Biber's Windows and Linux archives come from SourceForge and must be pinned once with `node scripts/pin-biber.mjs` (or the **Pin Biber archives** workflow) before `npm run setup` accepts them.
+Biber's Windows and Linux archives come from SourceForge. Their SHA-256 digests are pinned in `scripts/runtime-config.mjs` (the SHA-1 and MD5 of the downloaded files match the values SourceForge publishes). If a future Biber pin starts with `hash: null`, record it with `node scripts/pin-biber.mjs` (or the **Pin Biber archives** workflow) before `npm run setup` accepts it.
 
-The **Release Windows and Linux previews** workflow (`.github/workflows/release-desktop.yml`) builds both platforms, runs the cross-platform tests and native compile smoke test, and attaches the installers to a GitHub pre-release whose tag must equal `v<package.json version>`.
+The **Release Windows and Linux previews** workflow (`.github/workflows/release-desktop.yml`) builds both platforms, runs the cross-platform tests and native compile smoke test, and attaches the installers to a GitHub pre-release whose tag must equal `v<package.json version>`. Pull requests that touch the app, compiler or packaging run the same build and checks for both platforms without publishing.
 
 ## Known gaps
 

@@ -6,7 +6,7 @@ Use this checklist for the next actions. Use [the release audit](RELEASE_GAP_AUD
 
 ## Scope that stays in place
 
-- Apple silicon Macs only. Windows, Linux, Intel Macs, mobile and a browser-only app are outside this release.
+- Apple silicon Macs are the primary target. Unsigned Windows and Linux x64 previews build from the same source ([Windows and Linux](WINDOWS_LINUX.md)); Intel Macs, mobile and a browser-only app are outside this release.
 - Chat is the main screen. The PDF is beside it; Code remains available as a secondary view.
 - Users can mark the PDF and send those notes to their selected AI connection.
 - AI provider setup and active-provider selection belong in Settings. Support installed Codex and Claude Code subscriptions, user API keys, and compatible endpoints.
