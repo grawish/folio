@@ -1,3 +1,7 @@
+# Check out text files with LF everywhere. Folio hashes shipped sources,
+# notices and templates, so Windows CRLF conversion would change their bytes.
+* text=auto eol=lf
+
 # Preserve original upstream notice bytes, including their line endings.
 resources/tex-font-notices/* -text
 resources/tex-resource-notices/* -text
