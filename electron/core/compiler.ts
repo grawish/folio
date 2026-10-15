@@ -331,6 +331,28 @@ export class Compiler {
   }
 }
 
+const windowsProfileVariables = [
+  'USERPROFILE',
+  'APPDATA',
+  'LOCALAPPDATA',
+  'HOMEDRIVE',
+  'HOMEPATH',
+  'SystemDrive',
+  'ProgramData',
+  'ALLUSERSPROFILE',
+  'PUBLIC',
+  'USERNAME',
+  'USERDOMAIN',
+  'COMPUTERNAME',
+  'ProgramFiles',
+  'ProgramW6432',
+  'CommonProgramFiles',
+  'PATHEXT',
+  'NUMBER_OF_PROCESSORS',
+  'PROCESSOR_ARCHITECTURE',
+  'OS',
+] as const;
+
 export function compilerEnvironment(
   runtimePath: string,
   home: string,
@@ -354,17 +376,24 @@ export function compilerEnvironment(
       HOME: paths.join(home, 'home'),
       TMPDIR: home,
     };
-  // Windows programs need SystemRoot to load system libraries.
+  // Windows programs need SystemRoot to load system libraries, and Tectonic
+  // resolves its standard folders through the shell known-folder API, which
+  // fails without the account's profile variables. Pass those through (they
+  // name folders, not credentials); temporary files stay in the job folder.
   const systemRoot = host.SystemRoot ?? host.SYSTEMROOT ?? 'C:\\Windows';
+  const profile: NodeJS.ProcessEnv = {};
+  for (const name of windowsProfileVariables)
+    if (host[name] !== undefined) profile[name] = host[name];
   return {
+    USERPROFILE: path.win32.join(home, 'home'),
+    APPDATA: path.win32.join(home, 'home'),
+    LOCALAPPDATA: path.win32.join(home, 'home'),
+    ...profile,
     ...shared,
     PATH: [runtimePath, path.win32.join(systemRoot, 'System32'), systemRoot].join(';'),
     SystemRoot: systemRoot,
     windir: systemRoot,
     TEMP: home,
     TMP: home,
-    USERPROFILE: path.win32.join(home, 'home'),
-    APPDATA: path.win32.join(home, 'home'),
-    LOCALAPPDATA: path.win32.join(home, 'home'),
   };
 }

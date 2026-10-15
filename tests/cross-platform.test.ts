@@ -66,11 +66,15 @@ test('Windows launches the compiler directly; POSIX wraps it in resource limits'
   assert.throws(() => limitedCompilerLaunch('x', [], 0, false, 'win32'), /time limit/);
 });
 
-test('Windows compiler environment keeps system libraries reachable and nothing else', () => {
+test('Windows compiler environment keeps system and profile folders reachable and nothing else', () => {
   const env = compilerEnvironment('C:\\rt', 'C:\\job', 'C:\\cache', 'C:\\par', 'win32', {
     SystemRoot: 'D:\\Win',
+    APPDATA: 'C:\\Users\\k\\AppData\\Roaming',
+    TEMP: 'C:\\Users\\k\\Temp',
     SECRET_TOKEN: 'x',
   });
+  assert.equal(env.APPDATA, 'C:\\Users\\k\\AppData\\Roaming');
+  assert.equal(env.USERPROFILE, 'C:\\job\\home');
   assert.equal(env.PATH, 'C:\\rt;D:\\Win\\System32;D:\\Win');
   assert.equal(env.SystemRoot, 'D:\\Win');
   assert.equal(env.TEMP, 'C:\\job');
