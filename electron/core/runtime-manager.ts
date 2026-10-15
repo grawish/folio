@@ -1,5 +1,6 @@
-import { randomUUID } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import { promises as fs } from 'node:fs';
+import type { FileHandle } from 'node:fs/promises';
 import path from 'node:path';
 import { adoptRuntime, validateRuntimePin, type RuntimePin } from '../../src/shared/runtime';
 import type { RuntimeStatus } from '../../src/shared/types';
@@ -9,6 +10,9 @@ import {
   runtimeFile,
   runtimePin,
   verifyRuntime,
+  verifyRuntimeReusing,
+  openRuntimeFile,
+  checkRuntimeLayout,
   type RuntimeManifest,
 } from './runtime';
 import { Compiler } from './compiler';
@@ -46,7 +50,7 @@ async function directory(name: string) {
 
 async function durableWrite(
   name: string,
-  data: Uint8Array | string,
+  data: Uint8Array | string | ((handle: FileHandle) => Promise<void>),
   mode = 0o600,
   pendingDirectories?: Set<string>,
 ) {
@@ -54,7 +58,8 @@ async function durableWrite(
   try {
     const handle = await fs.open(temporary, 'wx', mode);
     try {
-      await handle.writeFile(data);
+      if (typeof data === 'function') await data(handle);
+      else await handle.writeFile(data);
       await handle.sync();
     } finally {
       await handle.close();
@@ -279,9 +284,11 @@ export class RuntimeManager implements RuntimeSource {
       throw new Error(
         'This installer does not include the recorded compiler. Keep its selection and reinstall a matching Folio version.',
       );
-    // Verify the trusted installer copy before copying or changing any pointer.
-    const { manifest } = await verifyRuntime(this.bundledRoot, pin);
-    await this.stage(pin, this.bundledRoot, manifest);
+    // Check the trusted installer's identity and layout first. Staging hashes
+    // every installer byte as it copies, so a damaged installer fails before
+    // any readiness marker or pointer is written, without a separate read pass.
+    const { manifest } = await checkRuntimeLayout(this.bundledRoot, pin);
+    await this.stage(pin, this.bundledRoot, manifest, undefined, undefined, undefined, true);
   }
 
   private async stage(
@@ -291,6 +298,8 @@ export class RuntimeManager implements RuntimeSource {
     overrides = new Map<string, Buffer>(),
     signal?: AbortSignal,
     progress?: PackInstallProgress,
+    // Hash source resources during the copy. Pack bases were already verified.
+    hashSource = false,
   ) {
     signal?.throwIfAborted();
     if (pin.platform !== `${process.platform}-${process.arch}`)
@@ -319,32 +328,72 @@ export class RuntimeManager implements RuntimeSource {
       let next = 0;
       const files = [...names];
       const pendingDirectories = new Set([runtime]);
-      let count = 0;
+      let count = 0,
+        sourceBytes = 0;
       progress?.('copy', 0, files.length);
+      const copyNext = async (buffer: Buffer) => {
+        while (next < files.length) {
+          signal?.throwIfAborted();
+          const name = files[next++],
+            destination = path.join(runtime, name);
+          // Stream source files through one bounded buffer per worker rather
+          // than holding whole engine binaries (up to 60 MB each) in memory,
+          // hashing each inventoried resource against the manifest as it goes.
+          const expected = hashSource ? manifest.files[name] : undefined;
+          const data =
+            overrides.get(name) ??
+            (async (target: FileHandle) => {
+              const input = await openRuntimeFile(source, name);
+              const digest = expected ? createHash('sha256') : undefined;
+              let fileBytes = 0;
+              try {
+                for (;;) {
+                  const { bytesRead } = await input.read(buffer, 0, buffer.length, null);
+                  if (!bytesRead) break;
+                  fileBytes += bytesRead;
+                  sourceBytes += bytesRead;
+                  if (fileBytes > 256 * 1024 * 1024)
+                    throw new Error('A compiler resource exceeds its size limit.');
+                  if (sourceBytes > 1024 * 1024 * 1024)
+                    throw new Error('The compiler resources exceed 1 GB.');
+                  digest?.update(buffer.subarray(0, bytesRead));
+                  for (let written = 0; written < bytesRead;)
+                    written += (await target.write(buffer, written, bytesRead - written))
+                      .bytesWritten;
+                }
+                if (digest && digest.digest('hex') !== expected)
+                  throw new Error(`The bundled ${name} failed its integrity check.`);
+              } finally {
+                await input.close();
+              }
+            });
+          const mode = overrides.has(name)
+            ? 0o600
+            : (await fs.lstat(path.join(source, name))).mode & 0o111
+              ? 0o700
+              : 0o600;
+          await fs.mkdir(path.dirname(destination), { recursive: true, mode: 0o700 });
+          // This generation is still private. Flush each file now, then all
+          // directory entries once after every copy worker has finished.
+          for (
+            let parent = path.dirname(destination);
+            parent !== runtime;
+            parent = path.dirname(parent)
+          )
+            pendingDirectories.add(parent);
+          await durableWrite(destination, data, mode, pendingDirectories);
+          if (++count % 32 === 0 || count === files.length) progress?.('copy', count, files.length);
+        }
+      };
       const copied = await Promise.allSettled(
         Array.from({ length: 4 }, async () => {
-          while (next < files.length) {
-            signal?.throwIfAborted();
-            const name = files[next++],
-              destination = path.join(runtime, name);
-            const data = overrides.get(name) ?? (await runtimeFile(source, name));
-            const mode = overrides.has(name)
-              ? 0o600
-              : (await fs.lstat(path.join(source, name))).mode & 0o111
-                ? 0o700
-                : 0o600;
-            await fs.mkdir(path.dirname(destination), { recursive: true, mode: 0o700 });
-            // This generation is still private. Flush each file now, then all
-            // directory entries once after every copy worker has finished.
-            for (
-              let parent = path.dirname(destination);
-              parent !== runtime;
-              parent = path.dirname(parent)
-            )
-              pendingDirectories.add(parent);
-            await durableWrite(destination, data, mode, pendingDirectories);
-            if (++count % 32 === 0 || count === files.length)
-              progress?.('copy', count, files.length);
+          const buffer = Buffer.allocUnsafe(1024 * 1024);
+          try {
+            await copyNext(buffer);
+          } catch (error) {
+            // Stop the other workers too; the private copy is removed below.
+            next = files.length;
+            throw error;
           }
         }),
       );
@@ -359,7 +408,9 @@ export class RuntimeManager implements RuntimeSource {
       }
       await this.options.checkpoint?.('staged');
       signal?.throwIfAborted();
-      await verifyRuntime(runtime, pin);
+      // A complete byte check of the new copy. It also lets the self-test builds
+      // and the first user build reuse this result while the copy is unchanged.
+      await verifyRuntimeReusing(runtime, pin);
       progress?.('check');
       await this.probe(runtime, pin, signal);
       signal?.throwIfAborted();

@@ -3,9 +3,17 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { promises as fs } from 'node:fs';
 import os from 'node:os';
+import { performance } from 'node:perf_hooks';
 import path from 'node:path';
 import { setImmediate } from 'node:timers/promises';
-import { verifyRuntime, runtimePin, type RuntimeManifest } from '../electron/core/runtime';
+import {
+  forgetRuntimeVerifications,
+  runtimePin,
+  runtimeReusePolicy,
+  verifyRuntime,
+  verifyRuntimeReusing,
+  type RuntimeManifest,
+} from '../electron/core/runtime';
 
 async function fixture(t: TestContext, size = 300 * 1024) {
   const root = await fs.mkdtemp(path.join(os.tmpdir(), 'folio-verify-'));
@@ -218,4 +226,128 @@ test('concurrent verification preserves the aggregate one-gigabyte resource limi
     }),
   );
   await assert.rejects(verifyRuntime(root), /resources exceed 1 GB/);
+});
+
+// Counts resource files opened for hashing; manifest reads are not counted.
+function countHashedOpens(t: TestContext, f: { root: string; manifest: RuntimeManifest }) {
+  const open = fs.open.bind(fs),
+    resources = new Set(Object.keys(f.manifest.files).map((name) => path.join(f.root, name)));
+  const counter = { opens: 0 };
+  t.mock.method(fs, 'open', async (...args: Parameters<typeof fs.open>) => {
+    if (resources.has(String(args[0]))) counter.opens++;
+    return open(...args);
+  });
+  return counter;
+}
+
+test('builds reuse a complete verification while every file identity is unchanged', async (t) => {
+  forgetRuntimeVerifications();
+  const f = await fixture(t, 64),
+    counter = countHashedOpens(t, f);
+  assert.deepEqual(await verifyRuntimeReusing(f.root, f.pin), { manifest: f.manifest, pin: f.pin });
+  assert.equal(counter.opens, Object.keys(f.manifest.files).length);
+  await verifyRuntimeReusing(f.root, f.pin);
+  await verifyRuntimeReusing(f.root, f.pin);
+  assert.equal(counter.opens, Object.keys(f.manifest.files).length);
+  // A different expected identity is still refused without hashing.
+  await assert.rejects(
+    verifyRuntimeReusing(f.root, { ...f.pin, id: 'f'.repeat(64) }),
+    /does not match/,
+  );
+  // A new process (or an explicit reset) always rehashes every byte.
+  forgetRuntimeVerifications();
+  await verifyRuntimeReusing(f.root, f.pin);
+  assert.equal(counter.opens, 2 * Object.keys(f.manifest.files).length);
+});
+
+test('reuse rejects changed bytes even when size and modification time are preserved', async (t) => {
+  forgetRuntimeVerifications();
+  const f = await fixture(t, 64);
+  await verifyRuntimeReusing(f.root, f.pin);
+  const file = path.join(f.root, 'nested/resource-9.dat');
+  const before = await fs.stat(file);
+  const original = await fs.readFile(file),
+    changed = Buffer.from(original);
+  changed[changed.length - 1] ^= 1;
+  await fs.writeFile(file, changed);
+  await fs.utimes(file, before.atime, before.mtime);
+  await assert.rejects(verifyRuntimeReusing(f.root, f.pin), /resource-9.dat failed/);
+  // A failure is never remembered as a success.
+  await assert.rejects(verifyRuntimeReusing(f.root, f.pin), /resource-9.dat failed/);
+  await fs.writeFile(file, original);
+  await verifyRuntimeReusing(f.root, f.pin);
+});
+
+test('reuse rejects replaced, added and linked resources', async (t) => {
+  forgetRuntimeVerifications();
+  const f = await fixture(t, 64),
+    counter = countHashedOpens(t, f);
+  const files = Object.keys(f.manifest.files).length;
+  await verifyRuntimeReusing(f.root, f.pin);
+  // An identical copy renamed into place has a new inode, so it is rehashed.
+  const target = path.join(f.root, 'bundle.zip');
+  await fs.copyFile(target, `${target}.new`);
+  await fs.rename(`${target}.new`, target);
+  await verifyRuntimeReusing(f.root, f.pin);
+  assert.equal(counter.opens, 2 * files);
+  await fs.writeFile(path.join(f.root, 'nested/extra.pm'), 'Unexpected');
+  await assert.rejects(verifyRuntimeReusing(f.root, f.pin), /Unexpected compiler resource/);
+  await fs.unlink(path.join(f.root, 'nested/extra.pm'));
+  await verifyRuntimeReusing(f.root, f.pin);
+  await fs.rename(target, path.join(f.root, '..', `outside-${path.basename(f.root)}.zip`));
+  t.after(() =>
+    fs.rm(path.join(f.root, '..', `outside-${path.basename(f.root)}.zip`), { force: true }),
+  );
+  await fs.symlink(path.join(f.root, '..', `outside-${path.basename(f.root)}.zip`), target);
+  await assert.rejects(verifyRuntimeReusing(f.root, f.pin), /regular files|links/);
+});
+
+test('reuse expires, and a change during hashing is never remembered', async (t) => {
+  forgetRuntimeVerifications();
+  const f = await fixture(t, 64);
+  const files = Object.keys(f.manifest.files).length;
+  let now = 1_000_000;
+  t.mock.method(performance, 'now', () => now);
+  const open = fs.open.bind(fs),
+    resources = new Set(Object.keys(f.manifest.files).map((name) => path.join(f.root, name)));
+  let opens = 0,
+    touch = false;
+  t.mock.method(fs, 'open', async (...args: Parameters<typeof fs.open>) => {
+    if (resources.has(String(args[0]))) {
+      opens++;
+      if (touch) {
+        touch = false;
+        // Same bytes, new change time: the result must not be reused.
+        const stat = await fs.stat(path.join(f.root, 'tectonic'));
+        await fs.utimes(path.join(f.root, 'tectonic'), stat.atime, new Date(stat.mtimeMs + 1000));
+      }
+    }
+    return open(...args);
+  });
+  await verifyRuntimeReusing(f.root, f.pin);
+  now += runtimeReusePolicy.maxAgeMs - 1;
+  await verifyRuntimeReusing(f.root, f.pin);
+  assert.equal(opens, files);
+  now += 1;
+  await verifyRuntimeReusing(f.root, f.pin);
+  assert.equal(opens, 2 * files);
+  forgetRuntimeVerifications();
+  touch = true;
+  await verifyRuntimeReusing(f.root, f.pin);
+  assert.equal(opens, 3 * files);
+  await verifyRuntimeReusing(f.root, f.pin);
+  assert.equal(opens, 4 * files);
+  await verifyRuntimeReusing(f.root, f.pin);
+  assert.equal(opens, 4 * files);
+});
+
+test('inherited object names are never accepted as inventoried resources', async (t) => {
+  forgetRuntimeVerifications();
+  const f = await fixture(t, 64);
+  for (const name of ['constructor', 'toString', 'hasOwnProperty']) {
+    await fs.writeFile(path.join(f.root, name), 'Unexpected');
+    await assert.rejects(verifyRuntime(f.root, f.pin), /Unexpected compiler resource/);
+    await assert.rejects(verifyRuntimeReusing(f.root, f.pin), /Unexpected compiler resource/);
+    await fs.unlink(path.join(f.root, name));
+  }
 });

@@ -144,6 +144,25 @@ Fresh preparation ranged from 37.790–56.452 seconds before and 27.142–46.060
 
 Two new controls reject the old implementation and pass after the change: all files/folders must be flushed before readiness, and a failed deepest/intermediate/root folder flush must retain the exact old active copy. The 23 focused runtime/pack tests pass. Core repair and signed-pack installation also survive real process kills before the folder flush, after staging, after self-test and after pointer publication. These checks cover process interruption, not physical power loss. See [the implementation verification record](releases/runtime-copy-verification.json) for broader checks and their scope.
 
+## Reusing a complete runtime verification between builds
+
+Warm builds previously spent most of their time before TeX started: every build, status check and self-test compile rehashed all 3,982 runtime files (about 372 MB). The backend profile above measured 0.700–0.846 s of a 0.842–0.999 s warm build in runtime acquisition, and the V8 diagnostic named runtime verification as the largest main-isolate context.
+
+`verifyRuntimeReusing` (used by `inspectRuntime`, so by every build lease, `status()` and the self-test builds) now keeps a complete verification result in memory only while all of these hold:
+
+- the manifest still produces the same exact runtime pin, and the project's recorded selection still matches it;
+- a fresh walk still finds only regular files named by the manifest, with no links, special files or extra resources;
+- every file and folder has the same device, inode, size, mode, link count and nanosecond modification and change times. Any write, replacement, rename or permission change updates the change time, which ordinary programs cannot set back;
+- the result is younger than ten minutes (`runtimeReusePolicy.maxAgeMs`).
+
+Anything else rehashes every byte. Each new app process starts with no reusable result, a failed verification is never remembered, and a result is stored only if the identity walk after hashing matches the walk before it. Installation, repair, resource-pack assembly and the trusted installer copy still call the always-complete `verifyRuntime`. The post-copy check during preparation is a complete hash that also seeds the reusable result, so the offline self-test builds and the first user build no longer rehash the new copy two or three more times.
+
+Synthetic Linux measurement with the real file count and sizes (3,982 files, 372 MB, warm page cache, Node 22): a complete verification took 1.09–1.14 s, the first reusing check 1.32 s (complete hash plus two identity walks), and later reusing checks 0.13–0.14 s. This is a backend microbenchmark on a development container, not an Apple silicon or complete-app result; repeat `scripts/profile-preview.mjs` on a supported Mac before changing a release claim.
+
+Preparation now also streams each installer file through one 1 MiB buffer per copy worker instead of reading whole engine binaries (up to 60 MB each, four at a time) into main-process memory. The same pass hashes every inventoried installer byte against the manifest, replacing the separate full read of the installer before copying: a mismatching file fails before its temporary copy is renamed, and the private generation is removed without a readiness marker or pointer. Installation still checks the installer's exact identity and layout first, and the copy still gets its own complete hash afterwards. The first copy failure now stops the other workers. File and folder flushes are unchanged.
+
+On the same synthetic 372 MB runtime in a Linux container (self-test stubbed), complete preparation took 6.1–6.7 s with a separate installer hash and 4.7–4.8 s with hashing during the copy. Two samples each; repeat on a supported Mac before quoting a number.
+
 ## Measure editing through the rendered PDF
 
 The packaged preview profiler exercises Code view with real keyboard replacement, automatic compilation and the current PDF canvas/text layer. It uses all six layouts in A4 and US Letter, with five measured edits per variant. Each variant receives an untimed first build. A separate app profile keeps synthetic resumes and compiler preparation away from ordinary user data.

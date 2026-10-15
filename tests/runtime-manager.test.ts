@@ -668,3 +668,39 @@ test('killing the remover after a real unlink leaves a reviewable remainder and 
   await restarted.removeStoredCompiler(remainder.key, remainder.token);
   assert.equal((await restarted.storage()).entries.length, 1);
 });
+
+test('preparation hashes installer bytes while copying; a damaged installer publishes nothing', async (t) => {
+  const f = await fixture(t, nestedResources);
+  const file = path.join(f.bundle, 'extras/deep/a.txt');
+  const original = await fs.readFile(file);
+  const damaged = Buffer.from(original);
+  damaged[0] ^= 1;
+  await fs.writeFile(file, damaged);
+  const data = path.join(f.root, 'damaged-installer');
+  let probes = 0;
+  const manager = new RuntimeManager(f.bundle, data, {
+    probe: async () => {
+      probes++;
+    },
+  });
+  await manager.initialize();
+  assert.equal(probes, 0);
+  await assert.rejects(fs.access(path.join(data, f.pin.id!, 'active.json')));
+  assert.deepEqual(await fs.readdir(path.join(data, f.pin.id!, 'copies')), []);
+  const status = await manager.status(f.pin);
+  assert.equal(status.ready, false);
+  assert.match(status.message, /extras\/deep\/a\.txt failed its integrity check/);
+  await fs.writeFile(file, original);
+  await manager.repair(f.pin);
+  assert.equal(probes, 1);
+  await verifyRuntime(
+    path.join(
+      data,
+      f.pin.id!,
+      'copies',
+      JSON.parse(await fs.readFile(path.join(data, f.pin.id!, 'active.json'), 'utf8')).generation,
+      'runtime',
+    ),
+    f.pin,
+  );
+});
