@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { promises as fs, constants } from 'node:fs';
+import { promises as fs, constants, type BigIntStats } from 'node:fs';
 import path from 'node:path';
 import type { RuntimeStatus } from '../../src/shared/types';
 import { validateRuntimePin, type RuntimePin } from '../../src/shared/runtime';
@@ -68,7 +68,7 @@ function runtimeName(name: string) {
     throw new Error('Invalid runtime manifest path.');
 }
 
-async function openRuntimeFile(root: string, name: string, limit: number) {
+export async function openRuntimeFile(root: string, name: string, limit = 256 * 1024 * 1024) {
   runtimeName(name);
   const parts = name.split('/');
   for (let i = 1; i < parts.length; i++)
@@ -114,9 +114,7 @@ export function runtimePin(manifest: RuntimeManifest): RuntimePin {
   })!;
 }
 
-export async function verifyRuntime(root: string, expected?: RuntimePin) {
-  const manifest = await readRuntimeManifest(root),
-    pin = runtimePin(manifest);
+function requireSelection(pin: RuntimePin, expected?: RuntimePin) {
   const selection = validateRuntimePin(expected);
   if (
     selection &&
@@ -127,15 +125,29 @@ export async function verifyRuntime(root: string, expected?: RuntimePin) {
         (selection.biberVersion && selection.biberVersion !== pin.biberVersion))
   )
     throw new Error('This compiler does not match the version recorded in the project.');
-  let bytes = 0,
-    count = 0;
+}
+
+// Walks the complete folder, rejecting links, special files and resources the
+// manifest does not name. With `identities`, it also returns a digest of each
+// file's filesystem identity (device, inode, size, mode, link count and
+// nanosecond modification/change times). Any write, replacement, rename or
+// permission change alters the change time, which ordinary programs cannot set.
+async function walkRuntime(root: string, manifest: RuntimeManifest, identities = false) {
+  const digest = identities ? createHash('sha256') : undefined;
+  const describe = (name: string, stat: BigIntStats) =>
+    `${name}\0${stat.dev}:${stat.ino}:${stat.size}:${stat.mode}:${stat.nlink}:${stat.mtimeNs}:${stat.ctimeNs}\n`;
+  if (digest) digest.update(describe('', await fs.lstat(root, { bigint: true })));
+  let count = 0;
   const visit = async (relative = '') => {
+    const files: string[] = [];
     for (const entry of await fs.readdir(path.join(root, relative), { withFileTypes: true })) {
       if (++count > 25_000) throw new Error('Too many compiler resources.');
       const name = relative ? `${relative}/${entry.name}` : entry.name;
       runtimeName(name);
       if (entry.isDirectory()) {
         if (name.split('/').length > 20) throw new Error('Compiler folders are nested too deeply.');
+        if (digest)
+          digest.update(describe(name, await fs.lstat(path.join(root, name), { bigint: true })));
         await visit(name);
       } else {
         if (!entry.isFile())
@@ -147,12 +159,36 @@ export async function verifyRuntime(root: string, expected?: RuntimePin) {
           throw new Error(
             `Unexpected compiler resource: ${name}. Repair the compiler before building.`,
           );
+        files.push(name);
       }
+    }
+    if (!digest) return;
+    const stats = await Promise.all(
+      files.map((name) => fs.lstat(path.join(root, name), { bigint: true })),
+    );
+    for (const [index, stat] of stats.entries()) {
+      if (!stat.isFile())
+        throw new Error('Compiler resources must be regular files, without links.');
+      digest.update(describe(files[index], stat));
     }
   };
   await visit();
-  // Rehash every byte on every verification. Four readers overlap filesystem
-  // waits without retaining complete resources or caching a prior success.
+  return digest?.digest('hex');
+}
+
+export async function verifyRuntime(root: string, expected?: RuntimePin) {
+  const manifest = await readRuntimeManifest(root),
+    pin = runtimePin(manifest);
+  requireSelection(pin, expected);
+  await walkRuntime(root, manifest);
+  await hashRuntime(root, manifest);
+  return { manifest, pin };
+}
+
+async function hashRuntime(root: string, manifest: RuntimeManifest) {
+  let bytes = 0;
+  // Hash every byte. Four readers overlap filesystem waits without retaining
+  // complete resources; only verifyRuntimeReusing may reuse a prior success.
   const entries = Object.entries(manifest.files);
   let next = 0,
     failed = false,
@@ -191,7 +227,54 @@ export async function verifyRuntime(root: string, expected?: RuntimePin) {
   // leaves no file handles or background reads behind.
   await Promise.all(Array.from({ length: Math.min(4, entries.length) }, readAndHash));
   if (failed) throw failure;
-  return { manifest, pin };
+}
+
+export const runtimeReusePolicy = Object.freeze({ maxAgeMs: 10 * 60_000, entries: 8 });
+const verifiedRuntimes = new Map<string, { id: string; identity: string; verifiedAt: number }>();
+
+/** Forget every reusable verification, so the next check rehashes every byte. */
+export function forgetRuntimeVerifications() {
+  verifiedRuntimes.clear();
+}
+
+// Builds call this before every compilation. A complete byte-for-byte
+// verification is reused only while the manifest identity and every file's
+// filesystem identity are unchanged, and for at most `maxAgeMs`; every new
+// process, changed/replaced/added/removed file or expired result rehashes
+// all bytes. The full rehash otherwise dominated warm builds (about 0.7 s of
+// 0.85 s) and was the largest main-process CPU consumer in long sessions.
+export async function verifyRuntimeReusing(root: string, expected?: RuntimePin) {
+  const key = path.resolve(root),
+    manifest = await readRuntimeManifest(root),
+    pin = runtimePin(manifest);
+  requireSelection(pin, expected);
+  const previous = verifiedRuntimes.get(key);
+  verifiedRuntimes.delete(key);
+  try {
+    const before = await walkRuntime(root, manifest, true);
+    if (
+      previous &&
+      previous.id === pin.id &&
+      previous.identity === before &&
+      Date.now() - previous.verifiedAt < runtimeReusePolicy.maxAgeMs
+    ) {
+      verifiedRuntimes.set(key, previous);
+      return { manifest, pin };
+    }
+    const verifiedAt = Date.now();
+    await hashRuntime(root, manifest);
+    // Remember the result only if nothing changed while the bytes were read.
+    // The manifest is part of the walk, so its identity is covered too.
+    if ((await walkRuntime(root, manifest, true)) === before) {
+      verifiedRuntimes.set(key, { id: pin.id!, identity: before!, verifiedAt });
+      while (verifiedRuntimes.size > runtimeReusePolicy.entries)
+        verifiedRuntimes.delete(verifiedRuntimes.keys().next().value!);
+    }
+    return { manifest, pin };
+  } catch (error) {
+    verifiedRuntimes.delete(key);
+    throw error;
+  }
 }
 
 export async function inspectRuntime(root: string, expected?: RuntimePin): Promise<RuntimeStatus> {
@@ -204,7 +287,7 @@ export async function inspectRuntime(root: string, expected?: RuntimePin): Promi
     message: '',
   };
   try {
-    const { manifest, pin } = await verifyRuntime(root, expected);
+    const { manifest, pin } = await verifyRuntimeReusing(root, expected);
     status.pin = pin;
     if (manifest.platform !== status.platform)
       throw new Error('This compiler was built for a different platform.');

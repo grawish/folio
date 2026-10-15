@@ -1,5 +1,6 @@
 import { randomUUID } from 'node:crypto';
 import { promises as fs } from 'node:fs';
+import type { FileHandle } from 'node:fs/promises';
 import path from 'node:path';
 import { adoptRuntime, validateRuntimePin, type RuntimePin } from '../../src/shared/runtime';
 import type { RuntimeStatus } from '../../src/shared/types';
@@ -9,6 +10,8 @@ import {
   runtimeFile,
   runtimePin,
   verifyRuntime,
+  verifyRuntimeReusing,
+  openRuntimeFile,
   type RuntimeManifest,
 } from './runtime';
 import { Compiler } from './compiler';
@@ -46,7 +49,7 @@ async function directory(name: string) {
 
 async function durableWrite(
   name: string,
-  data: Uint8Array | string,
+  data: Uint8Array | string | ((handle: FileHandle) => Promise<void>),
   mode = 0o600,
   pendingDirectories?: Set<string>,
 ) {
@@ -54,7 +57,8 @@ async function durableWrite(
   try {
     const handle = await fs.open(temporary, 'wx', mode);
     try {
-      await handle.writeFile(data);
+      if (typeof data === 'function') await data(handle);
+      else await handle.writeFile(data);
       await handle.sync();
     } finally {
       await handle.close();
@@ -323,11 +327,29 @@ export class RuntimeManager implements RuntimeSource {
       progress?.('copy', 0, files.length);
       const copied = await Promise.allSettled(
         Array.from({ length: 4 }, async () => {
+          const buffer = Buffer.allocUnsafe(1024 * 1024);
           while (next < files.length) {
             signal?.throwIfAborted();
             const name = files[next++],
               destination = path.join(runtime, name);
-            const data = overrides.get(name) ?? (await runtimeFile(source, name));
+            // Stream installer files through one bounded buffer per worker rather
+            // than holding whole engine binaries (up to 60 MB each) in memory.
+            const data =
+              overrides.get(name) ??
+              (async (target: FileHandle) => {
+                const input = await openRuntimeFile(source, name);
+                try {
+                  for (;;) {
+                    const { bytesRead } = await input.read(buffer, 0, buffer.length, null);
+                    if (!bytesRead) break;
+                    for (let written = 0; written < bytesRead;)
+                      written += (await target.write(buffer, written, bytesRead - written))
+                        .bytesWritten;
+                  }
+                } finally {
+                  await input.close();
+                }
+              });
             const mode = overrides.has(name)
               ? 0o600
               : (await fs.lstat(path.join(source, name))).mode & 0o111
@@ -359,7 +381,9 @@ export class RuntimeManager implements RuntimeSource {
       }
       await this.options.checkpoint?.('staged');
       signal?.throwIfAborted();
-      await verifyRuntime(runtime, pin);
+      // A complete byte check of the new copy. It also lets the self-test builds
+      // and the first user build reuse this result while the copy is unchanged.
+      await verifyRuntimeReusing(runtime, pin);
       progress?.('check');
       await this.probe(runtime, pin, signal);
       signal?.throwIfAborted();
