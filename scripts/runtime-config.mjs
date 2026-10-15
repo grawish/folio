@@ -3,11 +3,32 @@ export const bundleUrl = 'https://relay.fullyjustified.net/default_bundle_v33.ta
 export const upstreamBundleDigest =
   '6ffe055852f8faf66c0acbe1a7fb27f87b869a90bad1204f3bf4d9683f597c7c';
 // Biber must match BibLaTeX 3.17 in the pinned v33 bundle.
+const biberBase =
+  'https://downloads.sourceforge.net/project/biblatex-biber/biblatex-biber/2.17/binaries';
 export const biber = {
   version: '2.17',
-  url: 'https://downloads.sourceforge.net/project/biblatex-biber/biblatex-biber/2.17/binaries/MacOS/biber-darwin_universal.tar.gz',
+  url: `${biberBase}/MacOS/biber-darwin_universal.tar.gz`,
   archive: 'biber-2.17-darwin-universal.tar.gz',
   hash: '182e1efa074d8a2a23a8893f2a22440d4e463cce55e4ed02076ac4c0ee0614b2',
+};
+// Official upstream Biber 2.17 builds for the other desktop targets. A null
+// hash is not trusted: run `node scripts/pin-biber.mjs` (or the "Pin Biber
+// archives" workflow) to record the reviewed digest before packaging.
+export const biberArchives = {
+  'darwin-arm64': biber,
+  'darwin-x64': biber,
+  'linux-x64': {
+    version: '2.17',
+    url: `${biberBase}/Linux/biber-linux_x86_64.tar.gz`,
+    archive: 'biber-2.17-linux-x86_64.tar.gz',
+    hash: '129d2e0332a57e985ffa253e5e9fbd28ef99af5a068d1b141145211969aa8999',
+  },
+  'win32-x64': {
+    version: '2.17',
+    url: `${biberBase}/Windows/biber-MSWIN64.zip`,
+    archive: 'biber-2.17-MSWIN64.zip',
+    hash: 'c103bffc5ae0a7f513e7c26b6d394e9be6cf41952959c5d604ee2e6581b5dea2',
+  },
 };
 export const releases = {
   'darwin-arm64': {

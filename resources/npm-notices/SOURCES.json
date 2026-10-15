@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "scope": "Original notices from 38 installed npm production packages plus five packages involved in byte-reproduced application JavaScript or its generated support code. Includes optional or potentially unused packages and original tool-level notices; this is not a complete linked-component or app SBOM. Electron/Chromium and native/compiler materials are recorded separately.",
-  "packageLockSha256": "a7d38740d5a77c0fc556fc56af047721dbc3410e119efef0950265aaf241834a",
+  "packageLockSha256": "ec850b4c6ec7306b4a77a941453821d59f422278565abf46574c6fc93cca7778",
   "packages": [
     {
       "name": "@codemirror/autocomplete",

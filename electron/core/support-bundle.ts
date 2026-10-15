@@ -34,7 +34,12 @@ export function validateSupportContext(value: unknown): SupportContext {
   return {
     compiler: {
       state: choice(c.state, ['ready', 'needs-attention', 'not-checked']),
-      isolation: choice(c.isolation, ['macos-seatbelt', 'unavailable']),
+      isolation: choice(c.isolation, [
+        'macos-seatbelt',
+        'posix-limits',
+        'untrusted-mode',
+        'unavailable',
+      ]),
       version: numericVersion(c.version),
       repairAvailable: boolean(c.repairAvailable),
       includedCompiler: choice(c.includedCompiler, [true, false, null]),
@@ -95,7 +100,10 @@ type SystemInfo = {
   packaged: boolean;
 };
 const labels: Record<SupportSection, [string, string]> = {
-  app: ['App and Mac versions', 'Folio, Electron, browser, Node, macOS kernel and architecture.'],
+  app: [
+    'App and system versions',
+    'Folio, Electron, browser, Node, OS, macOS kernel and architecture.',
+  ],
   compiler: [
     'Compiler and last build',
     'Readiness, isolation, build result, timing and error category. No raw log.',
@@ -131,8 +139,13 @@ export class SupportBundles {
         chromiumVersion: numericVersion(system.chromium),
         nodeVersion: numericVersion(system.node),
         macOSKernelVersion: system.platform === 'darwin' ? numericVersion(system.kernel) : null,
-        architecture: system.architecture === 'arm64' ? 'arm64' : 'unsupported',
-        platform: system.platform === 'darwin' ? 'macOS' : 'unsupported',
+        architecture: ['arm64', 'x64'].includes(system.architecture as string)
+          ? system.architecture
+          : 'unsupported',
+        platform:
+          ({ darwin: 'macOS', win32: 'Windows', linux: 'Linux' } as Record<string, string>)[
+            system.platform as string
+          ] ?? 'unsupported',
         packaged: system.packaged === true,
       },
       ...context,

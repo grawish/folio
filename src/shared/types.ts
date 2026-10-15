@@ -45,7 +45,7 @@ export type RuntimeStatus = {
   engine: string;
   bundle: string;
   platform: string;
-  isolation: 'macos-seatbelt' | 'unavailable';
+  isolation: 'macos-seatbelt' | 'posix-limits' | 'untrusted-mode' | 'unavailable';
   message: string;
   pin?: import('./runtime').RuntimePin;
   defaultPin?: import('./runtime').RuntimePin;

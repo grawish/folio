@@ -544,7 +544,10 @@ test('reviewed removal deletes only an old identity and preserves saved project 
   await assert.rejects(fs.access(path.join(f.data, old.key)));
   assert.deepEqual(await fs.readFile(path.join(projectRoot, 'resume.project.json')), before);
   assert.equal(await fs.readFile(path.join(projectRoot, 'main.tex'), 'utf8'), 'Keep this source');
-  assert.equal((await f.updated.status()).ready, process.platform === 'darwin');
+  assert.equal(
+    (await f.updated.status()).ready,
+    ['darwin', 'linux', 'win32'].includes(process.platform),
+  );
   const absent = await f.updated.status(f.pin);
   assert.equal(absent.ready, false);
   assert.deepEqual(absent.pin, f.pin);
@@ -600,7 +603,10 @@ test('an interrupted removal remains reviewable after restart; newly added files
     await fs.readFile(path.join(f.data, remaining.key, 'new-after-review.txt'), 'utf8'),
     'Preserve new file',
   );
-  assert.equal((await restarted.status()).ready, process.platform === 'darwin');
+  assert.equal(
+    (await restarted.status()).ready,
+    ['darwin', 'linux', 'win32'].includes(process.platform),
+  );
   await restarted.removeStoredCompiler(remaining.key, remaining.token);
   assert.equal(
     (await restarted.storage()).entries.some((entry) => entry.unfinishedRemoval),
@@ -664,7 +670,10 @@ test('killing the remover after a real unlink leaves a reviewable remainder and 
   const restarted = new RuntimeManager(f.bundle, f.data, { probe: async () => {} });
   const remainder = (await restarted.storage()).entries.find((entry) => entry.unfinishedRemoval)!;
   assert.ok(remainder);
-  assert.equal((await restarted.status()).ready, process.platform === 'darwin');
+  assert.equal(
+    (await restarted.status()).ready,
+    ['darwin', 'linux', 'win32'].includes(process.platform),
+  );
   await restarted.removeStoredCompiler(remainder.key, remainder.token);
   assert.equal((await restarted.storage()).entries.length, 1);
 });

@@ -1,0 +1,115 @@
+name: Release Windows and Linux previews
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag to create or update (for example v0.1.0-preview.6)
+        type: string
+        required: true
+      publish:
+        description: Attach the installers to a GitHub pre-release
+        type: boolean
+        default: true
+  # Pull requests that touch the app, compiler or packaging build both
+  # platforms and run the same checks, without publishing anything.
+  pull_request:
+    paths:
+      - 'electron/**'
+      - 'src/**'
+      - 'scripts/**'
+      - 'resources/**'
+      - 'tests/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/release-desktop.yml'
+permissions:
+  contents: read
+concurrency:
+  group: release-desktop-${{ inputs.tag || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-22.04 # Oldest supported glibc for the AppImage/deb.
+            target: linux
+          - os: windows-2022
+            target: win
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 90
+    env:
+      CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+      BUILD_LABEL: ${{ inputs.tag || format('pr-{0}', github.event.pull_request.number) }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Check the tag matches package.json
+        if: github.event_name == 'workflow_dispatch'
+        shell: bash
+        env:
+          TAG: ${{ inputs.tag }}
+        run: |
+          version=$(node -p "require('./package.json').version")
+          test "$TAG" = "v$version" || { echo "Tag $TAG != v$version"; exit 1; }
+      - run: npm ci
+      # Downloads the pinned Tectonic + Biber, rebuilds the locked resource
+      # bundle and compiles every template and Biber check offline.
+      - run: npm run setup
+      - run: npm run typecheck
+      - name: Cross-platform compiler tests
+        run: node --import tsx --test tests/cross-platform.test.ts tests/compiler-queue.test.ts
+      - name: Runtime manager tests (Linux)
+        if: matrix.target == 'linux'
+        run: node --import tsx --test tests/runtime-manager.test.ts tests/compiler-limits.test.ts
+      - name: Compile templates and Biber through the production compiler
+        run: node --import tsx scripts/test-compile-native.ts
+      - name: Package
+        run: npm run dist:${{ matrix.target }} -- --publish never
+      - name: Checksums
+        shell: bash
+        run: |
+          cd release
+          shopt -s nullglob
+          files=(Folio-*-setup.exe Folio-*.zip Folio-*.AppImage Folio-*.deb Folio-*.tar.gz)
+          test ${#files[@]} -gt 0
+          sha256sum "${files[@]}" | tee SHA256SUMS-${{ matrix.target }}.txt
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: folio-${{ matrix.target }}-${{ env.BUILD_LABEL }}
+          if-no-files-found: error
+          retention-days: ${{ github.event_name == 'pull_request' && 3 || 14 }}
+          path: |
+            release/Folio-*-setup.exe
+            release/Folio-*.zip
+            release/Folio-*.AppImage
+            release/Folio-*.deb
+            release/Folio-*.tar.gz
+            release/SHA256SUMS-*.txt
+  publish:
+    if: github.event_name == 'workflow_dispatch' && inputs.publish
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          path: dist
+          merge-multiple: true
+      - name: Create or update the pre-release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ inputs.tag }}
+        run: |
+          ls -la dist
+          if ! gh release view "$TAG" -R "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release create "$TAG" -R "$GITHUB_REPOSITORY" --prerelease --target "$GITHUB_SHA" \
+              --title "Folio $TAG" \
+              --notes "Unsigned Windows and Linux preview builds. Windows SmartScreen will warn on first launch (More info → Run anyway). On Linux, prefer the .deb; the AppImage needs libfuse2 and may need --no-sandbox on Ubuntu 24.04+. Verify downloads with the SHA256SUMS files."
+          fi
+          gh release upload "$TAG" -R "$GITHUB_REPOSITORY" --clobber dist/*

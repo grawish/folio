@@ -3,7 +3,13 @@ import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { spawn } from 'node:child_process';
 import { unzipSync, strToU8 } from 'fflate';
-import { version, releases, bundleUrl, upstreamBundleDigest, biber } from './runtime-config.mjs';
+import {
+  version,
+  releases,
+  bundleUrl,
+  upstreamBundleDigest,
+  biberArchives,
+} from './runtime-config.mjs';
 import { templateInputs } from './template-inputs.mjs';
 import { createRuntimeBundle } from './lib/runtime-bundle.mjs';
 import { downloadRuntimeArchive } from './lib/runtime-download.mjs';
@@ -15,6 +21,12 @@ const root = path.resolve('resources/runtime', `${spec.os}-${process.arch}`);
 const cache = path.resolve('.cache/tectonic-cache');
 const output = path.resolve('.cache/template-build');
 const executable = process.platform === 'win32' ? 'tectonic.exe' : 'tectonic';
+const biber = biberArchives[platform];
+const biberExecutable = process.platform === 'win32' ? 'biber.exe' : 'biber';
+if (biber && !biber.hash)
+  throw new Error(
+    `Biber ${biber.version} for ${platform} has no reviewed digest. Run node scripts/pin-biber.mjs first.`,
+  );
 const hash = (data) => createHash('sha256').update(data).digest('hex');
 const downloadOptions = {
   onRetry: ({ attempt, maxAttempts, delayMs, reason }) =>
@@ -87,7 +99,7 @@ const env = {
   TECTONIC_CACHE_DIR: cache,
   XDG_CONFIG_HOME: path.resolve('.cache/tectonic-config'),
 };
-if (process.platform === 'darwin') {
+if (biber) {
   const biberArchive = path.resolve('.cache/downloads', biber.archive);
   let bytes;
   try {
@@ -96,32 +108,51 @@ if (process.platform === 'darwin') {
     /* Download below. */
   }
   if (!bytes || hash(bytes) !== biber.hash) {
-    console.log(`Downloading official Biber ${biber.version} for macOS…`);
+    console.log(`Downloading official Biber ${biber.version} for ${platform}…`);
     bytes = await downloadRuntimeArchive(biber.url, biber.hash, downloadOptions);
     await fs.writeFile(biberArchive, bytes);
   }
-  const unpack = await fs.mkdtemp(path.resolve('.cache/biber-unpack-'));
-  try {
-    await run('tar', ['-xzf', biberArchive, '-C', unpack]);
-    // Select the native slice during packaging; end users do not need lipo/Xcode.
-    await run('/usr/bin/lipo', [
-      path.join(unpack, 'biber'),
-      '-thin',
-      process.arch === 'arm64' ? 'arm64' : 'x86_64',
-      '-output',
-      path.join(root, 'biber'),
-    ]);
-  } finally {
-    await fs.rm(unpack, { recursive: true, force: true });
+  if (process.platform === 'darwin') {
+    const unpack = await fs.mkdtemp(path.resolve('.cache/biber-unpack-'));
+    try {
+      await run('tar', ['-xzf', biberArchive, '-C', unpack]);
+      // Select the native slice during packaging; end users do not need lipo/Xcode.
+      await run('/usr/bin/lipo', [
+        path.join(unpack, 'biber'),
+        '-thin',
+        process.arch === 'arm64' ? 'arm64' : 'x86_64',
+        '-output',
+        path.join(root, 'biber'),
+      ]);
+    } finally {
+      await fs.rm(unpack, { recursive: true, force: true });
+    }
+  } else if (biber.archive.endsWith('.zip')) {
+    const files = unzipSync(bytes);
+    const entry = Object.keys(files).find((n) => path.basename(n).toLowerCase() === 'biber.exe');
+    if (!entry) throw new Error('The Biber archive does not contain biber.exe.');
+    await fs.writeFile(path.join(root, biberExecutable), files[entry]);
+  } else {
+    const unpack = await fs.mkdtemp(path.resolve('.cache/biber-unpack-'));
+    try {
+      await run('tar', ['-xzf', biberArchive, '-C', unpack]);
+      await fs.copyFile(path.join(unpack, 'biber'), path.join(root, biberExecutable));
+    } finally {
+      await fs.rm(unpack, { recursive: true, force: true });
+    }
   }
-  await fs.chmod(path.join(root, 'biber'), 0o755);
+  await fs.chmod(path.join(root, biberExecutable), 0o755);
   env.PATH = `${root}${path.delimiter}${process.env.PATH ?? '/usr/bin:/bin'}`;
-  env.PAR_GLOBAL_TEMP = path.join(root, 'biber-cache');
-  // Pre-expand Perl dependencies so the compiler sandbox can keep the runtime read-only.
-  await run(path.join(root, 'biber'), ['--version'], env);
+  // macOS pre-expands Perl dependencies so the compiler sandbox can keep the
+  // runtime read-only. Other platforms expand into a per-user cache at run time.
+  env.PAR_GLOBAL_TEMP =
+    process.platform === 'darwin'
+      ? path.join(root, 'biber-cache')
+      : path.resolve('.cache/biber-par');
+  await run(path.join(root, biberExecutable), ['--version'], env);
 }
 const sources = await templateInputs(path.join(output, 'templates'));
-for (const directory of [...(process.platform === 'darwin' ? ['resources/runtime-checks'] : [])]) {
+for (const directory of [...(biber ? ['resources/runtime-checks'] : [])]) {
   for (const name of (await fs.readdir(directory)).filter((n) => n.endsWith('.tex')).sort())
     sources.push(path.resolve(directory, name));
 }
@@ -183,14 +214,15 @@ const manifest = {
   platform,
   upstreamBundleDigest,
   resourceCount: Object.keys(locked.files).length,
-  ...(process.platform === 'darwin' ? { biberVersion: biber.version } : {}),
+  ...(biber ? { biberVersion: biber.version } : {}),
   files: {
     [executable]: hash(await fs.readFile(path.join(root, executable))),
     'bundle.zip': hash(zip),
   },
 };
+if (biber)
+  manifest.files[biberExecutable] = hash(await fs.readFile(path.join(root, biberExecutable)));
 if (process.platform === 'darwin') {
-  manifest.files.biber = hash(await fs.readFile(path.join(root, 'biber')));
   const visit = async (relative) => {
     for (const entry of (await fs.readdir(path.join(root, relative), { withFileTypes: true })).sort(
       (a, b) => a.name.localeCompare(b.name),

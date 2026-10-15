@@ -2,6 +2,7 @@ import { promises as fs } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { releases } from './runtime-config.mjs';
 import { templateInputs } from './template-inputs.mjs';
 
@@ -15,7 +16,7 @@ for (const [name, expected] of Object.entries(manifest.files)) {
     .digest('hex');
   if (actual !== expected) throw new Error(`Runtime integrity check failed: ${name}`);
 }
-await fs.mkdir('.cache', { recursive: true });
+await fs.mkdir('.cache/biber-par', { recursive: true });
 const temporary = await fs.mkdtemp(path.resolve('.cache/offline-check-'));
 try {
   const sources = await templateInputs(path.join(temporary, 'templates'));
@@ -31,7 +32,10 @@ try {
         'compile',
         source,
         '--bundle',
-        path.join(root, 'bundle.zip'),
+        // Tectonic parses `D:\...` as a URL with scheme `d:`; use a file: URL.
+        process.platform === 'win32'
+          ? pathToFileURL(path.join(root, 'bundle.zip')).href
+          : path.join(root, 'bundle.zip'),
         '--only-cached',
         '--untrusted',
         '--outdir',
@@ -42,8 +46,14 @@ try {
         encoding: 'utf8',
         env: {
           ...process.env,
-          PATH: `${root}${path.delimiter}/usr/bin${path.delimiter}/bin`,
-          PAR_GLOBAL_TEMP: path.join(root, 'biber-cache'),
+          PATH:
+            process.platform === 'win32'
+              ? `${root};${process.env.PATH ?? ''}`
+              : `${root}${path.delimiter}/usr/bin${path.delimiter}/bin`,
+          PAR_GLOBAL_TEMP:
+            process.platform === 'darwin'
+              ? path.join(root, 'biber-cache')
+              : path.resolve('.cache/biber-par'),
           TECTONIC_CACHE_DIR: path.join(temporary, path.basename(source, '.tex') + '-cache'),
           XDG_CONFIG_HOME: path.join(temporary, 'config'),
         },
