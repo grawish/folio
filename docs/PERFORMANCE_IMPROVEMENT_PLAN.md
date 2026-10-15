@@ -159,7 +159,9 @@ Anything else rehashes every byte. Each new app process starts with no reusable 
 
 Synthetic Linux measurement with the real file count and sizes (3,982 files, 372 MB, warm page cache, Node 22): a complete verification took 1.09–1.14 s, the first reusing check 1.32 s (complete hash plus two identity walks), and later reusing checks 0.13–0.14 s. This is a backend microbenchmark on a development container, not an Apple silicon or complete-app result; repeat `scripts/profile-preview.mjs` on a supported Mac before changing a release claim.
 
-Preparation now also streams each installer file through one 1 MiB buffer per copy worker instead of reading whole engine binaries (up to 60 MB each, four at a time) into main-process memory. File and folder flushes are unchanged.
+Preparation now also streams each installer file through one 1 MiB buffer per copy worker instead of reading whole engine binaries (up to 60 MB each, four at a time) into main-process memory. The same pass hashes every inventoried installer byte against the manifest, replacing the separate full read of the installer before copying: a mismatching file fails before its temporary copy is renamed, and the private generation is removed without a readiness marker or pointer. Installation still checks the installer's exact identity and layout first, and the copy still gets its own complete hash afterwards. The first copy failure now stops the other workers. File and folder flushes are unchanged.
+
+On the same synthetic 372 MB runtime in a Linux container (self-test stubbed), complete preparation took 6.1–6.7 s with a separate installer hash and 4.7–4.8 s with hashing during the copy. Two samples each; repeat on a supported Mac before quoting a number.
 
 ## Measure editing through the rendered PDF
 

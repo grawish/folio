@@ -176,6 +176,18 @@ async function walkRuntime(root: string, manifest: RuntimeManifest, identities =
   return digest?.digest('hex');
 }
 
+/**
+ * Checks the manifest, exact identity and folder layout without reading file
+ * contents. Callers must hash every resource themselves before trusting it.
+ */
+export async function checkRuntimeLayout(root: string, expected?: RuntimePin) {
+  const manifest = await readRuntimeManifest(root),
+    pin = runtimePin(manifest);
+  requireSelection(pin, expected);
+  await walkRuntime(root, manifest);
+  return { manifest, pin };
+}
+
 export async function verifyRuntime(root: string, expected?: RuntimePin) {
   const manifest = await readRuntimeManifest(root),
     pin = runtimePin(manifest);
