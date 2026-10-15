@@ -339,18 +339,19 @@ export function compilerEnvironment(
   platform: NodeJS.Platform = process.platform,
   host: NodeJS.ProcessEnv = process.env,
 ): NodeJS.ProcessEnv {
+  const paths = platform === 'win32' ? path.win32 : path.posix;
   const shared = {
     PAR_GLOBAL_TEMP: parCache,
     TECTONIC_CACHE_DIR: cache,
     TECTONIC_UNTRUSTED_MODE: '1',
-    XDG_CONFIG_HOME: path.join(home, 'home'),
+    XDG_CONFIG_HOME: paths.join(home, 'home'),
     LANG: 'en_US.UTF-8',
   };
   if (platform !== 'win32')
     return {
       ...shared,
-      PATH: `${runtimePath}${path.delimiter}/usr/bin${path.delimiter}/bin`,
-      HOME: path.join(home, 'home'),
+      PATH: `${runtimePath}:/usr/bin:/bin`,
+      HOME: paths.join(home, 'home'),
       TMPDIR: home,
     };
   // Windows programs need SystemRoot to load system libraries.
