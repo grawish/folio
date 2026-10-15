@@ -33,6 +33,7 @@ import { PdfAnnotations } from './PdfAnnotations';
 import { PdfChangeOverlay } from './PdfChangeOverlay';
 import { usePdfDocument } from '../usePdfDocument';
 import { usePdfChangeHighlight, type ChangeHighlightRequest } from '../usePdfChangeHighlight';
+import { clampChangePage, highlightForDisplayed } from '../change-highlight-gate';
 import {
   PDF_LIMITS,
   pdfCanvasSize,
@@ -373,8 +374,7 @@ export const PdfPreview = forwardRef<
   // A different displayed PDF (manual rebuild, History restore, project
   // switch) drops the comparison entirely so old marks and their controls
   // can never appear over a document they do not describe.
-  const displayedHighlight =
-    changeHighlight && data === changeHighlight.after ? changeHighlight : undefined;
+  const displayedHighlight = highlightForDisplayed(changeHighlight, data);
   const highlightActive = !!displayedHighlight && visibleReady && !loading && !error;
   const {
     state: highlightState,
@@ -440,7 +440,7 @@ export const PdfPreview = forwardRef<
     // Change stops may reference a page that no longer exists (content
     // removed at the end of the document). Clamp to the displayed PDF so
     // the page counter and scroll target stay valid.
-    const clamped = document ? Math.max(1, Math.min(next, document.numPages)) : next;
+    const clamped = clampChangePage(next, document?.numPages);
     setPage(clamped);
     scroll.current
       ?.querySelector(`[data-page="${clamped}"]`)

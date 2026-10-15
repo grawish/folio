@@ -51,6 +51,7 @@ import { TemplatePicker } from './components/TemplatePicker';
 import { LatexEditor, type EditorHandle } from './components/LatexEditor';
 import { PdfPreview, type PdfPreviewHandle } from './components/PdfPreview';
 import type { ChangeHighlightRequest } from './usePdfChangeHighlight';
+import { lateBeforeReadIsCurrent } from './change-highlight-gate';
 import { ActionMenu } from './components/ActionMenu';
 import { ProjectFiles } from './components/ProjectFiles';
 import { Modal } from './components/Modal';
@@ -1139,8 +1140,10 @@ export default function App() {
               // project/build identity is unchanged; a project switch or a
               // newer edit/build bumps id/revision and safely discards it.
               if (
-                current.current.id !== appliedProjectId ||
-                current.current.revision !== appliedRevision
+                !lateBeforeReadIsCurrent(
+                  { id: appliedProjectId, revision: appliedRevision },
+                  current.current,
+                )
               )
                 return;
               setChangeHighlight({ runId: id, before: before.pdf, after: afterPdf });
