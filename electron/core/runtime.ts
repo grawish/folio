@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto';
 import { promises as fs, constants, type BigIntStats } from 'node:fs';
 import path from 'node:path';
+import { performance } from 'node:perf_hooks';
 import type { RuntimeStatus } from '../../src/shared/types';
 import { validateRuntimePin, type RuntimePin } from '../../src/shared/runtime';
 
@@ -139,21 +140,20 @@ async function walkRuntime(root: string, manifest: RuntimeManifest, identities =
   if (digest) digest.update(describe('', await fs.lstat(root, { bigint: true })));
   let count = 0;
   const visit = async (relative = '') => {
-    const files: string[] = [];
+    const files: string[] = [],
+      folders: string[] = [];
     for (const entry of await fs.readdir(path.join(root, relative), { withFileTypes: true })) {
       if (++count > 25_000) throw new Error('Too many compiler resources.');
       const name = relative ? `${relative}/${entry.name}` : entry.name;
       runtimeName(name);
       if (entry.isDirectory()) {
         if (name.split('/').length > 20) throw new Error('Compiler folders are nested too deeply.');
-        if (digest)
-          digest.update(describe(name, await fs.lstat(path.join(root, name), { bigint: true })));
-        await visit(name);
+        folders.push(name);
       } else {
         if (!entry.isFile())
           throw new Error('Compiler resources must be regular files, without links.');
         if (
-          !manifest.files[name] &&
+          !Object.hasOwn(manifest.files, name) &&
           !['manifest.json', 'bundle.lock.json', 'THIRD_PARTY_NOTICES.md'].includes(name)
         )
           throw new Error(
@@ -162,15 +162,18 @@ async function walkRuntime(root: string, manifest: RuntimeManifest, identities =
         files.push(name);
       }
     }
-    if (!digest) return;
-    const stats = await Promise.all(
-      files.map((name) => fs.lstat(path.join(root, name), { bigint: true })),
-    );
-    for (const [index, stat] of stats.entries()) {
-      if (!stat.isFile())
-        throw new Error('Compiler resources must be regular files, without links.');
-      digest.update(describe(files[index], stat));
+    if (digest) {
+      const entries = [...folders, ...files];
+      const stats = await Promise.all(
+        entries.map((name) => fs.lstat(path.join(root, name), { bigint: true })),
+      );
+      for (const [index, stat] of stats.entries()) {
+        if (index < folders.length ? !stat.isDirectory() : !stat.isFile())
+          throw new Error('Compiler resources must be regular files, without links.');
+        digest.update(describe(entries[index], stat));
+      }
     }
+    for (const name of folders) await visit(name);
   };
   await visit();
   return digest?.digest('hex');
@@ -189,12 +192,9 @@ export async function checkRuntimeLayout(root: string, expected?: RuntimePin) {
 }
 
 export async function verifyRuntime(root: string, expected?: RuntimePin) {
-  const manifest = await readRuntimeManifest(root),
-    pin = runtimePin(manifest);
-  requireSelection(pin, expected);
-  await walkRuntime(root, manifest);
-  await hashRuntime(root, manifest);
-  return { manifest, pin };
+  const result = await checkRuntimeLayout(root, expected);
+  await hashRuntime(root, result.manifest);
+  return result;
 }
 
 async function hashRuntime(root: string, manifest: RuntimeManifest) {
@@ -268,12 +268,13 @@ export async function verifyRuntimeReusing(root: string, expected?: RuntimePin) 
       previous &&
       previous.id === pin.id &&
       previous.identity === before &&
-      Date.now() - previous.verifiedAt < runtimeReusePolicy.maxAgeMs
+      performance.now() - previous.verifiedAt < runtimeReusePolicy.maxAgeMs
     ) {
       verifiedRuntimes.set(key, previous);
       return { manifest, pin };
     }
-    const verifiedAt = Date.now();
+    // A monotonic clock: setting the system clock back cannot extend reuse.
+    const verifiedAt = performance.now();
     await hashRuntime(root, manifest);
     // Remember the result only if nothing changed while the bytes were read.
     // The manifest is part of the walk, so its identity is covered too.

@@ -288,7 +288,7 @@ export class RuntimeManager implements RuntimeSource {
     // every installer byte as it copies, so a damaged installer fails before
     // any readiness marker or pointer is written, without a separate read pass.
     const { manifest } = await checkRuntimeLayout(this.bundledRoot, pin);
-    await this.stage(pin, this.bundledRoot, manifest);
+    await this.stage(pin, this.bundledRoot, manifest, undefined, undefined, undefined, true);
   }
 
   private async stage(
@@ -298,6 +298,8 @@ export class RuntimeManager implements RuntimeSource {
     overrides = new Map<string, Buffer>(),
     signal?: AbortSignal,
     progress?: PackInstallProgress,
+    // Hash source resources during the copy. Pack bases were already verified.
+    hashSource = false,
   ) {
     signal?.throwIfAborted();
     if (pin.platform !== `${process.platform}-${process.arch}`)
@@ -337,7 +339,7 @@ export class RuntimeManager implements RuntimeSource {
           // Stream source files through one bounded buffer per worker rather
           // than holding whole engine binaries (up to 60 MB each) in memory,
           // hashing each inventoried resource against the manifest as it goes.
-          const expected = manifest.files[name];
+          const expected = hashSource ? manifest.files[name] : undefined;
           const data =
             overrides.get(name) ??
             (async (target: FileHandle) => {

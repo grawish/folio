@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { promises as fs } from 'node:fs';
 import os from 'node:os';
+import { performance } from 'node:perf_hooks';
 import path from 'node:path';
 import { setImmediate } from 'node:timers/promises';
 import {
@@ -306,7 +307,7 @@ test('reuse expires, and a change during hashing is never remembered', async (t)
   const f = await fixture(t, 64);
   const files = Object.keys(f.manifest.files).length;
   let now = 1_000_000;
-  t.mock.method(Date, 'now', () => now);
+  t.mock.method(performance, 'now', () => now);
   const open = fs.open.bind(fs),
     resources = new Set(Object.keys(f.manifest.files).map((name) => path.join(f.root, name)));
   let opens = 0,
@@ -338,4 +339,15 @@ test('reuse expires, and a change during hashing is never remembered', async (t)
   assert.equal(opens, 4 * files);
   await verifyRuntimeReusing(f.root, f.pin);
   assert.equal(opens, 4 * files);
+});
+
+test('inherited object names are never accepted as inventoried resources', async (t) => {
+  forgetRuntimeVerifications();
+  const f = await fixture(t, 64);
+  for (const name of ['constructor', 'toString', 'hasOwnProperty']) {
+    await fs.writeFile(path.join(f.root, name), 'Unexpected');
+    await assert.rejects(verifyRuntime(f.root, f.pin), /Unexpected compiler resource/);
+    await assert.rejects(verifyRuntimeReusing(f.root, f.pin), /Unexpected compiler resource/);
+    await fs.unlink(path.join(f.root, name));
+  }
 });
