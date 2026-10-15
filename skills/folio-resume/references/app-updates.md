@@ -2,7 +2,7 @@
 
 # Check for a new Folio version
 
-These screens are in the current source build. The older public preview 4 does not have them. Automatic installation is still waiting for a signed production release and publisher setup.
+These screens are in preview 5 and current source. The older preview 4 does not have them. Automatic installation is still waiting for a signed production release and publisher setup.
 
 1. Open **Settings → App updates**. You can also choose **Folio → Check for updates…** from the Mac menu.
 2. Pick **Stable** for regular releases or **Beta** to try upcoming changes.

@@ -10,7 +10,7 @@ A desktop workspace where you can chat about your resume, mark changes on its PD
 - PDF highlights, boxes, freehand marks, and notes. Attach selected marked areas to a message, including their page and source context.
 - Persistent conversations, drafts, notes, and matching source/PDF versions; compare, restore, undo, stop, and protection for newer manual edits.
 - Six original templates: Classic, Modern, Academic, Minimal, Compact Technical, and Two Column. Each supports A4 and US Letter, with real PDF thumbnails and bundled-font details.
-- The development Git tab stages saved files, makes local commits and displays repository history. Its [walkthrough](tutorials/git-history.md) distinguishes Git from PDF History; this feature is newer than the preview-4 download.
+- The Git tab stages saved files, makes local commits and displays repository history. Its [walkthrough](tutorials/git-history.md) distinguishes Git from PDF History; this feature is included from preview 5, not the older preview-4 download.
 - CodeMirror editing, syntax highlighting, command completions, search, per-file undo/redo across tabs, and section snippets.
 - Dark and light themes, a header toggle, and a saved System appearance option in Settings.
 - Compact workspace with resizable file/writing/PDF panes, remembered proportions, keyboard dividers, a collapsible sidebar and narrow PDF gutters. Project menus retain all secondary actions.
@@ -30,7 +30,7 @@ A desktop workspace where you can chat about your resume, mark changes on its PD
 - Common imported XeLaTeX resume packages, Roboto/Source Sans Pro fonts, Font Awesome icons, and local Biber bibliography processing on macOS.
 - Signed resource-pack discovery, download/import, verification, cancellation/retry and explicit compiler preview/Apply in Settings. See [resource packs](tutorials/resource-packs.md).
 
-Current development source also allows editing and saving while the compiler prepares, and compresses PDF history in the background during saves. These improvements postdate the preview-4 download; the linked tutorials identify that difference.
+Current development source also allows editing and saving while the compiler prepares, and compresses PDF history in the background during saves. These improvements are included from preview 5, not the older preview-4 download; the linked tutorials identify that difference.
 
 ## Platform status
 
@@ -42,7 +42,7 @@ The requested release is **macOS Apple silicon only**. Windows, Linux and Intel 
 
 macOS compiler isolation currently uses `sandbox-exec`/Seatbelt. It must be reviewed against supported OS versions and the eventual signed-helper distribution design. There is no unsandboxed fallback.
 
-Current development source also limits individual compiler files to 128 MiB and open descriptors to 256, disables core dumps and sets a CPU-time limit. The existing elapsed-time stop remains essential because CPU signals can be caught. See [compiler resource limits](COMPILER_RESOURCE_LIMITS.md); these additions are not in preview 4.
+Current development source also limits individual compiler files to 128 MiB and open descriptors to 256, disables core dumps and sets a CPU-time limit. The existing elapsed-time stop remains essential because CPU signals can be caught. See [compiler resource limits](COMPILER_RESOURCE_LIMITS.md); these additions are included from preview 5, not preview 4.
 
 ## Run from source
 
@@ -169,6 +169,8 @@ npm run test:git
 npm run test:watch
 npm run test:templates
 npm run test:workspace
+npm run test:editor-native-undo
+npm run test:pdf-retention
 npm run test:history-storage
 npm run test:diagnostics
 npm run test:fonts
@@ -202,6 +204,8 @@ npm run pack
 - Packaged smoke test: `node scripts/test-packaged.mjs /absolute/path/Folio.app/Contents/MacOS/Folio`.
 - Template tests create all six layouts at both paper sizes, inspect PDF text and exported dimensions, preserve origin metadata through save/restart/ZIP, and check keyboard selection and the compact picker. `npm run templates:build` regenerates actual thumbnails and runs text/font/layout checks; see [prerequisites and evidence](TEMPLATES.md).
 - Workspace tests exercise pointer/keyboard resizing, minimum widths, preference persistence, actual autosave writes, typing during a save, conflicts, rollback/retry, native project selection and close/restart recovery. The chat suite also verifies autosave deferral during AI work. Run native UI suites sequentially to avoid competing test-window focus.
+- Editor native-undo tests bundle the real Code editor state into an Electron window, compare a native-input control with ordinary typing, and require that typing leaves no growing detached DOM while text, undo, autocompletion, composition and Unicode input still match. They need no app build or compiler; results are written to `test-results/editor-native-undo/result.json`.
+- PDF retention tests mount the real PDF preview in Electron, repeat one-page/100-page replacements with full scrolling, and require one live PDF worker and blob URL, windowed canvases, no growing detached DOM and a flat collected JS heap. They also report renderer CPU across idle windows without gating on it. Results are written to `test-results/pdf-retention/result.json`.
 - PDF viewer tests exercise real 35-/100-/101-page documents, distant-page notes, canvas budgets, mixed page geometry, rejected PDFs, stalled loads/renders, actual worker termination and export recovery. The lifecycle suite separately checks delayed replacement while resizing. See [bounds and evidence](PDF_VIEWER_LIMITS.md).
 - Isolation tests must run outside a parent sandbox that prohibits `sandbox-exec`.
 - Runtime tests check exact compiler selection, damaged-file rejection, offline repair, saved/source-export/history pins and restart using an isolated profile. Run against a packaged build with `node scripts/test-runtime.mjs /absolute/path/Folio.app/Contents/MacOS/Folio`.

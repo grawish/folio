@@ -1,6 +1,6 @@
 # Managing saved PDF history
 
-Development builds show saved-history usage in **History** and let the user remove a selected older version after confirmation. The current PDF and newest saved version are protected. Nothing is removed automatically. The published preview-4 installer predates this feature.
+Builds from preview 5 onward show saved-history usage in **History** and let the user remove a selected older version after confirmation. The current PDF and newest saved version are protected. Nothing is removed automatically. The older preview-4 installer predates this feature.
 
 ## Storage policy
 

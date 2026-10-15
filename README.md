@@ -16,9 +16,9 @@ Download the **[Apple silicon DMG preview](https://github.com/grawish/folio/rele
 
 ## Development preview
 
-Folio is under active development; a signed, notarized installer and live automatic updates are not available yet. The current source includes [app-update Settings and authentication](docs/APP_UPDATES.md); publisher enrollment and a real signed upgrade remain required. The fully qualified unsigned source at `ae62d1a` passes 460 source tests, 19 compiler integrations and all twenty-one native Mac suites on hosted macOS 14.8.9 and 27.0. [OS qualification records](docs/MAC_OS_QUALIFICATION.md) bind those checks to identical app inventories and explain the remaining clean-install and physical-device checks. See the [preview release notes](docs/releases/v0.1.0-preview.4.md) for the packaged build and the [release audit](docs/RELEASE_GAP_AUDIT.md) for remaining production requirements. These results do not establish compatibility with every macOS version.
+Folio is under active development; a signed, notarized installer and live automatic updates are not available yet. The current source includes [app-update Settings and authentication](docs/APP_UPDATES.md); publisher enrollment and a real signed upgrade remain required. The latest fully qualified unsigned source at `0bee271` passes 486 source tests, 19 compiler integrations and all twenty-four native Mac suites on hosted macOS 14.8.9 and 27.0. [OS qualification records](docs/MAC_OS_QUALIFICATION.md) bind those checks to identical app inventories and explain the remaining clean-install and physical-device checks. Preview 5 is newer than that run and passed source CI and packaged smoke checks rather than the full hosted campaign. See the [preview release notes](docs/releases/v0.1.0-preview.5.md) for the packaged build and the [release audit](docs/RELEASE_GAP_AUDIT.md) for remaining production requirements. These results do not establish compatibility with every macOS version.
 
-Windows, Linux and Intel Macs are outside this release's scope. Read the [remaining release requirements](docs/RELEASE_GAP_AUDIT.md) before relying on the preview for important documents.
+Windows, Linux and Intel Macs are outside this release's scope. Read the [remaining release requirements](docs/REMAINING_WORK.md) before relying on the preview for important documents.
 
 ## What you can do
 

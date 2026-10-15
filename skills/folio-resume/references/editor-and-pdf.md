@@ -12,11 +12,11 @@
 
 [Screenshot: The Code tab beside the real PDF](https://github.com/grawish/folio/blob/main/docs/images/code.png)
 
-You can return to **Chat** or **Git** and reopen **Code** without losing your selection, scroll position or undo history. Current development builds close the hidden editor view while keeping that editing state. Inserting a section from Chat opens Code and scrolls to the inserted text. AI changes received in Chat appear when you reopen Code and can still be undone. This internal change is not included in preview 4.
+You can return to **Chat** or **Git** and reopen **Code** without losing your selection, scroll position or undo history. Current development builds close the hidden editor view while keeping that editing state. Inserting a section from Chat opens Code and scrolls to the inserted text. AI changes received in Chat appear when you reopen Code and can still be undone. This internal change is included from preview 5; it is not in preview 4.
 
 For a small exercise, rename `Alex Morgan` in the Classic template, build, then undo the edit and build again. Do not change a command such as `\bfseries` when you only intend to change the name.
 
-Current development builds keep only your newest waiting build when you edit again. Older waiting builds are cancelled. Stop also waits for any file-reading or history-writing step already in progress. Your source stays available. This queue improvement is not included in preview 4; see [build scheduling](https://github.com/grawish/folio/blob/main/docs/BUILD_REQUESTS.md).
+Current development builds keep only your newest waiting build when you edit again. Older waiting builds are cancelled. Stop also waits for any file-reading or history-writing step already in progress. Your source stays available. This queue improvement is included from preview 5, not preview 4; see [build scheduling](https://github.com/grawish/folio/blob/main/docs/BUILD_REQUESTS.md).
 
 ## Find a build error
 
@@ -24,7 +24,7 @@ Try removing a closing brace in a disposable sample. The new build should fail a
 
 The previous PDF may look fine while the current source is broken. Check **Up to date** before using it. Export recompiles changed source and waits for a current rendered preview; it does not silently export a stale success.
 
-If Build output says the build took too long, check for a repeating command and try a smaller document. Current development builds also stop a compiler file from growing beyond 128 MiB. Reduce large pictures if you see that message, then build again. Your source and last good PDF remain available. See [compiler limits](https://github.com/grawish/folio/blob/main/docs/COMPILER_RESOURCE_LIMITS.md); the new file and CPU limits are not included in preview 4.
+If Build output says the build took too long, check for a repeating command and try a smaller document. Current development builds also stop a compiler file from growing beyond 128 MiB. Reduce large pictures if you see that message, then build again. Your source and last good PDF remain available. See [compiler limits](https://github.com/grawish/folio/blob/main/docs/COMPILER_RESOURCE_LIMITS.md); the file and CPU limits are included from preview 5, not preview 4.
 
 ## Fix a missing file, font or package
 

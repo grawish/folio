@@ -2,7 +2,7 @@
 
 Folio stops a document build if it takes too long or tries to write an oversized file. Your source stays available to edit, and the last successful PDF stays visible. Open **Build output** for the reason, simplify the document or reduce large images, then build again. An old PDF cannot be exported as the current document.
 
-These limits apply to the current development source. The published preview 4 predates them.
+These limits are included from preview 5. The older preview 4 predates them.
 
 ## What is limited
 

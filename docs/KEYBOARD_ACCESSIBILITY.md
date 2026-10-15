@@ -1,6 +1,6 @@
 # Keyboard navigation and accessibility
 
-The current development source keeps the chat-first layout and adds keyboard navigation for its view tabs, named content panels, selected-section information in Settings and focus return after a modal closes. These changes are not part of the preview-4 installer.
+Preview 5 and current source keep the chat-first layout and adds keyboard navigation for its view tabs, named content panels, selected-section information in Settings and focus return after a modal closes. These changes are not part of the older preview-4 installer.
 
 ## Behavior
 

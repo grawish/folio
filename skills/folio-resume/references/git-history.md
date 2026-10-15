@@ -2,7 +2,7 @@
 
 # Keep project versions with Git
 
-Git remembers changes to files in your saved project folder. A **commit** is a named checkpoint. This development feature is newer than the preview-4 download. Folio's PDF **History** remains a separate way to compare built PDFs and restore resume versions.
+Git remembers changes to files in your saved project folder. A **commit** is a named checkpoint. This feature is included from preview 5; it is not in the older preview-4 download. Folio's PDF **History** remains a separate way to compare built PDFs and restore resume versions.
 
 ## Before you start
 

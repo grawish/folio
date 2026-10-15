@@ -30,6 +30,63 @@ const latexHighlighting = HighlightStyle.define([
 ]);
 export const externalChange = Annotation.define<boolean>();
 
+// Chromium records each natively applied contenteditable insertion in the frame's
+// own undo stack, which keeps the replaced CodeMirror line DOM alive for as long as
+// the view is mounted. CodeMirror owns undo here, so committed text that targets the
+// current selection is applied as a transaction instead, as paste already is.
+// Composition, autocorrect replacements, multiple selections and any input whose
+// DOM selection differs from the editor selection keep the native path.
+const managedTextInput = EditorView.domEventHandlers({
+  beforeinput(event, view) {
+    const text = event.data;
+    if (
+      event.inputType !== 'insertText' ||
+      !text ||
+      !event.cancelable ||
+      event.isComposing ||
+      view.composing ||
+      view.compositionStarted ||
+      view.state.readOnly
+    )
+      return false;
+    // Chromium reports no target ranges for insertText, so require the live DOM
+    // selection to be the single selection CodeMirror would replace.
+    const selection = view.dom.ownerDocument.getSelection();
+    const { main } = view.state.selection;
+    if (
+      !selection?.anchorNode ||
+      !selection.focusNode ||
+      !view.contentDOM.contains(selection.anchorNode) ||
+      !view.contentDOM.contains(selection.focusNode) ||
+      view.state.selection.ranges.length !== 1
+    )
+      return false;
+    let anchor: number;
+    let head: number;
+    try {
+      anchor = view.posAtDOM(selection.anchorNode, selection.anchorOffset);
+      head = view.posAtDOM(selection.focusNode, selection.focusOffset);
+    } catch {
+      return false;
+    }
+    if (Math.min(anchor, head) !== main.from || Math.max(anchor, head) !== main.to) return false;
+    const { from, to } = main;
+    const insert = () =>
+      view.state.update(view.state.replaceSelection(text), {
+        userEvent: 'input.type',
+        scrollIntoView: true,
+      });
+    event.preventDefault();
+    if (
+      !view.state
+        .facet(EditorView.inputHandler)
+        .some((handler) => handler(view, from, to, text, insert))
+    )
+      view.dispatch(insert());
+    return true;
+  },
+});
+
 // State extensions are created outside the view effect so their callbacks cannot
 // retain its EditorView, DOM, or cleanup closure while the Code panel is hidden.
 export function createLatexEditorState({
@@ -57,6 +114,7 @@ export function createLatexEditorState({
     extensions: [
       lineNumbers(),
       history(),
+      managedTextInput,
       drawSelection(),
       highlightActiveLine(),
       highlightActiveLineGutter(),

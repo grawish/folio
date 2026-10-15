@@ -1,6 +1,6 @@
 # Keep recovery saves small and retry failed writes
 
-Folio keeps a local recovery copy so it can reopen your draft. This is separate from **Save**, which updates your chosen project folder. The changes described here are in development source, newer than the preview-4 download.
+Folio keeps a local recovery copy so it can reopen your draft. This is separate from **Save**, which updates your chosen project folder. The changes described here are included from preview 5, not the older preview-4 download.
 
 ## If recovery cannot be saved
 
