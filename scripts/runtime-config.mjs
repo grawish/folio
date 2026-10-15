@@ -21,13 +21,13 @@ export const biberArchives = {
     version: '2.17',
     url: `${biberBase}/Linux/biber-linux_x86_64.tar.gz`,
     archive: 'biber-2.17-linux-x86_64.tar.gz',
-    hash: null,
+    hash: '129d2e0332a57e985ffa253e5e9fbd28ef99af5a068d1b141145211969aa8999',
   },
   'win32-x64': {
     version: '2.17',
     url: `${biberBase}/Windows/biber-MSWIN64.zip`,
     archive: 'biber-2.17-MSWIN64.zip',
-    hash: null,
+    hash: 'c103bffc5ae0a7f513e7c26b6d394e9be6cf41952959c5d604ee2e6581b5dea2',
   },
 };
 export const releases = {
